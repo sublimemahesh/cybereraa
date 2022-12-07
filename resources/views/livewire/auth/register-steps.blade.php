@@ -17,20 +17,22 @@
                 <span>KYC</span>
             </div>
             <div :class="currentStep == 3 ? 'text-indigo-500' : 'text-gray-400 group-hover:text-gray-500'" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 group inline-flex items-center py-2 px-2 border-b-2 font-medium text-sm">
-                <span>PLACEMENT & Finish</span>
+                <span>PLACEMENT & FINISH</span>
             </div>
         </nav>
         <div class="mb-6">
             <h1 x-html="stepName[currentStep - 1]"></h1>
             <div class="text-xs text-under text-gray-400 cursor-pointer" x-show="currentStep > 1" wire:click="previousStep">⬅ Previous</div>
         </div>
-        @if($step === 1)
-            @include('auth.components.details-step')
-        @elseif($step === 2)
-            @include('auth.components.kyc-step')
-        @elseif($step === 3)
-            @include('auth.components.placement-step')
-        @endif
+        <div class="grid grid-col-2">
+            @if($step === 1)
+                @include('auth.components.details-step')
+            @elseif($step === 2)
+                @include('auth.components.kyc-step')
+            @elseif($step === 3)
+                @include('auth.components.placement-step')
+            @endif
+        </div>
     </form>
 
 

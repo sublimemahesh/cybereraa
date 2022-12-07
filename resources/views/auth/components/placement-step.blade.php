@@ -1,19 +1,32 @@
 <div class="mt-4">
-    <x-jet-label for="password" value="{{ __('Password') }}"/>
-    <x-jet-input id="password" wire:model.lazy="state.password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password"/>
-    @error('state.password')
+    <x-jet-label for="sponsor" value="{{ __('Sponsor username') }}"/>
+    <x-jet-input id="sponsor" wire:model.lazy="state.sponsor" class="block mt-1 w-full" type="text" name="sponsor" required autocomplete="sponsor"/>
+    @if(!empty($sponsor->name))
+        <div class="text-sm text-green-600">{{ $sponsor->name }}</div>
+    @endif
+    @error('state.sponsor')
     <div class="text-sm text-red-600">{{ $message }}</div>
     @enderror
 </div>
 
 <div class="mt-4">
-    <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}"/>
-    <x-jet-input id="password_confirmation" wire:model.lazy="state.password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password"/>
-    @error('state.password_confirmation')
+    <x-jet-label for="username" value="{{ __('Nominated Username') }}"/>
+    <x-jet-input id="username" wire:model.lazy="state.username" class="block mt-1 w-full" type="text" name="username" required autocomplete="username"/>
+    @error('state.username')
     <div class="text-sm text-red-600">{{ $message }}</div>
     @enderror
 </div>
-
+<div class="mt-4">
+    <x-jet-label for="position" value="{{ __('Position') }}"/>
+    <select id="position" wire:model.lazy="state.position" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+        <option value="">Select Position</option>
+        <option value="right">Right</option>
+        <option value="left">Left</option>
+    </select>
+    @error('state.position')
+    <div class="text-sm text-red-600">{{ $message }}</div>
+    @enderror
+</div>
 @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
     <div class="mt-4">
         <x-jet-label for="terms">
