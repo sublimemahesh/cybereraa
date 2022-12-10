@@ -105,17 +105,17 @@
             </div>
 
 
-            <!--**********************************  Footer start   ***********************************-->
-            <div class="footer out-footer">
-                <div class="copyright">
-                    <p>Copyright © Developed by
-                        <a href="https://www.synotec.lk" target="_blank">Synotec</a>
-                        {{ date('Y') }}
-                    </p>
-                </div>
-            </div>
-            <!--********************************** Footer end  ***********************************-->
         </div>
+        <!--**********************************  Footer start   ***********************************-->
+        <div class="footer out-footer">
+            <div class="copyright">
+                <p>Copyright © Developed by
+                    <a href="https://www.synotec.lk" target="_blank">Synotec</a>
+                    {{ date('Y') }}
+                </p>
+            </div>
+        </div>
+        <!--********************************** Footer end  ***********************************-->
         <!--********************************** Content body end ***********************************-->
     </div>
     <!--********************************** Main wrapper end ***********************************-->
