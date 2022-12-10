@@ -1,3 +1,9 @@
+@import "intl-tel-input/build/css/intlTelInput.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.iti {
+    width: 100%;
+}
