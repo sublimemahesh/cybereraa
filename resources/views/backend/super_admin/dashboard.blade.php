@@ -1,6 +1,6 @@
 <x-backend.layouts.app>
     @section('title', 'Admin Dashboard')
-     @section('header-title', 'Welcome ' . Auth::user()->name )
+    @section('header-title', 'Welcome ' . Auth::user()->name )
     @section('styles')
     @endsection
     @section('breadcrumb-items')
@@ -250,4 +250,8 @@
             </div>
         </div>
     </div>
+
+    @push('scripts')
+        <script src="{{ asset('assets/backend/js/dashboard/dashboard.js') }}"></script>
+    @endpush
 </x-backend.layouts.app>

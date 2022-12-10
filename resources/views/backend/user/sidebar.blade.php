@@ -9,9 +9,9 @@
                 </a>
             </li>
             <li>
-                <a href="widget-basic.html" class="" aria-expanded="false">
-                    <i class="bi bi-gear-wide"></i>
-                    <span class="nav-text">Widget</span>
+                <a href="{{ route('user.kyc.index') }}" class="" aria-expanded="false">
+                    <i class="bi bi-file-earmark-check"></i>
+                    <span class="nav-text">My KYC</span>
                 </a>
             </li>
 

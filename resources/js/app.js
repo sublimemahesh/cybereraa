@@ -15,6 +15,7 @@ window.Toast = Swal.mixin({
     toast: true,
     position: "top-end",
     showConfirmButton: false,
+    background: '#25164F',
     timer: 3000,
     timerProgressBar: true,
     // didOpen: (toast) => {

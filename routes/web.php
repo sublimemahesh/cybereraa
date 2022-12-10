@@ -35,6 +35,9 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
 
     Route::group(["prefix" => "user", 'middleware' => ['role:user'], "as" => 'user.'], function () {
         Route::view('/dashboard', 'backend.user.dashboard')->name('dashboard');
+        Route::get('kyc', 'User\KycController@index')->name('kyc.index');
+        Route::get('kyc/entry/{kyc}', 'User\KycController@show')->name('kyc.show');
+        Route::post('kyc/new-entry', 'User\KycController@storeNewEntry');
     });
 
 });
