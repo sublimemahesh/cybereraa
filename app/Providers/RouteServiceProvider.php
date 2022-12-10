@@ -19,6 +19,12 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/dashboard';
 
+    public const REGISTERED_REDIRECT_SUPER_ADMIN = '/super-admin/dashboard';
+
+    public const REGISTERED_REDIRECT_ADMIN = '/admin/dashboard';
+
+    public const REGISTERED_REDIRECT_USER = '/user/dashboard';
+
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
      *

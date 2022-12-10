@@ -62,7 +62,27 @@ return [
     */
 
     'home' => RouteServiceProvider::HOME,
+    /*
+    |--------------------------------------------------------------------------
+    | Super Admin Dashboard Path
+    |--------------------------------------------------------------------------
+    */
 
+    'super_admin' => RouteServiceProvider::REGISTERED_REDIRECT_SUPER_ADMIN,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Dashboard Path
+    |--------------------------------------------------------------------------
+    */
+    'admin' => RouteServiceProvider::REGISTERED_REDIRECT_ADMIN,
+
+    /*
+    |--------------------------------------------------------------------------
+    | User Dashboard Path
+    |--------------------------------------------------------------------------
+    */
+    'user' => RouteServiceProvider::REGISTERED_REDIRECT_USER,
     /*
     |--------------------------------------------------------------------------
     | Fortify Routes Prefix / Subdomain
