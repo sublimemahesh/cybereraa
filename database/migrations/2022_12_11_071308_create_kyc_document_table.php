@@ -12,11 +12,12 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('kycs', function (Blueprint $table) {
+        Schema::create('kyc_documents', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('profile_id')->nullable()->constrained()->onDelete('no action');
-            $table->enum('type', ['nic', 'driving_lc', 'passport'])->nullable();
-            $table->enum('status', ['pending', 'accepted', 'rejected'])->default('pending');
+            $table->foreignId('kyc_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->string('document_name')->nullable();
+            $table->enum('type', ['front', 'back', 'other']);
+            $table->enum('status', ['required', 'pending', 'accepted', 'rejected'])->default('required');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +30,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('kycs');
+        Schema::dropIfExists('kyc_document');
     }
 };

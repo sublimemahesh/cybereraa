@@ -7,7 +7,7 @@
         <li class="breadcrumb-item">KYC</li>
     @endsection
 
-    <div class="row">
+    <div class="row kyc-details-page">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">

@@ -11,7 +11,7 @@ $(function () {
                 axios.post(`${APP_URL}/user/kyc/new-entry`, {
                     kyc_type
                 }).then(function (response) {
-                    if (response.data.status === "success") {
+                    if (response.data.status) {
                         location.reload();
                     }
                 }).catch(function (error) {

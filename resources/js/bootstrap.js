@@ -1,5 +1,6 @@
 import _ from 'lodash';
 window._ = _;
+window.APP_URL = import.meta.env.VITE_ASSET_URL;
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

@@ -4,7 +4,9 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Kyc;
+use App\Models\KycDocument;
 use Auth;
+use DB;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -27,13 +29,27 @@ class KycController extends Controller
             return response()->json($json, 403);
         }
 
-        Kyc::create([
-            'profile_id' => Auth::user()->profile->id,
-            'type' => $validated['kyc_type'],
-            'status' => 'pending'
-        ]);
+        DB::transaction(function () use ($validated) {
+            return tap(Kyc::create([
+                'profile_id' => Auth::user()->profile->id,
+                'type' => $validated['kyc_type'],
+                'status' => 'pending'
+            ]), function (Kyc $kyc) {
+                $required_documents = [];
+                foreach (KycDocument::DOCUMENT_TYPE_NAMES[$kyc->type] as $type => $typeName) {
+                    if (Auth::user()->can('create', [KycDocument::class, $kyc, $type])) {
+                        $required_documents[] = [
+                            'kyc_id' => $kyc->id,
+                            'type' => $type,
+                            'status' => 'required',
+                        ];
+                    }
+                }
+                $kyc->documents()->createMany($required_documents);
+            });
+        });
 
-        $json['status'] = 'success';
+        $json['status'] = true;
         $json['message'] = 'KYC entry was successfully created!';
         $json['icon'] = 'success'; // warning | info | question | success | error
         $json['data'] = $validated;

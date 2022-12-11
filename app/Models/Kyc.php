@@ -11,6 +11,8 @@ class Kyc extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $withCount = ['documents'];
+
     protected $fillable = ['profile_id', 'type', 'status'];
 
     public const KYC_TYPES = [
@@ -32,6 +34,11 @@ class Kyc extends Model
     public function profile()
     {
         return $this->belongsTo(Profile::class, 'profile_id')->withDefault(new Profile);
+    }
+
+    public function documents(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(KycDocument::class, 'kyc_id');
     }
 
     public function getKycTypeAttribute(): string
