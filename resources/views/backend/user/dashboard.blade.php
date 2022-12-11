@@ -1,13 +1,6 @@
 <x-backend.layouts.app>
     @section('title', 'User Dashboard')
     @section('header-title', 'Welcome ' . Auth::user()->name )
-    @section('styles')
-    @endsection
-    @section('breadcrumb-items')
-        <li class="breadcrumb-item">
-            <a href="javascript:void(0)">Dashboard</a>
-        </li>
-    @endsection
 
     <div class="row">
         <div class="col-xl-12">
@@ -250,4 +243,8 @@
             </div>
         </div>
     </div>
+
+    @push('scripts')
+        <script src="{{ asset('assets/backend/js/dashboard/dashboard.js') }}"></script>
+    @endpush
 </x-backend.layouts.app>

@@ -56,7 +56,7 @@
                         <ul>
                             <li class="nav-item dropdown header-profile">
                                 <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
-                                    <img src="{{ asset('assets/backend/images/profile/pic1.jpg') }}" alt="">
+                                    <img src="{{ Auth::user()->profile_photo_url }}" alt="">
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end" style="">
                                     <a href="{{ route('profile.show') }}" class="dropdown-item ai-icon ">

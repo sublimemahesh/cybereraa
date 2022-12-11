@@ -20,4 +20,9 @@ class Profile extends Model
     {
         return $this->belongsTo(Country::class, 'country_id', 'id')->withDefault(new Country);
     }
+
+    public function kycs(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Kyc::class, 'profile_id');
+    }
 }

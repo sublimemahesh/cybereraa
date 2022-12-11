@@ -14,7 +14,10 @@
     <meta property="og:image" content="https://cryptozone.dexignzone.com/xhtml/social-image.png">
     <meta name="format-detection" content="telephone=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <script type="text/javascript">
+        const APP_URL = {!! json_encode(url('/')) !!};
+        const _TOKEN = "{!! csrf_token() !!}"
+    </script>
     <!-- PAGE TITLE HERE -->
     <title>@yield('title') | {{ config('app.name', 'Laravel') }}</title>
 
@@ -62,50 +65,51 @@
                         <li class="breadcrumb-item active">
                             <a href="{{ route('/') }}"><i class="material-icons">home</i></a>
                         </li>
+                        <li class="breadcrumb-item">
+                            @if(request()->is('*/dashboard') )
+                                Dashboard
+                            @else
+                                <a href="{{ route(Auth::user()->getRoleNames()->first().'.dashboard') }}">Dashboard</a>
+                            @endif
+                        </li>
                         @yield('breadcrumb-items')
                     </ol>
                 </div>
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-                @if (session('error'))
-                    <div class="alert alert-danger">
-                        {{ session('error') }}
-                    </div>
-                @endif
-                @if (session('info'))
-                    <div class="alert alert-info">
-                        {{ session('info') }}
-                    </div>
-                @endif
-                @if (session('warning'))
-                    <div class="alert alert-warning">
-                        {{ session('warning') }}
-                    </div>
-                @endif
+                <div id="alert-container">
+                    <x-jet-validation-errors class="alert alert-danger mb-4"/>
+                    @if (session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+                    @if (session('info'))
+                        <div class="alert alert-info">
+                            {{ session('info') }}
+                        </div>
+                    @endif
+                    @if (session('warning'))
+                        <div class="alert alert-warning">
+                            {{ session('warning') }}
+                        </div>
+                    @endif
+                </div>
 
                 {{ $slot }}
 
             </div>
 
 
-            <!--**********************************  Footer start   ***********************************-->
-            <div class="footer out-footer">
-                <div class="copyright">
-                    <p>Copyright © Developed by
-                        <a href="https://www.synotec.lk" target="_blank">Synotec</a>
-                        {{ date('Y') }}
-                    </p>
-                </div>
-            </div>
-            <!--********************************** Footer end  ***********************************-->
         </div>
+        <!--**********************************  Footer start   ***********************************-->
+        <div class="footer out-footer">
+            <div class="copyright">
+                <p>Copyright © Developed by
+                    <a href="https://www.synotec.lk" target="_blank">Synotec</a>
+                    {{ date('Y') }}
+                </p>
+            </div>
+        </div>
+        <!--********************************** Footer end  ***********************************-->
         <!--********************************** Content body end ***********************************-->
     </div>
     <!--********************************** Main wrapper end ***********************************-->
@@ -121,7 +125,6 @@
     <script src="{{ asset('assets/backend/vendor/swiper/js/swiper-bundle.min.js') }}"></script>
 
     <!-- Dashboard 1 -->
-    <script src="{{ asset('assets/backend/js/dashboard/dashboard.js') }}"></script>
     <script src="{{ asset('assets/backend/js/custom.js') }}"></script>
     <script src="{{ asset('assets/backend/js/deznav-init.js') }}"></script>
     {{--    <script src="{{ asset('assets/backend/js/dashboard/tradingview-2.js') }}"></script>--}}

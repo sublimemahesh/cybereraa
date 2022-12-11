@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
+    private const NAMESPACE = 'App\Http\Controllers';
     /**
      * The path to the "home" route for your application.
      *
@@ -36,10 +37,12 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->routes(function () {
             Route::middleware('api')
+                ->namespace(Self::NAMESPACE)
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
 
             Route::middleware('web')
+                ->namespace(Self::NAMESPACE)
                 ->group(base_path('routes/web.php'));
         });
     }

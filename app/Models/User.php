@@ -25,6 +25,8 @@ class User extends Authenticatable
     use softDeletes;
     use HasRecursiveRelationships;
 
+    protected $with = ['profile'];
+
     /**
      * The attributes that are mass assignable.
      *

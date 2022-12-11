@@ -33,8 +33,15 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::view('/dashboard', 'backend.admin.dashboard')->name('dashboard');
     });
 
+    // USER ROUTES
     Route::group(["prefix" => "user", 'middleware' => ['role:user'], "as" => 'user.'], function () {
         Route::view('/dashboard', 'backend.user.dashboard')->name('dashboard');
+
+        // KYC
+        Route::get('kyc', 'User\KycController@index')->name('kyc.index');
+        Route::get('kyc/entry/{kyc}', 'User\KycController@show')->name('kyc.show');
+        Route::post('kyc/new-entry', 'User\KycController@storeNewEntry');
+        Route::post('kyc/{kyc}/documents/{document}/upload', 'User\KycDocumentController@update')->scopeBindings();
     });
 
 });
