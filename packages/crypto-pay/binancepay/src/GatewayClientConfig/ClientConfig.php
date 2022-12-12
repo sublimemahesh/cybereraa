@@ -7,6 +7,8 @@ use Exception;
 class ClientConfig
 {
 
+    private string $serviceBaseUrl;
+
     private string $serviceEndpoint;
 
     private string $nonce;
@@ -21,6 +23,8 @@ class ClientConfig
      */
     public function __construct()
     {
+        $this->serviceBaseUrl = env('BINANCE_SERVICE_BASE_URL', 'https://bpay.binanceapi.com');
+
         $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $nonce = '';
         for ($i = 1; $i <= 32; $i++) {
@@ -37,9 +41,9 @@ class ClientConfig
         return $this->serviceEndpoint;
     }
 
-    public function setServiceEndpoint($serviceEndpoint): void
+    public function setServiceEndpoint($endpoint): void
     {
-        $this->serviceEndpoint = $serviceEndpoint;
+        $this->serviceEndpoint = $this->serviceBaseUrl . "/" . $endpoint;
     }
 
     public function getNonce()
@@ -71,6 +75,6 @@ class ClientConfig
     {
         $this->binance_pay_secret = $binance_pay_secret;
     }
- 
+
 
 }

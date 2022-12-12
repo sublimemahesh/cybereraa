@@ -67,18 +67,52 @@ class BinancePay
     private string $goodsType;
 
     /**
+     * The URL to redirect to when the payment is successful.
+     */
+    private string $returnUrl;
+
+    /**
+     * The URL to redirect to when payment is failed.
+     */
+    private string $cancelUrl;
+
+    /**
+     * orderExpireTime determines how long an order is valid for. If not specified, orderExpireTime will be 1 hour;
+     * maximum orderExpireTime is 1 hour. Please input in milliseconds.
+     */
+    private string $orderExpireTime;
+
+    /**
+     * SupportPayCurrency determines the currencies that a customer is allowed to use to pay for the order.
+     * If not specified, all Binance Pay supported currencies will be allowed.
+     * Input to be separated by commas, e.g. "BUSD,BNB"
+     */
+    private string $supportPayCurrency = "USDT";
+
+    /**
+     * The URL for order notification, can only start with http or https.
+     * If the webhookUrl is passed in the parameter, the webhook url configured on the merchant platform will not take effect,
+     * and the currently passed url will be called back first.
+     */
+    private string $webhookUrl;
+
+    /**
      * @throws Exception
      */
     public function __construct(string $endpoint)
     {
         $this->clientConfig = new ClientConfig();
-        $this->clientConfig->setServiceEndpoint(env('BINANCE_SERVICE_ENDPOINT', '') . "/" . $endpoint);
-        $this->clientConfig->setBinancePayKey(env('BINANCE_MERCHANT_API_KEY', ''));
-        $this->clientConfig->setBinancePaySecret(env('BINANCE_MERCHANT_SECRET_KEY', ''));
+        $this->clientConfig->setServiceEndpoint($endpoint);
+        $this->clientConfig->setBinancePayKey(env('BINANCE_MERCHANT_API_KEY'));
+        $this->clientConfig->setBinancePaySecret(env('BINANCE_MERCHANT_SECRET_KEY'));
 
         $this->terminalType = env('BINANCE_TERMINAL_TYPE', 'WEB');
         $this->currency = env('BINANCE_CURRENCY', "USDT");
         $this->goodsCategory = env('BINANCE_GOODS_CATEGORY', "Z000");
+        $this->orderExpireTime = env('BINANCE_ORDER_EXPIRE_TIME', (60 * 1000) * 60);
+        $this->returnUrl = env("BINANCE_SERVICE_RETURN_URL");
+        $this->cancelUrl = env("BINANCE_SERVICE_CANCEL_URL");
+        $this->webhookUrl = env("BINANCE_SERVICE_WEBHOOK_URL");
 
         $this->goodsType = env('BINANCE_GOODS_TYPE', "02");
     }
@@ -101,13 +135,19 @@ class BinancePay
                     "referenceGoodsId" => $data['package_id'],
                     "goodsName" => $data['goods_name'],
                     "goodsDetail" => $data['goods_detail'] ?? ''
-                )
+                ),
+                "orderExpireTime" => $this->orderExpireTime,
+                "returnUrl" => $this->returnUrl,
+                "cancelUrl" => $this->cancelUrl,
+                "webhookUrl" => $this->webhookUrl,
+                "supportPayCurrency" => $this->supportPayCurrency,
             );
             return $client->init($request);
         } catch (Exception $e) {
 
             $this->response['status'] = false;
-            $this->response['msg'] = $e->getMessage();
+            $this->response['code'] = 500;
+            $this->response['errorMessage'] = $e->getMessage();
 
             return $this->response;
         }
