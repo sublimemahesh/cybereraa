@@ -25,7 +25,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
 Route::get('payments/binancepay/response', 'Payment\BinancePayController@response');
 Route::get('payments/binancepay/fallback', 'Payment\BinancePayController@fallback');
-Route::get('payments/binancepay/webhook', 'Payment\BinancePayController@callback');
 
 Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream.auth_session'), 'verified']], function () {
 

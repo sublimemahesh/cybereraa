@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Payment;
 use App\Http\Controllers\Controller;
 use CryptoPay\Binancepay\BinancePay;
 use Illuminate\Http\Request;
+use JsonException;
+use Storage;
 
 class BinancePayController extends Controller
 {
@@ -12,7 +14,7 @@ class BinancePayController extends Controller
     {
 //        dd(env("BINANCE_SERVICE_WEBHOOK_URL"));
         $binancePay = new BinancePay("binancepay/openapi/v2/order");
-        $data['passcode_id'] = '4';
+        $data['passcode_id'] = '10';
         $data['order_amount'] = '100';
         $data['package_id'] = '10';
         $data['goods_name'] = 'package 10';
@@ -24,24 +26,30 @@ class BinancePayController extends Controller
 
     }
 
+    /**
+     * @throws JsonException
+     */
     public function callback(Request $request)
     {
-        header("Content-Type: application/json");
         //This line gets all your json response from binance when a customer makes payment
+        header("Content-Type: application/json");
         try {
+            $timestamp = microtime(true);
             $webhookResponse = $request->all();
-            file_put_contents(base_path() . '/public/storage/binancePayWebhookCallbackFile.json', json_encode($webhookResponse, JSON_THROW_ON_ERROR), FILE_APPEND);
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
-        //Now get success object directly from the response eg.
-        //Warning: This is just example, and you should not use it for your implementation. Get the exact responses from your webhook callback file!
+            $file = "binance-pay/webhook/" . date('Y-m-d') . "/binance-pay-webhook-callback.json";
+            $webhookResponse['ip'] = $_SERVER['REMOTE_ADDR'];
 
-        $returnCode = $webhookResponse['returnCode'];
-        if ($returnCode === "SUCCESS") {
-            $returnMessage = $webhookResponse['returnMessage'];
+            $response = [];
+            if (Storage::exists($file)) {
+                $response = json_decode(file_get_contents(storage($file)), true, 512, JSON_THROW_ON_ERROR);
+            }
+            $response[$timestamp . "-" . random_int(1000, 9999)] = $webhookResponse;
+            Storage::put($file, json_encode($response, JSON_THROW_ON_ERROR));
+        } catch (\Exception $e) {
+            return response()->json(['returnCode' => 'FAIL', 'returnMessage' => $e->getMessage()], 200);
         }
-        return $webhookResponse;
+
+        return response()->json(['returnCode' => 'SUCCESS', 'returnMessage' => null], 200);
     }
 
     public function response(Request $request)
