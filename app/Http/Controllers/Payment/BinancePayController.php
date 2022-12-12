@@ -34,7 +34,6 @@ class BinancePayController extends Controller
         //This line gets all your json response from binance when a customer makes payment
         header("Content-Type: application/json");
         try {
-            $timestamp = microtime(true);
             $webhookResponse = $request->all();
             $file = "binance-pay/webhook/" . date('Y-m-d') . "/binance-pay-webhook-callback.json";
             $webhookResponse['ip'] = $_SERVER['REMOTE_ADDR'];
@@ -43,7 +42,8 @@ class BinancePayController extends Controller
             if (Storage::exists($file)) {
                 $response = json_decode(file_get_contents(storage($file)), true, 512, JSON_THROW_ON_ERROR);
             }
-            $response[$timestamp . "-" . random_int(1000, 9999)] = $webhookResponse;
+            $key = $webhookResponse['bizId'] ?? (microtime() . "-" . random_int(1000, 9999));
+            $response[$key] = $webhookResponse;
             Storage::put($file, json_encode($response, JSON_THROW_ON_ERROR));
         } catch (\Exception $e) {
             return response()->json(['returnCode' => 'FAIL', 'returnMessage' => $e->getMessage()], 200);
