@@ -152,4 +152,18 @@ class BinancePay
             return $this->response;
         }
     }
+
+    public function querySignature($data)
+    {
+        try {
+            return (new GatewayClient($this->clientConfig))->init($data);
+        } catch (Exception $e) {
+
+            $this->response['status'] = false;
+            $this->response['code'] = 500;
+            $this->response['errorMessage'] = $e->getMessage();
+
+            return $this->response;
+        }
+    }
 }

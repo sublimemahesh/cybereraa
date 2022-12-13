@@ -46,6 +46,8 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::post('kyc/new-entry', 'User\KycController@storeNewEntry');
         Route::post('kyc/{kyc}/documents/{document}/upload', 'User\KycDocumentController@update')->scopeBindings();
 
+
+
         // BinancePay
         Route::get('binancepay/order/create', 'Payment\BinancePayController@initiateBinancePay');
 
