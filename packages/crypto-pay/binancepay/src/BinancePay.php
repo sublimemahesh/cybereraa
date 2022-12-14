@@ -10,6 +10,8 @@ class BinancePay
 {
     private ClientConfig $clientConfig;
 
+    private array $request = [];
+
     private array $response = [];
 
     /**
@@ -109,7 +111,7 @@ class BinancePay
         $this->terminalType = env('BINANCE_TERMINAL_TYPE', 'WEB');
         $this->currency = env('BINANCE_CURRENCY', "USDT");
         $this->goodsCategory = env('BINANCE_GOODS_CATEGORY', "Z000");
-        $this->orderExpireTime = env('BINANCE_ORDER_EXPIRE_TIME', (60 * 1000) * 60);
+        $this->orderExpireTime = (int) env('BINANCE_ORDER_EXPIRE_TIME') ?? (60 * 1000) * 60;
         $this->returnUrl = env("BINANCE_SERVICE_RETURN_URL");
         $this->cancelUrl = env("BINANCE_SERVICE_CANCEL_URL");
         $this->webhookUrl = env("BINANCE_SERVICE_WEBHOOK_URL");
@@ -117,32 +119,41 @@ class BinancePay
         $this->goodsType = env('BINANCE_GOODS_TYPE', "02");
     }
 
+    /**
+     * @return array
+     */
+    public function getRequest(): array
+    {
+        return $this->request;
+    }
+
     public function createOrder($data)
     {
         try {
             $client = new GatewayClient($this->clientConfig);
 
-            $request = array(
-                "env" => array(
+            $this->request = [
+                "env" => [
                     "terminalType" => $this->terminalType
-                ),
-                "merchantTradeNo" => $data['passcode_id'],
+                ],
+                "merchantTradeNo" => $data['merchant_trade_no'],
                 "orderAmount" => $data['order_amount'],
                 "currency" => $this->currency,
-                "goods" => array(
-                    "goodsType" => $this->goodsType,
-                    "goodsCategory" => $this->goodsCategory,
-                    "referenceGoodsId" => $data['package_id'],
-                    "goodsName" => $data['goods_name'],
-                    "goodsDetail" => $data['goods_detail'] ?? ''
-                ),
-                "orderExpireTime" => $this->orderExpireTime,
+//                "orderExpireTime" => $this->orderExpireTime,
                 "returnUrl" => $this->returnUrl,
                 "cancelUrl" => $this->cancelUrl,
                 "webhookUrl" => $this->webhookUrl,
                 "supportPayCurrency" => $this->supportPayCurrency,
-            );
-            return $client->init($request);
+                "goods" => [
+                    "goodsType" => $this->goodsType,
+                    "goodsCategory" => $this->goodsCategory,
+                    "referenceGoodsId" => $data['package_id'],
+                    "goodsName" => $data['goods_name'],
+                    "goodsDetail" => $data['goods_detail'] ?? null
+                ],
+                "buyer" => $data['buyer']
+            ];
+            return $client->init($this->request);
         } catch (Exception $e) {
 
             $this->response['status'] = false;
@@ -153,7 +164,7 @@ class BinancePay
         }
     }
 
-    public function querySignature($data)
+    public function query($data)
     {
         try {
             return (new GatewayClient($this->clientConfig))->init($data);

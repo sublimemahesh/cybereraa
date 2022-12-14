@@ -80,4 +80,14 @@ class User extends Authenticatable
     {
         return $this->hasOne(Profile::class, 'user_id', 'id')->withDefault(new Profile);
     }
+
+    public function activePackages(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(UserPackage::class, 'user_id', 'id');
+    }
+
+    public function transactions(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Transaction::class, 'user_id', 'id');
+    }
 }

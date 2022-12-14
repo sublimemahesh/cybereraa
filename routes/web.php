@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('/');
 
+Route::get('test', function () {
+    dd(\Carbon\Carbon::now()->addMinutes(5)->timestamp);
+});
+
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
@@ -46,11 +50,11 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::post('kyc/new-entry', 'User\KycController@storeNewEntry');
         Route::post('kyc/{kyc}/documents/{document}/upload', 'User\KycDocumentController@update')->scopeBindings();
 
-
-
         // BinancePay
-        Route::get('binancepay/order/create', 'Payment\BinancePayController@initiateBinancePay');
+        Route::post('binancepay/order/create', 'Payment\BinancePayController@initiateBinancePay');
 
+        // Packages
+        Route::get('packages', 'User\PackageController@index')->name('packages.index');
     });
 
 });
