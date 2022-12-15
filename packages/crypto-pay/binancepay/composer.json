@@ -1,0 +1,19 @@
+{
+    "name": "crypto-pay/binancepay",
+    "description": "Binance Pay API for Laravel",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "CryptoPay\\Binancepay\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "hansajith18",
+            "email": "hansajith18@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}

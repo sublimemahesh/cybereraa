@@ -14,6 +14,12 @@
                     <span class="nav-text">My KYC</span>
                 </a>
             </li>
+            <li>
+                <a href="{{ route('user.packages.index') }}" class="" aria-expanded="false">
+                    <i class="bi bi-stack"></i>
+                    <span class="nav-text">Buy Package</span>
+                </a>
+            </li>
 
             <li>
                 <a class="has-arrow " href="javascript:void(0);" aria-expanded="false">

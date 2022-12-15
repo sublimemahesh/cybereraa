@@ -1,11 +1,11 @@
 {
-  "node_modules/intl-tel-input/build/img/flags.png": {
-    "file": "assets/flags.0a012cf8.png",
-    "src": "node_modules/intl-tel-input/build/img/flags.png"
-  },
   "node_modules/intl-tel-input/build/img/flags@2x.png": {
     "file": "assets/flags@2x.8ab4e961.png",
     "src": "node_modules/intl-tel-input/build/img/flags@2x.png"
+  },
+  "node_modules/intl-tel-input/build/img/flags.png": {
+    "file": "assets/flags.0a012cf8.png",
+    "src": "node_modules/intl-tel-input/build/img/flags.png"
   },
   "resources/js/app.js": {
     "file": "assets/app.9239a080.js",
@@ -21,12 +21,12 @@
     "isDynamicEntry": true
   },
   "resources/css/app-jetstream.css": {
-    "file": "assets/app-jetstream.d51df07d.css",
+    "file": "assets/app-jetstream.ab9c3350.css",
     "src": "resources/css/app-jetstream.css",
     "isEntry": true
   },
   "resources/css/app.css": {
-    "file": "assets/app.e47e1dde.css",
+    "file": "assets/app.5fd1d809.css",
     "src": "resources/css/app.css",
     "isEntry": true
   }

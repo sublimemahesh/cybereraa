@@ -17,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Binance Pay Webhook callback
+Route::post('payments/binancepay/webhook', 'Payment\BinancePayController@callback');

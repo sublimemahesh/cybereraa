@@ -9,7 +9,10 @@
   "license": "MIT",
   "require": {
     "php": "^8.0.2",
+    "ext-curl": "*",
+    "ext-openssl": "*",
     "crazybooot/base64-validation": "^1.0",
+    "cviebrock/eloquent-sluggable": "^9.0",
     "guzzlehttp/guzzle": "^7.2",
     "laravel/framework": "^9.19",
     "laravel/jetstream": "^2.12",
@@ -21,6 +24,7 @@
     "verot/class.upload.php": "^2.1"
   },
   "require-dev": {
+    "roave/security-advisories": "dev-latest",
     "barryvdh/laravel-debugbar": "^3.7",
     "barryvdh/laravel-ide-helper": "^2.12",
     "beyondcode/laravel-query-detector": "^1.6",
@@ -39,6 +43,7 @@
     ],
     "psr-4": {
       "App\\": "app/",
+      "CryptoPay\\Binancepay\\": "packages/crypto-pay/binancepay/src",
       "Database\\Factories\\": "database/factories/",
       "Database\\Seeders\\": "database/seeders/"
     }
