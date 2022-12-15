@@ -94,7 +94,6 @@ class BinancePayController extends Controller
         header("Content-Type: application/json");
         try {
             $webhookResponse = $request->all();
-
             $publicKey = (new BinancePay("binancepay/openapi/certificates"))->query($webhookResponse);
 
             if ($publicKey['status'] === "SUCCESS") {
@@ -103,7 +102,7 @@ class BinancePayController extends Controller
 
                 if (openssl_verify($payload, $decodedSignature, $publicKey['data'][0]['certPublic'], OPENSSL_ALGO_SHA256)) {
                     try {
-                        $merchantTradeNo = $webhookResponse['data']['merchantTradeNo'];
+                        $merchantTradeNo = json_decode($webhookResponse['data'], true, 512, JSON_THROW_ON_ERROR)['merchantTradeNo'];
                         $transaction = Transaction::where('merchant_trade_no', $merchantTradeNo)->firstOrNew();
 
                         switch ($webhookResponse['bizStatus']) {
