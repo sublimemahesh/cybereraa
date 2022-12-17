@@ -15,7 +15,6 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script type="text/javascript">
-        const APP_URL = {!! json_encode(url('/')) !!};
         const _TOKEN = "{!! csrf_token() !!}"
     </script>
     <!-- PAGE TITLE HERE -->

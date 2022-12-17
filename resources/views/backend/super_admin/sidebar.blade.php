@@ -3,7 +3,7 @@
     <div class="deznav-scroll">
         <ul class="metismenu" id="menu">
             <li>
-                <a href="{{ route('super.admin.dashboard') }}" class="" aria-expanded="false">
+                <a href="{{ route('super_admin.dashboard') }}" class="" aria-expanded="false">
                     <i class="bi bi-grid"></i>
                     <span class="nav-text">Dashboard</span>
                 </a>

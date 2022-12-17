@@ -17,10 +17,11 @@ class KycPolicy
 
     public function view(User $user, Kyc $kyc)
     {
-        return $user->getRoleNames()->first() === "user" && $kyc->profile_id === $user->profile->id && $kyc->status !== "accepted";
+        return $user->getRoleNames()->first() === "admin" ||
+            ($user->getRoleNames()->first() === "user" && $kyc->profile_id === $user->profile->id && $kyc->status !== "accepted");
     }
 
-    public function create(User $user, string $kycType)
+    public function create(User $user, string $kycType): bool
     {
         $kyc = Kyc::where('type', $kycType)->whereRelation('profile.user', 'id', $user->id);
         return $user->getRoleNames()->first() === "user" && !$kyc->exists();

@@ -16,6 +16,18 @@ class KycDocumentPolicy
         return $user->getRoleNames()->first() === "user" && $kyc->status !== "accepted";
     }
 
+    public function approve(User $user, KycDocument $document)
+    {
+        return ($user->getRoleNames()->first() === "admin" || $user->getRoleNames()->first() === "super_admin") &&
+            ($document->status === "pending" || $document->status === "rejected");
+    }
+
+    public function reject(User $user, KycDocument $document)
+    {
+        return ($user->getRoleNames()->first() === "admin" || $user->getRoleNames()->first() === "super_admin") &&
+            ($document->status === "pending" || $document->status === "accepted");
+    }
+
     /**
      *
      * Check if the user can view uploaded document
@@ -23,10 +35,10 @@ class KycDocumentPolicy
      */
     public function view(User $user, KycDocument $document)
     {
-        return $user->getRoleNames()->first() === "user" &&
-            $document->kyc->profile_id === $user->profile->id &&
-            $document->status !== "accepted" &&
-            $document->status !== "required";
+        return (
+                $user->getRoleNames()->first() === "admin" ||
+                ($user->getRoleNames()->first() === "user" && $document->kyc->profile_id === $user->profile->id && $document->status !== "accepted")
+            ) && $document->status !== "required";
     }
 
     public function create(User $user, Kyc $kyc, $docType)

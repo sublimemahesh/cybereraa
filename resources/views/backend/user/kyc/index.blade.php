@@ -36,8 +36,6 @@
                                     <td>
                                         @can('view', $kyc)
                                             <a href="{{ route('user.kyc.show', $kyc) }}" class="btn btn-xxs btn-primary shadow"> View Documents</a>
-                                        @elsecan
-                                            N/A
                                         @endcan
                                     </td>
                                 </tr>
