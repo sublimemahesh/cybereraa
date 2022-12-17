@@ -9,9 +9,9 @@
                 </a>
             </li>
             <li>
-                <a href="widget-basic.html" class="" aria-expanded="false">
-                    <i class="bi bi-gear-wide"></i>
-                    <span class="nav-text">Widget</span>
+                <a href="{{ route('admin.users.index') }}" class="" aria-expanded="false">
+                    <i class="bi bi-people-fill"></i>
+                    <span class="nav-text">Users</span>
                 </a>
             </li>
 

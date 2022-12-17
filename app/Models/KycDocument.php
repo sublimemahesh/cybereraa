@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class KycDocument extends Model
 {
-    use HasFactory;
 
     protected $fillable = [
         'kyc_id',
@@ -50,17 +48,17 @@ class KycDocument extends Model
         return $this->belongsTo(Kyc::class, 'kyc_id');
     }
 
-    public function getStatusColorAttribute(): string
+    protected function getStatusColorAttribute(): string
     {
         return Self::STATUS_COLORS[$this->status];
     }
 
-    public function getDocumentTypeAttribute(): string
+    protected function getDocumentTypeAttribute(): string
     {
         return Self::DOCUMENT_TYPES[$this->type];
     }
 
-    public function getDocumentTypeNameAttribute(): string
+    protected function getDocumentTypeNameAttribute(): string
     {
         return Self::DOCUMENT_TYPE_NAMES[$this->kyc->type][$this->type];
     }

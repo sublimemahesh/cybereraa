@@ -57,14 +57,4 @@ $(function () {
 
     }
 
-
-    function loader(text = "It may take some time...!") {
-        Swal.fire({
-            title: "Please wait...!",
-            text,
-            imageUrl: APP_URL + "/assets/images/loader.svg",
-            showConfirmButton: false,
-            allowOutsideClick: false,
-        });
-    }
 })

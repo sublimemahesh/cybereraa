@@ -46,6 +46,11 @@ class KycDocumentController extends Controller
         $document->status = "pending";
         $document->save();
 
+        $pending_doc_count = $kyc->documents()->where('status', 'pending')->count();
+        if ($pending_doc_count >= 1) {
+            $kyc->update(['status' => 'pending']);
+        }
+
         $json['status'] = true;
         $json['message'] = 'KYC Document submitted successfully!';
         $json['icon'] = 'success'; // warning | info | question | success | error

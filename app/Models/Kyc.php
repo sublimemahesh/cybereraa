@@ -2,13 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Kyc extends Model
 {
-    use HasFactory;
     use SoftDeletes;
 
     protected $withCount = ['documents'];
@@ -41,17 +39,17 @@ class Kyc extends Model
         return $this->hasMany(KycDocument::class, 'kyc_id');
     }
 
-    public function getKycTypeAttribute(): string
+    protected function getKycTypeAttribute(): string
     {
         return Self::KYC_TYPES[$this->type];
     }
 
-    public function getRequiredDocumentsAttribute(): string
+    protected function getRequiredDocumentsAttribute(): string
     {
         return Self::REQUIRED_DOCUMENTS[$this->type];
     }
 
-    public function getStatusColorAttribute(): string
+    protected function getStatusColorAttribute(): string
     {
         return Self::STATUS_COLORS[$this->status];
     }

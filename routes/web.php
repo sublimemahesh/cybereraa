@@ -32,12 +32,18 @@ Route::get('payments/binancepay/fallback', 'Payment\BinancePayController@fallbac
 
 Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream.auth_session'), 'verified']], function () {
 
-    Route::group(["prefix" => "super-admin", 'middleware' => ['role:super_admin'], "as" => 'super.admin.'], function () {
+    Route::group(["prefix" => "super-admin", 'middleware' => ['role:super_admin'], "as" => 'super_admin.'], function () {
         Route::view('/dashboard', 'backend.super_admin.dashboard')->name('dashboard');
+
     });
 
     Route::group(["prefix" => "admin", 'middleware' => ['role:admin'], "as" => 'admin.'], function () {
         Route::view('/dashboard', 'backend.admin.dashboard')->name('dashboard');
+
+        Route::get('users', 'Admin\UserController@index')->name('users.index');
+        Route::get('users/{user:username}/kycs', 'Admin\KycController@index')->name('users.kycs.index');
+        Route::get('users/kycs/{kyc}', 'Admin\KycController@show')->name('users.kycs.show');
+        Route::post('users/kyc-documents/{document}/status', 'Admin\KycController@status');
     });
 
     // USER ROUTES

@@ -24,6 +24,15 @@ window.Toast = Swal.mixin({
     // }
 });
 
+window.loader = function (text = "It may take some time...!") {
+    Swal.fire({
+        title: "Please wait...!",
+        text,
+        imageUrl: APP_URL + "/assets/images/loader.svg",
+        showConfirmButton: false,
+        allowOutsideClick: false,
+    });
+}
 
 window.intlTelInput = {
     intlTelInput,
@@ -48,11 +57,11 @@ window.intlTelInput = {
     },
 };
 
-const images = document.querySelectorAll('img');
-
-images.forEach(img => {
-    img.addEventListener('error', function handleError() {
-        img.src = import.meta.env.VITE_ASSET_URL + '/assets/images/no-image.jpg';
-        img.alt = '404';
-    });
-});
+// const images = document.querySelectorAll('img');
+//
+// images.forEach(img => {
+//     img.addEventListener('error', function handleError() {
+//         img.src = import.meta.env.VITE_ASSET_URL + '/assets/images/no-image.jpg';
+//         img.alt = '404';
+//     });
+// });

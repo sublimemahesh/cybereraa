@@ -1,14 +1,14 @@
 {
-  "node_modules/intl-tel-input/build/img/flags@2x.png": {
-    "file": "assets/flags@2x.8ab4e961.png",
-    "src": "node_modules/intl-tel-input/build/img/flags@2x.png"
-  },
   "node_modules/intl-tel-input/build/img/flags.png": {
     "file": "assets/flags.0a012cf8.png",
     "src": "node_modules/intl-tel-input/build/img/flags.png"
   },
+  "node_modules/intl-tel-input/build/img/flags@2x.png": {
+    "file": "assets/flags@2x.8ab4e961.png",
+    "src": "node_modules/intl-tel-input/build/img/flags@2x.png"
+  },
   "resources/js/app.js": {
-    "file": "assets/app.9239a080.js",
+    "file": "assets/app.2bf99846.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [
@@ -20,14 +20,14 @@
     "src": "node_modules/intl-tel-input/build/js/utils.js",
     "isDynamicEntry": true
   },
-  "resources/css/app-jetstream.css": {
-    "file": "assets/app-jetstream.ab9c3350.css",
-    "src": "resources/css/app-jetstream.css",
-    "isEntry": true
-  },
   "resources/css/app.css": {
     "file": "assets/app.5fd1d809.css",
     "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/css/app-jetstream.css": {
+    "file": "assets/app-jetstream.f8f05e4d.css",
+    "src": "resources/css/app-jetstream.css",
     "isEntry": true
   }
 }
