@@ -1,0 +1,20 @@
+.main-registerfrom{
+    padding-top: 25px;
+}
+
+.main-required{
+    color: red;
+}
+/* .main-registerDiv{
+
+    max-height: 150vh;
+} */
+
+.ml-2{
+    margin-top: -21px;
+    padding-left: 19px;
+}
+
+.main-registerfromErroAlert{
+    color: red;
+}
