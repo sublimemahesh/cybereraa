@@ -28,10 +28,21 @@ class CreateNewUser implements CreatesNewUsers
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'phone' => ['required', 'string', 'max:255', 'unique:users,phone'],
-            'parent_id' => ['required', 'exists:users,id', 'max:255'],
+            'super_parent_id' => ['nullable', 'exists:users,id'],
             'username' => ['required', 'unique:users,username', 'string', 'max:255'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
+
+            'parent_id' => ['nullable', 'exists:users,id'],
+            'position' => [
+                Rule::requiredIf(!empty($input['parent_id'])),
+                'nullable',
+                'lte:5',
+                'gte:1',
+                !empty($input['parent_id']) ?
+                    Rule::unique('users', 'position')
+                        ->where('parent_id', $input['parent_id']) : ''
+            ],
 
             // Profile
             'country_id' => ['required', 'exists:countries,id', 'max:255'],
@@ -45,7 +56,6 @@ class CreateNewUser implements CreatesNewUsers
             'nic' => [Rule::requiredIf(empty($input['driving_lc_number']) && empty($input['passport_number'])), 'nullable', 'string', 'max:255'],
             'driving_lc_number' => [Rule::requiredIf(empty($input['nic']) && empty($input['passport_number'])), 'nullable', 'string', 'max:255'],
             'passport_number' => [Rule::requiredIf(empty($input['driving_lc_number']) && empty($input['nic'])), 'nullable', 'string', 'max:255'],
-            'position' => ['required', 'in:right,left', 'string', 'max:255'],
         ])->validate();
 
         return DB::transaction(function () use ($input) {
@@ -53,7 +63,9 @@ class CreateNewUser implements CreatesNewUsers
                 'name' => $input['name'],
                 'email' => $input['email'],
                 'phone' => $input['phone'],
-                'parent_id' => $input['parent_id'],
+                'super_parent_id' => $input['super_parent_id'],
+                'parent_id' => $input['parent_id'] ?? null,
+                'position' => $input['position'] ?? null,
                 'username' => $input['username'],
                 'password' => Hash::make($input['password']),
             ]), function (User $user) use ($input) {
@@ -69,8 +81,8 @@ class CreateNewUser implements CreatesNewUsers
                     "nic" => $input['nic'],
                     "driving_lc_number" => $input['driving_lc_number'],
                     "passport_number" => $input['passport_number'],
-                    "position" => $input['position'],
                 ]));
+                $user->assignRole('user');
                 $this->createTeam($user);
             });
         });
