@@ -14,20 +14,17 @@
                     <span class="nav-text">Users</span>
                 </a>
             </li>
-
             <li>
-                <a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
-                    <i class="material-icons">article</i>
+                <a href="{{ route('admin.pages.index') }}" class="" aria-expanded="false">
+                    <i class="material-icons">book</i>
                     <span class="nav-text">Pages</span>
                 </a>
-                <ul aria-expanded="false">
-                    <li>
-                        <a href="./page-lock-screen.html">Lock Screen</a>
-                    </li>
-                    <li>
-                        <a href="./empty-page.html">Empty Page</a>
-                    </li>
-                </ul>
+            </li>
+            <li>
+                <a href="{{ route('admin.blogs.index') }}" class="" aria-expanded="false">
+                    <i class="material-icons">article</i>
+                    <span class="nav-text">Blog</span>
+                </a>
             </li>
 
             @include('navigation-menu')
