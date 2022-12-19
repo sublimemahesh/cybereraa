@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
@@ -34,7 +35,7 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name', 'email', 'password', 'phone', 'parent_id', 'username'
+        'name', 'email', 'password', 'phone', 'super_parent_id', 'parent_id', 'username', 'position'
     ];
 
     /**
@@ -69,12 +70,12 @@ class User extends Authenticatable
 
     public function sponsor(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Self::class, 'parent_id', 'id')->withDefault(new User);
+        return $this->belongsTo(Self::class, 'super_parent_id', 'id')->withDefault(new User);
     }
 
-    public function genealogies(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function directSales(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Self::class, 'parent_id', 'id');
+        return $this->hasMany(Self::class, 'super_parent_id', 'id');
     }
 
     public function profile(): \Illuminate\Database\Eloquent\Relations\HasOne
@@ -90,5 +91,39 @@ class User extends Authenticatable
     public function transactions(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Transaction::class, 'user_id', 'id');
+    }
+
+    public function getDepthAttribute()
+    {
+        $depth = DB::selectOne(
+            "WITH RECURSIVE user_tree AS (
+                      SELECT id, parent_id, 1 as depth
+                      FROM users
+                      WHERE parent_id IS NULL -- Find the root node(s) of the tree
+                      UNION ALL
+                      SELECT u.id, u.parent_id, t.depth + 1 as depth
+                      FROM users u
+                      JOIN user_tree t ON u.parent_id = t.id
+                   )
+                   SELECT depth FROM user_tree WHERE id = :id",
+            ['id' => $this->id]
+        );
+
+        return $depth->depth;
+    }
+
+    public static function findAvailableSubLevel($nodeId): array
+    {
+        return DB::select("
+                WITH RECURSIVE ancestor_nodes AS 
+                    (
+                        (SELECT * FROM users WHERE id = :node_id)
+                        UNION ALL
+                        (SELECT n.* FROM users n INNER JOIN ancestor_nodes an ON an.id = n.parent_id)
+                    ) 
+                    SELECT cte_an.id, cte_an.parent_id, (SELECT COUNT(*) FROM users WHERE parent_id = cte_an.id) AS children_count
+                    FROM ancestor_nodes cte_an
+                    WHERE (SELECT COUNT(*) FROM users WHERE parent_id = cte_an.id) < 5 ORDER BY cte_an.id ASC LIMIT 1",
+            ['node_id' => $nodeId]);
     }
 }

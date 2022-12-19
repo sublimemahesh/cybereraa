@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +19,10 @@ Route::get('/', function () {
 })->name('/');
 
 Route::get('test', function () {
-    dd(\Carbon\Carbon::now()->addMinutes(5)->timestamp);
+    $nodeId = 3;
+    // Find the ancestor with the fewest children
+    $ancestors = User::findAvailableSubLevel($nodeId);
+    dd($ancestors);
 });
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
@@ -61,6 +65,15 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
 
         // Packages
         Route::get('packages', 'User\PackageController@index')->name('packages.index');
+
+        // My Genealogy
+        Route::get('genealogy/{user:username?}', 'User\GenealogyController@index')->name('genealogy');
+
+        Route::group(['prefix' => 'genealogy/{parent:username}/position-{position}'], function () {
+            Route::get('', 'User\GenealogyController@managePosition')->name('genealogy.position.manage')->middleware('signed');
+            Route::post('', 'User\GenealogyController@assignPosition')->middleware('signed');
+            Route::get('new-registration', 'User\GenealogyController@registerForm')->name('genealogy.position.register')->middleware('signed');
+        });
     });
 
 });

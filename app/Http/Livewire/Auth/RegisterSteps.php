@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Auth;
 
 use App\Actions\Fortify\PasswordValidationRules;
+use App\Models\Country;
 use App\Models\User;
 use Auth;
 use Illuminate\Auth\Events\Registered;
@@ -35,10 +36,9 @@ class RegisterSteps extends Component
         "nic" => null,
         "driving_lc_number" => null,
         "passport_number" => null,
-        "parent_id" => null,
+        "super_parent_id" => null,
         "sponsor" => null,
         "username" => null,
-        "position" => null,
         "terms" => null,
     ];
 
@@ -65,10 +65,9 @@ class RegisterSteps extends Component
             'state.driving_lc_number' => $this->step === 2 || $this->step === 3 ? [Rule::requiredIf(empty($this->state['nic']) && empty($this->state['passport_number'])), 'nullable', 'string', 'max:255'] : '',
             'state.passport_number' => $this->step === 2 || $this->step === 3 ? [Rule::requiredIf(empty($this->state['driving_lc_number']) && empty($this->state['nic'])), 'nullable', 'string', 'max:255'] : '',
 
-            'state.parent_id' => $this->step === 3 ? ['required', 'exists:users,id', 'max:255'] : '',
-            'state.sponsor' => $this->step === 3 ? ['required', 'exists:users,username', 'string', 'max:255'] : '',
+            'state.super_parent_id' => $this->step === 3 ? ['nullable', 'exists:users,id'] : '',
+            'state.sponsor' => $this->step === 3 ? ['nullable', 'exists:users,username', 'string', 'max:255'] : '',
             'state.username' => $this->step === 3 ? ['required', 'unique:users,username', 'string', 'max:255'] : '',
-            'state.position' => $this->step === 3 ? ['required', 'in:right,left', 'string', 'max:255'] : '',
             'state.terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() && $this->step === 3 ? ['accepted', 'required'] : '',
         ];
     }
@@ -86,7 +85,7 @@ class RegisterSteps extends Component
 
         $this->validateOnly('state.sponsor');
         $this->sponsor = User::where('username', $value)->first();
-        $this->state['parent_id'] = optional($this->sponsor)->id;
+        $this->state['super_parent_id'] = optional($this->sponsor)->id;
     }
 
     public function previousStep(): void
@@ -129,6 +128,7 @@ class RegisterSteps extends Component
 
     public function render()
     {
-        return view('livewire.auth.register-steps');
+        $countries = Country::orderBy('name')->get();
+        return view('livewire.auth.register-steps', compact('countries'));
     }
 }
