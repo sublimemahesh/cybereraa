@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ModelRoleSeeder::class);
         $this->call(TeamSeeder::class);
         $this->call(PackageSeeder::class);
+        $this->call(PageSeeder::class);
     }
 }

@@ -48,6 +48,12 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::get('users/{user:username}/kycs', 'Admin\KycController@index')->name('users.kycs.index');
         Route::get('users/kycs/{kyc}', 'Admin\KycController@show')->name('users.kycs.show');
         Route::post('users/kyc-documents/{document}/status', 'Admin\KycController@status');
+
+        // Page
+        Route::resource('pages', 'Admin\PageController')->only('index', 'edit', 'destroy');
+        Route::resource('pages/sections', 'Admin\PageSectionController')->only('index')->middleware('signed');
+        // Blog
+        Route::resource('blogs', 'Admin\BlogController')->only('index', 'edit', 'destroy');
     });
 
     // USER ROUTES
