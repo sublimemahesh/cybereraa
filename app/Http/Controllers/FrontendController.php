@@ -2,18 +2,24 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
+use App\Models\Page;
 
 class FrontendController extends Controller
 {
     public function index() 
     {
+       
         return view('frontend.index');
     }
 
     public function about() 
     {
-        return view('frontend.about');
+        $abouts= page::find(3);
+        
+        return view('frontend.about', compact('abouts'));
+        //return view('frontend.about');
     }
 
     public function project() 
@@ -40,5 +46,7 @@ class FrontendController extends Controller
     {
         return view('frontend.contact');
     }
+
+ 
 
 }

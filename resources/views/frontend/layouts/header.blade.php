@@ -97,10 +97,15 @@
                 <!-- User Sign In/Sign Up Starts -->
                 <div class="col-md-3 col-lg-3">
                     <ul class="unstyled user">
-                        <li class="sign-in"><a href="login.html" class="btn btn-primary"><i class="fa fa-user"></i> sign
-                                in</a></li>
-                        <li class="sign-up"><a href="register.html" class="btn btn-primary"><i
-                                    class="fa fa-user-plus"></i> register</a></li>
+                        <li class="sign-in">
+                            <a href="{{ route('login') }}" class="btn btn-primary">
+                                <i class="fa fa-user"></i> 
+                                signin</a>
+                            </li>
+                        <li class="sign-up">
+                            <a href="{{ route('register') }}" class="btn btn-primary"><i
+                                    class="fa fa-user-plus"></i> register</a>
+                                </li>
                     </ul>
                 </div>
                 <!-- User Sign In/Sign Up Ends -->
