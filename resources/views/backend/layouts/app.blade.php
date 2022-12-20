@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
 
     <meta charset="utf-8">
@@ -37,7 +38,7 @@
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
-        img:not(.nav-header .brand-logo, .nav-header .logo-color, .color-title ),
+        img:not(.nav-header .brand-logo, .nav-header .logo-color, .color-title),
         svg,
         video,
         canvas,
@@ -51,7 +52,6 @@
         .collapse {
             visibility: unset !important;
         }
-
     </style>
 
     <!-- Styles -->
@@ -60,6 +60,7 @@
     @livewireScripts
 
 </head>
+
 <body class="font-sans antialiased">
     <!--******************* Preloader start ********************-->
     <div id="loader"></div>
@@ -70,7 +71,9 @@
 
         @include('backend.layouts.header')
 
-        @include('backend.'. Auth::user()->getRoleNames()->first(). '.sidebar')
+        @include('backend.' .
+                Auth::user()->getRoleNames()->first() .
+                '.sidebar')
 
         <!--********************************** Content body start ***********************************-->
         <div class="content-body">
@@ -82,18 +85,16 @@
                         <li class="breadcrumb-item active">
                             <a href="{{ route('/') }}"><i class="material-icons">home</i></a>
                         </li>
-                        <li class="breadcrumb-item">
-                            @if(request()->is('*/dashboard') )
-                                Dashboard
-                            @else
-                                <a href="{{ route(Auth::user()->getRoleNames()->first().'.dashboard') }}">Dashboard</a>
-                            @endif
-                        </li>
+                        @if (!request()->is('*/dashboard'))
+                            <li class="breadcrumb-item">
+                                <a href="{{ route(Auth::user()->getRoleNames()->first() . '.dashboard') }}">Dashboard</a>
+                            </li>
+                        @endif
                         @yield('breadcrumb-items')
                     </ol>
                 </div>
                 <div id="alert-container">
-                    <x-jet-validation-errors class="alert alert-danger mb-4"/>
+                    <x-jet-validation-errors class="alert alert-danger mb-4" />
                     @if (session('error'))
                         <div class="alert alert-danger">
                             {{ session('error') }}
@@ -144,18 +145,19 @@
     <!-- Dashboard 1 -->
     <script src="{{ asset('assets/backend/js/custom.js') }}"></script>
     <script src="{{ asset('assets/backend/js/deznav-init.js') }}"></script>
-    {{--    <script src="{{ asset('assets/backend/js/dashboard/tradingview-2.js') }}"></script>--}}
+    {{--    <script src="{{ asset('assets/backend/js/dashboard/tradingview-2.js') }}"></script> --}}
 
     @yield('scripts')
     @stack('scripts')
 
     <script>
-        $(document).ready(function () {
-            setTimeout(function () {
+        $(document).ready(function() {
+            setTimeout(function() {
                 dzSettingsOptions.version = 'dark';
                 new dzSettings(dzSettingsOptions);
             }, 1500)
         });
     </script>
 </body>
+
 </html>
