@@ -18,3 +18,13 @@
 .main-registerfromErroAlert{
     color: red;
 }
+
+.main-registerFormStyle{
+
+    padding-top: 100px;
+}
+
+.main-registerFormText{
+
+    color: #FFFFFF;
+}

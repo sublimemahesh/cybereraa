@@ -1,5 +1,5 @@
 <div class="col-lg-6 mb-4">
-    <label class="mb-1" for="first_name"><strong>{{ __('First Name') }}
+    <label class="mb-1" for="first_name"><strong class="main-registerFormText">{{ __('First Name') }}
             <sup class="main-required">*</sup></strong></label>
     <x-jet-input id="first_name" wire:model.lazy="state.first_name" class="block mt-1 w-full form-control" type="text"
             name="first_name" :value="old('first_name')" required autofocus autocomplete="first_name"/>
@@ -11,7 +11,7 @@
     @enderror
 </div>
 <div class="col-lg-6 mb-4">
-    <label class="mb-1" for="last_name"><strong>{{ __('Last Name') }}<sup class="main-required">*</sup></strong></label>
+    <label class="mb-1" for="last_name"><strong class="main-registerFormText">{{ __('Last Name') }}<sup class="main-required">*</sup></strong></label>
     <x-jet-input id="last_name" wire:model.lazy="state.last_name" class="block mt-1 w-full form-control" type="text"
             name="last_name" :value="old('last_name')" required autofocus autocomplete="last_name"/>
     @error('state.last_name')
@@ -22,7 +22,7 @@
     @enderror
 </div>
 <div class="col-lg-6 mt-4">
-    <label class="mb-1" for="country"><strong>{{ __('Country') }}<sup class="main-required">*</sup></strong></label>
+    <label class="mb-1" for="country"><strong class="main-registerFormText">{{ __('Country') }}<sup class="main-required">*</sup></strong></label>
     <select id="country" wire:model.lazy="state.country_id"
             class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm  form-control">
         <option value="">Select Country</option>
@@ -38,7 +38,7 @@
     @enderror
 </div>
 <div class="col-lg-6 mt-4">
-    <label class="mb-1" for="street"><strong>{{ __('Street') }}<sup class="main-required">*</sup></strong></label>
+    <label class="mb-1" for="street"><strong class="main-registerFormText">{{ __('Street') }}<sup class="main-required">*</sup></strong></label>
     <x-jet-input id="street" wire:model.lazy="state.street" class="block mt-1 w-full form-control" type="text"
             name="street" :value="old('street')" required autofocus autocomplete="street"/>
     @error('state.street')
@@ -49,7 +49,7 @@
     @enderror
 </div>
 <div class="col-lg-6 mt-4">
-    <label class="mb-1" for="state"><strong>{{ __('State') }}<sup class="main-required">*</sup></strong></label>
+    <label class="mb-1" for="state"><strong class="main-registerFormText">{{ __('State') }}<sup class="main-required">*</sup></strong></label>
     <x-jet-input id="state" wire:model.lazy="state.state" class="block mt-1 w-full form-control" type="text"
             name="state" :value="old('state')" required autofocus autocomplete="state"/>
     @error('state.state')
@@ -60,7 +60,7 @@
     @enderror
 </div>
 <div class="col-lg-6 mt-4">
-    <label class="mb-1" for="address"><strong>{{ __('Address') }}<sup class="main-required">*</sup></strong></label>
+    <label class="mb-1" for="address"><strong class="main-registerFormText">{{ __('Address') }}<sup class="main-required">*</sup></strong></label>
     <x-jet-input id="address" wire:model.lazy="state.address" class="block mt-1 w-full form-control" type="text"
             name="address" :value="old('address')" required autofocus autocomplete="address"/>
     @error('state.address')
@@ -71,7 +71,7 @@
     @enderror
 </div>
 <div class="col-lg-6 mt-4">
-    <label class="mb-1" for="zip_code"><strong>{{ __('Zip Code') }}<sup class="main-required">*</sup></strong></label>
+    <label class="mb-1" for="zip_code"><strong class="main-registerFormText">{{ __('Zip Code') }}<sup class="main-required">*</sup></strong></label>
     <x-jet-input id="zip_code" wire:model.lazy="state.zip_code" class="block mt-1 w-full form-control" type="text"
             name="zip_code" :value="old('zip_code')" required autofocus autocomplete="zip_code"/>
     @error('state.zip_code')
@@ -83,7 +83,7 @@
 </div>
 <div class="col-lg-6 mt-4">
     <div>
-        <label class="mb-1" for="phone"><strong>{{ __('Mobile Number') }}
+        <label class="mb-1" for="phone"><strong class="main-registerFormText">{{ __('Mobile Number') }}
                 <sup class="main-required">*</sup></strong></label>
         <x-jet-input wire:ignore id="phone" class="block mt-1 w-full form-control" type="text" name="phone"
                 :value="old('phone')" required autofocus autocomplete="phone"/>
@@ -99,7 +99,7 @@
 
 <div class="col-lg-6 mt-4">
     <div>
-        <label class="mb-1" for="home_phone"><strong>{{ __('Other Number') }}<sup class="main-required">*</sup></strong></label>
+        <label class="mb-1" for="home_phone"><strong class="main-registerFormText">{{ __('Other Number') }}<sup class="main-required">*</sup></strong></label>
         <x-jet-input wire:ignore id="home_phone" class="block mt-1 w-full form-control" type="text" name="home_phone"
                 :value="old('home_phone')" required autofocus autocomplete="home_phone"/>
     </div>
@@ -113,7 +113,7 @@
 </div>
 
 <div class="col-lg-6 mt-4">
-    <label class="mb-1" for="gender"><strong>{{ __('Gender') }}<sup class="main-required">*</sup></strong></label>
+    <label class="mb-1" for="gender"><strong class="main-registerFormText">{{ __('Gender') }}<sup class="main-required">*</sup></strong></label>
     <select id="gender" wire:model.lazy="state.gender"
             class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm  form-control">
         <option value="">Select Gender</option>
@@ -129,7 +129,7 @@
 </div>
 
 <div class="col-lg-6 mt-4">
-    <label class="mb-1" for="dob"><strong>{{ __('Date Of Birth') }}<sup class="main-required">*</sup></strong></label>
+    <label class="mb-1" for="dob"><strong class="main-registerFormText">{{ __('Date Of Birth') }}<sup class="main-required">*</sup></strong></label>
     <x-jet-input id="dob" type="date" wire:model.lazy="state.dob" class="block mt-1 w-full form-control"
             name="dob" :value="old('dob')" required autofocus autocomplete="dob"/>
     @error('state.dob')
@@ -141,7 +141,7 @@
 </div>
 
 <div class="col-lg-6 mt-4">
-    <label class="mb-1" for="email"><strong>{{ __('Email') }}<sup class="main-required">*</sup></strong></label>
+    <label class="mb-1" for="email"><strong class="main-registerFormText">{{ __('Email') }}<sup class="main-required">*</sup></strong></label>
     <x-jet-input id="email" wire:model.lazy="state.email" class="block mt-1 w-full form-control" type="email"
             name="email" :value="old('email')" required/>
     @error('state.email')
@@ -153,7 +153,7 @@
 </div>
 
 <div class="col-lg-6 mt-4">
-    <label class="mb-1" for="password"><strong>{{ __('Password') }}<sup class="main-required">*</sup></strong></label>
+    <label class="mb-1" for="password"><strong class="main-registerFormText">{{ __('Password') }}<sup class="main-required">*</sup></strong></label>
     <x-jet-input id="password" wire:model.defer="state.password" class="block mt-1 w-full form-control"
             type="password" name="password" required autocomplete="new-password"/>
     @error('state.password')
@@ -165,7 +165,7 @@
 </div>
 
 <div class="col-lg-6 mt-4">
-    <label class="mb-1" for="password_confirmation"><strong>{{ __('Confirm Password') }}
+    <label class="mb-1" for="password_confirmation"><strong class="main-registerFormText">{{ __('Confirm Password') }}
             <sup class="main-required">*</sup></strong></label>
     <x-jet-input id="password_confirmation" wire:model.defer="state.password_confirmation"
             class="block mt-1 w-full form-control" type="password" name="password_confirmation" required
@@ -184,6 +184,7 @@
             letters, numbers, and special characters.</p>
     </div>
 </div>
+
 
 
 @include('auth.components.button', ['attribute' => 'wire:click.prevent=nextStep', 'slot' => 'Next'])

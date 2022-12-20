@@ -39667,9 +39667,10 @@ table.dataTable thead .sorting_asc {
 }
 
 .authincation {
-    background: #23104F;
+    background: #15073a;
     display: flex;
-     min-height: 150vh; 
+    min-height: 150vh; 
+     /* overflow: auto; */
 }
 
 .authincation .login-aside {

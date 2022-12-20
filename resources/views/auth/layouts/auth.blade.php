@@ -29,9 +29,9 @@
     @yield('styles')
     @livewireStyles
     @livewireScripts
-</head>
+</head> 
 
-<body class="vh-100">
+<body class="vh-100"  >
     <div id="loader">
     </div>
     <div class="authincation h-100">
