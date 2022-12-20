@@ -158,10 +158,10 @@
 
 /* SmartWizard Theme: Default */
 .sw-theme-default {
-    border: 1px solid #eeeeee;
+    border: 1px solid #25164f;
 }
 
-.sw-theme-default > .tab-content > .tab-pane {
+. > .tab-content > .tab-pane {
     padding: 10px;
 }
 

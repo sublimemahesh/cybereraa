@@ -71,15 +71,17 @@
                                 @csrf
 
                                 <div class="col-lg-12  mt-4">
-                                    <label class="mb-1" for="email"><strong>{{ __('Email') }}<sup class="main-required">*</sup></strong></label>
-                                    <x-jet-input id="email" class="block mt-1 w-full form-control" type="email" name="email"
-                                        :value="old('email')" required autofocus />
+                                    <label class="mb-1" for="email"><strong class="main-registerFormText">{{ __('Email') }}<sup
+                                                class="main-required">*</sup></strong></label>
+                                    <x-jet-input id="email" class="block mt-1 w-full form-control" type="email"
+                                        name="email" :value="old('email')" required autofocus />
                                 </div>
 
                                 <div class="col-lg-12  mt-4">
-                                    <label class="mb-1" for="password"><strong>{{ __('Password') }}<sup class="main-required">*</sup></strong></label>
-                                    <x-jet-input id="password" class="block mt-1 w-full form-control" type="password" name="password"
-                                        required autocomplete="current-password" />
+                                    <label class="mb-1" for="password"><strong class="main-registerFormText">{{ __('Password') }}<sup
+                                                class="main-required">*</sup></strong></label>
+                                    <x-jet-input id="password" class="block mt-1 w-full form-control" type="password"
+                                        name="password" required autocomplete="current-password" />
                                 </div>
 
                                 <div class="col-lg-12  mt-4">
@@ -88,20 +90,26 @@
                                         <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
                                     </label>
                                 </div>
-                                
-                                <div class="col-lg-12  mt-4">  
+
+                                <div class="col-lg-12  mt-4">
                                     <button type="submit" class="btn btn-primary btn-block">{{ __('Log in') }}</button>
                                 </div>
-
-                                <div class="flex items-center justify-end col-lg-12  mt-4">
-                                    @if (Route::has('password.request'))
+                                    <div class="col-lg-12  mt-4">
+                                        <div class="flex  mt-4">
+                                            @if (Route::has('password.request'))
+                                                <a class="underline text-sm text-gray-600 hover:text-gray-900"
+                                                    href="{{ route('password.request') }}">
+                                                    {{ __('Forgot your password?') }}
+                                                </a>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12  mt-4">
                                         <a class="underline text-sm text-gray-600 hover:text-gray-900"
-                                            href="{{ route('password.request') }}">
-                                            {{ __('Forgot your password?') }}
+                                            href="{{ route('register') }}">
+                                            {{ __('Or Sign Up Using ?') }}
                                         </a>
-                                    @endif
-                                </div>   
-                               
+                                    </div>
                             </form>
 
                             <div class="new-account mt-3">
