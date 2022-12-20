@@ -15,17 +15,29 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('admin.pages.index') }}" class="" aria-expanded="false">
-                    <i class="material-icons">book</i>
-                    <span class="nav-text">Pages</span>
+                <a href="{{ route('admin.packages.index') }}" class="" aria-expanded="false">
+                    <i class="bi bi-stack"></i>
+                    <span class="nav-text">Packages</span>
                 </a>
             </li>
             <li>
-                <a href="{{ route('admin.blogs.index') }}" class="" aria-expanded="false">
-                    <i class="material-icons">article</i>
-                    <span class="nav-text">Blog</span>
+                <a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
+                    <i class="material-icons">book</i>
+                    <span class="nav-text">CMS</span>
                 </a>
+                <ul aria-expanded="false">
+                    <li>
+                        <a href="{{ route('admin.countries.index') }}">Country</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.pages.index') }}">Pages</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.blogs.index') }}">Bloge</a>
+                    </li>
+                </ul>
             </li>
+
 
             @include('navigation-menu')
         </ul>

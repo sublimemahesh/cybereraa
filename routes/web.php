@@ -49,9 +49,16 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::get('users/kycs/{kyc}', 'Admin\KycController@show')->name('users.kycs.show');
         Route::post('users/kyc-documents/{document}/status', 'Admin\KycController@status');
 
+        //Country
+        Route::resource('packages', 'Admin\PackageController')->except('create', 'show');
+
+        //Country
+        Route::resource('countries', 'Admin\CountryController')->except('create', 'show');
+
         // Page
         Route::resource('pages', 'Admin\PageController')->only('index', 'edit', 'destroy');
         Route::resource('pages/sections', 'Admin\PageSectionController')->only('index')->middleware('signed');
+
         // Blog
         Route::resource('blogs', 'Admin\BlogController')->only('index', 'edit', 'destroy');
     });

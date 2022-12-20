@@ -19,7 +19,7 @@
                     <div class="form-input-content text-center error-page">
                         <h1 class="error-text fw-bold"> @yield('code')</h1>
                         <h4>
-                            <i class="fa fa-thumbs-down text-danger"></i> {{ HttpRes::$statusTexts[$exception->getStatusCode()] }}
+                            <i class="fa fa-thumbs-down text-danger"></i> {{ HttpRes::$statusTexts[$exception->getStatusCode()] ?? '' }}
                         </h4>
                         <p>@yield('message')</p>
                         <div>
