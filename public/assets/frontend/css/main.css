@@ -1,0 +1,169 @@
+.step {
+    border-style: solid;
+    border-color: #F9961A;
+}
+
+.set-margine {
+    margin-top: 85px;
+}
+
+.about-css {
+    background-color: #1d1d1d;
+}
+
+#iny {
+    padding-top: 45px;
+}
+
+.wc {
+    width: 419px;
+}
+
+img.vert-move {
+    -webkit-animation: mover 1s infinite alternate;
+    animation: mover 1s infinite alternate;
+}
+
+img.vert-move {
+    -webkit-animation: mover 1s infinite alternate;
+    animation: mover 1s infinite alternate;
+}
+
+@-webkit-keyframes mover {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-110px);
+    }
+}
+
+@keyframes mover {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-110px);
+    }
+}
+
+#hero-text {
+    padding-top: 180px;
+
+}
+
+#hero-img {
+    padding-top: 120px;
+    width: 400px;
+
+}
+
+
+@media (max-width:992px) {
+
+    #hero-text {
+        padding-top: 0px;
+
+    }
+}
+
+
+/* 
+#heroGallery {
+   
+    overflow: hidden;
+}
+@keyframes carousel {
+    from { transform: translate3d(800px, 0, 0); }
+    to { transform: translate3d(-1000px, 0, 0); }
+}
+#carousel {
+    
+    transform: translate3d(0,0,0);
+    animation: carousel 50s linear infinite;
+}
+#carousel li {
+    display: block;
+    float: left;
+} */
+
+
+.owl-item {
+    width: 120px !important;
+    height: 55px;
+    margin-right: 10px;
+    background: #111111;
+    border: 2px solid #111111;
+    border-radius: 15px;
+
+
+}
+
+
+/** to hide dots
+
+.owl-theme .owl-dots .owl-dot{ display:none!important;}
+
+**/
+
+.owl-dots {
+    display: none;
+}
+
+.div-r {
+    margin-top: 23px;
+}
+
+.cryimg {
+    width: 35px !important;
+    margin-left: 80px;
+    margin-top: -51px
+}
+
+.ttt {
+    margin-top: -18px;
+    padding-left: 4px;
+    color: white;
+}
+
+.tp {
+    font-size: 12px;
+}
+
+.tp i {
+    padding: 2px;
+    color: green;
+}
+
+.mbd div{
+    height: 48px;
+}
+
+
+@media (max-width:992px) {
+
+    .mbd {
+        display: none;
+    }
+}
+
+.pricing-hero:before {
+  border-bottom: 30px solid #1d1d1d;
+}
+
+.pricing-hero:after{
+    border-bottom: 30px solid #1d1d1d;
+  
+  }
+
+.mys-logo{
+    max-width: 100% !important;
+    margin-top: -3px;
+    padding-bottom: 10px;
+}
+
+.net-hero{
+    padding: 0px 0;
+}

@@ -6,7 +6,7 @@
         'PLACEMENT & FINISH'
     ]
 }">
-    <x-jet-validation-errors class="mb-4" />
+    {{-- <x-jet class="mb-4" /> --}}
     <form>
         @csrf
         {{-- <nav class="-mb-px flex space-x-2 nav nav-wizard" aria-label="Tabs">
