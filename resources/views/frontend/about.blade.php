@@ -33,6 +33,11 @@
         </div>
     </div>
 </section>
+
+{{-- @foreach ($abouts as $about)
+    <li>{{ $about->image}}</li>
+    @endforeach --}}
+
 <!-- Banner Area Starts -->
 <!-- About Section Starts -->
 <section class="about-page">
