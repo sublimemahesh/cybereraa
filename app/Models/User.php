@@ -13,6 +13,7 @@ use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
+use URL;
 
 class User extends Authenticatable
 {
@@ -66,7 +67,13 @@ class User extends Authenticatable
      */
     protected $appends = [
         'profile_photo_url',
+        'referral_link'
     ];
+
+    public function getReferralLinkAttribute()
+    {
+        return $this->referral_link = URL::signedRoute('register', ['ref' => $this->username]);
+    }
 
     public function sponsor(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

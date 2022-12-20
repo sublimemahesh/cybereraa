@@ -17,6 +17,8 @@ class RegisterSteps extends Component
 {
     use PasswordValidationRules;
 
+    public bool $disable_sponsor_modify = false;
+
     public int $step = 1;
 
     public array $state = [
@@ -43,6 +45,13 @@ class RegisterSteps extends Component
     ];
 
     public User $sponsor;
+
+    public function mount()
+    {
+        $this->state['super_parent_id'] = optional($this->sponsor)->id;
+        $this->state['sponsor'] = optional($this->sponsor)->username;
+        $this->disable_sponsor_modify = !is_null($this->sponsor->id);
+    }
 
     protected function rules(): array
     {
