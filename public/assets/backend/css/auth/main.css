@@ -15,16 +15,16 @@
     padding-left: 19px;
 }
 
-.main-registerfromErroAlert{
-    color: red;
+.main-register-from-error-alert{
+    color: #a53131;
 }
 
-.main-registerFormStyle{
-
-    padding-top: 100px;
+.main-register-form-style{
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 
-.main-registerFormText{
+.main-register-form-text{
 
     color: #FFFFFF;
 }
