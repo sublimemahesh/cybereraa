@@ -14,14 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('frontend.index');
-// })->name('/');
-
-//dd('ddd');
-
-Route::get('/','FrontendController@index')->name('/');
-//Route::get('index', 'FrontendController@index')->name('index');
+Route::get('/', 'FrontendController@index')->name('/');
 Route::get('about-us', 'FrontendController@about')->name('about');
 Route::get('project', 'FrontendController@project')->name('project');
 Route::get('how-it-work', 'FrontendController@howToWork')->name('how-to-work');
@@ -29,18 +22,19 @@ Route::get('pricing', 'FrontendController@pricing')->name('pricing');
 Route::get('faq', 'FrontendController@faq')->name('faq');
 Route::get('contact', 'FrontendController@contact')->name('contact');
 
- 
-Route::get('test', function () {
-    $nodeId = 3;
-    // Find the ancestor with the fewest children
-    $ancestors = User::findAvailableSubLevel($nodeId);
-    dd($ancestors);
+// Register custom routes
+Route::group(['prefix' => 'register', 'middleware' => 'guest:' . config('fortify.guard')], function () {
+    Route::get('/', 'RegisteredUserController@create')->name('register');
+    Route::post('/', 'RegisteredUserController@store');
 });
- 
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+
+Route::get('test', function () {
+//    $nodeId = 3;
+    // Find the ancestor with the fewest children
+//    $ancestors = User::findAvailableSubLevel($nodeId);
+//    dd($ancestors);
+    $user = User::find(3);
+    dd($user->referral_link, $user);
 });
 
 Route::get('payments/binancepay/response', 'Payment\BinancePayController@response');

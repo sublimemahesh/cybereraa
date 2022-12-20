@@ -1,0 +1,36 @@
+.clipboard-tooltip {
+    cursor: pointer;
+    position: relative;
+}
+
+.clipboard-tooltip .tooltip-text {
+    visibility: hidden;
+    width: auto;
+    white-space: pre-wrap;
+    background-color: #4f3795;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 22;
+    bottom: 115%;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.clipboard-tooltip .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #4f3795 transparent transparent transparent;
+}
+
+.clipboard-tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
