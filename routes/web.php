@@ -14,15 +14,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('/');
+// Route::get('/', function () {
+//     return view('frontend.index');
+// })->name('/');
 
+//dd('ddd');
+
+Route::get('/','FrontendController@index')->name('/');
+//Route::get('index', 'FrontendController@index')->name('index');
+Route::get('about-us', 'FrontendController@about')->name('about');
+Route::get('project', 'FrontendController@project')->name('project');
+Route::get('how to work', 'FrontendController@howToWork')->name('how-to-work');
+Route::get('pricing', 'FrontendController@pricing')->name('pricing');
+Route::get('faq', 'FrontendController@faq')->name('faq');
+Route::get('contact', 'FrontendController@contact')->name('contact');
+ 
 Route::get('test', function () {
     $nodeId = 3;
     // Find the ancestor with the fewest children
     $ancestors = User::findAvailableSubLevel($nodeId);
     dd($ancestors);
+});
+ 
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 });
 
 Route::get('payments/binancepay/response', 'Payment\BinancePayController@response');

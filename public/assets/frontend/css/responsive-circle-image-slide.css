@@ -1,0 +1,300 @@
+
+.slide-container {
+    position: relative;
+    width: 35vw;
+    height: 35vw;
+    margin: 100px auto;
+    border-radius: 50%;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .5);
+    background: url(https://images.unsplash.com/photo-1663138838201-b646ab34a94f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzg4fHxncmF5c2NhbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=400&q=60) no-repeat center/cover;
+    transition: all .3s;
+    border-style: solid;
+    border-color:#fd961a ;
+  }
+
+  .slide-container2 {
+    position: relative;
+    width: 35vw;
+    height: 35vw;
+    margin: 100px auto;
+    border-radius: 50%;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .5);
+    background: url(https://images.unsplash.com/photo-1663138838201-b646ab34a94f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzg4fHxncmF5c2NhbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=400&q=60) no-repeat center/cover;
+    transition: all .3s;
+    border-style: solid;
+    border-color:#fd961a ;
+  }
+  
+  .slide-container .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 8vw;
+    height: 8vw;
+    margin-top: -4vw;
+    margin-left: -4vw;
+    background: url(https://images.unsplash.com/photo-1613681230409-6423a38c43e1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80) no-repeat center/cover;
+    border-radius: 50%;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .3);
+    cursor: pointer;
+    transform: scale(1);
+    opacity: .9;
+    transition: all .3s;
+    border-style: solid;
+    border-color:#fd961a ;
+  }
+
+  .slide-container2 .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 8vw;
+    height: 8vw;
+    margin-top: -4vw;
+    margin-left: -4vw;
+    background: url(https://images.unsplash.com/photo-1613681230409-6423a38c43e1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80) no-repeat center/cover;
+    border-radius: 50%;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .3);
+    cursor: pointer;
+    transform: scale(1);
+    opacity: .9;
+    transition: all .3s;
+    border-style: solid;
+    border-color:#fd961a ;
+  }
+
+
+  .slide-container .slide2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 8vw;
+    height: 8vw;
+    margin-top: -4vw;
+    margin-left: -4vw;
+    background: url(https://images.unsplash.com/photo-1613681230409-6423a38c43e1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80) no-repeat center/cover;
+    border-radius: 50%;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .3);
+    cursor: pointer;
+    transform: scale(1);
+    opacity: .9;
+    transition: all .3s;
+  }
+
+  .slide-container2 .slide2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 8vw;
+    height: 8vw;
+    margin-top: -4vw;
+    margin-left: -4vw;
+    background: url(https://images.unsplash.com/photo-1613681230409-6423a38c43e1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80) no-repeat center/cover;
+    border-radius: 50%;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .3);
+    cursor: pointer;
+    transform: scale(1);
+    opacity: .9;
+    transition: all .3s;
+    border-style: solid;
+    border-color:#fd961a ;
+  }
+  
+  .slide[data-slide-no="1"] {
+    background-image: url(../images/project/apartmentbuilding.jpg);
+  }
+  
+  .slide[data-slide-no="2"] {
+    background-image: url(../images/project/Architecture-HD-Wallpaper-Free-download.jpg);
+  }
+  
+  .slide[data-slide-no="3"] {
+    background-image: url(../images/project/background-check-builder-building-building-construction.jpg);
+  }
+  
+  .slide[data-slide-no="4"] {
+    background-image: url(../images/project/wp1886377.jpg);
+  }
+  
+  .slide[data-slide-no="5"] {
+    background-image: url(../images/project/wp1886344.jpg);
+  }
+  
+  .slide[data-slide-no="6"] {
+    background-image: url(../images/project/wp1886330.jpg);
+  }
+  
+  .slide[data-slide-no="7"] {
+    background-image: url(../images/project/wp2498930.jpg);
+  }
+  
+  .slide[data-slide-no="8"] {
+    background-image: url(../images/project/550542.jpg);
+  }
+  
+  .slide[data-slide-no="9"] {
+    background-image: url(../images/project/solar-system-roof-power-generation-solar-power.jpg);
+  }
+  
+  .slide[data-slide-no="10"] {
+    background-image: url(../images/project/980x.jpg);
+  }
+  
+  .slide[data-slide-no="11"] {
+    background-image: url(../images/project/wp2498986.jpg);
+  }
+  
+  .slide[data-slide-no="12"] {
+    background-image: url(../images/project/wp1886347.jpg);
+  }
+  
+
+
+  .slide2[data-slide-no="13"] {
+    background-image: url(../images/project/2674458.jpg);
+  }
+  
+  .slide2[data-slide-no="14"] {
+    background-image: url(../images/project/Free-Download-Semi-Truck-Picture.jpg);
+  }
+  
+  .slide2[data-slide-no="15"] {
+    background-image: url(../images/project/elephant-junction.jpg);
+  }
+  
+  .slide2[data-slide-no="16"] {
+    background-image: url(../images/project/samode-safari-lodge-27.jpg);
+  }
+  
+  .slide2[data-slide-no="17"] {
+    background-image: url(../images/project/Thai-greetings-wai.png);
+  }
+  
+  .slide2[data-slide-no="18"] {
+    background-image: url(../images/project/MS-The-World-at-the-Hong-Kong-Ocean-Terminal.jpg);
+  }
+  
+  .slide2[data-slide-no="19"] {
+    background-image: url(../images/project/Massage-Therapy-in-Windermere.jpg);
+  }
+  
+  .slide2[data-slide-no="20"] {
+    background-image: url(../images/project/Haritha-Villas-24.jpg);
+  }
+  
+  .slide2[data-slide-no="21"] {
+    background-image: url(../images/project/manor-house-kandy.jpg);
+  }
+  
+  .slide2[data-slide-no="22"] {
+    background-image: url(../images/project/Haritha-Villas-1-1024x1024.jpg);
+  }
+  
+  .slide2[data-slide-no="23"] {
+    background-image: url(../images/project/female-waiter-holds-closed-tray-with-hot-dish_199620-6354.jpg);
+  }
+  
+  .slide2[data-slide-no="24"] {
+    background-image: url(../images/project/1624938609-Sri-Lanka-bars-air-passengers-with-travel-history-to-6-Middle-Eastern-countries-L.jpg);
+  }
+  
+
+
+
+
+
+
+  .slide.active,
+  .slide:hover {
+    transform: scale(1.3);
+    opacity: 1;
+    z-index: 100;
+  }
+
+  .slide2.active,
+  .slide2:hover { 
+    transform: scale(1.3);
+    opacity: 1;
+    z-index: 100;
+  }
+  
+  .button-wrap {
+    margin-top: auto;
+    display: flex;
+    flex-flow: row nowrap;
+  }
+  
+  .button-wrap .btn {
+    display: block;
+    flex: 1 1 auto;
+    line-height: 50px;
+    text-align: center;
+    background: #333;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: all .3s;
+  }
+  
+  .button-wrap .btn:hover {
+    background: #000;
+  }
+  
+  .button-wrap .btn-prev {
+    border-right: 1px solid #999;
+  }
+  
+  @media all and (max-width: 1024px) {
+    .slide-container {
+      width: 55vw;
+      height: 55vw;
+      margin: 150px auto;
+    }
+
+    .slide-container2 {
+      width: 55vw;
+      height: 55vw;
+      margin: 150px auto;
+    }
+    
+    .slide-container .slide {
+      width: 13vw;
+      height: 13vw;
+      margin-top: -6.5vw;
+      margin-left: -6.5vw;
+    }
+
+    .slide-container2 .slide2 {
+      width: 13vw;
+      height: 13vw;
+      margin-top: -6.5vw;
+      margin-left: -6.5vw;
+    }
+  }
+  
+  @media all and (max-width: 720px) {
+    .slide-container {
+      width: 65vw;
+      height: 65vw;
+    }
+
+    .slide-container2 {
+      width: 65vw;
+      height: 65vw;
+    }
+    
+    .slide-container .slide {
+      width: 15vw;
+      height: 15vw;
+      margin-top: -7.5vw;
+      margin-left: -7.5vw;
+    }
+
+    .slide-container2 .slide2 {
+      width: 15vw;
+      height: 15vw;
+      margin-top: -7.5vw;
+      margin-left: -7.5vw;
+    }
+  }

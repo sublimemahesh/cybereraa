@@ -9,7 +9,7 @@ use Storage;
 
 class BlogController extends Controller
 {
-    public function index()
+    public function index() 
     {
         $blogs = Blog::all();
         return view('backend.admin.blogs.index', compact('blogs'));

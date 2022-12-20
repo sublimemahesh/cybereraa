@@ -1,0 +1,178 @@
+
+:root {
+  --font-size: 0.8em;
+  --bg1: #f5f8f7;
+  --blue: #3498db;
+  --green: #2ecc71;
+  --purple: #9b59b6;
+  --gold: #f1c40f;
+  --red: #e74c3c;
+  --orange: #e67e22;
+  --shadow1: 0 2px 4px #00000026, 0 3px 6px #0000001f;
+  --shadow2: 0 2px 6px #00000044, 0 4px 7px #00000022;
+}
+
+
+ul.infoGraphic {
+  font-size: var(--font-size);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+ul.infoGraphic li {
+  position: relative;
+  width: 100%;
+  max-width: 25em;
+  background: #111;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  z-index: 1;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+ul.infoGraphic li .numberWrap {
+  position: absolute;
+}
+ul.infoGraphic li .number {
+  font-family: "maven pro", sans-serif;
+  font-size: 13em;
+  font-weight: 900;
+  width: 0.9em;
+  text-align: center;
+}
+ul.infoGraphic li .number.fontColor1 {
+  color: var(--blue);
+}
+ul.infoGraphic li .number.fontColor2 {
+  color: var(--green);
+}
+ul.infoGraphic li .number.fontColor3 {
+  color: var(--purple);
+}
+ul.infoGraphic li .number.fontColor4 {
+  color: var(--gold);
+}
+ul.infoGraphic li .number.fontColor5 {
+  color: var(--red);
+}
+ul.infoGraphic li .number.fontColor6 {
+  color: var(--orange);
+}
+ul.infoGraphic li .coverWrap {
+  transform: rotate(130deg);
+  position: absolute;
+  width: 18em;
+  height: 15em;
+  left: -3em;
+  top: -1em;
+}
+ul.infoGraphic li .coverWrap .numberCover {
+  position: absolute;
+  background:#111;
+  width: 18em;
+  height: 6em;
+  border-radius: 50% 50% 0 0;
+  border-bottom: 3px solid #f5f8f7;
+  transition: all 0.4s;
+}
+ul.infoGraphic li .coverWrap .numberCover::before {
+  position: absolute;
+  content: "";
+  bottom: 5px;
+  left: 4em;
+  right: 4em;
+  top: 5em;
+  box-shadow: 0 0 30px 17px #48668577;
+  border-radius: 100px/10px;
+  z-index: -1;
+}
+ul.infoGraphic li .coverWrap .numberCover::after {
+  position: absolute;
+  bottom: 0;
+  content: "";
+  left: -10%;
+  width: 120%;
+  height: 150%;
+  background: radial-gradient(at bottom, #48668533, transparent, transparent);
+  z-index: 1;
+}
+ul.infoGraphic li .content {
+  margin: 8em 3em 1em 7em;
+  position: relative;
+}
+ul.infoGraphic li .content h2 {
+  font-size: 1.7em;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+ul.infoGraphic li .content p {
+  line-height: 1.5em;
+}
+
+
+
+ul.infoGraphic li:hover .coverWrap .numberCover {
+  border-radius: 100%;
+}
+
+.icon {
+  position: absolute;
+  font-size: 2rem;
+  text-align: center;
+  top: -1.3em;
+  left: 50%;
+  transform: translatex(-50%);
+}
+.icon:before {
+  color: #666;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+}
+
+.iconCodepen:before {
+  content: "";
+}
+
+.iconSocial:before {
+  content: "";
+}
+
+.iconAirplane:before {
+  content: "";
+}
+
+.iconMap:before {
+  content: "";
+}
+
+.iconBulb:before {
+  content: "";
+}
+
+.iconPeace:before {
+  content: "";
+}
+
+
+#hiw {
+  line-height: 1
+}
+
+ul.infoGraphic li .content h2 {
+  color: white;
+}
+
+
+
+
+
+
+
+
+
+
+

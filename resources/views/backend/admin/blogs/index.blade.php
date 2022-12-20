@@ -1,6 +1,6 @@
 <x-backend.layouts.app>
     @section('title', 'Blogs | CMS')
-    @section('header-title', 'Blogs | CMS' )
+    @section('header-title', 'Blogs | CMS' ) 
     @section('styles')
         <!-- Datatable -->
         <link href="{{asset('assets/backend/vendor/datatables/css/jquery.dataTables.min.css')}}" rel="stylesheet">
