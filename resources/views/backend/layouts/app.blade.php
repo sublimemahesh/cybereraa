@@ -36,6 +36,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
+    <style>
+        img:not(.nav-header .brand-logo, .nav-header .logo-color, .color-title ),
+        svg,
+        video,
+        canvas,
+        audio,
+        iframe,
+        embed,
+        object {
+            display: unset !important;
+        }
+
+        .collapse {
+            visibility: unset !important;
+        }
+
+    </style>
+
     <!-- Styles -->
     @yield('styles')
     @livewireStyles
