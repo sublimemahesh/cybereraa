@@ -1,7 +1,7 @@
 
 
 <x-frontend.layouts.app>
-    @section('title', 'contact')
+    @section('title', 'Contact Us')
     @section('header-title', 'Welcome ')
     @section('styles')
     @endsection
@@ -33,7 +33,13 @@
 </section>
 <!-- Banner Area Ends -->
 <!-- Contact Section Starts -->
-<section class="contact">
+
+@foreach ($all_contact_us->children as $section)
+{!! $section->content !!}
+{{-- {!!html_entity_decode($section)!!} --}}
+@endforeach
+
+{{-- <section class="contact">
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-md-8 contact-form">
@@ -140,7 +146,9 @@
             <!-- Contact Widget Ends -->
         </div>
     </div>
-</section>
+</section> --}}
+
+
 <!-- Contact Section Ends -->
 
 @push('scripts')

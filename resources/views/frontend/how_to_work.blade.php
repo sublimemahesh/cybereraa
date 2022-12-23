@@ -1,6 +1,6 @@
   
   <x-frontend.layouts.app>
-    @section('title', 'how it work')
+    @section('title', 'How it work')
     @section('header-title', 'Welcome ')
     @section('styles')
 
@@ -38,8 +38,21 @@
   </section>
   <!-- Banner Area end -->
 
+
+
+  @foreach ($how_it_works->children as $section)
+  {!! $section->content !!}
+  {{-- {!!html_entity_decode($section)!!} --}}
+  @endforeach
+  
+
+
+
+
+
   <!-- hiw Section Starts -->
-  <section id='hiw'>
+
+  {{-- <section id='hiw'>
       <ul class="infoGraphic">
           <li>
               <div class="numberWrap">
@@ -96,7 +109,8 @@
 
       </ul>
 
-  </section>
+  </section> --}}
+
   <!-- hiw Section Ends -->
 
   @push('scripts')

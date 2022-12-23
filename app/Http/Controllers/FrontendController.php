@@ -10,41 +10,52 @@ class FrontendController extends Controller
 {
     public function index() 
     {
-       
-        return view('frontend.index');
+        
+        $welcomes= page::find(1);
+        return view('frontend.index', compact('welcomes'));
+      //  return view('frontend.index');
     }
 
     public function about() 
     {
         $abouts= page::find(3);
-        
         return view('frontend.about', compact('abouts'));
         //return view('frontend.about');
     }
 
     public function project() 
     {
-        return view('frontend.project');
+        $projects= page::find(19);
+        return view('frontend.project', compact('projects'));
+        //return view('frontend.project');
     }
 
     public function howToWork() 
-    {
-        return view('frontend.how_to_work');
+    {   
+        $how_it_works= page::find(17);
+        return view('frontend.how_to_work', compact('how_it_works'));
+       // return view('frontend.how_to_work');
     }
 
     public function pricing() 
-    {
-        return view('frontend.pricing');
+    {   
+        $packages= page::find(15);
+        return view('frontend.pricing', compact('packages'));
+        // return view('frontend.pricing');
     }
 
     public function faq() 
     {
-        return view('frontend.faq');
+        $faqs= page::find(21);
+        return view('frontend.faq', compact('faqs'));
+        ///return view('frontend.faq');
     }
 
     public function contact() 
     {
-        return view('frontend.contact');
+        $all_contact_us= page::find(6);
+        return view('frontend.contact', compact('all_contact_us'));
+       // return view('frontend.contact');
     }
 
  
