@@ -98,6 +98,8 @@
                       images_upload_url: 'postAcceptor.php',
                       here we add custom filepicker only to Image dialog
                     */
+                    extended_valid_elements: 'i[class]',
+                    valid_elements: "*[*]",
                     file_picker_types: 'image',
                     /* and here's our custom image picker*/
                     file_picker_callback: function (cb, value, meta) {

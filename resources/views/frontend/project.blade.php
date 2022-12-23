@@ -1,7 +1,7 @@
  
  
 <x-frontend.layouts.app>
-    @section('title', 'project')
+    @section('title', 'Project')
     @section('header-title', 'Welcome ')
     @section('styles')
 
@@ -43,7 +43,15 @@
  <!-- Banner Area Starts -->
  <!-- About Section Starts -->
 
- <section class="about-page">
+ @foreach ($projects->children as $section)
+        {!! $section->content !!}
+        {{-- {!!html_entity_decode($section)!!} --}}
+    @endforeach
+
+
+
+
+ {{-- <section class="about-page">
      <div class="container">
          <!-- Section Content Starts -->
          <div class="row about-content">
@@ -138,7 +146,7 @@
          <!-- Section Content Ends -->
      </div>
      <!--/ Content row end -->
- </section>
+ </section> --}}
 
  <!-- About Section Ends -->
 

@@ -117,7 +117,7 @@
                 <div class="site-nav-inner">
                     <!-- Logo For ONLY Mobile display Starts -->
                     <a class="logo-mobile" href="index.php">
-                        <img id="logo-mobile" class="img-responsive" src="{{ asset('assets/frontend/images/down/eth.png') }}images/down/logo.png" alt="">
+                        <img id="logo-mobile" class="img-responsive" src="{{ asset('assets/frontend/images/down/logo.png') }}" alt="">
                     </a>
                     <!-- Logo For ONLY Mobile display Ends -->
                     <!-- Toggle Icon for Mobile Starts -->

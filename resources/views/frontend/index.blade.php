@@ -1,5 +1,5 @@
 <x-frontend.layouts.app>
-    @section('title', 'index')
+    @section('title', 'Home')
     @section('header-title', 'Welcome ')
     @section('styles')
 
@@ -29,8 +29,8 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-12 col-md-5 col-lg-6">
-                                <img class="w-100 shadow vert-move image222" src="{{ asset('assets/frontend/images/project/banner-img.png') }}"
-                                    id='hero-img' />
+                                <img class="w-100 shadow vert-move image222"
+                                    src="{{ asset('assets/frontend/images/project/banner-img.png') }}" id='hero-img' />
                             </div>
                             <div class="col-sm-12 col-md-5 col-lg-6">
                                 <div id='hero-text'>
@@ -53,6 +53,17 @@
         </section>
     </div>
 
+    <!-- Welcome Section Starts -->
+
+    @foreach ($welcomes->children as $section)
+        {!! $section->content !!}
+        {{-- {!!html_entity_decode($section)!!} --}}
+    @endforeach
+
+    <!-- Welcome Section End -->
+
+
+
     <!-- About Section Starts -->
     <section class="about-us about-css" id='iny'>
         <div class="container">
@@ -68,8 +79,8 @@
             <div class="row about-content">
                 <!-- Image Starts -->
                 <div class="col-sm-12 col-md-5 col-lg-6 text-center">
-                    <img id="about-us" class="img-responsive img-about-us" src="{{ asset('assets/frontend/images/down/unnamed11.png') }}"
-                        alt="about us">
+                    <img id="about-us" class="img-responsive img-about-us"
+                        src="{{ asset('assets/frontend/images/down/unnamed11.png') }}" alt="about us">
                 </div>
                 <!-- Image Ends -->
                 <!-- Content Starts -->
@@ -417,7 +428,8 @@
                             planet, conveniently and without restriction. It’s the dawn of a better, more free
                             world.
                         </p>
-                        <footer><img src="{{ asset('assets/frontend/images/ceo.jpg') }}" alt="ceo" /> <span>Marc Smith</span> - CEO</footer>
+                        <footer><img src="{{ asset('assets/frontend/images/ceo.jpg') }}" alt="ceo" /> <span>Marc
+                                Smith</span> - CEO</footer>
                     </blockquote>
                 </div>
                 <!-- Quote Ends -->
@@ -456,7 +468,8 @@
                 <div class="col-sm-4 col-md-4 col-xs-12">
                     <div class="latest-post">
                         <!-- Featured Image Starts -->
-                        <a href="blog-post.html"><img class="img-responsive" src="{{ asset('assets/frontend/images/blog/blog-post-small-1.jpg') }}"
+                        <a href="blog-post.html"><img class="img-responsive"
+                                src="{{ asset('assets/frontend/images/blog/blog-post-small-1.jpg') }}"
                                 alt="img"></a>
                         <!-- Featured Image Ends -->
                         <!-- Article Content Starts -->
@@ -484,7 +497,8 @@
                 <div class="col-sm-4 col-md-4 col-xs-12">
                     <div class="latest-post">
                         <!-- Featured Image Starts -->
-                        <a href="blog-post.html"><img class="img-responsive" src="{{ asset('assets/frontend/images/blog/blog-post-small-2.jpg') }}"
+                        <a href="blog-post.html"><img class="img-responsive"
+                                src="{{ asset('assets/frontend/images/blog/blog-post-small-2.jpg') }}"
                                 alt="img"></a>
                         <!-- Featured Image Ends -->
                         <!-- Article Content Starts -->
@@ -512,7 +526,8 @@
                 <div class="col-sm-4 col-md-4 col-xs-12">
                     <div class="latest-post">
                         <!-- Featured Image Starts -->
-                        <a href="blog-post.html"><img class="img-responsive" src="{{ asset('assets/frontend/images/blog/blog-post-small-3.jpg') }}"
+                        <a href="blog-post.html"><img class="img-responsive"
+                                src="{{ asset('assets/frontend/images/blog/blog-post-small-3.jpg') }}"
                                 alt="img"></a>
                         <!-- Featured Image Ends -->
                         <!-- Article Content Starts -->

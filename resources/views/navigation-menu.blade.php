@@ -8,7 +8,7 @@
              <a href="{{ route('user.profile') }}" class="{{ request()->routeIs('user.profile') ? 'mm-active' : '' }}">
                  {{ __('My Profile') }}
              </a>
-         </li>--}}
+         </li> --}}
         <li>
             <a class="{{ request()->routeIs('profile.show') ? 'mm-active' : '' }}" href="{{ route('profile.show') }}">
                 <span>Account Settings</span>
@@ -25,13 +25,15 @@
         </a>
         <ul aria-expanded="false">
             <li>
-                <a href="{{ route('teams.show', Auth::user()->currentTeam->id) }}" class="{{ request()->routeIs('teams.show') ? 'mm-active' : '' }}">
+                <a href="{{ route('teams.show', Auth::user()->currentTeam->id) }}"
+                    class="{{ request()->routeIs('teams.show') ? 'mm-active' : '' }}">
                     {{ __('Team Settings') }}
                 </a>
             </li>
             @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
                 <li>
-                    <a href="{{ route('teams.create') }}" class="{{ request()->routeIs('teams.create') ? 'mm-active' : '' }}">
+                    <a href="{{ route('teams.create') }}"
+                        class="{{ request()->routeIs('teams.create') ? 'mm-active' : '' }}">
                         {{ __('Create New Team') }}
                     </a>
                 </li>
@@ -43,13 +45,15 @@
                         <li>
                             <form class="sidebar-header" method="POST" action="{{ route('current-team.update') }}">
                                 @csrf
-                                <input type="hidden" name="_method" value="PUT"/>
+                                <input type="hidden" name="_method" value="PUT" />
                                 <input type="hidden" name="team_id" value="{{ $team->id }}">
-                                <a href="{{ route('current-team.update') }}" onclick="event.preventDefault(); this.closest('form').submit();" class="align-items-center d-inline-flex text-truncate">
+                                <a href="{{ route('current-team.update') }}"
+                                    onclick="event.preventDefault(); this.closest('form').submit();"
+                                    class="align-items-center d-inline-flex text-truncate">
                                     @if (Auth::user()->isCurrentTeam($team))
                                         <svg class="text-success pr-1" style="width:14px; height:14px" fill="none"
-                                                stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                stroke="currentColor" viewBox="0 0 24 24">
+                                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            stroke="currentColor" viewBox="0 0 24 24">
                                             <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                         </svg>
                                     @else

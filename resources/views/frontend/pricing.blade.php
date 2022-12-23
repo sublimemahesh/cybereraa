@@ -1,6 +1,6 @@
  
  <x-frontend.layouts.app>
-    @section('title', 'pricing')
+    @section('title', 'Package')
     @section('header-title', 'Welcome ')
     @section('styles')
 
@@ -43,9 +43,13 @@
  <!-- Banner Area Starts -->
 
 
+ @foreach ($packages->children as $section)
+{!! $section->content !!}
+{{-- {!!html_entity_decode($section)!!} --}}
+@endforeach
 
 
- <section class="pricing-section">
+ {{-- <section class="pricing-section">
      <div class="container">
          <div class="outer-box">
              <div class="row">
@@ -285,7 +289,7 @@
              </div>
          </div>
      </div>
- </section>
+ </section> --}}
 
  @push('scripts')
  <script src="{{ asset('assets/frontend/js/testimonials.js') }}"></script>
