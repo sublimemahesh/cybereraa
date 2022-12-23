@@ -1,6 +1,10 @@
 <?php
 
+use App\Models\Earning;
+use App\Models\PurchasedPackage;
 use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,13 +32,26 @@ Route::group(['prefix' => 'register', 'middleware' => 'guest:' . config('fortify
     Route::post('/', 'RegisteredUserController@store');
 });
 
-Route::get('test', function () {
+Route::get('test', function (Request $request) {
+    $period = explode(' to ', $request->get('date-range'));
+    $date1 = Carbon::createFromFormat('Y-m-d', trim($period[0]));
+    $date2 = Carbon::createFromFormat('Y-m-d', trim($period[1]));
+    dd($period,$date1&&$date2);
 //    $nodeId = 3;
     // Find the ancestor with the fewest children
 //    $ancestors = User::findAvailableSubLevel($nodeId);
 //    dd($ancestors);
     $user = User::find(3);
-    dd($user->referral_link, $user);
+    $activePackages = PurchasedPackage::with('user')
+        ->where('status', 'active')
+        ->whereDate('expired_at', '>=', Carbon::now())
+        ->whereDoesntHave('earnings', fn($query) => $query->whereDate('created_at', Carbon::now()->format('Y-m-d')))
+        ->get();
+//    $exc_time = Carbon::parse('3343343084')->format('Y-m-d H:i:s');
+    $now = Carbon::now()->timestamp;
+    $purchase = PurchasedPackage::find(1);
+    dd(Earning::where('purchased_package_id', $purchase->id)->whereDate('created_at', date('Y-m-d'))->doesntExist(), date('Y-m-d'));
+
 });
 
 Route::get('payments/binancepay/response', 'Payment\BinancePayController@response');
@@ -67,6 +84,10 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
 
         // Blog
         Route::resource('blogs', 'Admin\BlogController')->only('index', 'edit', 'destroy');
+
+        // Earnings
+        Route::get('users/earnings', 'Admin\EarningController@index')->name('earnings.index');
+        Route::post('users/earnings/calculate-profit', 'Admin\EarningController@calculateProfit');
     });
 
     // USER ROUTES
@@ -84,6 +105,8 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
 
         // Packages
         Route::get('packages', 'User\PackageController@index')->name('packages.index');
+        Route::get('packages/active', 'User\PackageController@active')->name('packages.active');
+
 
         // My Genealogy
         Route::get('genealogy/{user:username?}', 'User\GenealogyController@index')->name('genealogy');
@@ -93,6 +116,8 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
             Route::post('', 'User\GenealogyController@assignPosition')->middleware('signed');
             Route::get('new-registration', 'User\GenealogyController@registerForm')->name('genealogy.position.register')->middleware('signed');
         });
+
+        Route::get('earnings', 'User\EarningController@index')->name('earnings.index');
     });
 
 });

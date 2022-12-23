@@ -30,9 +30,9 @@
     <link href="{{ asset('assets/backend/vendor/swiper/css/swiper-bundle.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/backend/vendor/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet">
 
+    @yield('plugin-styles')
     <!-- Style css -->
     <link href="{{ asset('assets/backend/css/style.css') }}" rel="stylesheet">
-
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -56,12 +56,13 @@
 
     <!-- Styles -->
     @yield('styles')
-    @livewireStyles
-    @livewireScripts
 
+    @livewireStyles
+    @powerGridStyles
+    @livewireScripts
 </head>
 
-<body class="font-sans antialiased">
+<body class="font-sans antialiased dark">
     <!--******************* Preloader start ********************-->
     <div id="loader"></div>
     <!--******************* Preloader end ********************-->
@@ -94,7 +95,7 @@
                     </ol>
                 </div>
                 <div id="alert-container">
-                    <x-jet-validation-errors class="alert alert-danger mb-4" />
+                    <x-jet-validation-errors class="alert alert-danger mb-4"/>
                     @if (session('error'))
                         <div class="alert alert-danger">
                             {{ session('error') }}
@@ -137,6 +138,9 @@
     <!--**********************************  Scripts ***********************************-->
     <!-- Required vendors -->
     <script src="{{ asset('assets/backend/vendor/global/global.min.js') }}"></script>
+
+    @powerGridScripts
+
     <script src="{{ asset('assets/backend/vendor/chart.js/Chart.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/backend/vendor/apexchart/apexchart.js') }}"></script>
     <script src="{{ asset('assets/backend/vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
@@ -151,8 +155,8 @@
     @stack('scripts')
 
     <script>
-        $(document).ready(function() {
-            setTimeout(function() {
+        $(document).ready(function () {
+            setTimeout(function () {
                 dzSettingsOptions.version = 'dark';
                 new dzSettings(dzSettingsOptions);
             }, 1500)

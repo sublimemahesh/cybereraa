@@ -1,7 +1,7 @@
 <x-backend.layouts.app>
     @section('title', 'Pages | CMS')
     @section('header-title', 'Pages | CMS' )
-    @section('styles')
+    @section('plugin-styles')
         <!-- Datatable -->
         <link href="{{asset('assets/backend/vendor/datatables/css/jquery.dataTables.min.css')}}" rel="stylesheet">
     @endsection
@@ -43,7 +43,7 @@
                         <tbody>
                         @foreach ($pages as $page)
                             <tr>
-                                <td>
+                                <td class="py-2">
                                     {{-- @can('update', $page) --}}
                                     <a class="btn btn-xxs btn-info" href="{{ route('admin.pages.edit', $page) }}">Edit</a>
                                     @if(is_null($page->parent_id))

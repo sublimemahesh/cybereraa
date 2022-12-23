@@ -21,9 +21,21 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('user.packages.active') }}" class="" aria-expanded="false">
+                    <i class="bi bi-box"></i>
+                    <span class="nav-text">Active Package</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{ route('user.genealogy') }}" class="" aria-expanded="false">
                     <i class="bi bi-diagram-3-fill"></i>
                     <span class="nav-text">My Genealogy</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('user.earnings.index') }}" class="" aria-expanded="false">
+                    <i class="bi bi-cash"></i>
+                    <span class="nav-text">My Earnings</span>
                 </a>
             </li>
 

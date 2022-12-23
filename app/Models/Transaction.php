@@ -2,13 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use JsonException;
 
 class Transaction extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'user_id',
         'package_id',
@@ -17,6 +15,18 @@ class Transaction extends Model
         'type',
         'status',
     ];
+
+    protected $appends = [
+        'create_order_request_info'
+    ];
+
+    /**
+     * @throws JsonException
+     */
+    public function getCreateOrderRequestInfoAttribute()
+    {
+        return $this->create_order_request_info = json_decode($this->create_order_request, false, 512, JSON_THROW_ON_ERROR);
+    }
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
@@ -28,8 +38,8 @@ class Transaction extends Model
         return $this->belongsTo(Package::class, 'package_id', 'id');
     }
 
-    public function userPackages(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function purchasedPackages(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(UserPackage::class, 'transaction_id', 'id');
+        return $this->hasMany(PurchasedPackage::class, 'transaction_id', 'id');
     }
 }

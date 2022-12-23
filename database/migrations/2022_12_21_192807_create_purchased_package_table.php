@@ -12,13 +12,17 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('user_packages', function (Blueprint $table) {
+        Schema::dropIfExists('user_packages');
+        Schema::create('purchased_package', function (Blueprint $table) {
             $table->id();
             $table->foreignId('transaction_id')->nullable()->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
             $table->foreignId('package_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->double('invested_amount');
+            $table->double('payable_percentage')->nullable();
             $table->enum('status', ['PENDING', 'ACTIVE', 'EXPIRED', 'HOLD', 'BAN']);
-            $table->timestamp('expired_at');
+            $table->timestamp('last_earned_at')->nullable();
+            $table->timestamp('expired_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -31,6 +35,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('user_packages');
+        Schema::dropIfExists('purchased_package');
     }
 };

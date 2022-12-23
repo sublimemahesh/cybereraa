@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -22,13 +23,19 @@ class Package extends Model
         ];
     }
 
-    public function userPackages(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function purchasedPackages(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(UserPackage::class, 'package_id', 'id');
+        return $this->hasMany(PurchasedPackage::class, 'package_id', 'id');
     }
 
     public function users(): \Illuminate\Database\Eloquent\Relations\HasManyThrough
     {
-        return $this->hasManyThrough(User::class, UserPackage::class, 'user_id', 'user_id', 'id', 'id');
+        return $this->hasManyThrough(User::class, PurchasedPackage::class, 'user_id', 'user_id', 'id', 'id');
     }
+
+    public function scopeActivePackages(Builder $query): Builder
+    {
+        return $query->whereIsActive(true);
+    }
+
 }
