@@ -3,7 +3,9 @@ import './bootstrap';
 import Alpine from 'alpinejs';
 import intlTelInput from "intl-tel-input";
 import Swal from "sweetalert2";
+import moment from 'moment';
 
+window.moment = moment;
 
 window.Alpine = Alpine;
 

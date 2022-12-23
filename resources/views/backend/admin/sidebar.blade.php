@@ -14,6 +14,12 @@
                     <span class="nav-text">Users</span>
                 </a>
             </li>
+             <li>
+                <a href="{{ route('admin.earnings.index') }}" class="" aria-expanded="false">
+                    <i class="bi bi-cash-stack"></i>
+                    <span class="nav-text"> User Earnings </span>
+                </a>
+            </li>
             <li>
                 <a href="{{ route('admin.packages.index') }}" class="" aria-expanded="false">
                     <i class="bi bi-stack"></i>

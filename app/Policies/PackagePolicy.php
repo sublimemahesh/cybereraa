@@ -36,7 +36,7 @@ class PackagePolicy
 
     public function delete(User $user, Package $package)
     {
-        $package->loadCount('userPackages');
+        $package->loadCount('purchasedPackages');
         $role = $user->getRoleNames()->first();
         return $package->user_packages_count === 0 && ($role === 'admin' || $role === 'super_admin');
     }
@@ -49,7 +49,7 @@ class PackagePolicy
 
     public function forceDelete(User $user, Package $package)
     {
-        $package->load('userPackages');
+        $package->load('purchasedPackages');
         $role = $user->getRoleNames()->first();
         return $package->user_packages_count === 0 && ($role === 'admin' || $role === 'super_admin');
     }

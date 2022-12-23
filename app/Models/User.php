@@ -70,7 +70,7 @@ class User extends Authenticatable
         'referral_link'
     ];
 
-    public function getReferralLinkAttribute()
+    public function getReferralLinkAttribute(): string
     {
         return $this->referral_link = URL::signedRoute('register', ['ref' => $this->username]);
     }
@@ -90,9 +90,20 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class, 'user_id', 'id')->withDefault(new Profile);
     }
 
+    public function purchasedPackages(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(PurchasedPackage::class, 'user_id', 'id');
+    }
+
     public function activePackages(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(UserPackage::class, 'user_id', 'id');
+        return $this->purchasedPackages()->activePackages();
+
+    }
+
+    public function earnings(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Earning::class, 'user_id');
     }
 
     public function transactions(): \Illuminate\Database\Eloquent\Relations\HasMany

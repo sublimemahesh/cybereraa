@@ -1,7 +1,7 @@
 <x-backend.layouts.app>
     @section('title', 'My KYC')
     @section('header-title', 'My KYC' )
-    @section('styles')
+    @section('plugin-styles')
         <!-- Datatable -->
         <link href="{{asset('assets/backend/vendor/datatables/css/jquery.dataTables.min.css')}}" rel="stylesheet">
     @endsection
@@ -33,7 +33,7 @@
                             <tbody>
                             @foreach($users as $user)
                                 <tr>
-                                    <td>
+                                    <td class="py-2">
                                         <img class="rounded-circle" width="35" src="{{ $user->profile_photo_url }}" alt="">
                                     </td>
                                     <td>{{ $user->username }}</td>

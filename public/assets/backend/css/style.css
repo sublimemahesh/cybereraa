@@ -39116,7 +39116,7 @@ code {
 }
 
 table.dataTable {
-    margin: 0 0 2rem 0 !important;
+    margin: 0 0 1rem 0 !important;
 }
 
 table.dataTable {
@@ -39169,7 +39169,7 @@ table.dataTable thead th {
 }
 
 table.dataTable tbody td {
-    padding: 1.25rem 0.9375rem;
+    padding: 0 0.9375rem;
     font-size: 1rem;
     font-weight: 400;
     border-bottom: 0;
@@ -48770,4 +48770,3 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
     color: #fff;
 }
 
-/*# sourceMappingURL=style.css.map */

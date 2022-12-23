@@ -1,7 +1,7 @@
 <x-backend.layouts.app>
     @section('title', 'Countries | CMS')
     @section('header-title', 'Countries | CMS' )
-    @section('styles')
+    @section('plugin-styles')
         <!-- Datatable -->
         <link href="{{asset('assets/backend/vendor/datatables/css/jquery.dataTables.min.css')}}" rel="stylesheet">
     @endsection
@@ -35,7 +35,7 @@
                         <tbody>
                         @foreach ($countries as $country)
                             <tr>
-                                <td>
+                                <td class="py-2">
                                     {{-- @can('update', $country) --}}
                                     <a class="btn btn-xs btn-info sharp" href="{{ route('admin.countries.edit', $country) }}">
                                         <i class="fa fa-pencil"></i>

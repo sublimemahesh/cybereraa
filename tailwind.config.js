@@ -10,6 +10,9 @@ module.exports = {
         './vendor/laravel/jetstream/**/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
+        './app/Http/Livewire/**/*Table.php',
+        './vendor/power-components/livewire-powergrid/resources/views/**/*.php',
+        './vendor/power-components/livewire-powergrid/src/Themes/Tailwind.php'
     ],
 
     theme: {
@@ -18,6 +21,12 @@ module.exports = {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
             colors: {
+                primary: 'var(--primary)',
+                secondary: 'var(--secondary)',
+                'secondary-dark': 'var(--secondary-dark)',
+                'primary-hover': 'var(--primary-hover)',
+                'primary-dark': 'var(--primary-dark)',
+                tertiary: '#777',
                 transparent: 'transparent',
                 current: 'currentColor',
                 black: colors.black,
@@ -28,10 +37,23 @@ module.exports = {
                 yellow: colors.yellow,
             }
         },
+        dark: {
+            colors: {
+                primary: 'var(--primary)',
+                secondary: 'var(--secondary)',
+                'secondary-dark': 'var(--secondary-dark)',
+                'primary-hover': 'var(--primary-hover)',
+                'primary-dark': 'var(--primary-dark)',
+                tertiary: '#ccc',
+            },
+        },
     },
 
     plugins: [
-        require('@tailwindcss/forms'),
+        require('@tailwindcss/forms')({
+            strategy: 'class',
+        }),
+        require('tailwindcss-dark-mode')(),
         require("@tailwindcss/typography"),
     ],
 };

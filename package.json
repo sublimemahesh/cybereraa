@@ -18,6 +18,8 @@
     },
     "dependencies": {
         "intl-tel-input": "^17.0.19",
-        "sweetalert2": "^11.6.15"
+        "moment": "^2.29.4",
+        "sweetalert2": "^11.6.15",
+        "tailwindcss-dark-mode": "^1.1.7"
     }
 }
