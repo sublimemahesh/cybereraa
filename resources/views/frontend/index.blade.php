@@ -4,7 +4,7 @@
     @section('styles')
 
         <link href="{{ asset('assets/frontend/css/testimonials.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/frontend/css/hiw.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/frontend/css/hiw2.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/frontend/css/pricing-carousel.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/frontend/css/flickity.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/frontend/css/pricing.css') }}" rel="stylesheet">
@@ -557,7 +557,7 @@
 
     @push('scripts')
         <script src="{{ asset('assets/frontend/js/testimonials.js') }}"></script>
-        <script src="{{ asset('assets/frontend/js/hiw.js') }}"></script>
+        <script src="{{ asset('assets/frontend/js/hiw2.js') }}"></script>
         <script src='https://unpkg.com/flickity@2.0.5/dist/flickity.pkgd.min.js'></script>
         <script src="{{ asset('assets/frontend/js/pricing-carousel.js') }}"></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
