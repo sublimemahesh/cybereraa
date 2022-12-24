@@ -22,7 +22,7 @@ Route::get('/', 'FrontendController@index')->name('/');
 Route::get('about-us', 'FrontendController@about')->name('about');
 Route::get('project', 'FrontendController@project')->name('project');
 Route::get('how-it-work', 'FrontendController@howToWork')->name('how-to-work');
-Route::get('pricing', 'FrontendController@pricing')->name('pricing');
+Route::get('packages', 'FrontendController@pricing')->name('pricing');
 Route::get('faq', 'FrontendController@faq')->name('faq');
 Route::get('contact', 'FrontendController@contact')->name('contact');
 
