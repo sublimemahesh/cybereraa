@@ -10,7 +10,7 @@
 
     <!-- Template CSS Files -->
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/font-awesome.min.css') }}">
-    
+
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/select2.min.css') }}">
@@ -26,7 +26,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/css/main.css') }}" />
 
     <!-- Template JS Files -->
-    <script src="js/modernizr.js"></script>
+    <script src="{{ asset('assets/frontend/js/modernizr.js') }}"></script>
     <!-- add me CSS Files -->
     <!-- partial:index.partial.html -->
     <link href="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/assets/owl.carousel.min.css"

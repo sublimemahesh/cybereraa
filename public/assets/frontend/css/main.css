@@ -70,9 +70,9 @@ img.vert-move {
 }
 
 
-/* 
+/*
 #heroGallery {
-   
+
     overflow: hidden;
 }
 @keyframes carousel {
@@ -80,7 +80,7 @@ img.vert-move {
     to { transform: translate3d(-1000px, 0, 0); }
 }
 #carousel {
-    
+
     transform: translate3d(0,0,0);
     animation: carousel 50s linear infinite;
 }
@@ -155,7 +155,7 @@ img.vert-move {
 
 .pricing-hero:after{
     border-bottom: 30px solid #1d1d1d;
-  
+
   }
 
 .mys-logo{
@@ -166,4 +166,8 @@ img.vert-move {
 
 .net-hero{
     padding: 0px 0;
+}
+
+.header-btn{
+    border-radius: 25px
 }
