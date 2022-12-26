@@ -34,14 +34,6 @@
     <!-- News Section Starts -->
     <section class="blog">
         <div class="container">
-            <!-- Section Title Starts -->
-            <div class="row text-center">
-                <h2 class="title-head">Our <span>News</span></h2>
-                <div class="title-head-subtitle">
-                    <p>Discover latest news about Bitcoin on our blog</p>
-                </div>
-            </div>
-            <!-- Section Title Ends -->
             <!-- Section Content Starts -->
             <div class="row latest-posts-content">
 

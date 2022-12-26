@@ -204,109 +204,38 @@
             <div class="PriceBlocks-sliderContainer">
                 <div class="PriceBlocks-slider">
 
+                    @foreach ($packages->slice(0, 4) as $package)
                     <div class="PriceBlock-container is-previous">
                         <div class="pricing-block wow fadeInUp wc">
                             <div class="inner-box">
                                 <div class="icon-box">
-                                    <div class="icon-outer"><i class="fas fa-paper-plane"></i></div>
+                                    <div class="icon-outer"><i class="fas fa-gem"></i></div>
                                 </div>
                                 <div class="price-box">
-                                    <div class="title"> Lite Package</div>
-                                    <h4 class="price">$100</h4>
+                                    <div class="title">{{ $package->name }}</div>
+                                    <h4 class="price">{{ $package->currency }}{{ $package->amount }}</h4>
                                 </div>
                                 <br>
                                 <br>
                                 <ul class="features">
-                                    <li class="true">Duration 15 Month</li>
-                                    <li class="true">Up to 1% Leverage</li>
-                                    <li class="true">20 By Points</li>
+                                    <li class="true">Duration {{ $package->month_of_period }} Month</li>
+                                    <li class="true">Up to {{ $package->daily_leverage }} Leverage</li>
+                                   
                                 </ul>
                                 <div class="btn-box">
-                                    <a href="#" class="theme-btn">BUY plan</a>
+                                    <a href="{{ route('register') }}" class="theme-btn">BUY plan</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="PriceBlock-container">
-                        <div class="pricing-block wow fadeInUp wc">
-                            <div class="inner-box">
-                                <div class="icon-box">
-                                    <div class="icon-outer"><i class="fas fa-paper-plane"></i></div>
-                                </div>
-                                <div class="price-box">
-                                    <div class="title"> Lite Package</div>
-                                    <h4 class="price">$250</h4>
-                                </div>
-                                <br>
-                                <br>
-                                <ul class="features">
-                                    <li class="true">Duration 15 Month</li>
-                                    <li class="true">Up to 1% Leverage</li>
-                                    <li class="true">50 By Points</li>
-                                </ul>
-                                <div class="btn-box">
-                                    <a href="#" class="theme-btn">BUY plan</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="PriceBlock-container">
-                        <div class="pricing-block wow fadeInUp wc">
-                            <div class="inner-box">
-                                <div class="icon-box">
-                                    <div class="icon-outer"><i class="fas fa-paper-plane"></i></div>
-                                </div>
-                                <div class="price-box">
-                                    <div class="title"> Lite Package</div>
-                                    <h4 class="price">$500</h4>
-                                </div>
-                                <br>
-                                <br>
-                                <ul class="features">
-                                    <li class="true">Duration 15 Month</li>
-                                    <li class="true">Up to 1% Leverage</li>
-                                    <li class="true">100 By Points</li>
-                                </ul>
-                                <div class="btn-box">
-                                    <a href="#" class="theme-btn">BUY plan</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="PriceBlock-container">
-                        <div class="pricing-block wow fadeInUp wc">
-                            <div class="inner-box">
-                                <div class="icon-box">
-                                    <div class="icon-outer"><i class="fas fa-paper-plane"></i></div>
-                                </div>
-                                <div class="price-box">
-                                    <div class="title"> Lite Package</div>
-                                    <h4 class="price">$1000</h4>
-                                </div>
-                                <br>
-                                <br>
-                                <ul class="features">
-                                    <li class="true">Duration 15 Month</li>
-                                    <li class="true">Up to 1% Leverage</li>
-                                    <li class="true">200 By Points</li>
-                                </ul>
-                                <div class="btn-box">
-                                    <a href="#" class="theme-btn">BUY plan</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
 
                     <div class="PriceBlock-container">
                         <div class="PriceBlock">
                             <div class="PriceBlock-top">
                                 <i class="fa fa-plus-circle" aria-hidden="true" id="fa-plus-circle-me"></i>
                             </div>
-                            <h2 class='text-center'><a href="pricing.php" id='vmp'>View more Packages</a></h2>
+                            <h2 class='text-center'><a href="{{ route('pricing') }}" id='vmp'>View more Packages</a></h2>
                         </div>
                     </div>
                 </div>
