@@ -25,6 +25,9 @@ Route::get('how-it-work', 'FrontendController@howToWork')->name('how-to-work');
 Route::get('packages', 'FrontendController@pricing')->name('pricing');
 Route::get('faq', 'FrontendController@faq')->name('faq');
 Route::get('contact', 'FrontendController@contact')->name('contact');
+Route::get('news', 'FrontendController@news')->name('news');
+Route::get('news/{news:slug}','FrontendController@showNews')->name('news.show');
+
 
 // Register custom routes
 Route::group(['prefix' => 'register', 'middleware' => 'guest:' . config('fortify.guard')], function () {

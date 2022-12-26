@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
-use App\Models\Page;
-use App\Models\Package;
+use App\Models\Page; 
+use App\Models\Package; 
+use App\Models\Blog; 
 
 class FrontendController extends Controller
 {
@@ -32,22 +33,23 @@ class FrontendController extends Controller
     }
 
     public function howToWork()
-    {
-        $how_it_works= page::find(17);
+    { 
+        $how_it_works= page::where(['parent_id' => 32])->get();
+         
         return view('frontend.how_to_work', compact('how_it_works'));
        // return view('frontend.how_to_work');
     }
 
     public function pricing()
-    {
-        $packages = Package::all();
+    { 
+        $packages = Package::all();  
         return view('frontend.pricing', compact('packages'));
         // return view('frontend.pricing');
     }
 
     public function faq()
     {
-        $faqs= page::find(21);
+        $faqs= page::all();
         return view('frontend.faq', compact('faqs'));
         ///return view('frontend.faq');
     }
@@ -59,6 +61,20 @@ class FrontendController extends Controller
        // return view('frontend.contact');
     }
 
+    public function news()
+    {
+        $all_news= Blog::all();
+        return view('frontend.news', compact('all_news'));
+        //return view('frontend.blog');
+    }
 
+
+    public function showNews(Request $request, Blog $news)
+    {
+       
+        $all_news= Blog::all();
+        return view('frontend.news-post', compact('news','all_news'));
+
+    }
 
 }

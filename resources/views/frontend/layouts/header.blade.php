@@ -138,6 +138,7 @@
                             <li id='pricing'><a href="{{ route('pricing') }}"> Packages</a></li>
                             <li id='faq'><a href="{{ route('faq') }}">FAQ</a></li>
                             <li id='contact'><a href="{{ route('contact') }}">Contact</a></li>
+                            <li id='news'><a href="{{ route('news') }}">News</a></li>
                         </ul>
                         <!-- Main Menu Ends -->
                     </div>

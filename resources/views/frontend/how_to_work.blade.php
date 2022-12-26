@@ -43,112 +43,31 @@
         <div class="container">
             <div class="col-xs-12 col-sm-2">
                 <ul id="nav-serialscrolling" class="faq-cat-holder">
-                    <li><span class="sub-link" data-serialscrolling="home"><span>Login and Register</span><i class="fas fa-arrow-right  rigth-arrow"></i></span><i
-                            class='fas fa-arrow-down ul-count'></i></li>
-                    <li><span class="sub-link" data-serialscrolling="work"><span>KYC Approval</span><i class="fas fa-arrow-right rigth-arrow" ></i></span><i
-                            class='fas fa-arrow-down ul-count '></i></li>
-                    <li><span class="sub-link" data-serialscrolling="team"><span>Buy Packages</span><i class="fas fa-arrow-right rigth-arrow"></i></span><i
-                        class='fas fa-arrow-down ul-count '></i></li>
-                    <li><span class="sub-link" data-serialscrolling="team2"><span>Invite Members</span><i class="fas fa-arrow-right rigth-arrow"></i></span><i
-                        class='fas fa-arrow-down ul-count '></i></li>
-                    <li><span class="sub-link" data-serialscrolling="team3"><span>Withdraw Money</span><i class="fas fa-arrow-right rigth-arrow" id="lasat-arrow"></i></span></li>
+                    @foreach ($how_it_works as $key => $htiw)
+                        @if (count($how_it_works) > $key + 1)
+                            <li><span class="sub-link"
+                                    data-serialscrolling="{{ $key }}"><span>{{ $htiw->title }}</span><i
+                                        class="fas fa-arrow-right  rigth-arrow"></i></span><i
+                                    class='fas fa-arrow-down ul-count'></i></li>
+                        @else
+                            <li><span class="sub-link"
+                                    data-serialscrolling="{{ $key }}"><span>{{ $htiw->title }}</span></li>
+                        @endif
+                    @endforeach
                 </ul>
             </div>
             <div class="col-xs-12 col-sm-10">
-                <div data-serialscrolling-target="home"  class='frist-div'>
-                    <h1>What is Lorem Ipsum ?</h1>
+                @foreach ($how_it_works as $key => $htiw)
+                    <div data-serialscrolling-target="{{ $key }}" class='frist-div'>
+                        <h1>{{ $htiw->title }}</h1>
 
-                    <div>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        the
-                        industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-                        type
-                        and
-                        scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-                        leap
-                        into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s
-                        with
-                        the
-                        release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
-                        publishing
-                        software like Aldus PageMaker including versions of Lorem Ipsum.
+                        <div>
+                            {!! html_entity_decode($htiw->content) !!}
+                        </div>
                     </div>
-                </div>
-                <div data-serialscrolling-target="work"  class='frist-div'>
-                    <h1>What is Lorem Ipsum ?</h1>
-
-                    <div>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        the
-                        industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-                        type
-                        and
-                        scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-                        leap
-                        into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s
-                        with
-                        the
-                        release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
-                        publishing
-                        software like Aldus PageMaker including versions of Lorem Ipsum.
-                    </div>
-                </div>
-                <div data-serialscrolling-target="team"  class='frist-div'>
-                    <h1>What is Lorem Ipsum ?</h1>
-
-                    <div>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        the
-                        industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-                        type
-                        and
-                        scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-                        leap
-                        into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s
-                        with
-                        the
-                        release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
-                        publishing
-                        software like Aldus PageMaker including versions of Lorem Ipsum.
-                    </div>
-                </div>
-                <div data-serialscrolling-target="team2"  class='frist-div'><h1>What is Lorem Ipsum ?</h1>
-
-                    <div>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        the
-                        industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-                        type
-                        and
-                        scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-                        leap
-                        into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s
-                        with
-                        the
-                        release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
-                        publishing
-                        software like Aldus PageMaker including versions of Lorem Ipsum.
-                    </div></div>
-                <div data-serialscrolling-target="team3"  class='frist-div'>
-                    <h1>What is Lorem Ipsum ?</h1>
-
-                    <div>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        the
-                        industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-                        type
-                        and
-                        scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-                        leap
-                        into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s
-                        with
-                        the
-                        release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
-                        publishing
-                        software like Aldus PageMaker including versions of Lorem Ipsum.
-                    </div>
-                </div>
+                @endforeach
             </div>
+        </div>
         </div>
     </section>
 
