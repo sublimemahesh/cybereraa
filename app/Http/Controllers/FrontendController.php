@@ -12,9 +12,9 @@ class FrontendController extends Controller
 {
     public function index()
     {
-
+        $packages = Package::all();  
         $welcomes= page::find(1);
-        return view('frontend.index', compact('welcomes'));
+        return view('frontend.index', compact('welcomes','packages'));
       //  return view('frontend.index');
     }
 
