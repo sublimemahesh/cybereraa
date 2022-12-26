@@ -6,7 +6,7 @@
     @section('breadcrumb-items')
         <li class="breadcrumb-item">Buy Package</li>
     @endsection
-
+ 
     <div class="row">
         @foreach($packages as $package)
             <div class="col-xl-3 col-md-6 col-sm-12 col-lg-3">
