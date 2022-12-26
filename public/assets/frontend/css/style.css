@@ -2545,19 +2545,25 @@ section.services {
 
 /*** Blog ***/
 
-body.blog article {
+#blog  article {
   margin-bottom: 60px;
 }
 
-body.blog figure {
+#blog  figure {
   margin: 0;
 }
 
-body.blog figure a img {
+#blog  figure a img {
   width: 100%;
 }
 
-body.blog article h4 {
+
+#blog  article a h4 {
+    font-size: 23px;
+    line-height: 31px;
+  }
+
+#blog  article h4 {
   color: #fff;
   text-transform: uppercase;
   font-weight: 900;
@@ -2566,21 +2572,17 @@ body.blog article h4 {
   line-height: 40px;
 }
 
-body.blog.grid-no-sidebar article h4 {
-  font-size: 23px;
-  line-height: 31px;
-}
 
-body.blog p.excerpt,
-body.blog p.content-article {
+#blog  p.excerpt,
+#blog .blog p.content-article {
   margin: 22px 0;
 }
 
-body.blog .btn.btn-readmore {
+#blog  .btn.btn-readmore {
   width: 250px;
 }
 
-body.blog .meta {
+#blog  .meta {
   clear: both;
   padding: 10px 0;
   width: 100%;
@@ -2590,17 +2592,17 @@ body.blog .meta {
   margin-top: 30px;
 }
 
-body.blog .banner-area .meta {
+#blog  .banner-area .meta {
   border-top: 0;
   border-bottom: 0;
 }
 
-body.blog .meta span {
+#blog  .meta span {
   margin-right: 15px;
   display: inline-block;
 }
 
-body.blog .meta span i {
+#blog  .meta span i {
   padding-right: 4px;
 }
 
@@ -2610,11 +2612,11 @@ section.blog-page {
 
 /* Pagination */
 
-body.blog .pagination li a:hover {
+#blog  .pagination li a:hover {
   background: #333;
 }
 
-body.blog .pagination li a {
+#blog  .pagination li a {
   color: #999;
   background: transparent;
   border: 1px solid #333;
@@ -2622,7 +2624,7 @@ body.blog .pagination li a {
   padding: 7px 14px;
 }
 
-body.blog .pagination li.active a {
+#blog  .pagination li.active a {
   color: #fff;
 }
 

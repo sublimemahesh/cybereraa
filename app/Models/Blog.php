@@ -15,7 +15,7 @@ class Blog extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'slug', 'image', 'short_description', 'description'
+        'title', 'slug', 'image', 'short_description', 'description', 'created_at'
     ];
 
     public function sluggable(): array
