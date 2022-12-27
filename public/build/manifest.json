@@ -8,7 +8,7 @@
     "src": "node_modules/intl-tel-input/build/img/flags@2x.png"
   },
   "resources/js/app.js": {
-    "file": "assets/app.60fe9f70.js",
+    "file": "assets/app.25f63d73.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [
@@ -21,7 +21,7 @@
     "isDynamicEntry": true
   },
   "resources/css/app-jetstream.css": {
-    "file": "assets/app-jetstream.ed5cc074.css",
+    "file": "assets/app-jetstream.ef1e7294.css",
     "src": "resources/css/app-jetstream.css",
     "isEntry": true
   },

@@ -1,9 +1,6 @@
 <?php
 
-use App\Models\Earning;
-use App\Models\PurchasedPackage;
-use App\Models\User;
-use Carbon\Carbon;
+use App\Models\Commission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,7 +23,7 @@ Route::get('packages', 'FrontendController@pricing')->name('pricing');
 Route::get('faq', 'FrontendController@faq')->name('faq');
 Route::get('contact', 'FrontendController@contact')->name('contact');
 Route::get('news', 'FrontendController@news')->name('news');
-Route::get('news/{news:slug}','FrontendController@showNews')->name('news.show');
+Route::get('news/{news:slug}', 'FrontendController@showNews')->name('news.show');
 
 
 // Register custom routes
@@ -36,25 +33,28 @@ Route::group(['prefix' => 'register', 'middleware' => 'guest:' . config('fortify
 });
 
 Route::get('test', function (Request $request) {
-    $period = explode(' to ', $request->get('date-range'));
-    $date1 = Carbon::createFromFormat('Y-m-d', trim($period[0]));
-    $date2 = Carbon::createFromFormat('Y-m-d', trim($period[1]));
-    dd($period,$date1&&$date2);
-//    $nodeId = 3;
-    // Find the ancestor with the fewest children
-//    $ancestors = User::findAvailableSubLevel($nodeId);
-//    dd($ancestors);
-    $user = User::find(3);
-    $activePackages = PurchasedPackage::with('user')
-        ->where('status', 'active')
-        ->whereDate('expired_at', '>=', Carbon::now())
-        ->whereDoesntHave('earnings', fn($query) => $query->whereDate('created_at', Carbon::now()->format('Y-m-d')))
-        ->get();
-//    $exc_time = Carbon::parse('3343343084')->format('Y-m-d H:i:s');
-    $now = Carbon::now()->timestamp;
-    $purchase = PurchasedPackage::find(1);
-    dd(Earning::where('purchased_package_id', $purchase->id)->whereDate('created_at', date('Y-m-d'))->doesntExist(), date('Y-m-d'));
+    $activeCommissions = Commission::with('user')
+        ->where('status', 'QUALIFIED')
+        ->whereDoesntHave('earnings', function ($query) {
+            return $query
+                ->whereDate('created_at', date('Y-m-d'))
+                ->whereRaw('commissions.type = earnings.type');
+        })->toSql();
+    $commission = Commission::find(4);
+    $commission->loadSum('earnings', 'amount');
+    $already_earned_amount = $commission->earnings_sum_amount;
 
+    $today_amount = $commission->amount * (optional($commission->purchasedPackage)->payable_percentage / 100);
+
+    if ($commission->amount < ($already_earned_amount + $today_amount)) {
+        $today_amount = $commission->amount - $already_earned_amount;
+    }
+    dd(
+        $commission->earnings()->where('created_at', date('Y-m-d'))->doesntExist(),
+        $today_amount,
+        $commission->package(),
+        $already_earned_amount
+    );
 });
 
 Route::get('payments/binancepay/response', 'Payment\BinancePayController@response');
@@ -91,6 +91,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         // Earnings
         Route::get('users/earnings', 'Admin\EarningController@index')->name('earnings.index');
         Route::post('users/earnings/calculate-profit', 'Admin\EarningController@calculateProfit');
+        Route::post('users/earnings/calculate-commission', 'Admin\EarningController@calculateCommission');
     });
 
     // USER ROUTES
@@ -120,6 +121,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
             Route::get('new-registration', 'User\GenealogyController@registerForm')->name('genealogy.position.register')->middleware('signed');
         });
 
+        Route::get('transactions', 'User\TransactionController@index')->name('transactions.index');
         Route::get('earnings', 'User\EarningController@index')->name('earnings.index');
     });
 

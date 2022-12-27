@@ -17,16 +17,16 @@ class EarningController extends Controller
     public function index(Request $request)
     {
         if ($request->wantsJson()) {
-            $earnings = Earning::with('purchasedPackage.package', 'user')
+            $earnings = Earning::filter()
+                ->with('earnable', 'user')
                 ->when(!empty($request->get('user_id')), function ($query) use ($request) {
                     $query->where('user_id', $request->get('user_id'));
                 })
-                ->filter()
-                ->whereDate('created_at', '<=', date('Y-m-d H:i:s'))
+                //->where('created_at', '<=', date('Y-m-d H:i:s'))
                 ->latest();
 
             return DataTables::of($earnings)
-                ->addColumn('package', fn($earn) => $earn->purchasedPackage->package->name)
+                ->addColumn('package', fn($earn) => $earn->earnable->package_info_json->name)
                 ->addColumn('amount', fn($earn) => "USDT " . $earn->amount)
                 ->addColumn('username', fn($earn) => $earn->user->username)
                 ->addColumn('created_at', fn($earn) => $earn->created_at->format('Y-m-d H:i:s'))
@@ -39,10 +39,21 @@ class EarningController extends Controller
     {
         //$this->authorize('calculate_profit');
         $res = Artisan::call('profit:calculate');
-        $json['status'] = (bool)$res;
+        $json['status'] = $res === 0;
         $json['message'] = Artisan::output();
-        $json['icon'] = $res ? 'success' : 'error'; // warning | info | question | success | error
-        $code = $res ? 200 : 422; // warning | info | question | success | error
+        $json['icon'] = $res === 0 ? 'success' : 'error'; // warning | info | question | success | error
+        $code = $res === 0 ? 200 : 422;
+        return response()->json($json, $code);
+    }
+
+    public function calculateCommission()
+    {
+        //$this->authorize('calculate_profit');
+        $res = Artisan::call('commission:calculate');
+        $json['status'] = $res === 0;
+        $json['message'] = Artisan::output();
+        $json['icon'] = $res === 0 ? 'success' : 'error'; // warning | info | question | success | error
+        $code = $res === 0 ? 200 : 422;
         return response()->json($json, $code);
     }
 }

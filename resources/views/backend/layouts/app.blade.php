@@ -35,10 +35,11 @@
     <link href="{{ asset('assets/backend/css/style.css') }}" rel="stylesheet">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
-        img:not(.nav-header .brand-logo, .nav-header .logo-color, .color-title),
+        img:not(.nav-header .brand-logo, .nav-header .logo-color, .color-title, .swal2-image),
         svg,
         video,
         canvas,
@@ -96,6 +97,11 @@
                 </div>
                 <div id="alert-container">
                     <x-jet-validation-errors class="alert alert-danger mb-4"/>
+                    @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
                     @if (session('error'))
                         <div class="alert alert-danger">
                             {{ session('error') }}

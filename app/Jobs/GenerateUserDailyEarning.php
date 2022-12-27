@@ -46,7 +46,8 @@ class GenerateUserDailyEarning implements ShouldQueue
 
         try {
             DB::transaction(function () use ($purchase) {
-                $earned = Earning::where('purchased_package_id', $purchase->id)->whereDate('created_at', date('Y-m-d'))->doesntExist();
+                $earned = $purchase->earnings()->whereDate('created_at', date('Y-m-d'))->doesntExist();
+                // $earned = Earning::where('purchased_package_id', $purchase->id)->whereDate('created_at', date('Y-m-d'))->doesntExist();
                 if ($earned) {
                     $purchase->update(['last_earned_at' => $this->execution_time]);
                     $earnings = $purchase->earnings()->save(Earning::forceCreate([

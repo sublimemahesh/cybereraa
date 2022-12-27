@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Payment;
 
 use App\Http\Controllers\Controller;
+use App\Models\Commission;
 use App\Models\Package;
+use App\Models\PurchasedPackage;
+use App\Models\Strategy;
 use App\Models\Transaction;
 use Arr;
 use Auth;
+use Carbon\Carbon;
 use CryptoPay\Binancepay\BinancePay;
 use DB;
 use Exception;
@@ -29,7 +33,7 @@ class BinancePayController extends Controller
         try {
             return DB::transaction(function () use ($validated) {
                 $user = Auth::user();
-                $package = Package::whereSlug($validated['package'])->first();
+                $package = Package::whereSlug($validated['package'])->firstOrFail();
                 $transaction = Transaction::create([
                     'user_id' => $user->id,
                     'package_id' => $package->id,
@@ -48,6 +52,7 @@ class BinancePayController extends Controller
                 if ($transaction->type === 'crypto') {
                     // dd(env("BINANCE_SERVICE_WEBHOOK_URL"));
                     $binancePay = new BinancePay("binancepay/openapi/v2/order");
+                    $data['trx_id'] = $transaction->id;
                     $data['merchant_trade_no'] = $this->generateUniqueCode();
                     $data['order_amount'] = $transaction->amount;
                     $data['package_id'] = $package->id;
@@ -103,8 +108,10 @@ class BinancePayController extends Controller
                 if (openssl_verify($payload, $decodedSignature, $publicKey['data'][0]['certPublic'], OPENSSL_ALGO_SHA256)) {
                     try {
                         $merchantTradeNo = json_decode($webhookResponse['data'], true, 512, JSON_THROW_ON_ERROR)['merchantTradeNo'];
-                        $transaction = Transaction::where('merchant_trade_no', $merchantTradeNo)->firstOrNew();
-
+                        $transaction = Transaction::where('merchant_trade_no', $merchantTradeNo)->firstOr(function () use ($merchantTradeNo) {
+                            throw new \RuntimeException("Order could not be found!: " . $merchantTradeNo);
+                        });
+                        $transaction->transaction_id = $webhookResponse['bizId'];
                         switch ($webhookResponse['bizStatus']) {
                             // TODO: check payment success callback response and consider this success code segment is needed or can be removed
                             case "PAY_SUCCESS":
@@ -114,7 +121,58 @@ class BinancePayController extends Controller
                                 $transaction->status_response = json_encode($webhookResponse, JSON_THROW_ON_ERROR);
                                 $transaction->save();
 
+                                PurchasedPackage::updateOrCreate(['transaction_id' => $transaction->id], [
+                                    'user_id' => $transaction->user_id,
+                                    'package_id' => $transaction->package_id,
+                                    'invested_amount' => $transaction->package->amount,
+                                    'payable_percentage' => $transaction->package->daily_leverage,
+                                    'status' => 'ACTIVE',
+                                    'expired_at' => Carbon::now()->addMonths($transaction->package->month_of_period)->format('Y-m-d H:i:s'),
+                                    'package_info' => $transaction->package->toJson(),
+                                ]);
+
                                 // TODO: ASSIGN OTHER PRIVILEGES IF THEIR ANY
+                                $package = $transaction->purchasedPackage;
+                                $purchasedUser = $package->user;
+
+                                $commissions = Strategy::where('name', 'commissions')->firstOr('value', fn() => new Strategy(['value' => '{"1":25,"2":20,"3":15,"4":10,"5":5,"6":5,"7":5}']));
+                                $commissions = json_decode($commissions->value, true, 512, JSON_THROW_ON_ERROR);
+
+                                $commission_start_at = 1;
+                                if (!is_null($purchasedUser->super_parent_id)) {
+                                    Commission::forceCreate([
+                                        'user_id' => $purchasedUser->super_parent_id,
+                                        'purchased_package_id' => $package->id,
+                                        'amount' => ($package->invested_amount * $commissions[$commission_start_at]) / 100,
+                                        'paid' => 0,
+                                        'type' => 'DIRECT',
+                                        'status' => $purchasedUser->sponsor->is_active ? 'QUALIFIED' : 'DISQUALIFIED'
+                                    ]);
+                                    //TODO: Send EMAIL Notification
+                                }
+
+                                if (!is_null($purchasedUser->parent_id)) {
+                                    $commission_level_strategy = Strategy::where('name', 'commission_level_count')->firstOr('value', fn() => new Strategy(['value' => 7]));
+                                    $commission_level = (int)$commission_level_strategy->value;
+                                    $commission_start_at = 2;
+
+                                    $commission_level_user = $purchasedUser->parent;
+                                    for ($i = $commission_start_at; $i <= $commission_level; $i++) {
+                                        Commission::forceCreate([
+                                            'user_id' => $commission_level_user->id,
+                                            'purchased_package_id' => $package->id,
+                                            'amount' => ($package->invested_amount * $commissions[$i]) / 100,
+                                            'paid' => 0,
+                                            'type' => 'INDIRECT',
+                                            'status' => $commission_level_user->is_active ? 'QUALIFIED' : 'DISQUALIFIED'
+                                        ]);
+                                        if (is_null($commission_level_user->parent_id)) {
+                                            break;
+                                        }
+                                        $commission_level_user = $commission_level_user->parent;
+                                    }
+                                }
+
                                 break;
                             case "PAY_CLOSED":
                                 $transaction->status = "CANCELED";
@@ -123,7 +181,7 @@ class BinancePayController extends Controller
                                 break;
                         }
                     } catch (\Exception $e) {
-                        $data = date('Y-m-d H:i:s') . " | [Note] line:129 BinancePayController: " . $e->getMessage() . "\n";
+                        $data = date('Y-m-d H:i:s') . " | [Note] line:139 | BinancePayController: " . $e->getMessage() . "\n";
                         file_put_contents(public_path() . "/storage/binance-pay/error-log.log", $data, FILE_APPEND);
                     }
 
@@ -145,7 +203,7 @@ class BinancePayController extends Controller
                 throw new \RuntimeException($publicKey["errorMessage"]);
             }
         } catch (Exception $e) {
-            $data = date('Y-m-d H:i:s') . " | [Note] line:150 BinancePayController: " . $e->getMessage() . "\n";
+            $data = date('Y-m-d H:i:s') . " | [Note] line:161 | BinancePayController: " . $e->getMessage() . "\n";
             file_put_contents(public_path() . "/storage/binance-pay/error-log.log", $data, FILE_APPEND);
             return response()->json(['returnCode' => 'FAIL', 'returnMessage' => $e->getMessage()], 200);
         }
@@ -155,18 +213,20 @@ class BinancePayController extends Controller
 
     public function response(Request $request)
     {
-        header("Content-Type: application/json");
-        $response = $request;
-        return [$request, $request->all()];
-        dd($response, $response->all());
+        // The URL to redirect to when the payment is successful.
+        // check order status
+        $transaction = Transaction::find($request->get('trx-id'));
+        // check order exists / pay status / redirect ti success page or error page
+        return redirect()->route('user.packages.active', ['trx-id' => $request->get('trx-id')])->with('success', 'Payment successful'); // show success invoice
     }
 
     public function fallback(Request $request)
     {
-        header("Content-Type: application/json");
-        $response = $request;
-        return [$request, $request->all()];
-        dd($response, $response->all());
+        // The URL to redirect to when payment is failed.
+        // check order status
+        $transaction = Transaction::find($request->get('trx-id'));
+        // check order exists / pay status / redirect ti success page or error page
+        return redirect()->route('user.packages.active', ['trx-id' => $request->get('trx-id')])->with('error', 'Payment unsuccessful'); // show failure invoice
     }
 
     private function generateUniqueCode(): int

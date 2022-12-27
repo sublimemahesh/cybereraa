@@ -23,7 +23,7 @@ class ClientConfig
      */
     public function __construct()
     {
-        $this->serviceBaseUrl = env('BINANCE_SERVICE_BASE_URL', 'https://bpay.binanceapi.com');
+        $this->serviceBaseUrl = config('binancepay.binance_service_base_url', 'https://bpay.binanceapi.com');
 
         $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $nonce = '';

@@ -16,9 +16,9 @@ class Earning extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function purchasedPackage(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function earnable(): \Illuminate\Database\Eloquent\Relations\MorphTo
     {
-        return $this->belongsTo(PurchasedPackage::class, 'purchased_package_id');
+        return $this->morphTo();
     }
 
     /**

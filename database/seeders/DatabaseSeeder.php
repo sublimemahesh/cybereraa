@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TeamSeeder::class);
         $this->call(PackageSeeder::class);
         $this->call(PageSeeder::class);
+        $this->call(StrategySeeder::class);
     }
 }

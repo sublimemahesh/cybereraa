@@ -197,6 +197,11 @@ return [
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
 
+        /*
+         * Custom Package Service Providers...
+         */
+        CryptoPay\Binancepay\BinancepayServiceProvider::class
+
     ],
 
     /*
