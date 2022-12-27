@@ -18,14 +18,14 @@ class EarningController extends Controller
     public function index(Request $request)
     {
         if ($request->wantsJson()) {
-            $earnings = Earning::with('purchasedPackage.package')
+            $earnings = Earning::filter()
+                ->with('earnable')
                 ->where('user_id', Auth::user()->id)
-                ->whereDate('created_at', '<=', date('Y-m-d H:i:s'))
-                ->filter()
+                ->where('created_at', '<=', date('Y-m-d H:i:s'))
                 ->latest();
 
             return DataTables::of($earnings)
-                ->addColumn('package', fn($earn) => $earn->purchasedPackage->package->name)
+                ->addColumn('package', fn($earn) => $earn->earnable->package_info_json->name)
                 ->addColumn('amount', fn($earn) => "USDT " . $earn->amount)
                 ->addColumn('created_at', fn($earn) => $earn->created_at->format('Y-m-d H:i:s'))
                 ->make(true);

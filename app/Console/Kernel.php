@@ -15,7 +15,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        // $schedule->command('profit:calculate')->weekdays()->everyMinute()->withoutOverlapping();
         $schedule->command('profit:calculate')->weekdays()->twiceDailyAt(0, 1, 5)->withoutOverlapping();
+        $schedule->command('commission:calculate')->weekdays()->twiceDailyAt(0, 1, 5)->withoutOverlapping();
         $schedule->command('queue:work', ['--stop-when-empty'])->everyMinute()->withoutOverlapping();
     }
 

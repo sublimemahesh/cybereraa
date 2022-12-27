@@ -33,6 +33,12 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('user.transactions.index') }}" class="" aria-expanded="false">
+                    <i class="bi bi-currency-exchange"></i>
+                    <span class="nav-text">Transaction</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{ route('user.earnings.index') }}" class="" aria-expanded="false">
                     <i class="bi bi-cash"></i>
                     <span class="nav-text">My Earnings</span>

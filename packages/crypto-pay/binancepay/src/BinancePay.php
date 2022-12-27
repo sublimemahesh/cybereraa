@@ -6,6 +6,9 @@ use CryptoPay\Binancepay\GatewayClient\GatewayClient;
 use CryptoPay\Binancepay\GatewayClientConfig\ClientConfig;
 use Exception;
 
+/**
+ * @author Navod Hansajith
+ */
 class BinancePay
 {
     private ClientConfig $clientConfig;
@@ -82,7 +85,7 @@ class BinancePay
      * orderExpireTime determines how long an order is valid for. If not specified, orderExpireTime will be 1 hour;
      * maximum orderExpireTime is 1 hour. Please input in milliseconds.
      */
-    private string $orderExpireTime;
+    private ?int $orderExpireTime;
 
     /**
      * SupportPayCurrency determines the currencies that a customer is allowed to use to pay for the order.
@@ -105,18 +108,21 @@ class BinancePay
     {
         $this->clientConfig = new ClientConfig();
         $this->clientConfig->setServiceEndpoint($endpoint);
-        $this->clientConfig->setBinancePayKey(env('BINANCE_MERCHANT_API_KEY'));
-        $this->clientConfig->setBinancePaySecret(env('BINANCE_MERCHANT_SECRET_KEY'));
+        $this->clientConfig->setBinancePayKey(config('binancepay.binance_merchant_api_key'));
+        $this->clientConfig->setBinancePaySecret(config('binancepay.binance_merchant_secret_key'));
+        $this->terminalType = config('binancepay.binance_terminal_type', 'WEB');
+        $this->currency = config('binancepay.binance_currency', "USDT");
+        $this->goodsCategory = config('binancepay.binance_goods_category', "Z000");
+        if (config('binancepay.binance_order_expire_time', 60) < 60) {
+            $this->orderExpireTime = (time() + (config('binancepay.binance_order_expire_time', 59) * 60)) * 1000;
+        }else{
+            $this->orderExpireTime = null;
+        }
+        $this->returnUrl = config('binancepay.binance_service_return_url');
+        $this->cancelUrl = config('binancepay.binance_service_cancel_url');
+        $this->webhookUrl = config('binancepay.binance_service_webhook_url');
 
-        $this->terminalType = env('BINANCE_TERMINAL_TYPE', 'WEB');
-        $this->currency = env('BINANCE_CURRENCY', "USDT");
-        $this->goodsCategory = env('BINANCE_GOODS_CATEGORY', "Z000");
-        $this->orderExpireTime = (int) env('BINANCE_ORDER_EXPIRE_TIME') ?? (60 * 1000) * 60;
-        $this->returnUrl = env("BINANCE_SERVICE_RETURN_URL");
-        $this->cancelUrl = env("BINANCE_SERVICE_CANCEL_URL");
-        $this->webhookUrl = env("BINANCE_SERVICE_WEBHOOK_URL");
-
-        $this->goodsType = env('BINANCE_GOODS_TYPE', "02");
+        $this->goodsType = config('binancepay.binance_goods_type', "02");
     }
 
     /**
@@ -139,9 +145,9 @@ class BinancePay
                 "merchantTradeNo" => $data['merchant_trade_no'],
                 "orderAmount" => $data['order_amount'],
                 "currency" => $this->currency,
-//                "orderExpireTime" => $this->orderExpireTime,
-                "returnUrl" => $this->returnUrl,
-                "cancelUrl" => $this->cancelUrl,
+                "orderExpireTime" => $this->orderExpireTime,
+                "returnUrl" => $this->returnUrl . "?trx-id=" . $data['trx_id'],
+                "cancelUrl" => $this->cancelUrl . "?trx-id=" . $data['trx_id'],
                 "webhookUrl" => $this->webhookUrl,
                 "supportPayCurrency" => $this->supportPayCurrency,
                 "goods" => [

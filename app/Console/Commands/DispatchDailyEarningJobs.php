@@ -6,6 +6,7 @@ use App\Jobs\GenerateUserDailyEarning;
 use App\Models\PurchasedPackage;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Symfony\Component\Console\Command\Command as CommandAlias;
 
 class DispatchDailyEarningJobs extends Command
 {
@@ -21,7 +22,7 @@ class DispatchDailyEarningJobs extends Command
      *
      * @var string
      */
-    protected $description = 'Dispatch the job for Calculate the daily profit for all users with purchased packages';
+    protected $description = 'Dispatch the jobs for, Calculate the daily profit for the purchased active packages to all users!';
 
     /**
      * Execute the console command.
@@ -35,8 +36,8 @@ class DispatchDailyEarningJobs extends Command
         if (!$today->isWeekend()) {
             $activePackages = PurchasedPackage::with('user')
                 ->where('status', 'active')
-                ->whereDate('expired_at', '>=', Carbon::now())
-                ->whereDoesntHave('earnings', fn($query) => $query->whereDate('created_at', Carbon::now()->format('Y-m-d')))
+                ->where('expired_at', '>=', Carbon::now())
+                ->whereDoesntHave('earnings', fn($query) => $query->whereDate('created_at', date('Y-m-d')))
                 ->chunk(100, function ($activePackages) {
                     // Loop over each  active packages and calculate their profit
                     foreach ($activePackages as $package) {
@@ -56,10 +57,10 @@ class DispatchDailyEarningJobs extends Command
                     }
                 });
             $this->info('Successfully dispatched GenerateUserDailyEarning jobs.');
-            return 1;
+            return CommandAlias::SUCCESS;
         }
-        $this->info('Today is not a week day.');
-        return 0;
+        $this->warn('Today is not a week day.');
+        return CommandAlias::FAILURE;
     }
 
 

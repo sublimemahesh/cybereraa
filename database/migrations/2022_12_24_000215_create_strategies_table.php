@@ -15,9 +15,10 @@ return new class extends Migration {
         Schema::create('strategies', function (Blueprint $table) {
             $table->id();
             $table->foreignId('parent_id')->nullable()->constrained('strategies')->cascadeOnDelete();
-            $table->string('name')->nullable();
+            $table->string('name')->unique()->nullable();
             $table->enum('data_type', ['int', 'double', 'string', 'array', 'json']);
             $table->longText('value')->nullable();
+            $table->string('comment')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

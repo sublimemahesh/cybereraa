@@ -19,7 +19,7 @@ class PackageController extends Controller
     public function active(Request $request)
     {
         $activePackages = Auth::user()->activePackages;
-        $activePackages->load('package', 'transaction');
+        $activePackages->load('transaction');
         return view('backend.user.packages.active', compact('activePackages'));
     }
 }

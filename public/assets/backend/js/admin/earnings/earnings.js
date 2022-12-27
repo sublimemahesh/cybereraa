@@ -24,7 +24,7 @@ $(function () {
             {data: "type", searchable: false},
             {data: "user_id", searchable: false},
             {data: "username", name: 'user.username'},
-            {data: "package", name: "purchasedPackage.package.name"},
+            {data: "package", searchable: false},
             {data: "amount"},
             {data: "status", searchable: false},
             {data: "created_at", searchable: false},
@@ -50,13 +50,39 @@ $(function () {
         e.preventDefault();
         Swal.fire({
             title: "Are You Sure?",
-            text: `Calculate profit for today(${moment().format('Y-MM-d')}) now!`,
+            text: `Calculate profit for today(${moment().format('Y-MM-D')}) now!`,
             icon: "info",
             showCancelButton: true,
         }).then((calculate) => {
             if (calculate.isConfirmed) {
                 loader()
                 axios.post(APP_URL + "/admin/users/earnings/calculate-profit").then(response => {
+                    Toast.fire({
+                        icon: response.data.icon, title: response.data.message,
+                    })
+                    let url = location.href.split(/\?|\#/)[0];
+                    history.replaceState({}, "", url);
+                    table.ajax.url(url).load();
+                }).catch(error => {
+                    console.log(error)
+                    Toast.fire({
+                        icon: 'error', title: error.response.data.message || "Something went wrong!",
+                    })
+                })
+            }
+        });
+    })
+    $(document).on('click', '#calculate-commission', function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: "Are You Sure?",
+            text: `Calculate commission allowance for today(${moment().format('Y-MM-D')}) now!`,
+            icon: "info",
+            showCancelButton: true,
+        }).then((calculate) => {
+            if (calculate.isConfirmed) {
+                loader()
+                axios.post(APP_URL + "/admin/users/earnings/calculate-commission").then(response => {
                     Toast.fire({
                         icon: response.data.icon, title: response.data.message,
                     })

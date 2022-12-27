@@ -75,14 +75,19 @@ class User extends Authenticatable
         return $this->referral_link = URL::signedRoute('register', ['ref' => $this->username]);
     }
 
+    public function getIsActiveAttribute(): bool
+    {
+        return $this->purchasedPackages()->activePackages()->count() >= 1;
+    }
+
     public function sponsor(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Self::class, 'super_parent_id', 'id')->withDefault(new User);
+        return $this->belongsTo(self::class, 'super_parent_id', 'id')->withDefault(new User);
     }
 
     public function directSales(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Self::class, 'super_parent_id', 'id');
+        return $this->hasMany(self::class, 'super_parent_id', 'id');
     }
 
     public function profile(): \Illuminate\Database\Eloquent\Relations\HasOne
