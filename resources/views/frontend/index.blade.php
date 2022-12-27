@@ -205,29 +205,29 @@
                 <div class="PriceBlocks-slider">
 
                     @foreach ($packages->slice(0, 4) as $package)
-                    <div class="PriceBlock-container is-previous">
-                        <div class="pricing-block wow fadeInUp wc">
-                            <div class="inner-box">
-                                <div class="icon-box">
-                                    <div class="icon-outer"><i class="fas fa-gem"></i></div>
-                                </div>
-                                <div class="price-box">
-                                    <div class="title">{{ $package->name }}</div>
-                                    <h4 class="price">{{ $package->currency }}{{ $package->amount }}</h4>
-                                </div>
-                                <br>
-                                <br>
-                                <ul class="features">
-                                    <li class="true">Duration {{ $package->month_of_period }} Month</li>
-                                    <li class="true">Up to {{ $package->daily_leverage }} Leverage</li>
-                                   
-                                </ul>
-                                <div class="btn-box">
-                                    <a href="{{ route('register') }}" class="theme-btn">BUY plan</a>
+                        <div class="PriceBlock-container is-previous">
+                            <div class="pricing-block wow fadeInUp wc">
+                                <div class="inner-box">
+                                    <div class="icon-box">
+                                        <div class="icon-outer"><i class="fas fa-gem"></i></div>
+                                    </div>
+                                    <div class="price-box">
+                                        <div class="title">{{ $package->name }}</div>
+                                        <h4 class="price">{{ $package->currency }}{{ $package->amount }}</h4>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <ul class="features">
+                                        <li class="true">Duration {{ $package->month_of_period }} Month</li>
+                                        <li class="true">Up to {{ $package->daily_leverage }} Leverage</li>
+
+                                    </ul>
+                                    <div class="btn-box">
+                                        <a href="{{ route('register') }}" class="theme-btn">BUY plan</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
 
                     <div class="PriceBlock-container">
@@ -235,7 +235,8 @@
                             <div class="PriceBlock-top">
                                 <i class="fa fa-plus-circle" aria-hidden="true" id="fa-plus-circle-me"></i>
                             </div>
-                            <h2 class='text-center'><a href="{{ route('pricing') }}" id='vmp'>View more Packages</a></h2>
+                            <h2 class='text-center'><a href="{{ route('pricing') }}" id='vmp'>View more
+                                    Packages</a></h2>
                         </div>
                     </div>
                 </div>
@@ -385,99 +386,44 @@
         <div class="container">
             <!-- Section Title Starts -->
             <div class="row text-center">
-                <h2 class="title-head">Bitcoin <span>News</span></h2>
+                <h2 class="title-head">Our <span>News</span></h2>
                 <div class="title-head-subtitle">
-                    <p>Discover latest news about Bitcoin on our blog</p>
+                    <p>Discover latest news about  on our news</p>
                 </div>
             </div>
             <!-- Section Title Ends -->
             <!-- Section Content Starts -->
             <div class="row latest-posts-content">
-                <!-- Article Starts -->
-                <div class="col-sm-4 col-md-4 col-xs-12">
-                    <div class="latest-post">
-                        <!-- Featured Image Starts -->
-                        <a href="blog-post.html"><img class="img-responsive"
-                                src="{{ asset('assets/frontend/images/blog/blog-post-small-1.jpg') }}"
-                                alt="img"></a>
-                        <!-- Featured Image Ends -->
-                        <!-- Article Content Starts -->
-                        <div class="post-body">
-                            <h4 class="post-title">
-                                <a href="blog-post.html">How Cryptocurrency Begun and Its Impact To Financial
-                                    Transactions</a>
-                            </h4>
-                            <div class="post-text">
-                                <p>incididunt ut labore et dolore magna aliqua. Ut enim aminim veniam, quis
-                                    nostrud...
-                                </p>
+
+                @foreach ($all_news->slice(0, 3) as $news)
+                    <!-- Article Starts -->
+                    <div class="col-sm-4 col-md-4 col-xs-12">
+                        <div class="latest-post">
+                            <!-- Featured Image Starts -->
+                            <a href="{{ route('news.show', $news) }}"><img class="img-responsive"
+                                    src="{{ storage('blogs/' . $news->image) }}"
+                                    alt="{{ storage('blogs/' . $news->image) }}"></a>
+                            <!-- Featured Image Ends -->
+                            <!-- Article Content Starts -->
+                            <div class="post-body">
+                                <h4 class="post-title">
+                                    <a href="{{ route('news.show', $news) }}"> {{ $news->title }}</a>
+                                </h4>
+                                <div class="post-text">
+                                    {{ $news->short_description }}
+                                </div>
                             </div>
-                        </div>
-                        <div class="post-date">
-                            <span>01</span>
-                            <span>JAN</span>
-                        </div>
-                        <a href="blog-post.html" class="btn btn-primary">read more</a>
-                        <!-- Article Content Ends -->
-                    </div>
-                </div>
-                <!-- Article Ends -->
-                <!-- Article Starts -->
-                <div class="col-sm-4 col-md-4 col-xs-12">
-                    <div class="latest-post">
-                        <!-- Featured Image Starts -->
-                        <a href="blog-post.html"><img class="img-responsive"
-                                src="{{ asset('assets/frontend/images/blog/blog-post-small-2.jpg') }}"
-                                alt="img"></a>
-                        <!-- Featured Image Ends -->
-                        <!-- Article Content Starts -->
-                        <div class="post-body">
-                            <h4 class="post-title">
-                                <a href="blog-post.html">Cryptocurrency - Who Are Involved With It? Words about
-                                    members</a>
-                            </h4>
-                            <div class="post-text">
-                                <p>incididunt ut labore et dolore magna aliqua. Ut enim aminim veniam, quis
-                                    nostrud...
-                                </p>
+                            <div class="post-date">
+                                <span>{{ date('d', strtotime($news->created_at)) }}</span>
+                                <span>{{ date('M', strtotime($news->created_at)) }}</span>
                             </div>
+                            <a href="{{ route('news.show', $news) }}" class="btn btn-primary">read more</a>
+                            <!-- Article Content Ends -->
                         </div>
-                        <div class="post-date">
-                            <span>17</span>
-                            <span>MAR</span>
-                        </div>
-                        <a href="blog-post.html" class="btn btn-primary">read more</a>
-                        <!-- Article Content Ends -->
                     </div>
-                </div>
-                <!-- Article Ends -->
-                <!-- Article Start -->
-                <div class="col-sm-4 col-md-4 col-xs-12">
-                    <div class="latest-post">
-                        <!-- Featured Image Starts -->
-                        <a href="blog-post.html"><img class="img-responsive"
-                                src="{{ asset('assets/frontend/images/blog/blog-post-small-3.jpg') }}"
-                                alt="img"></a>
-                        <!-- Featured Image Ends -->
-                        <!-- Article Content Starts -->
-                        <div class="post-body">
-                            <h4 class="post-title">
-                                <a href="blog-post.html">Risks & Rewards Of Investing In Bitcoin. Pros and Cons</a>
-                            </h4>
-                            <div class="post-text">
-                                <p>incididunt ut labore et dolore magna aliqua. Ut enim aminim veniam, quis
-                                    nostrud...
-                                </p>
-                            </div>
-                        </div>
-                        <div class="post-date">
-                            <span>25</span>
-                            <span>FEB</span>
-                        </div>
-                        <a href="blog-post.html" class="btn btn-primary">read more</a>
-                        <!-- Article Content Ends -->
-                    </div>
-                </div>
+                    <!-- Article Ends -->
+                @endforeach
+
             </div>
             <!-- Section Content Ends -->
         </div>
