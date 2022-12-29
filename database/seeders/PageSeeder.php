@@ -16,6 +16,7 @@ class PageSeeder extends Seeder
     {
         DB::table('pages')->insert([
             [
+                'parent_id' => null,
                 'title' => 'WELCOME',
                 'slug' => 'welcome',
                 'image' => null,
@@ -24,6 +25,7 @@ class PageSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'parent_id' => null,
                 'title' => 'INDEX BOTTOM',
                 'slug' => 'index-bottom',
                 'image' => null,
@@ -32,6 +34,7 @@ class PageSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'parent_id' => null,
                 'title' => 'ABOUT US PAGE',
                 'slug' => 'about-us-page',
                 'image' => null,
@@ -40,6 +43,7 @@ class PageSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'parent_id' => null,
                 'title' => 'CLASS SIDE BAR',
                 'slug' => 'class-side-bar',
                 'image' => null,
@@ -48,6 +52,7 @@ class PageSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'parent_id' => null,
                 'title' => 'VISION&MISSION',
                 'slug' => 'vision&mission',
                 'image' => null,
@@ -56,6 +61,7 @@ class PageSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'parent_id' => null,
                 'title' => 'CONTACT US',
                 'slug' => 'contact-us',
                 'image' => null,
@@ -64,6 +70,7 @@ class PageSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'parent_id' => null,
                 'title' => 'FAQ SING UP AND SIGN IN',
                 'slug' => 'faq-sing-up-and-sign-in',
                 'image' => null,
@@ -72,6 +79,7 @@ class PageSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'parent_id' => null,
                 'title' => 'FAQ  KYC APPROVAL',
                 'slug' => 'faq-kyc-approval',
                 'image' => null,
@@ -80,6 +88,7 @@ class PageSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'parent_id' => null,
                 'title' => 'FAQ  BUY PACKAGES',
                 'slug' => 'faq-buy-packages',
                 'image' => null,
@@ -88,6 +97,7 @@ class PageSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'parent_id' => null,
                 'title' => 'FAQ  INVITE MEMBERS',
                 'slug' => 'faq-invite-members',
                 'image' => null,
@@ -97,6 +107,7 @@ class PageSeeder extends Seeder
             ],
 
             [
+                'parent_id' => null,
                 'title' => 'FAQ WITHDRAW MONEY',
                 'slug' => 'faq-withdraw-money',
                 'image' => null,
@@ -105,6 +116,7 @@ class PageSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'parent_id' => null,
                 'title' => 'HOW TO IT WORKS',
                 'slug' => 'how-to-it-works',
                 'image' => null,
@@ -113,8 +125,8 @@ class PageSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'parent_id' => 7,
                 'title' => 'How do I change my password?',
-                'parent_id ' => 7,
                 'slug' => 'how-do-i-change-my-password',
                 'image' => null,
                 'content' => null,
@@ -122,8 +134,8 @@ class PageSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'title' => 'How do I sign up?',
                 'parent_id ' => 7,
+                'title' => 'How do I sign up?',
                 'slug' => 'how-do-i-sign-up',
                 'image' => null,
                 'content' => null,
@@ -131,8 +143,8 @@ class PageSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'title' => 'Can I remove a post?',
                 'parent_id ' => 7,
+                'title' => 'Can I remove a post?',
                 'slug' => 'can-i-remove-a-post',
                 'image' => null,
                 'content' => null,
@@ -140,8 +152,8 @@ class PageSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'title' => 'How do reviews work?',
                 'parent_id ' => 7,
+                'title' => 'How do reviews work?',
                 'slug' => 'how-do-reviews-work',
                 'image' => null,
                 'content' => null,
@@ -149,8 +161,8 @@ class PageSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'title' => 'Kyc Approval  Question 01 ?',
                 'parent_id ' => 8,
+                'title' => 'Kyc Approval  Question 01 ?',
                 'slug' => 'kyc-approval-question-01',
                 'image' => null,
                 'content' => null,
@@ -158,8 +170,8 @@ class PageSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'title' => 'Kyc Approval  Question 02 ?',
                 'parent_id ' => 8,
+                'title' => 'Kyc Approval  Question 02 ?',
                 'slug' => 'kyc-approval-question-02',
                 'image' => null,
                 'content' => null,
@@ -167,8 +179,8 @@ class PageSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'title' => 'Kyc Approval  Question 03 ?',
                 'parent_id ' => 8,
+                'title' => 'Kyc Approval  Question 03 ?',
                 'slug' => 'kyc-approval-question-03',
                 'image' => null,
                 'content' => null,
@@ -176,8 +188,8 @@ class PageSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'title' => 'Kyc Approval  Question 04 ?',
                 'parent_id ' => 8,
+                'title' => 'Kyc Approval  Question 04 ?',
                 'slug' => 'kyc-approval-question-04',
                 'image' => null,
                 'content' => null,
@@ -185,8 +197,8 @@ class PageSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'title' => 'Faq Buy Packages  Question 01 ?',
                 'parent_id ' => 9,
+                'title' => 'Faq Buy Packages  Question 01 ?',
                 'slug' => 'faq-buy-packages-question-01',
                 'image' => null,
                 'content' => null,
@@ -194,8 +206,8 @@ class PageSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'title' => 'Faq Buy Packages  Question 02 ?',
                 'parent_id ' => 9,
+                'title' => 'Faq Buy Packages  Question 02 ?',
                 'slug' => 'faq-buy-packages-question-02',
                 'image' => null,
                 'content' => null,
@@ -203,8 +215,8 @@ class PageSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'title' => 'Faq Buy Packages  Question 03 ?',
                 'parent_id ' => 9,
+                'title' => 'Faq Buy Packages  Question 03 ?',
                 'slug' => 'faq-buy-packages-question-03',
                 'image' => null,
                 'content' => null,
@@ -212,8 +224,8 @@ class PageSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'title' => 'Faq Buy Packages  Question 04 ?',
                 'parent_id ' => 9,
+                'title' => 'Faq Buy Packages  Question 04 ?',
                 'slug' => 'faq-buy-packages-question-04',
                 'image' => null,
                 'content' => null,
@@ -221,8 +233,8 @@ class PageSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'title' => 'Faq Invite Members Question  01 ?',
                 'parent_id ' => 10,
+                'title' => 'Faq Invite Members Question  01 ?',
                 'slug' => 'faq-invite-members-question-01',
                 'image' => null,
                 'content' => null,
@@ -230,8 +242,8 @@ class PageSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'title' => 'Faq Invite Members Question  02 ?',
                 'parent_id ' => 10,
+                'title' => 'Faq Invite Members Question  02 ?',
                 'slug' => 'faq-invite-members-question-02',
                 'image' => null,
                 'content' => null,
@@ -239,8 +251,8 @@ class PageSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'title' => 'Faq Invite Members  Question  03 ?',
                 'parent_id ' => 10,
+                'title' => 'Faq Invite Members  Question  03 ?',
                 'slug' => 'faq-invite-members-question-03',
                 'image' => null,
                 'content' => null,
@@ -249,8 +261,8 @@ class PageSeeder extends Seeder
             ],
 
             [
-                'title' => 'Faq Invite Members  Question 04 ?',
                 'parent_id ' => 10,
+                'title' => 'Faq Invite Members  Question 04 ?',
                 'slug' => 'faq-invite-members-question-04',
                 'image' => null,
                 'content' => null,
@@ -259,8 +271,8 @@ class PageSeeder extends Seeder
             ],
 
             [
-                'title' => 'Faq Withdraw Money Question 01 ?',
                 'parent_id ' => 11,
+                'title' => 'Faq Withdraw Money Question 01 ?',
                 'slug' => 'faq-withdraw-money-question-01',
                 'image' => null,
                 'content' => null,
@@ -269,8 +281,8 @@ class PageSeeder extends Seeder
             ],
 
             [
-                'title' => 'Faq Withdraw Money Question 02 ?',
                 'parent_id ' => 11,
+                'title' => 'Faq Withdraw Money Question 02 ?',
                 'slug' => 'faq-withdraw-money-question-02',
                 'image' => null,
                 'content' => null,
@@ -278,8 +290,8 @@ class PageSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'title' => 'Faq Withdraw Money Question 03 ?',
                 'parent_id ' => 11,
+                'title' => 'Faq Withdraw Money Question 03 ?',
                 'slug' => 'faq-withdraw-money-question-03',
                 'image' => null,
                 'content' => null,
@@ -288,8 +300,8 @@ class PageSeeder extends Seeder
             ],
 
             [
-                'title' => 'Faq Withdraw Money Question 04 ?',
                 'parent_id ' => 11,
+                'title' => 'Faq Withdraw Money Question 04 ?',
                 'slug' => 'faq-withdraw-money-question-04',
                 'image' => null,
                 'content' => null,
@@ -298,8 +310,8 @@ class PageSeeder extends Seeder
             ],
 
             [
-                'title' => 'SING UP AND SIGN IN',
                 'parent_id ' => 12,
+                'title' => 'SING UP AND SIGN IN',
                 'slug' => 'sing-up-and-sign-in',
                 'image' => null,
                 'content' => null,
@@ -308,8 +320,8 @@ class PageSeeder extends Seeder
             ],
 
             [
-                'title' => 'KYC APPROVAL',
                 'parent_id ' => 12,
+                'title' => 'KYC APPROVAL',
                 'slug' => 'kyc-approval',
                 'image' => null,
                 'content' => null,
@@ -318,8 +330,8 @@ class PageSeeder extends Seeder
             ],
 
             [
-                'title' => 'BUY PACKAGES',
                 'parent_id ' => 12,
+                'title' => 'BUY PACKAGES',
                 'slug' => 'buy-packages',
                 'image' => null,
                 'content' => null,
@@ -328,8 +340,8 @@ class PageSeeder extends Seeder
             ],
 
             [
-                'title' => 'INVITE MEMBERS',
                 'parent_id ' => 12,
+                'title' => 'INVITE MEMBERS',
                 'slug' => 'invite-members',
                 'image' => null,
                 'content' => null,
@@ -338,8 +350,8 @@ class PageSeeder extends Seeder
             ],
 
             [
-                'title' => 'WITHDRAW MONEY',
                 'parent_id ' => 12,
+                'title' => 'WITHDRAW MONEY',
                 'slug' => 'withdraw-money',
                 'image' => null,
                 'content' => null,
@@ -347,26 +359,8 @@ class PageSeeder extends Seeder
                 'updated_at' => now(),
             ],
 
-            [
-                'title' => 'How do I change my password?',
-                'parent_id ' => 7,
-                'slug' => 'how-do-i-change-my-password',
-                'image' => null,
-                'content' => null,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
 
-            [
-                'title' => 'How do I change my password?',
-                'parent_id ' => 7,
-                'slug' => 'how-do-i-change-my-password',
-                'image' => null,
-                'content' => null,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-
+           
 
         ]);
     }
