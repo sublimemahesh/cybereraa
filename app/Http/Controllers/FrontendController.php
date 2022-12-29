@@ -36,7 +36,7 @@ class FrontendController extends Controller
 
     public function howToWork()
     {
-        $how_it_works= page::where(['parent_id' => 32])->get();
+        $how_it_works= page::where(['parent_id' => 12])->get();
 
         return view('frontend.how_to_work', compact('how_it_works'));
        // return view('frontend.how_to_work');
