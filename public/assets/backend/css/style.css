@@ -4,7 +4,7 @@
     Name                 : CryptoZone
     Author               : Dexignzone
     Author Portfolio     : https://themeforest.net/user/dexignzone/portfolio
-    
+
 
 
     Table of Sass Contents
@@ -16,7 +16,7 @@
         _mixin
         _variable
 
-    2. bootstrap 
+    2. bootstrap
         -Here goes all official bootstrap scss files
 
     3. Global/Base
@@ -39669,7 +39669,7 @@ table.dataTable thead .sorting_asc {
 .authincation {
     background: #15073a;
     display: flex;
-    min-height: 150vh; 
+    min-height: 150vh;
      /* overflow: auto; */
 }
 
@@ -42085,7 +42085,7 @@ table.dataTable thead .sorting_asc {
 .profile-form .form-label {
     color: #6e6e6e;
     font-size: 15px;
-    margin-bottom: 12px;
+    margin-bottom: 6px;
     font-weight: 400;
 }
 
@@ -48770,3 +48770,12 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
     color: #fff;
 }
 
+
+/* ///////////////////////////////// */
+
+.profile-image2{
+    object-fit: cover;
+    border-radius: 9999px;
+    width: 10rem;
+    height: 9rem;
+}
