@@ -39,7 +39,7 @@
     </section>
     <!-- Banner Area end -->
 
-    <section id="hiw">
+    <section id="hiw"> 
         <div class="container">
             <div class="col-xs-12 col-sm-2">
                 <ul id="nav-serialscrolling" class="faq-cat-holder">
