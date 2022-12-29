@@ -967,7 +967,7 @@
     </div>
 
     @push('scripts')
-        <script src="{{ asset('http://localhost/safest-trades-template/vendor/webticker/jquery.webticker.min.js') }}"></script>
+        <script src="{{ asset('assets/backend/vendor/webticker/jquery.webticker.min.js') }}"></script>
         <script src="{{ asset('assets/backend/js/dashboard/dashboard-1.js') }}"></script>
         <script src="{{ asset('assets/backend/js/dashboard/dashboard-4.js') }}"></script>
     @endpush
