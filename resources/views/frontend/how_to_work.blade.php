@@ -7,7 +7,9 @@
         <link href="{{ asset('assets/frontend/css/hiw.css') }}" rel="stylesheet">
         <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
 
-        <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+        {{-- <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script> --}}
+        {{-- <script src=' https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js' crossorigin='anonymous'></script> --}}
+
 
     @endsection
 
@@ -21,7 +23,7 @@
                     <div class="row text-center">
                         <div class="col-xs-12">
                             <!-- Title Starts -->
-                            <h2 class="title-head">HOw <span>it work</span></h2>
+                            <h2 class="title-head">HOw <i class="fa fa-arrow-down" aria-hidden="true"></i><span>it work</span></h2>
                             <!-- Title Ends -->
                             <hr>
                             <!-- Breadcrumb Starts -->
@@ -48,7 +50,7 @@
                             <li><span class="sub-link"
                                     data-serialscrolling="{{ $key }}"><span>{{ $htiw->title }}</span><i
                                         class="fas fa-arrow-right  rigth-arrow"></i></span><i
-                                    class='fas fa-arrow-down ul-count'></i></li>
+                                    class='fa fa-arrow-down ul-count' aria-hidden="true"></i></li>
                         @else
                             <li><span class="sub-link"
                                     data-serialscrolling="{{ $key }}"><span>{{ $htiw->title }}</span></li>
