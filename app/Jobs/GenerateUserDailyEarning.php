@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Models\Earning;
 use App\Models\PurchasedPackage;
+use App\Models\Wallet;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Bus\Queueable;
@@ -50,17 +51,26 @@ class GenerateUserDailyEarning implements ShouldQueue
                 // $earned = Earning::where('purchased_package_id', $purchase->id)->whereDate('created_at', date('Y-m-d'))->doesntExist();
                 if ($earned) {
                     $purchase->update(['last_earned_at' => $this->execution_time]);
+                    $earned_amount = $purchase->invested_amount * ($purchase->payable_percentage / 100);
                     $earnings = $purchase->earnings()->save(Earning::forceCreate([
                         'user_id' => $purchase->user_id,
-                        'amount' => $purchase->invested_amount * ($purchase->payable_percentage / 100),
+                        'amount' => $earned_amount,
                         'type' => 'PACKAGE',
                         'status' => 'RECEIVED', // TODO: check eligibility for the gain profit
                         'created_at' => $this->execution_time,
                         'updated_at' => $this->execution_time
                     ]));
-                    logger()->info("Earning saved");
+                    $wallet = Wallet::firstOrCreate(
+                        ['user_id' => $purchase->user_id],
+                        ['balance' => 0]
+                    );
+
+                    $wallet->increment('balance', $earned_amount);
+
+                    //Wallet::updateOrCreate(['user_id' => $purchase->user_id]);
+                    logger()->notice("Purchased Package Earning saved (" . date('Y-m-d') . ")");
                 } else {
-                    logger()->error("Already earned!");
+                    logger()->warning("Purchased Package Already earned! (" . date('Y-m-d') . ")");
                 }
             });
         } catch (\Throwable $e) {

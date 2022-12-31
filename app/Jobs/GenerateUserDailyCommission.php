@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Models\Commission;
 use App\Models\Earning;
+use App\Models\Wallet;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Bus\Queueable;
@@ -66,11 +67,18 @@ class GenerateUserDailyCommission implements ShouldQueue
 
                         $this->commission->update(['last_earned_at' => $this->execution_time]);
                         $this->commission->increment('paid', $today_amount);
+
+                        $wallet = Wallet::firstOrCreate(
+                            ['user_id' => $this->commission->user_id],
+                            ['balance' => 0]
+                        );
+
+                        $wallet->increment('balance', $today_amount);
                     }
 
-                    logger()->info("Commission Earning saved");
+                    logger()->notice("Commission Earning saved (" . date('Y-m-d') . ")");
                 } else {
-                    logger()->error("Commission Already earned!");
+                    logger()->warning("Commission Already earned! (" . date('Y-m-d') . ")");
                 }
             });
         } catch (\Throwable $e) {

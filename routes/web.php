@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Commission;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,28 +34,8 @@ Route::group(['prefix' => 'register', 'middleware' => 'guest:' . config('fortify
 });
 
 Route::get('test', function (Request $request) {
-    $activeCommissions = Commission::with('user')
-        ->where('status', 'QUALIFIED')
-        ->whereDoesntHave('earnings', function ($query) {
-            return $query
-                ->whereDate('created_at', date('Y-m-d'))
-                ->whereRaw('commissions.type = earnings.type');
-        })->toSql();
-    $commission = Commission::find(4);
-    $commission->loadSum('earnings', 'amount');
-    $already_earned_amount = $commission->earnings_sum_amount;
 
-    $today_amount = $commission->amount * (optional($commission->purchasedPackage)->payable_percentage / 100);
-
-    if ($commission->amount < ($already_earned_amount + $today_amount)) {
-        $today_amount = $commission->amount - $already_earned_amount;
-    }
-    dd(
-        $commission->earnings()->where('created_at', date('Y-m-d'))->doesntExist(),
-        $today_amount,
-        $commission->package(),
-        $already_earned_amount
-    );
+    dd(json_decode('{"bizType":"PAY","data":"{\"merchantTradeNo\":\"167187600168023069\",\"productType\":\"02\",\"productName\":\"Package 01\",\"transactTime\":1671879226228,\"tradeType\":\"WEB\",\"totalFee\":0.01000000,\"currency\":\"USDT\",\"commission\":0}","bizIdStr":"201947646033682432","bizId":201947646033682432,"bizStatus":"PAY_CLOSED"}'));
 });
 
 Route::get('payments/binancepay/response', 'Payment\BinancePayController@response');
@@ -122,7 +103,10 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         });
 
         Route::get('transactions', 'User\TransactionController@index')->name('transactions.index');
+        
         Route::get('earnings', 'User\EarningController@index')->name('earnings.index');
+
+        Route::get('wallet', 'User\WalletController@index')->name('wallet.index');
     });
 
 });

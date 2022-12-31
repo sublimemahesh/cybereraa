@@ -8,6 +8,7 @@ use App\Models\Package;
 use App\Models\PurchasedPackage;
 use App\Models\Strategy;
 use App\Models\Transaction;
+use App\Models\Wallet;
 use Arr;
 use Auth;
 use Carbon\Carbon;
@@ -34,6 +35,7 @@ class BinancePayController extends Controller
             return DB::transaction(function () use ($validated) {
                 $user = Auth::user();
                 $package = Package::whereSlug($validated['package'])->firstOrFail();
+
                 $transaction = Transaction::create([
                     'user_id' => $user->id,
                     'package_id' => $package->id,
@@ -42,30 +44,92 @@ class BinancePayController extends Controller
                     'type' => ($validated['method'] === 'wallet') ? 'wallet' : 'crypto',
                     'status' => "INITIAL",
                 ]);
+
+                // Order Data
+                $data['order_amount'] = $transaction->amount;
+                $data['package_id'] = $package->id;
+                $data['goods_name'] = $package->name;
+                $data['goods_detail'] = null;
+                $data['buyer'] = [
+                    "referenceBuyerId" => $user->id,
+                    "buyerEmail" => $user->email,
+                    "buyerName" => [
+                        "firstName" => Arr::first(explode(" ", $user->name)),
+                        "lastName" => Arr::last(explode(" ", $user->name))
+                    ]
+                ];
+
+
                 if ($transaction->type === 'wallet') {
-                    $json['status'] = false;
-                    $json['message'] = "Something wrong with your payment method!";
-                    $json['icon'] = 'error'; // warning | info | question | success | error
-                    return response()->json($json, Response::HTTP_UNPROCESSABLE_ENTITY);
+
+                    $req_data = [
+                        "orderAmount" => $data['order_amount'],
+                        "currency" => 'USDT',
+                        "goods" => [
+                            "referenceGoodsId" => $data['package_id'],
+                            "goodsName" => $data['goods_name'],
+                            "goodsDetail" => $data['goods_detail'] ?? null
+                        ],
+                        "buyer" => $data['buyer']
+                    ];
+
+                    $res_data = [
+                        'bizType' => 'PAY',
+                        'data' => '{
+                            "productName":"' . $package->name . '",
+                            "transactTime":' . (time() * 1000) . ',
+                            "totalFee":' . $transaction->amount . ',
+                            "currency":"' . $transaction->currency . '"
+                        }',
+                    ];
+
+                    $transaction->create_order_request = json_encode($req_data, JSON_THROW_ON_ERROR);
+
+
+                    if ($user->wallet->balance < $transaction->amount) {
+                        $res_data['bizStatus'] = 'PAY_CLOSED';
+
+                        $transaction->status = 'CANCELED';
+                        $transaction->status_response = json_encode($res_data, JSON_THROW_ON_ERROR);
+                        $transaction->save();
+
+                        $json['status'] = false;
+                        $json['message'] = "Not enough funds in wallet to proceed!";
+                        $json['icon'] = 'error'; // warning | info | question | success | error
+                        return response()->json($json, Response::HTTP_UNPROCESSABLE_ENTITY);
+                    }
+
+                    $res_data['bizStatus'] = 'PAY_SUCCESS';
+
+                    $transaction->status = 'PAID';
+                    $transaction->status_response = json_encode($res_data, JSON_THROW_ON_ERROR);
+                    $transaction->save();
+
+                    DB::transaction(function () use ($transaction) {
+                        $res = $this->grantCommissionsToUsers($transaction);
+
+                        $wallet = Wallet::firstOrCreate(
+                            ['user_id' => $transaction->user_id],
+                            ['balance' => 0]
+                        );
+
+                        $wallet->decrement('balance', $transaction->amount);
+                    });
+
+                    $json['status'] = true;
+                    $json['message'] = 'Request successful';
+                    $json['icon'] = 'success'; // warning | info | question | success | error
+                    $json['data'] = ['checkoutUrl' => route('user.packages.active')];
+                    return response()->json($json);
                 }
 
                 if ($transaction->type === 'crypto') {
                     // dd(env("BINANCE_SERVICE_WEBHOOK_URL"));
                     $binancePay = new BinancePay("binancepay/openapi/v2/order");
+
                     $data['trx_id'] = $transaction->id;
                     $data['merchant_trade_no'] = $this->generateUniqueCode();
-                    $data['order_amount'] = $transaction->amount;
-                    $data['package_id'] = $package->id;
-                    $data['goods_name'] = $package->name;
-                    $data['goods_detail'] = null;
-                    $data['buyer'] = [
-                        "referenceBuyerId" => $user->id,
-                        "buyerEmail" => $user->email,
-                        "buyerName" => [
-                            "firstName" => Arr::first(explode(" ", $user->name)),
-                            "lastName" => Arr::last(explode(" ", $user->name))
-                        ]
-                    ];
+
                     $result = $binancePay->createOrder($data);
 
                     if ($result['status'] === 'SUCCESS') {
@@ -115,63 +179,13 @@ class BinancePayController extends Controller
                         switch ($webhookResponse['bizStatus']) {
                             // TODO: check payment success callback response and consider this success code segment is needed or can be removed
                             case "PAY_SUCCESS":
-                                $order_status = (new BinancePay("binancepay/openapi/v2/order/query"))
-                                    ->query(["merchantTradeNo" => $merchantTradeNo]);
+                                $order_status = (new BinancePay("binancepay/openapi/v2/order/query"))->query(compact('merchantTradeNo'));
+
                                 $transaction->status = $order_status['data']['status'];
                                 $transaction->status_response = json_encode($webhookResponse, JSON_THROW_ON_ERROR);
                                 $transaction->save();
 
-                                PurchasedPackage::updateOrCreate(['transaction_id' => $transaction->id], [
-                                    'user_id' => $transaction->user_id,
-                                    'package_id' => $transaction->package_id,
-                                    'invested_amount' => $transaction->package->amount,
-                                    'payable_percentage' => $transaction->package->daily_leverage,
-                                    'status' => 'ACTIVE',
-                                    'expired_at' => Carbon::now()->addMonths($transaction->package->month_of_period)->format('Y-m-d H:i:s'),
-                                    'package_info' => $transaction->package->toJson(),
-                                ]);
-
-                                // TODO: ASSIGN OTHER PRIVILEGES IF THEIR ANY
-                                $package = $transaction->purchasedPackage;
-                                $purchasedUser = $package->user;
-
-                                $commissions = Strategy::where('name', 'commissions')->firstOr('value', fn() => new Strategy(['value' => '{"1":25,"2":20,"3":15,"4":10,"5":5,"6":5,"7":5}']));
-                                $commissions = json_decode($commissions->value, true, 512, JSON_THROW_ON_ERROR);
-
-                                $commission_start_at = 1;
-                                if (!is_null($purchasedUser->super_parent_id)) {
-                                    Commission::forceCreate([
-                                        'user_id' => $purchasedUser->super_parent_id,
-                                        'purchased_package_id' => $package->id,
-                                        'amount' => ($package->invested_amount * $commissions[$commission_start_at]) / 100,
-                                        'paid' => 0,
-                                        'type' => 'DIRECT',
-                                        'status' => $purchasedUser->sponsor->is_active ? 'QUALIFIED' : 'DISQUALIFIED'
-                                    ]);
-                                    //TODO: Send EMAIL Notification
-                                }
-
-                                if (!is_null($purchasedUser->parent_id)) {
-                                    $commission_level_strategy = Strategy::where('name', 'commission_level_count')->firstOr('value', fn() => new Strategy(['value' => 7]));
-                                    $commission_level = (int)$commission_level_strategy->value;
-                                    $commission_start_at = 2;
-
-                                    $commission_level_user = $purchasedUser->parent;
-                                    for ($i = $commission_start_at; $i <= $commission_level; $i++) {
-                                        Commission::forceCreate([
-                                            'user_id' => $commission_level_user->id,
-                                            'purchased_package_id' => $package->id,
-                                            'amount' => ($package->invested_amount * $commissions[$i]) / 100,
-                                            'paid' => 0,
-                                            'type' => 'INDIRECT',
-                                            'status' => $commission_level_user->is_active ? 'QUALIFIED' : 'DISQUALIFIED'
-                                        ]);
-                                        if (is_null($commission_level_user->parent_id)) {
-                                            break;
-                                        }
-                                        $commission_level_user = $commission_level_user->parent;
-                                    }
-                                }
+                                $this->grantCommissionsToUsers($transaction);
 
                                 break;
                             case "PAY_CLOSED":
@@ -240,5 +254,67 @@ class BinancePayController extends Controller
         } catch (Exception $e) {
             return (int)str_pad(time(), 18, 0);
         }
+    }
+
+    /**
+     * @throws Throwable
+     */
+    private function grantCommissionsToUsers(Transaction $transaction): bool
+    {
+        return DB::transaction(static function () use ($transaction) {
+            PurchasedPackage::updateOrCreate(['transaction_id' => $transaction->id], [
+                'user_id' => $transaction->user_id,
+                'package_id' => $transaction->package_id,
+                'invested_amount' => $transaction->package->amount,
+                'payable_percentage' => $transaction->package->daily_leverage,
+                'status' => 'ACTIVE',
+                'expired_at' => Carbon::now()->addMonths($transaction->package->month_of_period)->format('Y-m-d H:i:s'),
+                'package_info' => $transaction->package->toJson(),
+            ]);
+
+            // TODO: ASSIGN OTHER PRIVILEGES IF THEIR ANY
+            $package = $transaction->purchasedPackage;
+            $purchasedUser = $package->user;
+
+            $commissions = Strategy::where('name', 'commissions')->firstOr('value', fn() => new Strategy(['value' => '{"1":25,"2":20,"3":15,"4":10,"5":5,"6":5,"7":5}']));
+            $commissions = json_decode($commissions->value, true, 512, JSON_THROW_ON_ERROR);
+
+            $commission_start_at = 1;
+            if ($purchasedUser->super_parent_id !== null) {
+                Commission::forceCreate([
+                    'user_id' => $purchasedUser->super_parent_id,
+                    'purchased_package_id' => $package->id,
+                    'amount' => ($package->invested_amount * $commissions[$commission_start_at]) / 100,
+                    'paid' => 0,
+                    'type' => 'DIRECT',
+                    'status' => $purchasedUser->sponsor->is_active ? 'QUALIFIED' : 'DISQUALIFIED'
+                ]);
+                //TODO: Send EMAIL Notification
+            }
+
+            if ($purchasedUser->parent_id !== null) {
+                $commission_level_strategy = Strategy::where('name', 'commission_level_count')->firstOr('value', fn() => new Strategy(['value' => 7]));
+                $commission_level = (int)$commission_level_strategy->value;
+                $commission_start_at = 2;
+
+                $commission_level_user = $purchasedUser->parent;
+                for ($i = $commission_start_at; $i <= $commission_level; $i++) {
+                    Commission::forceCreate([
+                        'user_id' => $commission_level_user->id,
+                        'purchased_package_id' => $package->id,
+                        'amount' => ($package->invested_amount * $commissions[$i]) / 100,
+                        'paid' => 0,
+                        'type' => 'INDIRECT',
+                        'status' => $commission_level_user->is_active ? 'QUALIFIED' : 'DISQUALIFIED'
+                    ]);
+                    if ($commission_level_user->parent_id === null) {
+                        break;
+                    }
+                    $commission_level_user = $commission_level_user->parent;
+                }
+            }
+
+            return true;
+        });
     }
 }
