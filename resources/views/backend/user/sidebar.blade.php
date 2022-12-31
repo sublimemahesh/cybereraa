@@ -44,6 +44,12 @@
                     <span class="nav-text">My Earnings</span>
                 </a>
             </li>
+            <li>
+                <a href="{{ route('user.wallet.index') }}" class="" aria-expanded="false">
+                    <i class="bi bi-wallet2"></i>
+                    <span class="nav-text">My Wallet</span>
+                </a>
+            </li>
 
             @include('navigation-menu')
         </ul>

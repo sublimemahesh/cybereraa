@@ -31,6 +31,7 @@ class DispatchDailyCommissionJobs extends Command
      */
     public function handle()
     {
+        logger()->notice("commission:calculate started");
         // Retrieve all users with purchased packages
         $today = Carbon::today();
         if (!$today->isWeekend()) {
@@ -45,6 +46,7 @@ class DispatchDailyCommissionJobs extends Command
                         if ($executionTime->isWeekend()) {
                             continue;
                         }
+                        logger()->notice("commission:calculate jobs dispatching");
                         GenerateUserDailyCommission::dispatch($commission, $executionTime)->afterCommit();
                     }
                 });
