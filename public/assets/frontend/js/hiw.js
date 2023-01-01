@@ -46,7 +46,7 @@ $(document).ready(function () {
 
   $(window).scroll(function () {
 
-	if ($(this).scrollTop() > 330) {
+	if ($(this).scrollTop() > 430) {
 		$('.faq-cat-holder').addClass('fixed-cat-bar');
         $(".faq-cat-holder").css("display", "block");
 	} else {

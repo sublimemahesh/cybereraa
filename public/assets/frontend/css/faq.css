@@ -2202,7 +2202,7 @@ color:white
 
 @media (min-width: 80rem) {
     .cd-faq__categories {
-        width: 200px
+        width: 25%;
     }
 }
 
@@ -2324,7 +2324,7 @@ li:last-child .cd-faq__category {
     .cd-faq__items {
         position: static;
         height: auto;
-        width: auto;
+        width: 75%;
         -ms-flex-positive: 1;
         flex-grow: 1;
         overflow: visible;
@@ -2364,7 +2364,12 @@ html:not(.js) .cd-faq__items {
 }
 
 html:not(.js) .cd-faq__group, .cd-faq__group--selected {
-    display: block
+    display: block;
+}
+
+.cd-faq__group {
+    display: block;
+    padding: 0;
 }
 
 .cd-faq__title {
@@ -2668,5 +2673,5 @@ body {
     position: fixed;
     top: 49px;
     left: 105px;
-    width: 200px;
+    width: 285px;
 }
