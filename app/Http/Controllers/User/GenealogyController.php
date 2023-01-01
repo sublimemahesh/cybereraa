@@ -5,24 +5,33 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Auth;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Symfony\Component\HttpFoundation\Response;
 use Validator;
 
 class GenealogyController extends Controller
 {
-    public function index(Request $request, ?User $user)
+    public function index(Request $request, User|null $user)
     {
-        if (is_null($user->id)) {
-            $user = Auth::User();
+        if (optional($user)->id === null) {
+            $user = Auth::user();
         }
-        $descendants = $user->children()->orderBy('position')->get()->keyBy('position');
+        $user->load('currentRank', 'descendants');
+        $user->loadCount('activePackages');
+        $descendants = $user->children()
+            ->with('currentRank', 'descendants')
+            ->withCount('activePackages')
+            ->orderBy('position')
+            ->get()
+            ->keyBy('position');
         return view('backend.user.genealogy.index', compact('user', 'descendants'));
     }
 
     public function managePosition(Request $request, User $parent, $position)
     {
-        $validator = Validator::make(['position' => $position], [
+        $validator = Validator::make(compact('position'), [
             'position' => [
                 'required',
                 'lte:5',
@@ -92,7 +101,17 @@ class GenealogyController extends Controller
 
         $assignedUser = User::find($validated['pending_user']);
 
-        $assignedUser->update(['parent_id' => $parent->id, 'position' => $position]);
+        try {
+            DB::transaction(static function () use ($assignedUser, $parent, $position) {
+                $assignedUser->update(['parent_id' => $parent->id, 'position' => $position]);
+                User::upgradeAncestorsRank($parent, 1);
+            });
+        } catch (\Throwable $e) {
+            $json['status'] = false;
+            $json['message'] = 'Something went wrong! Please try again';
+            $json['icon'] = 'error';
+            return response()->json($json, Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
 
         $json['status'] = true;
         $json['message'] = 'User (' . $assignedUser->username . ') Assigned to the position ' . $position . '!';

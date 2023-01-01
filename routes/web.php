@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Commission;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -34,8 +33,23 @@ Route::group(['prefix' => 'register', 'middleware' => 'guest:' . config('fortify
 });
 
 Route::get('test', function (Request $request) {
+    //$user = User::find(3);
+    //User::upgradeAncestorsRank($user, 1);
+    //dd(Rank::all(), collect(User::getUpgradeRequirements())->where(fn($value, $key) => $value >= 500)->keys()->toArray());
 
-    dd(json_decode('{"bizType":"PAY","data":"{\"merchantTradeNo\":\"167187600168023069\",\"productType\":\"02\",\"productName\":\"Package 01\",\"transactTime\":1671879226228,\"tradeType\":\"WEB\",\"totalFee\":0.01000000,\"currency\":\"USDT\",\"commission\":0}","bizIdStr":"201947646033682432","bizId":201947646033682432,"bizStatus":"PAY_CLOSED"}'));
+    $available_parent_id = User::findAvailableSubLevel(1);
+    if (empty($available_parent_id->id)) {
+        logger()->warning("routes/web.php : user: " . 1 . " | No parent found with available nodes" . $available_parent_id->id);
+        return;
+    }
+    $parent = User::find($available_parent_id->id);
+    $children = $parent->children;
+    $filled__position = $children->pluck('position')->toArray();
+    $available__position = array_diff([1, 2, 3, 4, 5], $filled__position);
+    sort($available__position);
+    $available__position = Arr::first($available__position);
+
+    dd($available_parent_id->id, $available_parent_id, $filled__position, $available__position);
 });
 
 Route::get('payments/binancepay/response', 'Payment\BinancePayController@response');
@@ -103,7 +117,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         });
 
         Route::get('transactions', 'User\TransactionController@index')->name('transactions.index');
-        
+
         Route::get('earnings', 'User\EarningController@index')->name('earnings.index');
 
         Route::get('wallet', 'User\WalletController@index')->name('wallet.index');

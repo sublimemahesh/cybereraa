@@ -39,6 +39,14 @@ class StrategySeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'name' => 'rank_package_requirement',
+                'data_type' => 'array',
+                'value' => '{"1":100,"2":250,"3":500,"4":1000,"5":2500,"6":5000,"7":10000}',
+                'comment' => 'Minimum package values required for corresponding rank',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }

@@ -2,18 +2,22 @@
 
 namespace App\Models;
 
+use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
+use JsonException;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
+use Throwable;
 use URL;
 
 class User extends Authenticatable
@@ -25,11 +29,14 @@ class User extends Authenticatable
     use HasTeams;
     use Notifiable;
     use TwoFactorAuthenticatable;
-    use softDeletes;
+    use softDeletes, CascadeSoftDeletes;
     use HasRecursiveRelationships;
 
     protected $with = ['profile'];
 
+    protected array $cascadeDeletes = ['ranks'];
+
+    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that are mass assignable.
@@ -67,9 +74,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $appends = [
+        'depth',
+        'highest_rank',
         'profile_photo_url',
         'referral_link'
     ];
+
 
     public function getReferralLinkAttribute(): string
     {
@@ -138,21 +148,104 @@ class User extends Authenticatable
             ['id' => $this->id]
         );
 
-        return $depth->depth;
+        return $this->depth = $depth->depth;
     }
 
-    public static function findAvailableSubLevel($nodeId): array
+    public static function findAvailableSubLevel($nodeId)
     {
-        return DB::select("
+        return DB::selectOne("
                 WITH RECURSIVE ancestor_nodes AS 
                     (
                         (SELECT * FROM users WHERE id = :node_id)
                         UNION ALL
                         (SELECT n.* FROM users n INNER JOIN ancestor_nodes an ON an.id = n.parent_id)
                     ) 
-                    SELECT cte_an.id, cte_an.parent_id, (SELECT COUNT(*) FROM users WHERE parent_id = cte_an.id) AS children_count
+                    SELECT cte_an.id, cte_an.parent_id, cte_an.`position`, (SELECT COUNT(*) FROM users WHERE parent_id = cte_an.id) AS children_count
                     FROM ancestor_nodes cte_an
-                    WHERE (SELECT COUNT(*) FROM users WHERE parent_id = cte_an.id) < 5 ORDER BY cte_an.id ASC LIMIT 1",
+                    WHERE (SELECT COUNT(*) FROM users WHERE parent_id = cte_an.id) < 5 ORDER BY  cte_an.`parent_id`, cte_an.`position` ASC LIMIT 1",
             ['node_id' => $nodeId]);
     }
+
+    public function ranks(): HasMany
+    {
+        return $this->hasMany(Rank::class, 'user_id');
+    }
+
+    public function rank($rank): HasOne
+    {
+        return $this->hasOne(Rank::class, 'user_id')->where('rank', $rank);
+    }
+
+    public function currentRank(): HasOne
+    {
+        return $this->hasOne(Rank::class, 'user_id')
+            ->where('is_active', true)
+            ->orderBy('rank', 'desc')
+            ->withDefault(new Rank);
+    }
+
+    public function getHighestRankAttribute(): int
+    {
+        $rank = $this->ranks()->whereIsActive(true)->orderBy('rank', 'desc')->first();
+        return $this->highest_rank = $rank->rank ?? 0;
+    }
+
+    /**
+     * @throws JsonException
+     */
+    public static function getUpgradeRequirements()
+    {
+        $strategy = Strategy::where('name', 'rank_package_requirement')
+            ->firstOr(fn() => new Strategy(['value' => '{"1":100,"2":250,"3":500,"4":1000,"5":2500,"6":5000,"7":10000}']));
+        return json_decode($strategy->value, false, 512, JSON_THROW_ON_ERROR);
+    }
+
+    /**
+     * @throws Throwable
+     */
+    public static function upgradeAncestorsRank(self $user, $rank, $is_active = false): void
+    {
+        if ($rank > 7) {
+            return;
+        }
+        if (!empty($user->parent->id) && $user->parent->highest_rank >= $rank) {
+            return;
+        }
+
+        DB::transaction(static function () use ($rank, $user, $is_active) {
+
+            if ($rank === 1) {
+                $eligibility = $user->children()->count();
+
+                $is_active = $eligibility === 5;
+
+                Rank::updateOrCreate(
+                    ['user_id' => $user->id, 'rank' => $rank],
+                    compact('eligibility', 'is_active')
+                );
+
+                $rank = 2;
+            }
+
+            if ($is_active && !empty($user->parent->id)) {
+                $user = $user->parent;
+
+                $user_rank = Rank::firstOrCreate(
+                    ['user_id' => $user->id, 'rank' => $rank],
+                    ['eligibility' => 0]
+                );
+
+                if ($user_rank->eligibility < 5) {
+                    $user_rank->increment('eligibility');
+                }
+                $is_active = $user_rank->eligibility === 5;
+                $user_rank->update(compact('is_active'));
+
+                if ($is_active) {
+                    self::upgradeAncestorsRank($user, $user->highest_rank + 1, true);
+                }
+            }
+        });
+    }
+
 }

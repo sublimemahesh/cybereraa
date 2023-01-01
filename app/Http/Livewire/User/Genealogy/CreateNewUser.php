@@ -101,12 +101,18 @@ class CreateNewUser extends Component
 
         $this->parent->loadCount('children');
         $available_spaces = 5 - $this->parent->children_count;
-        $validated = Validator::make(['available_spaces' => $available_spaces,], [
+        $validated = Validator::make(compact('available_spaces'), [
             'available_spaces' => 'required|gte:1',
         ])->validate();
 
         $this->state['name'] = $this->state['first_name'] . " " . $this->state['last_name'];
         event(new Registered($user = $creator->create($this->state)));
+
+        try {
+            User::upgradeAncestorsRank($this->parent, 1);
+        } catch (\Throwable $e) {
+            logger()->error("App\Http\Livewire\User\Genealogy CreateNewUser::class : upgradeAncestorsRank failed: " . $e->getMessage());
+        }
 
         session()->flash('message', 'New User Created Successfully!');
         redirect()->route('user.genealogy', $this->parent);
