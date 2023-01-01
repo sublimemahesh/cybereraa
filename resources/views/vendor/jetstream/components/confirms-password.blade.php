@@ -5,7 +5,7 @@
 @endphp
 
 <span
-    {{ $attributes->wire('then') }}
+    {{ $attributes->wire('then') }} 
     x-data
     x-ref="span"
     x-on:click="$wire.startConfirmingPassword('{{ $confirmableId }}')"
@@ -27,7 +27,7 @@
             <x-jet-input type="password" class="mt-1 block w-3/4" placeholder="{{ __('Password') }}"
                         x-ref="confirmable_password"
                         wire:model.defer="confirmablePassword"
-                        wire:keydown.enter="confirmPassword" />
+                        wire:keydown.enter="confirmPassword" class="form-control" />
 
             <x-jet-input-error for="confirmable_password" class="mt-2" />
         </div>

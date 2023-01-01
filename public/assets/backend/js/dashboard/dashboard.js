@@ -24,6 +24,9 @@
             });
         }
 
+
+
+
         var NewCustomers = function () {
             var options = {
                 series: [
