@@ -5,7 +5,7 @@
 }
 
 .tree ul {
-    padding-top: 40px;
+    padding-top: 20px;
     position: relative;
     display: flex;
     justify-content: center;
@@ -40,7 +40,7 @@
     text-align: center;
     list-style-type: none;
     position: relative;
-    padding: 55px 5px 0 5px;
+    padding: 20px 5px 0 5px;
 
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
@@ -52,17 +52,16 @@
 .tree li::before, .tree li::after {
     content: '';
     position: absolute;
-    top: -20px;
+    top: 0;
     right: 50%;
     border-top: 1px solid #ccc;
     width: 50%;
-    height: 23px;
+    height: 20px;
 }
 
 .tree li::after {
     right: auto;
     left: 50%;
-    padding-top: 25px;
     border-left: 1px solid #ccc;
 }
 
@@ -101,16 +100,16 @@ right connector from last child*/
 .tree ul ul::before {
     content: '';
     position: absolute;
-    top: -32px;
+    top: 0;
     left: 50%;
     border-left: 1px solid #ccc;
     width: 0;
-    height: 72px;
+    height: 20px;
 }
 
 .tree li a {
-    /* border: 1px solid #ccc; */
-    /* padding: 5px 10px; */
+    border: 1px solid #ccc;
+    padding: 5px 10px;
     text-decoration: none;
     color: #666;
     font-family: arial, verdana, tahoma;
@@ -128,12 +127,11 @@ right connector from last child*/
 
 /*Time for some hover effects*/
 /*We will apply the hover effect the the lineage of the element also*/
-
-/* .tree li a:hover, .tree li a:hover + ul li a {
+.tree li a:hover, .tree li a:hover + ul li a {
     background: #c8e4f8;
     color: #000;
     border: 1px solid #94a0b4;
-} */
+}
 
 /*Connector styles on hover*/
 .tree li a:hover + ul li::after,

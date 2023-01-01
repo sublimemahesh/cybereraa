@@ -1,42 +1,154 @@
-
-
- .card1 {
+.card1 {
 
     background-image: linear-gradient(163deg, #fd961a 0%, #3700ff 100%);
     border-radius: 20px;
     transition: all .3s;
-   }
+}
 
-   .card2 {
+.card2 {
 
     background-color: #1a1a1a;
     transition: all .2s;
-   }
+}
 
-   .card2:hover {
+.card2:hover {
     transform: scale(0.98);
     border-radius: 20px;
-   }
+}
 
-   .card1:hover {
+.card1:hover {
     box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
-   }
-
-.package-body{
-   /* background-image: url('../../images/logo/logo.png'); */
-   background-repeat: no-repeat;
-   background-position: right;
-   padding-right: 10px;
-}
-.package-body b{
-   color: black
 }
 
-.card-currency{
-    color:black
+.package-body {
+    /* background-image: url('../../images/logo/logo.png'); */
+    background-repeat: no-repeat;
+    background-position: right;
+    padding-right: 10px;
 }
 
-.icon-green{
-    color:green;
+.package-body b {
+    color: black
+}
 
+.card-currency {
+    color: black
+}
+
+.icon-green {
+    color: green;
+
+}
+
+
+
+
+
+/* //////////////////////// Genealogy CSS ////////////////////////////////// */
+
+.genealogy .card {
+    width: 190px;
+    height: 254px;
+    background: #25164f;
+    overflow: visible;
+    box-shadow: 0 5px 20px 2px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.genealogy .card-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0em;
+    padding: 0 1rem;
+    margin-top: -17px
+}
+
+.genealogy .card-img {
+    --size: 100px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    background: #42caff;
+    background: linear-gradient(to bottom, #42caff 0%, #e81aff 100%);
+    position: relative;
+    transition: all .3s ease-in-out;
+}
+
+
+.genealogy .card-img::before {
+    content: "";
+    border-radius: inherit;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    border: 1rem solid #e8e8e8;
+}
+
+/*Text*/
+.genealogy .text-title {
+    text-transform: uppercase;
+    margin-top: -12px;
+    text-align: center;
+}
+
+.genealogy .text-body {
+    font-size: 1em;
+    text-align: center;
+    color: #6f6d78;
+    font-weight: 500;
+    font-style: italic;
+    margin-top: -19px;
+}
+
+.genealogy .img-center1 {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.genealogy .card {
+    border: 2px solid white;
+}
+
+.swiper {
+    overflow: visible !important;
+    margin-top: 60px;
+}
+
+#swiper-pagination-set{
+    bottom: -10px;
+    
+}
+
+
+@media screen and (max-width: 769px) {
+.dv {
+ display: none;
+}
+
+.genealogy .card {
+    width:100%;
+}
+
+}
+
+
+@media screen and (min-width: 769px) {
+    .mbv {
+     display: none;
+    }
+
+
+} 
+
+.arrow-margin{
+margin-bottom: 50px;
 }
