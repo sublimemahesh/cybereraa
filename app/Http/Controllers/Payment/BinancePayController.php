@@ -8,6 +8,7 @@ use App\Models\Package;
 use App\Models\PurchasedPackage;
 use App\Models\Strategy;
 use App\Models\Transaction;
+use App\Models\User;
 use App\Models\Wallet;
 use Arr;
 use Auth;

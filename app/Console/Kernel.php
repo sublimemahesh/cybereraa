@@ -18,6 +18,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('profit:calculate')->weekdays()->everyMinute()->withoutOverlapping();
         $schedule->command('profit:calculate')->weekdays()->twiceDailyAt(0, 1, 57)->withoutOverlapping();
         $schedule->command('commission:calculate')->weekdays()->twiceDailyAt(0, 1, 57)->withoutOverlapping();
+        $schedule->command('genealogy:assign')->everySixHours()->withoutOverlapping();
         $schedule->command('queue:work', ['--stop-when-empty'])->everyMinute()->withoutOverlapping();
     }
 
