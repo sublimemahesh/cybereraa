@@ -23,13 +23,13 @@
                     <div class="row text-center">
                         <div class="col-xs-12">
                             <!-- Title Starts -->
-                            <h2 class="title-head">HOw <i class="fa fa-arrow-down" aria-hidden="true"></i><span>it work</span></h2>
+                            <h2 class="title-head">How It <span>Works</span></h2>
                             <!-- Title Ends -->
                             <hr>
                             <!-- Breadcrumb Starts -->
                             <ul class="breadcrumb">
-                                <li><a href="index-2.html"> home</a></li>
-                                <li>How to it work</li>
+                                <li><a href="{{ route('/') }}"> home</a></li>
+                                <li>How It Works</li>
                             </ul>
                             <!-- Breadcrumb Ends -->
                         </div>
@@ -41,42 +41,49 @@
     </section>
     <!-- Banner Area end -->
 
-    <section id="hiw">
-        <div class="container">
-            <div class="col-xs-12 col-sm-2">
+    <div class="container">
+        <hr data-serialscrolling-target="0" class="hr-1" />
+        <section id="hiw">
+            <div class="col-xs-12 col-sm-3">
                 <ul id="nav-serialscrolling" class="faq-cat-holder">
                     @foreach ($how_it_works as $key => $htiw)
                         @if (count($how_it_works) > $key + 1)
-                            <li><span class="sub-link"
-                                    data-serialscrolling="{{ $key }}"><span>{{ $htiw->title }}</span><i
-                                        class="fas fa-arrow-right  rigth-arrow"></i></span><i
-                                    class='fa fa-arrow-down ul-count' aria-hidden="true"></i></li>
+                            <li>
+                                <span class="sub-link" data-serialscrolling="{{ $key }}">
+                                    {{ $htiw->title }}
+                                    <i class="fas fa-arrow-right  rigth-arrow"></i>
+                                </span>
+                                <i class='fa fa-arrow-down ul-count' aria-hidden="true"></i>
+                            </li>
                         @else
-                            <li><span class="sub-link"
-                                    data-serialscrolling="{{ $key }}"><span>{{ $htiw->title }}</span></li>
+                            <li>
+                                <span class="sub-link" data-serialscrolling="{{ $key }}">
+                                    {{ $htiw->title }}
+                                </span>
+                            </li>
                         @endif
                     @endforeach
                 </ul>
             </div>
-            <div class="col-xs-12 col-sm-10">
+            <div class="col-xs-12 col-sm-9">
                 @foreach ($how_it_works as $key => $htiw)
-                    <div data-serialscrolling-target="{{ $key }}" class='frist-div'>
+                    <div class='frist-div'>
                         <h1>{{ $htiw->title }}</h1>
-
                         <div>
+                            @if (!empty($htiw->image))
+                            <img src="{{ asset('storage/pages/'.$htiw->image) }}" class="hiw-img" alt="{{ $htiw->title }}">
+                            @endif
                             {!! html_entity_decode($htiw->content) !!}
                         </div>
+                        @php
+                            $scroll = $key + 1;
+                        @endphp
                     </div>
+                    <hr data-serialscrolling-target="{{ $scroll }}" />
                 @endforeach
             </div>
-        </div>
-        </div>
-    </section>
-
-
-
-
-
+        </section>
+    </div>
 
     @push('scripts')
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
