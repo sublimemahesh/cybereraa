@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use JsonException;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -74,8 +75,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $appends = [
-        'depth',
-        'highest_rank',
+        /*'depth',
+        'highest_rank',*/
         'profile_photo_url',
         'referral_link'
     ];
@@ -148,7 +149,7 @@ class User extends Authenticatable
             ['id' => $this->id]
         );
 
-        return $this->depth = $depth->depth;
+        return optional($depth)->depth;
     }
 
     public static function findAvailableSubLevel($nodeId)
@@ -179,15 +180,15 @@ class User extends Authenticatable
     public function currentRank(): HasOne
     {
         return $this->hasOne(Rank::class, 'user_id')
-            ->where('is_active', true)
+            ->whereNotNull('activated_at')
             ->orderBy('rank', 'desc')
             ->withDefault(new Rank);
     }
 
     public function getHighestRankAttribute(): int
     {
-        $rank = $this->ranks()->whereIsActive(true)->orderBy('rank', 'desc')->first();
-        return $this->highest_rank = $rank->rank ?? 0;
+        $rank = $this->ranks()->whereNotNull('activated_at')->orderBy('rank', 'desc')->first();
+        return $rank->rank ?? 0;
     }
 
     /**
@@ -218,10 +219,10 @@ class User extends Authenticatable
                 $eligibility = $user->children()->count();
 
                 $is_active = $eligibility === 5;
-
+                $activated_at = $is_active ? now() : null;
                 Rank::updateOrCreate(
                     ['user_id' => $user->id, 'rank' => $rank],
-                    compact('eligibility', 'is_active')
+                    compact('eligibility', 'activated_at')
                 );
 
                 $rank = 2;
@@ -239,7 +240,8 @@ class User extends Authenticatable
                     $user_rank->increment('eligibility');
                 }
                 $is_active = $user_rank->eligibility === 5;
-                $user_rank->update(compact('is_active'));
+                $activated_at = $is_active ? now() : null;
+                $user_rank->update(compact('activated_at'));
 
                 if ($is_active) {
                     self::upgradeAncestorsRank($user, $user->highest_rank + 1, true);

@@ -15,7 +15,7 @@ class DispatchDailyCommissionJobs extends Command
      *
      * @var string
      */
-    protected $signature = 'commission:calculate';
+    protected $signature = 'calculate:commission';
 
     /**
      * The console command description.
@@ -31,7 +31,7 @@ class DispatchDailyCommissionJobs extends Command
      */
     public function handle()
     {
-        logger()->notice("commission:calculate started");
+        logger()->notice("calculate:commission started");
         // Retrieve all users with purchased packages
         $today = Carbon::today();
         if (!$today->isWeekend()) {
@@ -46,7 +46,7 @@ class DispatchDailyCommissionJobs extends Command
                         if ($executionTime->isWeekend()) {
                             continue;
                         }
-                        logger()->notice("commission:calculate jobs dispatching");
+                        logger()->notice("calculate:commission jobs dispatching");
                         GenerateUserDailyCommission::dispatch($commission, $executionTime)->afterCommit();
                     }
                 });

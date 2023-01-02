@@ -15,7 +15,7 @@ class DispatchDailyEarningJobs extends Command
      *
      * @var string
      */
-    protected $signature = 'profit:calculate';
+    protected $signature = 'calculate:profit';
 
     /**
      * The console command description.
@@ -31,7 +31,7 @@ class DispatchDailyEarningJobs extends Command
      */
     public function handle(): int
     {
-        logger()->notice("profit:calculate started");
+        logger()->notice("calculate:profit started");
         // Retrieve all users with purchased packages
         $today = Carbon::today();
         if (!$today->isWeekend()) {
@@ -50,7 +50,7 @@ class DispatchDailyEarningJobs extends Command
                         if ($executionTime->isWeekend()) {
                             continue;
                         }
-                        logger()->notice("profit:calculate jobs dispatching");
+                        logger()->notice("calculate:profit jobs dispatching");
                         GenerateUserDailyEarning::dispatch($package, $executionTime)->afterCommit();
 
                         // TODO: uncomment if need to run exact time they purchased enable this

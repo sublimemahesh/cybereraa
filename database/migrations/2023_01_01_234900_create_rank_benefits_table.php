@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -12,16 +13,17 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('commissions', function (Blueprint $table) {
+        Schema::create('rank_benefits', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('no action');
-            $table->foreignId('purchased_package_id')->nullable()->constrained('purchased_package')->onDelete('no action');
+            $table->foreignId('rank_id')->nullable()->constrained()->onDelete('no action');
             $table->double('amount')->nullable();
             $table->double('paid')->nullable()->default(0);
-            $table->enum('type', ['DIRECT', 'INDIRECT']);
+            $table->enum('type', ['RANK_BONUS', 'RANK_GIFT']);
             $table->enum('status', ['QUALIFIED', 'DISQUALIFIED', 'COMPLETED'])->nullable();
             $table->timestamp('last_earned_at')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -32,6 +34,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('commissions');
+        Schema::dropIfExists('rank_benefits');
     }
 };
