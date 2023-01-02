@@ -40,7 +40,7 @@
     text-align: center;
     list-style-type: none;
     position: relative;
-    padding: 55px 5px 0 5px;
+    padding: 6px 5px 0 5px;
 
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
@@ -52,7 +52,7 @@
 .tree li::before, .tree li::after {
     content: '';
     position: absolute;
-    top: -20px;
+    top: -68px;
     right: 50%;
     border-top: 1px solid #ccc;
     width: 50%;
@@ -101,11 +101,11 @@ right connector from last child*/
 .tree ul ul::before {
     content: '';
     position: absolute;
-    top: -32px;
+    top: -29px;
     left: 50%;
     border-left: 1px solid #ccc;
     width: 0;
-    height: 72px;
+    height: 60px;
 }
 
 .tree li a {
