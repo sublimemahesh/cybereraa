@@ -44,11 +44,12 @@
 
 
 
+
 /* //////////////////////// Genealogy CSS ////////////////////////////////// */
 
 .genealogy .card {
     width: 190px;
-    height: 254px;
+    height: 208px;
     background: #25164f;
     overflow: visible;
     box-shadow: 0 5px 20px 2px rgba(0, 0, 0, 0.1);
@@ -125,8 +126,11 @@
 
 #swiper-pagination-set{
     bottom: -10px;
-    
+
 }
+
+
+
 
 
 @media screen and (max-width: 769px) {
@@ -137,7 +141,9 @@
 .genealogy .card {
     width:100%;
 }
-
+.mobile-margine{
+margin-top: 45px;
+}
 }
 
 
@@ -147,8 +153,14 @@
     }
 
 
-} 
+}
 
 .arrow-margin{
 margin-bottom: 50px;
+}
+
+
+.genealogy .card-active
+{
+    border: 2px solid #db980b !important;
 }
