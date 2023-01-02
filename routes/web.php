@@ -1,6 +1,9 @@
 <?php
 
-use App\Models\User;
+use App\Models\Commission;
+use App\Models\RankBenefit;
+use App\Models\Strategy;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,23 +36,19 @@ Route::group(['prefix' => 'register', 'middleware' => 'guest:' . config('fortify
 });
 
 Route::get('test', function (Request $request) {
-    //$user = User::find(3);
-    //User::upgradeAncestorsRank($user, 1);
-    //dd(Rank::all(), collect(User::getUpgradeRequirements())->where(fn($value, $key) => $value >= 500)->keys()->toArray());
-
-    $available_parent_id = User::findAvailableSubLevel(1);
-    if (empty($available_parent_id->id)) {
-        logger()->warning("routes/web.php : user: " . 1 . " | No parent found with available nodes" . $available_parent_id->id);
-        return;
-    }
-    $parent = User::find($available_parent_id->id);
-    $children = $parent->children;
-    $filled__position = $children->pluck('position')->toArray();
-    $available__position = array_diff([1, 2, 3, 4, 5], $filled__position);
-    sort($available__position);
-    $available__position = Arr::first($available__position);
-
-    dd($available_parent_id->id, $available_parent_id, $filled__position, $available__position);
+    //    $commissions = Commission::find(4);
+    //    $rank = new RankBenefit;
+    //    $sql = RankBenefit::whereMonth('created_at', Carbon::now()->subMonth()->format('m'))
+    //        ->whereYear('created_at', Carbon::now()->subMonth()->format('Y'))
+    //        ->toSql();
+    //    $first_of_month = Carbon::now()->subMonth()->firstOfMonth()->format('Y-m-d H:i:s');
+    //    $last_of_month = Carbon::now()->subMonth()->lastOfMonth()->format('Y-m-d H:i:s');
+    //    $commission_type = strtolower("RANK_BONUS");
+    //    $payable_percentages = Strategy::where('name', "payable_percentages")->firstOr(fn() => new Strategy(['value' => '{"direct":0.332,"indirect":0.332,"rank_bonus":0.332}']));
+    //    $payable_percentages = json_decode($payable_percentages->value, true, 512, JSON_THROW_ON_ERROR);
+    //    $payable_percentage = $payable_percentages[$commission_type] ?? (1 / 300) * 100;
+    //    dd($commission_type, $payable_percentages, $payable_percentage);
+    //    dd($commissions->package_info_json, $rank->package_info_json, $first_of_month, $last_of_month, Carbon::now()->format('m'));
 });
 
 Route::get('payments/binancepay/response', 'Payment\BinancePayController@response');

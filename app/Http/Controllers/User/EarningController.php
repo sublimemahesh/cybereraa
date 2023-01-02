@@ -26,7 +26,6 @@ class EarningController extends Controller
 
             return DataTables::of($earnings)
                 ->addColumn('package', fn($earn) => $earn->earnable->package_info_json->name)
-                ->addColumn('amount', fn($earn) => "USDT " . $earn->amount)
                 ->addColumn('created_at', fn($earn) => $earn->created_at->format('Y-m-d H:i:s'))
                 ->make(true);
         }
