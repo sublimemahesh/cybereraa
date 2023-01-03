@@ -50,6 +50,10 @@ return [
 
     'email' => 'email',
 
+    'super_parent_id' => 3,
+
+    'super_parent_username' => 'user',
+
     /*
     |--------------------------------------------------------------------------
     | Home Path

@@ -33,17 +33,6 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
 
-            'parent_id' => ['nullable', 'exists:users,id'],
-            'position' => [
-                Rule::requiredIf(!empty($input['parent_id'])),
-                'nullable',
-                'lte:5',
-                'gte:1',
-                !empty($input['parent_id']) ?
-                    Rule::unique('users', 'position')
-                        ->where('parent_id', $input['parent_id']) : ''
-            ],
-
             // Profile
             'country_id' => ['required', 'exists:countries,id', 'max:255'],
             'street' => ['required', 'string', 'max:255'],
@@ -63,9 +52,7 @@ class CreateNewUser implements CreatesNewUsers
                 'name' => $input['name'],
                 'email' => $input['email'],
                 'phone' => $input['phone'],
-                'super_parent_id' => $input['super_parent_id'],
-                'parent_id' => $input['parent_id'] ?? null,
-                'position' => $input['position'] ?? null,
+                'super_parent_id' => $input['super_parent_id'] ?? config('fortify.super_parent_id'),
                 'username' => $input['username'],
                 'password' => Hash::make($input['password']),
             ]), function (User $user) use ($input) {

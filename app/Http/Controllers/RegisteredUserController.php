@@ -18,7 +18,7 @@ class RegisteredUserController extends Controller
         if ($request->get('ref', false)) {
             abort_if(!$request->hasValidSignature(), Response::HTTP_UNAUTHORIZED, 'Invalid referral link!');
             $parent = $request->get('ref', null);
-            $sponsor = User::whereUsername($parent)->firstOrFail();
+            $sponsor = User::whereUsername($parent)->whereNotNull('position')->whereNotNull('parent_id')->firstOrFail();
         }
 
         return view('auth.register', compact('sponsor'));

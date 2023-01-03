@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Payment;
 
 use App\Http\Controllers\Controller;
-use App\Models\Commission;
+use App\Jobs\NewUserGenealogyAutoPlacement;
+use App\Jobs\SaleLevelCommissionJob;
 use App\Models\Package;
 use App\Models\PurchasedPackage;
 use App\Models\Strategy;
@@ -291,44 +292,14 @@ class BinancePayController extends Controller
             $withdraw_limit = ($package->invested_amount * $max_withdraw_limit->value) / 100;
             $wallet->increment('withdraw_limit', $withdraw_limit);
 
-
-            $commissions = $strategies->where('name', 'commissions')->first(null, new Strategy(['value' => '{"1":25,"2":20,"3":15,"4":10,"5":5,"6":5,"7":5}']));
-            $commissions = json_decode($commissions->value, true, 512, JSON_THROW_ON_ERROR);
-
-            $commission_start_at = 1;
-            if ($purchasedUser->super_parent_id !== null) {
-                Commission::forceCreate([
-                    'user_id' => $purchasedUser->super_parent_id,
-                    'purchased_package_id' => $package->id,
-                    'amount' => ($package->invested_amount * $commissions[$commission_start_at]) / 100,
-                    'paid' => 0,
-                    'type' => 'DIRECT',
-                    'status' => $purchasedUser->sponsor->is_active ? 'QUALIFIED' : 'DISQUALIFIED'
-                ]);
-                //TODO: Send EMAIL Notification
-            }
-
-            if ($purchasedUser->parent_id !== null) {
-                $commission_level_strategy = $strategies->where('name', 'commission_level_count')->first(null, new Strategy(['value' => 7]));
-                $commission_level = (int)$commission_level_strategy->value;
-                $commission_start_at = 2;
-
-                $commission_level_user = $purchasedUser->parent;
-                for ($i = $commission_start_at; $i <= $commission_level; $i++) {
-                    Commission::forceCreate([
-                        'user_id' => $commission_level_user->id,
-                        'purchased_package_id' => $package->id,
-                        'amount' => ($package->invested_amount * $commissions[$i]) / 100,
-                        'paid' => 0,
-                        'type' => 'INDIRECT',
-                        'status' => $commission_level_user->is_active ? 'QUALIFIED' : 'DISQUALIFIED'
-                    ]);
-                    if ($commission_level_user->parent_id === null) {
-                        break;
-                    }
-                    $commission_level_user = $commission_level_user->parent;
+            if ($purchasedUser->position === null) {
+                if ($purchasedUser->super_parent_id === config('fortify.super_parent_id')) {
+                    NewUserGenealogyAutoPlacement::dispatch($purchasedUser)->onConnection('sync');
                 }
+                return true;
             }
+
+            SaleLevelCommissionJob::dispatch($purchasedUser, $package)->afterCommit();
 
             return true;
         });
