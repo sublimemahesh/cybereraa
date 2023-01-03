@@ -1,0 +1,65 @@
+$(function () {
+    $("#p2p-transfer").select2({
+        ajax: {
+            url: function (params) {
+                return APP_URL + '/user/wallet/transfer/filter/users/' + params.term;
+            }, method: 'POST', dataType: 'json', delay: 1000, processResults: function (data) {
+                if (data.status) {
+                    return {
+                        results: [{
+                            id: data.user.id, text: data.user.text
+                        }]
+                    };
+                }
+            }, cache: true
+        }, minimumInputLength: 3, placeholder: 'Select an User', allowClear: true
+    });
+
+
+    $(document).on('click', '#confirm-transfer', function (e) {
+        e.preventDefault();
+        let receiver = $('#p2p-transfer').val();
+        let amount = $('#transfer-amount').val();
+        let password = $('#password').val();
+        if (receiver === null || receiver.length <= 0) {
+            Toast.fire({
+                icon: 'error', title: "Please Enter a valid username for the receive fund!",
+            })
+            return false
+        } else if (amount.length <= 0 || amount < MINIMUM_PAYOUT_LIMIT || amount > MAX_WITHDRAW_LIMIT) {
+            Toast.fire({
+                icon: 'error', title: "Please Enter a valid amount to transfer!",
+            })
+            return false
+        } else if (password === null || password.length <= 0) {
+            Toast.fire({
+                icon: 'error', title: "Please Enter a your account password!",
+            })
+            return false
+        } else {
+            Swal.fire({
+                title: "Are You Sure?",
+                text: "Transfer funds with selected user?",
+                icon: "info",
+                showCancelButton: true,
+            }).then((transfer) => {
+                if (transfer.isConfirmed) {
+                    loader()
+                    axios.post(APP_URL + '/user/wallet/transfer/p2p', {receiver, amount, password}).then(response => {
+                        Toast.fire({
+                            icon: response.data.icon, title: response.data.message,
+                        }).then(res => {
+                            if (response.data.status) {
+                                response.data.redirectUrl ? location.href = response.data.redirectUrl : location.reload();
+                            }
+                        })
+                    }).catch(error => {
+                        Toast.fire({
+                            icon: 'error', title: error.response.data.message || "Something went wrong!",
+                        })
+                    })
+                }
+            });
+        }
+    })
+})

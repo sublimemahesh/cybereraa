@@ -1,9 +1,6 @@
 <?php
 
-use App\Models\Commission;
-use App\Models\RankBenefit;
 use App\Models\Strategy;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -36,19 +33,18 @@ Route::group(['prefix' => 'register', 'middleware' => 'guest:' . config('fortify
 });
 
 Route::get('test', function (Request $request) {
-    //    $commissions = Commission::find(4);
-    //    $rank = new RankBenefit;
-    //    $sql = RankBenefit::whereMonth('created_at', Carbon::now()->subMonth()->format('m'))
-    //        ->whereYear('created_at', Carbon::now()->subMonth()->format('Y'))
-    //        ->toSql();
-    //    $first_of_month = Carbon::now()->subMonth()->firstOfMonth()->format('Y-m-d H:i:s');
-    //    $last_of_month = Carbon::now()->subMonth()->lastOfMonth()->format('Y-m-d H:i:s');
-    //    $commission_type = strtolower("RANK_BONUS");
-    //    $payable_percentages = Strategy::where('name', "payable_percentages")->firstOr(fn() => new Strategy(['value' => '{"direct":0.332,"indirect":0.332,"rank_bonus":0.332}']));
-    //    $payable_percentages = json_decode($payable_percentages->value, true, 512, JSON_THROW_ON_ERROR);
-    //    $payable_percentage = $payable_percentages[$commission_type] ?? (1 / 300) * 100;
-    //    dd($commission_type, $payable_percentages, $payable_percentage);
-    //    dd($commissions->package_info_json, $rank->package_info_json, $first_of_month, $last_of_month, Carbon::now()->format('m'));
+    $user = Auth::user();
+    $user->loadMax('purchasedPackages', 'invested_amount');
+    dd($user);
+    $strategies = Strategy::whereIn('name', ['max_withdraw_limit', 'commissions', 'commission_level_count'])->get();
+
+    $max_withdraw_limit = $strategies->where('name', 'max_withdraw_limit')->first(null, new Strategy(['value' => 400]));
+    $commissions = $strategies->where('name', 'commissions')->first(null, new Strategy(['value' => '{"1":25,"2":20,"3":15,"4":10,"5":5,"6":5,"7":5}']));
+    $commission_level_strategy = $strategies->where('name', 'commission_level_count')->first(null, new Strategy(['value' => 7]));
+    // $rank_package_requirement = $strategies->where('name', 'rank_package_requirement')->first(null, new Strategy(['value' => '{"1":100,"2":250,"3":500,"4":1000,"5":2500,"6":5000,"7":10000}']));
+    // $rank_bonus_percentage = $strategies->where('name', 'rank_bonus')->first(null, new Strategy(['value' => '10']));
+    // $rank_bonus_levels = $strategies->where('name', 'rank_bonus_levels')->first(null, new Strategy(['value' => '3,4,5,6,7']));
+    dd($strategies, $max_withdraw_limit, $commissions, $commission_level_strategy);
 });
 
 Route::get('payments/binancepay/response', 'Payment\BinancePayController@response');
@@ -116,10 +112,19 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         });
 
         Route::get('transactions', 'User\TransactionController@index')->name('transactions.index');
+        Route::get('incomes/commission', 'User\EarningController@commission')->name('incomes.commission');
+        Route::get('incomes/rewards', 'User\EarningController@rewards')->name('incomes.rewards');
 
         Route::get('earnings', 'User\EarningController@index')->name('earnings.index');
 
         Route::get('wallet', 'User\WalletController@index')->name('wallet.index');
+        Route::get('wallet/transfer', 'User\WithdrawController@p2pTransfer')->name('wallet.transfer');
+        Route::get('wallet/withdraw', 'User\WithdrawController@withdraw')->name('wallet.withdraw');
+
+        Route::post('wallet/transfer/filter/users/{user:username}', 'User\WithdrawController@findUser');
+
+        Route::post('wallet/transfer/p2p', 'Payment\PayoutController@p2pTransfer');
+        Route::post('wallet/withdraw/binance', 'Payment\PayoutController@withdraw');
     });
 
 });

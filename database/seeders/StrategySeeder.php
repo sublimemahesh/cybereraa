@@ -16,6 +16,30 @@ class StrategySeeder extends Seeder
     {
         DB::table('strategies')->insert([
             [
+                'name' => 'payout_transfer_fee',
+                'data_type' => 'double',
+                'value' => 5,
+                'comment' => 'Transaction fee for payout to binance wallet',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'p2p_transfer_fee',
+                'data_type' => 'double',
+                'value' => 2.5,
+                'comment' => 'Transaction fee for peer to peer transaction',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'minimum_payout_limit',
+                'data_type' => 'double',
+                'value' => 10,
+                'comment' => 'Minimum amount needed for request payout',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
                 'name' => 'max_withdraw_limit',
                 'data_type' => 'int',
                 'value' => 400,

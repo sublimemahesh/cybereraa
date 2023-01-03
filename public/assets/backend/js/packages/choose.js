@@ -36,6 +36,7 @@ $(function () {
             method: payMethod,
             package: package_slug
         }).then(response => {
+            payMethodChooseModal.hide()
             Swal.fire({
                 icon: response.data.icon, text: response.data.message,
             })
@@ -47,6 +48,7 @@ $(function () {
             }
         }).catch(error => {
             let error_msg = error.response.data.message || "Something went wrong!"
+            payMethodChooseModal.hide()
             Swal.fire({
                 icon: "error",
                 text: 'Something went wrong!',

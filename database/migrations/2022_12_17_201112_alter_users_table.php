@@ -14,7 +14,7 @@ return new class extends Migration {
     {
         Schema::table('users', function (Blueprint $table) {
             $table->foreignId('super_parent_id')->nullable()->after('id')->constrained('users')->onDelete('no action');
-            $table->integer('position')->nullable()->unsigned();
+            $table->integer('position')->nullable()->after('parent_id')->unsigned();
         });
     }
 
