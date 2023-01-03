@@ -13,10 +13,11 @@ class PurchasedPackage extends Pivot
 {
     use SoftDeletes;
 
-    protected $fillable = ['last_earned_at', 'transaction_id', 'user_id', 'package_id', 'invested_amount', 'payable_percentage', 'status', 'expired_at', 'package_info'];
+    protected $fillable = ['last_earned_at', 'commission_issued_at', 'transaction_id', 'user_id', 'package_id', 'invested_amount', 'payable_percentage', 'status', 'expired_at', 'package_info'];
 
     protected $appends = [
-        'package_info_json'
+        'package_info_json',
+        'is_commission_issued',
     ];
 
     /**
@@ -25,6 +26,11 @@ class PurchasedPackage extends Pivot
     public function getPackageInfoJsonAttribute()
     {
         return $this->package_info_json = json_decode($this->package_info, false, 512, JSON_THROW_ON_ERROR);
+    }
+
+    public function getIsCommissionIssuedAttribute(): bool
+    {
+        return $this->is_commission_issued = $this->commission_issued_at !== null;
     }
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo

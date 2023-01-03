@@ -7,10 +7,7 @@
     @endsection
     @section('breadcrumb-items')
         <li class="breadcrumb-item">
-            <a href="{{ route('user.genealogy', $parent) }}">Genealogy</a>
-        </li>
-        <li class="breadcrumb-item">
-            <a href="{{ URL::signedRoute('user.genealogy.position.manage', [$parent, $position]) }}">Manage New Position</a>
+            <a href="{{ route('user.genealogy') }}">Genealogy</a>
         </li>
         <li class="breadcrumb-item active">Create new user</li>
     @endsection
@@ -18,7 +15,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <livewire:user.genealogy.create-new-user :parent="$parent" :position="$position"/>
+                    <livewire:user.genealogy.create-new-user/>
                 </div>
             </div>
         </div>

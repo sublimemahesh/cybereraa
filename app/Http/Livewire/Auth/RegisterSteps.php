@@ -6,6 +6,7 @@ use App\Actions\Fortify\PasswordValidationRules;
 use App\Models\Country;
 use App\Models\User;
 use Auth;
+use Exception;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -74,8 +75,26 @@ class RegisterSteps extends Component
             'state.driving_lc_number' => $this->step === 2 || $this->step === 3 ? [Rule::requiredIf(empty($this->state['nic']) && empty($this->state['passport_number'])), 'nullable', 'string', 'max:255'] : '',
             'state.passport_number' => $this->step === 2 || $this->step === 3 ? [Rule::requiredIf(empty($this->state['driving_lc_number']) && empty($this->state['nic'])), 'nullable', 'string', 'max:255'] : '',
 
-            'state.super_parent_id' => $this->step === 3 ? ['nullable', 'exists:users,id'] : '',
-            'state.sponsor' => $this->step === 3 ? ['nullable', 'exists:users,username', 'string', 'max:255'] : '',
+            'state.super_parent_id' => $this->step === 3 ? [
+                'nullable',
+                Rule::exists('users', 'id')
+                    ->where(function ($q) {
+                        if (config('fortify.super_parent_id') !== $this->state['super_parent_id']) {
+                            $q->whereNotNull('position')->whereNotNull('parent_id');
+                        }
+                    })
+            ] : '',
+            'state.sponsor' => $this->step === 3 ? [
+                'nullable',
+                Rule::exists('users', 'username')
+                    ->where(function ($q) {
+                        if (config('fortify.super_parent_username') !== $this->state['sponsor']) {
+                            $q->whereNotNull('position')->whereNotNull('parent_id');
+                        }
+                    }),
+                'string',
+                'max:255'
+            ] : '',
             'state.username' => $this->step === 3 ? ['required', 'unique:users,username', 'string', 'max:255'] : '',
             'state.terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() && $this->step === 3 ? ['accepted', 'required'] : '',
         ];
@@ -86,15 +105,29 @@ class RegisterSteps extends Component
         if ($this->step === 2) {
             $this->validate();
         }
+        if ($name === 'state.sponsor') {
+            try {
+                $this->validateOnly($name);
+            } catch (Exception $e) {
+                $this->sponsor = new User;
+                $this->state['super_parent_id'] = null;
+            }
+        }
         $this->validateOnly($name);
     }
 
     public function updatedStateSponsor($value): void
     {
+        $this->sponsor = User::where('username', $value)
+            ->where(function ($q) use ($value) {
+                if (config('fortify.super_parent_username') !== $value) {
+                    $q->whereNotNull('position')->whereNotNull('parent_id');
+                }
+            })
+            ->first();
+        $this->state['super_parent_id'] = optional($this->sponsor)->id;
 
         $this->validateOnly('state.sponsor');
-        $this->sponsor = User::where('username', $value)->first();
-        $this->state['super_parent_id'] = optional($this->sponsor)->id;
     }
 
     public function previousStep(): void

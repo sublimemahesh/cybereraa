@@ -23,7 +23,11 @@
                         </h4>
                         <p>@yield('message')</p>
                         <div>
-                            <a class="btn btn-primary" href="{{ route('/') }}">Back to Home</a>
+                            @if(url()->previous() !== url()->full())
+                                <a class="btn btn-primary" href="{{ url()->previous() }}">Go Back</a>
+                            @else
+                                <a class="btn btn-primary" href="{{ route('/') }}"> Back To Home</a>
+                            @endif
                         </div>
                     </div>
                 </div>

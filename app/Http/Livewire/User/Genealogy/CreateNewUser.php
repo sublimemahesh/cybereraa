@@ -11,7 +11,6 @@ use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
 use Livewire\Component;
-use Validator;
 
 class CreateNewUser extends Component
 {
@@ -42,10 +41,6 @@ class CreateNewUser extends Component
 
     public User $sponsor;
 
-    public User $parent;
-
-    public int $position;
-
     protected function rules(): array
     {
         return [
@@ -68,26 +63,19 @@ class CreateNewUser extends Component
             'state.passport_number' => [Rule::requiredIf(empty($this->state['driving_lc_number']) && empty($this->state['nic'])), 'nullable', 'string', 'max:255'],
 
             'state.super_parent_id' => ['required', 'exists:users,id'],
-            'state.parent_id' => ['required', 'exists:users,id'],
             'state.username' => ['required', 'unique:users,username', 'string', 'max:255'],
-            'state.position' => [
-                'required',
-                'lte:5',
-                'gte:1',
-                Rule::unique('users', 'position')
-                    ->where('parent_id', $this->parent->id)
-            ],
             'state.terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ];
     }
 
-    public function mount($position)
+    public function mount()
     {
         $this->sponsor = Auth::user();
-        $this->state['position'] = (int)$position;
-        $this->state['parent_id'] = $this->parent->id;
         $this->state['super_parent_id'] = $this->sponsor->id;
-
+        if (($this->sponsor->parent_id === null || $this->sponsor->position === null) && $this->sponsor->id !== config('fortify.super_parent_id')) {
+            session()->flash('error', 'Your genealogy position is still not available. Please contact your up link user or contact us to solve the problem!');
+            redirect()->route('user.genealogy');
+        }
     }
 
     public function updated($name, $value): void
@@ -99,23 +87,11 @@ class CreateNewUser extends Component
     {
         $this->validate();
 
-        $this->parent->loadCount('children');
-        $available_spaces = 5 - $this->parent->children_count;
-        $validated = Validator::make(compact('available_spaces'), [
-            'available_spaces' => 'required|gte:1',
-        ])->validate();
-
         $this->state['name'] = $this->state['first_name'] . " " . $this->state['last_name'];
         event(new Registered($user = $creator->create($this->state)));
 
-        try {
-            User::upgradeAncestorsRank($this->parent, 1);
-        } catch (\Throwable $e) {
-            logger()->error("App\Http\Livewire\User\Genealogy CreateNewUser::class : upgradeAncestorsRank failed: " . $e->getMessage());
-        }
-
         session()->flash('message', 'New User Created Successfully!');
-        redirect()->route('user.genealogy', $this->parent);
+        redirect()->route('user.genealogy');
     }
 
     public function render()

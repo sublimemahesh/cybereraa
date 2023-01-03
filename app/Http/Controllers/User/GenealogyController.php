@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\SaleLevelCommissionJob;
 use App\Models\User;
 use Auth;
 use DB;
@@ -50,10 +51,15 @@ class GenealogyController extends Controller
         $loggedUser = Auth::user();
         $loggedUser->loadCount([
             'directSales',
-            'directSales as pending_direct_sales_count' => fn($query) => $query->whereNull('parent_id')
+            'directSales as pending_direct_sales_count' => fn($query) => $query->whereNull('parent_id')->whereHas('activePackages')
         ]);
 
-        $pendingUsers = $loggedUser->directSales()->whereNull('parent_id')->whereNull('position')->oldest()->get();
+        $pendingUsers = $loggedUser->directSales()
+            ->whereNull('parent_id')
+            ->whereNull('position')
+            ->whereHas('activePackages')
+            ->oldest()->get();
+
         $descendant_count = $loggedUser->descendants()->count();
         $parent->loadCount('children');
 
@@ -64,7 +70,7 @@ class GenealogyController extends Controller
         return view('backend.user.genealogy.manage-position', compact('parent', 'descendant_count', 'pendingUsers', 'position', 'loggedUser', 'available_spaces', 'available_percentage'));
     }
 
-    public function assignPosition(Request $request, User $parent, $position)
+    public function assignPosition(Request $request, User $parent, $position): \Illuminate\Http\JsonResponse
     {
         $loggedUser = Auth::user();
         $parent->loadCount('children');
@@ -105,6 +111,12 @@ class GenealogyController extends Controller
             DB::transaction(static function () use ($assignedUser, $parent, $position) {
                 $assignedUser->update(['parent_id' => $parent->id, 'position' => $position]);
                 User::upgradeAncestorsRank($parent, 1);
+
+                $pending_commission_purchased_packages = $assignedUser->activePackages()->whereNull('commission_issued_at')->get();
+                foreach ($pending_commission_purchased_packages as $package) {
+                    SaleLevelCommissionJob::dispatch($assignedUser, $package)->afterCommit();
+                }
+
             });
         } catch (\Throwable $e) {
             $json['status'] = false;
@@ -122,42 +134,13 @@ class GenealogyController extends Controller
         return response()->json($json);
     }
 
-    public function registerForm(Request $request, User $parent, $position)
+    public function registerForm(Request $request)
     {
-        $validator = Validator::make([
-            'position' => $position], [
-            'position' => [
-                'required',
-                'lte:5',
-                'gte:1',
-                Rule::unique('users', 'position')
-                    ->where('parent_id', $parent->id)
-            ]
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->route('user.genealogy', $parent)
-                ->withErrors($validator)
-                ->withInput();
+        $user = Auth::user();
+        if ($user->id !== config('fortify.super_parent_id')) {
+            abort_if($user->parent_id === null || $user->position === null, 403, 'Your genealogy position is still not available. Please contact your up link user or contact us to solve the problem');
         }
-        return view('backend.user.genealogy.create-new-user', compact('parent', 'position'));
+        return view('backend.user.genealogy.create-new-user');
     }
 
-    public function register(Request $request)
-    {
-        // TODO: This is dummy function
-        // TODO: Use this for cronJob if user docent assign newly comers until 3 days
-        // Validate the request parameters
-        $validatedData = $request->validate([
-            'parent_id' => 'required | integer',
-            'name' => 'required | string',
-        ]);
-
-        // Find the ancestor with the fewest children
-        $ancestor = User::findAvailableSubLevel($validatedData['parent_id']);
-
-        // Insert the new node into the genealogy table
-
-        //return response()->json(['success', 'Node inserted successfully']);
-    }
 }

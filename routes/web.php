@@ -109,18 +109,18 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
 
 
         // My Genealogy
+        Route::get('genealogy/new-registration', 'User\GenealogyController@registerForm')->name('genealogy.position.register');
         Route::get('genealogy/{user:username?}', 'User\GenealogyController@index')->name('genealogy');
 
         Route::group(['prefix' => 'genealogy/{parent:username}/position-{position}'], function () {
             Route::get('', 'User\GenealogyController@managePosition')->name('genealogy.position.manage')->middleware('signed');
             Route::post('', 'User\GenealogyController@assignPosition')->middleware('signed');
-            Route::get('new-registration', 'User\GenealogyController@registerForm')->name('genealogy.position.register')->middleware('signed');
         });
 
         Route::get('transactions', 'User\TransactionController@index')->name('transactions.index');
+
         Route::get('incomes/commission', 'User\EarningController@commission')->name('incomes.commission');
         Route::get('incomes/rewards', 'User\EarningController@rewards')->name('incomes.rewards');
-
         Route::get('earnings', 'User\EarningController@index')->name('earnings.index');
 
         Route::get('wallet', 'User\WalletController@index')->name('wallet.index');

@@ -1,7 +1,7 @@
 <x-backend.layouts.app>
     @section('title', 'Manage Genealogy')
     @section('header-title', 'Manage Genealogy' )
-    @section('styles')
+    @section('plugin-styles')
         <link rel="stylesheet" href="{{ asset('assets/backend/vendor/select2/css/select2.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/backend/css/user/genealogy.css') }}">
     @endsection
@@ -93,24 +93,7 @@
                             </form>
                         </div>
                     </div>
-
                 </div>
-            </div>
-        </div>
-        <div class="col-xl-4 col-sm-6">
-            <div class="card bg-secondary email-susb">
-                <div class="card-body text-center">
-                    <div class="">
-                        <img src="{{ asset('assets/backend/images/metaverse.png') }}" alt="">
-                    </div>
-                    <div class="toatal-email">
-                        <p>
-                            Your Total <code>{{ $descendant_count }}</code> network users (Direct & Indirect)!
-                        </p>
-                    </div>
-                    <a href="{{ URL::signedRoute('user.genealogy.position.register', [$parent, $position]) }}" class="btn btn-sm btn-primary email-btn">Register New</a>
-                </div>
-
             </div>
         </div>
     </div>

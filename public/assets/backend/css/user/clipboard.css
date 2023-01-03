@@ -34,3 +34,10 @@
     visibility: visible;
     opacity: 1;
 }
+
+[data-theme-version="dark"] .form-control:disabled,
+[data-theme-version="dark"] .form-control[readonly] {
+    background-color: #15073A !important;
+    border-color: #3A2D60;
+    color: #fff;
+}
