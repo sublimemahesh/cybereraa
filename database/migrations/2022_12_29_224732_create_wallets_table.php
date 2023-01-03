@@ -14,7 +14,7 @@ return new class extends Migration {
     {
         Schema::create('wallets', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->unsigned()->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->nullable()->unique()->constrained()->cascadeOnDelete();
             $table->enum('currency', ['USDT'])->default('USDT');
             $table->double('balance')->nullable()->default(0);
             $table->timestamps();
