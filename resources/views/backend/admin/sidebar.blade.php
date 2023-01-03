@@ -45,6 +45,31 @@
             </li>
 
 
+            <li>
+                <a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
+                    <i class="material-icons">book</i>
+                    <span class="nav-text">Strategies</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li>
+                        <a href="{{ route('admin.strategies.withdrawal.index') }}">Withdrawal</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.strategies.rank-level.index') }}">Rank level</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.strategies.commissions.index') }}">Commissions</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.strategies.payable-percentage.index') }}">Payable percentage</a>
+                    </li>
+                   
+                </ul>
+            </li>
+
+
+
+
             @include('navigation-menu')
         </ul>
 

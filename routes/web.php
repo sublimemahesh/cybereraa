@@ -82,6 +82,12 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::get('users/earnings', 'Admin\EarningController@index')->name('earnings.index');
         Route::post('users/earnings/calculate-profit', 'Admin\EarningController@calculateProfit');
         Route::post('users/earnings/calculate-commission', 'Admin\EarningController@calculateCommission');
+
+        // Strategies
+        Route::get('strategies/withdrawal', 'Admin\StrategyController@withdrawal')->name('strategies.withdrawal.index');
+        Route::get('strategies/rank-level', 'Admin\StrategyController@rankLevel')->name('strategies.rank-level.index');
+        Route::get('strategies/commissions', 'Admin\StrategyController@commissions')->name('strategies.commissions.index');
+        Route::get('strategies/payable-percentage', 'Admin\StrategyController@payablePercentage')->name('strategies.payable-percentage.index');
     });
 
     // USER ROUTES
