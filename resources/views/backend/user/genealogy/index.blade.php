@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="{{ asset('assets/backend/css/user/genealogy.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/backend/css/user/clipboard.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/backend/css/user/main.css') }}">
-        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
     @endsection
     @section('breadcrumb-items')
         <li class="breadcrumb-item">Genealogy</li>
@@ -14,9 +14,9 @@
         <div class="col-sm-12 d-flex justify-content-center">
             <div class="input-group mb-3 w-75 input-primary">
                 <input type="text" readonly class="form-control" id="clipboard-input"
-                    value="{{ Auth::user()->referral_link }}">
+                        value="{{ Auth::user()->referral_link }}">
                 <span class="input-group-text border-0 clipboard-tooltip" onclick="copyToClipBoard()"
-                    onmouseout="outFunc()">
+                        onmouseout="outFunc()">
                     <span class="tooltip-text" id="clipboard-tooltip">Copy to clipboard</span>
                     Copy Link
                 </span>
@@ -46,7 +46,7 @@
                             @include('backend.user.genealogy.includes.genealogy-card', compact('user'))
                         </a>
                         <ul class="remove-mobile ">
-                            <div  class="swiper swiper-container" >
+                            <div class="swiper swiper-container">
                                 <div class="swiper-wrapper add-tree-3">
                                     @for ($i = 1; $i <= 5; $i++)
                                         <li class="position-{{ $i }} remove-mobile">
@@ -56,16 +56,12 @@
                                                 @endphp
                                                 <div class="swiper-slide">
                                                     <a href="{{ route('user.genealogy', $descendant) }}">
-                                                        @include('backend.user.genealogy.includes.genealogy-card',
-                                                            [
-                                                                'user' => $descendant,
-                                                            ])
+                                                        @include('backend.user.genealogy.includes.genealogy-card', ['user' => $descendant])
                                                     </a>
                                                 </div>
                                             @else
                                                 <div class="swiper-slide">
-                                                    <a
-                                                        href="{{ URL::signedRoute('user.genealogy.position.manage', ['parent' => $user, 'position' => $i]) }}">
+                                                    <a href="{{ URL::signedRoute('user.genealogy.position.manage', ['parent' => $user, 'position' => $i]) }}">
                                                         <div class="genealogy item">
                                                             <div class="card">
                                                                 <div class="card-img"></div>
@@ -91,21 +87,20 @@
     </div>
 
 
-
     @push('scripts')
         <script>
             function copyToClipBoard() {
-                var copyText = document.getElementById("clipboard-input");
+                const copyText = document.getElementById("clipboard-input");
                 copyText.select();
                 copyText.setSelectionRange(0, 99999);
                 navigator.clipboard.writeText(copyText.value);
 
-                var tooltip = document.getElementById("clipboard-tooltip");
+                const tooltip = document.getElementById("clipboard-tooltip");
                 tooltip.innerHTML = "Copied: " + copyText.value;
             }
 
             function outFunc() {
-                var tooltip = document.getElementById("clipboard-tooltip");
+                const tooltip = document.getElementById("clipboard-tooltip");
                 tooltip.innerHTML = "Copy to clipboard";
             }
 
@@ -125,29 +120,23 @@
                 },
             })
 
-            var  des=0;
+            let des = 0;
 
             function responsive(x) {
                 if (x.matches) {
-                     // If media query matches
+                    // If media query matches
                     $('.remove-mobile').contents().unwrap();
-
-
-                   des=des+1;
-
+                    des = des + 1;
                 } else {
-
-                   if(des>0){
-                    location.reload();
-                   }
-
+                    if (des > 0) {
+                        location.reload();
+                    }
                 }
             }
 
-            var x = window.matchMedia("(max-width: 700px)")
+            const x = window.matchMedia("(max-width: 700px)");
             responsive(x) // Call listener function at run time
             x.addListener(responsive) // Attach listener function on state changes
-
 
         </script>
     @endpush

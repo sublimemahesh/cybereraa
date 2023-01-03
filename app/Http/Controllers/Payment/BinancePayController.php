@@ -8,7 +8,6 @@ use App\Models\Package;
 use App\Models\PurchasedPackage;
 use App\Models\Strategy;
 use App\Models\Transaction;
-use App\Models\User;
 use App\Models\Wallet;
 use Arr;
 use Auth;
@@ -32,10 +31,21 @@ class BinancePayController extends Controller
             'method' => ['required', 'in:binance-pay,wallet'] /**/
         ])->validate();
 
+        $user = Auth::user();
+        $user->loadMax('purchasedPackages', 'invested_amount');
+
+        $package = Package::whereSlug($validated['package'])->firstOrFail();
+
+        if ($user->purchased_packages_max_invested_amount > $package->amount) {
+            $json['status'] = false;
+            $json['message'] = "Please select a package amount is higher than or equal to USDT " . $user->purchased_packages_max_invested_amount;
+            $json['icon'] = 'error'; // warning | info | question | success | error
+            return response()->json($json, Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
         try {
-            return DB::transaction(function () use ($validated) {
-                $user = Auth::user();
-                $package = Package::whereSlug($validated['package'])->firstOrFail();
+            return DB::transaction(function () use ($user, $package, $validated) {
+
 
                 $transaction = Transaction::create([
                     'user_id' => $user->id,
@@ -76,16 +86,10 @@ class BinancePayController extends Controller
 
                     $res_data = [
                         'bizType' => 'PAY',
-                        'data' => '{
-                            "productName":"' . $package->name . '",
-                            "transactTime":' . (time() * 1000) . ',
-                            "totalFee":' . $transaction->amount . ',
-                            "currency":"' . $transaction->currency . '"
-                        }',
+                        'data' => '{"productName":"' . $package->name . '","transactTime":' . (time() * 1000) . ',"totalFee":' . $transaction->amount . ',"currency":"' . $transaction->currency . '"}',
                     ];
 
                     $transaction->create_order_request = json_encode($req_data, JSON_THROW_ON_ERROR);
-
 
                     if ($user->wallet->balance < $transaction->amount) {
                         $res_data['bizStatus'] = 'PAY_CLOSED';
@@ -273,11 +277,22 @@ class BinancePayController extends Controller
                 'package_info' => $transaction->package->toJson(),
             ]);
 
-            // TODO: ASSIGN OTHER PRIVILEGES IF THEIR ANY
             $package = $transaction->purchasedPackage;
             $purchasedUser = $package->user;
 
-            $commissions = Strategy::where('name', 'commissions')->firstOr('value', fn() => new Strategy(['value' => '{"1":25,"2":20,"3":15,"4":10,"5":5,"6":5,"7":5}']));
+            $strategies = Strategy::whereIn('name', ['commissions', 'commission_level_count', 'max_withdraw_limit'])->get();
+
+            $max_withdraw_limit = $strategies->where('name', 'max_withdraw_limit')->first(null, new Strategy(['value' => 400]));
+            $wallet = Wallet::firstOrCreate(
+                ['user_id' => $purchasedUser->id],
+                ['balance' => 0, 'withdraw_limit' => 0]
+            );
+
+            $withdraw_limit = ($package->invested_amount * $max_withdraw_limit->value) / 100;
+            $wallet->increment('withdraw_limit', $withdraw_limit);
+
+
+            $commissions = $strategies->where('name', 'commissions')->first(null, new Strategy(['value' => '{"1":25,"2":20,"3":15,"4":10,"5":5,"6":5,"7":5}']));
             $commissions = json_decode($commissions->value, true, 512, JSON_THROW_ON_ERROR);
 
             $commission_start_at = 1;
@@ -294,7 +309,7 @@ class BinancePayController extends Controller
             }
 
             if ($purchasedUser->parent_id !== null) {
-                $commission_level_strategy = Strategy::where('name', 'commission_level_count')->firstOr('value', fn() => new Strategy(['value' => 7]));
+                $commission_level_strategy = $strategies->where('name', 'commission_level_count')->first(null, new Strategy(['value' => 7]));
                 $commission_level = (int)$commission_level_strategy->value;
                 $commission_start_at = 2;
 

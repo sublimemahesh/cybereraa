@@ -124,12 +124,21 @@
                             <div class="table-responsive">
                                 <table class="table-responsive tb-transaction table shadow-hover mb-4 dataTable no-footer" id="example6">
                                     <tbody>
-                                    @forelse($latest_earnings as $income)
+                                    @forelse($latest_transactions as $trx)
                                         <tr>
-                                            <td class="font-w700 fs-16">{{ $income->type }}</td>
-                                            <td class="font-w700 fs-16">{{ $income->earnable->package_info_json->name }}</td>
-                                            <td class="font-w700 fs-16">{{ $income->currency }} {{ $income->amount }}</td>
-                                            <td class="fs-14 font-w400">{{ $income->created_at->format('Y-m-d H:i:s') }}</td>
+                                            <td class="font-w700 fs-16">{{ $trx->type }}</td>
+                                            <td class="font-w700 fs-16">
+                                                {{ $trx->package_info_json->name }}
+                                                @if($trx->type === 'P2P')
+                                                    <code class="badge badge-outline-info badge-xs rounded-0">TO: {{ strtoupper($trx->receiver->username) }}</code>
+                                                @endif
+                                            </td>
+                                            <td class="font-w700 fs-16"><code class="badge badge-xs">{{ $trx->status }}</code> </td>
+                                            <td class="font-w700 fs-16">
+                                                <span class="text-success">{{ $trx->package_info_json->currency }} {{ $trx->amount }}</span> <br>
+                                                <small> TRX FEE: {{ $trx->transaction_fee }}</small>
+                                            </td>
+                                            <td class="fs-14 font-w400">{{ $trx->created_at->format('Y-m-d H:i:s') }}</td>
                                         </tr>
                                     @empty
                                     @endforelse
@@ -137,7 +146,8 @@
                                 </table>
                             </div>
                             <div class="table-pagenation d-flex align-items-center justify-content-between">
-                                <p>Showing your<span> 8 latest income</span> data </p>
+                                <p>Showing your<span> {{ count($latest_transactions) }} latest transaction</span> data
+                                </p>
                             </div>
                         </div>
                     </div>

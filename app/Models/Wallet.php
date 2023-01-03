@@ -10,7 +10,7 @@ class Wallet extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['user_id', 'balance'];
+    protected $fillable = ['user_id', 'balance', 'withdraw_limit'];
 
     public function user(): BelongsTo
     {

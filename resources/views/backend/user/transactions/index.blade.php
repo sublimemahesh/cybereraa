@@ -28,12 +28,12 @@
                                         <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
                                             <div>
                                                 <div class=" pt-2 p-2 ">
-                                                    <label for="earning-type" class="text-gray-700 dark:text-gray-300">EARNING TYPE</label>
+                                                    <label for="currency-type" class="text-gray-700 dark:text-gray-300">TRX TYPE</label>
                                                     <div class="relative">
                                                         <select id="currency-type" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
                                                             <option value="">ALL</option>
-                                                            <option value="crypto">Crypto</option>
-                                                            <option value="wallet">Wallet</option>
+                                                            <option value="crypto" {{ request()->input('currency-type') === 'crypto' ? 'selected' : '' }}>Crypto</option>
+                                                            <option value="wallet" {{ request()->input('currency-type') === 'wallet' ? 'selected' : '' }}>Wallet</option>
                                                         </select>
                                                         <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
                                                             <svg class="pointer-events-none w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -47,12 +47,10 @@
                                         <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
                                             <div>
                                                 <div class=" pt-2 p-2 ">
-                                                    <label for="input_period_status" class="text-gray-700 dark:text-gray-300">PERIOD</label>
+                                                    <label for="date-range" class="text-gray-700 dark:text-gray-300">PERIOD</label>
                                                     <div class="relative">
                                                         <form autocomplete="off">
-                                                            <input id="date-range"
-                                                                    class="flatpickr block my-1 bg-gray-50 text-gray-700 py-2 px-3 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500 flatpickr-input"
-                                                                    type="text" placeholder="Select a period" readonly="readonly">
+                                                            <input id="date-range" type="text" placeholder="Select a period" readonly="readonly" class="flatpickr block my-1 bg-gray-50 text-gray-700 py-2 px-3 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500 flatpickr-input">
                                                         </form>
                                                         <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
                                                             <svg class="pointer-events-none w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -70,10 +68,10 @@
                                                     <div class="relative">
                                                         <select id="status" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
                                                             <option value="">ALL</option>
-                                                            <option value="initial">INITIAL</option>
-                                                            <option value="paid">PAID</option>
-                                                            <option value="canceled">CANCELED</option>
-                                                            <option value="expired">EXPIRED</option>
+                                                            <option value="initial" {{ request()->input('status') === 'initial' ? 'selected' : '' }}>INITIAL</option>
+                                                            <option value="paid" {{ request()->input('status') === 'paid' ? 'selected' : '' }}>PAID</option>
+                                                            <option value="canceled" {{ request()->input('status') === 'canceled' ? 'selected' : '' }}>CANCELED</option>
+                                                            <option value="expired" {{ request()->input('status') === 'expired' ? 'selected' : '' }}>EXPIRED</option>
                                                         </select>
                                                         <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
                                                             <svg class="pointer-events-none w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

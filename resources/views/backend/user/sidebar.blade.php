@@ -33,10 +33,28 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('user.transactions.index') }}" class="" aria-expanded="false">
-                    <i class="bi bi-currency-exchange"></i>
+                <a href="{{ route('user.transactions.index', ['status' => 'paid']) }}" class="" aria-expanded="false">
+                    <i class="bi fa-chain-broken"></i>
                     <span class="nav-text">Transaction</span>
                 </a>
+            </li>
+            <li>
+                <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
+                    <i class="bi bi-currency-exchange"></i>
+                    <span class="nav-text">My Incomes</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li>
+                        <a href="{{ route('user.incomes.commission') }}" class="" aria-expanded="false">
+                            <span class="nav-text">Commissions</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('user.incomes.rewards') }}" class="" aria-expanded="false">
+                            <span class="nav-text">Rewards</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li>
                 <a href="{{ route('user.earnings.index') }}" class="" aria-expanded="false">
@@ -45,12 +63,28 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('user.wallet.index') }}" class="" aria-expanded="false">
+                <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
                     <i class="bi bi-wallet2"></i>
                     <span class="nav-text">My Wallet</span>
                 </a>
+                <ul aria-expanded="false">
+                    <li>
+                        <a href="{{ route('user.wallet.index') }}" class="" aria-expanded="false">
+                            <span class="nav-text">Current Wallet</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('user.wallet.transfer') }}">
+                            <span>Transfer Funds</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('user.wallet.withdraw') }}">
+                            <span>Withdraw Funds</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
-
             @include('navigation-menu')
         </ul>
 
