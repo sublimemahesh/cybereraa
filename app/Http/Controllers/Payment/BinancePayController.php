@@ -294,6 +294,7 @@ class BinancePayController extends Controller
 
             if ($purchasedUser->position === null) {
                 if ($purchasedUser->super_parent_id === config('fortify.super_parent_id')) {
+                    logger()->notice("NewUserGenealogyAutoPlacement::class via BinancePayController");
                     NewUserGenealogyAutoPlacement::dispatch($purchasedUser)->onConnection('sync');
                 }
                 return true;

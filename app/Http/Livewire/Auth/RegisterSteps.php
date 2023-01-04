@@ -124,7 +124,7 @@ class RegisterSteps extends Component
                     $q->whereNotNull('position')->whereNotNull('parent_id');
                 }
             })
-            ->first();
+            ->firstOrNew();
         $this->state['super_parent_id'] = optional($this->sponsor)->id;
 
         $this->validateOnly('state.sponsor');
