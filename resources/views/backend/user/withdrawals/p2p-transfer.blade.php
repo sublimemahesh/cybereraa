@@ -37,7 +37,7 @@
                                         <code>USDT {{ $wallet->withdraw_limit }}</code>)</label>
                                     <input min="{{ $minimum_payout_limit->value }}" x-model="transfer_amount" id="transfer-amount" type="number" class="form-control">
                                     <div class="text-info">Receiving Amount:
-                                        <code x-html=" 'USDT ' + (transfer_amount - {{ $p2p_transfer_fee->value }})"></code>
+                                        <code id="show-receiving-amount" x-html=" 'USDT ' + (transfer_amount - {{ $p2p_transfer_fee->value }})"></code>
                                     </div>
                                 </div>
                                 <div class="mb-3 mt-2">

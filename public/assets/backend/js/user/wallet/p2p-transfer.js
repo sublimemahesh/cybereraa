@@ -15,6 +15,15 @@ $(function () {
         }, minimumInputLength: 3, placeholder: 'Select an User', allowClear: true
     });
 
+    $(document).on('change', '#transfer-amount', function (e) {
+        e.preventDefault();
+        let amount = parseFloat($('#transfer-amount').val()) || 0;
+        if (amount < MINIMUM_PAYOUT_LIMIT) {
+            $('#transfer-amount').val(MINIMUM_PAYOUT_LIMIT).change();
+            $('#show-receiving-amount').html('USDT ' + (MINIMUM_PAYOUT_LIMIT - P2P_TRANSFER_FEE))
+            return false
+        }
+    })
 
     $(document).on('click', '#confirm-transfer', function (e) {
         e.preventDefault();
@@ -26,7 +35,7 @@ $(function () {
                 icon: 'error', title: "Please Enter a valid username for the receive fund!",
             })
             return false
-        } else if (amount.length <= 0 || amount < MINIMUM_PAYOUT_LIMIT || amount > MAX_WITHDRAW_LIMIT) {
+        } else if (amount.length <= 0 || parseFloat(amount) < MINIMUM_PAYOUT_LIMIT || parseFloat(amount) > MAX_WITHDRAW_LIMIT) {
             Toast.fire({
                 icon: 'error', title: "Please Enter a valid amount to transfer!",
             })
