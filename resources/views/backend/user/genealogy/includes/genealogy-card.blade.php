@@ -1,7 +1,7 @@
 <div class="genealogy">
     <div class="card  {{ $user->active_packages_count > 0 ? 'card-active' : 'inactive' }}   ">
         <div class="card-img">
-            <img class="rounded-circle img-center1" src="{{ $user->profile_photo_url }}" width="100%" alt="">
+            <img class="card-img2  card-img2-mob" src="{{ $user->profile_photo_url }}"  alt="">
         </div>
         <div class="card-info">
             <h5 class="text-title">{{ $user->username }}</h5><br>

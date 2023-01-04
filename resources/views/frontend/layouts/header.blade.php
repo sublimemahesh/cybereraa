@@ -5,7 +5,7 @@
             <div class="row">
                 <!-- Logo Starts -->
                 <div class="main-logo col-xs-12 col-md-3 col-md-3 col-lg-3 hidden-xs">
-                    <a href="index.php">
+                    <a href="{{ route('/') }}">
                         <img id="logo" class="img-responsive mys-logo" src="{{ asset('assets/frontend/images/down/logo.png') }}" alt="logo">
                     </a>
                 </div>
@@ -133,7 +133,17 @@
                         <ul class="nav navbar-nav">
                             <li id='index'><a href="{{ route('/') }}">Home</a></li>
                             <li id='about'><a href="{{ route('about') }}">About Us</a></li>
-                            <li id='project'><a href="{{ route('project') }}">projects</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">projects<i class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ route('project') }}">Going Projects</a></li>
+                                    <li><a href="{{ route('Upcoming-project') }}">Upcoming Projects</a></li>
+                                </ul>
+                            </li>
+
+
+
+
                             <li id='how_to_work'><a href="{{ route('how-to-work') }}">How to it work </a></li>
                             <li id='pricing'><a href="{{ route('pricing') }}"> Packages</a></li>
                             <li id='faq'><a href="{{ route('faq') }}">FAQ</a></li>
