@@ -28,7 +28,7 @@
                 <div class="main">
                     <div class="container">
                         <div class="row">
-                            <div class="col-sm-12 col-md-5 col-lg-6">
+                            <div class="col-sm-12 col-md-5 col-lg-6 loging-area">
                                 <img class="w-100 shadow vert-move image222"
                                     src="{{ asset('assets/frontend/images/project/banner-img.png') }}" id='hero-img' />
                             </div>

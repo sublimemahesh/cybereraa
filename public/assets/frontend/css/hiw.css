@@ -94,9 +94,13 @@
     padding: 10px;
 }
 
-@media screen and (max-width: 600px) {
-    ul > li {
-        display: inline-block;
+@media screen and (max-width: 767px) {
+    #hiw ul > li {
+        display: inline-block; 
+    }
+
+    #hiw .htext{
+        display: none; 
     }
 
     #hiw .ul-count {
@@ -108,14 +112,14 @@
     }
 
     #hiw li .rigth-arrow {
-        padding-right: 20px;
+        padding-right: 32px;
     }
     #hiw li #lasat-arrow {
         visibility: hidden;
     }
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 767px) {
     #hiw li .rigth-arrow {
         display: none;
     }
