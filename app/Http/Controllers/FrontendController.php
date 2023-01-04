@@ -29,9 +29,16 @@ class FrontendController extends Controller
 
     public function project()
     {
-        $projects= page::find(19);
-        return view('frontend.project', compact('projects'));
-        //return view('frontend.project');
+        $projects= page::where(['parent_id' => 38])->get();
+        return view('frontend.ongoing_project', compact('projects'));
+        
+    }
+
+    public function upcomingProject()
+    {
+        $projects= page::where(['parent_id' => 38])->get();
+        return view('frontend.upcoming-project', compact('projects'));
+        
     }
 
     public function howToWork()

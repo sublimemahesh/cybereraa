@@ -133,7 +133,7 @@
 
 
 
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 768px) {
 .dv {
  display: none;
 }
@@ -144,15 +144,20 @@
 .mobile-margine{
 margin-top: 45px;
 }
+
+.genealogy .card-img2-mob {
+    left:14px;
 }
 
 
-@media screen and (min-width: 769px) {
+
+}
+
+
+@media screen and (min-width: 768px) {
     .mbv {
      display: none;
     }
-
-
 }
 
 .arrow-margin{
@@ -163,4 +168,19 @@ margin-bottom: 50px;
 .genealogy .card-active
 {
     border: 2px solid #db980b !important;
+}
+
+
+.genealogy .card-img2 {
+    --size: 100px;
+    width: 73px;
+    height: 73px;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    background: #42caff;
+    background: linear-gradient(to bottom, #42caff 0%, #e81aff 100%);
+    position: relative;
+    transition: all .3s ease-in-out;
+    margin-top: 50px;
+    
 }

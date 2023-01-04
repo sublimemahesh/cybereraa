@@ -179,3 +179,12 @@ img.vert-move {
 .loging-area{
     margin-top: 101px;
 }
+
+
+#project .eve-section-color{
+    backgroumd:#111;
+}
+
+#project .odd-section{
+    backgroumd:#1d1d1d;
+}
