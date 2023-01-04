@@ -9,7 +9,7 @@
                     <div class="col-xl-12">
                         <div class="auth-form">
                             <div class="text-center mb-3">
-                                <a href="index.html"><img src="{{ asset('assets/backend/images/logo/logo-full.png') }}"
+                                <a href="{{ route('/') }}"><img src="{{ asset('assets/backend/images/logo/logo-full.png') }}"
                                         alt=""></a>
                             </div>
                             <h4 class="text-center mb-4">Login to Your Account</h4>

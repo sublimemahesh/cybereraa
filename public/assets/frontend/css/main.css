@@ -35,7 +35,7 @@ img.vert-move {
     }
 
     100% {
-        transform: translateY(-110px);
+        transform: translateY(-100px);
     }
 }
 
@@ -45,7 +45,7 @@ img.vert-move {
     }
 
     100% {
-        transform: translateY(-110px);
+        transform: translateY(-100px);
     }
 }
 
@@ -55,7 +55,7 @@ img.vert-move {
 }
 
 #hero-img {
-    padding-top: 120px;
+    /* padding-top: 60px; */
     width: 400px;
 
 }
@@ -174,4 +174,8 @@ img.vert-move {
 
 .title-head-news{
     font-size: 33px;
+}
+
+.loging-area{
+    margin-top: 101px;
 }

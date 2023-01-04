@@ -50,15 +50,16 @@
                         @if (count($how_it_works) > $key + 1)
                             <li>
                                 <span class="sub-link" data-serialscrolling="{{ $key }}">
-                                    {{ $htiw->title }}
-                                    <i class="fas fa-arrow-right  rigth-arrow"></i>
+                                    <span class='htext'>{{ $htiw->title }}</span>
+                                    <i class="fa fa-arrow-right  rigth-arrow"></i>
                                 </span>
                                 <i class='fa fa-arrow-down ul-count' aria-hidden="true"></i>
                             </li>
                         @else
                             <li>
                                 <span class="sub-link" data-serialscrolling="{{ $key }}">
-                                    {{ $htiw->title }}
+                                    <span class='htext'> {{ $htiw->title }}</span>
+                                    <i class="fa fa-arrow-right  rigth-arrow" id='lasat-arrow'></i>
                                 </span>
                             </li>
                         @endif
