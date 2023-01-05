@@ -53,10 +53,16 @@ class GenerateUserDailyCommission implements ShouldQueue
                     $this->commission->loadSum('earnings', 'amount');
                     $already_earned_amount = $this->commission->earnings_sum_amount;
 
-                    $today_amount = $this->commission->amount * $payable_percentage;
+                    $today_amount = $this->commission->amount * ($payable_percentage / 100);
 
-                    if ($this->commission->amount < ($already_earned_amount + $today_amount)) {
-                        $today_amount = $this->commission->amount - $already_earned_amount;
+                    //$withdrawal_limits = Strategy::whereIn('name', 'withdrawal_limits')->firstOrNew(fn() => new Strategy(['value' => '{"package":"300","commission":"100"}']));
+                    //$commission_withdrawal_limits = json_decode($withdrawal_limits->value, false, 512, JSON_THROW_ON_ERROR);
+                    //$commission_withdrawal_limits = $commission_withdrawal_limits->commission;
+
+                    $allowed_amount = ($this->commission->amount * 100) / 100; // TODO: IF this need to be work with withdrawal_limits->commission amount change this 300 to $commission_withdrawal_limits
+
+                    if ($allowed_amount < ($already_earned_amount + $today_amount)) {
+                        $today_amount = $allowed_amount - $already_earned_amount;
                         $this->commission->update(['status' => 'COMPLETED']);
                         logger()->info("Commission COMPLETED {$today_amount}");
                     }

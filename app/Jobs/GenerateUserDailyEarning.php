@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Models\Earning;
 use App\Models\PurchasedPackage;
+use App\Models\Strategy;
 use App\Models\Wallet;
 use Carbon\Carbon;
 use DB;
@@ -55,7 +56,11 @@ class GenerateUserDailyEarning implements ShouldQueue
 
                     $earned_amount = $purchase->invested_amount * ($purchase->payable_percentage / 100);
 
-                    $allowed_amount = ($purchase->invested_amount * 300) / 100;
+                    //$withdrawal_limits = Strategy::whereIn('name', 'withdrawal_limits')->firstOrNew(fn() => new Strategy(['value' => '{"package":"300","commission":"100"}']));
+                    //$package_withdrawal_limits = json_decode($withdrawal_limits->value, false, 512, JSON_THROW_ON_ERROR);
+                    //$package_withdrawal_limits = $package_withdrawal_limits->package;
+
+                    $allowed_amount = ($purchase->invested_amount * 300) / 100; // TODO: IF this need to be work with withdrawal_limits->package amount change this 300 to $package_withdrawal_limits
 
                     if ($allowed_amount < ($already_earned_amount + $earned_amount)) {
                         $earned_amount = $allowed_amount - $already_earned_amount;
