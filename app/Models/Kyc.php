@@ -41,17 +41,17 @@ class Kyc extends Model
 
     protected function getKycTypeAttribute(): string
     {
-        return Self::KYC_TYPES[$this->type];
+        return self::KYC_TYPES[$this->type];
     }
 
-    protected function getRequiredDocumentsAttribute(): string
+    protected function getRequiredDocumentsAttribute(): int
     {
-        return Self::REQUIRED_DOCUMENTS[$this->type];
+        return self::REQUIRED_DOCUMENTS[$this->type];
     }
 
     protected function getStatusColorAttribute(): string
     {
-        return Self::STATUS_COLORS[$this->status];
+        return self::STATUS_COLORS[$this->status];
     }
 
 }
