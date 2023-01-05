@@ -66,7 +66,7 @@ class NewUserGenealogyAutoPlacement implements ShouldQueue
 
                 $pending_commission_purchased_packages = $this->user->activePackages()->whereNull('commission_issued_at')->get();
                 foreach ($pending_commission_purchased_packages as $package) {
-                    SaleLevelCommissionJob::dispatch($this->user, $package)->afterCommit();
+                    SaleLevelCommissionJob::dispatch($this->user, $package)->afterCommit()->onConnection('sync');
                 }
 
                 logger()->notice("NewUserGenealogyAutoPlacement::class : user: " . $this->user->id . " | Position placement successful");

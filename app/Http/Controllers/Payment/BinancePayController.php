@@ -300,7 +300,7 @@ class BinancePayController extends Controller
                 return true;
             }
 
-            SaleLevelCommissionJob::dispatch($purchasedUser, $package)->afterCommit();
+            SaleLevelCommissionJob::dispatch($purchasedUser, $package)->afterCommit()->onConnection('sync');
 
             return true;
         });

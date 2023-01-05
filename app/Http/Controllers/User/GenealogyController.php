@@ -114,7 +114,7 @@ class GenealogyController extends Controller
 
                 $pending_commission_purchased_packages = $assignedUser->activePackages()->whereNull('commission_issued_at')->get();
                 foreach ($pending_commission_purchased_packages as $package) {
-                    SaleLevelCommissionJob::dispatch($assignedUser, $package)->afterCommit();
+                    SaleLevelCommissionJob::dispatch($assignedUser, $package)->afterCommit()->onConnection('sync');
                 }
 
             });
