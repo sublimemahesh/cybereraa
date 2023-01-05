@@ -52,16 +52,16 @@ class KycDocument extends Model
 
     protected function getStatusColorAttribute(): string
     {
-        return Self::STATUS_COLORS[$this->status];
+        return self::STATUS_COLORS[$this->status];
     }
 
     protected function getDocumentTypeAttribute(): string
     {
-        return Self::DOCUMENT_TYPES[$this->type];
+        return self::DOCUMENT_TYPES[$this->type];
     }
 
     protected function getDocumentTypeNameAttribute(): string
     {
-        return Self::DOCUMENT_TYPE_NAMES[$this->kyc->type][$this->type];
+        return self::DOCUMENT_TYPE_NAMES[$this->kyc->type][$this->type];
     }
 }

@@ -8,6 +8,7 @@ use App\Models\KycDocument;
 use Auth;
 use DB;
 use Illuminate\Http\Request;
+use Throwable;
 use Validator;
 
 class KycController extends Controller
@@ -18,6 +19,9 @@ class KycController extends Controller
         return view('backend.user.kyc.index', compact('kycs'));
     }
 
+    /**
+     * @throws Throwable
+     */
     public function storeNewEntry(Request $request)
     {
         $validator = Validator::make($request->all(), ['kyc_type' => 'in:nic,driving_lc,passport']);

@@ -37,6 +37,13 @@ class PayoutController extends Controller
             'password' => 'required',
         ])->validate();
 
+        if (!$sender->profile->is_kyc_verified) {
+            $json['status'] = false;
+            $json['message'] = 'Please submit your KYC for account verification. If you already submitted Contact us for verification.';
+            $json['icon'] = 'error'; // warning | info | question | success | error
+            return response()->json($json, Response::HTTP_UNAUTHORIZED);
+        }
+
         if (!Hash::check($validated['password'], $sender->password)) {
             $json['status'] = false;
             $json['message'] = 'Password is incorrect';
