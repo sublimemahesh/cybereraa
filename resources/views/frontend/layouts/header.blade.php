@@ -136,15 +136,11 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">projects<i class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ route('project') }}">Going Projects</a></li>
+                                    <li><a href="{{ route('project') }}">Existing  Projects</a></li>
                                     <li><a href="{{ route('Upcoming-project') }}">Upcoming Projects</a></li>
                                 </ul>
                             </li>
-
-
-
-
-                            <li id='how_to_work'><a href="{{ route('how-to-work') }}">How to it work </a></li>
+                            <li id='how_to_work'><a href="{{ route('how-to-work') }}">HOW IT WORKS</a></li>
                             <li id='pricing'><a href="{{ route('pricing') }}"> Packages</a></li>
                             <li id='faq'><a href="{{ route('faq') }}">FAQ</a></li>
                             <li id='contact'><a href="{{ route('contact') }}">Contact</a></li>

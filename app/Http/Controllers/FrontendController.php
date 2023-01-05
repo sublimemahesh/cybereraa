@@ -13,10 +13,10 @@ class FrontendController extends Controller
     public function index()
     {
         $packages = Package::all();
-        $welcomes= page::find(1);
         $all_news= Blog::all();
+        $homes= page::find(53);
 
-        return view('frontend.index', compact('welcomes','packages','all_news'));
+        return view('frontend.index', compact('homes','packages','all_news'));
       //  return view('frontend.index');
     }
 
@@ -36,7 +36,7 @@ class FrontendController extends Controller
 
     public function upcomingProject()
     {
-        $projects= page::where(['parent_id' => 38])->get();
+        $projects= page::where(['parent_id' => 47])->get();
         return view('frontend.upcoming-project', compact('projects'));
         
     }

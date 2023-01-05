@@ -81,7 +81,7 @@
                                                     </a>
                                                 </div>
                                             @else
-                                                <div class="swiper-slide">
+                                                <div class="swiper-slide" >
                                                     <a href="{{ URL::signedRoute('user.genealogy.position.manage', ['parent' => $user, 'position' => $i]) }}">
                                                         <div class="genealogy item">
                                                             <div class="card">

@@ -40,13 +40,13 @@
              <div class="cd-faq js-cd-faq container2   max-width-md margin-top-lg margin-bottom-lg ">
                  <div class="cd-faq__categories">
                      <ul id="faq-cat-holder">
-                         <li><a class="cd-faq__category cd-faq__category-selected truncate" href="#7">Sing Up And
-                                 Sign In</a>
+                         <li><a class="cd-faq__category cd-faq__category-selected truncate" href="#7">Registration & Login</a>
                          </li>
-                         <li><a class="cd-faq__category truncate" href="#8">Kyc Approval</a></li>
-                         <li><a class="cd-faq__category truncate" href="#9">Buy Packages</a></li>
-                         <li><a class="cd-faq__category truncate" href="#10">Invite Members</a></li>
-                         <li><a class="cd-faq__category truncate" href="#11">Withdraw Money</a></li>
+                         <li><a class="cd-faq__category truncate" href="#8">Security</a></li>
+                         <li><a class="cd-faq__category truncate" href="#9">How to buy Packages</a></li>
+                         <li><a class="cd-faq__category truncate" href="#10">KYC activation</a></li>
+                         <li><a class="cd-faq__category truncate" href="#11">Withdrawal</a></li>
+                         <li><a class="cd-faq__category truncate" href="#11">Invite Friends</a></li>
 
                      </ul> <!-- cd-faq__categories -->
 
@@ -54,7 +54,7 @@
                  <div class="cd-faq__items">
                      <ul id="7" class="cd-faq__group">
                          <li class="cd-faq__title">
-                             <h2>Sing Up And Sign In</h2>
+                             <h2>Registration & Login</h2>
                          </li>
                          @foreach ($faqs as $faq)
                              @if ($faq->parent_id == 7)
@@ -72,7 +72,7 @@
                      <!-- cd-faq__group -->
                      <ul id="8" class="cd-faq__group">
                          <li class="cd-faq__title">
-                             <h2>Kyc Approval</h2>
+                             <h2>Security</h2>
                          </li>
                          @foreach ($faqs as $faq)
                              @if ($faq->parent_id == 8)
@@ -90,7 +90,7 @@
                      <!-- cd-faq__group -->
                      <ul id="9" class="cd-faq__group">
                          <li class="cd-faq__title">
-                             <h2>Buy Packages</h2>
+                             <h2>How to buy Packages</h2>
                          </li>
                          @foreach ($faqs as $faq)
                              @if ($faq->parent_id == 9)
@@ -108,7 +108,7 @@
                      <!-- cd-faq__group -->
                      <ul id="10" class="cd-faq__group">
                          <li class="cd-faq__title">
-                             <h2>Invite Members</h2>
+                             <h2>KYC activation</h2>
                          </li>
                          @foreach ($faqs as $faq)
                              @if ($faq->parent_id == 10)
@@ -127,7 +127,7 @@
 
                      <ul id="11" class="cd-faq__group">
                          <li class="cd-faq__title">
-                             <h2>Withdraw Money</h2>
+                             <h2>Withdrawal</h2>
                          </li>
                          @foreach ($faqs as $faq)
                              @if ($faq->parent_id == 11)
@@ -143,6 +143,23 @@
                          @endforeach
                      </ul>
                      <!-- cd-faq__group -->
+                     <ul id="11" class="cd-faq__group">
+                        <li class="cd-faq__title">
+                            <h2>Invite Friends</h2>
+                        </li>
+                        @foreach ($faqs as $faq)
+                            @if ($faq->parent_id == 11)
+                                <li class="cd-faq__item">
+                                    <a class="cd-faq__trigger" href="#0"><span>{{ $faq->title }}</span></a>
+                                    <div class="cd-faq__content">
+                                        <div class="text-component">
+                                            {!! html_entity_decode($faq->content) !!}
+                                        </div>
+                                    </div> <!-- cd-faq__content -->
+                                </li>
+                            @endif
+                        @endforeach
+                    </ul>
                  </div>
                  <!-- cd-faq__items -->
                  <a href="#0" class="cd-faq__close-panel text-replace">Close</a>

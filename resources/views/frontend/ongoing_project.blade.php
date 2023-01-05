@@ -11,7 +11,6 @@
 
 
      <!-- Banner Area Starts -->
-
      <section class="banner-area">
          <div class="banner-overlay">
              <div class="banner-text text-center">
@@ -20,13 +19,13 @@
                      <div class="row text-center">
                          <div class="col-xs-12">
                              <!-- Title Starts -->
-                             <h2 class="title-head">Our <span>Projects</span></h2>
+                             <h2 class="title-head">Existing  <span>Projects</span></h2>
                              <!-- Title Ends -->
                              <hr>
                              <!-- Breadcrumb Starts -->
                              <ul class="breadcrumb">
                                  <li><a href="index-2.html"> home</a></li>
-                                 <li>Projects</li>
+                                 <li>Existing  Projects</li>
                              </ul>
                              <!-- Breadcrumb Ends -->
                          </div>
@@ -75,7 +74,7 @@
                              <!-- Content Starts -->
                              <div class="col-sm-12 col-md-7 col-lg-6">
                                  <div class="feature-about">
-                                     <h3 class="title-about">{{ $project->title }}</h3>
+                                     <h2 class="title-about"><span>{{ $project->title }}</span></h2>
                                      {!! html_entity_decode($project->content) !!}
                                  </div>
                              </div>

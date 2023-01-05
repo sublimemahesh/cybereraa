@@ -1460,6 +1460,7 @@ ul.nav.nav-tabs li.active a:hover {
 .about-text {
     line-height: 28px;
     margin-bottom: 3px;
+    padding-left: 18px;
 }
 
 .nav-tabs > li.active > a,

@@ -150,6 +150,18 @@ margin-top: 45px;
 }
 
 
+/* #flex {
+    display: flex;
+  }
+
+#flex > .position1 { order: 5; }
+#flex > .position2 { order: 2; }
+#flex > .position3 { order: 3; }
+#flex > .position4 { order: 3; }
+#flex > .position5 { order: 1; }
+ */
+
+
 
 }
 
@@ -182,5 +194,7 @@ margin-bottom: 50px;
     position: relative;
     transition: all .3s ease-in-out;
     margin-top: 50px;
-    
+    object-fit: cover;
+
 }
+

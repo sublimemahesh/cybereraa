@@ -53,15 +53,6 @@
         </section>
     </div>
 
-    <!-- Welcome Section Starts -->
-
-    @foreach ($welcomes->children as $section)
-        {!! $section->content !!}
-        {{-- {!!html_entity_decode($section)!!} --}}
-    @endforeach
-
-    <!-- Welcome Section End -->
-
 
 
     <!-- About Section Starts -->
@@ -75,50 +66,40 @@
                 </div>
             </div>
             <!-- Section Title Ends -->
+
             <!-- Section Content Starts -->
             <div class="row about-content">
                 <!-- Image Starts -->
                 <div class="col-sm-12 col-md-5 col-lg-6 text-center">
-                    <img id="about-us" class="img-responsive img-about-us"
-                        src="{{ asset('assets/frontend/images/down/unnamed11.png') }}" alt="about us">
+                    {{-- <video width="100%" controls>
+                        <source src="https://www.youtube.com/watch?v=4SG2884RcDY" type="video/mp4">
+                        <source src="https://www.youtube.com/watch?v=4SG2884RcDY" type="video/ogg">
+                        Your browser does not support HTML video.
+                      </video> --}}
+                      {!! $homes->children[4]->content !!}
                 </div>
                 <!-- Image Ends -->
                 <!-- Content Starts -->
                 <div class="col-sm-12 col-md-7 col-lg-6">
-                    <h3 class="title-about">WE ARE SAFESTTRADES</h3>
-                    <p class="about-text">We are a leading active and independent World Wide investment company with
-                        a
-                        strong legacy in the Cryptocurrency market.
-                        We offer our clients access to a range of actively managed fundamental equity, fixed income
-                        and
-                        multi-asset capabilities..</p>
+                    <h3 class="title-about">{{ $homes->children[0]->title }}</h3>
+                    <p class="about-text">{!! $homes->children[0]->content !!}</p>
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#menu1">Our Mission</a></li>
-                        <li><a data-toggle="tab" href="#menu2">Our advantages</a></li>
-                        <li><a data-toggle="tab" href="#menu3">Our guarantees</a></li>
+                        <li><a data-toggle="tab" href="#menu2">Our Values</a></li>
+                        <li><a data-toggle="tab" href="#menu3">Our vision</a></li>
                     </ul>
                     <div class="tab-content">
                         <div id="menu1" class="tab-pane fade in active">
-                            <p>Lorem ipsum dolor sit amet. Aut reprehenderit ipsa At eligendi autem et quia tempore est
-                                ducimus numquam sit inventore ipsam a magnam omnis. Qui sapiente inventore eum quos sint
-                                At
-                                magnam expedita ut nostrum ipsa est molestias deserunt.</p>
+                            {!! $homes->children[1]->content !!}
                         </div>
                         <div id="menu2" class="tab-pane fade">
-                            <p>Lorem ipsum dolor sit amet. Aut reprehenderit ipsa At eligendi autem et quia tempore est
-                                ducimus numquam sit inventore ipsam a magnam omnis. Qui sapiente inventore eum quos sint
-                                At
-                                magnam expedita ut nostrum ipsa est molestias deserunt.
-                            </p>
+                            {!! $homes->children[2]->content !!}
                         </div>
                         <div id="menu3" class="tab-pane fade">
-                            <p>Lorem ipsum dolor sit amet. Aut reprehenderit ipsa At eligendi autem et quia tempore est
-                                ducimus numquam sit inventore ipsam a magnam omnis. Qui sapiente inventore eum quos sint
-                                At
-                                magnam expedita ut nostrum ipsa est molestias deserunt. </p>
+                            {!! $homes->children[3]->content !!}
                         </div>
                     </div>
-                    <a class="btn btn-primary" href="about.php">Read More</a>
+                    <a class="btn btn-primary" href="{{ route('about') }}">Read More</a>
                 </div>
                 <!-- Content Ends -->
             </div>
@@ -130,7 +111,7 @@
 
     <!-- hiw Section Starts -->
     <section id='hiw'>
-        <h2 class="title-head text-center">How<span> to it work .</span></h2>
+        <h2 class="title-head text-center">How<span> it works.</span></h2>
         <div class="title-head-subtitle text-center">
             <p>a commercial website that lists wallets, exchanges and other bitcoin related info</p>
         </div>
@@ -351,7 +332,7 @@
             <div class="row text-center">
                 <h2 class="title-head">Our <span>News</span></h2>
                 <div class="title-head-subtitle">
-                    <p>Discover latest news about  on our news</p>
+                    <p>Discover latest news about on our news</p>
                 </div>
             </div>
             <!-- Section Title Ends -->
