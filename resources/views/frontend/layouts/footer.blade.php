@@ -16,7 +16,7 @@
                     </div>
                     <!-- Call To Action Text Ends -->
                     <!-- Call To Action Button Starts -->
-                    <p class="action-btn"><a class="btn btn-primary" href="register.html">Register Now</a></p>
+                    <p class="action-btn"><a class="btn btn-primary" href="{{ route('register') }}">Register Now</a></p>
                     <!-- Call To Action Button Ends -->
                 </div>
             </div>

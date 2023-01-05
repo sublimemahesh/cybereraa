@@ -11,7 +11,7 @@
 #hiw #nav-serialscrolling .sub-link {
     position: relative;
     display: block;
-    padding: 10px 0px 10px 20px;
+    padding: 10px 0px 10px 11px;
     cursor: pointer;
     opacity: 0.5;
     transition: 300ms;
@@ -96,11 +96,11 @@
 
 @media screen and (max-width: 767px) {
     #hiw ul > li {
-        display: inline-block; 
+        display: inline-block;
     }
 
     #hiw .htext{
-        display: none; 
+        display: none;
     }
 
     #hiw .ul-count {
@@ -112,11 +112,21 @@
     }
 
     #hiw li .rigth-arrow {
-        padding-right: 32px;
+        padding-right: 26px;
     }
     #hiw li #lasat-arrow {
         visibility: hidden;
     }
+
+    #hiw .fixed-cat-bar {
+        position: fixed;
+        top: 72px;
+        left:0px; 
+        z-index: 2;
+    }
+
+
+
 }
 
 @media screen and (min-width: 767px) {
