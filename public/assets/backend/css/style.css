@@ -31440,6 +31440,11 @@ input#checkAll.form-check-input:checked {
     opacity: 1;
 }
 
+[data-theme-version="dark"] .form-control:disabled,
+[data-theme-version="dark"] .form-control[readonly] {
+    background-color: #15073A !important;
+}
+
 .form-file {
     border: 0.0625rem solid #eeee;
     background: #fff;

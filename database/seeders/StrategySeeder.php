@@ -50,7 +50,7 @@ class StrategySeeder extends Seeder
             [
                 'name' => 'withdrawal_limits',
                 'data_type' => 'json',
-                'value' => '{"package:" 300, "commission": 100}',
+                'value' => '{"package": 300, "commission": 100}',
                 'comment' => 'In percentage',
                 'created_at' => now(),
                 'updated_at' => now(),

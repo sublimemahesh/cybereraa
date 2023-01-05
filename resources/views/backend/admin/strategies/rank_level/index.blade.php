@@ -7,15 +7,20 @@
 
     @section('breadcrumb-items')
         <li class="breadcrumb-item">
-            <a href="">Rank level</a>
+            <a class="active">Rank level</a>
         </li>
     @endsection
 
-   
-            @include('backend.admin.strategies.rank_level.save', ['btn_id' => 'create'])
-       
+    <div class="row">
+        @include('backend.admin.strategies.rank_level.levels', ['btn_id' => 'create'])
+
+        {{-- ////////////////////////////  Rank package requirement ///////////////////// --}}
+        @include('backend.admin.strategies.rank_level.package-requirement', ['btn_id' => 'create'])
+
+    </div>
 
     @push('scripts')
-        <!-- Datatable -->
+        <script src="{{ asset('assets/backend/js/admin/strategies/ranks/levels.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/admin/strategies/ranks/package-requirement.js') }}"></script>
     @endpush
 </x-backend.layouts.app>

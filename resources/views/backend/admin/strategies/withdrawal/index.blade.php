@@ -7,14 +7,13 @@
 
     @section('breadcrumb-items')
         <li class="breadcrumb-item">
-            <a href="">Withdrawal</a>
+            <a class="active">Withdrawal</a>
         </li>
     @endsection
 
-                    @include('backend.admin.strategies.withdrawal.save', ['btn_id' => 'create'])
-        
-    @push('scripts')
-    <script src="{{ asset('assets/backend/js/admin/strategies/withdrawal/script.js') }}"></script>
-    @endpush
+    @include('backend.admin.strategies.withdrawal.payout-limits')
+
+    @include('backend.admin.strategies.withdrawal.fees')
+
 </x-backend.layouts.app>
 

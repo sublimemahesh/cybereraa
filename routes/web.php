@@ -66,7 +66,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::get('users/kycs/{kyc}', 'Admin\KycController@show')->name('users.kycs.show');
         Route::post('users/kyc-documents/{document}/status', 'Admin\KycController@status');
 
-        //Country
+        //Packages
         Route::resource('packages', 'Admin\PackageController')->except('create', 'show');
 
         //Country
@@ -85,10 +85,21 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::post('users/earnings/calculate-commission', 'Admin\EarningController@calculateCommission');
 
         // Strategies
-        Route::get('strategies/withdrawal', 'Admin\StrategyController@withdrawal')->name('strategies.withdrawal.index');
-        Route::get('strategies/rank-level', 'Admin\StrategyController@rankLevel')->name('strategies.rank-level.index');
-        Route::get('strategies/commissions', 'Admin\StrategyController@commissions')->name('strategies.commissions.index');
-        Route::get('strategies/payable-percentage', 'Admin\StrategyController@payablePercentage')->name('strategies.payable-percentage.index');
+        Route::group(['prefix' => 'strategies', 'controller' => 'Admin\StrategyController', 'as' => 'strategies.'], function () {
+            Route::get('withdrawal', 'withdrawal')->name('withdrawal.index');
+            Route::patch('withdrawal', 'saveWithdraw');
+            Route::patch('withdrawal/fees', 'saveWithdrawFees');
+
+            Route::get('rank-level', 'rankLevel')->name('rank-level.index');
+            Route::patch('rank/levels', 'saveRankLevels');
+            Route::patch('rank/package-requirements', 'savePackageRequirements');
+
+            Route::get('commissions', 'commissions')->name('commissions.index');
+            Route::patch('commissions', 'saveCommissions');
+
+            Route::get('daily-leverages', 'payablePercentage')->name('daily-leverages');
+            Route::patch('daily-leverages', 'saveLeverages');
+        });
     });
 
     // USER ROUTES
