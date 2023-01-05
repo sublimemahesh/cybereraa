@@ -85,11 +85,9 @@
                         <li class="breadcrumb-item">
                             <a href="{{ route('/') }}"><i class="material-icons">home</i></a>
                         </li>
-                        @if (!request()->is('*/dashboard'))
-                            <li class="breadcrumb-item">
-                                <a href="{{ route(Auth::user()->getRoleNames()->first() . '.dashboard') }}">Dashboard</a>
-                            </li>
-                        @endif
+                        <li class="breadcrumb-item">
+                            <a href="{{ !request()->is('*/dashboard') ? route(Auth::user()->getRoleNames()->first() . '.dashboard') : 'javascript:void(0)' }}">Dashboard</a>
+                        </li>
                         @yield('breadcrumb-items')
                     </ol>
                 </div>
