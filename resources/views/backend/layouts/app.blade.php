@@ -73,9 +73,7 @@
 
         @include('backend.layouts.header')
 
-        @include('backend.' .
-                Auth::user()->getRoleNames()->first() .
-                '.sidebar')
+        @include('backend.' .Auth::user()->getRoleNames()->first() .'.sidebar')
 
         <!--********************************** Content body start ***********************************-->
         <div class="content-body">
@@ -84,7 +82,7 @@
 
                 <div class="page-titles">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active">
+                        <li class="breadcrumb-item">
                             <a href="{{ route('/') }}"><i class="material-icons">home</i></a>
                         </li>
                         @if (!request()->is('*/dashboard'))

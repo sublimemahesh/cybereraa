@@ -61,7 +61,7 @@
                         <a href="{{ route('admin.strategies.commissions.index') }}">Commissions</a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.strategies.payable-percentage.index') }}">Payable percentage</a>
+                        <a href="{{ route('admin.strategies.daily-leverages') }}">Daily Leverages</a>
                     </li>
                    
                 </ul>

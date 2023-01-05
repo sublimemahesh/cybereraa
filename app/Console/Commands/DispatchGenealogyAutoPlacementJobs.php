@@ -36,6 +36,7 @@ class DispatchGenealogyAutoPlacementJobs extends Command
 
         try {
             $users = User::whereNull('position')
+                ->whereNotNull('super_parent_id')
                 ->whereHas('activePackages')
                 //TODO: If joined user purchased package after a one day, may parent user cannot be able to place this user in desired position.
                 // if that parent user need time even after the package is purchased check one day after with purchased_package table
