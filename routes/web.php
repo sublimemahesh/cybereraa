@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\KycDocument;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -92,7 +91,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
 
     // USER ROUTES
     Route::group(["prefix" => "user", 'middleware' => ['role:user'], "as" => 'user.'], function () {
-        Route::view('/dashboard', 'backend.user.dashboard')->name('dashboard');
+        Route::get('dashboard', 'User\DashboardController@index')->name('dashboard');
 
         // KYC
         Route::get('kyc', 'User\KycController@index')->name('kyc.index');

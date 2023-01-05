@@ -217,6 +217,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         'HttpRes' => Symfony\Component\HttpFoundation\Response::class,
+        'Carbon' => \Carbon\Carbon::class
     ])->toArray(),
 
 ];
