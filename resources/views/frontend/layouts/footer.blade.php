@@ -40,12 +40,14 @@
                     <h4>Our Company</h4>
                     <div class="menu">
                         <ul>
-                            <li><a href="index-2.html">Home</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="services.html">Services</a></li>
-                            <li><a href="pricing.html">Pricing</a></li>
-                            <li><a href="blog-right-sidebar.html">Blog</a></li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="{{ route('/') }}">Home</a></li>
+                            <li><a href="{{ route('about') }}">About Us</a></li>
+                            <li><a href="{{ route('project') }}">Existing  Projects</a></li>
+                            <li><a href="{{ route('Upcoming-project') }}">Upcoming Projects</a></li>
+                            <li><a href="{{ route('how-to-work') }}">HOW IT WORKS</a></li>
+                            <li><a href="{{ route('pricing') }}">Packages</a></li>
+                            <li><a href="{{ route('contact') }}">Contact</a></li>
+                            <li><a href="{{ route('news') }}">News</a></li>
                         </ul>
                     </div>
                 </div>
@@ -55,12 +57,12 @@
                     <h4>Help & Support</h4>
                     <div class="menu">
                         <ul>
-                            <li><a href="faq.html">FAQ</a></li>
-                            <li><a href="terms-of-services.html">Terms of Services</a></li>
+                            <li><a href="{{ route('faq') }}">FAQ</a></li>
+                            {{-- <li><a href="terms-of-services.html">Terms of Services</a></li>
                             <li><a href="404.html">404</a></li>
                             <li><a href="register.html">Register</a></li>
                             <li><a href="login.html">Login</a></li>
-                            <li><a href="coming-soon.html">Coming Soon</a></li>
+                            <li><a href="coming-soon.html">Coming Soon</a></li> --}}
                         </ul>
                     </div>
                 </div>

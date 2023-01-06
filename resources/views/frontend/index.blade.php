@@ -62,7 +62,7 @@
             <div class="row text-center">
                 <h2 class="title-head">Invest now, you’ll <span>never regret it.</span></h2>
                 <div class="title-head-subtitle">
-                    <p>a commercial website that lists wallets, exchanges and other bitcoin related info</p>
+                    <p>Explain our Mission Values vision</p>
                 </div>
             </div>
             <!-- Section Title Ends -->
@@ -71,18 +71,24 @@
             <div class="row about-content">
                 <!-- Image Starts -->
                 <div class="col-sm-12 col-md-5 col-lg-6 text-center">
-                    {{-- <video width="100%" controls>
-                        <source src="https://www.youtube.com/watch?v=4SG2884RcDY" type="video/mp4">
-                        <source src="https://www.youtube.com/watch?v=4SG2884RcDY" type="video/ogg">
-                        Your browser does not support HTML video.
-                      </video> --}}
-                      {!! $homes->children[4]->content !!}
+
+                      {{-- {!!$homes->children[4]->content !!} --}}
+
+                      @foreach ($homes_video as $key => $hv)
+                         {!!$hv->content !!}
+                      @endforeach
+
+
                 </div>
                 <!-- Image Ends -->
                 <!-- Content Starts -->
                 <div class="col-sm-12 col-md-7 col-lg-6">
-                    <h3 class="title-about">{{ $homes->children[0]->title }}</h3>
-                    <p class="about-text">{!! $homes->children[0]->content !!}</p>
+
+                    @foreach ($homes_contents as $key => $hc)
+                    <h3 class="title-about">{{ $hc->title  }}</h3>
+                    <p class="about-text">{!!$hc->content !!}</p>
+                    @endforeach
+
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#menu1">Our Mission</a></li>
                         <li><a data-toggle="tab" href="#menu2">Our Values</a></li>
@@ -90,13 +96,20 @@
                     </ul>
                     <div class="tab-content">
                         <div id="menu1" class="tab-pane fade in active">
-                            {!! $homes->children[1]->content !!}
+                            @foreach ($homes_mission as $key => $hm)
+                            {!!$hc->content !!}
+                            @endforeach
+
                         </div>
                         <div id="menu2" class="tab-pane fade">
-                            {!! $homes->children[2]->content !!}
+                            @foreach ($homes_value as $key => $hval)
+                            {!!$hval->content !!}
+                            @endforeach
                         </div>
                         <div id="menu3" class="tab-pane fade">
-                            {!! $homes->children[3]->content !!}
+                            @foreach ($homes_vission as $key => $hvi)
+                            {!!$hvi->content !!}
+                            @endforeach
                         </div>
                     </div>
                     <a class="btn btn-primary" href="{{ route('about') }}">Read More</a>
@@ -113,7 +126,8 @@
     <section id='hiw'>
         <h2 class="title-head text-center">How<span> it works.</span></h2>
         <div class="title-head-subtitle text-center">
-            <p>a commercial website that lists wallets, exchanges and other bitcoin related info</p>
+            <p>Explain How it works with us</p>
+
         </div>
 
         <ul class="infoGraphic">
@@ -125,9 +139,9 @@
                     </div>
                 </div>
                 <div class="content">
-                    <div class="icon iconCodepen"></div>
+                    {{-- <div class="icon iconCodepen"></div> --}}
                     <h2>First Step</h2>
-                    <p>Sagittis, audantium sem eveniet lacus pede porttitor aenean.</p>
+                    <p>SING UP AND SIGN IN.</p>
                 </div>
             </li>
             <li>
@@ -138,9 +152,9 @@
                     </div>
                 </div>
                 <div class="content">
-                    <div class="icon iconSocial"></div>
+                    {{-- <div class="icon iconSocial"></div> --}}
                     <h2>Second Step</h2>
-                    <p>Sagittis, audantium sem eveniet lacus pede porttitor aenean.</p>
+                    <p>KYC APPROVAL.</p>
                 </div>
             </li>
             <li>
@@ -151,9 +165,9 @@
                     </div>
                 </div>
                 <div class="content">
-                    <div class="icon iconAirplane"></div>
+                    {{-- <div class="icon iconAirplane"></div> --}}
                     <h2>Third Step</h2>
-                    <p>Sagittis, audantium sem eveniet lacus pede porttitor aenean.</p>
+                    <p>BUY PACKAGES.</p>
                 </div>
             </li>
             <li>
@@ -164,9 +178,22 @@
                     </div>
                 </div>
                 <div class="content">
-                    <div class="icon iconMap"></div>
+                    {{-- <div class="icon iconMap"></div> --}}
                     <h2>Fourth Step</h2>
-                    <p>Sagittis, audantium sem eveniet lacus pede porttitor aenean.</p>
+                    <p>INVITE MEMBERS.</p>
+                </div>
+            </li>
+            <li>
+                <div class="numberWrap">
+                    <div class="number  fontColor5">5</div>
+                    <div class="coverWrap">
+                        <div class="numberCover"></div>
+                    </div>
+                </div>
+                <div class="content">
+                    {{-- <div class="icon iconMap"></div> --}}
+                    <h2>Fifth Step</h2>
+                    <p>WITHDRAW MONEY.</p>
                 </div>
             </li>
 
@@ -180,7 +207,7 @@
         <div class='container'>
             <h2 class="title-head text-center">Our<span> Packages .</span></h2>
             <div class="title-head-subtitle text-center">
-                <p>a commercial website that lists wallets, exchanges and other bitcoin related info</p>
+                <p>Display our packages</p>
             </div>
             <div class="PriceBlocks-sliderContainer">
                 <div class="PriceBlocks-slider">
@@ -231,9 +258,9 @@
         <div class="container">
             <!-- Section Title Starts -->
             <div class="row text-center">
-                <h2 class="title-head">our <span>testimonials</span></h2>
+                <h2 class="title-head">our <span>testimonials .</span></h2>
                 <div class="title-head-subtitle">
-                    <p> A talented team of Cryptocurrency testimonials</p>
+                    <p>A talented team of invest testimonials </p>
                 </div>
             </div>
             <!-- Section Title Ends -->
@@ -330,9 +357,10 @@
         <div class="container">
             <!-- Section Title Starts -->
             <div class="row text-center">
-                <h2 class="title-head">Our <span>News</span></h2>
+                <h2 class="title-head">Our <span>News .</span></h2>
                 <div class="title-head-subtitle">
                     <p>Discover latest news about on our news</p>
+
                 </div>
             </div>
             <!-- Section Title Ends -->

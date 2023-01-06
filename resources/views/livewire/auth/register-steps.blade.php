@@ -26,12 +26,12 @@
         <div class="mb-6">
             <h1 x-html="stepName[currentStep - 1]"></h1>
             <div class="text-xs text-under text-gray-400 cursor-pointer" x-show="currentStep > 1"
-                wire:click="previousStep">⬅ Previous</div>
+                wire:click="previousStep">⬅ Previous</div>  id="nav-wizard"
         </div> --}}
 
 
         <div class="form-wizard order-create sw sw-theme-default sw-justified">
-            <ul class="nav nav-wizard">
+            <ul class="nav nav-wizard"  id="nav-wizard">
                 <li>
                     <a :class="currentStep == 1 ? 'active' : 'inactive'" class="nav-link" href="#wizard_Service">
                         <span>1</span>

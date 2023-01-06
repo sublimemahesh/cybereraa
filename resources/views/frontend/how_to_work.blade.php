@@ -39,7 +39,7 @@
             </div>
         </div>
     </section>
-    <!-- Banner Area end -->
+    <!-- Banner Area end --> 
 
     <div class="container">
         <hr data-serialscrolling-target="0" class="hr-1" />

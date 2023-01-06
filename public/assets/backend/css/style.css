@@ -12609,6 +12609,11 @@ label {
     [data-sidebar-style="overlay"] .nav-header .logo-abbr {
         display: none;
     }
+
+    #logo-abbr{
+
+        display: none !important;
+    }
 }
 
 [data-header-position="fixed"] .nav-header {
@@ -12741,6 +12746,10 @@ label {
     .nav-header .brand-title {
         display: none;
     }
+
+    #brand-title{
+        display: none !important;
+    }
 }
 
 .nav-control {
@@ -12860,8 +12869,8 @@ label {
     }
 }
 
-[data-sidebar-style="full"][data-layout="vertical"] .menu-toggle .brand-title {
-    display: none;
+[data-sidebar-style="full"][data-layout="vertical"] .menu-toggle #brand-title {
+    display: none !important;
 }
 
 [data-sidebar-style="full"][data-layout="vertical"] .menu-toggle .nav-header .logo-abbr {
@@ -32507,6 +32516,9 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
     .form-wizard .nav-wizard {
         flex-direction: unset !important;
     }
+    #nav-wizard{
+        flex-direction: unset !important;
+    }
 
     .form-wizard .tab-content {
         height: 100% !important;
@@ -48782,4 +48794,14 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
     border-radius: 9999px;
     width: 10rem;
     height: 9rem;
+}
+
+
+.qr-css{
+
+    background: white;
+    width: 226px;
+    height: 233px;
+    padding: 15px;
+
 }

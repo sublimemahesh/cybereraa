@@ -1,8 +1,8 @@
 <!--********************************** Nav header start ***********************************-->
 <div class="nav-header">
     <a href="{{ route('/') }}" class="brand-logo">
-        <img src="{{ asset('assets/backend/images/logo/logo.png') }}" class="logo-abbr" alt="">
-        <img src="{{ asset('assets/backend/images/logo/logo-text.png') }}" class="brand-title" alt="">
+        <img src="{{ asset('assets/backend/images/logo/logo.png') }}" class="logo-abbr" id="logo-abbr" alt="">
+        <img src="{{ asset('assets/backend/images/logo/logo-text.png') }}" class="brand-title" id="brand-title"  alt="">
         <img src="{{ asset('assets/backend/images/logo/logo-color.png') }}" class="logo-color" alt="">
         <img src="{{ asset('assets/backend/images/logo/logo-text-color.png') }}" class="brand-title color-title" alt="">
     </a>
