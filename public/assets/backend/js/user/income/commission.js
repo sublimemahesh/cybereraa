@@ -39,7 +39,7 @@ $(function () {
 
         urlParams.set("date-range", $("#date-range").val());
         urlParams.set("status", $("#status").val());
-        urlParams.set("type", $("#commission-type").val());
+        urlParams.set("type", $("#type").val());
 
         let url = location.href.split(/\?|\#/)[0] + "?" + urlParams.toString();
         history.replaceState({}, "", url);

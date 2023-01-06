@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use stdClass;
 
 class Withdraw extends Model
@@ -59,4 +61,32 @@ class Withdraw extends Model
                 ->whereBetween('created_at', [$firstDayOfMonth, $lastDayOfMonth]);
         });
     }
+
+    /**
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
+    public function scopeFilter(Builder $query): Builder
+    {
+        return $query->when(!empty(request()->input('date-range')),
+            static function ($query) {
+                $period = explode(' to ', request()->input('date-range'));
+                try {
+                    $date1 = Carbon::createFromFormat('Y-m-d', $period[0]);
+                    $date2 = Carbon::createFromFormat('Y-m-d', $period[1]);
+                    $query->when($date1 && $date2, fn($q) => $q->whereDate('created_at', '>=', $period[0])->whereDate('created_at', '<=', $period[1]));
+                } finally {
+                    return;
+                }
+            })
+            ->when(!empty(request()->input('type')) && in_array(request()->input('type'), ['p2p', 'binance']),
+                static function ($query) {
+                    $query->where('type', request()->input('type'));
+                })
+            ->when(!empty(request()->input('status')) && in_array(request()->input('status'), ['processing', 'success', 'fail', 'reject']),
+                function ($query) {
+                    $query->where('status', request()->input('status'));
+                });
+    }
+
 }

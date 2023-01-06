@@ -31,7 +31,7 @@ class GenerateDailyEarnings implements ShouldQueue, ShouldBeUnique
      */
     public function handle(): void
     {
-        Artisan::call('profit:calculate');
+        Artisan::call('calculate:profit');
     }
 
 }
