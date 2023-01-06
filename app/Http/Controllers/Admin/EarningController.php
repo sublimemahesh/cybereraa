@@ -17,8 +17,8 @@ class EarningController extends Controller
     public function index(Request $request)
     {
         if ($request->wantsJson()) {
-            $earnings = Earning::with('earnable', 'user.ranks')
-                ->filter()
+            $earnings = Earning::filter()
+                ->with('earnable', 'user.ranks')
                 ->when(!empty($request->get('user_id')), function ($query) use ($request) {
                     $query->where('user_id', $request->get('user_id'));
                 })
@@ -26,18 +26,20 @@ class EarningController extends Controller
                 ->latest();
 
             return DataTables::of($earnings)
+                ->addColumn('user_id', fn($earn) => str_pad($earn->user_id, '4', '0', STR_PAD_LEFT))
                 ->addColumn('package', fn($earn) => $earn->earnable->package_info_json->name)
                 ->addColumn('username', fn($earn) => $earn->user->username)
+                ->addColumn('amount', fn($earn) => number_format($earn->amount, 2))
                 ->addColumn('created_at', fn($earn) => $earn->created_at->format('Y-m-d H:i:s'))
                 ->make(true);
         }
         return view('backend.admin.users.earnings.index');
     }
 
-    public function calculateProfit()
+    public function calculateProfit(): \Illuminate\Http\JsonResponse
     {
         //$this->authorize('calculate_profit');
-        $res = Artisan::call('profit:calculate');
+        $res = Artisan::call('calculate:profit');
         $json['status'] = $res === 0;
         $json['message'] = Artisan::output();
         $json['icon'] = $res === 0 ? 'success' : 'error'; // warning | info | question | success | error
@@ -45,10 +47,10 @@ class EarningController extends Controller
         return response()->json($json, $code);
     }
 
-    public function calculateCommission()
+    public function calculateCommission(): \Illuminate\Http\JsonResponse
     {
         //$this->authorize('calculate_profit');
-        $res = Artisan::call('commission:calculate');
+        $res = Artisan::call('calculate:commission');
         $json['status'] = $res === 0;
         $json['message'] = Artisan::output();
         $json['icon'] = $res === 0 ? 'success' : 'error'; // warning | info | question | success | error

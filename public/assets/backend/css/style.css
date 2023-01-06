@@ -39168,7 +39168,7 @@ table.dataTable tbody tr, table.dataTable tbody td {
 table.dataTable thead th {
     color: #374557;
     white-space: nowrap;
-    font-size: 1.125rem;
+    font-size: 16px;
     text-transform: capitalize;
     font-weight: 600;
     padding: 1.25rem 0.9375rem;

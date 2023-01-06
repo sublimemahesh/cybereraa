@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\Transaction;
-use CryptoPay\Binancepay\BinancePay;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,11 +33,7 @@ Route::group(['prefix' => 'register', 'middleware' => 'guest:' . config('fortify
 });
 
 Route::get('test', function (Request $request) {
-    $trx = Transaction::find(52);
-    dd($trx->create_order_request_info->orderExpireTime);
-    $order_status = (new BinancePay("binancepay/openapi/v2/order/query"))->query(['merchantTradeNo' => '167187932757427339']);
-    $order_status2 = (new BinancePay("binancepay/openapi/v2/order/query"))->query(['merchantTradeNo' => '167301328889185451']);
-    dd($order_status, $order_status2);
+
 });
 
 Route::get('payments/binancepay/response', 'Payment\BinancePayController@response');
@@ -73,10 +67,24 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         // Blog
         Route::resource('blogs', 'Admin\BlogController')->only('index', 'edit', 'destroy');
 
-        // Earnings
-        Route::get('users/earnings', 'Admin\EarningController@index')->name('earnings.index');
-        Route::post('users/earnings/calculate-profit', 'Admin\EarningController@calculateProfit');
-        Route::post('users/earnings/calculate-commission', 'Admin\EarningController@calculateCommission');
+        Route::group(['prefix' => 'reports'], function () {
+            // Earnings
+            Route::get('users/earnings', 'Admin\EarningController@index')->name('earnings.index');
+            Route::post('users/earnings/calculate-profit', 'Admin\EarningController@calculateProfit');
+            Route::post('users/earnings/calculate-commission', 'Admin\EarningController@calculateCommission');
+
+            // Transactions
+            Route::get('users/transactions', 'Admin\TransactionController@index')->name('transactions.index');
+
+            // Incomes
+            Route::get('users/incomes/commission', 'Admin\IncomeController@commission')->name('incomes.commission');
+            Route::get('users/incomes/rewards', 'Admin\IncomeController@rewards')->name('incomes.rewards');
+
+            // withdraws
+            Route::get('users/transfers/p2p', 'Admin\WithdrawController@p2p')->name('transfers.p2p');
+            Route::get('users/transfers/withdrawals', 'Admin\WithdrawController@withdrawals')->name('transfers.withdrawals');
+
+        });
 
         // Strategies
         Route::group(['prefix' => 'strategies', 'controller' => 'Admin\StrategyController', 'as' => 'strategies.'], function () {

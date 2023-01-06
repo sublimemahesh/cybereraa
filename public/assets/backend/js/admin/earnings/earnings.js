@@ -10,14 +10,14 @@ $(function () {
                 previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
             }
         },
-        lengthMenu: [[100, 250, 500, -1], [100, 250, 500, "All"],],
+        lengthMenu: [[25, 50, 100, 250, 500, -1], [25, 50, 100, 250, 500, "All"],],
         scrollX: true,
         destroy: true,
         processing: true,
         serverSide: true,
         fixedHeader: true,
         responsive: true,
-        order: [[6, 'desc']],
+        order: [[5, 'desc']],
         stateSave: true,
         ajax: location.href,
         columns: [
@@ -25,9 +25,37 @@ $(function () {
             {data: "user_id", searchable: false},
             {data: "username", name: 'user.username'},
             {data: "package", searchable: false},
-            {data: "amount"},
             {data: "status", searchable: false},
             {data: "created_at", searchable: false},
+            {data: "amount", name: 'amount'},
+        ],
+        footerCallback: function (row, data, start, end, display) {
+            let api = this.api();
+
+            // Remove the formatting to get integer data for summation
+            let intVal = function (i) {
+                return typeof i === 'string' ? i.replace(/[\$,]/g, '') * 1 : typeof i === 'number' ? i : 0;
+            };
+
+            // Total over this page
+            let pageTotal = api
+                .column(6, {page: 'current'})
+                .data()
+                .reduce(function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0);
+
+            // Update footer
+            pageTotal = new Intl.NumberFormat().format(pageTotal);
+            $(api.column(6).footer()).html(`Page Total: USDT ${pageTotal}`);
+        },
+        columnDefs: [
+            {
+                render: function (amount, type, full, meta) {
+                    return `<div style='min-width:120px' class="text-right"> ${amount} </div>`;
+                },
+                targets: 6,
+            },
         ],
     });
 
@@ -56,7 +84,7 @@ $(function () {
         }).then((calculate) => {
             if (calculate.isConfirmed) {
                 loader()
-                axios.post(APP_URL + "/admin/users/earnings/calculate-profit").then(response => {
+                axios.post(APP_URL + "/admin/reports/users/earnings/calculate-profit").then(response => {
                     Toast.fire({
                         icon: response.data.icon, title: response.data.message,
                     })
@@ -82,7 +110,7 @@ $(function () {
         }).then((calculate) => {
             if (calculate.isConfirmed) {
                 loader()
-                axios.post(APP_URL + "/admin/users/earnings/calculate-commission").then(response => {
+                axios.post(APP_URL + "/admin/reports/users/earnings/calculate-commission").then(response => {
                     Toast.fire({
                         icon: response.data.icon, title: response.data.message,
                     })
