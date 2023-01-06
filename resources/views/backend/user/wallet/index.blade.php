@@ -133,12 +133,26 @@
                                                     <code class="badge badge-outline-info badge-xs rounded-0">TO: {{ strtoupper($trx->receiver->username) }}</code>
                                                 @endif
                                             </td>
-                                            <td class="font-w700 fs-16"><code class="badge badge-xs">{{ $trx->status }}</code> </td>
                                             <td class="font-w700 fs-16">
-                                                <span class="text-success">{{ $trx->package_info_json->currency }} {{ $trx->amount }}</span> <br>
+                                                <code class="badge badge-xs">{{ $trx->status }}</code></td>
+                                            <td class="font-w700 fs-16">
+                                                <span class="text-success">{{ $trx->package_info_json->currency }} {{ $trx->amount }}</span>
+                                                <br>
                                                 <small> TRX FEE: {{ $trx->transaction_fee }}</small>
                                             </td>
                                             <td class="fs-14 font-w400">{{ $trx->created_at->format('Y-m-d H:i:s') }}</td>
+                                            <td class="py-2 text-end">
+                                                <div class="dropdown">
+                                                    <button class="btn btn-primary tp-btn-light sharp" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <span class="fs--1"><svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg></span>
+                                                    </button>
+                                                    <div class="dropdown-menu dropdown-menu-end border py-0" style="">
+                                                        <div class="py-2">
+                                                            <a class="dropdown-item" href="{{ URL::signedRoute('user.wallet.transfer.invoice', $trx) }}">Invoice</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
                                         </tr>
                                     @empty
                                     @endforelse

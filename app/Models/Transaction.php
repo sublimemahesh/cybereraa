@@ -25,6 +25,7 @@ class Transaction extends Model
 
     protected $appends = [
         'create_order_request_info',
+        'create_order_response_info',
         'response_info'
     ];
 
@@ -33,8 +34,19 @@ class Transaction extends Model
      */
     public function getCreateOrderRequestInfoAttribute()
     {
-        if (!is_null($this->create_order_request)) {
+        if ($this->create_order_request !== null) {
             return $this->create_order_request_info = json_decode($this->create_order_request, false, 512, JSON_THROW_ON_ERROR);
+        }
+        return null;
+    }
+
+    /**
+     * @throws JsonException
+     */
+    public function getCreateOrderResponseInfoAttribute()
+    {
+        if ($this->create_order_response !== null) {
+            return $this->create_order_response_info = json_decode($this->create_order_response, false, 512, JSON_THROW_ON_ERROR);
         }
         return null;
     }
@@ -45,7 +57,7 @@ class Transaction extends Model
     public function getResponseInfoAttribute()
     {
 //        {"bizType":"PAY","data":"{\"merchantTradeNo\":\"167192264711991849\",\"productType\":\"02\",\"productName\":\"Package 03\",\"transactTime\":1671922674167,\"tradeType\":\"WEB\",\"totalFee\":500.00000000,\"currency\":\"USDT\",\"commission\":0}","bizIdStr":"202047821918576640","bizId":202047821918576640,"bizStatus":"PAY_CLOSED"}
-        if (!is_null($this->status_response)) {
+        if ($this->status_response !== null) {
             $res = json_decode($this->status_response, false, 512, JSON_THROW_ON_ERROR);
             $res->data = json_decode($res->data, false, 512, JSON_THROW_ON_ERROR);
 

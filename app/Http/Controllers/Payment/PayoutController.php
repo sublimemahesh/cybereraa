@@ -14,6 +14,7 @@ use Hash;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
+use URL;
 use Validator;
 
 
@@ -62,7 +63,7 @@ class PayoutController extends Controller
 
         $p2p_transfer_fee = $strategies->where('name', 'p2p_transfer_fee')->first(null, new Strategy(['value' => 2.5]));
 
-        DB::transaction(static function () use ($sender, $receiver, $validated, $p2p_transfer_fee, $sender_wallet) {
+        $withdraw = DB::transaction(static function () use ($sender, $receiver, $validated, $p2p_transfer_fee, $sender_wallet) {
             $withdraw = Withdraw::create([
                 'user_id' => $sender->id,
                 'receiver_id' => $receiver->id,
@@ -93,12 +94,14 @@ class PayoutController extends Controller
             );
 
             $receiver_wallet->increment('balance', $withdraw->amount);
+
+            return $withdraw;
         });
 
         $json['status'] = true;
         $json['message'] = "P2P Transaction is successful!";
         $json['icon'] = 'success'; // warning | info | question | success | error
-        $json['redirectUrl'] = route('user.wallet.index'); // warning | info | question | success | error
+        $json['redirectUrl'] = URL::signedRoute('user.wallet.transfer.invoice', $withdraw); // warning | info | question | success | error
         return response()->json($json, Response::HTTP_OK);
 
     }

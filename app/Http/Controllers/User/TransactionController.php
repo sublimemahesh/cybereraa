@@ -8,6 +8,7 @@ use Auth;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use URL;
 use Yajra\DataTables\Facades\DataTables;
 
 class TransactionController extends Controller
@@ -32,7 +33,22 @@ class TransactionController extends Controller
                 ->addColumn('created_at', fn($trx) => $trx->created_at->format('Y-m-d h:i A'))
                 ->addColumn('updated_at', fn($trx) => $trx->updated_at->format('Y-m-d h:i A'))
                 ->addColumn('action', function (Transaction $trx) {
-                    return "<a href='#' class='d-block text-center'><i class='fa fa-eye'></i></a>";
+                    $url = URL::signedRoute('user.transactions.invoice', $trx);
+                    $retryBtn = '';
+                    if ($trx->type === 'crypto' && $trx->status === 'INITIAL' && !empty($trx->create_order_request_info->orderExpireTime)) {
+                        if (!Carbon::createFromTimestamp($trx->create_order_request_info->orderExpireTime / 1000)->isPast()) {
+                            $retryURL = route('user.transactions.retry-payment', $trx);
+                            $retryBtn = "<a href='{$retryURL}' class='btn btn-success btn-xxs shadow'>Pay</a>";
+                        } else {
+                            Transaction::find($trx->id)->update(['status' => 'EXPIRED']);
+                        }
+                    }
+
+                    return "<div class='d-flex justify-content-start py-1'>
+                        <a href='{$url}' class='btn btn-primary shadow btn-xs sharp me-3'><i class='fa fa-eye'></i></a>
+                        {$retryBtn}
+                    </div>";
+
                 })
                 ->rawColumns(['action'])
                 ->make(true);

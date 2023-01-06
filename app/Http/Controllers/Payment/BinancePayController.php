@@ -16,6 +16,7 @@ use Carbon\Carbon;
 use CryptoPay\Binancepay\BinancePay;
 use DB;
 use Exception;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Storage;
 use Symfony\Component\HttpFoundation\Response;
@@ -70,7 +71,6 @@ class BinancePayController extends Controller
                         "lastName" => Arr::last(explode(" ", $user->name))
                     ]
                 ];
-
 
                 if ($transaction->type === 'wallet') {
 
@@ -138,9 +138,10 @@ class BinancePayController extends Controller
 
                     $result = $binancePay->createOrder($data);
 
+                    $transaction->merchant_trade_no = $data['merchant_trade_no'];
+                    $transaction->create_order_request = json_encode($binancePay->getRequest(), JSON_THROW_ON_ERROR);
+
                     if ($result['status'] === 'SUCCESS') {
-                        $transaction->merchant_trade_no = $data['merchant_trade_no'];
-                        $transaction->create_order_request = json_encode($binancePay->getRequest(), JSON_THROW_ON_ERROR);
                         $transaction->create_order_response = json_encode($result['data'], JSON_THROW_ON_ERROR);
                         $transaction->save();
 
@@ -150,8 +151,11 @@ class BinancePayController extends Controller
                         $json['data'] = $result['data'];
                         return response()->json($json);
                     }
+
+                    $transaction->save();
                     throw new \RuntimeException($result['errorMessage'], $result['code']);
                 }
+
                 throw new \RuntimeException("Something wrong with your payment method!");
             });
         } catch (Throwable $e) {
@@ -161,6 +165,23 @@ class BinancePayController extends Controller
             $json['icon'] = 'error'; // warning | info | question | success | error
             return response()->json($json, Response::HTTP_FORBIDDEN);
         }
+    }
+
+    public function retryPayment(Transaction $transaction): RedirectResponse
+    {
+        if ($transaction->type === 'crypto') {
+            $order_status = (new BinancePay("binancepay/openapi/v2/order/query"))->query(['merchantTradeNo' => $transaction->merchant_trade_no]);
+
+            $transaction->status = $order_status['data']['status'];
+            $transaction->save();
+
+            if ($transaction->status === 'INITIAL') {
+                return redirect()->to($transaction->create_order_response_info->checkoutUrl);
+            }
+            return redirect()->signedRoute('user.transactions.invoice', $transaction);
+        }
+
+        return redirect()->route('user.packages.active')->with('warning', 'Wallet transaction cannot be retry when canceled. Please select a package and purchase!'); // show success invoice
     }
 
     public function callback(Request $request): \Illuminate\Http\JsonResponse
@@ -231,22 +252,14 @@ class BinancePayController extends Controller
         return response()->json(['returnCode' => 'SUCCESS', 'returnMessage' => null], 200);
     }
 
-    public function response(Request $request)
+    public function response(Request $request): RedirectResponse
     {
-        // The URL to redirect to when the payment is successful.
-        // check order status
-        $transaction = Transaction::find($request->get('trx-id'));
-        // check order exists / pay status / redirect ti success page or error page
-        return redirect()->route('user.packages.active', ['trx-id' => $request->get('trx-id')])->with('success', 'Payment successful'); // show success invoice
+        return $this->checkOrderStatus($request);
     }
 
-    public function fallback(Request $request)
+    public function fallback(Request $request): RedirectResponse
     {
-        // The URL to redirect to when payment is failed.
-        // check order status
-        $transaction = Transaction::find($request->get('trx-id'));
-        // check order exists / pay status / redirect ti success page or error page
-        return redirect()->route('user.packages.active', ['trx-id' => $request->get('trx-id')])->with('error', 'Payment unsuccessful'); // show failure invoice
+        return $this->checkOrderStatus($request);
     }
 
     private function generateUniqueCode(): int
@@ -304,5 +317,27 @@ class BinancePayController extends Controller
 
             return true;
         });
+    }
+
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    private function checkOrderStatus(Request $request): RedirectResponse
+    {
+        $transaction = Transaction::findOr($request->get('trx-id'), function () {
+            return redirect()->route('user.packages.active')->with('warning', 'Something went wrong'); // show success invoice
+        });
+
+        $order_status = (new BinancePay("binancepay/openapi/v2/order/query"))->query(['merchantTradeNo' => $transaction->merchant_trade_no]);
+
+        $transaction->status = $order_status['data']['status'];
+        $transaction->save();
+
+        if ($transaction->status === 'INITIAL') {
+            return redirect()->route('user.transactions.index', ['status' => 'initial']);
+        }
+
+        return redirect()->signedRoute('user.transactions.invoice', $transaction);
     }
 }

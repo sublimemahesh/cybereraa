@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Transaction;
+use CryptoPay\Binancepay\BinancePay;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +35,11 @@ Route::group(['prefix' => 'register', 'middleware' => 'guest:' . config('fortify
 });
 
 Route::get('test', function (Request $request) {
+    $trx = Transaction::find(52);
+    dd($trx->create_order_request_info->orderExpireTime);
+    $order_status = (new BinancePay("binancepay/openapi/v2/order/query"))->query(['merchantTradeNo' => '167187932757427339']);
+    $order_status2 = (new BinancePay("binancepay/openapi/v2/order/query"))->query(['merchantTradeNo' => '167301328889185451']);
+    dd($order_status, $order_status2);
 });
 
 Route::get('payments/binancepay/response', 'Payment\BinancePayController@response');
@@ -117,6 +124,9 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         });
 
         Route::get('transactions', 'User\TransactionController@index')->name('transactions.index');
+        Route::get('transactions/{transaction}/retry-payment', 'Payment\BinancePayController@retryPayment')->name('transactions.retry-payment');
+        Route::get('transactions/invoice/{transaction}', 'Payment\InvoiceController@showPurchaseInvoice')->name('transactions.invoice')->middleware('signed');
+        Route::get('transactions/invoice/steam/{transaction}', 'Payment\InvoiceController@streamPurchaseInvoice')->name('transactions.invoice.stream')->middleware('signed');
 
         Route::get('incomes/commission', 'User\EarningController@commission')->name('incomes.commission');
         Route::get('incomes/rewards', 'User\EarningController@rewards')->name('incomes.rewards');
@@ -130,6 +140,9 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
 
         Route::post('wallet/transfer/p2p', 'Payment\PayoutController@p2pTransfer');
         Route::post('wallet/withdraw/binance', 'Payment\PayoutController@withdraw');
+        Route::get('wallet/transfer/invoice/{withdraw}', 'Payment\InvoiceController@showPayoutInvoice')->name('wallet.transfer.invoice')->middleware('signed');
+        Route::get('wallet/transfer/invoice/steam/{withdraw}', 'Payment\InvoiceController@streamPayoutInvoice')->name('wallet.transfer.invoice.stream')->middleware('signed');
+
     });
 
 });
