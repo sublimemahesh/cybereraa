@@ -14,36 +14,44 @@ class FrontendController extends Controller
     {
         $packages = Package::all();
         $all_news= Blog::all();
-        $homes= page::find(53);
+        $homes= page::find(44); //53  44
 
-        return view('frontend.index', compact('homes','packages','all_news'));
+        $homes_video= page::where(['id' => 54])->get(); // serve 54      50
+        $homes_contents= page::where(['id' => 59])->get(); //    59      45
+        $homes_mission= page::where(['id' => 56])->get(); //     56      46
+        $homes_value= page::where(['id' => 57])->get(); //       57      47
+        $homes_vission= page::where(['id' => 58])->get(); //     58      48
+
+
+
+        return view('frontend.index', compact('homes','packages','all_news','homes_video','homes_contents','homes_mission','homes_value','homes_vission'));
       //  return view('frontend.index');
     }
 
     public function about()
     {
-        $abouts= page::find(3);
+        $abouts= page::find(3); //3
         return view('frontend.about', compact('abouts'));
         //return view('frontend.about');
     }
 
     public function project()
     {
-        $projects= page::where(['parent_id' => 38])->get();
+        $projects= page::where(['parent_id' => 38])->get(); //38
         return view('frontend.ongoing_project', compact('projects'));
-        
+
     }
 
     public function upcomingProject()
     {
-        $projects= page::where(['parent_id' => 47])->get();
+        $projects= page::where(['parent_id' => 47])->get(); //47
         return view('frontend.upcoming-project', compact('projects'));
-        
+
     }
 
     public function howToWork()
     {
-        $how_it_works= page::where(['parent_id' => 12])->get();
+        $how_it_works= page::where(['parent_id' => 12])->get();  //12
 
         return view('frontend.how_to_work', compact('how_it_works'));
        // return view('frontend.how_to_work');

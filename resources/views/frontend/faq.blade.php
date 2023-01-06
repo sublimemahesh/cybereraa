@@ -46,7 +46,7 @@
                          <li><a class="cd-faq__category truncate" href="#9">How to buy Packages</a></li>
                          <li><a class="cd-faq__category truncate" href="#10">KYC activation</a></li>
                          <li><a class="cd-faq__category truncate" href="#11">Withdrawal</a></li>
-                         <li><a class="cd-faq__category truncate" href="#11">Invite Friends</a></li>
+                         <li><a class="cd-faq__category truncate" href="#64">Invite Friends</a></li>
 
                      </ul> <!-- cd-faq__categories -->
 
@@ -143,12 +143,12 @@
                          @endforeach
                      </ul>
                      <!-- cd-faq__group -->
-                     <ul id="11" class="cd-faq__group">
+                     <ul id="64" class="cd-faq__group">
                         <li class="cd-faq__title">
                             <h2>Invite Friends</h2>
                         </li>
                         @foreach ($faqs as $faq)
-                            @if ($faq->parent_id == 11)
+                            @if ($faq->parent_id == 64)
                                 <li class="cd-faq__item">
                                     <a class="cd-faq__trigger" href="#0"><span>{{ $faq->title }}</span></a>
                                     <div class="cd-faq__content">
