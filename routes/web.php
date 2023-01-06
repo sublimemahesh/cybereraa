@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'FrontendController@index')->name('/');
 Route::get('about-us', 'FrontendController@about')->name('about');
-Route::get('existing-project', 'FrontendController@project')->name('project');
-Route::get('upcoming-project', 'FrontendController@upcomingProject')->name('Upcoming-project');
+Route::get('existing-projects', 'FrontendController@project')->name('project');
+Route::get('upcoming-projects', 'FrontendController@upcomingProject')->name('Upcoming-project');
 Route::get('how-it-works', 'FrontendController@howToWork')->name('how-to-work');
 Route::get('packages', 'FrontendController@pricing')->name('pricing');
 Route::get('faq', 'FrontendController@faq')->name('faq');

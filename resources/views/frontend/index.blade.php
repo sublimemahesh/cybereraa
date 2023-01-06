@@ -87,7 +87,7 @@
                     @foreach ($homes_contents as $key => $hc)
                     <h3 class="title-about">{{ $hc->title  }}</h3>
                     <p class="about-text">{!!$hc->content !!}</p>
-                    @endforeach
+                    @endforeach 
 
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#menu1">Our Mission</a></li>
@@ -97,7 +97,7 @@
                     <div class="tab-content">
                         <div id="menu1" class="tab-pane fade in active">
                             @foreach ($homes_mission as $key => $hm)
-                            {!!$hc->content !!}
+                            {!!$hm->content !!}
                             @endforeach
 
                         </div>

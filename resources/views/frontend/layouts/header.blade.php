@@ -6,7 +6,8 @@
                 <!-- Logo Starts -->
                 <div class="main-logo col-xs-12 col-md-3 col-md-3 col-lg-3 hidden-xs">
                     <a href="{{ route('/') }}">
-                        <img id="logo" class="img-responsive mys-logo" src="{{ asset('assets/frontend/images/down/logo.png') }}" alt="logo">
+                        <img id="logo" class="img-responsive mys-logo"
+                            src="{{ asset('assets/frontend/images/down/logo.png') }}" alt="logo">
                     </a>
                 </div>
                 <!-- Logo Ends -->
@@ -28,7 +29,8 @@
                                                 <p class='tp'><i class="fa fa-caret-up" aria-hidden="true"></i>4%(30
                                                     days)</p>
                                                 <h5 class="ttt">$6,249</h5>
-                                                <img src="{{ asset('assets/frontend/images/down/download-modified.png') }}" class="cryimg">
+                                                <img src="{{ asset('assets/frontend/images/down/download-modified.png') }}"
+                                                    class="cryimg">
                                             </div>
                                         </div>
                                     </div>
@@ -39,7 +41,8 @@
                                                 <p class='tp'><i class="fa fa-caret-up" aria-hidden="true"></i>4%(30
                                                     days)</p>
                                                 <h5 class="ttt">$6,249</h5>
-                                                <img src="{{ asset('assets/frontend/images/down/eth.png') }}" class="cryimg">
+                                                <img src="{{ asset('assets/frontend/images/down/eth.png') }}"
+                                                    class="cryimg">
                                             </div>
                                         </div>
                                     </div>
@@ -50,7 +53,8 @@
                                                 <p class='tp'><i class="fa fa-caret-up" aria-hidden="true"></i>4%(30
                                                     days)</p>
                                                 <h5 class="ttt">$6,249</h5>
-                                                <img src="{{ asset('assets/frontend/images/down/balance.png') }}" class="cryimg">
+                                                <img src="{{ asset('assets/frontend/images/down/balance.png') }}"
+                                                    class="cryimg">
                                             </div>
                                         </div>
                                     </div>
@@ -61,7 +65,8 @@
                                                 <p class='tp'><i class="fa fa-caret-up" aria-hidden="true"></i>4%(30
                                                     days)</p>
                                                 <h5 class="ttt">$6,249</h5>
-                                                <img src="{{ asset('assets/frontend/images/down/825508.png') }}" class="cryimg">
+                                                <img src="{{ asset('assets/frontend/images/down/825508.png') }}"
+                                                    class="cryimg">
                                             </div>
                                         </div>
                                     </div>
@@ -71,7 +76,8 @@
                                                 <p class='tp'><i class="fa fa-caret-up" aria-hidden="true"></i>4%(30
                                                     days)</p>
                                                 <h5 class="ttt">$6,249</h5>
-                                                <img src="{{ asset('assets/frontend/images/down/bnb-bnb-logo.png') }}" class="cryimg">
+                                                <img src="{{ asset('assets/frontend/images/down/bnb-bnb-logo.png') }}"
+                                                    class="cryimg">
                                             </div>
                                         </div>
                                     </div>
@@ -97,15 +103,27 @@
                 <!-- User Sign In/Sign Up Starts -->
                 <div class="col-md-3 col-lg-3">
                     <ul class="unstyled user">
-                        <li class="sign-in">
-                            <a href="{{ route('login') }}" class="btn btn-primary  header-btn">
-                                <i class="fa fa-user"></i>
-                                signin</a>
+
+                        @guest
+                            <li class="sign-in">
+                                <a href="{{ route('login') }}" class="btn btn-primary  header-btn">
+                                    <i class="fa fa-user"></i>
+                                    signin</a>
                             </li>
-                        <li class="sign-up">
-                            <a href="{{ route('register') }}" class="btn btn-primary  header-btn"><i
-                                    class="fa fa-user-plus"></i> register</a>
-                                </li>
+                            <li class="sign-up">
+                                <a href="{{ route('register') }}" class="btn btn-primary  header-btn"><i
+                                        class="fa fa-user-plus"></i> register</a>
+                            </li>
+                        @endguest
+                        @auth
+                            <li class="sign-in">
+                                <a href="{{ route(Auth::user()->getRoleNames()->first() . '.dashboard') }}"
+                                    class="btn btn-primary  header-btn">
+                                    {{-- <i class="fa fa-tachometer" aria-hidden="true"></i> --}}
+                                    <i class="fas fa-tachometer-alt"> </i>
+                                    My account </a>
+                            </li>
+                        @endauth
                     </ul>
                 </div>
                 <!-- User Sign In/Sign Up Ends -->
@@ -117,7 +135,8 @@
                 <div class="site-nav-inner">
                     <!-- Logo For ONLY Mobile display Starts -->
                     <a class="logo-mobile" href="index.php">
-                        <img id="logo-mobile" class="img-responsive" src="{{ asset('assets/frontend/images/down/logo.png') }}" alt="">
+                        <img id="logo-mobile" class="img-responsive"
+                            src="{{ asset('assets/frontend/images/down/logo.png') }}" alt="">
                     </a>
                     <!-- Logo For ONLY Mobile display Ends -->
                     <!-- Toggle Icon for Mobile Starts -->
@@ -134,9 +153,10 @@
                             <li id='index'><a href="{{ route('/') }}">Home</a></li>
                             <li id='about'><a href="{{ route('about') }}">About Us</a></li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">projects<i class="fa fa-angle-down"></i></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">projects<i
+                                        class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ route('project') }}">Existing  Projects</a></li>
+                                    <li><a href="{{ route('project') }}">Existing Projects</a></li>
                                     <li><a href="{{ route('Upcoming-project') }}">Upcoming Projects</a></li>
                                 </ul>
                             </li>
