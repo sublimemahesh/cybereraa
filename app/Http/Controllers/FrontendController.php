@@ -14,17 +14,17 @@ class FrontendController extends Controller
     {
         $packages = Package::all();
         $all_news= Blog::all();
-        $homes= page::find(44); //53  44
+        // $homes= page::find(44); //53  44
 
-        $homes_video= page::where(['id' => 54])->get(); // serve 54      50
-        $homes_contents= page::where(['id' => 59])->get(); //    59      45
+        $homes_video= page::where(['id' => 59])->get(); // serve 59      50
+        $homes_contents= page::where(['id' => 54])->get(); //    54      45
         $homes_mission= page::where(['id' => 56])->get(); //     56      46
         $homes_value= page::where(['id' => 57])->get(); //       57      47
         $homes_vission= page::where(['id' => 58])->get(); //     58      48
 
 
 
-        return view('frontend.index', compact('homes','packages','all_news','homes_video','homes_contents','homes_mission','homes_value','homes_vission'));
+        return view('frontend.index', compact('packages','all_news','homes_video','homes_contents','homes_mission','homes_value','homes_vission'));
       //  return view('frontend.index');
     }
 

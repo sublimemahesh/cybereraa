@@ -41,6 +41,7 @@
     <script src="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/owl.carousel.js"></script>
     <!-- net background link -->
     <link rel="stylesheet" href="css/net.css">
+    
     @yield('styles')
 </head>
 <body>
