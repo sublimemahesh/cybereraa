@@ -85,7 +85,7 @@ class FrontendController extends Controller
 
     public function news()
     {
-        $all_news= Blog::all();
+        $all_news= Blog::all();  
         return view('frontend.news', compact('all_news'));
         //return view('frontend.blog');
     }
@@ -93,10 +93,11 @@ class FrontendController extends Controller
 
     public function showNews(Request $request, Blog $news)
     {
-
         $all_news= Blog::all();
         return view('frontend.news-post', compact('news','all_news'));
-
     }
+
+   
+
 
 }

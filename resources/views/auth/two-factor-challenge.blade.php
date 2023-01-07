@@ -1,57 +1,80 @@
-<x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
+@extends('auth.layouts.auth')
+@section('title', 'TWO FACTOR CHALLENGE')
+@section('contents')
 
-        <div x-data="{ recovery: false }">
-            <div class="mb-4 text-sm text-gray-600" x-show="! recovery">
-                {{ __('Please confirm access to your account by entering the authentication code provided by your authenticator application.') }}
-            </div>
+    <div class="row justify-content-center main-register-form-style">
+        <div class="col-md-6">
+            <div class="authincation-content">
+                <div class="row no-gutters">
+                    <div class="col-xl-12" x-data="{ recovery: false }">
 
-            <div class="mb-4 text-sm text-gray-600" x-show="recovery">
-                {{ __('Please confirm access to your account by entering one of your emergency recovery codes.') }}
-            </div>
+                
+                        <div class="auth-form">
+                            <div class="text-center mb-3">
+                                <a href="{{ route('/') }}"><img
+                                        src="{{ asset('assets/backend/images/logo/logo-full.png') }}" alt=""></a>
+                            </div>
 
-            <x-jet-validation-errors class="mb-4" />
+                            <div class="mb-4 text-sm text-gray-600" x-show="! recovery">
+                                <p>{{ __('Please confirm access to your account by entering the authentication code provided by your authenticator application.') }}</p>
+                            </div>
+                            <div class="mb-4 text-sm text-gray-600" x-show="recovery">
+                                <p>{{ __('Please confirm access to your account by entering one of your emergency recovery codes.') }}</p>
+                            </div>
 
-            <form method="POST" action="{{ route('two-factor.login') }}">
-                @csrf
 
-                <div class="mt-4" x-show="! recovery">
-                    <x-jet-label for="code" value="{{ __('Code') }}" />
-                    <x-jet-input id="code" class="block mt-1 w-full" type="text" inputmode="numeric" name="code" autofocus x-ref="code" autocomplete="one-time-code" />
-                </div>
 
-                <div class="mt-4" x-show="recovery">
-                    <x-jet-label for="recovery_code" value="{{ __('Recovery Code') }}" />
-                    <x-jet-input id="recovery_code" class="block mt-1 w-full" type="text" name="recovery_code" x-ref="recovery_code" autocomplete="one-time-code" />
-                </div>
+                            <h4 class="text-center mb-4">Two factor challenge</h4>
 
-                <div class="flex items-center justify-end mt-4">
-                    <button type="button" class="text-sm text-gray-600 hover:text-gray-900 underline cursor-pointer"
-                                    x-show="! recovery"
-                                    x-on:click="
-                                        recovery = true;
-                                        $nextTick(() => { $refs.recovery_code.focus() })
-                                    ">
-                        {{ __('Use a recovery code') }}
-                    </button>
+                            <form method="POST" action="{{ route('two-factor.login') }}">
+                                @csrf
 
-                    <button type="button" class="text-sm text-gray-600 hover:text-gray-900 underline cursor-pointer"
-                                    x-show="recovery"
-                                    x-on:click="
+                                <div class="col-lg-12  mt-4">
+                                    <label class="mb-1" for="code"><strong
+                                            class="main-register-form-text">{{ __('Code') }}<sup
+                                                class="main-required">*</sup></strong></label>
+                                    <x-jet-input id="code" class="block mt-1 w-full form-control" type="text"
+                                        inputmode="numeric" name="code" autofocus x-ref="code"
+                                        autocomplete="one-time-code" />
+                                </div>
+
+                                <div class="col-lg-12  mt-4">
+                                    <label class="mb-1" for="recovery_code"><strong
+                                            class="main-register-form-text">{{ __('Recovery Code') }}<sup
+                                                class="main-required">*</sup></strong></label>
+                                    <x-jet-input id="recovery_code" class="block mt-1 w-full form-control" type="text"
+                                        name="recovery_code" x-ref="recovery_code" autocomplete="one-time-code" />
+                                </div>
+
+                                <div class="col-lg-12  mt-4">
+                                    <button type="button"
+                                        class="btn btn-primary btn-block text-sm text-gray-600 hover:text-gray-900 underline cursor-pointer"
+                                        x-show="recovery"
+                                        x-on:click="
+                                    recovery = true;
+                                    $nextTick(() => { $refs.recovery_code.focus() })
+                                ">
+                                        {{ __('Use a recovery code') }}</button>
+
+                                    <button type="button"
+                                        class="btn btn-primary btn-block text-sm text-sm text-gray-600 hover:text-gray-900 underline cursor-pointer"
+                                        x-show="recovery"
+                                        x-on:click="
                                         recovery = false;
                                         $nextTick(() => { $refs.code.focus() })
                                     ">
-                        {{ __('Use an authentication code') }}
-                    </button>
+                                        {{ __('Use an authentication code') }}
+                                    </button>
 
-                    <x-jet-button class="ml-4">
-                        {{ __('Log in') }}
-                    </x-jet-button>
+                                    <button class="btn btn-primary btn-block "> {{ __('Log in') }}</button>
+                                </div>
+                            </form>
+                            <div class="new-account mt-3">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </form>
+            </div>
         </div>
-    </x-jet-authentication-card>
-</x-guest-layout>
+    </div>
+@endsection

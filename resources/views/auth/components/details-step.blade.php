@@ -163,7 +163,7 @@
     </div>
     @enderror
 </div>
-
+ 
 <div class="col-lg-6 mt-3">
     <label class="mb-1" for="password_confirmation"><strong class="main-register-form-text">{{ __('Confirm Password') }}
             <sup class="main-required">*</sup></strong></label>
