@@ -103,7 +103,15 @@
                 <!-- User Sign In/Sign Up Starts -->
                 <div class="col-md-3 col-lg-3">
                     <ul class="unstyled user">
-
+                        @auth
+                        <li class="sign-in" id='log-btn'>
+                            <a href="{{ route(Auth::user()->getRoleNames()->first() . '.dashboard') }}"
+                                class="btn btn-primary  header-btn">
+                                {{-- <i class="fa fa-tachometer" aria-hidden="true"></i> --}}
+                                <i class="fas fa-tachometer-alt"> </i>
+                                My account </a>
+                        </li>
+                    @endauth
                         @guest
                             <li class="sign-in">
                                 <a href="{{ route('login') }}" class="btn btn-primary  header-btn">
@@ -115,15 +123,7 @@
                                         class="fa fa-user-plus"></i> register</a>
                             </li>
                         @endguest
-                        @auth
-                            <li class="sign-in">
-                                <a href="{{ route(Auth::user()->getRoleNames()->first() . '.dashboard') }}"
-                                    class="btn btn-primary  header-btn">
-                                    {{-- <i class="fa fa-tachometer" aria-hidden="true"></i> --}}
-                                    <i class="fas fa-tachometer-alt"> </i>
-                                    My account </a>
-                            </li>
-                        @endauth
+                       
                     </ul>
                 </div>
                 <!-- User Sign In/Sign Up Ends -->

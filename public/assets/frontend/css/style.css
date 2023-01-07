@@ -3425,7 +3425,7 @@ section.shop-checkout {
 .call-action-all {
     padding: 0;
     position: relative;
-    background: url("../images/down/bf.jpg");
+    background: url("../images/backgrounds/bg-banner.jpg"); 
     background-size: cover;
     background-position: center center;
     z-index: 3;
@@ -5093,6 +5093,13 @@ h4.panel-title a.collapsed:before {
         width: 50%;
     }
 
+    #log-btn{
+        width: 100%;
+        margin-top: -8px;
+        margin-bottom: 6px
+    }
+
+
     ul.user li.sign-in {
         padding-left: 0;
         padding-right: 7px;
@@ -5193,4 +5200,11 @@ h4.panel-title a.collapsed:before {
     .countdown-amount {
         font-size: 28px;
     }
+}
+
+.gold-color{
+    color:#fd961a;
+}
+.i-con{
+    font-size:100px;
 }

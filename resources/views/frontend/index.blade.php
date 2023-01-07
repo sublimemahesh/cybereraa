@@ -87,14 +87,14 @@
                     @foreach ($homes_contents as $key => $hc)
                     <h3 class="title-about">{{ $hc->title  }}</h3>
                     <p class="about-text">{!!$hc->content !!}</p>
-                    @endforeach 
+                    @endforeach
 
-                    <ul class="nav nav-tabs">
+                    {{-- <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#menu1">Our Mission</a></li>
                         <li><a data-toggle="tab" href="#menu2">Our Values</a></li>
                         <li><a data-toggle="tab" href="#menu3">Our vision</a></li>
-                    </ul>
-                    <div class="tab-content">
+                    </ul> --}}
+                    {{-- <div class="tab-content">
                         <div id="menu1" class="tab-pane fade in active">
                             @foreach ($homes_mission as $key => $hm)
                             {!!$hm->content !!}
@@ -111,7 +111,7 @@
                             {!!$hvi->content !!}
                             @endforeach
                         </div>
-                    </div>
+                    </div> --}}
                     <a class="btn btn-primary" href="{{ route('about') }}">Read More</a>
                 </div>
                 <!-- Content Ends -->

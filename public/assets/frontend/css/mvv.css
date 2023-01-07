@@ -1,0 +1,77 @@
+#mvv{
+    background: #1d1d1d;
+  }
+  #mvv .services-block-three{
+    margin-bottom" 30px;
+  }
+  #mvv .services-block-three i {
+      font-size: 32px;
+  }
+  #mvv .services-block-three>a {
+      display: block;
+      border: 2px solid #111111;
+      border-radius: 4px;
+      text-align: center;
+      background: #111111;
+      padding: 20px;
+      position: relative;
+    margin-bottom:30px;
+
+  }
+  #mvv .services-block-three>a:before {
+      display: block;
+      content: "";
+      width: 9%;
+      height: 17%;
+      position: absolute;
+      bottom: -2px;
+      right: -2px;
+      border-bottom: 2px solid #fd961a;
+      border-right: 2px solid #fd961a;
+      transition: all 0.5s ease 0s;
+      -webkit-transition: all 0.5s ease 0s;
+  }
+  #mvv .services-block-three>a:after {
+      display: block;
+      content: "";
+      width: 9%;
+      height: 17%;
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      border-top: 2px solid #fd961a;
+      border-left: 2px solid #fd961a;
+      transition: all 0.5s ease 0s;
+      -webkit-transition: all 0.5s ease 0s;
+  }
+  #mvv.padding-15px-bottom {
+      padding-bottom: 15px;
+  }
+  #mvv.services-block-three h4 {
+      color: #6f6f6f;
+      font-size: 14px;
+      margin-bottom: 10px;
+      font-weight: 600;
+  }
+  #mvv .services-block-three p {
+      margin-bottom: 0;
+    color: #757575;
+  }
+  #mvv .services-block-three>a:hover {
+      opacity: 1;
+      border-color: #d5d5d5;
+  }
+  #mvv a:hover, #mvv a:active {
+      /* color: #03a9f5; */
+      text-decoration: none;
+  }
+
+  #mvv .services-block-three>a:hover:before,  #mvv .services-block-three>a:hover:after {
+      width: 95%;
+      height: 90%;
+  }
+
+  #mvv h4 {
+    color:white;
+  }
+
