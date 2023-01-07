@@ -67,6 +67,9 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         // Blog
         Route::resource('blogs', 'Admin\BlogController')->only('index', 'edit', 'destroy');
 
+        //Currency
+        Route::resource('currencies', 'Admin\CurrencyController')->except('create', 'show');
+
         Route::group(['prefix' => 'reports'], function () {
             // Earnings
             Route::get('users/earnings', 'Admin\EarningController@index')->name('earnings.index');

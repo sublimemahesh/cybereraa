@@ -77,6 +77,9 @@
                     <li>
                         <a href="{{ route('admin.blogs.index') }}">Bloge</a>
                     </li>
+                    <li>
+                        <a href="{{ route('admin.currencies.index') }}">Currencies</a>
+                    </li>
                 </ul>
             </li>
 
