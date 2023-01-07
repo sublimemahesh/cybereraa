@@ -1,10 +1,10 @@
 $(function () {
 
-    $(document).on('change', '#transfer-amount', function (e) {
+    $(document).on('change', '#withdraw-amount', function (e) {
         e.preventDefault();
-        let amount = parseFloat($('#transfer-amount').val()) || 0;
+        let amount = parseFloat($('#withdraw-amount').val()) || 0;
         if (amount < MINIMUM_PAYOUT_LIMIT) {
-            $('#transfer-amount').val(MINIMUM_PAYOUT_LIMIT).change();
+            $('#withdraw-amount').val(MINIMUM_PAYOUT_LIMIT).change();
             $('#show-receiving-amount').html('USDT ' + (MINIMUM_PAYOUT_LIMIT - P2P_TRANSFER_FEE))
             return false
         }

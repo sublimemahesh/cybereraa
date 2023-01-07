@@ -32,7 +32,7 @@
                                     </label>
                                     <input min="{{ $minimum_payout_limit->value }}" x-model="payout_amount" id="withdraw-amount" type="number" class="form-control">
                                     <div class="text-info">Receiving Amount:
-                                        <code x-html=" 'USDT ' + (payout_amount - {{ $payout_transfer_fee->value }})"></code>
+                                        <code id="show-receiving-amount" x-html=" 'USDT ' + (payout_amount - {{ $payout_transfer_fee->value }})"></code>
                                     </div>
                                 </div>
 
