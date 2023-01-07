@@ -20,10 +20,21 @@ class DashboardController extends Controller
             ->latest()
             ->get();
 
-        $income = number_format(Earning::where('status', 'RECEIVED')->sum('amount'));
-        $withdraw = Withdraw::where('status', 'SUCCESS')->sum(DB::raw('amount + transaction_fee'));
-        $qualified_commissions = Commission::where('status', 'QUALIFIED')->sum('amount');
-        $lost_commissions = Commission::whereStatus('DISQUALIFIED')->sum('amount');
+        $income = number_format(Earning::where('user_id', Auth::user()->id)
+            ->where('status', 'RECEIVED')
+            ->sum('amount'));
+
+        $withdraw = Withdraw::where('user_id', Auth::user()->id)
+            ->where('status', 'SUCCESS')
+            ->sum(DB::raw('amount + transaction_fee'));
+
+        $qualified_commissions = Commission::where('user_id', Auth::user()->id)
+            ->where('status', 'QUALIFIED')
+            ->sum('amount');
+
+        $lost_commissions = Commission::where('user_id', Auth::user()->id)
+            ->whereStatus('DISQUALIFIED')
+            ->sum('amount');
 
         Auth::user()->loadCount(['directSales as pending_direct_sales_count' => fn($query) => $query->whereNull('parent_id')->whereHas('activePackages')]);
         $wallet = Auth::user()->wallet;

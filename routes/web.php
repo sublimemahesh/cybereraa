@@ -47,7 +47,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
     });
 
     Route::group(["prefix" => "admin", 'middleware' => ['role:admin'], "as" => 'admin.'], function () {
-        Route::view('/dashboard', 'backend.admin.dashboard')->name('dashboard');
+        Route::get('dashboard', 'Admin\DashboardController@index')->name('dashboard');
 
         Route::get('users', 'Admin\UserController@index')->name('users.index');
         Route::get('users/{user:username}/kycs', 'Admin\KycController@index')->name('users.kycs.index');
