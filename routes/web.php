@@ -108,6 +108,30 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
             Route::get('daily-leverages', 'payablePercentage')->name('daily-leverages');
             Route::patch('daily-leverages', 'saveLeverages');
         });
+
+
+        // support tickets
+        Route::group(['prefix' => 'support/tickets', 'as' => 'support.tickets.'], function () {
+            Route::controller('Admin\TicketController')->group(function () {
+                Route::get('', 'index')->name('index');
+                Route::get('view/{ticket:slug}', 'show')->name('show');
+                Route::patch('{ticket}/close', 'close');
+                Route::patch('{ticket}/reopen', 'reopen');
+                Route::patch('{ticket}/priority-ticket/{priority}', 'priority');
+            });
+
+            Route::controller('Admin\TicketOptionsController')->group(function () {
+                Route::get('category/create', 'category')->name('category.create');
+                Route::get('category/{category}/edit', 'categoryEdit')->name('category.edit');
+
+                Route::get('priority/create', 'priority')->name('priority.create');
+                Route::get('priority/{priority}/edit', 'priorityEdit')->name('priority.edit');
+
+                Route::get('status/create', 'status')->name('status.create');
+                Route::get('status/{status}/edit', 'statusEdit')->name('status.edit');
+            });
+        });
+
     });
 
     // USER ROUTES
@@ -158,6 +182,18 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
 
         Route::get('wallet/transfer/invoice/{withdraw}', 'Payment\InvoiceController@showPayoutInvoice')->name('wallet.transfer.invoice')->middleware('signed');
         Route::get('wallet/transfer/invoice/steam/{withdraw}', 'Payment\InvoiceController@streamPayoutInvoice')->name('wallet.transfer.invoice.stream')->middleware('signed');
+
+
+        // support tickets
+        Route::group(['prefix' => 'support/tickets', 'controller' => 'User\TicketController', 'as' => 'support.tickets.'], static function () {
+            Route::get('', 'index')->name('index');
+            Route::get('create', 'create')->name('create');
+            Route::get('{ticket:slug}', 'show')->name('show');
+            Route::delete('{ticket}/delete', 'destroy');
+            Route::patch('{ticket}/close', 'close');
+            Route::patch('{ticket}/reopen', 'reopen');
+            Route::get('{ticket}/edit', 'edit')->name('edit');
+        });
 
     });
 

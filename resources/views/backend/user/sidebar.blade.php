@@ -85,6 +85,12 @@
                     </li>
                 </ul>
             </li>
+            <li>
+                <a href="{{ route('user.support.tickets.index') }}" class="" aria-expanded="false">
+                    <i class="bi bi-question-circle"></i>
+                    <span class="nav-text">Support Ticket</span>
+                </a>
+            </li>
             @include('navigation-menu')
         </ul>
 

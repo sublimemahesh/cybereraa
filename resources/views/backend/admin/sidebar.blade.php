@@ -106,7 +106,29 @@
                 </ul>
             </li>
 
-
+            <li>
+                <a class="has-arrow" href="javascript:void(0)">
+                    <i class="bi bi-question-diamond"></i>
+                    <span> Support Ticket </span>
+                </a>
+                <ul>
+                    <li>
+                        <a href="{{ route('admin.support.tickets.index') }}"> User Tickets</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.support.tickets.category.create') }}">Ticket Categories
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.support.tickets.priority.create') }}">Ticket Priorities
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.support.tickets.status.create') }}">Ticket Statuses
+                        </a>
+                    </li>
+                </ul>
+            </li>
             @include('navigation-menu')
         </ul>
 
