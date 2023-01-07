@@ -9,6 +9,7 @@ use App\Models\Package;
 use App\Models\PurchasedPackage;
 use App\Models\Strategy;
 use App\Models\Transaction;
+use App\Models\User;
 use App\Models\Wallet;
 use Arr;
 use Auth;
@@ -18,9 +19,11 @@ use DB;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Storage;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
+use URL;
 use Validator;
 
 class BinancePayController extends Controller
@@ -30,10 +33,25 @@ class BinancePayController extends Controller
     {
         $validated = Validator::make($request->all(), [
             'package' => ['required', 'exists:packages,slug'],
-            'method' => ['required', 'in:binance-pay,wallet'] /**/
+            'method' => ['required', 'in:binance-pay,wallet'],
+            'purchase_for' => [
+                'nullable',
+                Rule::exists('users', 'id')
+                    ->where(static function ($query) {
+                        $query->where('id', '<>', Auth::user()->id)
+                            ->where('id', '>', 3);
+                    })
+            ]
         ])->validate();
 
-        $user = Auth::user();
+        if (!empty($validated['purchase_for'])) {
+            $user = User::findOrFail($validated['purchase_for']);
+            $purchased_by = Auth::user();
+        } else {
+            $user = Auth::user();
+            $purchased_by = $user;
+        }
+
         $user->loadMax('purchasedPackages', 'invested_amount');
 
         $package = Package::whereSlug($validated['package'])->firstOrFail();
@@ -46,11 +64,12 @@ class BinancePayController extends Controller
         }
 
         try {
-            return DB::transaction(function () use ($user, $package, $validated) {
+            return DB::transaction(function () use ($user, $purchased_by, $package, $validated) {
 
 
                 $transaction = Transaction::create([
                     'user_id' => $user->id,
+                    'purchaser_id' => $purchased_by->id,
                     'package_id' => $package->id,
                     'currency' => "USDT",
                     'amount' => $package->amount,
@@ -92,7 +111,7 @@ class BinancePayController extends Controller
 
                     $transaction->create_order_request = json_encode($req_data, JSON_THROW_ON_ERROR);
 
-                    if ($user->wallet->balance < $transaction->amount) {
+                    if ($purchased_by->wallet->balance < $transaction->amount) {
                         $res_data['bizStatus'] = 'PAY_CLOSED';
 
                         $transaction->status = 'CANCELED';
@@ -115,7 +134,7 @@ class BinancePayController extends Controller
                         $res = $this->grantCommissionsToUsers($transaction);
 
                         $wallet = Wallet::firstOrCreate(
-                            ['user_id' => $transaction->user_id],
+                            ['user_id' => $transaction->purchaser_id],
                             ['balance' => 0]
                         );
 
@@ -125,7 +144,7 @@ class BinancePayController extends Controller
                     $json['status'] = true;
                     $json['message'] = 'Request successful';
                     $json['icon'] = 'success'; // warning | info | question | success | error
-                    $json['data'] = ['checkoutUrl' => route('user.packages.active')];
+                    $json['data'] = ['checkoutUrl' => URL::signedRoute('user.transactions.invoice', $transaction)];
                     return response()->json($json);
                 }
 
@@ -283,6 +302,7 @@ class BinancePayController extends Controller
         return DB::transaction(static function () use ($transaction) {
             PurchasedPackage::updateOrCreate(['transaction_id' => $transaction->id], [
                 'user_id' => $transaction->user_id,
+                'purchaser_id' => $transaction->purchaser_id,
                 'package_id' => $transaction->package_id,
                 'invested_amount' => $transaction->package->amount,
                 'payable_percentage' => $transaction->package->daily_leverage,

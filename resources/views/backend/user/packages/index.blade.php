@@ -1,12 +1,13 @@
 <x-backend.layouts.app>
     @section('title', 'Buy Package')
     @section('header-title', 'Packages' )
-    @section('styles')
+    @section('plugin-styles')
+        <link rel="stylesheet" href="{{ asset('assets/backend/vendor/select2/css/select2.min.css') }}">
     @endsection
     @section('breadcrumb-items')
         <li class="breadcrumb-item">Buy Package</li>
     @endsection
- 
+
     <div class="row">
         @foreach($packages as $package)
             <div class="col-xl-3 col-md-6 col-sm-12 col-lg-3">
@@ -50,7 +51,26 @@
                         </button>
                     </div>
                     <div class="modal-body">
+                        <div class="mb-4">
+                            <p>
+                                If you want to purchase a package for <code>someone else</code>,
+                                Please <code>search username in below box</code> and <code>select the
+                                    username</code> you want to purchase package for.
+                            </p>
+                            <p>
+                                Please Note: If you want to purchase a package for <code>Yourself</code> Please
+                                <code>keep the select box empty</code>
+                            </p>
+                        </div>
                         <div class="row">
+                            <div class="col-sm-12 mb-4">
+                                <div class="mb-3 mt-2">
+                                    <label for="purchase_for">Purchase For</label>
+                                    <select class="single-select-placeholder js-states select2-hidden-accessible" id="purchase_for">
+                                        <option disabled>Start typing username</option>
+                                    </select>
+                                </div>
+                            </div>
                             <div class="col-6">
                                 <div class="card bg-secondary pay-method-wallet cursor-pointer" id="wallet">
                                     <a class="card-body card-link">
@@ -81,6 +101,7 @@
         <script>
             const ALLOWED_PACKAGES = {!! json_encode($packages->pluck('slug'),JSON_THROW_ON_ERROR) !!};
         </script>
+        <script src="{{ asset('assets/backend/vendor/select2/js/select2.full.min.js') }}"></script>
         <script src="{{ asset('assets/backend/js/packages/choose.js') }}"></script>
     @endpush
 </x-backend.layouts.app>
