@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -13,7 +14,7 @@ class PurchasedPackage extends Pivot
 {
     use SoftDeletes;
 
-    protected $fillable = ['last_earned_at', 'commission_issued_at', 'transaction_id', 'user_id', 'package_id', 'invested_amount', 'payable_percentage', 'status', 'expired_at', 'package_info'];
+    protected $fillable = ['last_earned_at', 'commission_issued_at', 'transaction_id', 'user_id', 'purchaser_id', 'package_id', 'invested_amount', 'payable_percentage', 'status', 'expired_at', 'package_info'];
 
     protected $appends = [
         'package_info_json',
@@ -35,7 +36,12 @@ class PurchasedPackage extends Pivot
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id')->withDefault(new User);
+    }
+
+    public function purchaser(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'purchaser_id')->withDefault(new User);
     }
 
     public function packageRef(): \Illuminate\Database\Eloquent\Relations\BelongsTo

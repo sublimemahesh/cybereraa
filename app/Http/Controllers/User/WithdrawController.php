@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Select2UserResource;
 use App\Models\Strategy;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -50,5 +51,14 @@ class WithdrawController extends Controller
             $code = Response::HTTP_OK;
         }
         return response()->json($json, $code);
+    }
+
+    public function findUsers($search_text): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+    {
+        $users = User::where('username', 'LIKE', "%{$search_text}%")
+            ->where('id', '<>', Auth::user()->id)
+            ->where('id', '>', 3)
+            ->get();
+        return Select2UserResource::collection($users);
     }
 }

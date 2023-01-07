@@ -16,6 +16,8 @@ class InvoiceController extends Controller
 
     public function showPurchaseInvoice(Transaction $transaction)
     {
+        $loggedUser = Auth::user();
+        abort_if($loggedUser->id !== $transaction->user_id && $loggedUser->id !== $transaction->purchaser_id, 404);
         return view('backend.user.transactions.invoice', compact('transaction'));
     }
 
@@ -45,7 +47,7 @@ class InvoiceController extends Controller
         $loggedUser = Auth::user();
         $user = $trx->user;
 
-        abort_if($loggedUser->id !== $user->id, 404);
+        abort_if($loggedUser->id !== $trx->user_id && $loggedUser->id !== $trx->purchaser_id, 404);
 
         $invoice = [];
 

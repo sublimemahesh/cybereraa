@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use JsonException;
 use Psr\Container\ContainerExceptionInterface;
@@ -16,6 +17,7 @@ class Transaction extends Model
 
     protected $fillable = [
         'user_id',
+        'purchaser_id',
         'package_id',
         'currency',
         'amount',
@@ -69,6 +71,11 @@ class Transaction extends Model
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function purchaser(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'purchaser_id')->withDefault(new User);
     }
 
     public function package(): \Illuminate\Database\Eloquent\Relations\BelongsTo

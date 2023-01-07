@@ -3,6 +3,28 @@ $(function () {
         backdrop: 'static',
     })
 
+    $("#purchase_for").select2({
+        ajax: {
+            url: function (params) {
+                return APP_URL + '/user/filter/users/' + params.term;
+            },
+            method: 'POST',
+            dataType: 'json',
+            delay: 1000,
+            processResults: function (data) {
+                return {
+                    results: data.data
+                };
+            },
+            cache: true
+        },
+        dropdownParent: $('#pay-method-modal'),
+        minimumInputLength: 3,
+        placeholder: 'Select an User',
+        allowClear: true
+    });
+
+
     // BIND event for only valid packages base on the package
     ALLOWED_PACKAGES.map(package_slug => {
         let element = `#${package_slug}-choose`;
@@ -28,12 +50,16 @@ $(function () {
     document.getElementById('pay-method-modal').addEventListener('hidden.bs.modal', event => {
         $(".pay-method-wallet").attr('id', 'wallet')
         $(".pay-method-binance-pay").attr('id', 'binance-pay')
+        $('#purchase_for').val(null).trigger('change')
+        $('#purchase_for').empty()
     })
 
     function generateInvoice(payMethod, package_slug) {
         loader()
+        let purchase_for = $('#purchase_for').val()
         axios.post(`${APP_URL}/user/binancepay/order/create`, {
             method: payMethod,
+            purchase_for,
             package: package_slug
         }).then(response => {
             payMethodChooseModal.hide()

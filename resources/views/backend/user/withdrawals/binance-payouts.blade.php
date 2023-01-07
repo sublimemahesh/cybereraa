@@ -57,13 +57,6 @@
                                                     Etherium
                                                 </button>
                                             </li>
-                                            <li class=" nav-item wow fadeInUp" data-wow-delay="0.2s" role="presentation">
-                                                <button class="nav-link bitcoin ms-0 disabled" id="nav-bitcoin-tab" data-bs-toggle="tab" data-bs-target="#nav-bitcoin" type="button" role="tab" aria-selected="true">
-                                                    <img width="24" src="{{asset('assets/backend/images/coins/dtcoin.png')}}" alt="amexg1096">
-                                                    DTCoin
-                                                </button>
-                                            </li>
-
                                         </ul>
                                     </div>
                                 </div>

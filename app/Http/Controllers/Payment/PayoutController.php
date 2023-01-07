@@ -105,4 +105,9 @@ class PayoutController extends Controller
         return response()->json($json, Response::HTTP_OK);
 
     }
+
+    public function withdraw(Request $request)
+    {
+        dd($request->all());
+    }
 }

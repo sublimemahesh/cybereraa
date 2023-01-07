@@ -145,9 +145,11 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::get('wallet/withdraw', 'User\WithdrawController@withdraw')->name('wallet.withdraw');
 
         Route::post('wallet/transfer/filter/users/{user:username}', 'User\WithdrawController@findUser');
+        Route::post('filter/users/{search_text}', 'User\WithdrawController@findUsers');
 
         Route::post('wallet/transfer/p2p', 'Payment\PayoutController@p2pTransfer');
         Route::post('wallet/withdraw/binance', 'Payment\PayoutController@withdraw');
+
         Route::get('wallet/transfer/invoice/{withdraw}', 'Payment\InvoiceController@showPayoutInvoice')->name('wallet.transfer.invoice')->middleware('signed');
         Route::get('wallet/transfer/invoice/steam/{withdraw}', 'Payment\InvoiceController@streamPayoutInvoice')->name('wallet.transfer.invoice.stream')->middleware('signed');
 
