@@ -12,6 +12,10 @@ use Auth;
 use DB;
 use Hash;
 use Illuminate\Http\Request;
+use Laravel\Fortify\Events\RecoveryCodeReplaced;
+use Laravel\Fortify\TwoFactorAuthenticatable;
+use Laravel\Fortify\TwoFactorAuthenticationProvider;
+use PragmaRX\Google2FA\Google2FA;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 use URL;
@@ -36,6 +40,7 @@ class PayoutController extends Controller
             'receiver' => 'required|exists:users,id',
             'amount' => ['required', 'numeric', 'min:' . $minimum_payout_limit->value, 'max:' . $max_withdraw_limit],
             'password' => 'required',
+            'code' => 'nullable',
         ])->validate();
 
         if (!$sender->profile->is_kyc_verified) {
@@ -51,6 +56,36 @@ class PayoutController extends Controller
             $json['icon'] = 'error'; // warning | info | question | success | error
             return response()->json($json, Response::HTTP_UNAUTHORIZED);
         }
+
+        if (optional($sender)->two_factor_secret && in_array(TwoFactorAuthenticatable::class, class_uses_recursive($sender), true)) {
+            if ($validated['code'] === null) {
+                $json['status'] = false;
+                $json['message'] = 'The two factor authentication code is required.';
+                $json['icon'] = 'error'; // warning | info | question | success | error
+                return response()->json($json, Response::HTTP_UNAUTHORIZED);
+            }
+
+            $recoveryCode = collect($sender->recoveryCodes())->first(static function ($known_code) use ($validated) {
+                if (hash_equals($known_code, $validated['code'])) {
+                    return $validated['code'];
+                }
+                return null;
+            });
+
+            if ($recoveryCode !== null) {
+                $sender->replaceRecoveryCode($recoveryCode);
+                event(new RecoveryCodeReplaced($sender, $recoveryCode));
+            } else {
+                $valid = (new TwoFactorAuthenticationProvider(new Google2FA))->verify(decrypt($sender->two_factor_secret), $validated['code']);
+                if (!$valid) {
+                    $json['status'] = false;
+                    $json['message'] = 'The provided two factor authentication code was invalid.';
+                    $json['icon'] = 'error'; // warning | info | question | success | error
+                    return response()->json($json, Response::HTTP_UNAUTHORIZED);
+                }
+            }
+        }
+
 
         if ($sender_wallet->balance < $validated['amount']) {
             $json['status'] = false;

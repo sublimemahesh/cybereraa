@@ -34,6 +34,7 @@ $(function () {
         let receiver = $('#p2p-transfer').val();
         let amount = $('#transfer-amount').val();
         let password = $('#password').val();
+        let code = $('#code').val();
         if (receiver === null || receiver.length <= 0) {
             Toast.fire({
                 icon: 'error', title: "Please Enter a valid username for the receive fund!",
@@ -58,7 +59,12 @@ $(function () {
             }).then((transfer) => {
                 if (transfer.isConfirmed) {
                     loader()
-                    axios.post(APP_URL + '/user/wallet/transfer/p2p', {receiver, amount, password}).then(response => {
+                    axios.post(APP_URL + '/user/wallet/transfer/p2p', {
+                        receiver,
+                        amount,
+                        password,
+                        code
+                    }).then(response => {
                         Toast.fire({
                             icon: response.data.icon, title: response.data.message,
                         }).then(res => {

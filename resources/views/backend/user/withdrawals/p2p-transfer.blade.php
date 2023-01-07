@@ -40,15 +40,27 @@
                                         <code id="show-receiving-amount" x-html=" 'USDT ' + (transfer_amount - {{ $p2p_transfer_fee->value }})"></code>
                                     </div>
                                 </div>
+
+                                <hr>
+                                <p>
+                                    Please confirm access to your account by entering the <code>password</code> and
+                                    <code>authentication code</code> provided by your authenticator application
+                                </p>
+
                                 <div class="mb-3 mt-2">
                                     <label for="password">Password</label>
                                     <input id="password" type="password" class="form-control" autocomplete="new-password">
                                 </div>
+                                @if(optional(Auth::user())->two_factor_secret && in_array( \Laravel\Fortify\TwoFactorAuthenticatable::class, class_uses_recursive(Auth::user()),true))
+                                    <div class="mb-3 mt-2">
+                                        <label for="code">Two Factor code / Recovery Code </label>
+                                        <input id="code" type="password" class="form-control" autocomplete="one-time-password" placeholder="2FA code OR Recovery Code">
+                                    </div>
+                                @endif
                                 <button type="submit" id="confirm-transfer" class="btn btn-sm btn-success mb-2">Confirm & Transfer</button>
                             </form>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
