@@ -23,6 +23,9 @@
     </div>
 
     @push('scripts')
+        <script src="{{ asset('assets/backend/vendor/canvasResize/binaryajax.js') }}"></script>
+        <script src="{{ asset('assets/backend/vendor/canvasResize/exif.js') }}"></script>
+        <script src="{{ asset('assets/backend/vendor/canvasResize/canvasResize.js') }}"></script>
         <script src="{{ asset('assets/backend/js/admin/cms/currency.js') }}"></script>
     @endpush
 </x-backend.layouts.app>

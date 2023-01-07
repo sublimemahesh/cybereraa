@@ -61,6 +61,9 @@
 
     @push('scripts')
         <!-- Datatable -->
+        <script src="{{ asset('assets/backend/vendor/canvasResize/binaryajax.js') }}"></script>
+        <script src="{{ asset('assets/backend/vendor/canvasResize/exif.js') }}"></script>
+        <script src="{{ asset('assets/backend/vendor/canvasResize/canvasResize.js') }}"></script>
         <script src="{{ asset('assets/backend/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('assets/backend/js/admin/cms/currency.js') }}"></script>
     @endpush
