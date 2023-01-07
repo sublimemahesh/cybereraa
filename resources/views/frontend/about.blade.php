@@ -4,6 +4,7 @@
     @section('styles')
 
         <link href="{{ asset('assets/frontend/css/road_map.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/frontend/css/mvv.css') }}" rel="stylesheet">
 
     @endsection
 
@@ -62,164 +63,188 @@
             </div>
             <!--/ Content row end -->
         </section>
-
-        <section id="road">
-            <div class="container">
-                <center><h3 class="title-about">Roadmap</h3></center><br>
-                <div class="main-timeline">
-
-                    <!-- start experience section-->
-                    <div class="timeline">
-                        <div class="icon"></div>
-                        <div class="date-content">
-                            <div class="date-outer">
-                                <span class="date">
-                                    <span class="month">June</span>
-                                    <span class="year">2023</span>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="timeline-content">
-                            <h5 class="title">First Stage</h5>
-                            <p class="description">
-                                Enrolling all the kith and kins by the end of June 2023
-                            </p>
-                        </div>
-                    </div>
-                    <!-- end experience section-->
-
-                    <!-- start experience section-->
-                    <div class="timeline">
-                        <div class="icon"></div>
-                        <div class="date-content">
-                            <div class="date-outer">
-                                <span class="date">
-                                    <span class="month">December </span>
-                                    <span class="year">2023</span>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="timeline-content">
-                            <h5 class="title">Second stage</h5>
-                            <p class="description">
-                                Enrolling 10000 ambassadors by December 2023.
-                            </p>
-                        </div>
-                    </div>
-                    <!-- end experience section-->
-
-                    <!-- start experience section-->
-                    <div class="timeline">
-                        <div class="icon"></div>
-                        <div class="date-content">
-                            <div class="date-outer">
-                                <span class="date">
-                                    <span class="month">June</span>
-                                    <span class="year">2023</span>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="timeline-content">
-                            <h5 class="title">Third stage</h5>
-                            <p class="description">
-                                Launching our cryptocurrency by June 2023 and diversifying our cryptocurrency via leading cryptocurrency exchanges, including Binance gate.io.
-                            </p>
-                        </div>
-                    </div>
-                    <!-- end experience section-->
-
-                    <!-- start experience section-->
-                    <div class="timeline">
-                        <div class="icon"></div>
-                        <div class="date-content">
-                            <div class="date-outer">
-                                <span class="date">
-                                    <span class="month">End of </span>
-                                    <span class="year">2024</span>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="timeline-content">
-                            <h5 class="title">fourth stage</h5>
-                            <p class="description">
-                                Building the community up to 100000 by the end of 2024.
-                            </p>
-                        </div>
-                    </div>
-                    <!-- end experience section-->
-
-                    <!-- start experience section-->
-                    <div class="timeline">
-                        <div class="icon"></div>
-                        <div class="date-content">
-                            <div class="date-outer">
-                                <span class="date">
-                                    <span class="month">End of </span>
-                                    <span class="year">2025 </span>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="timeline-content">
-                            <h5 class="title">Fifth stage</h5>
-                            <p class="description">
-                                Building the community up to 1000000 by the end of 2025 and patronizing our cryptocurrency.
-                            </p>
-                        </div>
-                    </div>
-                    <!-- end experience section-->
-
-                </div>
-            </div>
-        </section>
     @endforeach
 
-    <!-- About Section Ends -->
-    <!-- Facts Section Starts -->
-    <section class="facts">
-        <!-- Container Starts -->
+    <section id="mvv">
+    <div class="pt-5 pb-5">
         <div class="container">
-            <!-- Fact Badges Starts -->
-            <div class="row text-center facts-content">
-                <div class="text-center heading-facts">
-                    <h2>SAFEST TRADES<span> numbers</span></h2>
-                    <p>Lorem ipsum Contrary to popular belief, Lorem Ipsum is not simply random text</p>
-                </div>
-                <!-- Fact Badge Item Starts -->
-                <div class="col-xs-12 col-md-3 col-sm-6 fact">
-                    <h3>2015</h3>
-                    <h4>Established since</h4>
-                </div>
-                <!-- Fact Badge Item Ends -->
-                <!-- Fact Badge Item Starts -->
-                <div class="col-xs-12 col-md-3 col-sm-6 fact fact-clear">
-                    <h3>2K+</h3>
-                    <h4>Number of Corporations</h4>
-                </div>
-                <!-- Fact Badge Item Ends -->
-                <!-- Fact Badge Item Starts -->
-                <div class="col-xs-12 col-md-3 col-sm-6 fact">
-                    <h3>17k</h3>
-                    <h4>Client Base</h4>
-                </div>
-                <!-- Fact Badge Item Ends -->
-                <!-- Fact Badge Item Starts -->
-                <div class="col-xs-12 col-md-3 col-sm-6">
-                    <h3>170</h3>
-                    <h4>Employees</h4>
-                </div>
-                <!-- Fact Badge Item Ends -->
-                <div class="col-xs-12 buttons">
-                    <a class="btn btn-primary btn-pricing" href="{{ route('pricing') }}">See pricing</a>
-                    <span class="or"> or </span>
-                    <a class="btn btn-primary btn-register" href="{{ route('register') }}">Register Now</a>
-                </div>
-            </div>
-            <!-- Fact Badges Ends -->
         </div>
-        <!-- Container Ends -->
+        <div class="container">
+          <div class="row">
+            <div  class="col-lg-6 col-md-6 ">
+
+                <div class="col-lg-12 col-md-12 margin-30px-bottom xs-margin-20px-bottom">
+                    <div class="services-block-three">
+                        <a href="javascript:void(0)">
+                            <div class="padding-15px-bottom">
+                                <i class="fa fa-paper-plane-o"></i>
+                            </div>
+                            <h4>OUR MISSION</h4>
+                            
+                                @foreach ($homes_mission as $key => $hm)
+                                {!!$hm->content !!}
+                                @endforeach
+                           
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-12 col-md-12 margin-30px-bottom xs-margin-20px-bottom">
+                    <div class="services-block-three">
+                        <a href="javascript:void(0)">
+                            <div class="padding-15px-bottom">
+                                <i class="fa fa-eercast"></i>
+                            </div>
+                            <h4>OUR VISION</h4>
+                            @foreach ($homes_vission as $key => $hvi)
+                            {!!$hvi->content !!}
+                            @endforeach
+                        </a>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-lg-6 col-md-6 ">
+                <div class="col-lg-12 col-md-12 margin-30px-bottom xs-margin-20px-bottom">
+                    <div class="services-block-three">
+                        <a href="javascript:void(0)">
+                            <div class="padding-15px-bottom">
+                                <i class="fa fa-diamond"></i>
+                            </div>
+                            <h4>OUR VALUES</h4>
+                            @foreach ($homes_value as $key => $hval)
+                            {!!$hval->content !!}
+                            @endforeach
+                        </a>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+    <section id="road">
+        <div class="container">
+            <center>
+                <h3 class="title-about">Roadmap</h3>
+            </center><br>
+            <div class="main-timeline">
+
+                <!-- start experience section-->
+                <div class="timeline">
+                    <div class="icon"></div>
+                    <div class="date-content">
+                        <div class="date-outer">
+                            <span class="date">
+                                <span class="month">June</span>
+                                <span class="year">2023</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="timeline-content">
+                        <h5 class="title">First Stage</h5>
+                        <p class="description">
+                            Enrolling all the kith and kins by the end of June 2023
+                        </p>
+                    </div>
+                </div>
+                <!-- end experience section-->
+
+                <!-- start experience section-->
+                <div class="timeline">
+                    <div class="icon"></div>
+                    <div class="date-content">
+                        <div class="date-outer">
+                            <span class="date">
+                                <span class="month">December </span>
+                                <span class="year">2023</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="timeline-content">
+                        <h5 class="title">Second stage</h5>
+                        <p class="description">
+                            Enrolling 10000 ambassadors by December 2023.
+                        </p>
+                    </div>
+                </div>
+                <!-- end experience section-->
+
+                <!-- start experience section-->
+                <div class="timeline">
+                    <div class="icon"></div>
+                    <div class="date-content">
+                        <div class="date-outer">
+                            <span class="date">
+                                <span class="month">June</span>
+                                <span class="year">2023</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="timeline-content">
+                        <h5 class="title">Third stage</h5>
+                        <p class="description">
+                            Launching our cryptocurrency by June 2023 and diversifying our cryptocurrency via leading
+                            cryptocurrency exchanges, including Binance gate.io.
+                        </p>
+                    </div>
+                </div>
+                <!-- end experience section-->
+
+                <!-- start experience section-->
+                <div class="timeline">
+                    <div class="icon"></div>
+                    <div class="date-content">
+                        <div class="date-outer">
+                            <span class="date">
+                                <span class="month">End of </span>
+                                <span class="year">2024</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="timeline-content">
+                        <h5 class="title">fourth stage</h5>
+                        <p class="description">
+                            Building the community up to 100000 by the end of 2024.
+                        </p>
+                    </div>
+                </div>
+                <!-- end experience section-->
+
+                <!-- start experience section-->
+                <div class="timeline">
+                    <div class="icon"></div>
+                    <div class="date-content">
+                        <div class="date-outer">
+                            <span class="date">
+                                <span class="month">End of </span>
+                                <span class="year">2025 </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="timeline-content">
+                        <h5 class="title">Fifth stage</h5>
+                        <p class="description">
+                            Building the community up to 1000000 by the end of 2025 and patronizing our cryptocurrency.
+                        </p>
+                    </div>
+                </div>
+                <!-- end experience section-->
+
+            </div>
+        </div>
     </section>
 
-    <!-- facts Section Ends -->
+
+
 
     @push('scripts')
         {{-- <script src="{{ asset('assets/backend/js/dashboard/dashboard.js') }}"></script> --}}

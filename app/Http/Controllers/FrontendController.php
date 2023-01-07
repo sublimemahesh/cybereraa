@@ -20,7 +20,7 @@ class FrontendController extends Controller
         $homes_contents= page::where(['id' => 54])->get(); //    54      45
         $homes_mission= page::where(['id' => 56])->get(); //     56      46
         $homes_value= page::where(['id' => 57])->get(); //       57      47
-        $homes_vission= page::where(['id' => 58])->get(); //     58      48
+        $homes_vission= page::where(['id' => 45])->get(); //     58      45
 
 
 
@@ -31,7 +31,12 @@ class FrontendController extends Controller
     public function about()
     {
         $abouts= page::find(3); //3
-        return view('frontend.about', compact('abouts'));
+
+        $homes_mission= page::where(['id' => 56])->get(); //     56      40
+        $homes_value= page::where(['id' => 57])->get(); //       57      44  
+        $homes_vission= page::where(['id' => 58])->get(); //     58      45
+
+        return view('frontend.about', compact('abouts','homes_mission','homes_value','homes_vission'));
         //return view('frontend.about');
     }
 
