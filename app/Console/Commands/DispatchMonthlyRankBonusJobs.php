@@ -54,7 +54,7 @@ class DispatchMonthlyRankBonusJobs extends Command
             logger()->info("calculate:rank-bonus Month Start: {$first_of_month} | Month End: {$last_of_month}");
 
 
-            $total_sale_amount = PurchasedPackage::where('status', 'ACTIVE')
+            $total_sale_amount = PurchasedPackage::whereNotIn('status', ['PENDING'])
                 ->whereBetween('created_at', [$first_of_month, $last_of_month])
                 ->sum('invested_amount');
 
