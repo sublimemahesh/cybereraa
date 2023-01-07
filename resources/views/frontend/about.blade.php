@@ -1,5 +1,6 @@
+
 <x-frontend.layouts.app>
-    @section('title', 'About Us')
+    @section('title', 'About Us') 
     @section('header-title', 'Welcome ')
     @section('styles')
 

@@ -26,6 +26,9 @@ Route::get('news', 'FrontendController@news')->name('news');
 Route::get('news/{news:slug}', 'FrontendController@showNews')->name('news.show');
 
 
+
+
+
 // Register custom routes
 Route::group(['prefix' => 'register', 'middleware' => 'guest:' . config('fortify.guard')], function () {
     Route::get('/', 'RegisteredUserController@create')->name('register');
