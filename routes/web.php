@@ -105,7 +105,6 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
             Route::patch('daily-leverages', 'saveLeverages');
         });
 
-
         // support tickets
         Route::group(['prefix' => 'support/tickets', 'as' => 'support.tickets.'], function () {
             Route::controller('Admin\TicketController')->group(function () {
@@ -127,6 +126,9 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
                 Route::get('status/{status}/edit', 'statusEdit')->name('status.edit');
             });
         });
+
+        // Testimonial
+        Route::resource('testimonials', 'Admin\TestimonialController')->only(['index', 'create', 'edit', 'destroy']);
 
     });
 

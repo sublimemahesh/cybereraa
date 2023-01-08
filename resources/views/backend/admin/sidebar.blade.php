@@ -82,11 +82,9 @@
                     </li>
                 </ul>
             </li>
-
-
             <li>
                 <a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
-                    <i class="material-icons">book</i>
+                    <i class="material-icons">app_registration</i>
                     <span class="nav-text">Strategies</span>
                 </a>
                 <ul aria-expanded="false">
@@ -105,7 +103,6 @@
 
                 </ul>
             </li>
-
             <li>
                 <a class="has-arrow" href="javascript:void(0)">
                     <i class="bi bi-question-diamond"></i>
@@ -128,6 +125,12 @@
                         </a>
                     </li>
                 </ul>
+            </li>
+            <li>
+                <a href="{{ route('admin.testimonials.index') }}" class="" aria-expanded="false">
+                    <i class="bi bi-wifi"></i>
+                    <span class="nav-text">Testimonials</span>
+                </a>
             </li>
             @include('navigation-menu')
         </ul>
