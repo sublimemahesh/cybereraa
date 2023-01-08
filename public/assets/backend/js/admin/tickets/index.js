@@ -11,6 +11,12 @@
             },
         });
         let ticket_table = $("#tickets").DataTable({
+            language: {
+                paginate: {
+                    next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
+                    previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
+                }
+            },
             lengthMenu: [10, 25, 50, 100, 250, 500, "All"],
             scrollX: true,
             destroy: true,
