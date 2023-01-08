@@ -4,19 +4,12 @@ $(function () {
     const date_range = urlParams.get("date-range");
 
     let table = $('#transactions').DataTable({
-        language: {
-            paginate: {
-                next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
-                previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
-            }
-        },
-        lengthMenu: [[25, 50, 100, 250, 500, -1], [25, 50, 100, 250, 500, "All"],],
         responsive: true,
         scrollX: true,
         destroy: true,
         processing: true,
         serverSide: true,
-        stateSave: false,
+        //stateSave: false,
         ajax: location.href,
         order: [[1, 'desc']],
         columns: [
@@ -29,6 +22,7 @@ $(function () {
             {data: "package", searchable: false},
         ],
     })
+
 
     flatpickr("#date-range", {
         mode: "range", dateFormat: "Y-m-d", defaultDate: date_range && date_range.split("to"),
