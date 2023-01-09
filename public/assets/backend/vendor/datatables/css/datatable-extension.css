@@ -14,6 +14,10 @@
     }
 }
 
+.text-right {
+    text-align: right !important;
+}
+
 div.dt-button-info {
     position: fixed;
     top: 50%;

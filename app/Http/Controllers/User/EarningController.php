@@ -27,6 +27,7 @@ class EarningController extends Controller
                 ->latest();
 
             return DataTables::of($earnings)
+                ->addColumn('amount', fn($commission) => number_format($commission->amount, 2))
                 ->addColumn('package', fn($earn) => $earn->earnable->package_info_json->name)
                 ->addColumn('created_at', fn($earn) => $earn->created_at->format('Y-m-d H:i:s'))
                 ->make();

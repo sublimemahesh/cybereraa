@@ -4,13 +4,6 @@ $(function () {
     const date_range = urlParams.get("date-range");
 
     let table = $('#transactions').DataTable({
-        language: {
-            paginate: {
-                next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
-                previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
-            }
-        },
-        lengthMenu: [[25, 50, 100, 250, 500, -1], [25, 50, 100, 250, 500, "All"],],
         responsive: true,
         scrollX: true,
         destroy: true,
@@ -18,16 +11,47 @@ $(function () {
         serverSide: true,
         stateSave: false,
         ajax: location.href,
-        order: [[1, 'desc']],
+        order: [[5, 'desc']],
         columns: [
-            {data: "action", sortable:false, searchable: false},
+            {data: "action", sortable: false, searchable: false},
             {data: "trx_id", name: 'id', searchable: true},
             {data: "package", searchable: false},
             {data: "type", searchable: false},
-            {data: "trx_amount", name: 'amount', searchable: true},
             {data: "status", searchable: false},
             {data: "paid_at", searchable: false},
+            {data: "trx_amount", name: 'amount', searchable: true},
         ],
+        footerCallback: function (row, data, start, end, display) {
+            let api = this.api();
+
+            // Remove the formatting to get integer data for summation
+            let intVal = function (i) {
+                return typeof i === 'string' ? i.replace(/[\$,]/g, '') * 1 : typeof i === 'number' ? i : 0;
+            };
+
+            let sumVal = function (column, page = 'current') {
+                return api
+                    .column(column, page)
+                    .data()
+                    .reduce(function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0);
+            }
+            let total = new Intl.NumberFormat().format(sumVal(6));
+            $(api.column(6).footer()).html(`<br><br>Current Page Total: USDT ${total}`);
+        },
+        columnDefs: [
+            {
+                render: function (date, type, full, meta) {
+                    return `<div style='font-size: 0.76rem !important;'> ${date} </div>`;
+                }, targets: 5,
+            },
+            {
+                render: function (amount, type, full, meta) {
+                    return `<div style='min-width:100px' class="text-right"> ${amount} </div>`;
+                }, targets: [6],
+            }
+        ]
     })
 
     flatpickr("#date-range", {

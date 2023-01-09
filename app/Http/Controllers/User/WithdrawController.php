@@ -6,11 +6,90 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Select2UserResource;
 use App\Models\Strategy;
 use App\Models\User;
+use App\Models\Withdraw;
+use DataTables;
+use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
+use URL;
 
 class WithdrawController extends Controller
 {
+
+    /**
+     * @throws Exception
+     */
+    public function p2pHistory(Request $request)
+    {
+        if ($request->wantsJson()) {
+
+            $withdrawals = Withdraw::with('receiver')
+                ->where('user_id', Auth::user()->id)
+                ->when(!empty($request->get('receiver_id')), static function ($query) use ($request) {
+                    $query->where('receiver_id', $request->get('receiver_id'));
+                })
+                ->filter()
+                ->where('type', 'P2P')
+                ->where('created_at', '<=', date('Y-m-d H:i:s'))
+                ->latest();
+
+            return DataTables::of($withdrawals)
+                ->addColumn('receiver', static function ($withdraw) {
+                    return str_pad($withdraw->receiver_id, '4', '0', STR_PAD_LEFT) .
+                        " - <code class='text-uppercase'>{$withdraw->receiver->username}</code>";
+                })
+                ->addColumn('amount', fn($withdraw) => number_format($withdraw->amount, 2))
+                ->addColumn('fee', fn($withdraw) => number_format($withdraw->transaction_fee, 2))
+                ->addColumn('total', fn($withdraw) => number_format($withdraw->amount + $withdraw->transaction_fee, 2))
+                ->addColumn('created_at', fn($withdraw) => $withdraw->created_at->format('Y-m-d H:i:s'))
+                ->addColumn('actions', function ($withdraw) {
+                    return '<div class="dropdown">
+                                    <button class="btn btn-primary tp-btn-light sharp" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span class="fs--1"><svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg></span>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-end border py-0" style="">
+                                        <div class="py-2">
+                                            <a class="dropdown-item" href="' . URL::signedRoute('user.wallet.transfer.invoice', $withdraw) . '">Invoice</a>
+                                        </div>
+                                    </div>
+                                </div>';
+                })
+                ->rawColumns(['receiver', 'actions'])
+                ->make();
+        }
+
+        return view('backend.user.withdrawals.history.p2p');
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function withdrawalsHistory(Request $request)
+    {
+        if ($request->wantsJson()) {
+
+            $withdrawals = Withdraw::filter()
+                ->where('user_id', Auth::user()->id)
+                ->where('type', 'BINANCE')
+                ->where('created_at', '<=', date('Y-m-d H:i:s'))
+                ->latest();
+
+            return DataTables::of($withdrawals)
+                ->addColumn('amount', fn($withdraw) => number_format($withdraw->amount, 2))
+                ->addColumn('fee', fn($withdraw) => number_format($withdraw->transaction_fee, 2))
+                ->addColumn('total', fn($withdraw) => number_format($withdraw->amount + $withdraw->transaction_fee, 2))
+                ->addColumn('created_at', fn($withdraw) => $withdraw->created_at->format('Y-m-d H:i:s'))
+                ->addColumn('actions', static function ($withdraw) {
+                    return '-';
+                })
+                ->rawColumns(['actions'])
+                ->make();
+        }
+
+        return view('backend.user.withdrawals.history.binance-withdraw');
+    }
+
 
     public function p2pTransfer()
     {
