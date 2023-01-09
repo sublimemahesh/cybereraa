@@ -111,11 +111,16 @@
                                 <th>TRX ID</th>
                                 <th>PACKAGE</th>
                                 <th>TYPE</th>
-                                <th>AMOUNT</th>
                                 <th>STATUS</th>
                                 <th>PAID/CLOSED AT</th>
+                                <th class="text-right">AMOUNT</th>
                             </tr>
                             </thead>
+                            <tfoot>
+                            <tr>
+                                <th colspan="7" style="text-align:right"></th>
+                            </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>

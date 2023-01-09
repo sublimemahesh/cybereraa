@@ -3,7 +3,7 @@ $(function () {
     const urlParams = new URLSearchParams(queryString);
     const date_range = urlParams.get("date-range");
 
-    let table = $('#earnings').DataTable({
+    let table = $('#p2p-trx').DataTable({
         language: {
             paginate: {
                 next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
@@ -15,15 +15,20 @@ $(function () {
         destroy: true,
         processing: true,
         serverSide: true,
+        fixedHeader: true,
+        responsive: true,
+        order: [[4, 'desc']],
         stateSave: true,
         ajax: location.href,
-        order: [[4, 'desc']],
         columns: [
-            {data: "type"},
-            {data: "package", searchable: false},
-            {data: "status"},
-            {data: "created_at"},
-            {data: "amount"},
+            {data: "actions", searchable: true},
+            {data: "receiver", name: 'receiver.username', searchable: true},
+            {data: "type", searchable: false},
+            {data: "status", searchable: false},
+            {data: "created_at", searchable: false},
+            {data: "amount", name: 'amount', searchable: false},
+            {data: "transaction_fee", name: 'transaction_fee', searchable: false},
+            {data: "total", searchable: false}
         ],
         footerCallback: function (row, data, start, end, display) {
             let api = this.api();
@@ -42,21 +47,24 @@ $(function () {
                     }, 0);
             }
 
-            let total = new Intl.NumberFormat().format(sumVal(4));
-            $(api.column(4).footer()).html(`<br><br>Current Page Total: USDT ${total}`);
+            let amount = new Intl.NumberFormat().format(sumVal(5));
+            $(api.column(7).footer()).html(`Current page total amount: USDT ${amount}`);
+
+            let transaction_fee = new Intl.NumberFormat().format(sumVal(6));
+            $(api.column(7).footer()).append(`<br><br>Current Page Trx fees: USDT ${transaction_fee}`);
+
+            let total = new Intl.NumberFormat().format(sumVal(7));
+            $(api.column(7).footer()).append(`<br><br>Current Page Total: USDT ${total}`);
         },
-        columnDefs: [
-            {
-                render: function (date, type, full, meta) {
-                    return `<div style='font-size: 0.76rem !important;'> ${date} </div>`;
-                }, targets: 3,
-            },
-            {
-                render: function (amount, type, full, meta) {
-                    return `<div style='min-width:100px' class="text-right"> ${amount} </div>`;
-                }, targets: [4],
-            }
-        ]
+        columnDefs: [{
+            render: function (date, type, full, meta) {
+                return `<div style='font-size: 0.76rem !important;'> ${date} </div>`;
+            }, targets: 4,
+        }, {
+            render: function (amount, type, full, meta) {
+                return `<div style='min-width:100px' class="text-right"> ${amount} </div>`;
+            }, targets: [5, 6, 7],
+        },],
     });
 
     flatpickr("#date-range", {
@@ -65,13 +73,12 @@ $(function () {
 
     $(document).on("click", "#search", function (e) {
         e.preventDefault();
-
         urlParams.set("date-range", $("#date-range").val());
         urlParams.set("status", $("#status").val());
-        urlParams.set("earning-type", $("#earning-type").val());
-
+        urlParams.set("receiver_id", $("#receiver_id").val());
         let url = location.href.split(/\?|\#/)[0] + "?" + urlParams.toString();
         history.replaceState({}, "", url);
         table.ajax.url(url).load();
     });
+
 })

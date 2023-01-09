@@ -1,6 +1,6 @@
 <x-backend.layouts.app>
-    @section('title', 'Earnings')
-    @section('header-title', 'My Earnings' )
+    @section('title', 'P2P Transactions | Reports')
+    @section('header-title', 'P2P Transfers | Reports' )
     @section('plugin-styles')
         <!-- Datatable -->
         <link href="{{ asset('assets/backend/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
@@ -11,7 +11,7 @@
     @endsection
 
     @section('breadcrumb-items')
-        <li class="breadcrumb-item">My Earnings</li>
+        <li class="breadcrumb-item">P2P Transfers</li>
     @endsection
 
     <div class="row dark"> {{--! Tailwind css used. if using tailwind plz run npm run dev and add tailwind classes--}}
@@ -31,22 +31,9 @@
                                         <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
                                             <div>
                                                 <div class=" pt-2 p-2 ">
-                                                    <label for="earning-type" class="text-gray-700 dark:text-gray-300">EARNING TYPE</label>
+                                                    <label for="receiver_id" class="text-gray-700 dark:text-gray-300">RECEIVER ID</label>
                                                     <div class="relative">
-                                                        <select id="earning-type" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
-                                                            <option value="">ALL</option>
-                                                            <option value="package">PACKAGE</option>
-                                                            <option value="direct">DIRECT SALE</option>
-                                                            <option value="indirect">INDIRECT SALE</option>
-                                                            <option value="rank_bonus">RANK BONUS</option>
-                                                            <option value="rank_gift">RANK GIFT</option>
-                                                            <option value="p2p">P2P</option>
-                                                        </select>
-                                                        <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
-                                                            <svg class="pointer-events-none w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                                            </svg>
-                                                        </div>
+                                                        <input id="receiver_id" value="{{ request()->input('receiver_id') }}" placeholder="Enter User ID" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -54,12 +41,10 @@
                                         <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
                                             <div>
                                                 <div class=" pt-2 p-2 ">
-                                                    <label for="input_period_status" class="text-gray-700 dark:text-gray-300">PERIOD</label>
+                                                    <label for="date-range" class="text-gray-700 dark:text-gray-300">PERIOD</label>
                                                     <div class="relative">
                                                         <form autocomplete="off">
-                                                            <input id="date-range"
-                                                                    class="flatpickr block my-1 bg-gray-50 text-gray-700 py-2 px-3 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500 flatpickr-input"
-                                                                    type="text" placeholder="Select a period" readonly="readonly">
+                                                            <input id="date-range" class="flatpickr block my-1 bg-gray-50 text-gray-700 py-2 px-3 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500 flatpickr-input" type="text" placeholder="Select a period" readonly="readonly">
                                                         </form>
                                                         <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
                                                             <svg class="pointer-events-none w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -77,9 +62,10 @@
                                                     <div class="relative">
                                                         <select id="status" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
                                                             <option value="">ALL</option>
-                                                            <option value="received">RECEIVED</option>
-                                                            <option value="hold">HOLD</option>
-                                                            <option value="canceled">CANCELED</option>
+                                                            <option value="processing" {{ request()->input('status') === 'processing' ? 'selected' : '' }}>PROCESSING</option>
+                                                            <option value="success" {{ request()->input('status') === 'success' ? 'selected' : '' }}>SUCCESS</option>
+                                                            <option value="fail" {{ request()->input('status') === 'fail' ? 'selected' : '' }}>FAIL</option>
+                                                            <option value="reject" {{ request()->input('status') === 'reject' ? 'selected' : '' }}>REJECT</option>
                                                         </select>
                                                         <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
                                                             <svg class="pointer-events-none w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -95,8 +81,7 @@
                                                 <div class=" pt-2 p-2 ">
                                                     <label for="" class="dark:text-gray-300 opacity-0 text-gray-700">Search</label>
                                                     <div class="relative">
-                                                        <button id="search"
-                                                                class="mt-1 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
+                                                        <button id="search" class="mt-1 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
                                                             Search
                                                         </button>
                                                     </div>
@@ -109,19 +94,22 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table id="earnings" class="display mb-1" style="table-layout:fixed;width:100%">
+                        <table id="p2p-trx" class="display mb-1" style="table-layout:fixed;width:100%">
                             <thead>
                             <tr>
-                                <th>EARNING TYPE</th>
-                                <th>PACKAGE</th>
+                                <th>ACTION</th>
+                                <th>RECEIVER</th>
+                                <th>TYPE</th>
                                 <th>STATUS</th>
-                                <th>PAYMENT DATE</th>
+                                <th>CREATED AT</th>
                                 <th class="text-right">AMOUNT</th>
+                                <th class="text-right">FEE</th>
+                                <th class="text-right">TOTAL</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
-                                <th colspan="5" style="text-align:right"></th>
+                                <th colspan="8" style="text-align:right"></th>
                             </tr>
                             </tfoot>
                         </table>
@@ -142,6 +130,6 @@
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.html5.min.js') }}"></script>
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.print.min.js') }}"></script>
         <script src="{{ asset('assets/backend/js/global-datatable-extension.js') }}"></script>
-        <script src="{{ asset('assets/backend/js/user/earnings/earnings.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/user/wallet/p2p-history.js') }}"></script>
     @endpush
 </x-backend.layouts.app>

@@ -86,6 +86,18 @@
                 </ul>
             </li>
             <li>
+                <a href="{{ route('user.transfers.p2p', ['status' => 'success']) }}" class="" aria-expanded="false">
+                    <i class="bi fa-arrow-turn-down"></i>
+                    <span class="nav-text"> P2P History </span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('user.transfers.withdrawals', ['status' => 'processing']) }}" class="" aria-expanded="false">
+                    <i class="bi fa-arrow-turn-up"></i>
+                    <span class="nav-text"> Withdrawal History</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{ route('user.support.tickets.index') }}" class="" aria-expanded="false">
                     <i class="bi bi-question-circle"></i>
                     <span class="nav-text">Support Ticket</span>

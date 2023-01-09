@@ -108,14 +108,19 @@
                             <thead>
                             <tr>
                                 <th>TYPE</th>
-                                <th>AMOUNT</th>
-                                <th>PAID</th>
-                                <th>NEXT PAY DATE</th>
                                 <th>STATUS</th>
-                                <th>CREATED AT</th>
                                 <th>REMARK</th>
+                                <th>CREATED AT</th>
+                                <th>NEXT PAY DATE</th>
+                                <th class="text-right">AMOUNT</th>
+                                <th class="text-right">PAID</th>
                             </tr>
                             </thead>
+                            <tfoot>
+                            <tr>
+                                <th colspan="7" style="text-align:right"></th>
+                            </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>
