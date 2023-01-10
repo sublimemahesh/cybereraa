@@ -1,12 +1,11 @@
 <div x-data="{
-    currentStep: @entangle('step').defer,
-    stepName: [
-        'Basic user details',
-        'KYC Details <p class=\'mb-4 text-gray-500 text-sm\'>Please note that the KYC details aren\'t updatable</p>',
-        'PLACEMENT & FINISH'
-    ]
-}">
-    {{-- <x-jet class="mb-4" /> --}}
+            currentStep: @entangle('step').defer,
+            stepName: [
+                'Basic user details',
+                'KYC Details <p class=\'mb-4 text-gray-500 text-sm\'>Please note that the KYC details aren\'t updatable</p>',
+                'PLACEMENT & FINISH'
+            ]
+        }">
     <form>
         @csrf
         {{-- <nav class="-mb-px flex space-x-2 nav nav-wizard" aria-label="Tabs">
@@ -31,34 +30,35 @@
 
 
         <div class="form-wizard order-create sw sw-theme-default sw-justified">
-            <ul class="nav nav-wizard"  id="nav-wizard">
+            <ul class="nav nav-wizard" id="nav-wizard">
                 <li>
-                    <a :class="currentStep == 1 ? 'active' : 'inactive'" class="nav-link" href="#wizard_Service">
+                    <a :class="currentStep == 1 ? 'active' : 'inactive'" class="nav-link">
                         <span>1</span>
                     </a>
                 </li>
                 <li>
-                    <a :class="currentStep == 2 ? 'active' : 'inactive'" class="nav-link" href="#wizard_Time">
+                    <a :class="currentStep == 2 ? 'active' : 'inactive'" class="nav-link">
                         <span>2</span>
                     </a>
                 </li>
                 <li>
-                    <a :class="currentStep == 3 ? 'active' : 'inactive'" class="nav-link" href="#wizard_Details">
+                    <a :class="currentStep == 3 ? 'active' : 'inactive'" class="nav-link">
                         <span>3</span>
                     </a>
                 </li>
             </ul>
         </div>
-        <div class="row  main-registerfrom">
-            @if ($step === 1)
-                @include('auth.components.details-step')
-            @elseif($step === 2)
-                @include('auth.components.kyc-step')
-            @elseif($step === 3)
-                @include('auth.components.placement-step')
-            @endif
+
+        <div x-show="currentStep === 1" class="row  main-registerfrom">
+            @include('auth.components.details-step')
         </div>
+        <div x-show="currentStep === 2" class="row  main-registerfrom">
+            @include('auth.components.kyc-step')
+        </div>
+        <div x-show="currentStep === 3" class="row  main-registerfrom">
+            @include('auth.components.placement-step')
+        </div>
+
+
     </form>
-
-
 </div>

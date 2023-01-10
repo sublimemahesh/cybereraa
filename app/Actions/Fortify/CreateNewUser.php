@@ -5,6 +5,7 @@ namespace App\Actions\Fortify;
 use App\Models\Profile;
 use App\Models\Team;
 use App\Models\User;
+use Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -26,8 +27,8 @@ class CreateNewUser implements CreatesNewUsers
     {
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'phone' => ['required', 'string', 'max:255', 'unique:users,phone'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'phone' => ['required', 'string', 'max:255'],
             'super_parent_id' => ['nullable', 'exists:users,id'],
             'username' => ['required', 'unique:users,username', 'string', 'max:255'],
             'password' => $this->passwordRules(),
@@ -38,10 +39,10 @@ class CreateNewUser implements CreatesNewUsers
             'street' => ['required', 'string', 'max:255'],
             'state' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
-            'zip_code' => ['required', 'string', 'max:255'],
+            'zip_code' => ['required', 'integer', 'max_digits:16'],
             'home_phone' => ['required', 'string', 'max:255'],
             'gender' => ['required', 'in:male,female', 'string', 'max:255'],
-            'dob' => ['required', 'date', 'max:255'],
+            'dob' => ['required', 'date', 'max:255', 'after_or_equal:1940-01-01', 'before_or_equal:' . Carbon::now()->subYears(16)->format('Y-m-d')],
             'nic' => [Rule::requiredIf(empty($input['driving_lc_number']) && empty($input['passport_number'])), 'nullable', 'string', 'max:255'],
             'driving_lc_number' => [Rule::requiredIf(empty($input['nic']) && empty($input['passport_number'])), 'nullable', 'string', 'max:255'],
             'passport_number' => [Rule::requiredIf(empty($input['driving_lc_number']) && empty($input['nic'])), 'nullable', 'string', 'max:255'],
@@ -64,7 +65,7 @@ class CreateNewUser implements CreatesNewUsers
                     "zip_code" => $input['zip_code'],
                     "home_phone" => $input['home_phone'],
                     "gender" => $input['gender'],
-                    "dob" => $input['dob'],
+                    "dob" => carbon::parse($input['dob'])->format('Y-m-d'),
                     "nic" => $input['nic'],
                     "driving_lc_number" => $input['driving_lc_number'],
                     "passport_number" => $input['passport_number'],

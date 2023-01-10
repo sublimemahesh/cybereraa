@@ -85,7 +85,7 @@ class InvoiceController extends Controller
         ];
 
 
-        $invoice['note'] = 'Payments are none refundable';
+        $invoice['note'] = 'Invested money back guarantee';
         $invoice['logo'] = $this->getLogo();
 
         return (object)$invoice;

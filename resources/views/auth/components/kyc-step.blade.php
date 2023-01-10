@@ -1,3 +1,4 @@
+<p class="mb-4 text-muted tx-13 ml-0 text-left"> Please note that the KYC details aren't updatable </p>
 <div class="col-lg-6 ">
     <label class="mb-1" for="nic" ><strong class="main-register-form-text">{{ __('NIC') }}<sup class="main-required">*</sup></strong></label>
     <x-jet-input id="nic" wire:model.lazy="state.nic" class="block mt-1 w-full form-control" type="text" name="nic" :value="old('nic')" required/>

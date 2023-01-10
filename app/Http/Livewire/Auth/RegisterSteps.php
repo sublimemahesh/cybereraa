@@ -6,6 +6,7 @@ use App\Actions\Fortify\PasswordValidationRules;
 use App\Models\Country;
 use App\Models\User;
 use Auth;
+use Carbon;
 use Exception;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Validation\Rule;
@@ -21,6 +22,10 @@ class RegisterSteps extends Component
     public bool $disable_sponsor_modify = false;
 
     public int $step = 1;
+
+    public string $phone_iso = 'LK';
+
+    public string $home_phone_iso = 'LK';
 
     public array $state = [
         "first_name" => null,
@@ -51,7 +56,7 @@ class RegisterSteps extends Component
     {
         $this->state['super_parent_id'] = optional($this->sponsor)->id;
         $this->state['sponsor'] = optional($this->sponsor)->username;
-        $this->disable_sponsor_modify = !is_null($this->sponsor->id);
+        $this->disable_sponsor_modify = $this->sponsor->id !== null;
     }
 
     protected function rules(): array
@@ -63,12 +68,12 @@ class RegisterSteps extends Component
             'state.street' => $this->step === 1 || $this->step === 3 ? ['required', 'string', 'max:255'] : '',
             'state.state' => $this->step === 1 || $this->step === 3 ? ['required', 'string', 'max:255'] : '',
             'state.address' => $this->step === 1 || $this->step === 3 ? ['required', 'string', 'max:255'] : '',
-            'state.zip_code' => $this->step === 1 || $this->step === 3 ? ['required', 'string', 'max:255'] : '',
-            'state.phone' => $this->step === 1 || $this->step === 3 ? ['required', 'string', 'max:255', 'unique:users,phone'] : '',
-            'state.home_phone' => $this->step === 1 || $this->step === 3 ? ['required', 'string', 'max:255'] : '',
+            'state.zip_code' => $this->step === 1 || $this->step === 3 ? ['required', 'integer', 'max_digits:16'] : '',
+            'state.phone' => $this->step === 1 || $this->step === 3 ? ['required', 'string', 'max:255', 'phone:' . $this->phone_iso] : '',
+            'state.home_phone' => $this->step === 1 || $this->step === 3 ? ['required', 'string', 'max:255', 'phone:' . $this->home_phone_iso] : '',
             'state.gender' => $this->step === 1 || $this->step === 3 ? ['required', 'in:male,female', 'string', 'max:255'] : '',
-            'state.dob' => $this->step === 1 || $this->step === 3 ? ['required', 'date', 'max:255'] : '',
-            'state.email' => $this->step === 1 || $this->step === 3 ? ['required', 'string', 'email', 'max:255', 'unique:users,email'] : '',
+            'state.dob' => $this->step === 1 || $this->step === 3 ? ['required', 'date', 'max:255', 'after_or_equal:1940-01-01', 'before_or_equal:' . Carbon::now()->subYears(16)->format('Y-m-d')] : '',
+            'state.email' => $this->step === 1 || $this->step === 3 ? ['required', 'string', 'email', 'max:255'] : '',
             'state.password' => $this->step === 1 || $this->step === 3 ? $this->passwordRules() : '',
 
             'state.nic' => $this->step === 2 || $this->step === 3 ? [Rule::requiredIf(empty($this->state['driving_lc_number']) && empty($this->state['passport_number'])), 'nullable', 'string', 'max:255'] : '',
@@ -170,7 +175,7 @@ class RegisterSteps extends Component
 
     public function render()
     {
-        $countries = Country::orderBy('name')->get();
+        $countries = Country::orderBy('name')->get(['name', 'iso', 'id'])->keyBy('iso');
         return view('livewire.auth.register-steps', compact('countries'));
     }
 }

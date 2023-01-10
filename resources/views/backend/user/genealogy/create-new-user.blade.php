@@ -1,7 +1,7 @@
 <x-backend.layouts.app>
     @section('title', 'Create new user')
     @section('header-title', 'Create new user' )
-    @section('styles')
+    @section('plugin-styles')
         <link rel="stylesheet" href="{{ asset('assets/backend/vendor/select2/css/select2.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/backend/css/user/genealogy.css') }}">
     @endsection
@@ -22,6 +22,7 @@
     </div>
     @push('scripts')
         <script src="{{ asset('assets/backend/vendor/select2/js/select2.full.min.js') }}"></script>
+        <script src="{{ asset('assets/backend/vendor/jquery-mask-plugin/jquery.mask.min.js') }}"></script>
         <script src="{{ asset('assets/backend/js/user/genealogy/assign-position.js') }}"></script>
     @endpush
 </x-backend.layouts.app>
