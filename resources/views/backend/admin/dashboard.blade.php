@@ -86,7 +86,7 @@
                                                 <span class="text-primary">-${{ number_format($lost_commissions,2) }} Disqualified </span>
                                             </div>
                                             <div class="d-flex align-items-baseline reward-earn">
-                                                <h2 class="me-2">{{ round(($lost_commissions/ $total_commissions) *100) }}%</h2>
+                                                <h2 class="me-2">{{ $total_commissions > 0 ? round(($lost_commissions/ $total_commissions) *100) : 0 }}%</h2>
                                                 {{-- <span>Level 2</span>--}}
                                             </div>
                                             <div class="progress-box">
