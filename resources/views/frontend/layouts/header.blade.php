@@ -13,17 +13,13 @@
                 <!-- Logo Ends -->
                 <!-- Statistics Starts -->
                 <div class='mbd'>
-                    <div class="col-md-6 col-lg-6 " id="heroGallery">
-                        <div class="owl-carousel owl-theme owl-loaded owl-drag div-r">
-
-                            <div class="owl-stage-outer">
-
+                    <div class="col-md-6 col-lg-6 ">
+                        <div class="owl-carousel owl-theme owl-loaded owl-drag div-r  " id="price-slider">
+                            <div class="owl-stage-outer"> 
                                 <div class="owl-stage"
                                     style="transform: translate3d(-1527px, 0px, 0px); transition: all 0.25s ease 0s; width: 3334px;">
 
-
-
-                                    <div class="owl-item ">
+                                    <div class="owl-item coin-list">
                                         <div class="item">
                                             <div>
                                                 <p class='tp'><i class="fa fa-caret-up" aria-hidden="true"></i>4%(30
@@ -35,7 +31,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="owl-item ">
+                                    <div class="owl-item coin-list">
                                         <div class="item">
                                             <div>
                                                 <p class='tp'><i class="fa fa-caret-up" aria-hidden="true"></i>4%(30
@@ -47,7 +43,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="owl-item ">
+                                    <div class="owl-item coin-list">
                                         <div class="item">
                                             <div>
                                                 <p class='tp'><i class="fa fa-caret-up" aria-hidden="true"></i>4%(30
@@ -59,7 +55,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="owl-item ">
+                                    <div class="owl-item coin-list">
                                         <div class="item">
                                             <div>
                                                 <p class='tp'><i class="fa fa-caret-up" aria-hidden="true"></i>4%(30
@@ -70,7 +66,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="owl-item ">
+                                    <div class="owl-item coin-list">
                                         <div class="item">
                                             <div>
                                                 <p class='tp'><i class="fa fa-caret-up" aria-hidden="true"></i>4%(30
@@ -81,7 +77,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="owl-item ">
+                                    <div class="owl-item coin-list">
                                         <div class="item">
                                             <div>
                                                 <p class='tp'><i class="fa fa-caret-up" aria-hidden="true"></i>4%(30
@@ -104,14 +100,14 @@
                 <div class="col-md-3 col-lg-3">
                     <ul class="unstyled user">
                         @auth
-                        <li class="sign-in" id='log-btn'>
-                            <a href="{{ route(Auth::user()->getRoleNames()->first() . '.dashboard') }}"
-                                class="btn btn-primary  header-btn">
-                                {{-- <i class="fa fa-tachometer" aria-hidden="true"></i> --}}
-                                <i class="fas fa-tachometer-alt"> </i>
-                                My account </a>
-                        </li>
-                    @endauth
+                            <li class="sign-in" id='log-btn'>
+                                <a href="{{ route(Auth::user()->getRoleNames()->first() . '.dashboard') }}"
+                                    class="btn btn-primary  header-btn">
+                                    {{-- <i class="fa fa-tachometer" aria-hidden="true"></i> --}}
+                                    <i class="fas fa-tachometer-alt"> </i>
+                                    My account </a>
+                            </li>
+                        @endauth
                         @guest
                             <li class="sign-in">
                                 <a href="{{ route('login') }}" class="btn btn-primary  header-btn">
@@ -123,7 +119,7 @@
                                         class="fa fa-user-plus"></i> register</a>
                             </li>
                         @endguest
-                       
+
                     </ul>
                 </div>
                 <!-- User Sign In/Sign Up Ends -->

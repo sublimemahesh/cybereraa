@@ -12,8 +12,9 @@ class FrontendController extends Controller
 {
     public function index()
     {
-        $packages = Package::all();
+
         $all_news= Blog::all();
+        $packages = page::find(66); //   66   38 
         // $homes= page::find(44); //53  44
 
         $homes_video= page::where(['id' => 59])->get(); // serve 59      50
@@ -21,6 +22,7 @@ class FrontendController extends Controller
         $homes_mission= page::where(['id' => 56])->get(); //     56      46
         $homes_value= page::where(['id' => 57])->get(); //       57      47
         $homes_vission= page::where(['id' => 45])->get(); //     58      45
+       
 
 
 
@@ -33,7 +35,7 @@ class FrontendController extends Controller
         $abouts= page::find(3); //3
 
         $homes_mission= page::where(['id' => 56])->get(); //     56      40
-        $homes_value= page::where(['id' => 57])->get(); //       57      44  
+        $homes_value= page::where(['id' => 57])->get(); //       57      44
         $homes_vission= page::where(['id' => 58])->get(); //     58      45
 
         return view('frontend.about', compact('abouts','homes_mission','homes_value','homes_vission'));
@@ -85,7 +87,7 @@ class FrontendController extends Controller
 
     public function news()
     {
-        $all_news= Blog::all();  
+        $all_news= Blog::all();
         return view('frontend.news', compact('all_news'));
         //return view('frontend.blog');
     }
@@ -97,7 +99,7 @@ class FrontendController extends Controller
         return view('frontend.news-post', compact('news','all_news'));
     }
 
-   
+
 
 
 }

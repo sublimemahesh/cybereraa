@@ -7,11 +7,8 @@
 
      @endsection
 
-
-
-
      <!-- Banner Area Starts -->
-     <section class="banner-area">
+     {{-- <section class="banner-area">
          <div class="banner-overlay">
              <div class="banner-text text-center">
                  <div class="container">
@@ -34,7 +31,46 @@
                  </div>
              </div>
          </div>
-     </section>
+     </section> --}}
+
+
+     <div id="page">
+        <section id="hero" class='net-hero'>
+            <div class="background">
+                <canvas id="hero-background"></canvas>
+            </div>
+            <div class="foreground">
+                <div class="main">
+                    <section class="banner-area">
+                        <div class="banner-overlay">
+                            <div class="banner-text text-center">
+                                <div class="container">
+                                    <!-- Section Title Starts -->
+                                    <div class="row text-center">
+                                        <div class="col-xs-12">
+                                            <!-- Title Starts -->
+                                            <h2 class="title-head">Existing <span> Projects</span></h2>
+                                            <!-- Title Ends -->
+                                            <hr>
+                                            <!-- Breadcrumb Starts -->
+                                            <ul class="breadcrumb">
+                                                <li><a href="{{ route('/') }}"> home</a></li>
+                                                <li>Existing  Projects</li>
+                                            </ul>
+                                            <!-- Breadcrumb Ends -->
+                                        </div>
+                                    </div>
+                                    <!-- Section Title Ends -->
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+        </section>
+    </div>
+
+
+
 
      {{-- /////////////////////  project ///////////////////////////// --}}
 
