@@ -134,5 +134,6 @@
      </div>
 
      @push('scripts')
+     <script src="{{ asset('assets/frontend/js/net.js') }}"></script>
      @endpush
  </x-frontend.layouts.app>

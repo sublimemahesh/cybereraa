@@ -97,6 +97,5 @@
     <!-- Section Content Ends -->
 
     @push('scripts')
-        {{-- <script src="{{ asset('assets/backend/js/dashboard/dashboard.js') }}"></script> --}}
-    @endpush
+    <script src="{{ asset('assets/frontend/js/net.js') }}"></script>
 </x-frontend.layouts.app>

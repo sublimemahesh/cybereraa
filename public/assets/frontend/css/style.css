@@ -1494,7 +1494,7 @@ ul.nav.nav-tabs li.active a:hover {
 }
 
 .bg-image-1 {
-    background-image: url(../images/backgrounds/bg-video.jpg);
+    background-image: url(../images/down/word.jpg);
     background-size: cover;
     background-position: center center;
     height: 625px;
@@ -3425,7 +3425,7 @@ section.shop-checkout {
 .call-action-all {
     padding: 0;
     position: relative;
-    background: url("../images/backgrounds/bg-banner.jpg"); 
+    background: url("../images/backgrounds/bg-banner.jpg");
     background-size: cover;
     background-position: center center;
     z-index: 3;

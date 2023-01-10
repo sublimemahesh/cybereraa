@@ -15,15 +15,14 @@
 
     <!-- Template CSS Files -->
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/font-awesome.min.css') }}">
-
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap.min.css') }}">
-    
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/skins/orange.css') }}">
-
+    <link href="{{ asset('assets/frontend/css/magnific-popup.css') }}" rel="stylesheet">
    
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/css/main.css') }}" />
+    
 
     
 
@@ -59,13 +58,12 @@
 
     <script src="{{ asset('assets/frontend/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/frontend/js/select2.min.js') }}"></script>
+    <script src="{{ asset('assets/frontend/js/jquery.magnific-popup.min.js') }}"></script>
     <script src="{{ asset('assets/frontend/js/custom.js') }}"></script>
 
     <!-- Live Style Switcher JS File - only demo -->
     
     <script src="{{ asset('assets/frontend/js/main.js') }}"></script>
-    <script src="{{ asset('assets/frontend/js/net.js') }}"></script>
-    <script src="{{ asset('assets/frontend/js/t.js') }}"></script>
 
 
     <!-- Wrapper Ends -->
