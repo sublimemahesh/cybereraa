@@ -6,12 +6,11 @@
     bottom: 0;
     overflow: hidden;
     z-index: 3;
-  }
+  } 
   #page #hero .foreground {
     position: relative;
     z-index: 5;
   }
-  
-  
-  
-  
+
+
+

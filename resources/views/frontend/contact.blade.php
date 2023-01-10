@@ -7,7 +7,7 @@
     @endsection
 
 
-<section class="banner-area">
+{{-- <section class="banner-area">
     <div class="banner-overlay">
         <div class="banner-text text-center">
             <div class="container">
@@ -15,7 +15,7 @@
                 <div class="row text-center">
                     <div class="col-xs-12">
                         <!-- Title Starts -->
-                        <h2 class="title-head">Get in <span>touch</span></h2>
+                        <h2 class="title-head">Contact <span>us</span></h2>
                         <!-- Title Ends -->
                         <hr>
                         <!-- Breadcrumb Starts -->
@@ -30,9 +30,47 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 <!-- Banner Area Ends -->
 <!-- Contact Section Starts -->
+
+
+<div id="page">
+    <section id="hero" class='net-hero'>
+        <div class="background">
+            <canvas id="hero-background"></canvas>
+        </div>
+        <div class="foreground">
+            <div class="main">
+                <section class="banner-area">
+                    <div class="banner-overlay">
+                        <div class="banner-text text-center">
+                            <div class="container">
+                                <!-- Section Title Starts -->
+                                <div class="row text-center">
+                                    <div class="col-xs-12">
+                                        <!-- Title Starts -->
+                                        <h2 class="title-head">Contact <span>us</span></h2>
+                                        <!-- Title Ends -->
+                                        <hr>
+                                        <!-- Breadcrumb Starts -->
+                                        <ul class="breadcrumb">
+                                            <li><a href="{{ route('/') }}" id='home'> home</a></li>
+                                            <li>contact</li>
+                                        </ul>
+                                        <!-- Breadcrumb Ends -->
+                                    </div>
+                                </div>
+                                <!-- Section Title Ends -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+    </section>
+</div>
+
+
 
 
 

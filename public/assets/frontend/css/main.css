@@ -90,7 +90,7 @@ img.vert-move {
 } */
 
 
-.owl-item {
+.coin-list { 
     width: 120px !important;
     height: 55px;
     margin-right: 10px;
@@ -108,9 +108,9 @@ img.vert-move {
 
 **/
 
-.owl-dots {
+/* .owl-dots {
     display: none;
-}
+} */
 
 .div-r {
     margin-top: 23px;

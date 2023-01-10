@@ -1336,7 +1336,7 @@ ul.nav.nav-tabs li.active a:hover {
     position: relative;
     padding: 0;
     color: #fff;
-    background-image: url("../images/backgrounds/bg-banner.jpg");
+    /* background-image: url("../images/backgrounds/bg-banner.jpg"); */
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;

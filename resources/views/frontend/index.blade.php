@@ -5,16 +5,7 @@
 
         <link href="{{ asset('assets/frontend/css/testimonials.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/frontend/css/hiw2.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/frontend/css/pricing-carousel.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/frontend/css/flickity.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/frontend/css/pricing.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/frontend/css/flickity.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/frontend/css/net.css') }}" rel="stylesheet">
-
-
-
-        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 
     @endsection
 
@@ -72,11 +63,11 @@
                 <!-- Image Starts -->
                 <div class="col-sm-12 col-md-5 col-lg-6 text-center">
 
-                      {{-- {!!$homes->children[4]->content !!} --}}
+                    {{-- {!!$homes->children[4]->content !!} --}}
 
-                      @foreach ($homes_video as $key => $hv)
-                         {!!$hv->content !!}
-                      @endforeach
+                    @foreach ($homes_video as $key => $hv)
+                        {!! $hv->content !!}
+                    @endforeach
 
 
                 </div>
@@ -85,33 +76,10 @@
                 <div class="col-sm-12 col-md-7 col-lg-6">
 
                     @foreach ($homes_contents as $key => $hc)
-                    <h3 class="title-about">{{ $hc->title  }}</h3>
-                    <p class="about-text">{!!$hc->content !!}</p>
+                        <h3 class="title-about">{{ $hc->title }}</h3>
+                        <p class="about-text">{!! $hc->content !!}</p>
                     @endforeach
 
-                    {{-- <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#menu1">Our Mission</a></li>
-                        <li><a data-toggle="tab" href="#menu2">Our Values</a></li>
-                        <li><a data-toggle="tab" href="#menu3">Our vision</a></li>
-                    </ul> --}}
-                    {{-- <div class="tab-content">
-                        <div id="menu1" class="tab-pane fade in active">
-                            @foreach ($homes_mission as $key => $hm)
-                            {!!$hm->content !!}
-                            @endforeach
-
-                        </div>
-                        <div id="menu2" class="tab-pane fade">
-                            @foreach ($homes_value as $key => $hval)
-                            {!!$hval->content !!}
-                            @endforeach
-                        </div>
-                        <div id="menu3" class="tab-pane fade">
-                            @foreach ($homes_vission as $key => $hvi)
-                            {!!$hvi->content !!}
-                            @endforeach
-                        </div>
-                    </div> --}}
                     <a class="btn btn-primary" href="{{ route('about') }}">Read More</a>
                 </div>
                 <!-- Content Ends -->
@@ -200,57 +168,37 @@
         </ul>
 
     </section>
-    <!-- hiw Section Ends -->
-
-    <!-- Quote and Chart Section Starts -->
-    <section class="image-block2" id='image-block2'>
-        <div class='container'>
-            <h2 class="title-head text-center">Our<span> Packages .</span></h2>
+   
+    <section>
+        <div class="container">
+            <h2 class="title-head text-center"><span> </span></h2>
             <div class="title-head-subtitle text-center">
-                <p>Display our packages</p>
-            </div>
-            <div class="PriceBlocks-sliderContainer">
-                <div class="PriceBlocks-slider">
+                {{-- <p>Explain How it works with us</p> --}}
 
-                    @foreach ($packages->slice(0, 4) as $package)
-                        <div class="PriceBlock-container is-previous">
-                            <div class="pricing-block wow fadeInUp wc">
-                                <div class="inner-box">
-                                    <div class="icon-box">
-                                        <div class="icon-outer"><i class="fas fa-gem"></i></div>
-                                    </div>
-                                    <div class="price-box">
-                                        <div class="title">{{ $package->name }}</div>
-                                        <h4 class="price">{{ $package->currency }}{{ $package->amount }}</h4>
-                                    </div>
-                                    <br>
-                                    <br>
-                                    <ul class="features">
-                                        <li class="true">Duration {{ $package->month_of_period }} Month</li>
-                                        <li class="true">Up to {{ $package->daily_leverage }} Leverage</li>
-
-                                    </ul>
-                                    <div class="btn-box">
-                                        <a href="{{ route('register') }}" class="theme-btn">BUY plan</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-
-                    <div class="PriceBlock-container">
-                        <div class="PriceBlock">
-                            <div class="PriceBlock-top">
-                                <i class="fa fa-plus-circle" aria-hidden="true" id="fa-plus-circle-me"></i>
-                            </div>
-                            <h2 class='text-center'><a href="{{ route('pricing') }}" id='vmp'>View more
-                                    Packages</a></h2>
-                        </div>
+                <div class="owl-carousel owl-theme casino-slider">
+                    @foreach ($packages->children as $section)
+                    <div class="item">
+                        <img src="{{ storage('pages/' . $section->image) }}"
+                            alt="">
                     </div>
+                    @endforeach
                 </div>
+
+
             </div>
         </div>
     </section>
+
+
+
+
+
+
+
+
+
+
+
     <!-- Quote and Chart Section Ends -->
 
     <!-- Team Section Starts -->
@@ -403,12 +351,9 @@
     <!-- Blog Section Ends -->
 
     @push('scripts')
+       
         <script src="{{ asset('assets/frontend/js/testimonials.js') }}"></script>
         <script src="{{ asset('assets/frontend/js/hiw2.js') }}"></script>
-        <script src='https://unpkg.com/flickity@2.0.5/dist/flickity.pkgd.min.js'></script>
-        <script src="{{ asset('assets/frontend/js/pricing-carousel.js') }}"></script>
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
-        <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
-        <script src="{{ asset('assets/frontend/js/net.js') }}"></script>
+        <script src="{{ asset('assets/frontend/js/net_home.js') }}"></script>
     @endpush
 </x-frontend.layouts.app>

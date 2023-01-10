@@ -4,7 +4,7 @@
 
     <div class="row justify-content-center main-register-form-style">
         <div class="col-md-6">
-            <div class="authincation-content">
+            <div class="authincation-content"> 
                 <div class="row no-gutters">
                     <div class="col-xl-12">
                         <div class="auth-form">

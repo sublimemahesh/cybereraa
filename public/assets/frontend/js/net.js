@@ -84,11 +84,11 @@ var Animation = function (id) {
     };
 
     this.draw = function () {
-      /*
-      ctx.shadowBlur = 10;
-      ctx.shadowOpacity = 0.5;
-      ctx.shadowColor = "white";
-      */
+    //   /*
+    //   ctx.shadowBlur = 10;
+    //   ctx.shadowOpacity = 0.5;
+    //   ctx.shadowColor = "white";
+    //   */
       ctx.fillStyle = "rgba(255,255,255," + this.alpha + ")";
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
@@ -136,7 +136,7 @@ var Animation = function (id) {
       points[i].update();
       if (points[i].dead) {
         points.splice(i, 1);
-        console.log('dead');
+        // console.log('dead');
       }
     }
   }
@@ -146,7 +146,12 @@ var Animation = function (id) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // Draw background
-    ctx.fillStyle = "#000000";
+     ctx.fillStyle = "rgba(0, 0, 0, 0.0)";
+     const img = new Image();
+     //img.onload = someFunctionToCallWhenTheImageHasLoaded
+     img.src = 'http://localhost/tradesfor/public/assets/frontend/images/backgrounds/bg-banner.jpg';
+     ctx.drawImage(img, '2', '2');
+    // document.getElementById("hero-background").style.background = "url('http://localhost/tradesfor/public/assets/frontend/images/backgrounds/bg-banner.jpg')";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // Draw connections
