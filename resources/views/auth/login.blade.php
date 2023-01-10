@@ -29,19 +29,20 @@
 
                                 <div class="col-lg-12  mt-4">
                                     <label class="mb-1" for="email">
-                                        <strong class="main-register-form-text">{{ __('Email') }}
+                                        <strong class="main-register-form-text">{{ __('Username') }}
                                             <sup class="main-required">*</sup>
                                         </strong>
                                     </label>
-                                    <x-jet-input id="email" class="block mt-1 w-full form-control" type="email" name="email" :value="old('email')" required autofocus/>
+                                    <x-jet-input id="username" class="block mt-1 w-full form-control" type="text" name="username" :value="old('username')" required autofocus/>
                                 </div>
 
                                 <div class="col-lg-12  mt-4">
-                                    <label class="mb-1" for="password"><strong class="main-register-form-text">{{ __('Password') }}
-                                            <sup
-                                                    class="main-required">*</sup></strong></label>
-                                    <x-jet-input id="password" class="block mt-1 w-full form-control" type="password"
-                                            name="password" required autocomplete="current-password"/>
+                                    <label class="mb-1" for="password">
+                                        <strong class="main-register-form-text">{{ __('Password') }}
+                                            <sup class="main-required">*</sup>
+                                        </strong>
+                                    </label>
+                                    <x-jet-input id="password" class="block mt-1 w-full form-control" type="password" name="password" required autocomplete="current-password"/>
                                 </div>
 
                                 <div class="col-lg-12  mt-4">

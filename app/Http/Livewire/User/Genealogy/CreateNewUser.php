@@ -6,6 +6,7 @@ use App\Actions\Fortify\PasswordValidationRules;
 use App\Models\Country;
 use App\Models\User;
 use Auth;
+use Carbon;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -15,6 +16,10 @@ use Livewire\Component;
 class CreateNewUser extends Component
 {
     use PasswordValidationRules;
+
+    public string $phone_iso = 'LK';
+
+    public string $home_phone_iso = 'LK';
 
     public array $state = [
         "first_name" => null,
@@ -50,12 +55,12 @@ class CreateNewUser extends Component
             'state.street' => ['required', 'string', 'max:255'],
             'state.state' => ['required', 'string', 'max:255'],
             'state.address' => ['required', 'string', 'max:255'],
-            'state.zip_code' => ['required', 'string', 'max:255'],
-            'state.phone' => ['required', 'string', 'max:255', 'unique:users,phone'],
-            'state.home_phone' => ['required', 'string', 'max:255'],
+            'state.zip_code' => ['required', 'integer', 'max_digits:16'],
+            'state.phone' => ['required', 'string', 'max:255', 'phone:' . $this->phone_iso],
+            'state.home_phone' => ['required', 'string', 'max:255', 'phone:' . $this->home_phone_iso],
             'state.gender' => ['required', 'in:male,female', 'string', 'max:255'],
-            'state.dob' => ['required', 'date', 'max:255'],
-            'state.email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
+            'state.dob' => ['required', 'date', 'max:255', 'after_or_equal:1940-01-01', 'before_or_equal:' . Carbon::now()->subYears(16)->format('Y-m-d')],
+            'state.email' => ['required', 'string', 'email', 'max:255'],
             'state.password' => $this->passwordRules(),
 
             'state.nic' => [Rule::requiredIf(empty($this->state['driving_lc_number']) && empty($this->state['passport_number'])), 'nullable', 'string', 'max:255'],
@@ -96,7 +101,7 @@ class CreateNewUser extends Component
 
     public function render()
     {
-        $countries = Country::orderBy('name')->get();
+        $countries = Country::orderBy('name')->get(['name', 'iso', 'id'])->keyBy('iso');
         return view('livewire.user.genealogy.create-new-user', compact('countries'));
     }
 }

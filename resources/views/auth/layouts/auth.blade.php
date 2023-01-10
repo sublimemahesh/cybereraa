@@ -19,6 +19,7 @@
 
     <!-- FAVICONS ICON -->
     <link rel="shortcut icon" type="image/png" href="{{ asset('assets/backend/images/favicon.png') }}">
+    <link rel="stylesheet" href="{{ asset('assets/backend/vendor/select2/css/select2.min.css') }}">
     <link href="{{ asset('assets/backend/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/backend/vendor/jquery-smartwizard/dist/css/smart_wizard.min.css') }}" rel="stylesheet">
     {{-- add my css file link Lochana --}}
@@ -31,20 +32,17 @@
     @livewireScripts
 </head>
 
-<body class="vh-100"  >
-    <div id="loader">
-    </div>
+<body class="vh-100">
+    <div id="loader"></div>
+
     <div class=" h-100">
         <div class="container h-100">
             @yield('contents')
         </div>
     </div>
 
-    <!--**********************************
- Scripts
-***********************************-->
-    <!-- Required vendors -->
     <script src="{{ asset('assets/backend//vendor/global/global.min.js') }}"></script>
+    <script src="{{ asset('assets/backend/vendor/select2/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets/backend/js/custom.js') }}"></script>
     <script src="{{ asset('assets/backend/js/deznav-init.js') }}"></script>
     <script src="{{ asset('assets/backend/vendor/jquery-smartwizard/dist/js/jquery.smartWizard.js') }}"></script>

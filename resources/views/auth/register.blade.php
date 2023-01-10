@@ -9,7 +9,7 @@
                     <div class="col-xl-12">
                         <div class="auth-form">
                             <div class="text-center mb-3">
-                                <a href="{{ route('/') }}">  
+                                <a href="{{ route('/') }}">
                                     <img src="{{ asset('assets/backend/images/logo/logo-full.png') }}" alt="">
                                 </a>
                             </div>
@@ -39,4 +39,7 @@
         </div>
     </div> --}}
 
+    @push('scripts')
+        <script src="{{ asset('assets/backend/vendor/jquery-mask-plugin/jquery.mask.min.js') }}"></script>
+    @endpush
 @endsection

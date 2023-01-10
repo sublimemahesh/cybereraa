@@ -25,14 +25,14 @@
         @enderror
     </div>
     <div class="col-lg-6 mt-4">
-        <label class="mb-1" for="country"><strong>{{ __('Country') }}<sup class="main-required">*</sup></strong></label>
-        <select id="country" wire:model.lazy="state.country_id"
-                class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm  form-control">
-            <option value="">Select Country</option>
-            @foreach ($countries as $country)
-                <option value="{{ $country->id }}">{{ $country->name }}</option>
-            @endforeach
-        </select>
+        <div wire:ignore>
+            <label class="mb-1" for="country">
+                <strong>{{ __('Country') }}
+                    <sup class="main-required">*</sup>
+                </strong>
+            </label>
+            <x-select2 class="form-control" id="country" name="country_id" wire:model="state.country_id" :options="$countries"/>
+        </div>
         @error('state.country_id')
         {{-- <div class="text-sm text-red-600">{{ $message }}</div> --}}
         <div class="text-danger">
@@ -74,10 +74,12 @@
         @enderror
     </div>
     <div class="col-lg-6 mt-4">
-        <label class="mb-1" for="zip_code"><strong>{{ __('Zip Code') }}
-                <sup class="main-required">*</sup></strong></label>
-        <x-jet-input id="zip_code" wire:model.lazy="state.zip_code" class="block mt-1 w-full form-control" type="text"
-                name="zip_code" :value="old('zip_code')" required autofocus autocomplete="zip_code"/>
+        <label class="mb-1" for="zip_code">
+            <strong>{{ __('Zip Code') }}
+                <sup class="main-required">*</sup>
+            </strong>
+        </label>
+        <x-jet-input id="zip_code" wire:model.lazy="state.zip_code" class="block mt-1 w-full form-control" type="number" name="zip_code" :value="old('zip_code')" required autofocus autocomplete="zip_code"/>
         @error('state.zip_code')
         {{-- <div class="text-sm text-red-600">{{ $message }}</div> --}}
         <div class="text-danger">
@@ -98,11 +100,13 @@
         @enderror
     </div>
     <div class="col-lg-6 mt-4">
-        <div>
-            <label class="mb-1" for="phone"><strong>{{ __('Mobile Number') }}
-                    <sup class="main-required">*</sup></strong></label>
-            <x-jet-input wire:ignore id="phone" class="block mt-1 w-full form-control" type="text" name="phone"
-                    :value="old('phone')" required autofocus autocomplete="phone"/>
+        <div wire:ignore>
+            <label class="mb-1" for="phone">
+                <strong>{{ __('Mobile Number') }}
+                    <sup class="main-required">*</sup>
+                </strong>
+            </label>
+            <x-jet-input wire:ignore id="phone" class="block mt-1 w-full form-control" type="text" name="phone" :value="old('phone')" required autofocus autocomplete="phone"/>
         </div>
         @error('state.phone')
         {{-- <div class="text-sm text-red-600">{{ $message }}</div> --}}
@@ -114,11 +118,13 @@
     </div>
 
     <div class="col-lg-6 mt-4">
-        <div>
-            <label class="mb-1" for="home_phone"><strong>{{ __('Other Number') }}
-                    <sup class="main-required">*</sup></strong></label>
-            <x-jet-input wire:ignore id="home_phone" class="block mt-1 w-full form-control" type="text" name="home_phone"
-                    :value="old('home_phone')" required autofocus autocomplete="home_phone"/>
+        <div wire:ignore>
+            <label class="mb-1" for="home_phone">
+                <strong>{{ __('Other Number') }}
+                    <sup class="main-required">*</sup>
+                </strong>
+            </label>
+            <x-jet-input wire:ignore id="home_phone" class="block mt-1 w-full form-control" type="text" name="home_phone" :value="old('home_phone')" required autofocus autocomplete="home_phone"/>
         </div>
         @error('state.home_phone')
         {{-- <div class="text-sm text-red-600">{{ $message }}</div> --}}
@@ -146,10 +152,14 @@
     </div>
 
     <div class="col-lg-6 mt-4">
-        <label class="mb-1" for="dob"><strong>{{ __('Date Of Birth') }}
-                <sup class="main-required">*</sup></strong></label>
-        <x-jet-input id="dob" type="date" wire:model.lazy="state.dob" class="block mt-1 w-full form-control"
-                name="dob" :value="old('dob')" required autofocus autocomplete="dob"/>
+        <div wire:ignore>
+            <label class="mb-1" for="dob">
+                <strong>{{ __('Date Of Birth') }}
+                    <sup class="main-required">*</sup>
+                </strong>
+            </label>
+            <x-jet-input id="dob" type="text" wire:model.lazy="state.dob" class="bday-mask block mt-1 w-full form-control" name="dob" :value="old('dob')" required autofocus autocomplete="dob"/>
+        </div>
         @error('state.dob')
         {{-- <div class="text-sm text-red-600">{{ $message }}</div> --}}
         <div class="text-danger">
@@ -192,6 +202,7 @@
                 letters, numbers, and special characters.</p>
         </div>
     </div>
+    <p class="mt-4 text-muted tx-13 ml-0 text-left"> Please note that the KYC details aren't updatable </p>
     <div class="col-lg-6  mt-4">
         <label class="mb-1" for="nic"><strong>{{ __('NIC') }}<sup class="main-required">*</sup></strong></label>
         <x-jet-input id="nic" wire:model.lazy="state.nic" class="block mt-1 w-full form-control" type="text" name="nic" :value="old('nic')" required/>
@@ -241,7 +252,7 @@
             <x-jet-label for="terms">
                 <div class="d-flex align-items-center">
                     <x-jet-checkbox name="terms" id="terms" wire:model.lazy="state.terms" required/>
-                    <div class="ml-2">
+                    <div class="mx-2">
                         {!! __('I agree to the :terms_of_service and :privacy_policy', [
                                 'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Terms of Service').'</a>',
                                 'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Privacy Policy').'</a>',
@@ -262,37 +273,9 @@
     </div>
 
     <x-jet-validation-errors class="col-lg-12 mb-4 text-danger"/>
+
+
     @push('scripts')
-        <script>
-            function init() {
-
-                const itl_phone = intlTelInput.intlTelInput(document.querySelector("#phone"), {
-                    initialCountry: "LK",
-                })
-                const itl_home_phone = intlTelInput.intlTelInput(document.querySelector("#home_phone"), {
-                    initialCountry: "LK",
-                })
-
-                document.querySelector("#phone").addEventListener('change', function (e) {
-                    let phone = itl_phone.getNumber(intlTelInputUtils.numberFormat.E164);
-                    @this.
-                    set('state.phone', phone);
-                })
-                document.querySelector("#home_phone").addEventListener('change', function (e) {
-                    let home_phone = itl_home_phone.getNumber(intlTelInputUtils.numberFormat.E164);
-                    @this.
-                    set('state.home_phone', home_phone);
-                })
-            }
-
-            window.addEventListener('DOMContentLoaded', (event) => {
-                init()
-            });
-            Livewire.hook('message.processed', (message, component) => {
-                init()
-                document.querySelector("#phone").value = component.serverMemo.data.state.phone
-                document.querySelector("#home_phone").value = component.serverMemo.data.state.home_phone
-            });
-        </script>
+        @include('auth.layouts.js-init-script')
     @endpush
 </div>

@@ -56,4 +56,8 @@
     </div>
 @endif
 
-@include('auth.components.button', ['attribute' => 'wire:click.prevent=register', 'slot' => 'Register'])
+<div class="col-lg-12 mb-4">
+    @include('auth.components.button', ['attribute' => 'wire:click.prevent=register', 'slot' => 'Register'])
+</div>
+
+<x-jet-validation-errors class="col-lg-12 mb-4 text-danger"/>
