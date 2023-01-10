@@ -127,5 +127,6 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="{{ asset('assets/frontend/js/jquery.serialscrolling.js') }}"></script>
         <script src="{{ asset('assets/frontend/js/hiw.js') }}"></script>
+        <script src="{{ asset('assets/frontend/js/net.js') }}"></script>
     @endpush
 </x-frontend.layouts.app>

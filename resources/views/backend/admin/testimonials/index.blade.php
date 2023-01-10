@@ -31,7 +31,7 @@
                                     <th>No</th>
                                     <th>Name</th>
                                     <th>Title</th>
-                                    <th style="max-width: 200px;">Comment</th>
+                                    <th style="max-width: 200px;">Comment</th> 
                                     <th>Status</th>
                                     <th style="max-width: 400px;" class="text-center">Actions</th>
                                 </tr>

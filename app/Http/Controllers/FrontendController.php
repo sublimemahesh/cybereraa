@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Page;
 use App\Models\Package;
 use App\Models\Blog;
+use App\Models\Testimonial;
+
 
 class FrontendController extends Controller
 {
@@ -14,20 +16,20 @@ class FrontendController extends Controller
     {
 
         $all_news= Blog::all();
-        $packages = page::find(66); //   66   38 
-        // $homes= page::find(44); //53  44
+        $packages = page::find(2);
+
 
         $homes_video= page::where(['id' => 59])->get(); // serve 59      50
         $homes_contents= page::where(['id' => 54])->get(); //    54      45
-        $homes_mission= page::where(['id' => 56])->get(); //     56      46
-        $homes_value= page::where(['id' => 57])->get(); //       57      47
-        $homes_vission= page::where(['id' => 45])->get(); //     58      45
-       
+
+
+        $testimonials = Testimonial::all();
+        $benefits = page::find(70); //   70      38
 
 
 
-        return view('frontend.index', compact('packages','all_news','homes_video','homes_contents','homes_mission','homes_value','homes_vission'));
-      //  return view('frontend.index');
+        return view('frontend.index', compact('benefits','testimonials','packages','all_news','homes_video','homes_contents'));
+
     }
 
     public function about()
