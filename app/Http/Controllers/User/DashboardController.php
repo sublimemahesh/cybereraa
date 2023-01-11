@@ -15,7 +15,7 @@ class DashboardController extends Controller
     {
         $earnings = Commission::with('purchasedPackage.user')
             ->where('user_id', Auth::user()->id)
-            ->where('created_at', '<=', date('Y-m-d H:i:s'))
+            //->where('created_at', '<=', date('Y-m-d H:i:s'))
             ->limit(25)
             ->latest()
             ->get();

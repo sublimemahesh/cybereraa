@@ -23,7 +23,7 @@ class IncomeController extends Controller
                 })
                 ->with('purchasedPackage', 'user')
                 ->filter()
-                ->where('created_at', '<=', date('Y-m-d H:i:s'))
+                //->where('created_at', '<=', date('Y-m-d H:i:s'))
                 ->latest();
 
             return DataTables::of($earnings)
@@ -55,7 +55,7 @@ class IncomeController extends Controller
                     $query->where('user_id', $request->get('user_id'));
                 })
                 ->filter()
-                ->where('created_at', '<=', date('Y-m-d H:i:s'))
+                //->where('created_at', '<=', date('Y-m-d H:i:s'))
                 ->latest();
 
             return DataTables::of($earnings)

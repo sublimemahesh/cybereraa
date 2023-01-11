@@ -24,7 +24,7 @@ class WithdrawController extends Controller
                     $query->where('receiver_id', $request->get('receiver_id'));
                 })->filter()
                 ->where('type', 'P2P')
-                ->where('created_at', '<=', date('Y-m-d H:i:s'))
+                //->where('created_at', '<=', date('Y-m-d H:i:s'))
                 ->latest();
 
             return DataTables::of($withdrawals)
@@ -59,7 +59,7 @@ class WithdrawController extends Controller
                     $query->where('user_id', $request->get('user_id'));
                 })->filter()
                 ->where('type', 'BINANCE')
-                ->where('created_at', '<=', date('Y-m-d H:i:s'))
+                //->where('created_at', '<=', date('Y-m-d H:i:s'))
                 ->latest();
 
             return DataTables::of($withdrawals)
