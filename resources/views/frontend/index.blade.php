@@ -162,32 +162,32 @@
         </ul>
     </section>
 
-    <section class="image-block">
-        <div class="container-fluid">
+    <section class="image-block bg-image-1 parallax">
+        <div class="container benefit-back">
             <div class="row">
                 <!-- Features Starts -->
-                <div class="col-md-8 ts-padding img-block-left">
-
-                    <div class="row">
-
+                <div class="col-md-8 benefit-list">
+                    <div class="row row-merge">
                         @foreach ($benefits->children as $section)
-                        <div class="col-sm-6 col-md-6 col-xs-12">
-                            <div class="feature text-center">
-                                <span class="feature-icon">
-                                    <img id="strong-security" src="{{ asset('assets/backend/images/logo/logo-color.png') }}" alt="strong security">
-                                </span>
-                                <h3 class="feature-title">{{ $section->title }}</h3>
-                                {!! $section->content !!}
+                            <div class="col-sm-6 col-md-6 col-xs-12">
+                                <div class="feature text-center">
+                                    <span class="feature-icon">
+                                        <img id="strong-security"
+                                            src="{{ asset('assets/backend/images/logo/logo-color.png') }}"
+                                            alt="strong security">
+                                    </span>
+                                    <h3 class="feature-title">{{ $section->title }}</h3>
+                                    {!! $section->content !!}<br>
+                                </div>
                             </div>
-                        </div>
                         @endforeach
+
                     </div>
                 </div>
-
                 <!-- Features Ends -->
                 <!-- Video Starts -->
-                <div class="col-md-4 ts-padding bg-image-1">
-                    <div>
+                <div class="col-md-4 ts-padding">
+                    <div class='vertical-btn'>
                         <div class="text-center">
 
                             <a class="button-video mfp-youtube" href="https://www.youtube.com/watch?v=3aV5-q8vRz8"></a>
@@ -202,18 +202,14 @@
 
     <section>
         <div class="container">
-            <h2 class="title-head text-center">Our<span> Casino</span></h2>
-            <div class="title-head-subtitle text-center">
-                <p>Explain How to join with us</p>
-
-                <div class="owl-carousel owl-theme casino-slider">
-                    @foreach ($packages->children as $section)
-                        <div class="item">
-                            <a href="https://www.747live.net/
-                            " target="_blank" ><img src="{{ storage('pages/' . $section->image) }}" alt=""></a>
-                        </div>
-                    @endforeach
-                </div>
+            <div class="owl-carousel owl-theme casino-slider">
+                @foreach ($packages->children as $section)
+                    <div class="item">
+                        <a href="https://www.747live.net/
+                            " target="_blank"><img
+                                src="{{ storage('pages/' . $section->image) }}" alt=""></a>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -334,6 +330,5 @@
         <script src="{{ asset('assets/frontend/js/testimonials.js') }}"></script>
         <script src="{{ asset('assets/frontend/js/hiw2.js') }}"></script>
         <script src="{{ asset('assets/frontend/js/net_home.js') }}"></script>
-
     @endpush
 </x-frontend.layouts.app>
