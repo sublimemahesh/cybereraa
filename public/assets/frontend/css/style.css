@@ -1494,10 +1494,9 @@ ul.nav.nav-tabs li.active a:hover {
 }
 
 .bg-image-1 {
-    background-image: url(../images/down/word.jpg);
+    background-image: url(https://www.stockbrokers.org.au/wp-content/uploads/BuildingTheClientRelationship-webpic.jpg);
     background-size: cover;
-    background-position: center center;
-    height: 625px;
+    background-position: center center; 
 }
 
 .bg-image-1:after {
@@ -5207,4 +5206,39 @@ h4.panel-title a.collapsed:before {
 }
 .i-con{
     font-size:100px;
+}
+.benefit-back{
+    z-index: 100;
+    position: inherit;
+}
+.benefit-list{
+    background: #1d1d1d;
+}
+.parallax { 
+  
+    /* Set a specific height */
+    min-height: 500px;
+  
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: max-content;
+  }
+
+  .vertical-btn{
+    padding-top: 500px;
+  }
+
+  .row-merge{
+    margin-top: 20px;
+  }
+
+  
+@media (max-width: 960px) {
+    
+    .vertical-btn{
+       display:none;
+      }
 }
