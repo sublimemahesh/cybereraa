@@ -23,7 +23,7 @@ class EarningController extends Controller
             $earnings = Earning::filter()
                 ->with('earnable')
                 ->where('user_id', Auth::user()->id)
-                ->where('created_at', '<=', date('Y-m-d H:i:s'))
+                //->where('created_at', '<=', date('Y-m-d H:i:s'))
                 ->latest();
 
             return DataTables::of($earnings)
@@ -45,7 +45,7 @@ class EarningController extends Controller
             $earnings = Commission::filter()
                 ->with('purchasedPackage')
                 ->where('user_id', Auth::user()->id)
-                ->where('created_at', '<=', date('Y-m-d H:i:s'))
+                //->where('created_at', '<=', date('Y-m-d H:i:s'))
                 ->latest();
 
             return DataTables::of($earnings)
@@ -72,7 +72,7 @@ class EarningController extends Controller
         if ($request->wantsJson()) {
             $earnings = RankBenefit::filter()
                 ->where('user_id', Auth::user()->id)
-                ->where('created_at', '<=', date('Y-m-d H:i:s'))
+                //->where('created_at', '<=', date('Y-m-d H:i:s'))
                 ->latest();
 
             return DataTables::of($earnings)

@@ -19,7 +19,7 @@ class WalletController extends Controller
 
         $latest_transactions = Withdraw::with('receiver')
             ->where('user_id', Auth::user()->id)
-            ->where('created_at', '<=', date('Y-m-d H:i:s'))
+            //->where('created_at', '<=', date('Y-m-d H:i:s'))
             ->latest()
             ->limit(8)
             ->get();
