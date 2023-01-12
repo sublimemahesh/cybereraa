@@ -1494,7 +1494,7 @@ ul.nav.nav-tabs li.active a:hover {
 }
 
 .bg-image-1 {
-    background-image: url(https://www.stockbrokers.org.au/wp-content/uploads/BuildingTheClientRelationship-webpic.jpg);
+    background-image: url(../../frontend/images/project/BuildingTheClientRelationship-webpic.jpg);
     background-size: cover;
     background-position: center center; 
 }
