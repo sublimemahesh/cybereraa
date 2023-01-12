@@ -200,7 +200,9 @@ return [
         /*
          * Custom Package Service Providers...
          */
-        CryptoPay\Binancepay\BinancepayServiceProvider::class
+        CryptoPay\Binancepay\BinancepayServiceProvider::class,
+
+        App\Providers\ViewServiceProvider::class
 
     ],
 

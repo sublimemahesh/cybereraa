@@ -12,6 +12,32 @@ use App\Models\Testimonial;
 
 class FrontendController extends Controller
 {
+
+    public function getDatePage($slug){
+        $get_date_page =  (array) null;
+        $get_date_page_array =  page::where(['slug' => $slug])->get();
+
+        if (!count($get_date_page_array) > 0) {
+            return  $get_date_page ;
+            exit();
+           // dd('count($get_date_page)>0');
+
+        }
+
+        $get_date_page_section =  page::where(['parent_id' => $get_date_page_array[0]["id"] ])->get();
+
+        if (!count($get_date_page_section) > 0) {
+            return   $get_date_page ;
+            exit();
+        }
+
+        return $get_date_page_section;
+    }
+
+
+
+
+
     public function index()
     {
 
@@ -22,7 +48,11 @@ class FrontendController extends Controller
         $homes_video= page::where(['id' => 59])->get(); // serve 59      50
         $homes_contents= page::where(['id' => 54])->get(); //    54      45
         $testimonials = Testimonial::all();
-        $benefits = page::find(70); //   70      38
+
+        $benefits=$this->getDatePage('benefit');
+
+
+
 
         return view('frontend.index', compact('benefits','testimonials','packages','all_news','homes_video','homes_contents'));
 
@@ -96,8 +126,6 @@ class FrontendController extends Controller
         $all_news= Blog::all();
         return view('frontend.news-post', compact('news','all_news'));
     }
-
-
 
 
 }

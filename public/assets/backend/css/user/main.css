@@ -117,6 +117,7 @@
 
 .genealogy .card {
     border: 2px solid white;
+    height: max-content;
 }
 
 .swiper {
