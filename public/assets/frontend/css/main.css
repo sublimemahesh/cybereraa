@@ -90,7 +90,7 @@ img.vert-move {
 } */
 
 
-.coin-list { 
+.coin-list {
     width: 120px !important;
     height: 55px;
     margin-right: 10px;
@@ -194,3 +194,22 @@ img.vert-move {
 }
 
 
+.header-logo-img{
+    position: absolute;
+    left: -5px;
+    bottom: -5px;
+    width: 100%;
+
+}
+
+.shimmer {
+    color: grey;
+    display:inline-block;
+    -webkit-mask:linear-gradient(-60deg,#000 30%,#0005,#000 70%) right/300% 100%;
+    background-repeat: no-repeat;
+    animation: shimmer 2.5s infinite;
+  }
+  
+  @keyframes shimmer {
+    100% {-webkit-mask-position:left}
+  }

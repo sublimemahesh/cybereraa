@@ -2,16 +2,16 @@
 <html lang="en" class="h-100">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8"> 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="keywords" content="">
-    <meta name="author" content="">
+    <meta name="keywords" content="trade ,safesttrades ,crypto ,crypto wallet,crypto currency, Blockchain Crypto Exchange, Cryptocurrency Exchange, Bitcoin Trading, Ethereum price trend, BNB, CZ, BTC price, ETH wallet registration, LTC price, Binance, Poloniex, Bittrex ">
+    <meta name="author" content="safesttrades">
     <meta name="robots" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="CryptoZone : Crypto Trading Admin Bootstrap 5 Template">
-    <meta property="og:title" content="CryptoZone  :Crypto Trading Admin Bootstrap 5 Template">
-    <meta property="og:description" content="CryptoZone  :Crypto Trading Admin  Admin Bootstrap 5 Template">
-    <meta property="og:image" content="https://cryptozone.dexignzone.com/xhtml/social-image.png">
+    <meta name="description" content="At SAFEST TRADING, we see the concept of “investments” in a pretty different way.">
+    <meta property="og:title" content="SAFEST TRADING EVERYONE CAN MAKE INVESTMENTS!">
+    <meta property="og:description" content="At SAFEST TRADING, we see the concept of “investments” in a pretty different way.">
+    <meta property="og:image" content="">
     <meta name="format-detection" content="telephone=no">
 
     <!-- PAGE TITLE HERE -->

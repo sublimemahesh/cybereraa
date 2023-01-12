@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Commission;
 use App\Models\Earning;
 use App\Models\Withdraw;
+use App\Models\Currency;
 use Auth;
 use DB;
 
@@ -41,6 +42,9 @@ class DashboardController extends Controller
 
         $direct = $earnings->where('type', 'DIRECT');
         $indirect = $earnings->where('type', 'INDIRECT');
-        return view('backend.user.dashboard', compact('direct', 'indirect', 'wallet', 'income', 'withdraw', 'qualified_commissions', 'lost_commissions'));
+
+        $currency_carousel = Currency::all();
+
+        return view('backend.user.dashboard', compact('direct', 'indirect', 'wallet', 'income', 'withdraw', 'qualified_commissions', 'lost_commissions','currency_carousel'));
     }
 }

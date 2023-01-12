@@ -35,11 +35,14 @@
                                             </ul>
                                             <!-- Breadcrumb Ends -->
                                         </div>
+                                        <!-- Section Title Ends -->
                                     </div>
-                                    <!-- Section Title Ends -->
+                                    <br>    
+                                    <div class="header-logo-img">
+                                        <img class='shimmer' src="{{ asset('assets/frontend/images/project/header_icon_img.png') }}" alt=""></div>
+                                    </div> 
                                 </div>
                             </div>
-                        </div>
                     </section>
                 </div>
         </section>
@@ -247,6 +250,6 @@
     </section>
 
     @push('scripts')
-    <script src="{{ asset('assets/frontend/js/net.js') }}"></script>
+        <script src="{{ asset('assets/frontend/js/net.js') }}"></script>
     @endpush
 </x-frontend.layouts.app>

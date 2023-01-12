@@ -168,20 +168,21 @@
                 <!-- Features Starts -->
                 <div class="col-md-8 benefit-list">
                     <div class="row row-merge">
-                        @foreach ($benefits->children as $section)
-                            <div class="col-sm-6 col-md-6 col-xs-12">
-                                <div class="feature text-center">
-                                    <span class="feature-icon">
-                                        <img id="strong-security"
-                                            src="{{ asset('assets/backend/images/logo/logo-color.png') }}"
-                                            alt="strong security">
-                                    </span>
-                                    <h3 class="feature-title">{{ $section->title }}</h3>
-                                    {!! $section->content !!}<br>
+                        @if (count($benefits) > 0)
+                            @foreach ($benefits as $section)
+                                <div class="col-sm-6 col-md-6 col-xs-12">
+                                    <div class="feature text-center">
+                                        <span class="feature-icon">
+                                            <img id="strong-security"
+                                                src="{{ asset('assets/backend/images/logo/logo-color.png') }}"
+                                                alt="strong security">
+                                        </span>
+                                        <h3 class="feature-title">{{ $section->title }}</h3>
+                                        {!! $section->content !!}<br>
+                                    </div>
                                 </div>
-                            </div>
-                        @endforeach
-
+                            @endforeach
+                            @endif
                     </div>
                 </div>
                 <!-- Features Ends -->
