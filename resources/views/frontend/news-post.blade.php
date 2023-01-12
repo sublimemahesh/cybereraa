@@ -5,30 +5,50 @@
     @endsection
 
 
-    <section class="banner-area">
-        <div class="banner-overlay">
-            <div class="banner-text text-center">
-                <div class="container">
-                    <!-- Section Title Starts -->
-                    <div class="row text-center">
-                        <div class="col-xs-12">
-                            <!-- Title Starts -->
-                            <h2 class="title-head  title-head-news">{{ $news->title }}</h2>
-                            <!-- Title Ends -->
-                            <!-- Breadcrumb Starts -->
-                            <ul class="breadcrumb">
-                                <li><a href="{{ route('/') }}"> home</a></li>
-                                <li>{{ $news->title }}</li>
-                            </ul>
-                            <!-- Breadcrumb Ends -->
-                        </div>
-                    </div>
-                    <!-- Section Title Ends -->
-                </div>
+    <div id="page">
+        <section id="hero" class='net-hero'>
+            <div class="background">
+                <canvas id="hero-background"></canvas>
             </div>
-        </div>
-    </section>
-    <!-- Banner Area Ends -->
+            <div class="foreground">
+                <div class="main">
+                    <section class="banner-area">
+                        <div class="banner-overlay">
+                            <div class="banner-text text-center">
+                                <div class="container">
+                                    <!-- Section Title Starts -->
+                                    <div class="row text-center">
+                                        <div class="col-xs-12">
+                                            <!-- Title Starts -->
+                                            <h2 class="title-head">{{ $news->title }}</h2>
+                                            <!-- Title Ends -->
+                                            <hr>
+                                            <!-- Breadcrumb Starts -->
+                                            <ul class="breadcrumb">
+                                                <li><a href="{{ route('/') }}"> home</a></li>
+                                                <li>{{ $news->title }}</li>
+                                            </ul>
+                                            <!-- Breadcrumb Ends -->
+                                        </div>
+                                    </div>
+                                    <!-- Section Title Ends -->
+                                    <div class="header-logo-img">
+                                        <img class='shimmer' src="{{ asset('assets/frontend/images/project/header_icon_img.png') }}" alt=""></div>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+        </section>
+    </div>
+
+
+
+
+
+
+
 
     <!-- Section Content Starts -->
     <section id="blog">
@@ -98,4 +118,6 @@
 
     @push('scripts')
     <script src="{{ asset('assets/frontend/js/net.js') }}"></script>
+    @endpush
+    
 </x-frontend.layouts.app>

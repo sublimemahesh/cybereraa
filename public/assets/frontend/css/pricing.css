@@ -105,7 +105,7 @@ a,
 
 .pricing-block .inner-box{
   position: relative;
-  background-color: #111111;
+  background-color: #1d1d1d;
   box-shadow: 0 20px 40px rgba(0,0,0,0.08);
   padding: 0 0 30px;
   max-width: 370px;
@@ -127,7 +127,7 @@ a,
   height: 75px;
   width: 100%;
   border-radius: 50% 50% 0 0;
-  background-color: #111111;
+  background-color: #1d1d1d;
   content: "";
 }
 
