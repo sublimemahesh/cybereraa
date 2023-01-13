@@ -16,6 +16,8 @@ class Rank extends Model
         'rank',
         'eligibility',
         'activated_at',
+        'eligibility_positions',
+        'total_rankers'
     ];
 
     protected $appends = [

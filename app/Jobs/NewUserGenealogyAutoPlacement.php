@@ -62,7 +62,7 @@ class NewUserGenealogyAutoPlacement implements ShouldQueue
                 $available__position = Arr::first($available__position);
 
                 $this->user->update(['parent_id' => $available_parent_id->id, 'position' => $available__position]);
-                User::upgradeAncestorsRank($parent, 1);
+                User::upgradeAncestorsRank($parent, 1, $available__position);
 
                 $pending_commission_purchased_packages = $this->user->activePackages()->whereNull('commission_issued_at')->get();
                 foreach ($pending_commission_purchased_packages as $package) {
