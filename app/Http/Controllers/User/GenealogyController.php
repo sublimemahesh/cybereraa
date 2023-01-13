@@ -110,7 +110,7 @@ class GenealogyController extends Controller
         try {
             DB::transaction(static function () use ($assignedUser, $parent, $position) {
                 $assignedUser->update(['parent_id' => $parent->id, 'position' => $position]);
-                User::upgradeAncestorsRank($parent, 1);
+                User::upgradeAncestorsRank($parent, 1, $position);
 
                 $pending_commission_purchased_packages = $assignedUser->activePackages()->whereNull('commission_issued_at')->get();
                 foreach ($pending_commission_purchased_packages as $package) {

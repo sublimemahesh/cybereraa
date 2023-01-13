@@ -203,29 +203,40 @@ class User extends Authenticatable
     /**
      * @throws Throwable
      */
-    public static function upgradeAncestorsRank(self $user, $rank, $is_active = false): void
+    public static function upgradeAncestorsRank(self $user, $rank, $position, $is_active = false): void
     {
         if ($rank > 7) {
             return;
         }
 
-        DB::transaction(static function () use ($rank, $user, $is_active) {
+        DB::transaction(static function () use ($rank, $user, $position, $is_active) {
 
             if ($rank === 1) {
-                $eligibility = $user->children()->count();
 
-                $is_active = $eligibility === 5;
-                $activated_at = $is_active ? now() : null;
-                Rank::updateOrCreate(
+                $user_rank = Rank::firstOrCreate(
                     ['user_id' => $user->id, 'rank' => $rank],
-                    compact('eligibility', 'activated_at')
+                    ['eligibility' => 0, 'total_rankers' => 0]
                 );
 
-                $rank = 2;
-            }
+                $children_positions = $user->children()->select('position')->get()->pluck('position')->toArray();
+                $current_eligibility_positions = $user_rank->eligibility_positions ? json_decode($user_rank->eligibility_positions, true, 512, JSON_THROW_ON_ERROR) : [];
 
-            if (!empty($user->parent->id) && $user->parent->highest_rank >= $rank) {
-                return;
+
+                $eligibility = count($children_positions);
+                $eligibility_positions = json_encode($children_positions, JSON_THROW_ON_ERROR);
+                $is_active = $eligibility === 5;
+                $activated_at = $is_active ? now() : null;
+
+                $user_rank->update(compact('eligibility', 'eligibility_positions', 'activated_at'));
+
+                if ($is_active && (count(array_diff($children_positions, $current_eligibility_positions)) !== 0)) {
+                    foreach ($user->ancestorsAndSelf()->get() as $ancestor) {
+                        $ancestor->ranks()->where('rank', 1)->increment('total_rankers');
+                    }
+                }
+
+                $rank = 2;
+                $position = $user->position;
             }
 
             if ($is_active && !empty($user->parent->id)) {
@@ -233,18 +244,26 @@ class User extends Authenticatable
 
                 $user_rank = Rank::firstOrCreate(
                     ['user_id' => $user->id, 'rank' => $rank],
-                    ['eligibility' => 0]
+                    ['eligibility' => 0, 'total_rankers' => 0]
                 );
 
-                if ($user_rank->eligibility < 5) {
-                    $user_rank->increment('eligibility');
-                }
-                $is_active = $user_rank->eligibility === 5;
-                $activated_at = $is_active ? now() : null;
-                $user_rank->update(compact('activated_at'));
+                $eligibility_positions = $user_rank->eligibility_positions ? json_decode($user_rank->eligibility_positions, true, 512, JSON_THROW_ON_ERROR) : [];
 
+                if (!in_array($position, $eligibility_positions, true)) {
+                    $eligibility_positions[] = $position;
+                }
+
+                $eligibility = count($eligibility_positions);
+                $eligibility_positions = json_encode($eligibility_positions, JSON_THROW_ON_ERROR);
+                $is_active = $eligibility === 5;
+                $activated_at = $is_active ? now() : null;
+
+                $user_rank->update(compact('eligibility', 'eligibility_positions', 'activated_at'));
                 if ($is_active) {
-                    self::upgradeAncestorsRank($user, $user->highest_rank + 1, true);
+                    foreach ($user->ancestorsAndSelf()->get() as $ancestor) {
+                        $ancestor->ranks()->where('rank', $rank)->increment('total_rankers');
+                    }
+                    self::upgradeAncestorsRank($user, $rank + 1, $user->position, true);
                 }
             }
         });
