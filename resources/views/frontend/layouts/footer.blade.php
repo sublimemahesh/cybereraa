@@ -48,7 +48,6 @@
                             <li><a href="{{ route('about') }}">About Us</a></li>
                             <li><a href="{{ route('project') }}">Existing  Projects</a></li>
                             <li><a href="{{ route('Upcoming-project') }}">Upcoming Projects</a></li>
-                            <li><a href="{{ route('how-to-work') }}">HOW IT WORKS</a></li>
                             <li><a href="{{ route('pricing') }}">Packages</a></li>
                             <li><a href="{{ route('contact') }}">Contact</a></li>
                             <li><a href="{{ route('news') }}">News</a></li>

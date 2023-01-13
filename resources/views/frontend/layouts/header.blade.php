@@ -101,7 +101,7 @@
                                     <li><a href="{{ route('Upcoming-project') }}">Upcoming Projects</a></li>
                                 </ul>
                             </li>
-                            <li id='how_to_work'><a href="{{ route('how-to-work') }}">HOW IT WORKS</a></li>
+                            
                             <li id='pricing'><a href="{{ route('pricing') }}"> Packages</a></li>
                             <li id='faq'><a href="{{ route('faq') }}">FAQ</a></li>
                             <li id='contact'><a href="{{ route('contact') }}">Contact</a></li>
