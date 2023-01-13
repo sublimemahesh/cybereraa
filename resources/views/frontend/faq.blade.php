@@ -5,8 +5,6 @@
          <link href="{{ asset('assets/frontend/css/faq.css') }}" rel="stylesheet">
 
      @endsection
-
-
      <div id="page">
         <section id="hero" class='net-hero'>
             <div class="background">
@@ -37,17 +35,13 @@
                                 </div>
                                 <div class="header-logo-img">
                                     <img class='shimmer' src="{{ asset('assets/frontend/images/project/header_icon_img.png') }}" alt=""></div>
-                                </div> 
+                                </div>
                             </div>
                         </div>
                     </section>
                 </div>
         </section>
     </div>
-
-
-
-
 
 
      <section id='faq'>
@@ -61,7 +55,7 @@
                          <li><a class="cd-faq__category truncate" href="#9">How to buy Packages</a></li>
                          <li><a class="cd-faq__category truncate" href="#10">KYC activation</a></li>
                          <li><a class="cd-faq__category truncate" href="#11">Withdrawal</a></li>
-                         <li><a class="cd-faq__category truncate" href="#64">Invite Friends</a></li>
+                         {{-- <li><a class="cd-faq__category truncate" href="#64">Invite Friends</a></li> --}}
 
                      </ul> <!-- cd-faq__categories -->
 
@@ -158,7 +152,7 @@
                          @endforeach
                      </ul>
                      <!-- cd-faq__group -->
-                     <ul id="64" class="cd-faq__group">
+                     {{-- <ul id="64" class="cd-faq__group">
                         <li class="cd-faq__title">
                             <h2>Invite Friends</h2>
                         </li>
@@ -174,7 +168,7 @@
                                 </li>
                             @endif
                         @endforeach
-                    </ul>
+                    </ul> --}}
                  </div>
                  <!-- cd-faq__items -->
                  <a href="#0" class="cd-faq__close-panel text-replace">Close</a>
@@ -183,17 +177,9 @@
          </div>
      </section>
 
-
-
-
-
-
-
-
-
      @push('scripts')
-         <script src="{{ asset('assets/frontend/js/faq.js') }}"></script>
          <script src="{{ asset('assets/frontend/js/util.js') }}"></script>
+         <script src="{{ asset('assets/frontend/js/faq.js') }}"></script>
          <script src="{{ asset('assets/frontend/js/net.js') }}"></script>
      @endpush
  </x-frontend.layouts.app>

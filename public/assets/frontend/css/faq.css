@@ -2518,7 +2518,7 @@ html:not(.js) .cd-faq__group, .cd-faq__group--selected {
 
 @media (min-width: 64rem) {
     html:not(.js) .cd-faq__content {
-        display: block
+         display: block
     }
 }
 

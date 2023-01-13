@@ -143,19 +143,6 @@
                 <div class="content">
                     {{-- <div class="icon iconMap"></div> --}}
                     <h2>Fourth Step</h2>
-                    <p>INVITE MEMBERS.</p>
-                </div>
-            </li>
-            <li>
-                <div class="numberWrap">
-                    <div class="number  fontColor5">5</div>
-                    <div class="coverWrap">
-                        <div class="numberCover"></div>
-                    </div>
-                </div>
-                <div class="content">
-                    {{-- <div class="icon iconMap"></div> --}}
-                    <h2>Fifth Step</h2>
                     <p>WITHDRAW MONEY.</p>
                 </div>
             </li>
@@ -174,7 +161,7 @@
                                     <div class="feature text-center">
                                         <span class="feature-icon">
                                             <img id="strong-security"
-                                                src="{{ asset('assets/backend/images/logo/logo-color.png') }}"
+                                                src="{{ storage('pages/' . $section->image) }}"
                                                 alt="strong security">
                                         </span>
                                         <h3 class="feature-title">{{ $section->title }}</h3>

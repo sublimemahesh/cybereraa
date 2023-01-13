@@ -11,7 +11,7 @@
     <!-- FAVICONS ICON -->
     <link rel="shortcut icon" type="image/png" href="{{ asset('assets/backend/images/favicon.png') }}">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('assets/frontend/css/font-awesome.min.css') }}">
