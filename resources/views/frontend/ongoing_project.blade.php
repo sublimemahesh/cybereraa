@@ -7,33 +7,6 @@
 
      @endsection
 
-     <!-- Banner Area Starts -->
-     {{-- <section class="banner-area">
-         <div class="banner-overlay">
-             <div class="banner-text text-center">
-                 <div class="container">
-                     <!-- Section Title Starts -->
-                     <div class="row text-center">
-                         <div class="col-xs-12">
-                             <!-- Title Starts -->
-                             <h2 class="title-head">Existing  <span>Projects</span></h2>
-                             <!-- Title Ends -->
-                             <hr>
-                             <!-- Breadcrumb Starts -->
-                             <ul class="breadcrumb">
-                                 <li><a href="index-2.html"> home</a></li>
-                                 <li>Existing  Projects</li>
-                             </ul>
-                             <!-- Breadcrumb Ends -->
-                         </div>
-                     </div>
-                     <!-- Section Title Ends -->
-                 </div>
-             </div>
-         </div>
-     </section> --}}
-
-
      <div id="page">
         <section id="hero" class='net-hero'>
             <div class="background">
@@ -62,9 +35,6 @@
                                     </div>
                                     <!-- Section Title Ends -->
                                 </div>
-                                <div class="header-logo-img">
-                                    <img class='shimmer' src="{{ asset('assets/frontend/images/project/header_icon_img.png') }}" alt=""></div>
-                                </div> 
                             </div>
                         </div>
                     </section>

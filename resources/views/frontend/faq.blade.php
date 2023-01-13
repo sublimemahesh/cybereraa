@@ -33,9 +33,6 @@
                                     </div>
                                     <!-- Section Title Ends -->
                                 </div>
-                                <div class="header-logo-img">
-                                    <img class='shimmer' src="{{ asset('assets/frontend/images/project/header_icon_img.png') }}" alt=""></div>
-                                </div>
                             </div>
                         </div>
                     </section>
