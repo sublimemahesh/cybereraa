@@ -63,7 +63,7 @@
     @livewireScripts
 </head>
 
-<body class="font-sans antialiased dark" style="background:#0C0A36">
+<body class="font-sans antialiased dark" style="background:#152238">
     <!--******************* Preloader start ********************-->
     <div id="loader"></div>
     <!--******************* Preloader end ********************-->
