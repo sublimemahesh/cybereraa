@@ -32277,6 +32277,7 @@ input#checkAll.form-check-input:checked {
 [data-theme-version="dark"] .select2-search--dropdown .select2-search__field {
     background: #2b4976;
     border-color: #275eb9;
+    color: #fff;
 }
 
 .select2-dropdown {
