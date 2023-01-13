@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use JsonException;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -209,9 +208,6 @@ class User extends Authenticatable
         if ($rank > 7) {
             return;
         }
-        if (!empty($user->parent->id) && $user->parent->highest_rank >= $rank) {
-            return;
-        }
 
         DB::transaction(static function () use ($rank, $user, $is_active) {
 
@@ -226,6 +222,10 @@ class User extends Authenticatable
                 );
 
                 $rank = 2;
+            }
+
+            if (!empty($user->parent->id) && $user->parent->highest_rank >= $rank) {
+                return;
             }
 
             if ($is_active && !empty($user->parent->id)) {
