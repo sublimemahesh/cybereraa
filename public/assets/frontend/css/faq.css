@@ -2343,14 +2343,14 @@ li:last-child .cd-faq__category {
     transform: translateX(0)
 }
 
-html:not(.js) .cd-faq__items {
+/* html:not(.js) .cd-faq__items {
     position: static;
     height: auto;
     width: 100%;
     -webkit-transform: translateX(0);
     -ms-transform: translateX(0);
     transform: translateX(0)
-}
+} */
 
 .cd-faq__group {
     display: none
@@ -2518,7 +2518,7 @@ html:not(.js) .cd-faq__group, .cd-faq__group--selected {
 
 @media (min-width: 64rem) {
     html:not(.js) .cd-faq__content {
-         display: block
+         /* display: block */
     }
 }
 
