@@ -35,7 +35,7 @@
                                         </div>
                                     </div>
                                     <!-- Section Title Ends -->
-                                </div> 
+                                </div>
                             </div>
                         </div>
                     </section>
@@ -73,7 +73,7 @@
                                     {{-- <li class="true">20 By Points</li> --}}
                                 </ul>
                                 <div class="btn-box">
-                                    <a href="{{ route('register') }}" class="theme-btn">BUY plan</a>
+                                    <a href="{{ route('register') }}" class="theme-btn">Buy Plan</a>
                                 </div>
                             </div>
                         </div>

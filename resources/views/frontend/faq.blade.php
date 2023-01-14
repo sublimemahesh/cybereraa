@@ -3,6 +3,11 @@
      @section('header-title', 'Welcome ')
      @section('styles')
          <link href="{{ asset('assets/frontend/css/faq.css') }}" rel="stylesheet">
+         <style>
+            html {
+  scroll-behavior: smooth;
+}
+         </style>
 
      @endsection
      <div id="page">
@@ -40,7 +45,6 @@
         </section>
     </div>
 
-
      <section id='faq'>
          <div class='container'>
              <div class="cd-faq js-cd-faq container2   max-width-md margin-top-lg margin-bottom-lg ">
@@ -59,9 +63,11 @@
                  </div>
                  <div class="cd-faq__items">
                      <ul id="7" class="cd-faq__group">
+                        <div class='div-faq-ul'></div>
                          <li class="cd-faq__title">
                              <h2>Registration & Login</h2>
                          </li>
+                         
                          @foreach ($faqs as $faq)
                              @if ($faq->parent_id == 7)
                                  <li class="cd-faq__item">
@@ -76,7 +82,9 @@
                          @endforeach
                      </ul>
                      <!-- cd-faq__group -->
-                     <ul id="8" class="cd-faq__group">
+                     <div id="8">
+                        <div class='div-faq-ul'></div>
+                     <ul  class="cd-faq__group">
                          <li class="cd-faq__title">
                              <h2>Security</h2>
                          </li>
@@ -93,8 +101,10 @@
                              @endif
                          @endforeach
                      </ul>
+                    </div>
                      <!-- cd-faq__group -->
                      <ul id="9" class="cd-faq__group">
+                        <div class='div-faq-ul'></div>
                          <li class="cd-faq__title">
                              <h2>How to buy Packages</h2>
                          </li>
@@ -113,6 +123,7 @@
                      </ul>
                      <!-- cd-faq__group -->
                      <ul id="10" class="cd-faq__group">
+                        <div class='div-faq-ul'></div>
                          <li class="cd-faq__title">
                              <h2>KYC activation</h2>
                          </li>
@@ -132,6 +143,7 @@
                      <!-- cd-faq__group -->
 
                      <ul id="11" class="cd-faq__group">
+                        <div class='div-faq-ul'></div>
                          <li class="cd-faq__title">
                              <h2>Withdrawal</h2>
                          </li>

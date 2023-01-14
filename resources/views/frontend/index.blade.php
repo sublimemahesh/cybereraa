@@ -191,6 +191,7 @@
     <section>
         <div class="container">
             <div class="owl-carousel owl-theme casino-slider">
+                @if (count($packages) > 0)
                 @foreach ($packages->children as $section)
                     <div class="item">
                         <a href="https://www.747live.net/
@@ -198,14 +199,15 @@
                                 src="{{ storage('pages/' . $section->image) }}" alt=""></a>
                     </div>
                 @endforeach
+                @endif
             </div>
         </div>
     </section>
 
     <!-- Quote and Chart Section Ends -->
-    <!-- Team Section Starts -->
+    <!-- Comment Section Starts -->
 
-    <section class="team about-css">
+    {{-- <section class="team about-css">
         <div class="container">
             <!-- Section Title Starts -->
             <div class="row text-center">
@@ -263,7 +265,9 @@
             </div>
             <!-- Team Members Ends -->
         </div>
-    </section>
+    </section> --}}
+    <!-- Comment Section Ends -->
+    
     <!-- Blog Section Starts -->
 
     <section class="blog">

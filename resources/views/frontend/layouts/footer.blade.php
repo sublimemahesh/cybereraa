@@ -49,8 +49,8 @@
                             <li><a href="{{ route('project') }}">Existing  Projects</a></li>
                             <li><a href="{{ route('Upcoming-project') }}">Upcoming Projects</a></li>
                             <li><a href="{{ route('pricing') }}">Packages</a></li>
-                            <li><a href="{{ route('contact') }}">Contact</a></li>
                             <li><a href="{{ route('news') }}">News</a></li>
+                            <li><a href="{{ route('contact') }}">Contact</a></li>
                         </ul>
                     </div>
                 </div>
@@ -125,14 +125,14 @@
                     <!-- Facts Ends -->
                     <hr>
                     <!-- Supported Payment Cards Logo Starts -->
-                    <div class="payment-logos">
+                    {{-- <div class="payment-logos">
                         <h4 class="payment-title">supported payment methods</h4>
                         <img src="{{ asset('assets/frontend/images/icons/payment/american-express.png') }}" alt="american-express">
                         <img src="{{ asset('assets/frontend/images/icons/payment/mastercard.png') }}" alt="mastercard">
                         <img src="{{ asset('assets/frontend/images/icons/payment/visa.png') }}" alt="visa">
                         <img src="{{ asset('assets/frontend/images/icons/payment/paypal.png') }}" alt="paypal">
                         <img class="last" src="{{ asset('assets/frontend/images/icons/payment/maestro.png') }}" alt="maestro">
-                    </div>
+                    </div> --}}
                     <!-- Supported Payment Cards Logo Ends -->
                 </div>
                 <!-- Footer Widget Ends -->
@@ -146,7 +146,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <!-- Copyright Text Starts -->
-                    <p class="text-center">Copyright © 2018 SAFEST TRADES All Rights Reserved | Created with Love by <a
+                    <p class="text-center">Copyright © <?php echo date("Y"); ?> SAFEST TRADES All Rights Reserved | Created with Love by <a
                             href="#" target="_blank"></a></p>
                     <!-- Copyright Text Ends -->
                 </div>

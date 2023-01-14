@@ -42,7 +42,7 @@ class FrontendController extends Controller
     {
 
         $all_news= Blog::all();
-        $packages = page::find(66) ; // 66  48 package
+        //$packages = page::find(66) ; // 66  48 package
 
 
         $homes_video= page::where(['id' => 59])->get(); // serve 59      50
@@ -50,7 +50,7 @@ class FrontendController extends Controller
         $testimonials = Testimonial::all();
 
         $benefits=$this->getDatePage('benefit');
-        //$packages=$this->getDatePage('package');
+        $packages=$this->getDatePage('packages');
 
 
 
