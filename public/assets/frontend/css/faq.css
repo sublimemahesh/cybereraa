@@ -2370,11 +2370,13 @@ html:not(.js) .cd-faq__group, .cd-faq__group--selected {
 .cd-faq__group {
     display: block;
     padding: 0;
+    /* margin-bottom: 49px; */
 }
 
 .cd-faq__title {
     margin: 1.25em 0;
     margin: var(--space-md) 0
+
 }
 
 .cd-faq__title h2 {
@@ -2389,7 +2391,8 @@ html:not(.js) .cd-faq__group, .cd-faq__group--selected {
 @media (min-width: 64rem) {
     .cd-faq__title {
         margin-bottom: 0.75em;
-        margin-bottom: var(--space-sm)
+        margin-bottom: var(--space-sm);
+        /* padding-top: 30px; */
     }
 
     .cd-faq__title h2 {
@@ -2674,4 +2677,9 @@ body {
     top: 49px;
     left: 105px;
     width: 285px;
+}
+
+
+.div-faq-ul{
+    height:40px
 }

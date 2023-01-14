@@ -21,7 +21,7 @@
                                     <div class="row text-center">
                                         <div class="col-xs-12">
                                             <!-- Title Starts -->
-                                            <h2 class="title-head">Disclaimer</span></h2>
+                                            <h2 class="title-head">Dis<span>claimer</span></h2>
                                             <!-- Title Ends -->
                                             <hr>
                                             <!-- Breadcrumb Starts -->

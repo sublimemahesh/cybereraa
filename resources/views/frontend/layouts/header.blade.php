@@ -94,18 +94,18 @@
                             <li id='index'><a href="{{ route('/') }}">Home</a></li>
                             <li id='about'><a href="{{ route('about') }}">About Us</a></li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">projects<i
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects<i
                                         class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="{{ route('project') }}">Existing Projects</a></li>
                                     <li><a href="{{ route('Upcoming-project') }}">Upcoming Projects</a></li>
                                 </ul>
                             </li>
-                            
+
                             <li id='pricing'><a href="{{ route('pricing') }}"> Packages</a></li>
                             <li id='faq'><a href="{{ route('faq') }}">FAQ</a></li>
-                            <li id='contact'><a href="{{ route('contact') }}">Contact</a></li>
                             <li id='news'><a href="{{ route('news') }}">News</a></li>
+                            <li id='contact'><a href="{{ route('contact') }}">Contact</a></li>
                         </ul>
                         <!-- Main Menu Ends -->
                     </div>
