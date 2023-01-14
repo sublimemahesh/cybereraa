@@ -24,6 +24,10 @@ Route::get('contact', 'FrontendController@contact')->name('contact');
 Route::get('news', 'FrontendController@news')->name('news');
 Route::get('news/{news:slug}', 'FrontendController@showNews')->name('news.show');
 
+Route::get('terms-and-conditions', 'FrontendController@termsConditions')->name('terms&Conditions');
+Route::get('terms-and-conditions', 'FrontendController@termsConditions')->name('terms&Conditions');
+Route::get('disclaimer', 'FrontendController@disclaimer')->name('disclaimer');
+
 
 // Register custom routes
 Route::group(['prefix' => 'register', 'middleware' => 'guest:' . config('fortify.guard')], function () {
