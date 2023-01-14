@@ -85,7 +85,7 @@ class FrontendController extends Controller
 
     }
 
-    
+
 
     public function pricing()
     {
@@ -120,6 +120,19 @@ class FrontendController extends Controller
     {
         $all_news= Blog::all();
         return view('frontend.news-post', compact('news','all_news'));
+    }
+
+    public function termsConditions()
+    {
+        $terms_and_conditions=$this->getDatePage('terms-and-conditions');
+        return view('frontend.terms-and-conditions',compact('terms_and_conditions'));
+
+    }
+    public function disclaimer()
+    {
+        $disclaimers=$this->getDatePage('disclaimer');
+        return view('frontend.disclaimer',compact('disclaimers'));
+
     }
 
 

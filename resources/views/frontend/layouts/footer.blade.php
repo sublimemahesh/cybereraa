@@ -24,7 +24,7 @@
                 <img class='shimmer' src="{{ asset('assets/frontend/images/project/header_icon_img.png') }}" alt=""></div>
             </div>
         </div>
-       
+
     </div>
 </section>
 </div>
@@ -61,6 +61,8 @@
                     <div class="menu">
                         <ul>
                             <li><a href="{{ route('faq') }}">FAQ</a></li>
+                            <li><a href="{{ route('terms&Conditions') }}">Terms and conditions</a></li>
+                            <li><a href="{{ route('disclaimer') }}">Disclaimer</a></li>
                             {{-- <li><a href="terms-of-services.html">Terms of Services</a></li>
                             <li><a href="404.html">404</a></li>
                             <li><a href="register.html">Register</a></li>
