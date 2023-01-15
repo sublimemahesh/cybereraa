@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Select2UserResource;
 use App\Models\User;
 use Auth;
 use Illuminate\Auth\Events\Registered;
@@ -18,10 +19,36 @@ class RegisteredUserController extends Controller
         if ($request->get('ref', false)) {
             abort_if(!$request->hasValidSignature(), Response::HTTP_UNAUTHORIZED, 'Invalid referral link!');
             $parent = $request->get('ref', null);
-            $sponsor = User::whereUsername($parent)->whereNotNull('position')->whereNotNull('parent_id')->firstOrFail();
+            $sponsor = User::whereUsername($parent)
+                ->whereDoesntHave('roles', function ($q) {
+                    $q->whereIn('name', ['super_admin', 'admin']);
+                })
+                ->where(function ($q) {
+                    $q->where(function ($q) {
+                        $q->where('username', '<>', config('fortify.super_parent_username'))
+                            ->whereNotNull('position')->whereNotNull('parent_id');
+                    })->orWhere('username', config('fortify.super_parent_username'));
+                })
+                ->firstOrFail();
         }
 
         return view('auth.register', compact('sponsor'));
+    }
+
+    public function findUsers($search_text): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+    {
+        $users = User::where('username', 'LIKE', "%{$search_text}%")
+            ->whereDoesntHave('roles', function ($q) {
+                $q->whereIn('name', ['super_admin', 'admin']);
+            })
+            ->where(function ($q) {
+                $q->where(function ($q) {
+                    $q->where('id', '<>', config('fortify.super_parent_id'))
+                        ->whereNotNull('position')->whereNotNull('parent_id');
+                })->orWhere('id', config('fortify.super_parent_id'));
+            })
+            ->get();
+        return Select2UserResource::collection($users);
     }
 
     public function store(Request $request, CreatesNewUsers $creator): RegisterResponse

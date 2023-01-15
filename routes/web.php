@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,7 +28,7 @@ Route::get('news/{news:slug}', 'FrontendController@showNews')->name('news.show')
 Route::get('terms-and-conditions', 'FrontendController@termsConditions')->name('terms&Conditions');
 Route::get('terms-and-conditions', 'FrontendController@termsConditions')->name('terms&Conditions');
 Route::get('disclaimer', 'FrontendController@disclaimer')->name('disclaimer');
-
+Route::post('filter/sponsors/{search_text}', 'RegisteredUserController@findUsers');
 
 // Register custom routes
 Route::group(['prefix' => 'register', 'middleware' => 'guest:' . config('fortify.guard')], function () {
@@ -36,7 +37,11 @@ Route::group(['prefix' => 'register', 'middleware' => 'guest:' . config('fortify
 });
 
 Route::get('test', function () {
-
+    //dd(User::find(8)->ancestorsAndSelf()->get()[0]->ranks()->where('rank',1)->increment('total_rankers'));
+    $users = User::whereNotNull('parent_id')->orderBy('updated_at', 'desc')->get();
+    foreach ($users as $user) {
+        User::upgradeAncestorsRank($user->parent, 1, $user->position);
+    }
 });
 
 Route::get('payments/binancepay/response', 'Payment\BinancePayController@response');

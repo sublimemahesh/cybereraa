@@ -1,12 +1,12 @@
 <div>
-    <div wire:ignore class="w-100 select2-drpdwn">
+    <div wire:ignore>
         @if (isset($attributes['multiple']))
             <div id="{{ $attributes['id'] }}-btn-container" class="mb-3">
                 <button type="button" class="btn btn-info btn-xs select-all-button">SELECT ALL</button>
                 <button type="button" class="btn btn-info btn-xs deselect-all-button">DESELECT ALL</button>
             </div>
         @endif
-        <select class="select2 col-sm-12" data-placeholder="{{ __('Select your option') }}" {{ $attributes }}>
+        <select class="single-select-placeholder js-states select2-hidden-accessible" data-placeholder="{{ __('Select your option') }}" {{ $attributes }}>
             @if (!isset($attributes['multiple']))
                 <option></option>
             @endif

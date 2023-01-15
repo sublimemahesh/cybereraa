@@ -27,18 +27,6 @@
         </div>
     </div>
 
-
-    {{-- <div class="col-xl-12 col-xxl-12 col-md-10">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Form step</h4>
-            </div>
-            <div class="card-body">
-                <livewire:auth.register-steps />
-            </div>
-        </div>
-    </div> --}}
-
     @push('scripts')
         <script src="{{ asset('assets/backend/vendor/jquery-mask-plugin/jquery.mask.min.js') }}"></script>
     @endpush

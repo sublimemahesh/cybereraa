@@ -52,23 +52,11 @@ class CreateNewUser extends Component
             'state.first_name' => ['required', 'string', 'max:255'],
             'state.last_name' => ['required', 'string', 'max:255'],
             'state.country_id' => ['required', 'exists:countries,id'],
-            'state.street' => ['required', 'string', 'max:255'],
-            'state.state' => ['required', 'string', 'max:255'],
-            'state.address' => ['required', 'string', 'max:255'],
-            'state.zip_code' => ['required', 'integer', 'max_digits:16'],
             'state.phone' => ['required', 'string', 'max:255', 'phone:' . $this->phone_iso],
-            'state.home_phone' => ['required', 'string', 'max:255', 'phone:' . $this->home_phone_iso],
-            'state.gender' => ['required', 'in:male,female', 'string', 'max:255'],
-            'state.dob' => ['required', 'date', 'max:255', 'after_or_equal:1940-01-01', 'before_or_equal:' . Carbon::now()->subYears(16)->format('Y-m-d')],
             'state.email' => ['required', 'string', 'email', 'max:255'],
             'state.password' => $this->passwordRules(),
-
-            'state.nic' => [Rule::requiredIf(empty($this->state['driving_lc_number']) && empty($this->state['passport_number'])), 'nullable', 'string', 'max:255'],
-            'state.driving_lc_number' => [Rule::requiredIf(empty($this->state['nic']) && empty($this->state['passport_number'])), 'nullable', 'string', 'max:255'],
-            'state.passport_number' => [Rule::requiredIf(empty($this->state['driving_lc_number']) && empty($this->state['nic'])), 'nullable', 'string', 'max:255'],
-
             'state.super_parent_id' => ['required', 'exists:users,id'],
-            'state.username' => ['required', 'unique:users,username', 'string', 'max:255'],
+            'state.username' => ['required', 'unique:users,username', 'string', 'max:255', 'regex:/^[a-z0-9A-Z-_]+$/'],
             'state.terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ];
     }
