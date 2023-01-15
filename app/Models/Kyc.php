@@ -18,6 +18,12 @@ class Kyc extends Model
         'driving_lc' => 'Driving License',
         'passport' => 'Passport'
     ];
+    public const KYC_PROFILE_NAMES = [
+        'nic' => 'nic',
+        'driving_lc' => 'driving_lc_number',
+        'passport' => 'passport_number'
+    ];
+
     private const STATUS_COLORS = [
         'pending' => 'warning',
         'accepted' => 'success',
@@ -52,6 +58,11 @@ class Kyc extends Model
     protected function getStatusColorAttribute(): string
     {
         return self::STATUS_COLORS[$this->status];
+    }
+
+    protected function getProfileNameAttribute(): string
+    {
+        return self::KYC_PROFILE_NAMES[$this->type];
     }
 
 }

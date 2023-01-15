@@ -2,9 +2,10 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\Profile;
+use Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
 
 class UpdateUserProfileInformation implements UpdatesUserProfileInformation
@@ -12,17 +13,26 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     /**
      * Validate and update the given user's profile information.
      *
-     * @param  mixed  $user
-     * @param  array  $input
+     * @param mixed $user
+     * @param array $input
      * @return void
      */
     public function update($user, array $input)
     {
-       
+
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'email' => ['required', 'email', 'max:255'],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
+
+            'profile_info.street' => ['required', 'string', 'max:255'],
+            'profile_info.state' => ['required', 'string', 'max:255'],
+            'profile_info.address' => ['required', 'string', 'max:255'],
+            'profile_info.zip_code' => ['required', 'integer', 'max_digits:16'],
+            'profile_info.home_phone' => ['required', 'string', 'max:255'],
+            'profile_info.recover_email' => ['required', 'email', 'max:255'],
+            'profile_info.gender' => ['required', 'in:male,female', 'string', 'max:255'],
+            'profile_info.dob' => ['required', 'date', 'max:255', 'after_or_equal:1940-01-01', 'before_or_equal:' . Carbon::now()->subYears(16)->format('Y-m-d')],
         ])->validateWithBag('updateProfileInformation');
 
         if (isset($input['photo'])) {
@@ -37,14 +47,24 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'name' => $input['name'],
                 'email' => $input['email'],
             ])->save();
+            Profile::where('user_id', $user->id)->update([
+                'street' => $input['profile_info']['street'],
+                'state' => $input['profile_info']['state'],
+                'address' => $input['profile_info']['address'],
+                'zip_code' => $input['profile_info']['zip_code'],
+                'home_phone' => $input['profile_info']['home_phone'],
+                'recover_email' => $input['profile_info']['recover_email'],
+                'gender' => $input['profile_info']['gender'],
+                'dob' => $input['profile_info']['dob'],
+            ]);
         }
     }
 
     /**
      * Update the given verified user's profile information.
      *
-     * @param  mixed  $user
-     * @param  array  $input
+     * @param mixed $user
+     * @param array $input
      * @return void
      */
     protected function updateVerifiedUser($user, array $input)

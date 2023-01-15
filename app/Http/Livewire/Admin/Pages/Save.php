@@ -5,18 +5,22 @@ namespace App\Http\Livewire\Admin\Pages;
 use App\Models\Page;
 use Carbon\Carbon;
 use Livewire\Component;
+use Livewire\WithFileUploads;
+use Storage;
 
 class Save extends Component
 {
+    use WithFileUploads;
+
     public Page $parent;
 
     public Page $page;
 
-    public ?string $image = null;
+    public $image;
 
     protected $rules = [
         'page.title' => 'required',
-        'image' => 'sometimes|base64image',
+        'image' => 'sometimes|image',
         'page.content' => 'required',
         'page.parent_id' => 'sometimes'
     ];
@@ -44,13 +48,15 @@ class Save extends Component
     {
         $this->validate();
 
-        //  save
         if (!empty($this->image)) {
-            $imageName = $this->page->image ?: $this->page->replicate()->slug . '-' . Carbon::now()->timestamp;
-            $imageName = store($this->image, 'pages', $imageName, $this->image_config, ['update' => !is_null($this->page->image)]);
-            $this->page->image = $imageName;
+            $image_name = $this->page->replicate()->slug . "-" . Carbon::now()->timestamp . '.' . $this->image->extension();
+            if (!empty($this->page->image)) {
+                Storage::delete('pages/' . $this->page->image);
+            }
+            $this->image->storeAs('pages', $image_name);
+            $this->page->image = $image_name;
         }
-
+ 
         $this->page->save();
 
         session()->flash('message', 'Page has been created successfully!');

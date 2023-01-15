@@ -12610,7 +12610,7 @@ label {
         display: none;
     }
 
-    #logo-abbr{
+    #logo-abbr {
 
         display: none !important;
     }
@@ -12747,7 +12747,7 @@ label {
         display: none;
     }
 
-    #brand-title{
+    #brand-title {
         display: none !important;
     }
 }
@@ -31537,7 +31537,7 @@ input#checkAll.form-check-input:checked {
 }
 
 #username {
-    border-radius: 0 0.5rem 0.5rem 0;
+    /*border-radius: 0 0.5rem 0.5rem 0;*/
 }
 
 .form-control-lg {
@@ -32233,12 +32233,16 @@ input#checkAll.form-check-input:checked {
 }
 
 .select2-container--default .select2-selection--single .select2-selection__rendered {
-    line-height: 2.5rem;
+    line-height: 3rem;
     color: #A098AE;
     padding-left: 0.9375rem;
-    min-height: 2.5rem;
+    min-height: 3rem;
 }
-
+.select2-container--default .select2-selection--single .select2-selection__clear{
+    font-size: 18px;
+    margin-right: 10px;
+    color: #ff205e;
+}
 .select2-container--default .select2-selection--multiple {
     border-color: #eeee;
     border-radius: 0;
@@ -32258,7 +32262,8 @@ input#checkAll.form-check-input:checked {
 }
 
 .select2-container--default .select2-selection--single .select2-selection__arrow {
-    top: 0.375rem;
+    top: 0;
+    height: 3rem;
     /*right: 0.9375rem;*/
 }
 
@@ -32517,7 +32522,8 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
     .form-wizard .nav-wizard {
         flex-direction: unset !important;
     }
-    #nav-wizard{
+
+    #nav-wizard {
         flex-direction: unset !important;
     }
 
@@ -39687,7 +39693,7 @@ table.dataTable thead .sorting_asc {
     background: #152238;
     display: flex;
     min-height: 150vh;
-     /* overflow: auto; */
+    /* overflow: auto; */
 }
 
 .authincation .login-aside {
@@ -48790,7 +48796,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 
 /* ///////////////////////////////// */
 
-.profile-image2{
+.profile-image2 {
     object-fit: cover;
     border-radius: 9999px;
     width: 10rem;
@@ -48798,7 +48804,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 }
 
 
-.qr-css{
+.qr-css {
 
     background: white;
     width: 226px;
@@ -48807,10 +48813,10 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 
 }
 
-.text-responsiv{
+.text-responsiv {
     word-break: break-all;
 }
 
-.div-tbl-resp{
-    overflow-x:auto;
+.div-tbl-resp {
+    overflow-x: auto;
 }

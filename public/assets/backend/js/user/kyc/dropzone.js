@@ -5,65 +5,90 @@ $(function () {
         nic: ['front', 'back', 'other'], driving_lc: ['front', 'other'], passport: ['front', 'other']
     }
 
-    REQUIRED_DOCUMENTS_TYPES[KYC_TYPE].map(doc_type => {
-        let element_id = `#${KYC_TYPE}-${doc_type}-image`
-        let submit_btn = `#${KYC_TYPE}-${doc_type}-submit`
 
-        $(document).on("click", submit_btn, function (e) {
-            e.preventDefault()
-            if ($(element_id).val().length <= 0) {
-                Toast.fire({
-                    icon: 'error', title: "KYC proof document is required",
-                })
-            } else {
-                let document_file = $(element_id)[0].files[0]
-                let kyc = $(this).data("kyc");
-                let kyc_document_id = $(`#${KYC_TYPE}-${doc_type}-id`).val();
+    $(document).on("click", '#saveKYC', function (e) {
+        e.preventDefault()
+        let kyc = $(this).data("kyc");
 
-                Swal.fire({
-                    title: "Please wait...!",
-                    text: "It may take some time...!",
-                    imageUrl: APP_URL + "/assets/images/loader.svg",
-                    showConfirmButton: false,
-                    allowOutsideClick: false,
-                });
-                canvasResize(document_file, {
-                    width: 600,
-                    height: 600,
-                    crop: false,
-                    quality: 80,
-                    //rotate: 90,
-                    callback: function (data, width, height) {
-                        axios.post(`${APP_URL}/user/kyc/${kyc}/documents/${kyc_document_id}/upload`, {
-                            document: data,
-                            type: doc_type,
-                        }).then(response => {
-                            if (response.data.status) {
-                                Swal.fire({
-                                    icon: response.data.icon,
-                                    text: response.data.message,
-                                }).then((result) => {
-                                    location.reload();
-                                });
-                            }
-                        }).catch(error => {
-                            let error_msg = error.response.data.message || "Something went wrong!"
-                            Swal.fire({
-                                icon: "error",
-                                text: 'Something went wrong!',
-                                confirmButtonColor: '#4466f2',
-                                footer: '<small style="color:red">' + error_msg + '</small>'
-                            });
-                        })
+        if ($('#' + KYC_PROFILE).val().length <= 0) {
+            Toast.fire({
+                icon: 'error', title: "Please provide your document information.",
+            })
+        } else {
+            let data = {
+                kyc_id: kyc,
+                [KYC_TYPE]: $('#' + KYC_PROFILE).val(),
+                documents: {...REQUIRED_DOCUMENTS_TYPES[KYC_TYPE].reduce((ac, a) => ({...ac, [a]: null}), {})}
+            };
+
+            Swal.fire({
+                title: "Please wait...!",
+                text: "It may take some time...!",
+                imageUrl: APP_URL + "/assets/images/loader.svg",
+                showConfirmButton: false,
+                allowOutsideClick: false,
+            });
+            console.log('loop start')
+            let errors = [];
+            for (let i = 0; i < REQUIRED_DOCUMENTS_TYPES[KYC_TYPE].length; i++) {
+                let doc_type = REQUIRED_DOCUMENTS_TYPES[KYC_TYPE][i];
+                let element_id = `#${doc_type}`;
+                let element__current_value = $(`#${doc_type}-has-document`).val();
+
+                if (element__current_value.length > 0 && $(element_id).val().length <= 0) {
+                    delete data.documents[doc_type];
+                    continue;
+                }
+
+                console.log(doc_type)
+                if ($(element_id).val().length <= 0) {
+                    console.log(element_id)
+                    Toast.fire({
+                        icon: 'error', title: "KYC proof document is required",
+                    })
+                    errors.push(element_id)
+                    break;
+                } else {
+                    data.documents[doc_type] = {
+                        id: $(`#${KYC_TYPE}-${doc_type}-id`).val(),
+                        old_document: element__current_value,
+                        document_file: $(element_id).val()
                     }
-                });
+                }
             }
-        });
-    })
+            console.log('loop end, axios start')
+            if (errors.length <= 0) {
+                axios.post(`${APP_URL}/user/kyc/${kyc}/documents-upload`, data).then(response => {
+                    if (response.data.status) {
+                        Swal.fire({
+                            icon: response.data.icon, text: response.data.message,
+                        }).then((result) => {
+                            location.reload();
+                        });
+                    }
+                }).catch(error => {
+                    let error_msg = error.response.data.message || "Something went wrong!"
+                    Swal.fire({
+                        icon: "error",
+                        text: 'Something went wrong!',
+                        confirmButtonColor: '#4466f2',
+                        footer: '<small style="color:red">' + error_msg + '</small>'
+                    });
+                })
+            }
+        }
+    });
 
 
     function readFile(input) {
         if (input.files && input.files[0]) {
+            let data_el = $(input).data('type');
+            canvasResize(input.files[0], {
+                width: 600, height: 600, crop: false, quality: 80, //rotate: 90,
+                callback: function (file, width, height) {
+                    $('#' + data_el).val(file)
+                }
+            });
             let reader = new FileReader();
             reader.onload = function (e) {
                 let htmlPreview = '<img class="preview-image" alt="preview-image" src="' + e.target.result + '" />';
@@ -101,6 +126,10 @@ $(function () {
         let boxZone = $(this).parents(".preview-zone").find(".box-body");
         let previewZone = $(this).parents(".preview-zone");
         let dropzone = $(this).parents(".form-group").find(".dropzone");
+
+        let kycImgContainer = $(this).parents(".kyc-img-container").find(".kyc-doc-val");
+        kycImgContainer.val(null);
+
         boxZone.empty();
         previewZone.addClass("d-none");
         reset(dropzone);
