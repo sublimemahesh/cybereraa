@@ -125,15 +125,19 @@ class FrontendController extends Controller
     public function termsConditions()
     {
         $terms_and_conditions=$this->getDatePage('terms-and-conditions');
-        return view('frontend.terms-and-conditions',compact('terms_and_conditions'));
+        $terms_and_conditions_content= page::where(['id' => 77])->get();
+
+        return view('frontend.terms-and-conditions',compact('terms_and_conditions','terms_and_conditions_content'));
 
     }
     public function disclaimer()
     {
         $disclaimers=$this->getDatePage('disclaimer');
-        return view('frontend.disclaimer',compact('disclaimers'));
+        $disclaimers_content= page::where(['id' => 80])->get();
 
-    }
+        return view('frontend.disclaimer',compact('disclaimers','disclaimers_content'));
+
+    } 
 
 
 }

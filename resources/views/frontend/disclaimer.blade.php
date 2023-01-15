@@ -2,6 +2,9 @@
     @section('title', 'DISCLAIMER')
     @section('header-title', 'Welcome ')
     @section('styles')
+
+    <link href="{{ asset('assets/frontend/css/disclaimer.css') }}" rel="stylesheet">
+
     @endsection
 
 
@@ -41,18 +44,29 @@
         </section>
     </div>
 
-
-
-
-
-    <section class="contact">
+    <section>
         <div class="container">
             <div class="row">
-                <div class="col-xs-12 col-md-8 contact-form">
+                <div class="col-xs-12 col-md-12 ">
+                    @if (count($disclaimers_content) > 0)
+                        @foreach ($disclaimers_content as $section)
+                            <div class="col-xs-12"> {!! $section->content !!}</div>
+                        @endforeach
+                    @endif
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class='disclainmer-section'>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
                     @if (count($disclaimers) > 0)
                         @foreach ($disclaimers as $section)
-                            <h3 class="col-xs-12">{{ $section->title }}</h3>
-                            <div class="col-xs-12"> {!! $section->content !!}</div>
+                            <h3 class="col-xs-12 title-about">{{ $section->title }}</h3>
+                            <div class="col-xs-12 disclainmer-cont"> {!! $section->content !!}</div>
                         @endforeach
                     @endif
                 </div>

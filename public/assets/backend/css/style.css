@@ -32219,7 +32219,7 @@ input#checkAll.form-check-input:checked {
 .select2-container--default .select2-selection--single {
     border-radius: 0.625rem;
     border: 0.0625rem solid #c8c8c8;
-    height: 2.5rem;
+    height: 3rem;
     background: #fff;
 }
 
@@ -48805,4 +48805,12 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
     height: 233px;
     padding: 15px;
 
+}
+
+.text-responsiv{
+    word-break: break-all;
+}
+
+.div-tbl-resp{
+    overflow-x:auto;
 }
