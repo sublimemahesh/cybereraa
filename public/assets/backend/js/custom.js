@@ -584,6 +584,9 @@ jQuery(window).on('load', function () {
         CryptoZone.handleMenuPosition();
     }, 1000);
 
+    $(document).on('select2:open', () => {
+        document.querySelector('.select2-search__field').focus();
+    });
 });
 /*  Window Load END */
 /* Window Resize START */
