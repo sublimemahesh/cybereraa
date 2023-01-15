@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <meta charset="utf-8"> 
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="keywords" content="trade ,safesttrades ,crypto ,crypto wallet,crypto currency, Blockchain Crypto Exchange, Cryptocurrency Exchange, Bitcoin Trading, Ethereum price trend, BNB, CZ, BTC price, ETH wallet registration, LTC price, Binance, Poloniex, Bittrex ">
     <meta name="author" content="safesttrades">
@@ -13,6 +13,7 @@
     <meta property="og:description" content="At SAFEST TRADING, we see the concept of “investments” in a pretty different way.">
     <meta property="og:image" content="">
     <meta name="format-detection" content="telephone=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- PAGE TITLE HERE -->
     <title>@yield('title') | {{ config('app.name', 'Laravel') }}</title>
