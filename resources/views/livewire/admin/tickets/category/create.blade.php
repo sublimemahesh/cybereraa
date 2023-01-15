@@ -32,8 +32,8 @@
     </form>
 
     <hr class="py-2">
-
-    <table class="table table-striped table-bordered dt-responsive nowrap" id="tickets">
+    <div class="table-responsive">
+    <table class="table table-striped table-bordered dt-responsive nowrap display" id="tickets" style="min-width: 845px">
         <thead>
         <tr>
             <th>ACTIONS</th>
@@ -61,6 +61,7 @@
         @endforeach
         </tbody>
     </table>
+</div>
     <div x-data x-init="@this.on('showConfirmation', (category) => {
        Swal.fire({
            title: 'Are you sure?',

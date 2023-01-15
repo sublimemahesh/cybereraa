@@ -20,8 +20,8 @@
         </div>
         <div class="col-sm-12">
             <div class="card">
-                <div class="card-body">
-                    <table class="table table-striped table-bordered dt-responsive nowrap" id="tickets">
+                <div class="card-body table-responsive">
+                    <table class="table table-striped table-bordered dt-responsive nowrap display" id="tickets" style="min-width: 845px">
                         <thead>
                         <tr>
                             <th>ACTIONS</th>

@@ -18,7 +18,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table header-border table-responsive-sm">
+                        <table class="table header-border table-responsive-sm display" style="min-width: 845px">
                             <thead>
                             <tr>
                                 <th>KYC TYPE</th>

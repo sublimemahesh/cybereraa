@@ -112,7 +112,7 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table id="transactions" class="display mb-1" style="table-layout:fixed;width:100%">
+                        <table id="transactions" class="display" style="min-width: 845px">
                             <thead>
                             <tr>
                                 <th>USER ID</th>

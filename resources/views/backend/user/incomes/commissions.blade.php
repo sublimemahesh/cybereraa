@@ -104,7 +104,7 @@
                         </div>
                     </div>
                     <div class="table-responsive d-block">
-                        <table id="transactions" class="display mb-1 nowrap" style="table-layout:fixed;width:100%">
+                        <table id="transactions" class="display  " style="min-width: 845px">
                             <thead>
                             <tr>
                                 <th>TYPE</th>

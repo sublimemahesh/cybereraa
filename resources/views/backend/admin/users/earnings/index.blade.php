@@ -123,7 +123,7 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table id="earnings" class="display mb-1" style="table-layout:fixed;width:100%">
+                        <table id="earnings"  class="display" style="min-width: 845px">
                             <thead>
                             <tr>
                                 <th>EARNING TYPE</th>
