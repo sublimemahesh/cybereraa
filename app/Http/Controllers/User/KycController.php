@@ -6,8 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Kyc;
 use App\Models\KycDocument;
 use Auth;
+use Carbon;
 use DB;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Storage;
+use Str;
 use Throwable;
 use Validator;
 
@@ -33,7 +37,7 @@ class KycController extends Controller
             return response()->json($json, 403);
         }
 
-        DB::transaction(function () use ($validated) {
+        $kyc = DB::transaction(function () use ($validated) {
             return tap(Kyc::create([
                 'profile_id' => Auth::user()->profile->id,
                 'type' => $validated['kyc_type'],
@@ -55,6 +59,7 @@ class KycController extends Controller
 
         $json['status'] = true;
         $json['message'] = 'KYC entry was successfully created!';
+        $json['redirectUrl'] = route('user.kyc.show', $kyc);
         $json['icon'] = 'success'; // warning | info | question | success | error
         $json['data'] = $validated;
 
@@ -64,6 +69,69 @@ class KycController extends Controller
     public function show(Request $request, Kyc $kyc)
     {
         return view('backend.user.kyc.show', compact('kyc'));
+    }
+
+    public function update(Request $request, Kyc $kyc)
+    {
+        $pending_count = $kyc->documents()->whereNull('document_name')->count();
+        $validated = Validator::make($request->all(), [
+            'nic' => [Rule::requiredIf($kyc->type === 'nic'), 'max:250'],
+            'driving_lc' => [Rule::requiredIf($kyc->type === 'driving_lc'), 'max:250'],
+            'passport' => [Rule::requiredIf($kyc->type === 'passport'), 'max:250'],
+            'documents' => [Rule::requiredIf($pending_count > 0), 'nullable', 'array', 'size:' . $pending_count],
+            'documents.*.document_file' => 'nullable', 'base64image', 'base64max:1024',
+            'documents.*.id' => 'required|exists:kyc_documents,id',
+            // 'type' => 'required|in:front,back,other'
+        ])->validate();
+
+        if (Auth::user()->cannot('update', $kyc)) {
+            $json['status'] = 'denied';
+            $json['message'] = 'KYC is not allowed to update';
+            $json['icon'] = 'error';
+            return response()->json($json, 403);
+        }
+
+        $errors = [];
+        foreach ($validated['documents'] as $document_data) {
+
+            if ($document_data['document_file'] === null) {
+                continue;
+            }
+            $document = KycDocument::find($document_data['id']);
+            if (Auth::user()->cannot('update', $document)) {
+                $errors[$document->id] = $kyc->type . ' ' . $document->type . " document Cannot update";
+                continue;
+            }
+
+            $document_name = store($document_data['document_file'], "user/kyc/" . $kyc->type, Str::random(20) . "-" . Carbon::now()->timestamp);
+
+            if ($document_name === null) {
+                continue;
+            }
+            if (!empty($document->document_name)) {
+                Storage::delete("user/kyc/" . $kyc->type . "/" . $document->document_name);
+            }
+
+            $document->document_name = $document_name;
+            $document->status = "pending";
+            $document->save();
+        }
+        $pending_doc_count = $kyc->documents()->where('status', 'pending')->count();
+        if ($pending_doc_count >= 1) {
+            $kyc->update([
+                'status' => 'pending'
+            ]);
+        }
+
+        $kyc->profile()->update([$kyc->profile_name => $validated[$kyc->type]]);
+
+        $json['status'] = true;
+        $json['errors'] = $errors;
+        $json['message'] = count($errors) > 0 ? 'KYC Document submitted successfully!. NOTE: Some Documents are cannot be update.' : 'KYC Document submitted successfully!';
+        $json['icon'] = 'success'; // warning | info | question | success | error
+        $json['data'] = $validated;
+
+        return response()->json($json);
     }
 
 }

@@ -29,7 +29,7 @@
             </div>
             <div class="col-lg-6 mt-3">
                 <div wire:ignore>
-                    <label class="mb-2" for="country"><strong class="main-register-form-text">{{ __('Country') }}
+                    <label class="mb-1" for="country"><strong class="main-register-form-text">{{ __('Country') }}
                             <sup class="main-required">*</sup>
                         </strong>
                     </label>

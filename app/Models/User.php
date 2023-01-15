@@ -77,9 +77,27 @@ class User extends Authenticatable
         /*'depth',
         'highest_rank',*/
         'profile_photo_url',
-        'referral_link'
+        'referral_link',
+        'profile_info'
     ];
 
+    public function getProfileInfoAttribute()
+    {
+        $profile = $this->profile;
+        return $this->profile_info = $profile->toArray();
+    }
+
+    public function getProfileIsCompleteAttribute(): bool
+    {
+        $required = ['street', 'state', 'address', 'zip_code', 'home_phone', 'recover_email', 'gender', 'dob'];
+        $is_complete = true;
+        foreach ($required as $iValue) {
+            if ($this->profile[$iValue] === null) {
+                $is_complete = false;
+            }
+        }
+        return $is_complete;
+    }
 
     public function getReferralLinkAttribute(): string
     {

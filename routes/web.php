@@ -36,6 +36,7 @@ Route::group(['prefix' => 'register', 'middleware' => 'guest:' . config('fortify
 });
 
 Route::get('test', function () {
+    //dd(Auth::user());
     //dd(User::find(8)->ancestorsAndSelf()->get()[0]->ranks()->where('rank',1)->increment('total_rankers'));
 //    $users = User::whereNotNull('parent_id')->orderBy('updated_at', 'desc')->get();
 //    foreach ($users as $user) {
@@ -148,6 +149,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::get('kyc', 'User\KycController@index')->name('kyc.index');
         Route::get('kyc/entry/{kyc}', 'User\KycController@show')->name('kyc.show');
         Route::post('kyc/new-entry', 'User\KycController@storeNewEntry');
+        Route::post('kyc/{kyc}/documents-upload', 'User\KycController@update');
         Route::post('kyc/{kyc}/documents/{document}/upload', 'User\KycDocumentController@update')->scopeBindings();
 
         // BinancePay

@@ -12,7 +12,7 @@ $(function () {
                     kyc_type
                 }).then(function (response) {
                     if (response.data.status) {
-                        location.reload();
+                        location.href = response.data.redirectUrl;
                     }
                 }).catch(function (error) {
                     console.log(error)

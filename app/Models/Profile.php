@@ -13,7 +13,8 @@ class Profile extends Model
 
     protected $withCount = ['kycs'];
 
-    protected $fillable = ['nic_verified_at', 'driving_lc_verified_at', 'passport_verified_at'];
+    protected $fillable = ['nic_verified_at', 'driving_lc_verified_at', 'passport_verified_at',
+        'street', 'state', 'address', 'zip_code', 'home_phone', 'recover_email', 'gender', 'dob'];
 
     protected $appends = [
         'is_nic_verified',
