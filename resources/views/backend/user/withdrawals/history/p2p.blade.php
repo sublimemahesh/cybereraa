@@ -94,7 +94,7 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table id="p2p-trx" class="display mb-1" style="table-layout:fixed;width:100%">
+                        <table id="p2p-trx" class="display" style="min-width: 845px">
                             <thead>
                             <tr>
                                 <th>ACTION</th>

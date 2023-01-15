@@ -122,7 +122,7 @@
                         </div>
                         <div class="card-body pt-0 px-0">
                             <div class="table-responsive">
-                                <table class="table-responsive tb-transaction table shadow-hover mb-4 dataTable no-footer" id="example6">
+                                <table class="display table-responsive tb-transaction table shadow-hover mb-4 dataTable no-footer" id="example6" style="min-width: 845px">
                                     <tbody>
                                     @forelse($latest_transactions as $trx)
                                         <tr>
