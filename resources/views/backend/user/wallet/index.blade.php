@@ -78,7 +78,7 @@
         <div class="col-xxl-2 col-xl-2">
             <div class="card">
                 <div class="card-header border-0 pb-0">
-                    <h2 class="heading mb-0 m-auto">Commissions</h2>
+                    <h2 class="heading mb-0 m-auto  text-responsiv">Commissions</h2>
                 </div>
                 <div class="card-body text-center pt-3">
                     <div class="icon-box bg-primary">

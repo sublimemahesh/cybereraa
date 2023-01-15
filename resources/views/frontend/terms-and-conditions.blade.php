@@ -2,6 +2,8 @@
     @section('title', 'TERMS & CONDITIONS')
     @section('header-title', 'Welcome ')
     @section('styles')
+    <link href="{{ asset('assets/frontend/css/terms-and-conditions.css') }}" rel="stylesheet">
+
     @endsection
 
 
@@ -41,18 +43,29 @@
         </section>
     </div>
 
-
-
-
-
-    <section class="contact">
+    <section>
         <div class="container">
             <div class="row">
-                <div class="col-xs-12 col-md-8 contact-form">
+                <div class="col-xs-12 col-md-12 ">
+                    @if (count($terms_and_conditions_content) > 0)
+                        @foreach ($terms_and_conditions_content as $section)
+                            <div class="col-xs-12"> {!! $section->content !!}</div>
+                        @endforeach
+                    @endif
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class='terms-and-conditions-section'>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
                     @if (count($terms_and_conditions) > 0)
                         @foreach ($terms_and_conditions as $section)
-                            <h3 class="col-xs-12">{{ $section->title }}</h3>
-                            <div class="col-xs-12"> {!! $section->content !!}</div>
+                            <h3 class="col-xs-12 title-about">{{ $section->title }}</h3>
+                            <div class="col-xs-12 terms-and-conditions-cont"> {!! $section->content !!}</div>
                         @endforeach
                     @endif
                 </div>
