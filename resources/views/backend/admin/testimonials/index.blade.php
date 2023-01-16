@@ -25,7 +25,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12 table-responsive">
-                            <table class="display" style="min-width: 845px" id="testimonial-table">
+                            <table class="display mb-1 nowrap" style="table-layout:fixed;width:100%" id="testimonial-table">
                                 <thead>
                                 <tr>
                                     <th>No</th>
