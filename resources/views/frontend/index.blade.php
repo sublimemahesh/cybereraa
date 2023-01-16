@@ -44,9 +44,10 @@
         <div class="container">
             <!-- Section Title Starts -->
             <div class="row text-center">
-                <h2 class="title-head">Invest now, you’ll <span>never regret it.</span></h2>
+                <h2 class="title-head">THE SAFEST SPOT ON THE EARTH <br>
+                    <span> WHERE YOU CAN INVEST YOUR MONEY.</span></h2>
                 <div class="title-head-subtitle">
-                    <p>Explain our Mission Values vision</p>
+                    <p>WWW.SAFESTTRADES.COM</p>
                 </div>
             </div>
             <!-- Section Title Ends -->
