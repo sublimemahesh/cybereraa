@@ -50,7 +50,8 @@ class FrontendController extends Controller
         $testimonials = Testimonial::all();
 
         $benefits=$this->getDatePage('benefit');
-        $packages=$this->getDatePage('packages');
+        // $packages=$this->getDatePage('package');
+        $packages= page::find(66); //66  3
 
 
 
