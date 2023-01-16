@@ -10,9 +10,9 @@
                 <div class="col-xs-12">
                     <!-- Call To Action Text Starts -->
                     <div class="action-text">
-                        <h2>Get Started Today With Invest</h2>
-                        <p class="lead">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500!</p>
+                        <h2>COME AND JOIN US TO WIN YOUR LIFE!...</h2>
+                        <p class="lead">What if your dream investment can be made in the safest spot on the earth? just invest and wait and enjoy up to a guaranteed return of 400% in 15 months.
+                             Daily withdrawals, No claim Bonuses, and many more massive benefits.</p>
                     </div>
                     <!-- Call To Action Text Ends -->
                     <!-- Call To Action Button Starts -->
