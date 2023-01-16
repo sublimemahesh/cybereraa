@@ -77,17 +77,12 @@
                     <h4>Contact Us </h4>
                     <div class="contacts">
                         <div>
-                            <span>contact@website.com</span>
+                            <span> <a href="mailto:support@safesttrades.com">support@safesttrades.com</a></span>
                         </div>
                         <div>
-                            <span>00216 21 184 010</span>
+                            <span> Safest Trades, Proton Trading Pro LLC., 140 21ST ST STE R, Sacramento, CA 95811.</span>
                         </div>
-                        <div>
-                            <span>London, England</span>
-                        </div>
-                        <div>
-                            <span>mon-sat 08am &#x21FE; 05pm</span>
-                        </div>
+
                     </div>
                     <!-- Social Media Profiles Starts -->
                     <div class="social-footer">
@@ -146,8 +141,8 @@
             <div class="row">
                 <div class="col-xs-12">
                     <!-- Copyright Text Starts -->
-                    <p class="text-center">Copyright © <?php echo date("Y"); ?> SAFEST TRADES All Rights Reserved | Created with Love by <a
-                            href="#" target="_blank"></a></p>
+                    <p class="text-center">© <?php echo date("Y"); ?> Safest Trades. All Rights Reserved. | Solution by <a href="https://www.synotec.lk/" target="_blank">Synotec Holdings Pvt. Ltd 
+                    </a></p>
                     <!-- Copyright Text Ends -->
                 </div>
             </div>
