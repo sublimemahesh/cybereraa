@@ -23,7 +23,7 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body table-responsive">
-                    <table class="table table-striped table-bordered dt-responsive nowrap display" id="packages" style="min-width: 845px">
+                    <table class="table table-striped table-bordered dt-responsive nowrap" id="packages">
                         <thead>
                         <tr>
                             <th>ACTIONS</th>
