@@ -26,16 +26,10 @@
                             </div>
                             <div class="col-sm-12 col-md-5 col-lg-6">
                                 <div id='hero-text'>
-                                    <h1 class="title-head">Invest now, <span>you’ll never regret it.</span></h1>
-                                    <p class="about-text">We are a leading active and independent World Wide investment
-                                        company
-                                        with
-                                        a
-                                        strong legacy in the Cryptocurrency market. <br> We offer our clients access to
-                                        a
-                                        range
-                                        of
-                                        actively managed fundamental equity, fixed income and multi-asset capabilities.
+                                    <h1 class="title-head">INVEST & <span> EARN IN THE SAFEST SPOT ON THE EARTH.</span></h1>
+                                    <p class="about-text">
+                                        What if your dream investment can be made in the safest spot on 
+                                        the earth? just invest and wait and enjoy up to a guaranteed return of 400% in 15 months. Daily withdrawals, No claim Bonuses, and many more massive benefits.
                                     </p>
                                 </div>
                             </div>
@@ -191,7 +185,6 @@
     <section>
         <div class="container">
             <div class="owl-carousel owl-theme casino-slider">
-                @if (count($packages) > 0)
                 @foreach ($packages->children as $section)
                     <div class="item">
                         <a href="https://www.747live.net/
@@ -199,7 +192,6 @@
                                 src="{{ storage('pages/' . $section->image) }}" alt=""></a>
                     </div>
                 @endforeach
-                @endif
             </div>
         </div>
     </section>
