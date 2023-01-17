@@ -28,7 +28,7 @@
                                 <div id='hero-text'>
                                     <h1 class="title-head">INVEST & <span> EARN IN THE SAFEST SPOT ON THE EARTH.</span></h1>
                                     <p class="about-text">
-                                        What if your dream investment can be made in the safest spot on 
+                                        What if your dream investment can be made in the safest spot on
                                         the earth? just invest and wait and enjoy up to a guaranteed return of 400% in 15 months. Daily withdrawals, No claim Bonuses, and many more massive benefits.
                                     </p>
                                 </div>
@@ -260,10 +260,10 @@
         </div>
     </section> --}}
     <!-- Comment Section Ends -->
-    
-    <!-- Blog Section Starts -->
 
-    <section class="blog">
+    <!-- Blog Section Starts -->
+  @if (count($all_news) > 0)
+    <section class="blog about-css">
         <div class="container">
             <!-- Section Title Starts -->
             <div class="row text-center">
@@ -294,7 +294,7 @@
                                     {{ $news->short_description }}
                                 </div>
                             </div>
-                            <div class="post-date">
+                            <div class="post-date post-color">
                                 <span>{{ date('d', strtotime($news->created_at)) }}</span>
                                 <span>{{ date('M', strtotime($news->created_at)) }}</span>
                             </div>
@@ -310,7 +310,7 @@
         </div>
     </section>
     <!-- Blog Section Ends -->
-
+@endif
     @push('scripts')
         <script src="{{ asset('assets/frontend/js/testimonials.js') }}"></script>
         <script src="{{ asset('assets/frontend/js/hiw2.js') }}"></script>

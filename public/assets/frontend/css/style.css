@@ -1496,7 +1496,7 @@ ul.nav.nav-tabs li.active a:hover {
 .bg-image-1 {
     background-image: url(../../frontend/images/project/BuildingTheClientRelationship-webpic.jpg);
     background-size: cover;
-    background-position: center center; 
+    background-position: center center;
 }
 
 .bg-image-1:after {
@@ -5214,11 +5214,11 @@ h4.panel-title a.collapsed:before {
 .benefit-list{
     background: #1d1d1d;
 }
-.parallax { 
-  
+.parallax {
+
     /* Set a specific height */
     min-height: 500px;
-  
+
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
     background-position: center;
@@ -5232,13 +5232,17 @@ h4.panel-title a.collapsed:before {
   }
 
   .row-merge{
-    margin-top: 20px;
+    margin-top: 43px;
   }
 
-  
+
 @media (max-width: 960px) {
-    
+
     .vertical-btn{
        display:none;
       }
+}
+
+.post-color{
+    background:  #111 !important;
 }

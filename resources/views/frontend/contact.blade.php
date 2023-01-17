@@ -7,34 +7,6 @@
     @endsection
 
 
-{{-- <section class="banner-area">
-    <div class="banner-overlay">
-        <div class="banner-text text-center">
-            <div class="container">
-                <!-- Section Title Starts -->
-                <div class="row text-center">
-                    <div class="col-xs-12">
-                        <!-- Title Starts -->
-                        <h2 class="title-head">Contact <span>us</span></h2>
-                        <!-- Title Ends -->
-                        <hr>
-                        <!-- Breadcrumb Starts -->
-                        <ul class="breadcrumb">
-                            <li><a href="index-2.html"> home</a></li>
-                            <li>contact</li>
-                        </ul>
-                        <!-- Breadcrumb Ends -->
-                    </div>
-                </div>
-                <!-- Section Title Ends -->
-            </div>
-        </div>
-    </div>
-</section> --}}
-<!-- Banner Area Ends -->
-<!-- Contact Section Starts -->
-
-
 <div id="page">
     <section id="hero" class='net-hero'>
         <div class="background">
@@ -69,8 +41,6 @@
             </div>
     </section>
 </div>
-
-
 
 
 
@@ -134,26 +104,16 @@
                             <i class="fa fa-home big-icon"></i>
                             <div class="contact-info-box-content">
                                 <h4>Address</h4>
-                                <p>123 Disney Street Slim Av. Brooklyn Bridge, NY, New York</p>
+                                <p> Safest Trades, Proton Trading Pro LLC, 140 21ST ST STE R, Sacramento, CA 95811.</p>
                             </div>
                         </div>
-                        <!-- Contact Info Box Ends -->
-                        <!-- Contact Info Box Starts -->
-                        <div class="contact-info-box">
-                            <i class="fa fa-phone big-icon"></i>
-                            <div class="contact-info-box-content">
-                                <h4>Phone Numbers</h4>
-                                <p>+88 0123 4567 890<br>+88 0231 3421 453</p>
-                            </div>
-                        </div>
-                        <!-- Contact Info Box Ends -->
-                        <!-- Contact Info Box Starts -->
+
                         <div class="contact-info-box">
                             <i class="fa fa-envelope big-icon"></i>
                             <div class="contact-info-box-content">
                                 <h4>Email Addresses</h4>
 
-                                <p>contact@example.com<br>info@example.com</p>
+                                <p><a href="mailto:support@safesttrades.com">support@safesttrades.com</a></p>
                             </div>
                         </div>
                         <!-- Contact Info Box Ends -->
@@ -181,7 +141,7 @@
             <!-- Contact Widget Ends -->
         </div>
     </div>
-</section> 
+</section>
 
 
 <!-- Contact Section Ends -->

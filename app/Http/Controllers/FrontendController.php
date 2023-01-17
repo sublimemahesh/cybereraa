@@ -74,7 +74,7 @@ class FrontendController extends Controller
 
     public function project()
     {
-        $projects= page::where(['parent_id' => 38])->get(); //38 
+        $projects= page::where(['parent_id' => 38])->get(); //38
         return view('frontend.ongoing_project', compact('projects'));
 
     }
@@ -138,7 +138,7 @@ class FrontendController extends Controller
 
         return view('frontend.disclaimer',compact('disclaimers','disclaimers_content'));
 
-    } 
+    }
 
 
 }
