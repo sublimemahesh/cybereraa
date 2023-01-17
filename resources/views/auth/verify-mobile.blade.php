@@ -13,7 +13,7 @@
                                     <img class="m-auto" src="{{ asset('assets/backend/images/logo/logo-full.png') }}" alt="">
                                 </a>
                             </div>
-                            <h4 class="text-center mb-4">Verify email</h4>
+                            <h4 class="text-center mb-4">Verify Your Phone Number</h4>
 
                             <div class="mb-4 text-sm text-gray-600">
                                 {{ __('Before continuing, could you verify your mobile number by entering code we just send to you? If you didn\'t receive the sms, we will gladly send you another.') }}
@@ -32,7 +32,7 @@
                                     </div>
                                 @endif
                                 <div class="form-group">
-                                    <label class="info-title" for="phone">Phone Number <span>*</span></label>
+                                    <label class="info-title" for="phone">Mobile Number <span>*</span></label>
                                     <input type="text" value="{{ Auth::user()->phone }}" name="phone" class="form-control unicase-form-control text-input" id="phone">
                                 </div>
                                 <div class="radio outer-xs mt-4">
