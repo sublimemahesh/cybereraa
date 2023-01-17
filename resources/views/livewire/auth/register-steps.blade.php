@@ -2,7 +2,7 @@
     <div class="auth-form">
         <div class="text-center mb-3">
             <a href="{{ route('/') }}">
-                <img src="{{ asset('assets/backend/images/logo/logo-full.png') }}" alt="">
+                <img class="m-auto" src="{{ asset('assets/backend/images/logo/logo-full.png') }}" alt="">
             </a>
         </div>
         <h4 class="text-center mb-4">Create Your Account</h4>

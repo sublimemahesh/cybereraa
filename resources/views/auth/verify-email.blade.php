@@ -9,8 +9,9 @@
                     <div class="col-xl-12">
                         <div class="auth-form">
                             <div class="text-center mb-3">
-                                <a href="{{ route('/') }}"><img
-                                        src="{{ asset('assets/backend/images/logo/logo-full.png') }}" alt=""></a>
+                                <a href="{{ route('/') }}">
+                                    <img class="m-auto" src="{{ asset('assets/backend/images/logo/logo-full.png') }}" alt="">
+                                </a>
                             </div>
                             <h4 class="text-center mb-4">Verify email</h4>
 
@@ -27,24 +28,23 @@
                                 @csrf
 
                                 <div class="col-lg-12  mt-4">
-                                    <button type="submit" class="btn btn-primary btn-block">{{ __('Log in') }}</button>
+                                    <button type="submit" class="btn btn-primary btn-block">{{ __('Resend Verification Email') }}</button>
                                 </div>
 
                             </form>
 
-                            <div class="new-account mt-3">
-                                <div>
-                                    <a href="{{ route('profile.show') }}"
-                                        class="underline text-sm text-gray-600 hover:text-gray-900">
-                                        {{ __('Edit Profile') }}</a>
-
-                                    <form method="POST" action="{{ route('logout') }}" class="inline">
+                            <div class="d-flex row new-account mt-3">
+                                <div class="col-lg-6  mt-4">
+                                    <a href="{{ route('profile.show') }}" class="underline text-sm text-gray-600 hover:text-gray-900">
+                                        {{ __('Edit Profile') }}
+                                    </a>
+                                </div>
+                                <div class="col-lg-6 mt-4">
+                                    <form method="POST" action="{{ route('logout') }}" class="float-end">
                                         @csrf
-
-                                        <button type="submit"
-                                            class="underline text-sm text-gray-600 hover:text-gray-900 ml-2">
+                                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();" class="underline text-sm text-gray-600 hover:text-gray-900">
                                             {{ __('Log Out') }}
-                                        </button>
+                                        </a>
                                     </form>
                                 </div>
                             </div>

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Dyrynda\Database\Support\CascadeSoftDeletes;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -20,7 +21,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 use Throwable;
 use URL;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasRoles;
     use HasApiTokens;
@@ -44,7 +45,7 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name', 'email', 'password', 'phone', 'super_parent_id', 'parent_id', 'username', 'position'
+        'name', 'email', 'password', 'phone', 'phone_verified_at', 'super_parent_id', 'parent_id', 'username', 'position'
     ];
 
     /**
@@ -97,6 +98,11 @@ class User extends Authenticatable
             }
         }
         return $is_complete;
+    }
+
+    public function getIsMobileVerifiedAttribute(): bool
+    {
+        return $this->phone_verified_at !== null;
     }
 
     public function getReferralLinkAttribute(): string
