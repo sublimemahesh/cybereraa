@@ -171,13 +171,13 @@
             </div>
             <x-jet-validation-errors class="col-lg-12 mb-4 text-danger"/>
         </div>
-        @push('scripts')
-            @include('auth.layouts.js-init-script')
+    </form>
+    @push('scripts')
+        @include('auth.layouts.js-init-script')
+        @if(!$disable_sponsor_modify)
             <script !src="">
                 window.addEventListener("DOMContentLoaded", function () {
                     const __REG_STEP = @this;
-                    @if(!$disable_sponsor_modify)
-
                     $("#sponsor").select2({
                         ajax: {
                             url: function (params) {
@@ -204,10 +204,8 @@
                         $(this).empty()
                         $(this).append(selected);
                     })
-
-                    @endif
                 })
             </script>
-        @endpush
-    </form>
+        @endif
+    @endpush
 </div>
