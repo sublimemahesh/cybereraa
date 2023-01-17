@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,6 +47,12 @@ Route::get('payments/binancepay/response', 'Payment\BinancePayController@respons
 Route::get('payments/binancepay/fallback', 'Payment\BinancePayController@fallback');
 
 Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream.auth_session'), 'verified']], function () {
+
+    Route::withoutMiddleware('mobile_verified')->group(static function () {
+        Route::get('verify/mobile', 'MobileVerifyController@index')->name('mobile.verification.notice');
+        Route::post('verify/mobile/send-verify-code', 'MobileVerifyController@sendVerifyCode');
+        Route::post('verify/mobile', 'MobileVerifyController@verifyPhone');
+    });
 
     Route::group(["prefix" => "super-admin", 'middleware' => ['role:super_admin'], "as" => 'super_admin.'], function () {
         Route::view('/dashboard', 'backend.super_admin.dashboard')->name('dashboard');
@@ -140,9 +145,9 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::resource('testimonials', 'Admin\TestimonialController')->only(['index', 'create', 'edit', 'destroy']);
 
     });
-
+    
     // USER ROUTES
-    Route::group(["prefix" => "user", 'middleware' => ['role:user'], "as" => 'user.'], function () {
+    Route::group(["prefix" => "user", 'middleware' => ['role:user', 'mobile_verified'], "as" => 'user.'], function () {
         Route::get('dashboard', 'User\DashboardController@index')->name('dashboard');
 
         // KYC

@@ -4,14 +4,13 @@
 
     <div class="row justify-content-center main-register-form-style">
         <div class="col-md-6">
-            <div class="authincation-content"> 
+            <div class="authincation-content">
                 <div class="row no-gutters">
                     <div class="col-xl-12">
                         <div class="auth-form">
                             <div class="text-center mb-3">
                                 <a href="{{ route('/') }}">
-                                    <img src="{{ asset('assets/backend/images/logo/logo-full.png') }}"
-                                            alt="">
+                                    <img class="m-auto" src="{{ asset('assets/backend/images/logo/logo-full.png') }}" alt="">
                                 </a>
                             </div>
                             <h4 class="text-center mb-4">Login to Your Account</h4>
