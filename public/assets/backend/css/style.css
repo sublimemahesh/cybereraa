@@ -12550,7 +12550,7 @@ label {
 }
 
 [data-theme-version="dark"] #loader {
-    background-color: #152238;
+    background-color: #22104E;
 }
 
 .footer {
@@ -32224,8 +32224,9 @@ input#checkAll.form-check-input:checked {
 }
 
 [data-theme-version="dark"] .select2-container--default .select2-selection--single {
-    background: #152238;
-    border-color: #9568FF;
+    background: #15073a;
+    border-color: #3a2d60;
+
 }
 
 .select2-container--default .select2-selection--single:hover, .select2-container--default .select2-selection--single:focus, .select2-container--default .select2-selection--single.active {
@@ -47491,8 +47492,8 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 }
 
 [data-theme-version="dark"] .form-control {
-    background-color: #152238;
-    border-color: #9568FF;
+    background-color: #15073a;
+    border-color: #3a2d60;
     color: #fff;
 }
 
