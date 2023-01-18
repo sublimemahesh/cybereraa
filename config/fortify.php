@@ -50,9 +50,9 @@ return [
 
     'email' => 'email',
 
-    'super_parent_id' => 3,
+    'super_parent_id' => 4,
 
-    'super_parent_username' => 'user',
+    'super_parent_username' => 'subash1',
 
     /*
     |--------------------------------------------------------------------------
