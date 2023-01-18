@@ -5246,3 +5246,14 @@ h4.panel-title a.collapsed:before {
 .post-color{
     background:  #111 !important;
 }
+
+
+
+
+@media (max-width: 992px) {
+
+    .benifit-mobile{
+        margin-top: 43px
+    }
+
+    }

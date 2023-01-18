@@ -150,6 +150,7 @@
                 <!-- Features Starts -->
                 <div class="col-md-8 benefit-list">
                     <div class="row row-merge">
+                        <div class="benifit-mobile">
                         @if (count($benefits) > 0)
                             @foreach ($benefits as $section)
                                 <div class="col-sm-6 col-md-6 col-xs-12">
@@ -165,6 +166,7 @@
                                 </div>
                             @endforeach
                             @endif
+                        </div>
                     </div>
                 </div>
                 <!-- Features Ends -->
