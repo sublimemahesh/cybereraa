@@ -79,9 +79,7 @@
                 <div class="col-lg-6 mt-3">
                     <div wire:ignore>
                         <label class="mb-2" for="sponsor">
-                            <strong class="main-register-form-text">{{ __('Sponsor username') }}
-                                <sup class="main-required">*</sup>
-                            </strong>
+                            <strong class="main-register-form-text">{{ __('Sponsor username') }}</strong>
                         </label>
                         @if($disable_sponsor_modify)
                             <span class="block mt-1 w-full form-control">{{ $state['sponsor'] }}</span>

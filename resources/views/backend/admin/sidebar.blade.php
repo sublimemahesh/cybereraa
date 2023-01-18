@@ -46,12 +46,12 @@
                 <ul aria-expanded="false">
                     <li>
                         <a href="{{ route('admin.incomes.commission', ['status' => 'qualified','date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .'to'.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}" class="" aria-expanded="false">
-                            <span class="nav-text">Commissions</span>
+                           Commissions
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('admin.incomes.rewards', ['status' => 'qualified','date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .'to'.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}" class="" aria-expanded="false">
-                            <span class="nav-text">Rewards</span>
+                           Rewards
                         </a>
                     </li>
                 </ul>
@@ -106,7 +106,7 @@
             <li>
                 <a class="has-arrow" href="javascript:void(0)">
                     <i class="bi bi-question-diamond"></i>
-                    <span> Support Ticket </span>
+                    <span class="nav-text"> Support Ticket </span>
                 </a>
                 <ul>
                     <li>
