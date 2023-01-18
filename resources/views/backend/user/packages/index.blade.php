@@ -117,10 +117,10 @@
                                 <div class="card bg-secondary cursor-pointer">
                                     <a class="card-body card-link">
                                         <div class="text-center">
-                                            <div class="mb-3"></div>
-                                            <img class="w-100" src="{{ asset('assets/backend/images/wallets/safe.png') }}" alt="wallet-address">
-                                            <div class="mt-4">
-                                                <span class="fs-18">0xABDe6dCcC984d1BEb643b47420b8E993eE0D4188</span>
+                                            {{--<div class="mb-3"></div>--}}
+                                            {{--<img class="w-100" src="{{ asset('assets/backend/images/wallets/safe.png') }}" alt="wallet-address">--}}
+                                            <div class="my-2">
+                                                <span class="fs-17">TMovRiofAPRMr4uZHXS9gJuwMxbWvHW9Sq</span>
                                             </div>
                                         </div>
                                     </a>

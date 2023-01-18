@@ -46,6 +46,7 @@ $(function () {
         });
 
         $(document).on('click', binancepay_method_element, function () {
+            payMethodChooseModal.hide()
             tempBinancePay.show()
             //generateInvoice("binance-pay", package_slug)
         });
