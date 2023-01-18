@@ -157,7 +157,7 @@ var Animation = function (id) {
   
           var thisDistance = point1.distance(point2);
   
-          var maxDistance = 300;
+          var maxDistance = 200;  // point size declar
   
           if (thisDistance < maxDistance) {
             var lineAlpha = 0.5 / maxDistance * (maxDistance - thisDistance) * point1.alpha * point2.alpha;
