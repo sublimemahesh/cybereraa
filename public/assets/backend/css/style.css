@@ -12540,7 +12540,7 @@ label {
     height: 100vh;
     z-index: 999999;
     overflow: visible;
-    background: var(--rgba-primary-1) url(../images/loader.gif) no-repeat center center;
+    background: #12043d url(../images/loader.gif) no-repeat center center;
 }
 
 @media only screen and (max-width: 61.9375rem) {
@@ -12550,7 +12550,7 @@ label {
 }
 
 [data-theme-version="dark"] #loader {
-    background-color: #22104E;
+    background-color: #12043d;
 }
 
 .footer {
@@ -48821,3 +48821,4 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 .div-tbl-resp {
     overflow-x: auto;
 }
+
