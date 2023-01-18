@@ -67,6 +67,8 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::get('users/kycs/{kyc}', 'Admin\KycController@show')->name('users.kycs.show');
         Route::post('users/kyc-documents/{document}/status', 'Admin\KycController@status');
 
+        Route::get('genealogy/{user:username?}', 'Admin\GenealogyController@index')->name('genealogy');
+
         //Packages
         Route::resource('packages', 'Admin\PackageController')->except('create', 'show');
 
