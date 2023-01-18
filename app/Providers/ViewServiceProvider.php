@@ -1,12 +1,15 @@
 <?php
- 
+
 namespace App\Providers;
+
+use App\Models\Country;
+use App\Models\Currency;
+use App\Models\PurchasedPackage;
+use App\Models\User;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use App\Models\Currency;
 
 
- 
 class ViewServiceProvider extends ServiceProvider
 {
     /**
@@ -18,7 +21,7 @@ class ViewServiceProvider extends ServiceProvider
     {
         //
     }
- 
+
     /**
      * Bootstrap any application services.
      *
@@ -26,14 +29,20 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-       
+
         View::composer('frontend.layouts.header', function ($view) {
-           $currency = Currency::all();
-           $view->with('header_currency',$currency);
+            $currency = Currency::all();
+            $view->with('header_currency', $currency);
+        });
+
+        View::composer('frontend.layouts.footer', function ($view) {
+            $today_registrations = User::whereDate('created_at', date('Y-m-d'))->count();
+            $active_accounts = User::whereHas('activePackages')->count();
+            $daily_transactions = PurchasedPackage::activePackages()->whereDate('created_at', date('Y-m-d'))->count();
+            $support_countries = Country::count();
+            $view->with('footer_numbers', compact('today_registrations', 'daily_transactions', 'active_accounts', 'support_countries'));
         });
 
 
-
-      
     }
 }
