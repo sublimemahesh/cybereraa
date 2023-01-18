@@ -2,6 +2,9 @@ $(function () {
     const payMethodChooseModal = new bootstrap.Modal('#pay-method-modal', {
         backdrop: 'static',
     })
+    const tempBinancePay = new bootstrap.Modal('#temp-binance-pay', {
+        backdrop: 'static',
+    })
 
     $("#purchase_for").select2({
         ajax: {
@@ -43,7 +46,8 @@ $(function () {
         });
 
         $(document).on('click', binancepay_method_element, function () {
-            generateInvoice("binance-pay", package_slug)
+            tempBinancePay.show()
+            //generateInvoice("binance-pay", package_slug)
         });
     })
 

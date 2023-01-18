@@ -96,6 +96,42 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="temp-binance-pay">
+            <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Binance Pay Wallet</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-4">
+                            <p>
+                                Please make a payment and inform us.
+                            </p>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-12">
+                                <div class="card bg-secondary cursor-pointer">
+                                    <a class="card-body card-link">
+                                        <div class="text-center">
+                                            <div class="mb-3"></div>
+                                            <img class="w-100" src="{{ asset('assets/backend/images/wallets/safe.png') }}" alt="wallet-address">
+                                            <div class="mt-4">
+                                                <span class="fs-18">0xABDe6dCcC984d1BEb643b47420b8E993eE0D4188</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     @endpush
     @push('scripts')
         <script>
