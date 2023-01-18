@@ -15,6 +15,12 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('admin.genealogy') }}" class="" aria-expanded="false">
+                    <i class="bi bi-diagram-3-fill"></i>
+                    <span class="nav-text">User Genealogy</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{ route('admin.transactions.index', ['status' => 'paid','date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .'to'.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}" class="" aria-expanded="false">
                     <i class="bi fa-chain-broken"></i>
                     <span class="nav-text"> User Payments </span>
@@ -46,12 +52,12 @@
                 <ul aria-expanded="false">
                     <li>
                         <a href="{{ route('admin.incomes.commission', ['status' => 'qualified','date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .'to'.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}" class="" aria-expanded="false">
-                           Commissions
+                            Commissions
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('admin.incomes.rewards', ['status' => 'qualified','date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .'to'.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}" class="" aria-expanded="false">
-                           Rewards
+                            Rewards
                         </a>
                     </li>
                 </ul>
