@@ -179,14 +179,28 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return DB::selectOne("
                 WITH RECURSIVE ancestor_nodes AS 
-                    (
-                        (SELECT * FROM users WHERE id = :node_id)
-                        UNION ALL
-                        (SELECT n.* FROM users n INNER JOIN ancestor_nodes an ON an.id = n.parent_id)
-                    ) 
-                    SELECT cte_an.id, cte_an.parent_id, cte_an.`position`, (SELECT COUNT(*) FROM users WHERE parent_id = cte_an.id) AS children_count
-                    FROM ancestor_nodes cte_an
-                    WHERE (SELECT COUNT(*) FROM users WHERE parent_id = cte_an.id) < 5 ORDER BY  cte_an.`parent_id`, cte_an.`position` ASC LIMIT 1",
+                (
+                    (SELECT *, 1 as path FROM users WHERE id = :node_id)
+                    UNION ALL
+                    (SELECT n.*, an.path + 1 as path FROM users n INNER JOIN ancestor_nodes an ON an.id = n.parent_id)
+                ) 
+                
+                SELECT 
+                    cte_an.id, 
+                    cte_an.path,
+                    cte_an.parent_id, 
+                    (SELECT `position` FROM users WHERE id = cte_an.parent_id) AS parent_node_position,
+                    cte_an.`position`, 
+                    (SELECT COUNT(*) FROM users WHERE parent_id = cte_an.id) AS children_count
+                FROM 
+                    ancestor_nodes cte_an
+                WHERE 
+                    (SELECT COUNT(*) FROM users WHERE parent_id = cte_an.id) < 5 
+                ORDER BY  
+                    path ASC,
+                    parent_node_position  ASC ,
+                    cte_an.`parent_id` ASC ,
+                    cte_an.`position` ASC  LIMIT 1",
             ['node_id' => $nodeId]);
     }
 
