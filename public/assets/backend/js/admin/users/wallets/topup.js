@@ -1,38 +1,21 @@
 $(function () {
-    $("#p2p-transfer").select2({
+    $("#topup-user").select2({
         ajax: {
             url: function (params) {
-                return APP_URL + '/user/filter/users/' + params.term;
-            },
-            method: 'POST',
-            dataType: 'json',
-            delay: 1000, 
-            processResults: function (data) {
+                return APP_URL + '/admin/filter/users/' + params.term;
+            }, method: 'POST', dataType: 'json', delay: 1000, processResults: function (data) {
                 return {
                     results: data.data
                 };
-            },
-            cache: true
-        },
-        minimumInputLength: 3,
-        placeholder: 'Select an User',
-        allowClear: true
+            }, cache: true
+        }, minimumInputLength: 3, placeholder: 'Select an User', allowClear: true
     });
 
-    $(document).on('change', '#transfer-amount', function (e) {
+    $(document).on('click', '#confirm-topup', function (e) {
         e.preventDefault();
-        let amount = parseFloat($('#transfer-amount').val()) || 0;
-        if (amount < MINIMUM_PAYOUT_LIMIT) {
-            $('#transfer-amount').val(MINIMUM_PAYOUT_LIMIT).change();
-            $('#show-receiving-amount').html('USDT ' + (MINIMUM_PAYOUT_LIMIT - P2P_TRANSFER_FEE))
-            return false
-        }
-    })
-
-    $(document).on('click', '#confirm-transfer', function (e) {
-        e.preventDefault();
-        let receiver = $('#p2p-transfer').val();
+        let receiver = $('#topup-user').val();
         let amount = $('#transfer-amount').val();
+        let proof_documentation = $('#proof-documentation').val();
         let password = $('#password').val();
         let code = $('#code').val();
         if (receiver === null || receiver.length <= 0) {
@@ -40,9 +23,14 @@ $(function () {
                 icon: 'error', title: "Please Enter a valid username for the receive fund!",
             })
             return false
-        } else if (amount.length <= 0 || parseFloat(amount) < MINIMUM_PAYOUT_LIMIT || parseFloat(amount) > MAX_WITHDRAW_LIMIT) {
+        } else if (amount === null || amount.length <= 0) {
             Toast.fire({
-                icon: 'error', title: "Please Enter a valid amount to transfer!",
+                icon: 'error', title: "Topup amount is required!",
+            })
+            return false
+        } else if (proof_documentation === null || proof_documentation.length <= 0) {
+            Toast.fire({
+                icon: 'error', title: "Please provide proof documentation of the receive fund!",
             })
             return false
         } else if (password === null || password.length <= 0) {
@@ -59,12 +47,11 @@ $(function () {
             }).then((transfer) => {
                 if (transfer.isConfirmed) {
                     loader()
-                    axios.post(APP_URL + '/user/wallet/transfer/p2p', {
-                        receiver,
-                        amount,
-                        password,
-                        code
-                    }).then(response => {
+
+                    let form = $('#topup-form')[0]
+                    let form_data = new FormData(form);
+
+                    axios.post(APP_URL + '/admin/topup/wallet', form_data).then(response => {
                         Toast.fire({
                             icon: response.data.icon, title: response.data.message,
                         }).then(res => {

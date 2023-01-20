@@ -9,7 +9,7 @@
     @endsection
     <div class="row">
         <div class="col-xl-8 col-sm-6">
-            <div class="card">
+            <div class="card"> 
                 <div class="card-body">
                     <div class="mb-4">
                         <h4 class="card-title">P2P Transfer</h4>

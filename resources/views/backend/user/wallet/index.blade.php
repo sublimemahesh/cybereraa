@@ -115,7 +115,7 @@
         <div class="col-xl-12">
             <!-- row -->
             <div class="row">
-                <div class="col-xl-8">
+                <div class="col-xl-12">
                     <div class="card">
                         <div class="card-header justify-content-between border-0">
                             <h2 class="heading mb-0">Latest Transaction</h2>
@@ -166,7 +166,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4">
+                {{--<div class="col-xl-4">
                     <!-- row -->
                     <div class="row">
                         <!-- column-->
@@ -234,7 +234,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>--}}
             </div>
         </div>
     </div>

@@ -41,4 +41,6 @@ class TransactionController extends Controller
         }
         return view('backend.admin.users.transactions.index');
     }
+
+
 }

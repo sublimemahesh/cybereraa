@@ -103,7 +103,7 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table id="p2p-trx"  class="display" style="min-width: 845px">
+                        <table id="p2p-trx"  class="display mb-1 nowrap table-responsive-my" >
                             <thead>
                             <tr>
                                 <th>SENDER</th>

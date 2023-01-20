@@ -1,6 +1,6 @@
 <x-backend.layouts.app>
     @section('title', 'Buy Package')
-    @section('header-title', 'Packages' ) 
+    @section('header-title', 'Packages' )
     @section('plugin-styles')
         <link rel="stylesheet" href="{{ asset('assets/backend/vendor/select2/css/select2.min.css') }}">
     @endsection
@@ -30,7 +30,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </div>  
                     <div class="card-footer">
                         <button type="button" class="btn btn-primary mb-2" id="{{ $package->slug }}-choose">Choose</button>
                     </div>

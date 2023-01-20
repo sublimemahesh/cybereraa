@@ -31,7 +31,8 @@ Route::post('filter/sponsors/{search_text}', 'RegisteredUserController@findUsers
 // Register custom routes
 Route::group(['prefix' => 'register', 'middleware' => 'guest:' . config('fortify.guard')], function () {
     Route::get('/', 'RegisteredUserController@create')->name('register');
-    Route::post('/', 'RegisteredUserController@store');
+
+
 });
 
 Route::get('test', function () {
@@ -57,6 +58,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
     Route::group(["prefix" => "super-admin", 'middleware' => ['role:super_admin'], "as" => 'super_admin.'], function () {
         Route::view('/dashboard', 'backend.super_admin.dashboard')->name('dashboard');
 
+
     });
 
     Route::group(["prefix" => "admin", 'middleware' => ['role:admin'], "as" => 'admin.'], function () {
@@ -71,6 +73,15 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
 
         //Packages
         Route::resource('packages', 'Admin\PackageController')->except('create', 'show');
+
+        // buy package form addd
+        Route::get('wallet/topup', 'Admin\WalletTopupHistoryController@index')->name('wallet.topup');
+        Route::get('wallet/topup/history', 'Admin\WalletTopupHistoryController@history')->name('wallet.topup.history');
+        Route::post('topup/wallet', 'Admin\WalletTopupHistoryController@topup');
+        Route::post('filter/users/{search_text}', 'Admin\WalletTopupHistoryController@findUsers');
+
+        //Route::get('packages/buy-package', 'Admin\PackageController@buypackage')->name('packages.buyBackage');
+        //Route::get('users/transfers/withdrawals/form', 'Admin\WithdrawController@withdrawalsForm')->name('transfers.withdrawals.form');
 
         //Country
         Route::resource('countries', 'Admin\CountryController')->except('create', 'show');
@@ -101,7 +112,6 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
             // withdraws
             Route::get('users/transfers/p2p', 'Admin\WithdrawController@p2p')->name('transfers.p2p');
             Route::get('users/transfers/withdrawals', 'Admin\WithdrawController@withdrawals')->name('transfers.withdrawals');
-
         });
 
         // Strategies
@@ -147,7 +157,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::resource('testimonials', 'Admin\TestimonialController')->only(['index', 'create', 'edit', 'destroy']);
 
     });
-    
+
     // USER ROUTES
     Route::group(["prefix" => "user", 'middleware' => ['role:user', 'mobile_verified'], "as" => 'user.'], function () {
         Route::get('dashboard', 'User\DashboardController@index')->name('dashboard');

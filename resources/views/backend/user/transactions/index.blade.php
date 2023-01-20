@@ -104,7 +104,7 @@
                         </div>
                     </div>
                     <div class="table-responsive d-block">
-                        <table id="transactions" class="display" style="min-width: 845px">
+                        <table id="transactions" class="display table-responsive-my">
                             <thead>
                             <tr>
                                 <th class="text-center" style="max-width:30px">ACTION</th>

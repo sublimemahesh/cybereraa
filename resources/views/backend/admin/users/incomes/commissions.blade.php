@@ -112,7 +112,7 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table id="rewards"  class="display" style="min-width: 845px">
+                        <table id="rewards"  class="display mb-1 nowrap table-responsive-my">
                             <thead>
                             <tr>
                                 <th>USER ID</th>

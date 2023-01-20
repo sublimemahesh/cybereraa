@@ -31,7 +31,7 @@ class Earning extends Model
     public function scopeFilter(Builder $query): Builder
     {
         return $query->when(!empty(request()->input('date-range')),
-            function ($query) {
+            static function ($query) {
                 $period = explode(' to ', request()->input('date-range'));
                 try {
                     $date1 = Carbon::createFromFormat('Y-m-d', $period[0]);
@@ -42,11 +42,11 @@ class Earning extends Model
                 }
             })
             ->when(!empty(request()->input('earning-type')) && in_array(request()->input('earning-type'), ['package', 'direct', 'indirect', 'rank_bonus', 'rank_gift', 'p2p']),
-                function ($query) {
+                static function ($query) {
                     $query->where('type', request()->input('earning-type'));
                 })
             ->when(!empty(request()->input('status')) && in_array(request()->input('status'), ['received', 'hold', 'cancelled']),
-                function ($query) {
+                static function ($query) {
                     $query->where('status', request()->input('status'));
                 });
     }

@@ -136,8 +136,12 @@ class WithdrawController extends Controller
     {
         $users = User::where('username', 'LIKE', "%{$search_text}%")
             ->where('id', '<>', Auth::user()->id)
-            ->where('id', '>', 3)
+            ->whereDoesntHave('roles', function ($q) {
+                $q->whereIn('name', ['super_admin', 'admin']);
+            })
             ->get();
         return Select2UserResource::collection($users);
     }
+
+
 }

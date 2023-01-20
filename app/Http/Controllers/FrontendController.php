@@ -51,7 +51,7 @@ class FrontendController extends Controller
 
         $benefits=$this->getDatePage('benefit');
         // $packages=$this->gettePage('package');
-        $packages= page::find(66); //66   3
+        $packages= page::find(45); //66  45
 
 
 
