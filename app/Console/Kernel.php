@@ -16,11 +16,11 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('calculate:profit')->weekdays()->everyMinute()->withoutOverlapping();
-        $schedule->command('calculate:profit')->weekdays()->twiceDailyAt(0, 1, 5)->withoutOverlapping();
-        $schedule->command('calculate:commission')->weekdays()->twiceDailyAt(0, 1, 5)->withoutOverlapping();
-        $schedule->command('calculate:rank-benefit-earning')->weekdays()->twiceDailyAt(0, 1, 5)->withoutOverlapping();
+        $schedule->command('calculate:profit')->weekdays()->dailyAt('12:01')->withoutOverlapping();
+        $schedule->command('calculate:commission')->weekdays()->dailyAt('12:01')->withoutOverlapping();
+        $schedule->command('calculate:rank-benefit-earning')->weekdays()->dailyAt('12:01')->withoutOverlapping();
 
-        $schedule->command('calculate:rank-bonus')->monthly()->twiceDailyAt(0, 1, 5)->withoutOverlapping();
+        $schedule->command('calculate:rank-bonus')->monthly()->dailyAt('12:01')->withoutOverlapping();
         $schedule->command('genealogy:assign')->everySixHours()->withoutOverlapping();
         $schedule->command('queue:work', ['--stop-when-empty'])->everyMinute()->withoutOverlapping();
     }
