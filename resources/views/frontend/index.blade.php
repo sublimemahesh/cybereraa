@@ -7,7 +7,6 @@
         <link href="{{ asset('assets/frontend/css/hiw2.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/frontend/css/net.css') }}" rel="stylesheet">
 
-
     @endsection
 
 
@@ -22,11 +21,12 @@
                         <div class="row">
                             <div class="col-sm-12 col-md-5 col-lg-6 loging-area">
                                 <img class="w-100 shadow vert-move image222"
-                                    src="{{ asset('assets/frontend/images/project/banner-img.png') }}" id='hero-img' />
+                                        src="{{ asset('assets/frontend/images/project/banner-img.png') }}" id='hero-img'/>
                             </div>
                             <div class="col-sm-12 col-md-5 col-lg-6">
                                 <div id='hero-text'>
-                                    <h1 class="title-head">INVEST & <span> EARN IN THE SAFEST SPOT ON THE EARTH.</span></h1>
+                                    <h1 class="title-head">INVEST & <span> EARN IN THE SAFEST SPOT ON THE EARTH.</span>
+                                    </h1>
                                     <p class="about-text">
                                         What if your dream investment can be made in the safest spot on
                                         the earth? just invest and wait and enjoy up to a guaranteed return of 400% in 15 months. Daily withdrawals, No claim Bonuses, and many more massive benefits.
@@ -104,30 +104,31 @@
             </li>
             <li>
                 <div class="numberWrap">
-                    <div class="number fontColor2">2</div>
-                    <div class="coverWrap">
-                        <div class="numberCover"></div>
-                    </div>
-                </div>
-                <div class="content">
-                    {{-- <div class="icon iconSocial"></div> --}}
-                    <h2>Second Step</h2>
-                    <p>KYC APPROVAL.</p>
-                </div>
-            </li>
-            <li>
-                <div class="numberWrap">
-                    <div class="number  fontColor3">3</div>
+                    <div class="number  fontColor3">2</div>
                     <div class="coverWrap">
                         <div class="numberCover"></div>
                     </div>
                 </div>
                 <div class="content">
                     {{-- <div class="icon iconAirplane"></div> --}}
-                    <h2>Third Step</h2>
+                    <h2>Second Step</h2>
                     <p>BUY PACKAGES.</p>
                 </div>
             </li>
+            <li>
+                <div class="numberWrap">
+                    <div class="number fontColor2">3</div>
+                    <div class="coverWrap">
+                        <div class="numberCover"></div>
+                    </div>
+                </div>
+                <div class="content">
+                    {{-- <div class="icon iconSocial"></div> --}}
+                    <h2>Third Step</h2>
+                    <p>KYC APPROVAL.</p>
+                </div>
+            </li>
+
             <li>
                 <div class="numberWrap">
                     <div class="number  fontColor4">4</div>
@@ -151,20 +152,20 @@
                 <div class="col-md-8 benefit-list">
                     <div class="row row-merge">
                         <div class="benifit-mobile">
-                        @if (count($benefits) > 0)
-                            @foreach ($benefits as $section)
-                                <div class="col-sm-6 col-md-6 col-xs-12">
-                                    <div class="feature text-center">
+                            @if (count($benefits) > 0)
+                                @foreach ($benefits as $section)
+                                    <div class="col-sm-6 col-md-6 col-xs-12">
+                                        <div class="feature text-center">
                                         <span class="feature-icon">
                                             <img id="strong-security"
-                                                src="{{ storage('pages/' . $section->image) }}"
-                                                alt="strong security">
+                                                    src="{{ storage('pages/' . $section->image) }}"
+                                                    alt="strong security">
                                         </span>
-                                        <h3 class="feature-title">{{ $section->title }}</h3>
-                                        {!! $section->content !!}<br>
+                                            <h3 class="feature-title">{{ $section->title }}</h3>
+                                            {!! $section->content !!}<br>
+                                        </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
                             @endif
                         </div>
                     </div>
@@ -191,8 +192,10 @@
                 @foreach ($packages->children as $section)
                     <div class="item">
                         <a href="https://www.747live.net/
-                            " target="_blank"><img
-                                src="{{ storage('pages/' . $section->image) }}" alt=""></a>
+                            " target="_blank">
+                            <img
+                                    src="{{ storage('pages/' . $section->image) }}" alt="">
+                        </a>
                     </div>
                 @endforeach
             </div>
@@ -264,55 +267,57 @@
     <!-- Comment Section Ends -->
 
     <!-- Blog Section Starts -->
-  @if (count($all_news) > 0)
-    <section class="blog about-css">
-        <div class="container">
-            <!-- Section Title Starts -->
-            <div class="row text-center">
-                <h2 class="title-head">LATEST <span> NEWS.</span></h2>
-                <div class="title-head-subtitle">
-                    <p>Discover About Safest Trades News & Updates</p>
+    @if (count($all_news) > 0)
+        <section class="blog about-css">
+            <div class="container">
+                <!-- Section Title Starts -->
+                <div class="row text-center">
+                    <h2 class="title-head">LATEST <span> NEWS.</span></h2>
+                    <div class="title-head-subtitle">
+                        <p>Discover About Safest Trades News & Updates</p>
+
+                    </div>
+                </div>
+                <!-- Section Title Ends -->
+                <!-- Section Content Starts -->
+                <div class="row latest-posts-content">
+                    @foreach ($all_news->slice(0, 3) as $news)
+                        <!-- Article Starts -->
+                        <div class="col-sm-4 col-md-4 col-xs-12">
+                            <div class="latest-post">
+                                <!-- Featured Image Starts -->
+                                <a href="{{ route('news.show', $news) }}">
+                                    <img class="img-responsive"
+                                            src="{{ storage('blogs/' . $news->image) }}"
+                                            alt="{{ storage('blogs/' . $news->image) }}">
+                                </a>
+                                <!-- Featured Image Ends -->
+                                <!-- Article Content Starts -->
+                                <div class="post-body">
+                                    <h4 class="post-title">
+                                        <a href="{{ route('news.show', $news) }}"> {{ $news->title }}</a>
+                                    </h4>
+                                    <div class="post-text">
+                                        {{ $news->short_description }}
+                                    </div>
+                                </div>
+                                <div class="post-date post-color">
+                                    <span>{{ date('d', strtotime($news->created_at)) }}</span>
+                                    <span>{{ date('M', strtotime($news->created_at)) }}</span>
+                                </div>
+                                <a href="{{ route('news.show', $news) }}" class="btn btn-primary">read more</a>
+                                <!-- Article Content Ends -->
+                            </div>
+                        </div>
+                        <!-- Article Ends -->
+                    @endforeach
 
                 </div>
+                <!-- Section Content Ends -->
             </div>
-            <!-- Section Title Ends -->
-            <!-- Section Content Starts -->
-            <div class="row latest-posts-content">
-                @foreach ($all_news->slice(0, 3) as $news)
-                    <!-- Article Starts -->
-                    <div class="col-sm-4 col-md-4 col-xs-12">
-                        <div class="latest-post">
-                            <!-- Featured Image Starts -->
-                            <a href="{{ route('news.show', $news) }}"><img class="img-responsive"
-                                    src="{{ storage('blogs/' . $news->image) }}"
-                                    alt="{{ storage('blogs/' . $news->image) }}"></a>
-                            <!-- Featured Image Ends -->
-                            <!-- Article Content Starts -->
-                            <div class="post-body">
-                                <h4 class="post-title">
-                                    <a href="{{ route('news.show', $news) }}"> {{ $news->title }}</a>
-                                </h4>
-                                <div class="post-text">
-                                    {{ $news->short_description }}
-                                </div>
-                            </div>
-                            <div class="post-date post-color">
-                                <span>{{ date('d', strtotime($news->created_at)) }}</span>
-                                <span>{{ date('M', strtotime($news->created_at)) }}</span>
-                            </div>
-                            <a href="{{ route('news.show', $news) }}" class="btn btn-primary">read more</a>
-                            <!-- Article Content Ends -->
-                        </div>
-                    </div>
-                    <!-- Article Ends -->
-                @endforeach
-
-            </div>
-            <!-- Section Content Ends -->
-        </div>
-    </section>
-    <!-- Blog Section Ends -->
-@endif
+        </section>
+        <!-- Blog Section Ends -->
+    @endif
     @push('scripts')
         <script src="{{ asset('assets/frontend/js/testimonials.js') }}"></script>
         <script src="{{ asset('assets/frontend/js/hiw2.js') }}"></script>

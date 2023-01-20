@@ -49,6 +49,12 @@
                             </div>
                         @endif
                     </div>
+                    @if($this->user->super_parent_id !== null)
+                        <div class="col-sm-12 m-b30">
+                            <label class="form-label" for="sponsor">{{ __('Sponsor') }}</label>
+                            <div class="form-control">#{{ $this->user->super_parent_id }}: {{ $this->user->sponsor->name }} - {{ $this->user->sponsor->username }}</div>
+                        </div>
+                    @endif
                     <div class="col-sm-6 m-b30">
                         <label class="form-label" for="name">{{ __('Name') }}</label>
                         <input type="text" id="name" class="form-control" wire:model.defer="state.name" autocomplete="name">
