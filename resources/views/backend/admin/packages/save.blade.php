@@ -13,7 +13,7 @@
                 <div class="col-sm-9">
                     <input class="form-control" disabled placeholder="Currency" type="text" value="{{ $package->currency ?? 'USDT' }}">
                 </div>
-            </div>
+            </div> 
             <div class="form-group row mb-2">
                 <label class="col-sm-3 col-form-label" for="amount">AMOUNT</label>
                 <div class="col-sm-9">

@@ -94,7 +94,7 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table id="binance-trx"  class="display" style="min-width: 845px">
+                        <table id="binance-trx"  class="mb-1 nowrap table-responsive-my">
                             <thead>
                             <tr>
                                 <th>ACTIONS</th>

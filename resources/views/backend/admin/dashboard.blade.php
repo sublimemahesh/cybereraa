@@ -286,7 +286,7 @@
                             <h4 class="card-title">Top Rankers</h4>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
+                            <div class="table-responsive">   
                                 <table class="table table-responsive-md">
                                     <thead>
                                     <tr>

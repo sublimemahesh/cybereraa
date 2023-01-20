@@ -48822,3 +48822,18 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
     overflow-x: auto;
 }
 
+
+
+@media (max-width: 992px) {
+  .table-responsive-my{
+    min-width: 845px !important;
+ }
+}
+
+ @media (min-width: 992px) {
+    .table-responsive-my{
+        table-layout:fixed;
+        width:100% !important;
+    }
+
+}

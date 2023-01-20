@@ -72,6 +72,9 @@ class WithdrawController extends Controller
                 ->addColumn('total', fn($withdraw) => number_format($withdraw->amount + $withdraw->transaction_fee, 2))
                 ->addColumn('created_at', fn($withdraw) => $withdraw->created_at->format('Y-m-d H:i:s'))
                 ->addColumn('actions', static function ($withdraw) {
+                    /*if ($withdraw->status === 'PROCESSING') {
+                        return '<a href=" ' . route('admin.transfers.withdrawals.form') . ' " class="btn btn-xs btn-info">-</a>';
+                    }*/
                     return '-';
                 })
                 ->rawColumns(['user', 'actions'])
@@ -80,5 +83,13 @@ class WithdrawController extends Controller
 
         return view('backend.admin.users.transfers.binance-withdraw');
     }
+
+    public function withdrawalsForm()
+    {
+        return view('backend.admin.users.transfers.withdraw');
+
+    }
+
+
 
 }

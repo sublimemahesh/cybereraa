@@ -5256,4 +5256,12 @@ h4.panel-title a.collapsed:before {
         margin-top: 43px
     }
 
+    .row-merge {
+         margin-top:0px;
+    }
+
+    .ts-padding {
+        padding:0px;
+    }
+
     }

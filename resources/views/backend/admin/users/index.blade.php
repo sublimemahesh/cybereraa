@@ -22,7 +22,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="users" class="display dataTable table header-border table-responsive-sm" style="min-width: 845px">
+                        <table id="users" class="display dataTable table header-border table-responsive-sm table-responsive-my">
                             <thead>
                             <tr>
                                 <th></th>

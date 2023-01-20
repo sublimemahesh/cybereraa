@@ -22,4 +22,11 @@ class PackageController extends Controller
         $activePackages->load('transaction');
         return view('backend.user.packages.active', compact('activePackages'));
     }
+
+    public function buypackage(Request $request)
+    {
+        $activePackages = Auth::user()->activePackages;
+        $activePackages->load('transaction');
+        return view('backend.user.packages.buy_package', compact('activePackages'));
+    }
 }

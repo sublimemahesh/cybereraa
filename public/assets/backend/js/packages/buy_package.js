@@ -6,7 +6,7 @@ $(function () {
             },
             method: 'POST',
             dataType: 'json',
-            delay: 1000, 
+            delay: 1000,
             processResults: function (data) {
                 return {
                     results: data.data

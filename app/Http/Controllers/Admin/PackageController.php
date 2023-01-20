@@ -7,6 +7,7 @@ use App\Models\Package;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 
 class PackageController extends Controller
@@ -97,6 +98,12 @@ class PackageController extends Controller
         $json['data'] = $package;
         session()->flash('info', $json['message']);
         return response()->json($json);
+    }
+
+    public function buypackage()
+    {
+        $packages = Package::activePackages()->get();
+        return view('backend.admin.packages.buy_package',compact('packages'));
     }
 
 }
