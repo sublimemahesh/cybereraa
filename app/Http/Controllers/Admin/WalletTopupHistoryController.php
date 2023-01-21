@@ -127,7 +127,7 @@ class WalletTopupHistoryController extends Controller
         DB::transaction(static function () use ($validated, $sender, $receiver) {
 
             $file = $validated['proof_documentation'];
-            $proof_documentation = Str::limit($file->getClientOriginalName()) . "-" . $file->hashName();
+            $proof_documentation = Str::limit(Str::slug($file->getClientOriginalName())) . "-" . $file->hashName();
             $file->storeAs('wallets/topup', $proof_documentation);
 
             $topup = WalletTopupHistory::create([
