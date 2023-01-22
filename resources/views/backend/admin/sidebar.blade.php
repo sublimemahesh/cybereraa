@@ -15,6 +15,12 @@
                  </a>
              </li>--}}
             <li>
+                <a href="{{ route('admin.users.index') }}" class="" aria-expanded="false">
+                    <i class="bi bi-people-fill"></i>
+                    <span class="nav-text">Manage Users</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{ route('admin.wallet.topup') }}" class="" aria-expanded="false">
                     <i class="bi bi-send-plus"></i>
                     <span class="nav-text">Topup Wallet</span>
@@ -24,12 +30,6 @@
                 <a href="{{ route('admin.wallet.topup.history') }}" class="" aria-expanded="false">
                     <i class="bi bi-receipt-cutoff"></i>
                     <span class="nav-text">Topup History</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('admin.users.index') }}" class="" aria-expanded="false">
-                    <i class="bi bi-people-fill"></i>
-                    <span class="nav-text">Users</span>
                 </a>
             </li>
             <li>
@@ -81,6 +81,12 @@
                 </ul>
             </li>
             <li>
+                <a href="{{ route('admin.ranks.gifts') }}" class="" aria-expanded="false">
+                    <i class="bi bi-trophy-fill"></i>
+                    <span class="nav-text"> Rank Gifts </span>
+                </a>
+            </li>
+            <li>
                 <a href="{{ route('admin.packages.index') }}" class="" aria-expanded="false">
                     <i class="bi bi-stack"></i>
                     <span class="nav-text">Packages</span>
@@ -99,7 +105,7 @@
                         <a href="{{ route('admin.pages.index') }}">Pages</a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.blogs.index') }}">Bloge</a>
+                        <a href="{{ route('admin.blogs.index') }}">Blog</a>
                     </li>
                     <li>
                         <a href="{{ route('admin.currencies.index') }}">Currencies</a>

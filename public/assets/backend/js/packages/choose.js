@@ -10,16 +10,11 @@ $(function () {
         ajax: {
             url: function (params) {
                 return APP_URL + '/user/filter/users/' + params.term;
-            },
-            method: 'POST',
-            dataType: 'json',
-            delay: 1000,
-            processResults: function (data) {
+            }, method: 'POST', dataType: 'json', delay: 1000, processResults: function (data) {
                 return {
                     results: data.data
                 };
-            },
-            cache: true
+            }, cache: true
         },
         dropdownParent: $('#pay-method-modal'),
         minimumInputLength: 3,
@@ -60,34 +55,40 @@ $(function () {
     })
 
     function generateInvoice(payMethod, package_slug) {
-        loader()
-        let purchase_for = $('#purchase_for').val()
-        axios.post(`${APP_URL}/user/binancepay/order/create`, {
-            method: payMethod,
-            purchase_for,
-            package: package_slug
-        }).then(response => {
-            payMethodChooseModal.hide()
-            Swal.fire({
-                icon: response.data.icon, text: response.data.message,
-            })
-            if (response.data.status) {
-                loader("Redirecting...")
-                setTimeout(() => {
-                    location.href = response.data.data.checkoutUrl
-                }, 200)
+        Swal.fire({
+            title: "Are You Sure?",
+            text: "Purchase selected package?. Please note that you cannot reverse this order after completing the purchase!",
+            icon: "info",
+            showCancelButton: true,
+        }).then((purchase) => {
+            if (purchase.isConfirmed) {
+                loader()
+                let purchase_for = $('#purchase_for').val()
+                axios.post(`${APP_URL}/user/binancepay/order/create`, {
+                    method: payMethod, purchase_for, package: package_slug
+                }).then(response => {
+                    payMethodChooseModal.hide()
+                    Swal.fire({
+                        icon: response.data.icon, text: response.data.message,
+                    })
+                    if (response.data.status) {
+                        loader("Redirecting...")
+                        setTimeout(() => {
+                            location.href = response.data.data.checkoutUrl
+                        }, 200)
+                    }
+                }).catch(error => {
+                    let error_msg = error.response.data.message || "Something went wrong!"
+                    payMethodChooseModal.hide()
+                    Swal.fire({
+                        icon: "error",
+                        text: 'Something went wrong!',
+                        confirmButtonColor: '#4466f2',
+                        footer: '<small style="color:red">' + error_msg + '</small>'
+                    });
+                })
             }
-        }).catch(error => {
-            let error_msg = error.response.data.message || "Something went wrong!"
-            payMethodChooseModal.hide()
-            Swal.fire({
-                icon: "error",
-                text: 'Something went wrong!',
-                confirmButtonColor: '#4466f2',
-                footer: '<small style="color:red">' + error_msg + '</small>'
-            });
-        })
-
+        });
     }
 
 })

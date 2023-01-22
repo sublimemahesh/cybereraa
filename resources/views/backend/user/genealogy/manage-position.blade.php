@@ -83,7 +83,6 @@
                                 <div class="mb-3 mt-2">
                                     <label for="assign-position">Pending Users</label>
                                     <select class="single-select-placeholder js-states select2-hidden-accessible" id="assign-position">
-                                        <option></option>
                                         @foreach($pendingUsers as $dUser)
                                             <option value="{{ $dUser->id }}">{{ $dUser->username }} - {{ $dUser->name }}</option>
                                         @endforeach

@@ -36,8 +36,9 @@ class DispatchDailyCommissionJobs extends Command
         $today = Carbon::today();
         if (!$today->isWeekend()) {
             $activeCommissions = Commission::with('user', 'purchasedPackage')
+                ->whereRaw('`created_at` + INTERVAL 5 DAY <= NOW()')
                 ->where('status', 'QUALIFIED')
-                ->whereDoesntHave('earnings', function ($query) {
+                ->whereDoesntHave('earnings', static function ($query) {
                     return $query->whereDate('created_at', date('Y-m-d'));
                 })->chunk(100, function ($activeCommissions) {
                     foreach ($activeCommissions as $commission) {
