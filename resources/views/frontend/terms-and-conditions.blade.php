@@ -43,7 +43,7 @@
         </section>
     </div>
 
-    <section>
+    {{--<section>
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-md-12 ">
@@ -72,7 +72,7 @@
 
             </div>
         </div>
-    </section>
+    </section>--}}
 
 
     <!-- Contact Section Ends -->
