@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Throwable;
 
 class Rank extends Model
 {
@@ -31,18 +32,30 @@ class Rank extends Model
     protected static function booted()
     {
         static::created(function (self $rank) {
-            $rank_gift = DB::transaction(function () use ($rank) {
-                $rank_gift = RankGift::firstOrCreate([
-                    'user_id' => $rank->user_id,
-                    'rank_id' => $rank->id,
-                ], ['status' => 'pending']);
-                $rank_gift->renewStatus();
-                return $rank_gift;
-            });
+            if ($rank->activated_at !== null) {
+                $this->initiateGift($rank);
+            }
         });
 
         static::updated(function (self $rank) {
-            $rank->rankGift->renewStatus();
+            if ($rank->activated_at !== null) {
+                $this->initiateGift($rank);
+            }
+        });
+    }
+
+    /**
+     * @throws Throwable
+     */
+    public function initiateGift(self $rank)
+    {
+        return DB::transaction(function () use ($rank) {
+            $rank_gift = RankGift::firstOrCreate([
+                'user_id' => $rank->user_id,
+                'rank_id' => $rank->id,
+            ], ['status' => 'pending']);
+            $rank_gift->renewStatus();
+            return $rank_gift;
         });
     }
 

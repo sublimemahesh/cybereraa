@@ -1,7 +1,6 @@
 <?php
 
-use App\Models\PurchasedPackage;
-use App\Models\User;
+use App\Models\Strategy;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,61 +37,7 @@ Route::group(['prefix' => 'register', 'middleware' => 'guest:' . config('fortify
 });
 
 Route::get('test', function () {
-    $user = User::find(4);
-   // $pack = PurchasedPackage::totalInvestment($user)->sum('invested_amount');
-    $pack = PurchasedPackage::find(4);
 
-    $res= $pack->user->ancestorsAndSelf()
-        ->withWhereHas('rankGifts', function ($q) {
-            return $q->where('status', 'PENDING');
-        })
-        ->chunk(100, function (  $ancestors) {
-            dd($ancestors->pluck('id'));
-            foreach ($ancestors->rankGifts as $gift) {
-                $gift->renewStatus();
-            }
-        });
-
-    dd($res,$pack, $user->totalInvestment()->sum('invested_amount'));
-
-    $rank_gift_requirements = [
-        1 => [
-            'total_investment' => 250,
-            'total_team_investment' => 2000,
-        ],
-        2 => [
-            'total_investment' => 500,
-            'total_team_investment' => 12000,
-        ],
-        3 => [
-            'total_investment' => 1000,
-            'total_team_investment' => 75000,
-        ],
-        4 => [
-            'total_investment' => 2500,
-            'total_team_investment' => 400000,
-        ],
-        5 => [
-            'total_investment' => 5000,
-            'total_team_investment' => 2500000,
-        ],
-        6 => [
-            'total_investment' => 10000,
-            'total_team_investment' => 15000000,
-        ],
-        7 => [
-            'total_investment' => 25000,
-            'total_team_investment' => 100000000,
-        ]
-    ];
-
-    return response()->json($rank_gift_requirements);
-    //dd(Auth::user());
-    //dd(User::find(8)->ancestorsAndSelf()->get()[0]->ranks()->where('rank',1)->increment('total_rankers'));
-//    $users = User::whereNotNull('parent_id')->orderBy('updated_at', 'desc')->get();
-//    foreach ($users as $user) {
-//        User::upgradeAncestorsRank($user->parent, 1, $user->position);
-//    }
 });
 
 Route::get('payments/binancepay/response', 'Payment\BinancePayController@response');
