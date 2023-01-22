@@ -6,7 +6,7 @@ $(function () {
             },
             method: 'POST',
             dataType: 'json',
-            delay: 1000, 
+            delay: 1000,
             processResults: function (data) {
                 return {
                     results: data.data
@@ -53,7 +53,7 @@ $(function () {
         } else {
             Swal.fire({
                 title: "Are You Sure?",
-                text: "Transfer funds with selected user?",
+                text: "Transfer funds with selected user? Please note that this process cannot be reversed. Please make sure all the provided information's are double checked before proceed.!",
                 icon: "info",
                 showCancelButton: true,
             }).then((transfer) => {

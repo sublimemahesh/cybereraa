@@ -58,6 +58,12 @@
                 </ul>
             </li>
             <li>
+                <a href="{{ route('user.ranks.gifts') }}" class="" aria-expanded="false">
+                    <i class="bi bi-trophy-fill"></i>
+                    <span class="nav-text"> Rank Gifts </span>
+                </a>
+            </li>
+            <li>
                 <a href="{{ route('user.earnings.index') }}" class="" aria-expanded="false">
                     <i class="bi bi-cash"></i>
                     <span class="nav-text">My Earnings</span>

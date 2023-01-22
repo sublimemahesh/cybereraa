@@ -156,6 +156,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Transaction::class, 'user_id', 'id');
     }
 
+    public function totalInvestment(): HasMany
+    {
+        return $this->purchasedPackages()->totalInvestment($this);
+    }
+
     public function getDepthAttribute()
     {
         $depth = DB::selectOne(
@@ -212,6 +217,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function rank($rank): HasOne
     {
         return $this->hasOne(Rank::class, 'user_id')->where('rank', $rank);
+    }
+
+    public function rankGifts(): HasMany
+    {
+        return $this->hasMany(RankGift::class, 'user_id');
     }
 
     public function currentRank(): HasOne

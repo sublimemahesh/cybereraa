@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use JsonException;
+use function Illuminate\Events\queueable;
 
 class PurchasedPackage extends Pivot
 {
@@ -20,6 +21,22 @@ class PurchasedPackage extends Pivot
         'package_info_json',
         'is_commission_issued',
     ];
+
+    protected static function booted()
+    {
+        static::created(queueable(function (self $package) {
+            // TODO: optimize with filtering only the rank does not issue the gifts
+            $package->user->ancestorsAndSelf()
+                ->withWhereHas('rankGifts', function ($q) {
+                    return $q->where('status', 'PENDING');
+                })
+                ->chunk(100, function ($ancestors) {
+                    foreach ($ancestors->rankGifts as $gift) {
+                        $gift->renewStatus();
+                    }
+                });
+        }));
+    }
 
     /**
      * @throws JsonException
@@ -75,16 +92,33 @@ class PurchasedPackage extends Pivot
             ->where('expired_at', '>=', Carbon::now()->format('Y-m-d H:i:s'));
     }
 
+    public function scopeTotalInvestment(Builder $query, User|null $user): Builder
+    {
+        return $query->when($user && $user->id !== null, static function (Builder $query) use ($user) {
+            $query->where('user_id', $user->id);
+        })->whereIn('status', ['ACTIVE', 'EXPIRED']);
+    }
+
+    public function scopeTotalTeamInvestment(Builder $query, User $user): Builder
+    {
+        return $query->whereIn('status', ['ACTIVE', 'EXPIRED'])
+            ->whereIn('user_id', $user->descendants()->pluck('id')->toArray());
+    }
+
     public function getNextPaymentDateAttribute(): string
     {
         $today = Carbon::parse(date('Y-m-d') . ' ' . $this->created_at->format('H:i:s'));
+        $firstPayDate = $this->created_at->addDays(5);
 
-        $nextPayDay = $today;
-        if (Carbon::parse($this->last_earned_at)->isToday()) {
+        $nextPayDay = $firstPayDate;
+        if ($firstPayDate->isPast()) {
+            $nextPayDay = $today;
+        }
+        if ($firstPayDate->isPast() && Carbon::parse($this->last_earned_at)->isToday()) {
             $nextPayDay = $today->addDay();
         }
         if ($nextPayDay->isSaturday() || $nextPayDay->isSunday()) {
-            $nextPayDay = $nextWeekday = $today->nextWeekday();
+            $nextPayDay = $nextPayDay->nextWeekday();
         }
         return $nextPayDay->format('Y-m-d H:i:s');
     }

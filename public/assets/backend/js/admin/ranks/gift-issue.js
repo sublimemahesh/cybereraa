@@ -1,26 +1,32 @@
 $(function () {
-    $("#assign-position").select2({
-        placeholder: 'Select an User', allowClear: true
-    });
 
-    $(document).on('click', '#confirm-assign', function (e) {
+    $(document).on('click', '#issue', function (e) {
         e.preventDefault();
-        let pending_user = $('#assign-position').val();
-        if (pending_user === null || pending_user.length <= 0) {
+        let gift_image = $('#issued-gift').val();
+        let gift_id = parseInt($('#gift').val()) || 0;
+        if (gift_id === 0 || gift_id.length <= 0 || gift_id !== parseInt(GIFT)) {
             Toast.fire({
-                icon: 'error', title: "Choose an user from the list!",
+                icon: 'error', title: "Something not right, Please reload the page and try again.",
+            })
+            return false
+        } else if (gift_image === null || gift_image.length <= 0) {
+            Toast.fire({
+                icon: 'error', title: "Please provide the gift image that was issued for this rank!",
             })
             return false
         } else {
             Swal.fire({
                 title: "Are You Sure?",
-                text: "Assign user to selected position? This will cannot be undone. Please make sure you have double check your selections!",
+                text: "Issue the gift for this rank?. Please note this process cannot be reversed.",
                 icon: "info",
                 showCancelButton: true,
-            }).then((create) => {
-                if (create.isConfirmed) {
+            }).then((issue) => {
+                if (issue.isConfirmed) {
                     loader()
-                    axios.post(location.href, {pending_user}).then(response => {
+                    let form = $('#issue-gift-form')[0]
+                    let form_data = new FormData(form);
+
+                    axios.post(location.href, form_data).then(response => {
                         Toast.fire({
                             icon: response.data.icon, title: response.data.message,
                         }).then(res => {
@@ -37,4 +43,6 @@ $(function () {
             });
         }
     })
+
+
 })

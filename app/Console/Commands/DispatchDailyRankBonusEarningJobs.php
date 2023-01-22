@@ -37,6 +37,7 @@ class DispatchDailyRankBonusEarningJobs extends Command
         if (!$today->isWeekend()) {
             RankBenefit::with('user', 'rank')
                 ->where('status', 'QUALIFIED')
+                ->where('type', 'RANK_BONUS')
                 ->whereDoesntHave('earnings', static function ($query) {
                     return $query->whereDate('created_at', date('Y-m-d'));
                 })->chunk(100, function ($activeBenefits) {
