@@ -12,8 +12,10 @@ class PackageController extends Controller
     public function index()
     {
         $packages = Package::activePackages()->get();
+        $logged_user = Auth::user()->loadCount('purchasedPackages');
+        $is_gas_fee_added = $logged_user->purchased_packages_count <= 0;
 //        dd(json_encode($packages->pluck('slug')));
-        return view('backend.user.packages.index', compact('packages'));
+        return view('backend.user.packages.index', compact('packages', 'is_gas_fee_added'));
     }
 
     public function active(Request $request)

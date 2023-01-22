@@ -181,7 +181,7 @@
                     <th scope="col" class="text-right border-0">Amount</th>
                     <th scope="col" class="text-right border-0">
                         @if(!empty($invoice->fee))
-                            Fee/Tax
+                            Gas Fee
                         @endif
                     </th>
                     <th scope="col" class="text-right border-0">Sub total</th>

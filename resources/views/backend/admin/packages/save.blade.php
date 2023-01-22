@@ -13,11 +13,17 @@
                 <div class="col-sm-9">
                     <input class="form-control" disabled placeholder="Currency" type="text" value="{{ $package->currency ?? 'USDT' }}">
                 </div>
-            </div> 
+            </div>
             <div class="form-group row mb-2">
                 <label class="col-sm-3 col-form-label" for="amount">AMOUNT</label>
                 <div class="col-sm-9">
                     <input class="form-control" id="amount" name="amount" placeholder="Amount" type="text" value="{{ $package->amount ?? null }}">
+                </div>
+            </div>
+            <div class="form-group row mb-2">
+                <label class="col-sm-3 col-form-label" for="gas_fee">GAS FEE</label>
+                <div class="col-sm-9">
+                    <input class="form-control" id="gas_fee" name="gas_fee" placeholder="Amount" type="text" value="{{ $package->gas_fee ?? null }}">
                 </div>
             </div>
             <div class="form-group row mb-2">
