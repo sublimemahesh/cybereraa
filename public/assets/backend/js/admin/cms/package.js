@@ -42,7 +42,7 @@ $(function () {
                 icon: 'error', title: error.response.data.message || "Something went wrong!",
             })
             console.error(error.response.data)
-            let errorMap = ['name', 'amount', 'month_of_period', 'daily_leverage', 'is_active']
+            let errorMap = ['name', 'amount', 'gas_fee', 'month_of_period', 'daily_leverage', 'is_active']
             errorMap.map(id => {
                 error.response.data.errors[id] && appendError(id, `<span class="text-danger">${error.response.data.errors[id]}</span>`)
             })
@@ -69,7 +69,7 @@ $(function () {
                 icon: 'error', title: error.response.data.message || "Something went wrong!",
             })
             console.error(error.response.data)
-            let errorMap = ['name', 'amount', 'month_of_period', 'daily_leverage', 'is_active']
+            let errorMap = ['name', 'amount', 'gas_fee', 'month_of_period', 'daily_leverage', 'is_active']
             errorMap.map(id => {
                 error.response.data.errors[id] && appendError(id, `<span class="text-danger">${error.response.data.errors[id]}</span>`)
             })

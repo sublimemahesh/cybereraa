@@ -31,6 +31,7 @@
                             <th>SLUG</th>
                             <th>CURRENCY</th>
                             <th>AMOUNT</th>
+                            <th>GAS FEE</th>
                             <th>MONTH OF PERIOD</th>
                             <th>DAILY LEVERAGE</th>
                             <th>IS ACTIVE</th>
@@ -53,7 +54,8 @@
                                 <td>{{ $package->name }}</td>
                                 <td>{{ $package->slug }}</td>
                                 <td>{{ $package->currency }}</td>
-                                <td>{{ $package->amount }}</td>
+                                <td class="text-end">{{ $package->amount }}</td>
+                                <td class="text-end">{{ $package->gas_fee }}</td>
                                 <td>{{ $package->month_of_period }}</td>
                                 <td>{{ $package->daily_leverage }}</td>
                                 <td>{{ $package->is_active }}</td>

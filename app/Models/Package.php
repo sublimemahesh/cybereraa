@@ -5,14 +5,14 @@ namespace App\Models;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes; 
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Package extends Model
 {
     use SoftDeletes;
     use Sluggable;
 
-    protected $fillable = ['name', 'amount', 'month_of_period', 'daily_leverage', 'is_active'];
+    protected $fillable = ['name', 'amount', 'gas_fee', 'month_of_period', 'daily_leverage', 'is_active'];
 
     public function sluggable(): array
     {

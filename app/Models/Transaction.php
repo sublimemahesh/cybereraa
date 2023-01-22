@@ -21,6 +21,7 @@ class Transaction extends Model
         'package_id',
         'currency',
         'amount',
+        'gas_fee',
         'type',
         'status',
     ];

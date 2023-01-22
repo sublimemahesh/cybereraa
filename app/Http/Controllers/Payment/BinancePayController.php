@@ -64,8 +64,10 @@ class BinancePayController extends Controller
         }
 
         try {
-            return DB::transaction(function () use ($user, $purchased_by, $package, $validated) {
+            return DB::transaction(function () use ($package, $user, $purchased_by, $validated) {
 
+                $amount = $package->amount;
+                $gas_fee = $user->purchasedPackages()->count() <= 0 ? $package->gas_fee : 0;
 
                 $transaction = Transaction::create([
                     'user_id' => $user->id,
@@ -73,12 +75,15 @@ class BinancePayController extends Controller
                     'package_id' => $package->id,
                     'currency' => "USDT",
                     'amount' => $package->amount,
+                    'gas_fee' => $gas_fee,
                     'type' => ($validated['method'] === 'wallet') ? 'wallet' : 'crypto',
                     'status' => "INITIAL",
                 ]);
 
+                $transaction_amount = $transaction->amount + $transaction->gas_fee;
+
                 // Order Data
-                $data['order_amount'] = $transaction->amount;
+                $data['order_amount'] = $transaction_amount;
                 $data['package_id'] = $package->id;
                 $data['goods_name'] = $package->name;
                 $data['goods_detail'] = null;
@@ -106,12 +111,12 @@ class BinancePayController extends Controller
 
                     $res_data = [
                         'bizType' => 'PAY',
-                        'data' => '{"productName":"' . $package->name . '","transactTime":' . (time() * 1000) . ',"totalFee":' . $transaction->amount . ',"currency":"' . $transaction->currency . '"}',
+                        'data' => '{"productName":"' . $package->name . '","transactTime":' . (time() * 1000) . ',"totalFee":' . $transaction_amount . ',"currency":"' . $transaction->currency . '"}',
                     ];
 
                     $transaction->create_order_request = json_encode($req_data, JSON_THROW_ON_ERROR);
 
-                    if ($purchased_by->wallet->balance < $transaction->amount) {
+                    if ($purchased_by->wallet->balance < $transaction_amount) {
                         $res_data['bizStatus'] = 'PAY_CLOSED';
 
                         $transaction->status = 'CANCELED';
@@ -130,7 +135,7 @@ class BinancePayController extends Controller
                     $transaction->status_response = json_encode($res_data, JSON_THROW_ON_ERROR);
                     $transaction->save();
 
-                    DB::transaction(function () use ($transaction) {
+                    DB::transaction(function () use ($transaction, $transaction_amount) {
                         $res = $this->grantCommissionsToUsers($transaction);
 
                         $wallet = Wallet::firstOrCreate(
@@ -138,7 +143,7 @@ class BinancePayController extends Controller
                             ['balance' => 0]
                         );
 
-                        $wallet->decrement('balance', $transaction->amount);
+                        $wallet->decrement('balance', $transaction_amount);
                     });
 
                     $json['status'] = true;

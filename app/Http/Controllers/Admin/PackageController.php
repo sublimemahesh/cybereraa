@@ -7,7 +7,6 @@ use App\Models\Package;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Auth;
 use Validator;
 
 class PackageController extends Controller
@@ -34,9 +33,10 @@ class PackageController extends Controller
 
         $validated = Validator::make($data, [
             'name' => 'required|max:250|unique:packages,name',
-            'amount' => 'required|numeric',
+            'amount' => 'required|numeric|min:0',
+            'gas_fee' => 'nullable|numeric|min:0',
             'month_of_period' => 'required|integer',
-            'daily_leverage' => 'required|integer',
+            'daily_leverage' => 'required|integer|min:0|max:100',
             'is_active' => 'boolean',
         ])->validate();
 
@@ -69,9 +69,10 @@ class PackageController extends Controller
 
         $validated = Validator::make($data, [
             'name' => ['required', 'max:250', Rule::unique('packages', 'name')->ignore($package->id)],
-            'amount' => 'required|numeric',
+            'amount' => 'required|numeric|min:0',
+            'gas_fee' => 'nullable|numeric|min:0',
             'month_of_period' => 'required|integer',
-            'daily_leverage' => 'required|integer',
+            'daily_leverage' => 'required|integer|min:0|max:100',
             'is_active' => 'boolean',
         ])->validate();
 
@@ -103,7 +104,7 @@ class PackageController extends Controller
     public function buypackage()
     {
         $packages = Package::activePackages()->get();
-        return view('backend.admin.packages.buy_package',compact('packages'));
+        return view('backend.admin.packages.buy_package', compact('packages'));
     }
 
 }

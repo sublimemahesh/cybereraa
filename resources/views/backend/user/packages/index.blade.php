@@ -1,6 +1,6 @@
 <x-backend.layouts.app>
     @section('title', 'Buy Package')
-    @section('header-title', 'Packages' ) 
+    @section('header-title', 'Packages' )
     @section('plugin-styles')
         <link rel="stylesheet" href="{{ asset('assets/backend/vendor/select2/css/select2.min.css') }}">
     @endsection
@@ -10,6 +10,9 @@
 
     <div class="row">
         @foreach($packages as $package)
+            @php
+                $gas_fee = $is_gas_fee_added ? $package->gas_fee : 0;
+            @endphp
             <div class="col-xl-3 col-md-6 col-sm-12 col-lg-3">
                 <div class="card text-center">
                     <div class="card-header">
@@ -19,7 +22,17 @@
                         <div class="basic-list-group">
                             <ul class="list-group">
                                 <li class="list-group-item active">
-                                    {{ $package->currency }} <b> {{ $package->amount }} </b>
+                                    {{ $package->currency }}
+                                    <b> {{ $package->amount + $gas_fee }} </b>
+                                </li>
+                                <li class="list-group-item"><b>Price </b>USDT {{ $package->amount }}</li>
+                                <li class="list-group-item">
+                                    @if(!$is_gas_fee_added)
+                                        <del><b>Gas Fee </b>USDT {{ $package->gas_fee }}</del>
+                                    @endif
+                                    @if($is_gas_fee_added)
+                                        <b>Gas Fee </b>USDT {{ $package->gas_fee }}
+                                    @endif
                                 </li>
                                 <li class="list-group-item"><b>Package </b>{{ $package->name }}</li>
                                 <li class="list-group-item">
@@ -58,8 +71,17 @@
                                     username</code> you want to purchase package for.
                             </p>
                             <p>
-                                Please Note: If you want to purchase a package for <code>Yourself</code> Please
-                                <code>keep the select box empty</code>
+                                Please Note:
+                            <ul class="list-disc">
+                                <li class="mt-2">If you want to purchase a package for <code>Yourself</code> Please
+                                    <code>keep the select box empty</code>
+                                </li>
+                                <li class="mt-2">
+                                    If you purchase a package for someone else and <code>SELECTED USER DOES NOT HAVE ANY PREVIOUS INVESTMENTS</code>,
+                                    then <code>RELEVANT GAS FEE</code> will be added to the order.
+                                </li>
+                            </ul>
+
                             </p>
                         </div>
                         <div class="row">

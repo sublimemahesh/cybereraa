@@ -56,7 +56,7 @@ class InvoiceController extends Controller
         $invoice['created_at'] = $trx->created_at;
         $invoice['title'] = $trx->create_order_request_info->goods->goodsName ?? '-';
         $invoice['amount'] = $trx->amount;
-        $invoice['fee'] = $trx->tax;
+        $invoice['fee'] = $trx->gas_fee ?? 0;
         $invoice['method'] = $trx->type;
         if ($trx->type === 'crypto') {
             $invoice['serial'] = "#TRXC" . str_pad($trx->merchant_trade_no, 5, '0', STR_PAD_LEFT);
