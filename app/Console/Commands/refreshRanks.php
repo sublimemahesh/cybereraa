@@ -37,7 +37,7 @@ class refreshRanks extends Command
             DB::statement('SET FOREIGN_KEY_CHECKS=1;');
             User::whereNotNull('parent_id')
                 ->whereNotNull('position')
-                ->orderBy('created_at', 'ASC')
+                ->orderBy('created_at', 'DESC')
                 ->chunk(100, function ($users) {
                     foreach ($users as $user) {
                         $this->info(' user: ' . $user->id . ' | parent_id: ' . $user->parent_id . ' | position: ' . $user->position);
