@@ -257,7 +257,7 @@ class User extends Authenticatable implements MustVerifyEmail
             return;
         }
 
-        DB::transaction(static function () use ($rank, $user, $position, $is_active) {
+        DB::transaction(function () use ($rank, $user, $is_active, $position) {
 
             if ($rank === 1) {
 
@@ -277,44 +277,75 @@ class User extends Authenticatable implements MustVerifyEmail
 
                 $user_rank->update(compact('eligibility', 'eligibility_positions', 'activated_at'));
 
+
                 if ($is_active && (count(array_diff($children_positions, $current_eligibility_positions)) !== 0)) {
-                    foreach ($user->ancestorsAndSelf()->get() as $ancestor) {
-                        $ancestor->ranks()->where('rank', 1)->increment('total_rankers');
-                    }
+                    $user->ancestors()->chunk(10, function ($ancestors) use ($rank) {
+                        foreach ($ancestors as $parent) {
+                            $parent->ranks()->where('rank', 1)->increment('total_rankers');
+                        }
+                    });
                 }
 
                 $rank = 2;
                 $position = $user->position;
-            }
-
-            if ($is_active && !empty($user->parent->id)) {
-                $user = $user->parent;
-
-                $user_rank = Rank::firstOrCreate(
-                    ['user_id' => $user->id, 'rank' => $rank],
-                    ['eligibility' => 0, 'total_rankers' => 0]
-                );
-
-                $eligibility_positions = $user_rank->eligibility_positions ? json_decode($user_rank->eligibility_positions, true, 512, JSON_THROW_ON_ERROR) : [];
-
-                if (!in_array($position, $eligibility_positions, true)) {
-                    $eligibility_positions[] = $position;
-                }
-
-                $eligibility = count($eligibility_positions);
-                $eligibility_positions = json_encode($eligibility_positions, JSON_THROW_ON_ERROR);
-                $is_active = $eligibility === 5;
-                $activated_at = $is_active ? now() : null;
-
-                $user_rank->update(compact('eligibility', 'eligibility_positions', 'activated_at'));
                 if ($is_active) {
-                    foreach ($user->ancestorsAndSelf()->get() as $ancestor) {
-                        $ancestor->ranks()->where('rank', $rank)->increment('total_rankers');
-                    }
-                    self::upgradeAncestorsRank($user, $rank + 1, $user->position, true);
+                    self::upgradeGenealogyAncestorsRank($user, $rank, $position, true);
                 }
             }
+
         });
     }
 
+    /**
+     * @throws JsonException
+     */
+    private static function upgradeGenealogyAncestorsRank(self $user, $rank, $position, $is_active = false): void
+    {
+        if ($rank > 7) {
+            return;
+        }
+        if ($is_active && !empty($user->parent_id)) {
+            $parent = $user->parent;
+
+            //dispatch(function () use ($parent, $rank, $position, $is_active) {
+                do {
+                    $user_rank = Rank::firstOrCreate(
+                        ['user_id' => $parent->id, 'rank' => $rank],
+                        ['eligibility' => 0, 'total_rankers' => 0]
+                    );
+
+                    $synced_eligibility_positions = $user_rank->eligibility_positions ? json_decode($user_rank->eligibility_positions, true, 512, JSON_THROW_ON_ERROR) : [];
+                    $current_eligibility_positions = $synced_eligibility_positions;
+
+                    if (!in_array($position, $synced_eligibility_positions, true)) {
+                        $synced_eligibility_positions[] = $position;
+                    }
+
+                    $eligibility = count($synced_eligibility_positions);
+                    $eligibility_positions = json_encode($synced_eligibility_positions, JSON_THROW_ON_ERROR);
+                    $is_active = $eligibility === 5;
+                    $activated_at = $is_active ? now() : null;
+
+                    $user_rank->update(compact('eligibility', 'eligibility_positions', 'activated_at'));
+
+                    $position = $parent->position;
+
+                    if ($is_active && (count(array_diff($synced_eligibility_positions, $current_eligibility_positions)) !== 0)) {
+                        foreach ($parent->ancestors()->get() as $ancestor) {
+                            $ancestor->ranks()->where('rank', $rank)->increment('total_rankers');
+                        }
+                    }
+
+                    if ($is_active) {
+                        self::upgradeGenealogyAncestorsRank($parent, $rank + 1, $position, true);
+                    }
+
+                    if ($parent->parent_id === null) {
+                        break;
+                    }
+                    $parent = $parent->parent;
+                } while ($parent->parent_id !== null);
+            //})->afterCommit()->onConnection('sync');
+        }
+    }
 }

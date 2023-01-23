@@ -33,13 +33,13 @@ class Rank extends Model
     {
         static::created(function (self $rank) {
             if ($rank->activated_at !== null) {
-                $this->initiateGift($rank);
+                self::initiateGift($rank);
             }
         });
 
         static::updated(function (self $rank) {
             if ($rank->activated_at !== null) {
-                $this->initiateGift($rank);
+                self::initiateGift($rank);
             }
         });
     }
@@ -47,7 +47,7 @@ class Rank extends Model
     /**
      * @throws Throwable
      */
-    public function initiateGift(self $rank)
+    public static function initiateGift(self $rank)
     {
         return DB::transaction(function () use ($rank) {
             $rank_gift = RankGift::firstOrCreate([
