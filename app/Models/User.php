@@ -299,52 +299,61 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * @throws JsonException
      */
-    private static function upgradeGenealogyAncestorsRank(self $user, $rank, $position, $is_active = false): void
+    public static function upgradeGenealogyAncestorsRank(self $user, int $rank, $position, $is_active = false): void
     {
+         // logger("line: 304 -" . $user->id);
         if ($rank > 7) {
             return;
         }
         if ($is_active && !empty($user->parent_id)) {
             $parent = $user->parent;
+             // logger("line: 310 -" . $parent->id);
+
+            if ($parent->currentRank->rank === (int)$rank) {
+                return;
+            }
 
             //dispatch(function () use ($parent, $rank, $position, $is_active) {
-                do {
-                    $user_rank = Rank::firstOrCreate(
-                        ['user_id' => $parent->id, 'rank' => $rank],
-                        ['eligibility' => 0, 'total_rankers' => 0]
-                    );
+            do {
+                $user_rank = Rank::firstOrCreate(
+                    ['user_id' => $parent->id, 'rank' => $rank],
+                    ['eligibility' => 0, 'total_rankers' => 0]
+                );
 
-                    $synced_eligibility_positions = $user_rank->eligibility_positions ? json_decode($user_rank->eligibility_positions, true, 512, JSON_THROW_ON_ERROR) : [];
-                    $current_eligibility_positions = $synced_eligibility_positions;
+                $synced_eligibility_positions = $user_rank->eligibility_positions ? json_decode($user_rank->eligibility_positions, true, 512, JSON_THROW_ON_ERROR) : [];
+                $current_eligibility_positions = $synced_eligibility_positions;
 
-                    if (!in_array($position, $synced_eligibility_positions, true)) {
-                        $synced_eligibility_positions[] = $position;
+                if (in_array($position, $synced_eligibility_positions, true)) {
+                    break;
+                }
+
+                $synced_eligibility_positions[] = $position;
+
+                $eligibility = count($synced_eligibility_positions);
+                $eligibility_positions = json_encode($synced_eligibility_positions, JSON_THROW_ON_ERROR);
+                $is_active = $eligibility === 5;
+                $activated_at = $is_active ? now() : null;
+
+                $user_rank->update(compact('eligibility', 'eligibility_positions', 'activated_at'));
+
+                $position = $parent->position;
+
+                if ($is_active && (count(array_diff($synced_eligibility_positions, $current_eligibility_positions)) !== 0)) {
+                    foreach ($parent->ancestors()->get() as $ancestor) {
+                        $ancestor->ranks()->where('rank', $rank)->increment('total_rankers');
                     }
+                }
 
-                    $eligibility = count($synced_eligibility_positions);
-                    $eligibility_positions = json_encode($synced_eligibility_positions, JSON_THROW_ON_ERROR);
-                    $is_active = $eligibility === 5;
-                    $activated_at = $is_active ? now() : null;
-
-                    $user_rank->update(compact('eligibility', 'eligibility_positions', 'activated_at'));
-
-                    $position = $parent->position;
-
-                    if ($is_active && (count(array_diff($synced_eligibility_positions, $current_eligibility_positions)) !== 0)) {
-                        foreach ($parent->ancestors()->get() as $ancestor) {
-                            $ancestor->ranks()->where('rank', $rank)->increment('total_rankers');
-                        }
-                    }
-
-                    if ($is_active) {
-                        self::upgradeGenealogyAncestorsRank($parent, $rank + 1, $position, true);
-                    }
-
-                    if ($parent->parent_id === null) {
-                        break;
-                    }
-                    $parent = $parent->parent;
-                } while ($parent->parent_id !== null);
+                if ($is_active) {
+                    self::upgradeGenealogyAncestorsRank($parent, $rank + 1, $position, true);
+                }
+                // logger("line: 348 -" . $parent->id);
+                if ($parent->parent_id === null) {
+                    break;
+                }
+                $parent = $parent->parent;
+                 // logger("line: 353 -" . $parent->id);
+            } while ($parent->id !== null);
             //})->afterCommit()->onConnection('sync');
         }
     }

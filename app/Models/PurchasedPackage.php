@@ -108,6 +108,17 @@ class PurchasedPackage extends Pivot
     public function getNextPaymentDateAttribute(): string
     {
         $today = Carbon::parse(date('Y-m-d') . ' ' . $this->created_at->format('H:i:s'));
+
+        $nextPayDay = $today;
+        if (Carbon::parse($this->last_earned_at)->isToday()) {
+            $nextPayDay = $today->addDay();
+        }
+        if ($nextPayDay->isSaturday() || $nextPayDay->isSunday()) {
+            $nextPayDay = $nextWeekday = $today->nextWeekday();
+        }
+        return $nextPayDay->format('Y-m-d H:i:s');
+        /*
+        $today = Carbon::parse(date('Y-m-d') . ' ' . $this->created_at->format('H:i:s'));
         $firstPayDate = $this->created_at->addDays(5);
 
         $nextPayDay = $firstPayDate;
@@ -120,6 +131,6 @@ class PurchasedPackage extends Pivot
         if ($nextPayDay->isSaturday() || $nextPayDay->isSunday()) {
             $nextPayDay = $nextPayDay->nextWeekday();
         }
-        return $nextPayDay->format('Y-m-d H:i:s');
+        return $nextPayDay->format('Y-m-d H:i:s');*/
     }
 }

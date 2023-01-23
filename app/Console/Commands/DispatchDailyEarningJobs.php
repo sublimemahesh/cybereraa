@@ -37,7 +37,7 @@ class DispatchDailyEarningJobs extends Command
         if (!$today->isWeekend()) {
             $activePackages = PurchasedPackage::with('user')
                 ->where('status', 'active')
-                ->whereRaw('`created_at` + INTERVAL 5 DAY <= NOW()') // after 5 days from package purchase
+                /*->whereRaw('`created_at` + INTERVAL 5 DAY <= NOW()')*/ // after 5 days from package purchase
                 ->where('expired_at', '>=', Carbon::now())
                 ->whereDoesntHave('earnings', fn($query) => $query->whereDate('created_at', date('Y-m-d')))
                 ->chunk(100, function ($activePackages) {
