@@ -13,68 +13,9 @@
         <li class="breadcrumb-item">Genealogy</li>
     @endsection
 
-
-    <div class="row">
-        <div class="col-sm-12 ">
-            @if (!empty($user->parent_id) && config('fortify.super_parent_id') !== $user->id)
-                <div class="d-flex justify-content-center mb-md-2 mb-sm-5">
-                    <a href="{{ route('admin.genealogy', $user->parent) }}">
-                        <i class="fas fa-arrow-up fs-2"></i>
-                    </a>
-                </div>
-            @endif
-        </div>
+    <div id="genealogy">
+        @include('backend.admin.genealogy.includes.genealogy', compact('user','descendants'))
     </div>
-
-    <div class="row mobile-margine">
-        <div class="col-sm-12 add-tree">
-            <div class="tree remove-mobile">
-                <ul class="remove-mobile">
-                    <li class="remove-mobile">
-                        <a href="javascript:void(0)" class="add-tree-2">
-                            @include('backend.user.genealogy.includes.genealogy-card', compact('user'))
-                        </a>
-                        <ul class="remove-mobile ">
-                            <div class="swiper swiper-container">
-                                <div class="swiper-wrapper add-tree-3">
-                                    @for ($i = 1; $i <= 5; $i++)
-                                        <li class="position-{{ $i }} remove-mobile">
-                                            @if (isset($descendants[$i]))
-                                                @php
-                                                    $descendant = $descendants[$i];
-                                                @endphp
-                                                <div class="swiper-slide">
-                                                    <a href="{{ route('admin.genealogy', $descendant) }}">
-                                                        @include('backend.user.genealogy.includes.genealogy-card', ['user' => $descendant])
-                                                    </a>
-                                                </div>
-                                            @else
-                                                <div class="swiper-slide">
-                                                    <a href="javascript:void(0)">
-                                                        <div class="genealogy item">
-                                                            <div class="card">
-                                                                <div class="card-img"></div>
-                                                                <div class="card-info">
-                                                                    <h5 class="text-title">Empty</h5><br>
-                                                                    <p class="text-body">Add your new member</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            @endif
-                                        </li>
-                                    @endfor
-                                </div>
-                                <div class="swiper-pagination " slot="pagination" id='swiper-pagination-set'></div>
-                            </div>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
 
     @push('scripts')
         <script>
@@ -93,21 +34,62 @@
                 tooltip.innerHTML = "Copy to clipboard";
             }
 
-            const swiper = new Swiper('.swiper', {
-                // Default parameters
-                slidesPerView: 1,
-                spaceBetween: 10,
-                // Responsive breakpoints
-                breakpoints: {
-                    769: {
-                        slidesPerView: 4,
-                        spaceBetween: 40
-                    }
-                },
-                pagination: {
-                    el: ".swiper-pagination",
-                },
+            let swiper = null;
+            const x = window.matchMedia("(max-width: 700px)");
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+
+            $(document).on('click', '.next-genealogy', function (e) {
+                e.preventDefault();
+                let url = $(this).attr('href');
+                loadGenealogy(url)
             })
+
+            function loadGenealogy(url) {
+                loader('');
+                axios.get(url).then(function (response) {
+                    if (response.data.status) {
+                        $('#genealogy').html(response.data.genealogy)
+                        history.replaceState({}, "", url);
+                    }
+                    try {
+                        responsive(x)
+                    } catch (e) {
+                        console.log(e)
+                    }
+
+                    Swal.close()
+                }).catch(function (error) {
+                    Toast.fire({
+                        icon: 'error', title: error.response.data.message || "Something went wrong!",
+                    })
+                })
+            }
+
+            const initSwiper = function () {
+                if (swiper !== null) {
+                    swiper.destroy()
+                }
+                return new Swiper('.swiper', {
+                    // Default parameters
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                    // Responsive breakpoints
+                    breakpoints: {
+                        769: {
+                            slidesPerView: 4,
+                            spaceBetween: 40
+                        }
+                    },
+                    pagination: {
+                        el: ".swiper-pagination",
+                    },
+                })
+            }
+
+            if (x.matches) {
+                swiper = initSwiper()
+            }
 
             let des = 0;
 
@@ -116,6 +98,7 @@
                     // If media query matches
                     $('.remove-mobile').contents().unwrap();
                     des = des + 1;
+                    swiper = initSwiper()
                 } else {
                     if (des > 0) {
                         location.reload();
@@ -123,7 +106,6 @@
                 }
             }
 
-            const x = window.matchMedia("(max-width: 700px)");
             responsive(x) // Call listener function at run time
             x.addListener(responsive) // Attach listener function on state changes
 
