@@ -1,5 +1,5 @@
 <x-backend.layouts.app>
-    @section('title', 'Users Genealogy')
+    @section('title', $user->username . ' | Admin | Super User Genealogy')
     @section('header-title', 'Users Genealogy')
     @section('plugin-styles')
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
@@ -51,6 +51,7 @@
                     if (response.data.status) {
                         $('#genealogy').html(response.data.genealogy)
                         history.replaceState({}, "", url);
+                        document.title = response.data.username + " | Admin | Super User Genealogy"
                     }
                     try {
                         responsive(x)
