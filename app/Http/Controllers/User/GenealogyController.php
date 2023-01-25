@@ -27,6 +27,15 @@ class GenealogyController extends Controller
             ->orderBy('position')
             ->get()
             ->keyBy('position');
+
+        if ($request->wantsJson()) {
+            $json['status'] = true;
+            $json['message'] = 'Success';
+            $json['icon'] = 'success'; // warning | info | question | success | error
+            $json['genealogy'] = view('backend.user.genealogy.includes.genealogy', compact('user', 'descendants'))->render();
+
+            return response()->json($json);
+        }
         return view('backend.user.genealogy.index', compact('user', 'descendants'));
     }
 
