@@ -30,6 +30,7 @@ class GenealogyController extends Controller
 
         if ($request->wantsJson()) {
             $json['status'] = true;
+            $json['username'] = $user->username;
             $json['message'] = 'Success';
             $json['icon'] = 'success'; // warning | info | question | success | error
             $json['genealogy'] = view('backend.user.genealogy.includes.genealogy', compact('user', 'descendants'))->render();
