@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Strategy;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,8 +31,11 @@ Route::post('filter/sponsors/{search_text}', 'RegisteredUserController@findUsers
 // Register custom routes
 Route::group(['prefix' => 'register', 'middleware' => 'guest:' . config('fortify.guard')], function () {
     Route::get('/', 'RegisteredUserController@create')->name('register');
+});
 
-
+Route::group(['middleware' => 'guest:' . config('fortify.guard')], function () {
+    Route::post('/forgot-password', 'Auth\PasswordResetLinkController@store')->name('password.email');
+    Route::post('/reset-password', 'Auth\NewPasswordController@store')->name('password.update');
 });
 
 Route::get('test', function () {

@@ -16,12 +16,12 @@
                             <h4 class="text-center mb-4">Login to Your Account</h4>
 
                             @if (session('status'))
-                                <div class="mb-4 font-medium text-sm text-green-600">
+                                <div class="mb-4 font-medium text-sm text-success text-green-600">
                                     {{ session('status') }}
                                 </div>
                             @endif
 
-                            <x-jet-validation-errors class="mb-4"/>
+                            <x-jet-validation-errors class="mb-4 text-danger" />
 
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf

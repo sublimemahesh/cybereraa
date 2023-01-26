@@ -23,7 +23,7 @@
 
                             <h4 class="text-center mb-4">Two factor challenge</h4>
 
-                            <x-jet-validation-errors class="mb-4"/> 
+                            <x-jet-validation-errors class="mb-4 text-danger" />
 
                             <form method="POST" action="{{ route('two-factor.login') }}">
                                 @csrf

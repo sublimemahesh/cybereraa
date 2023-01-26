@@ -23,7 +23,7 @@
                                     {{ session('status') }}
                                 </div>
                             @endif
-
+                            <x-jet-validation-errors class="mb-4 text-danger"/>
                             <form onSubmit="return false" id="mobile-verify-form" class="register-form outer-top-xs" role="form">
                                 @csrf
                                 @if (session('error'))
@@ -41,6 +41,21 @@
                                     </div>
                                 </div>
                             </form>
+                            <div class="d-flex row new-account mt-3">
+                                <div class="col-lg-6  mt-4">
+                                    <a href="{{ route('profile.show') }}" class="underline text-sm text-gray-600 hover:text-gray-900">
+                                        {{ __('Edit Profile') }}
+                                    </a>
+                                </div>
+                                <div class="col-lg-6 mt-4">
+                                    <form method="POST" action="{{ route('logout') }}" class="float-end">
+                                        @csrf
+                                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();" class="underline text-sm text-gray-600 hover:text-gray-900">
+                                            {{ __('Log Out') }}
+                                        </a>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
