@@ -15,7 +15,7 @@
                                     <div class="card-body">
                                         <div class="card-wiget-info">
                                             <h4 class="count-num">${{ number_format($total_sale_amount,2) }}</h4>
-                                            <p>Total Sales</p>
+                                            <p>Total Sales <small>(GAS FEES: $ {{ $total_sale_gas_fees }}) </small></p>
                                         </div>
                                         <div id="NewCustomers"></div>
                                     </div>
@@ -106,6 +106,212 @@
                                             </g>
                                         </svg>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3  col-lg-6 col-sm-6">
+                    <div class="widget-stat card">
+                        <div class="card-body  p-4">
+                            <div class="media">
+                                <span class="me-3">
+                                    <i class="la la-coins"></i>
+                                </span>
+                                <div class="media-body text-white">
+                                    <p class="mb-1">TOTAL PACKAGE EARNINGS</p>
+                                    <h4 class="text-white"> $ {{ $total_package_earnings }}</h4>
+                                    <br>
+                                    <small> Package daily income </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3  col-lg-6 col-sm-6">
+                    <div class="widget-stat card">
+                        <div class="card-body  p-4">
+                            <div class="media">
+                                <span class="me-3">
+                                    <i class="la la-coins"></i>
+                                </span>
+                                <div class="media-body text-white">
+                                    <p class="mb-1">TOTAL DIRECT EARNINGS</p>
+                                    <h4 class="text-white"> $ {{ $total_direct_commission_earnings }}</h4>
+                                    <br>
+                                    <small> Daily direct commissions </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3  col-lg-6 col-sm-6">
+                    <div class="widget-stat card">
+                        <div class="card-body  p-4">
+                            <div class="media">
+                                <span class="me-3">
+                                    <i class="la la-coins"></i>
+                                </span>
+                                <div class="media-body text-white">
+                                    <p class="mb-1">TOTAL INDIRECT EARNINGS</p>
+                                    <h4 class="text-white"> $ {{ $total_indirect_commission_earnings }}</h4>
+                                    <br>
+                                    <small> Daily indirect commission </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3  col-lg-6 col-sm-6">
+                    <div class="widget-stat card">
+                        <div class="card-body  p-4">
+                            <div class="media">
+                                <span class="me-3">
+                                    <i class="la la-coins"></i>
+                                </span>
+                                <div class="media-body text-white">
+                                    <p class="mb-1">TOTAL RANK BONUSES</p>
+                                    <h4 class="text-white"> $ {{ $total_rank_bonus_earnings }}</h4>
+                                    <br>
+                                    <small> Daily Rank Bonus </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3  col-lg-6 col-sm-6">
+                    <div class="widget-stat card bg-warning">
+                        <div class="card-body  p-4">
+                            <div class="media">
+                                <span class="me-3">
+                                    <i class="la la-wallet"></i>
+                                </span>
+                                <div class="media-body text-white">
+                                    <p class="mb-1">TOTAL WALLET BALANCE</p>
+                                    <h4 class="text-white"> $ {{ $total_available_wallet_balance }}</h4>
+                                    <br>
+                                    <small> Wallet balance </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3  col-lg-6 col-sm-6">
+                    <div class="widget-stat card bg-info">
+                        <div class="card-body p-4">
+                            <div class="media">
+                                <span class="me-3">
+                                    <i class="la la-coins"></i>
+                                </span>
+                                <div class="media-body text-white">
+                                    <p class="mb-1">TOTAL PAYABLE</p>
+                                    <h4 class="text-white"> $ {{ $total_withdraw_limit_wallet_balance }}</h4>
+                                    <br>
+                                    <small>Current total liability </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3  col-lg-6 col-sm-6">
+                    <div class="widget-stat card bg-green">
+                        <div class="card-body p-4">
+                            <div class="media">
+                                <span class="me-3">
+                                    <i class="la la-coins"></i>
+                                </span>
+                                <div class="media-body text-white">
+                                    <p class="mb-1">TOTAL ACTIVE SALES</p>
+                                    <h4 class="text-white"> $ {{ $total_active_package_balance }}</h4>
+                                    <br>
+                                    <small>Current total Active packages </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3  col-lg-6 col-sm-6">
+                    <div class="widget-stat card bg-danger">
+                        <div class="card-body p-4">
+                            <div class="media">
+                                <span class="me-3">
+                                    <i class="la la-coins"></i>
+                                </span>
+                                <div class="media-body text-white">
+                                    <p class="mb-1">TOTAL EXPIRED SALES</p>
+                                    <h4 class="text-white"> $ {{ $total_expired_package_balance }}</h4>
+                                    <br>
+                                    <small>Current total Inactive packages </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3  col-lg-6 col-sm-6">
+                    <div class="widget-stat card">
+                        <div class="card-body p-4">
+                            <div class="media">
+                                <span class="me-3">
+                                    <i class="la la-coins"></i>
+                                </span>
+                                <div class="media-body text-white">
+                                    <p class="mb-1">PENDING WITHDRAWALS</p>
+                                    <h4 class="text-white"> $ {{ $total_pending_withdrawal_balance }}</h4>
+                                    <br>
+                                    <small>Pending to accept </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3  col-lg-6 col-sm-6">
+                    <div class="widget-stat card">
+                        <div class="card-body p-4">
+                            <div class="media">
+                                <span class="me-3">
+                                    <i class="la la-coins"></i>
+                                </span>
+                                <div class="media-body text-white">
+                                    <p class="mb-1">TOTAL P2P TRANSACTION</p>
+                                    <h4 class="text-white"> $ {{ $total_p2p_transfers }}</h4>
+                                    <br>
+                                    <small>Total P2P Transactions </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3  col-lg-6 col-sm-6">
+                    <div class="widget-stat card">
+                        <div class="card-body p-4">
+                            <div class="media">
+                                <span class="me-3">
+                                    <i class="la la-coins"></i>
+                                </span>
+                                <div class="media-body text-white">
+                                    <p class="mb-1">TOTAL WITHDRAWALS</p>
+                                    <h4 class="text-white"> $ {{ $total_withdraws }}</h4>
+                                    <br>
+                                    <small>Total Withdrawal amount </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3  col-lg-6 col-sm-6">
+                    <div class="widget-stat card">
+                        <div class="card-body p-4">
+                            <div class="media">
+                                <span class="me-3">
+                                    <i class="la la-coins"></i>
+                                </span>
+                                <div class="media-body text-white">
+                                    <p class="mb-1">TOTAL TRANSACTION FEES</p>
+                                    <h4 class="text-white"> $ {{ number_format($total_p2p_transaction_fees + $total_withdraws_transaction_fees,2) }}</h4>
+                                    <br>
+                                    <small> P2P: $ {{ $total_p2p_transaction_fees }} / Withdraw: $ {{ $total_withdraws_transaction_fees }} </small>
                                 </div>
                             </div>
                         </div>
@@ -286,7 +492,7 @@
                             <h4 class="card-title">Top Rankers</h4>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">   
+                            <div class="table-responsive">
                                 <table class="table table-responsive-md">
                                     <thead>
                                     <tr>
