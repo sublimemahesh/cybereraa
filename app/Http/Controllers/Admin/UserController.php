@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Carbon;
+use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -12,7 +13,7 @@ use Yajra\DataTables\Facades\DataTables;
 class UserController extends Controller
 {
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function index(Request $request)
     {
@@ -29,11 +30,16 @@ class UserController extends Controller
                 }
             })->when($request->get('kyc-status'), function (Builder $q) {
                 if (request()->input('kyc-status') !== 'required') {
-                    $q->whereHas('profile.kycs', function ($q) {
+                    $q->whereHas('profile.kycs.documents', function ($q) {
                         $q->where('status', request()->input('kyc-status'));
                     });
                 } else {
-                    $q->whereDoesntHave('profile.kycs');
+                    $q->where(function ($q) {
+                        $q->whereDoesntHave('profile.kycs')
+                            ->orwhereHas('profile.kycs.documents', function ($q) {
+                                $q->where('status', request()->input('kyc-status'));
+                            });
+                    });
                 }
             });
             return DataTables::eloquent($users)
