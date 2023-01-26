@@ -92,6 +92,12 @@ class PurchasedPackage extends Pivot
             ->where('expired_at', '>=', Carbon::now()->format('Y-m-d H:i:s'));
     }
 
+    public function scopeExpiredPackages(Builder $query): Builder
+    {
+        return $query->where('status', 'EXPIRED')
+            ->where('expired_at', '<', Carbon::now()->format('Y-m-d H:i:s'));
+    }
+
     public function scopeTotalInvestment(Builder $query, User|null $user): Builder
     {
         return $query->when($user && $user->id !== null, static function (Builder $query) use ($user) {
