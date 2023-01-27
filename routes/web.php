@@ -67,6 +67,9 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::get('users/kycs/{kyc}', 'Admin\KycController@show')->name('users.kycs.show');
         Route::post('users/kyc-documents/{document}/status', 'Admin\KycController@status');
 
+         // Profile
+         Route::get('/users/{user:username}/profile', 'Admin\UserController@profileShow')->name('users.profile.show');
+
         Route::get('genealogy/{user:username?}', 'Admin\GenealogyController@index')->name('genealogy');
 
         // RANK GIFtS
@@ -98,6 +101,8 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
 
         //Currency
         Route::resource('currencies', 'Admin\CurrencyController')->except('create', 'show');
+
+
 
         Route::group(['prefix' => 'reports'], function () {
             // Earnings
