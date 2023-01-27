@@ -139,7 +139,7 @@
                                                 <span class="text-success">{{ $trx->package_info_json->currency }} {{ $trx->amount }}</span>
                                                 <br>
                                                 <small> TRX FEE: {{ $trx->transaction_fee }}</small>
-                                            </td>
+                                            </td> 
                                             <td class="fs-14 font-w400">{{ $trx->created_at->format('Y-m-d H:i:s') }}</td>
                                             <td class="py-2 text-end">
                                                 <div class="dropdown">

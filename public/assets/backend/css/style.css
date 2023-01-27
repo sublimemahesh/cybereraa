@@ -30233,11 +30233,13 @@ input#checkAll.form-check-input:checked {
 }
 
 .photo-content .cover-photo {
-    background: url(../images/profile/cover.jpg);
+    background: url(../../frontend/images/backgrounds/bg-banner.jpg);
     background-size: cover;
     background-position: center;
     min-height: 15.625rem;
     width: 100%;
+    opacity: 0.5;
+
 }
 
 .profile .profile-photo {
@@ -48836,4 +48838,8 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
         width:100% !important;
     }
 
+}
+
+.profile-img{
+    width:100px !important;
 }
