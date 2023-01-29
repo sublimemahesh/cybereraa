@@ -38,8 +38,7 @@ class BinancePayController extends Controller
                 'nullable',
                 Rule::exists('users', 'id')
                     ->where(static function ($query) {
-                        $query->where('id', '<>', Auth::user()->id)
-                            ->where('id', '>', 3);
+                        $query->where('id', '<>', Auth::user()->id)->whereRelation('roles', 'name', 'user');
                     })
             ]
         ])->validate();

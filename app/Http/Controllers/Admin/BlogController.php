@@ -4,12 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
-use Auth;
 use Storage;
 
 class BlogController extends Controller
 {
-    public function index() 
+    public function __construct()
+    {
+        $this->authorizeResource(Blog::class, 'blog');
+    }
+
+    public function index()
     {
         $blogs = Blog::all();
         return view('backend.admin.blogs.index', compact('blogs'));
@@ -22,16 +26,6 @@ class BlogController extends Controller
 
     public function destroy(Blog $blog)
     {
-        $role = Auth::user()->getRoleNames()->first();
-
-        if ($role !== 'admin') {
-            $json['status'] = false;
-            $json['code'] = '403';
-            $json['message'] = 'Access denied';
-            $json['icon'] = 'error';
-            return response()->json($json, 403);
-        }
-
         $blog->delete();
         Storage::delete('blogs/' . $blog->image);
         $json['status'] = true;

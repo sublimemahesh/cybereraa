@@ -14,7 +14,7 @@ class MobileVerifyController extends Controller
     public function index(Request $request)
     {
         if (Auth::user()->is_mobile_verified || ($request->user()->phone !== null && !preg_match('/^\+94/i', $request->user()->phone))) {
-            return redirect()->route(Auth::user()->getRoleNames()->first() . '.dashboard')->with('info', 'Already verified!');
+            return redirect()->route(authUserFolder() . '.dashboard')->with('info', 'Already verified!');
         }
         return view('auth.verify-mobile');
     }
@@ -41,7 +41,7 @@ class MobileVerifyController extends Controller
     {
         $hashed_phone = hash("sha512", $request->get('phone'));
         $hashed_code = hash("sha512", $request->get('verify_code'));
-        $redirect = redirect()->route(Auth::user()->getRoleNames()->first() . '.dashboard');
+        $redirect = redirect()->route(authUserFolder() . '.dashboard');
         if (session()->has($hashed_phone) && session()->get($hashed_phone) === $hashed_code) {
             session()->forget($hashed_phone);
             Auth::user()->update([

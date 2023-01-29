@@ -22,8 +22,12 @@ class TestimonialController extends Controller
         return view('backend.admin.testimonials.index', compact('testimonials'));
     }
 
+    /**
+     * @throws AuthorizationException
+     */
     public function create()
     {
+        $this->authorize('create', Testimonial::class);
         return view('backend.admin.testimonials.create');
     }
 

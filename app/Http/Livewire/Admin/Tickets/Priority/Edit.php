@@ -3,11 +3,15 @@
 namespace App\Http\Livewire\Admin\Tickets\Priority;
 
 use App\Models\SupportTicketPriority;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
 class Edit extends Component
 {
+    use AuthorizesRequests;
+
     public SupportTicketPriority $priority;
 
     protected function rules()
@@ -26,9 +30,13 @@ class Edit extends Component
         $this->validate();
     }
 
+    /**
+     * @throws AuthorizationException
+     */
     public function save()
     {
         $this->validate();
+        $this->authorize('support_ticket.priority.update');
         $this->priority->save();
         session()->flash('message', 'Priority has been updated successfully!');
     }

@@ -103,8 +103,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="table-responsive d-block">
-                        <table id="transactions" class="display  " style="min-width: 845px">
+                    <div class="table-responsive d-block"> 
+                        <table id="transactions" class="display table-responsive-my">
                             <thead>
                             <tr>
                                 <th>TYPE</th>

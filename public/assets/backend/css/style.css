@@ -48828,13 +48828,13 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 
 @media (max-width: 992px) {
   .table-responsive-my{
-    min-width: 845px !important;
+    min-width: 890px !important;
  }
 }
 
  @media (min-width: 992px) {
     .table-responsive-my{
-        table-layout:fixed;
+        /* table-layout:fixed; */
         width:100% !important;
     }
 
@@ -48842,4 +48842,3 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 
 .profile-img{
     width:100px !important;
-}

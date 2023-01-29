@@ -7,6 +7,8 @@ use App\Models\Transaction;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
 
 class TransactionController extends Controller
@@ -16,6 +18,8 @@ class TransactionController extends Controller
      */
     public function index(Request $request)
     {
+        abort_if(Gate::denies('transactions.viewAny'), Response::HTTP_FORBIDDEN);
+
         if ($request->wantsJson()) {
             $transactions = Transaction::filter()
                 ->with('package', 'user')

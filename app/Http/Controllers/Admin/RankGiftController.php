@@ -7,6 +7,7 @@ use App\Models\RankGift;
 use DB;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Str;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
@@ -20,6 +21,8 @@ class RankGiftController extends Controller
      */
     public function index(Request $request)
     {
+        abort_if(Gate::denies('rank_gift.viewAny'), Response::HTTP_FORBIDDEN);
+
         if ($request->wantsJson()) {
             $ranks = RankGift::with('rank', 'user')
                 ->when(!empty($request->get('user_id')),
@@ -55,7 +58,7 @@ class RankGiftController extends Controller
                 ->addColumn('total_investment', fn($gift) => number_format($gift->total_investment, 2))
                 ->addColumn('total_team_investment', fn($gift) => number_format($gift->total_team_investment, 2))
                 ->addColumn('actions', function ($gift) {
-                    if ($gift->status === 'QUALIFIED') {
+                    if ($gift->status === 'QUALIFIED' && Gate::allows('rank_gift.issue_gift')) {
                         return "<a href='" . route('admin.ranks.gifts.issue', $gift) . "' class='btn btn-green btn-outline-success btn-xs me-1 my-1 shadow sharp'>
                                 <i class='fas fa-gift'></i>
                             </a>";

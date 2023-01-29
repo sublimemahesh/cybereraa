@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Withdraw;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
 
 class WithdrawController extends Controller
@@ -15,6 +17,8 @@ class WithdrawController extends Controller
      */
     public function p2p(Request $request)
     {
+        abort_if(Gate::denies('withdraw.p2p.viewAny'), Response::HTTP_FORBIDDEN);
+
         if ($request->wantsJson()) {
 
             $withdrawals = Withdraw::with('receiver', 'user')
@@ -52,6 +56,8 @@ class WithdrawController extends Controller
      */
     public function withdrawals(Request $request)
     {
+         abort_if(Gate::denies('withdrawals.viewAny'), Response::HTTP_FORBIDDEN);
+
         if ($request->wantsJson()) {
 
             $withdrawals = Withdraw::with('receiver', 'user')
@@ -72,6 +78,7 @@ class WithdrawController extends Controller
                 ->addColumn('total', fn($withdraw) => number_format($withdraw->amount + $withdraw->transaction_fee, 2))
                 ->addColumn('created_at', fn($withdraw) => $withdraw->created_at->format('Y-m-d H:i:s'))
                 ->addColumn('actions', static function ($withdraw) {
+                    // withdraw.approve | withdraw.reject
                     /*if ($withdraw->status === 'PROCESSING') {
                         return '<a href=" ' . route('admin.transfers.withdrawals.form') . ' " class="btn btn-xs btn-info">-</a>';
                     }*/

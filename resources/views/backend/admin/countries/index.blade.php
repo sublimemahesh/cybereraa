@@ -1,9 +1,9 @@
 <x-backend.layouts.app>
     @section('title', 'Countries | CMS')
-    @section('header-title', 'Countries | CMS' )
+    @section('header-title', 'Countries | CMS')
     @section('plugin-styles')
         <!-- Datatable -->
-        <link href="{{asset('assets/backend/vendor/datatables/css/jquery.dataTables.min.css')}}" rel="stylesheet">
+        <link href="{{ asset('assets/backend/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
     @endsection
 
     @section('breadcrumb-items')
@@ -23,35 +23,41 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <table class="table table-striped table-bordered dt-responsive nowrap" id="countries">
-                        <thead>
-                        <tr>
-                            <th>ACTIONS</th>
-                            <th>NAME</th>
-                            <th>ISO</th>
-                            <th>LAST MODIFIED</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach ($countries as $country)
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered dt-responsive nowrap" id="countries">
+                            <thead>
                             <tr>
-                                <td class="py-2">
-                                    {{-- @can('update', $country) --}}
-                                    <a class="btn btn-xs btn-info sharp" href="{{ route('admin.countries.edit', $country) }}">
-                                        <i class="fa fa-pencil"></i>
-                                    </a>
-                                    <a class="btn btn-xs btn-danger sharp delete-country" data-country="{{ $country->id }}" href="javascript:void(0)">
-                                        <i class="fa fa-trash"></i>
-                                    </a>
-                                    {{-- @endcan --}}
-                                </td>
-                                <td>{{ $country->name }}</td>
-                                <td>{{ $country->iso }}</td>
-                                <td>{{ $country->updated_at }}</td>
+                                <th>ACTIONS</th>
+                                <th>NAME</th>
+                                <th>ISO</th>
+                                <th>LAST MODIFIED</th>
                             </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            @foreach ($countries as $country)
+                                <tr>
+                                    <td class="py-2">
+                                        @can('update', $country)
+                                            <a class="btn btn-xs btn-info sharp"
+                                                    href="{{ route('admin.countries.edit', $country) }}">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                        @endcan
+                                        @can('delete', $country)
+                                            <a class="btn btn-xs btn-danger sharp delete-country"
+                                                    data-country="{{ $country->id }}" href="javascript:void(0)">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
+                                        @endcan
+                                    </td>
+                                    <td>{{ $country->name }}</td>
+                                    <td>{{ $country->iso }}</td>
+                                    <td>{{ $country->updated_at }}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -63,4 +69,3 @@
         <script src="{{ asset('assets/backend/js/admin/cms/country.js') }}"></script>
     @endpush
 </x-backend.layouts.app>
-

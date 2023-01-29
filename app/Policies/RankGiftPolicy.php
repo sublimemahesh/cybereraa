@@ -12,12 +12,16 @@ class RankGiftPolicy
 
     public function viewAny(User $user)
     {
-        return (/*$user->hasAnyPermission(['issue_rank_gift', 'view_any_rank_gift']) ||*/ $user->hasRole('admin'));
+        if ($user->hasPermissionTo('rank_gift.viewAny')) {
+            return true;
+        }
     }
 
     public function view(User $user, RankGift $gift)
     {
-        return ($gift->user_id === $user->id || /*$user->hasAnyPermission(['issue_rank_gift', 'view_any_rank_gift']) ||*/ $user->hasRole('admin'));
+        if (($gift->user_id === $user->id || $user->hasPermissionTo('rank_gift.viewAny'))) {
+            return true;
+        }
     }
 
     public function create(User $user)
@@ -32,7 +36,9 @@ class RankGiftPolicy
 
     public function issue(User $user, RankGift $gift)
     {
-        return $gift->status === 'QUALIFIED' && (/*$user->hasPermissionTo('issue_gift') ||*/ $user->hasRole('admin'));
+        if ($gift->status === 'QUALIFIED' && $user->hasPermissionTo('rank_gift.issue_gift')) {
+            return true;
+        }
     }
 
     public function delete(User $user, RankGift $gift)

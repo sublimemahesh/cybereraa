@@ -15,7 +15,7 @@
             <div class="card">
                 <div class="card-body">
                     @include('backend.admin.tickets.components.filters', compact('filter_category', 'filter_priority', 'filter_status'))
-                    <table id="tickets" class="display" style="min-width: 845px">
+                    <table id="tickets" class="display table-responsive-my">
                         <thead>
                         <tr>
                             <th>ACTIONS</th>

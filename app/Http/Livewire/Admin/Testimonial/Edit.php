@@ -4,11 +4,15 @@ namespace App\Http\Livewire\Admin\Testimonial;
 
 use App\Models\Testimonial;
 use Carbon;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 use Str;
 
 class Edit extends Component
 {
+    use AuthorizesRequests;
+
     public Testimonial $testimonial;
     public $image;
 
@@ -32,9 +36,13 @@ class Edit extends Component
         $this->validateOnly($name);
     }
 
+    /**
+     * @throws AuthorizationException
+     */
     public function save()
     {
         $this->validate();
+        $this->authorize('update', $this->testimonial);
         //  save
         if (!empty($this->image)) {
             $imageName = $this->testimonial->image ?: Str::random(8) . '-' . Carbon::now()->timestamp;

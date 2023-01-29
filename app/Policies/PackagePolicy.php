@@ -12,46 +12,53 @@ class PackagePolicy
 
     public function viewAny(User $user)
     {
-        $role = $user->getRoleNames()->first();
-        return $role === 'admin' || $role === 'super_admin';
+        if ($user->hasPermissionTo('package.viewAny')) {
+            return true;
+        }
     }
 
     public function view(User $user, Package $package)
     {
-        $role = $user->getRoleNames()->first();
-        return $role === 'admin' || $role === 'super_admin';
+        if ($user->hasPermissionTo('package.viewAny')) {
+            return true;
+        }
     }
 
     public function create(User $user)
     {
-        $role = $user->getRoleNames()->first();
-        return $role === 'admin' || $role === 'super_admin';
+        if ($user->hasPermissionTo('package.create')) {
+            return true;
+        }
     }
 
     public function update(User $user, Package $package)
     {
-        $role = $user->getRoleNames()->first();
-        return $role === 'admin' || $role === 'super_admin';
+        if ($user->hasPermissionTo('package.update')) {
+            return true;
+        }
     }
 
     public function delete(User $user, Package $package)
     {
         $package->loadCount('purchasedPackages');
-        $role = $user->getRoleNames()->first();
-        return $package->user_packages_count === 0 && ($role === 'admin' || $role === 'super_admin');
+        if ($package->user_packages_count === 0 && $user->hasPermissionTo('package.delete')) {
+            return true;
+        }
     }
 
     public function restore(User $user, Package $package)
     {
-        $role = $user->getRoleNames()->first();
-        return $role === 'admin' || $role === 'super_admin';
+        if ($user->hasPermissionTo('package.update')) {
+            return true;
+        }
     }
 
     public function forceDelete(User $user, Package $package)
     {
         $package->load('purchasedPackages');
-        $role = $user->getRoleNames()->first();
-        return $package->user_packages_count === 0 && ($role === 'admin' || $role === 'super_admin');
+        if ($package->user_packages_count === 0 && $user->hasPermissionTo('package.delete')) {
+            return true;
+        }
     }
 
 }

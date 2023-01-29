@@ -94,6 +94,7 @@
 
 /*Text*/
 .genealogy .text-title {
+    word-break: break-all;
     text-transform: uppercase;
     margin-top: -12px;
     text-align: center;

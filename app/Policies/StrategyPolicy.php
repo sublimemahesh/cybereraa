@@ -12,12 +12,16 @@ class StrategyPolicy
 
     public function viewAny(User $user)
     {
-        return $user->hasRole(['admin', 'super_admin']) || $user->hasPermissionTo('view_any_strategies');
+        if ($user->hasPermissionTo('strategy.viewAny')) {
+            return true;
+        }
     }
 
     public function view(User $user, Strategy $strategy)
     {
-        return $user->hasRole(['admin', 'super_admin']) || $user->hasPermissionTo('view_strategies');
+        if ($user->hasPermissionTo('strategy.viewAny')) {
+            return true;
+        }
     }
 
     public function create(User $user)
@@ -27,7 +31,9 @@ class StrategyPolicy
 
     public function update(User $user)
     {
-        return $user->hasRole(['admin', 'super_admin']) || $user->hasPermissionTo('update_strategies');
+        if ($user->hasPermissionTo('strategy.update')) {
+            return true;
+        }
     }
 
     public function delete(User $user, Strategy $strategy)

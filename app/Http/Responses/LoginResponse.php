@@ -14,7 +14,7 @@ class LoginResponse implements LoginResponseContract
         // below is the existing response
         // replace this with your own code
         // the user can be located with Auth facade
-        $intended = Redirect::intended(config('fortify.' . Auth::user()->getRoleNames()->first()));
+        $intended = Redirect::intended(config('fortify.' . authUserFolder()));
         return $request->wantsJson()
             ? response()->json(['two_factor' => false, 'intended' => $intended->getTargetUrl()])
             : $intended;

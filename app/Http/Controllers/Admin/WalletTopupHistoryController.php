@@ -10,8 +10,10 @@ use App\Models\Wallet;
 use App\Models\WalletTopupHistory;
 use Auth;
 use DB;
+use Exception;
 use Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Laravel\Fortify\Events\RecoveryCodeReplaced;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Fortify\TwoFactorAuthenticationProvider;
@@ -27,14 +29,16 @@ class WalletTopupHistoryController extends Controller
 
     public function index()
     {
+        abort_if(Gate::denies('wallet.topup'), Response::HTTP_FORBIDDEN);
         return view('backend.admin.users.wallets.topup');
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function history(Request $request)
     {
+        abort_if(Gate::denies('wallet.topup-history.viewAny'), Response::HTTP_FORBIDDEN);
 
         if ($request->wantsJson()) {
 
@@ -76,6 +80,8 @@ class WalletTopupHistoryController extends Controller
      */
     public function topup(Request $request): \Illuminate\Http\JsonResponse
     {
+        abort_if(Gate::denies('wallet.topup'), Response::HTTP_FORBIDDEN);
+
         $sender = Auth::user();
         $validated = Validator::make($request->all(), [
             'receiver' => 'required|exists:users,id',
@@ -165,10 +171,9 @@ class WalletTopupHistoryController extends Controller
 
     public function findUsers($search_text): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
+        abort_if(Gate::denies('wallet.topup'), Response::HTTP_FORBIDDEN);
         $users = User::where('username', 'LIKE', "%{$search_text}%")
-            ->whereDoesntHave('roles', static function ($q) {
-                $q->whereIn('name', ['super_admin', 'admin']);
-            })
+            ->whereRelation('roles', 'name', 'user')
             ->get();
         return Select2UserResource::collection($users);
     }

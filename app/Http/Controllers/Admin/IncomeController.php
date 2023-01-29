@@ -7,6 +7,8 @@ use App\Models\Commission;
 use App\Models\RankBenefit;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
 
 class IncomeController extends Controller
@@ -16,6 +18,8 @@ class IncomeController extends Controller
      */
     public function commission(Request $request)
     {
+        abort_if(Gate::denies('commissions.viewAny'), Response::HTTP_FORBIDDEN);
+
         if ($request->wantsJson()) {
             $earnings = Commission::when(!empty($request->get('user_id')),
                 static function ($query) use ($request) {
@@ -49,6 +53,8 @@ class IncomeController extends Controller
      */
     public function rewards(Request $request)
     {
+        abort_if(Gate::denies('rank_bonus.viewAny'), Response::HTTP_FORBIDDEN);
+
         if ($request->wantsJson()) {
             $earnings = RankBenefit::with('user')
                 ->when(!empty($request->get('user_id')), static function ($query) use ($request) {

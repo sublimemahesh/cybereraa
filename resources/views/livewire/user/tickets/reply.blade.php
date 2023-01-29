@@ -42,53 +42,55 @@
         </div>
         <hr/>
     @endforelse
-    <form wire:submit.prevent="reply" method="POST">
-        @csrf
-        <div class="form-group mb-2">
-            <label for="comment_text">Leave a Reply</label>
-            <textarea wire:model.lazy="reply.reply" class="form-control" id="comment_text" name="reply_body" rows="4" required></textarea>
-            @error('reply.reply')
-            <span class="text-danger mt-2">{{ $message }}</span>
-            @enderror
-        </div>
-
-        <div class="form-group my-2">
-            <label class="control-label" for="attachment">Attach Files</label>
-            <div x-data="{ isUploading: false, progress: 0 }" x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false" x-on:livewire-upload-error="isUploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
-                <!-- File Input -->
-                <input wire:model="attachment" id="attachment" class="form-control" type="file" accept="image/*,application/pdf">
-                <input id="old_attachment" type="hidden" value="{{ $reply->attachment }}">
-                <!-- Progress Bar -->
-                <div x-show="isUploading">
-                    <progress max="100" x-bind:value="progress"></progress>
-                </div>
+    @can('reply', $ticket)
+        <form wire:submit.prevent="reply" method="POST">
+            @csrf
+            <div class="form-group mb-2">
+                <label for="comment_text">Leave a Reply</label>
+                <textarea wire:model.lazy="reply.reply" class="form-control" id="comment_text" name="reply_body" rows="4" required></textarea>
+                @error('reply.reply')
+                <span class="text-danger mt-2">{{ $message }}</span>
+                @enderror
             </div>
-            @error('attachment')
-            <span class="text-danger mt-2">{{ $message }}</span>
-            @enderror
-            @if (!$errors->has('attachment'))
-                @if ($attachment && $attachment->extension() !== 'pdf')
-                    <img class="img-thumbnail mt-2 ml-2" src="{{ $attachment->temporaryUrl() }}" style="width:300px" alt="">
-                @elseif(!$attachment && $reply->attachment)
-                    @php
-                        $imageExtensions = ['jpg', 'jpeg', 'gif', 'png', 'bmp', 'svg'];
-                        $explodeImage = explode('.', $reply->attachment);
-                        $extension = end($explodeImage);
-                    @endphp
-                    @if (in_array($extension, $imageExtensions,true))
-                        <img class="img-thumbnail mt-2" src="{{ storage('supports/tickets/' . $reply->attachment) }}" style="width:300px" alt="">
-                    @else
-                        <b>
-                            Current PDF : <br>
-                            <img src="https://img.icons8.com/fluency/48/000000/pdf-mail.png" alt=""/>
-                        </b>
-                        <a href="{{ storage('supports/tickets/' . $reply->attachment) }}" target="blank">
-                            {{ $reply->attachment }}
-                        </a>
+
+            <div class="form-group my-2">
+                <label class="control-label" for="attachment">Attach Files</label>
+                <div x-data="{ isUploading: false, progress: 0 }" x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false" x-on:livewire-upload-error="isUploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
+                    <!-- File Input -->
+                    <input wire:model="attachment" id="attachment" class="form-control" type="file" accept="image/*,application/pdf">
+                    <input id="old_attachment" type="hidden" value="{{ $reply->attachment }}">
+                    <!-- Progress Bar -->
+                    <div x-show="isUploading">
+                        <progress max="100" x-bind:value="progress"></progress>
+                    </div>
+                </div>
+                @error('attachment')
+                <span class="text-danger mt-2">{{ $message }}</span>
+                @enderror
+                @if (!$errors->has('attachment'))
+                    @if ($attachment && $attachment->extension() !== 'pdf')
+                        <img class="img-thumbnail mt-2 ml-2" src="{{ $attachment->temporaryUrl() }}" style="width:300px" alt="">
+                    @elseif(!$attachment && $reply->attachment)
+                        @php
+                            $imageExtensions = ['jpg', 'jpeg', 'gif', 'png', 'bmp', 'svg'];
+                            $explodeImage = explode('.', $reply->attachment);
+                            $extension = end($explodeImage);
+                        @endphp
+                        @if (in_array($extension, $imageExtensions,true))
+                            <img class="img-thumbnail mt-2" src="{{ storage('supports/tickets/' . $reply->attachment) }}" style="width:300px" alt="">
+                        @else
+                            <b>
+                                Current PDF : <br>
+                                <img src="https://img.icons8.com/fluency/48/000000/pdf-mail.png" alt=""/>
+                            </b>
+                            <a href="{{ storage('supports/tickets/' . $reply->attachment) }}" target="blank">
+                                {{ $reply->attachment }}
+                            </a>
+                        @endif
                     @endif
                 @endif
-            @endif
-        </div>
-        <button type="submit" class="btn btn-dark btn-rounded mt-2">Reply</button>
-    </form>
+            </div>
+            <button type="submit" class="btn btn-dark btn-rounded mt-2">Reply</button>
+        </form>
+    @endcan
 </div>

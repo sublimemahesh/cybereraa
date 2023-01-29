@@ -42,14 +42,16 @@
                         @foreach ($packages as $package)
                             <tr>
                                 <td class="py-2">
-                                    {{-- @can('update', $package) --}}
-                                    <a class="btn btn-xs btn-info sharp" href="{{ route('admin.packages.edit', $package) }}">
-                                        <i class="fa fa-pencil"></i>
-                                    </a>
-                                    <a class="btn btn-xs btn-danger sharp delete-package" data-package="{{ $package->id }}" href="javascript:void(0)">
-                                        <i class="fa fa-trash"></i>
-                                    </a>
-                                    {{-- @endcan --}}
+                                    @can('update', $package)
+                                        <a class="btn btn-xs btn-info sharp" href="{{ route('admin.packages.edit', $package) }}">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                    @endcan
+                                    @can('delete', $package)
+                                        <a class="btn btn-xs btn-danger sharp delete-package" data-package="{{ $package->id }}" href="javascript:void(0)">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    @endcan
                                 </td>
                                 <td>{{ $package->name }}</td>
                                 <td>{{ $package->slug }}</td>

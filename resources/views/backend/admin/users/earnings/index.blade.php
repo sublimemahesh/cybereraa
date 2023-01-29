@@ -16,12 +16,16 @@
 
     <div class="row dark"> {{--! Tailwind css used. if using tailwind plz run npm run dev and add tailwind classes--}}
         <div class="col-sm-12">
-            <button id="calculate-profit" class="mb-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
-                Calculate Profit ({{ date('Y-m-d') }})
-            </button>
-            <button id="calculate-commission" class="mb-3 ml-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
-                Calculate Commission ({{ date('Y-m-d') }})
-            </button>
+            @can('generate_daily_package_earnings')
+                <button id="calculate-profit" class="mb-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
+                    Calculate Profit ({{ date('Y-m-d') }})
+                </button>
+            @endcan
+            @can('generate_daily_commission')
+                <button id="calculate-commission" class="mb-3 ml-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
+                    Calculate Commission ({{ date('Y-m-d') }})
+                </button>
+            @endcan
         </div>
         <div class="col-12">
             <div class="card">
@@ -123,7 +127,7 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table id="earnings"  class="display mb-1 nowrap table-responsive-my" > 
+                        <table id="earnings" class="display mb-1 nowrap table-responsive-my">
                             <thead>
                             <tr>
                                 <th>EARNING TYPE</th>

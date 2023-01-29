@@ -45,7 +45,7 @@ Route::get('test', function () {
 Route::get('payments/binancepay/response', 'Payment\BinancePayController@response');
 Route::get('payments/binancepay/fallback', 'Payment\BinancePayController@fallback');
 
-Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream.auth_session'), 'verified']], function () {
+Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream.auth_session'), 'verified', 'has_any_role']], function () {
 
     Route::withoutMiddleware('mobile_verified')->group(static function () {
         Route::get('verify/mobile', 'MobileVerifyController@index')->name('mobile.verification.notice');
@@ -53,13 +53,41 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::post('verify/mobile', 'MobileVerifyController@verifyPhone');
     });
 
-    Route::group(["prefix" => "super-admin", 'middleware' => ['role:super_admin'], "as" => 'super_admin.'], function () {
-        Route::view('/dashboard', 'backend.super_admin.dashboard')->name('dashboard');
+    Route::group(["prefix" => "super-admin"/*, 'middleware' => ['role:admin|super_admin']*/, 'excluded_middleware' => ['role:user'], "as" => 'super_admin.'], function () {
+        Route::get('dashboard', 'SuperAdmin\DashboardController@index')->name('dashboard');
 
+        ////////////////////////// Permissions  route  /////////////////////
+
+        Route::get('permissions', 'SuperAdmin\PermissionController@index')->name('permissions.index');
+
+        ////////////////////////// Roles route  /////////////////////
+
+        Route::get('roles', 'SuperAdmin\RolesController@index')->name('roles.index');
+        Route::get('roles/create', 'SuperAdmin\RolesController@create')->name('roles.create');
+        Route::post('roles/store', 'SuperAdmin\RolesController@store')->name('roles.store');
+        Route::get('roles/{role}/edit', 'SuperAdmin\RolesController@edit')->name('roles.edit');
+        Route::post('roles/{role}', 'SuperAdmin\RolesController@update')->name('roles.update');
+        Route::delete('roles/{role}', 'SuperAdmin\RolesController@destroy')->name('roles.destroy');
+
+        ////////////////////////// Users route  /////////////////////
+
+        Route::get('users', 'SuperAdmin\UserController@index')->name('users.index');
+        Route::get('users/create', 'SuperAdmin\UserController@create')->name('users.create');
+        Route::post('users/store', 'SuperAdmin\UserController@store')->name('users.store');
+        Route::get('users/{user}/edit', 'SuperAdmin\UserController@edit')->name('users.edit');
+        Route::post('users/{user}', 'SuperAdmin\UserController@update')->name('users.update');
+        Route::delete('users/{user}', 'SuperAdmin\UserController@destroy')->name('users.destroy');
+
+        Route::get('users/{user}/change-password', 'SuperAdmin\UserController@changePassword')->name('users.changePassword');
+        Route::post('users/{user}/save-password', 'SuperAdmin\UserController@savePassword')->name('users.savePassword');
+
+        Route::get('users/{user}/show', 'SuperAdmin\UserController@showPermissions')->name('users.show');
+        Route::get('users/{user}/manage-permission', 'SuperAdmin\UserController@managePermissions')->name('users.manage');
+        Route::post('users/{user}/store-permissions', 'SuperAdmin\UserController@savePermissions')->name('users.store-permissions');
 
     });
 
-    Route::group(["prefix" => "admin", 'middleware' => ['role:admin'], "as" => 'admin.'], function () {
+    Route::group(["prefix" => "admin", 'excluded_middleware' => ['role:user'], "as" => 'admin.'], function () {
         Route::get('dashboard', 'Admin\DashboardController@index')->name('dashboard');
 
         Route::get('users', 'Admin\UserController@index')->name('users.index');
@@ -67,8 +95,8 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::get('users/kycs/{kyc}', 'Admin\KycController@show')->name('users.kycs.show');
         Route::post('users/kyc-documents/{document}/status', 'Admin\KycController@status');
 
-         // Profile
-         Route::get('/users/{user:username}/profile', 'Admin\UserController@profileShow')->name('users.profile.show');
+        // Profile
+        Route::get('/users/{user:username}/profile', 'Admin\UserController@profileShow')->name('users.profile.show');
 
         Route::get('genealogy/{user:username?}', 'Admin\GenealogyController@index')->name('genealogy');
 
@@ -101,7 +129,6 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
 
         //Currency
         Route::resource('currencies', 'Admin\CurrencyController')->except('create', 'show');
-
 
 
         Route::group(['prefix' => 'reports'], function () {

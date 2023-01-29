@@ -12,24 +12,25 @@ class KycPolicy
 
     public function viewAny(User $user)
     {
-        return $user->getRoleNames()->first() === "user";
+        return $user->hasRole("user");
     }
 
     public function view(User $user, Kyc $kyc)
     {
-        return $user->getRoleNames()->first() === "admin" ||
-            ($user->getRoleNames()->first() === "user" && $kyc->profile_id === $user->profile->id && $kyc->status !== "accepted");
+        if ($user->hasPermissionTo('kyc.viewAny') || ($user->hasRole("user") && $kyc->profile_id === $user->profile->id && $kyc->status !== "accepted")) {
+            return true;
+        }
     }
 
     public function create(User $user, string $kycType): bool
     {
-        $kyc = Kyc::where('type', $kycType)->whereRelation('profile.user', 'id', $user->id);
-        return $user->getRoleNames()->first() === "user" && !$kyc->exists();
+        $kyc = Kyc::where('type', $kycType)->whereRelation('profile.user', 'id', $user->id)->exists();
+        return $user->hasRole("user") && !$kyc;
     }
 
     public function update(User $user, Kyc $kyc)
     {
-        return $user->getRoleNames()->first() === "user" && $kyc->profile_id === $user->profile->id && $kyc->status !== "accepted";
+        return $user->hasRole("user") && $kyc->profile_id === $user->profile->id && $kyc->status !== "accepted";
     }
 
     public function delete(User $user, Kyc $kyc)

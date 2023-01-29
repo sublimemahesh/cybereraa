@@ -3,8 +3,11 @@
 namespace App\Providers;
 
 use App\Models\Team;
+use App\Models\User;
 use App\Policies\TeamPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
+use Spatie\Permission\Models\Role;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -26,6 +29,16 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('default.roles.manage', function ($user, Role $role) {
+            return !in_array($role->name, ['user', 'admin', 'super_admin']);
+        });
+
+        Gate::define('default.roles.permissions', function ($user, Role $role) {
+            return $role->name !== 'user';
+        });
+
+        Gate::after(function (User $user, $ability) {
+            return $user->hasRole('super_admin', 'web');
+        });
     }
 }

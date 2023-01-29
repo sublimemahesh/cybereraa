@@ -46,7 +46,7 @@
                     <ul class="unstyled user">
                         @auth
                             <li class="sign-in" id='log-btn'>
-                                <a href="{{ route(Auth::user()->getRoleNames()->first() . '.dashboard') }}"
+                                <a href="{{ route(authUserFolder() . '.dashboard') }}"
                                     class="btn btn-primary  header-btn">
                                     {{-- <i class="fa fa-tachometer" aria-hidden="true"></i> --}}
                                     <i class="fas fa-tachometer-alt"> </i>
