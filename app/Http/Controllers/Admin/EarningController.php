@@ -7,6 +7,8 @@ use App\Models\Earning;
 use Artisan;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
 
 class EarningController extends Controller
@@ -16,6 +18,8 @@ class EarningController extends Controller
      */
     public function index(Request $request)
     {
+        abort_if(Gate::denies('earnings.viewAny'), Response::HTTP_FORBIDDEN);
+
         if ($request->wantsJson()) {
             $earnings = Earning::filter()
                 ->with('earnable', 'user.ranks')
@@ -38,6 +42,8 @@ class EarningController extends Controller
 
     public function calculateProfit(): \Illuminate\Http\JsonResponse
     {
+        abort_if(Gate::denies('generate_daily_package_earnings'), Response::HTTP_FORBIDDEN);
+
         //$this->authorize('calculate_profit');
         $res = Artisan::call('calculate:profit');
         $json['status'] = $res === 0;
@@ -49,8 +55,37 @@ class EarningController extends Controller
 
     public function calculateCommission(): \Illuminate\Http\JsonResponse
     {
+        abort_if(Gate::denies('generate_daily_commission'), Response::HTTP_FORBIDDEN);
+
         //$this->authorize('calculate_profit');
         $res = Artisan::call('calculate:commission');
+        $json['status'] = $res === 0;
+        $json['message'] = Artisan::output();
+        $json['icon'] = $res === 0 ? 'success' : 'error'; // warning | info | question | success | error
+        $code = $res === 0 ? 200 : 422;
+        return response()->json($json, $code);
+    }
+
+    public function calculateRankBonusEarning(): \Illuminate\Http\JsonResponse
+    {
+        abort_if(Gate::denies('generate_daily_rank_bonus'), Response::HTTP_FORBIDDEN);
+
+        //$this->authorize('calculate_profit');
+        $res = Artisan::call('calculate:rank-benefit-earning');
+        $json['status'] = $res === 0;
+        $json['message'] = Artisan::output();
+        $json['icon'] = $res === 0 ? 'success' : 'error'; // warning | info | question | success | error
+        $code = $res === 0 ? 200 : 422;
+        return response()->json($json, $code);
+    }
+
+
+    public function issueMonthlyRankBonuses(): \Illuminate\Http\JsonResponse
+    {
+        abort_if(Gate::denies('generate_monthly_rank_bonus'), Response::HTTP_FORBIDDEN);
+
+        //$this->authorize('calculate_profit');
+        $res = Artisan::call('calculate:rank-bonus');
         $json['status'] = $res === 0;
         $json['message'] = Artisan::output();
         $json['icon'] = $res === 0 ? 'success' : 'error'; // warning | info | question | success | error

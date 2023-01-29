@@ -1,18 +1,20 @@
 <x-backend.layouts.app>
     @section('title', 'Pages | CMS')
-    @section('header-title', 'Pages | CMS' )
+    @section('header-title', 'Pages | CMS')
     @section('plugin-styles')
         <!-- Datatable -->
-        <link href="{{asset('assets/backend/vendor/datatables/css/jquery.dataTables.min.css')}}" rel="stylesheet">
+        <link href="{{ asset('assets/backend/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
     @endsection
 
     @section('breadcrumb-items')
-        @if(!is_null($parent->id))
+        @if (!is_null($parent->id))
             <li class="breadcrumb-item">
                 <a href="{{ route('admin.pages.index') }}">Pages</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="{{ URL::signedRoute('admin.sections.index', ['page' => $parent->slug]) }}">{{ $parent->title }} Page</a>
+                <a href="{{ URL::signedRoute('admin.sections.index', ['page' => $parent->slug]) }}">{{ $parent->title }}
+                    Page
+                </a>
             </li>
         @endif
     @endsection
@@ -27,41 +29,52 @@
         </div>
         <div class="col-sm-12">
             <div class="card">
-                <div class="card-body table-responsive">
-                    <table class="table table-striped table-bordered dt-responsive nowrap" id="tickets">
-                        <thead>
-                        <tr>
-                            <th>ACTIONS</th>
-                            <th>TITLE</th>
-                            <th>SLUG</th>
-                            @if(is_null($parent->id))
-                                <th>CHILDREN COUNT</th>
-                            @endif
-                            <th>LAST MODIFIED</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach ($pages as $page)
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered dt-responsive nowrap" id="tickets">
+                            <thead>
                             <tr>
-                                <td class="py-2">
-                                    {{-- @can('update', $page) --}}
-                                    <a class="btn btn-xxs btn-info" href="{{ route('admin.pages.edit', $page) }}">Edit</a>
-                                    @if(is_null($page->parent_id))
-                                        <a class="btn btn-xxs btn-success" href="{{ URL::signedRoute('admin.sections.index', ['page' => $page->slug]) }}">Section</a>
-                                    @endif
-                                    <a class="btn btn-xxs btn-danger delete-page" data-page="{{ $page->id }}" href="javascript:void(0)">Delete</a>
-                                    {{-- @endcan --}}
-                                </td>
-                                <td>{{ $page->title }}</td>
-                                <td>{{ $page->slug }}</td>
-                                @if(is_null($parent->id))
-                                    <td>{{ $page->children_count }}</td>
+                                <th>ACTIONS</th>
+                                <th>TITLE</th>
+                                <th>SLUG</th>
+                                @if ($parent->id === null)
+                                    <th>CHILDREN COUNT</th>
                                 @endif
-                                <td>{{ $page->updated_at }}</td>
+                                <th>LAST MODIFIED</th>
                             </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            @foreach ($pages as $page)
+                                <tr>
+                                    <td class="py-2">
+                                        @can('update', $page)
+                                            <a class="btn btn-xxs btn-info" href="{{ route('admin.pages.edit', $page) }}">Edit
+                                            </a>
+                                        @endcan
+                                        @can('viewAny', $page)
+                                            @if ($page->parent_id === null)
+                                                <a class="btn btn-xxs btn-success" href="{{ URL::signedRoute('admin.sections.index', ['page' => $page->slug]) }}">
+                                                    Section
+                                                </a>
+                                            @endif
+                                        @endcan
+                                        @can('delete', $page)
+                                            <a class="btn btn-xxs btn-danger delete-page" data-page="{{ $page->id }}" href="javascript:void(0)">
+                                                Delete
+                                            </a>
+                                        @endcan
+                                    </td>
+                                    <td>{{ $page->title }}</td>
+                                    <td>{{ $page->slug }}</td>
+                                    @if ($parent->id === null)
+                                        <td>{{ $page->children_count }}</td>
+                                    @endif
+                                    <td>{{ $page->updated_at }}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -88,7 +101,8 @@
                         axios.delete(`${APP_URL}/admin/pages/${page_id}`)
                             .then(response => {
                                 Toast.fire({
-                                    icon: response.data.icon, title: response.data.message,
+                                    icon: response.data.icon,
+                                    title: response.data.message,
                                 }).then(res => {
                                     if (response.data.status) {
                                         location.reload();
@@ -107,4 +121,3 @@
         </script>
     @endpush
 </x-backend.layouts.app>
-

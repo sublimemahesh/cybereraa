@@ -12,45 +12,83 @@ class SupportTicketPolicy
 
     public function viewAny(User $user)
     {
-        return $user->getRoleNames()->first() === 'admin';
+        if ($user->hasPermissionTo('support_ticket.viewAny')) {
+            return true;
+        }
     }
 
     public function lowPriority(User $user, SupportTicket $ticket)
     {
-        return $ticket->support_ticket_priority_id !== 1 && $user->getRoleNames()->first() === 'admin';
+        if ($ticket->support_ticket_priority_id === 1) {
+            return false;
+        }
+
+        if ($user->hasPermissionTo('support_ticket.lowPriority')) {
+            return true;
+        }
     }
 
     public function mediumPriority(User $user, SupportTicket $ticket)
     {
-        return $ticket->support_ticket_priority_id !== 2 && $user->getRoleNames()->first() === 'admin';
+        if ($ticket->support_ticket_priority_id === 2) {
+            return false;
+        }
+        if ($user->hasPermissionTo('support_ticket.mediumPriority')) {
+            return true;
+        }
     }
 
     public function highPriority(User $user, SupportTicket $ticket)
     {
-        return $ticket->support_ticket_priority_id !== 3 && $user->getRoleNames()->first() === 'admin';
+        if ($ticket->support_ticket_priority_id === 3) {
+            return false;
+        }
+        if ($user->hasPermissionTo('support_ticket.highPriority')) {
+            return true;
+        }
+
     }
 
     public function close(User $user, SupportTicket $ticket)
     {
-        return $ticket->support_ticket_status_id !== 3 &&
-            ($user->getRoleNames()->first() === 'admin' || ($ticket->user_id === $user->id));
+        if ($ticket->support_ticket_status_id === 3) {
+            return false;
+        }
+        if ($ticket->user_id === $user->id || $user->hasPermissionTo('support_ticket.close')) {
+            return true;
+        }
     }
 
     public function reopen(User $user, SupportTicket $ticket)
     {
-        return $ticket->support_ticket_status_id !== 1 &&
-            ($user->getRoleNames()->first() === 'admin' || ($ticket->user_id === $user->id));
+        if ($ticket->support_ticket_status_id === 1) {
+            return false;
+        }
+        if ($ticket->user_id === $user->id || $user->hasPermissionTo('support_ticket.reopen')) {
+            return true;
+        }
+    }
+
+    public function reply(User $user, SupportTicket $ticket)
+    {
+
+        if ($ticket->user_id === $user->id || $user->hasPermissionTo('support_ticket.reply')) {
+            return true;
+        }
     }
 
     public function view(User $user, SupportTicket $ticket)
     {
-        return $user->getRoleNames()->first() === 'admin' || ($ticket->user_id === $user->id);
+        if ($ticket->user_id === $user->id || $user->hasPermissionTo('support_ticket.viewAny')) {
+            return true;
+        }
+
     }
 
     public function create(User $user)
     {
         $allowed = ['user'];
-        return in_array($user->getRoleNames()->first(), $allowed, true);
+        return $user->hasRole($allowed);
     }
 
     public function update(User $user, SupportTicket $ticket)
@@ -65,11 +103,11 @@ class SupportTicketPolicy
 
     public function restore(User $user, SupportTicket $ticket)
     {
-        return $ticket->user_id === $user->id || $user->getRoleNames()->first() === 'super_admin';
+        return $ticket->user_id === $user->id || $user->hasRole('super_admin');
     }
 
     public function forceDelete(User $user, SupportTicket $ticket)
     {
-        return $user->getRoleNames()->first() === 'super_admin';
+        return $user->hasRole('super_admin');
     }
 }

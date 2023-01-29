@@ -6,6 +6,7 @@ use App\Models\Country;
 use App\Models\Currency;
 use App\Models\PurchasedPackage;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -29,6 +30,17 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        View::composer('backend.layouts.app', function ($view) {
+            $roles = Auth::user()->getRoleNames()->toArray();
+            if (in_array('user', $roles, true)) {
+                $folder = 'user';
+            } elseif (in_array('super_admin', $roles, true)) {
+                $folder = 'super_admin';
+            } else {
+                $folder = 'admin';
+            }
+            $view->with('folder', $folder);
+        });
 
         View::composer('frontend.layouts.header', function ($view) {
             $currency = Currency::all();

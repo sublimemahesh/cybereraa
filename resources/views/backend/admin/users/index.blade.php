@@ -1,6 +1,6 @@
 <x-backend.layouts.app>
-    @section('title', 'My KYC')
-    @section('header-title', 'My KYC' )
+    @section('title', 'My KYC | Users')
+    @section('header-title', 'My KYC | Users' )
     @section('plugin-styles')
         <!-- Datatable -->
         <link href="{{asset('assets/backend/vendor/datatables/css/jquery.dataTables.min.css')}}" rel="stylesheet">
@@ -18,7 +18,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Profile Datatable</h4>
+                    <h4 class="card-title">Users</h4>
                 </div>
                 <div class="card-body">
                     <div class="w-full my-3 dark:bg-gray-800">

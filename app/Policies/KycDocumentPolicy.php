@@ -13,19 +13,19 @@ class KycDocumentPolicy
 
     public function viewAny(User $user, Kyc $kyc)
     {
-        return $user->getRoleNames()->first() === "user" && $kyc->status !== "accepted";
+        if ($kyc->status !== "accepted" && $user->hasRole("user")) {
+            return true;
+        }
     }
 
     public function approve(User $user, KycDocument $document)
     {
-        return ($user->getRoleNames()->first() === "admin" || $user->getRoleNames()->first() === "super_admin") &&
-            ($document->status === "pending" || $document->status === "rejected");
+        return ($document->status === "pending" || $document->status === "rejected") && ($user->hasPermissionTo('kyc.approve'));
     }
 
     public function reject(User $user, KycDocument $document)
     {
-        return ($user->getRoleNames()->first() === "admin" || $user->getRoleNames()->first() === "super_admin") &&
-            ($document->status === "pending" || $document->status === "accepted");
+        return ($document->status === "pending" || $document->status === "accepted") && $user->hasPermissionTo('kyc.reject');
     }
 
     /**
@@ -35,25 +35,23 @@ class KycDocumentPolicy
      */
     public function view(User $user, KycDocument $document)
     {
-        return (
-                $user->getRoleNames()->first() === "admin" ||
-                ($user->getRoleNames()->first() === "user" && $document->kyc->profile_id === $user->profile->id && $document->status !== "accepted")
-            ) && $document->status !== "required";
+        if ($document->status !== "required" && ($user->hasPermissionTo('kyc.viewAny') ||
+                ($user->hasRole("user") && $document->kyc->profile_id === $user->profile->id && $document->status !== "accepted")
+            )) {
+            return true;
+        }
+        return $document->status !== "required" && $user->hasRole('super_admin');
     }
 
     public function create(User $user, Kyc $kyc, $docType)
     {
-        $document = KycDocument::where('type', $docType)->where('kyc_id', $kyc->id);
-        return $user->getRoleNames()->first() === "user" &&
-            KYC::REQUIRED_DOCUMENTS > $kyc->documents_count &&
-            !$document->exists();
+        $document = KycDocument::where('type', $docType)->where('kyc_id', $kyc->id)->exists();
+        return KYC::REQUIRED_DOCUMENTS > $kyc->documents_count && !$document && $user->hasRole("user");
     }
 
     public function update(User $user, KycDocument $document)
     {
-        return $user->getRoleNames()->first() === "user" &&
-            $document->kyc->profile_id === $user->profile->id &&
-            $document->status !== "accepted";
+        return $document->kyc->profile_id === $user->profile->id && $document->status !== "accepted" && $user->hasRole("user");
     }
 
     public function delete(User $user, KycDocument $document)
@@ -63,11 +61,11 @@ class KycDocumentPolicy
 
     public function restore(User $user, KycDocument $document)
     {
-        return $user->getRoleNames()->first() === "super_admin";
+        return $user->hasRole("super_admin");
     }
 
     public function forceDelete(User $user, KycDocument $document)
     {
-        return $user->getRoleNames()->first() === "super_admin";
+        return $user->hasRole("super_admin");
     }
 }

@@ -8,18 +8,22 @@ use App\Models\KycDocument;
 use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpFoundation\Response;
 use Validator;
 
 class KycController extends Controller
 {
     public function index(Request $request, User $user)
     {
+        abort_if(Gate::denies('kyc.viewAny'), Response::HTTP_FORBIDDEN);
         $kycs = $user->profile->kycs()->withCount(['documents' => fn($q) => $q->whereNotNull('document_name')])->get();
         return view('backend.admin.users.kyc.index', compact('user', 'kycs'));
     }
 
     public function show(Kyc $kyc)
     {
+        abort_if(Gate::denies('kyc.viewAny'), Response::HTTP_FORBIDDEN);
         return view('backend.admin.users.kyc.show', compact('kyc'));
     }
 

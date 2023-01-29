@@ -25,13 +25,13 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12 table-responsive">
-                            <table class="display mb-1 nowrap" style="table-layout:fixed;width:100%" id="testimonial-table">
+                            <table class="display mb-1 nowrap table-responsive-my" id="testimonial-table">
                                 <thead>
                                 <tr>
                                     <th>No</th>
                                     <th>Name</th>
                                     <th>Title</th>
-                                    <th style="max-width: 200px;">Comment</th> 
+                                    <th style="max-width: 200px;">Comment</th>
                                     <th>Status</th>
                                     <th style="max-width: 400px;" class="text-center">Actions</th>
                                 </tr>
@@ -42,7 +42,7 @@
                                         <td>{{ $testimonial->id }}</td>
                                         <td>{{ $testimonial->name }}</td>
                                         <td>{{ $testimonial->title }}</td>
-                                        <td>{{ $testimonial->comment }} </td>
+                                        <td>{{ Str::limit($testimonial->comment, 30) }} </td>
                                         <td id="testimonial-status-{{ $testimonial->id }}" class="text-uppercase">
                                             @if ($testimonial->is_active)
                                                 Active
@@ -51,12 +51,16 @@
                                             @endif
                                         </td>
                                         <td class="text-center" id="testimonial-action-{{ $testimonial->id }}">
-                                            <a class="btn btn-xs sharp btn-primary" href="{{ route('admin.testimonials.edit', $testimonial) }}">
-                                                <i class="fa fa-pencil"> </i>
-                                            </a>
-                                            <a class="btn btn-xs sharp btn-danger delete-testimonial" href="javascript:void(0)" data-testimonial="{{ $testimonial->id }}" id="testimonial-delete-{{ $testimonial->id }}">
-                                                <i class="fa fa-trash-alt"> </i>
-                                            </a>
+                                            @can('update',$testimonial)
+                                                <a class="btn btn-xs sharp btn-primary" href="{{ route('admin.testimonials.edit', $testimonial) }}">
+                                                    <i class="fa fa-pencil"> </i>
+                                                </a>
+                                            @endcan
+                                            @can('delete',$testimonial)
+                                                <a class="btn btn-xs sharp btn-danger delete-testimonial" href="javascript:void(0)" data-testimonial="{{ $testimonial->id }}" id="testimonial-delete-{{ $testimonial->id }}">
+                                                    <i class="fa fa-trash-alt"> </i>
+                                                </a>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @endforeach

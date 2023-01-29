@@ -73,7 +73,7 @@
 
         @include('backend.layouts.header')
 
-        @include('backend.' .Auth::user()->getRoleNames()->first() .'.sidebar')
+        @include('backend.' . $folder .'.sidebar')
 
         <!--********************************** Content body start ***********************************-->
         <div class="content-body">
@@ -86,7 +86,7 @@
                             <a href="{{ route('/') }}"><i class="material-icons">home</i></a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{ !request()->is('*/dashboard') ? route(Auth::user()->getRoleNames()->first() . '.dashboard') : 'javascript:void(0)' }}">Dashboard</a>
+                            <a href="{{ !request()->is('*/dashboard') ? route($folder . '.dashboard') : 'javascript:void(0)' }}">Dashboard</a>
                         </li>
                         @yield('breadcrumb-items')
                     </ol>

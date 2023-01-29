@@ -37,9 +37,12 @@ class StrategyController extends Controller
 
     /**
      * @throws JsonException
+     * @throws AuthorizationException
      */
     public function rankLevel()
     {
+        $this->authorize('viewAny', Strategy::class);
+
         $strategies = Strategy::whereIn('name', ['rank_level_count', 'rank_bonus_levels', 'rank_gift_levels', 'rank_package_requirement'])->get();
 
         $rank_level_count = $strategies->where('name', 'rank_level_count')->first(null, new Strategy(['value' => 7]));
@@ -58,9 +61,12 @@ class StrategyController extends Controller
 
     /**
      * @throws JsonException
+     * @throws AuthorizationException
      */
     public function commissions()
     {
+        $this->authorize('viewAny', Strategy::class);
+
         $strategies = Strategy::whereIn('name', ['commission_level_count', 'commissions', 'rank_gift', 'rank_bonus'])->get();
 
         $commission_level_count = $strategies->where('name', 'commission_level_count')->first(null, new Strategy(['value' => 7]));
@@ -76,9 +82,12 @@ class StrategyController extends Controller
 
     /**
      * @throws JsonException
+     * @throws AuthorizationException
      */
     public function payablePercentage()
     {
+        $this->authorize('viewAny', Strategy::class);
+
         $payable_percentages = Strategy::where('name', 'payable_percentages')->firstOr(fn() => new Strategy(['value' => '{"direct":0.332,"indirect":0.332,"rank_bonus":0.332}']));
         $payable_percentages = json_decode($payable_percentages->value, false, 512, JSON_THROW_ON_ERROR);
 

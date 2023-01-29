@@ -33,35 +33,39 @@
 
     <hr class="py-2">
     <div class="table-responsive">
-    <table class="table table-striped table-bordered dt-responsive nowrap display" id="tickets" style="min-width: 845px">
-        <thead>
-        <tr>
-            <th>ACTIONS</th>
-            <th>NAME</th>
-            <th>COLOR</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach ($categories as $category)
+        <table class="table table-striped table-bordered dt-responsive nowrap display" id="tickets" style="min-width: 845px">
+            <thead>
             <tr>
-                <td>
-                    {{-- @can('update', $category) --}}
-                    <a class="btn btn-xs btn-info" href="{{ route('admin.support.tickets.category.edit', $category) }}">
-                        Edit
-                    </a>
-                    <a class="btn btn-xs btn-danger" wire:click.prevent="confirmRequest({{ $category->id }})" href="javascript:void(0)">
-                        Delete
-                    </a>
-                    {{-- @endcan --}}
-                </td>
-                <td>{{ $category->name }}</td>
-                <td><span class="badge" style="background-color:{{ $category->color }}">{{ $category->color }}</span>
-                </td>
+                <th>ACTIONS</th>
+                <th>NAME</th>
+                <th>COLOR</th>
             </tr>
-        @endforeach
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+            @foreach ($categories as $category)
+                <tr>
+                    <td>
+                        @can('support_ticket.category.update')
+                            <a class="btn btn-xs btn-info" href="{{ route('admin.support.tickets.category.edit', $category) }}">
+                                Edit
+                            </a>
+                        @endcan
+
+                        @can('support_ticket.category.delete')
+                            <a class="btn btn-xs btn-danger" wire:click.prevent="confirmRequest({{ $category->id }})" href="javascript:void(0)">
+                                Delete
+                            </a>
+                        @endcan
+                    </td>
+                    <td>{{ $category->name }}</td>
+                    <td>
+                        <span class="badge" style="background-color:{{ $category->color }}">{{ $category->color }}</span>
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
     <div x-data x-init="@this.on('showConfirmation', (category) => {
        Swal.fire({
            title: 'Are you sure?',

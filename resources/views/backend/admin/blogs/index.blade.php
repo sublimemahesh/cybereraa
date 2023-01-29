@@ -1,6 +1,6 @@
 <x-backend.layouts.app>
     @section('title', 'Blogs | CMS')
-    @section('header-title', 'Blogs | CMS' ) 
+    @section('header-title', 'Blogs | CMS' )
     @section('plugin-styles')
         <!-- Datatable -->
         <link href="{{asset('assets/backend/vendor/datatables/css/jquery.dataTables.min.css')}}" rel="stylesheet">
@@ -20,32 +20,36 @@
         </div>
         <div class="col-sm-12">
             <div class="card">
-                <div class="card-body table-responsive">
-                    <table class="table table-striped table-bordered dt-responsive nowrap" id="tickets">
-                        <thead>
-                        <tr>
-                            <th>ACTIONS</th>
-                            <th>TITLE</th>
-                            <th>SLUG</th>
-                            <th>LAST MODIFIED</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach ($blogs as $blog)
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered dt-responsive nowrap" id="tickets">
+                            <thead>
                             <tr>
-                                <td class="py-2">
-                                    {{-- @can('update', $blog) --}}
-                                    <a class="btn btn-xxs btn-info" href="{{ route('admin.blogs.edit', $blog) }}">Edit</a>
-                                    <a class="btn btn-xxs btn-danger delete-blog" data-blog="{{ $blog->id }}" href="javascript:void(0)">Delete</a>
-                                    {{-- @endcan --}}
-                                </td>
-                                <td>{{ $blog->title }}</td>
-                                <td>{{ $blog->slug }}</td>
-                                <td>{{ $blog->updated_at }}</td>
+                                <th>ACTIONS</th>
+                                <th>TITLE</th>
+                                <th>SLUG</th>
+                                <th>LAST MODIFIED</th>
                             </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            @foreach ($blogs as $blog)
+                                <tr>
+                                    <td class="py-2">
+                                        @can('update', $blog)
+                                            <a class="btn btn-xxs btn-info" href="{{ route('admin.blogs.edit', $blog) }}">Edit</a>
+                                        @endcan
+                                        @can('delete', $blog)
+                                            <a class="btn btn-xxs btn-danger delete-blog" data-blog="{{ $blog->id }}" href="javascript:void(0)">Delete</a>
+                                        @endcan
+                                    </td>
+                                    <td>{{ $blog->title }}</td>
+                                    <td>{{ $blog->slug }}</td>
+                                    <td>{{ $blog->updated_at }}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

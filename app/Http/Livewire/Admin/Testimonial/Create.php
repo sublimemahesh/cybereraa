@@ -5,11 +5,14 @@ namespace App\Http\Livewire\Admin\Testimonial;
 use App\Models\Testimonial;
 use Auth;
 use Carbon;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 use Str;
 
 class Create extends Component
 {
+    use AuthorizesRequests;
+
     public Testimonial $testimonial;
     public $image;
 
@@ -41,6 +44,7 @@ class Create extends Component
     public function save()
     {
         $this->validate();
+        $this->authorize('create', $this->testimonial);
         //  save
         $this->testimonial->user_id = Auth::user()->id;
 

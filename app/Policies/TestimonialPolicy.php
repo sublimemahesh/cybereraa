@@ -12,7 +12,9 @@ class TestimonialPolicy
 
     public function viewAny(User $user)
     {
-        return $user->hasAnyRole(["admin", 'super_admin']);
+        if ($user->hasPermissionTo('testimonial.viewAny')) {
+            return true;
+        }
     }
 
     public function view(User $user, Testimonial $testimonial)
@@ -22,31 +24,44 @@ class TestimonialPolicy
 
     public function create(User $user)
     {
-        return true;
+        if ($user->hasRole('user') || $user->hasPermissionTo('testimonial.create')) {
+            return true;
+        }
     }
 
     public function update(User $user, Testimonial $testimonial)
     {
-        return $user->hasAnyRole(["admin", 'super_admin']) || $user->id === $testimonial->user_id;
+        if ($user->id === $testimonial->user_id || $user->hasPermissionTo('testimonial.update')) {
+            return true;
+        }
     }
 
     public function publish(User $user, Testimonial $testimonial)
     {
-        return $user->hasAnyRole(["admin", 'super_admin']);
+        if ($user->hasPermissionTo('testimonial.publish')) {
+            return true;
+        }
+
     }
 
     public function delete(User $user, Testimonial $testimonial)
     {
-        return $user->hasAnyRole(["admin", 'super_admin']) || $user->id === $testimonial->user_id;
+        if ($user->id === $testimonial->user_id || $user->hasPermissionTo('testimonial.delete')) {
+            return true;
+        }
     }
 
     public function restore(User $user, Testimonial $testimonial)
     {
-        return $user->hasAnyRole(["admin", 'super_admin']) || $user->id === $testimonial->user_id;
+        if ($user->id === $testimonial->user_id || $user->hasPermissionTo('testimonial.update')) {
+            return true;
+        }
     }
 
     public function forceDelete(User $user, Testimonial $testimonial)
     {
-        return $user->hasAnyRole(["admin", 'super_admin']) || $user->id === $testimonial->user_id;
+        if ($user->id === $testimonial->user_id || $user->hasPermissionTo('testimonial.delete')) {
+            return true;
+        }
     }
 }

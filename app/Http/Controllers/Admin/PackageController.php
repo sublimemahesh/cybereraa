@@ -101,10 +101,10 @@ class PackageController extends Controller
         return response()->json($json);
     }
 
-    public function buypackage()
+    /*public function buypackage()
     {
         $packages = Package::activePackages()->get();
         return view('backend.admin.packages.buy_package', compact('packages'));
-    }
+    }*/
 
 }

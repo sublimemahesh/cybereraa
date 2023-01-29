@@ -4,6 +4,9 @@ namespace App\Http\Livewire\Admin\Pages;
 
 use App\Models\Page;
 use Carbon\Carbon;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Storage;
@@ -11,6 +14,7 @@ use Storage;
 class Save extends Component
 {
     use WithFileUploads;
+    use AuthorizesRequests;
 
     public Page $parent;
 
@@ -18,12 +22,15 @@ class Save extends Component
 
     public $image;
 
-    protected $rules = [
-        'page.title' => 'required',
-        'image' => 'sometimes|image',
-        'page.content' => 'required',
-        'page.parent_id' => 'sometimes'
-    ];
+    protected function rules()
+    {
+        return [
+            'page.title' => 'required',
+            'image' => [Rule::requiredIf($this->page->image === null), 'nullable', 'image'],
+            'page.content' => 'required',
+            'page.parent_id' => 'sometimes'
+        ];
+    }
 
     public $image_config = [
         'image_ratio_crop' => 'C',
@@ -44,9 +51,17 @@ class Save extends Component
         $this->validateOnly($name);
     }
 
+    /**
+     * @throws AuthorizationException
+     */
     public function save()
     {
         $this->validate();
+        if ($this->page->id === null) {
+            $this->authorize('create', $this->page);
+        } else {
+            $this->authorize('update', $this->page);
+        }
 
         if (!empty($this->image)) {
             $image_name = $this->page->replicate()->slug . "-" . Carbon::now()->timestamp . '.' . $this->image->extension();
@@ -56,12 +71,12 @@ class Save extends Component
             $this->image->storeAs('pages', $image_name);
             $this->page->image = $image_name;
         }
- 
+
         $this->page->save();
 
         session()->flash('message', 'Page has been created successfully!');
         //  cleanup
-        if (!is_null($this->parent->id)) {
+        if ($this->parent->id !== null) {
             redirect()->signedRoute('admin.sections.index', ['page' => $this->parent->slug]);
         } else {
             redirect()->route('admin.pages.index');

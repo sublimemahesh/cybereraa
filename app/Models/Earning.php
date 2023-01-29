@@ -60,4 +60,14 @@ class Earning extends Model
                 ->whereBetween('created_at', [$firstDayOfMonth, $lastDayOfMonth]);
         });
     }
+
+    public function scopeCurrentMonthForUser(Builder $query, User $user): Builder
+    {
+        return $query->when($user->id !== null, static function (Builder $query) use ($user) {
+            $firstDayOfMonth = Carbon::now()->startOfMonth()->format('Y-m-d');
+            $lastDayOfMonth = Carbon::now()->endOfMonth()->format('Y-m-d');
+            $query->where('user_id', $user->id)
+                ->whereBetween('created_at', [$firstDayOfMonth, $lastDayOfMonth]);
+        });
+    }
 }

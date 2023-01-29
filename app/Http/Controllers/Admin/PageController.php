@@ -4,11 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Page;
-use Auth;
 use Storage;
 
 class PageController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Page::class, 'page');
+    }
+
     public function index()
     {
         $parent = new Page;
@@ -24,12 +28,11 @@ class PageController extends Controller
 
     public function destroy(Page $page)
     {
-        $role = Auth::user()->getRoleNames()->first();
         $page->loadCount('children');
-        if ($role !== 'admin' || $page->children_count > 0) {
+        if ($page->children_count > 0) {
             $json['status'] = false;
             $json['code'] = '403';
-            $json['message'] = 'Access denied';
+            $json['message'] = 'Please delete sub pages first!';
             $json['icon'] = 'error';
             return response()->json($json, 403);
         }

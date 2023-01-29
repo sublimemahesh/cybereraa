@@ -16,7 +16,9 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\PermissionRegistrar;
 use Spatie\Permission\Traits\HasRoles;
+use Spatie\Permission\Traits\RefreshesPermissionCache;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 use Throwable;
 use URL;
@@ -183,25 +185,25 @@ class User extends Authenticatable implements MustVerifyEmail
     public static function findAvailableSubLevel($nodeId)
     {
         return DB::selectOne("
-                WITH RECURSIVE ancestor_nodes AS 
+                WITH RECURSIVE ancestor_nodes AS
                 (
                     (SELECT *, 1 as path FROM users WHERE id = :node_id)
                     UNION ALL
                     (SELECT n.*, an.path + 1 as path FROM users n INNER JOIN ancestor_nodes an ON an.id = n.parent_id)
-                ) 
-                
-                SELECT 
-                    cte_an.id, 
+                )
+
+                SELECT
+                    cte_an.id,
                     cte_an.path,
-                    cte_an.parent_id, 
+                    cte_an.parent_id,
                     (SELECT `position` FROM users WHERE id = cte_an.parent_id) AS parent_node_position,
-                    cte_an.`position`, 
+                    cte_an.`position`,
                     (SELECT COUNT(*) FROM users WHERE parent_id = cte_an.id) AS children_count
-                FROM 
+                FROM
                     ancestor_nodes cte_an
-                WHERE 
-                    (SELECT COUNT(*) FROM users WHERE parent_id = cte_an.id) < 5 
-                ORDER BY  
+                WHERE
+                    (SELECT COUNT(*) FROM users WHERE parent_id = cte_an.id) < 5
+                ORDER BY
                     path ASC,
                     parent_node_position  ASC ,
                     cte_an.`parent_id` ASC ,
@@ -301,13 +303,13 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public static function upgradeGenealogyAncestorsRank(self $user, int $rank, $position, $is_active = false): void
     {
-         // logger("line: 304 -" . $user->id);
+        // logger("line: 304 -" . $user->id);
         if ($rank > 7) {
             return;
         }
         if ($is_active && !empty($user->parent_id)) {
             $parent = $user->parent;
-             // logger("line: 310 -" . $parent->id);
+            // logger("line: 310 -" . $parent->id);
 
             if ($parent->currentRank->rank === (int)$rank) {
                 return;
@@ -352,7 +354,7 @@ class User extends Authenticatable implements MustVerifyEmail
                     break;
                 }
                 $parent = $parent->parent;
-                 // logger("line: 353 -" . $parent->id);
+                // logger("line: 353 -" . $parent->id);
             } while ($parent->id !== null);
             //})->afterCommit()->onConnection('sync');
         }

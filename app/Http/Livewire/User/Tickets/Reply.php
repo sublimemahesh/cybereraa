@@ -6,17 +6,18 @@ use App\Models\SupportTicket;
 use App\Models\SupportTicketReply;
 use Auth;
 use Carbon\Carbon;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Storage;
+use Str;
 
 class Reply extends Component
 {
+    use AuthorizesRequests;
     use WithFileUploads;
 
     public SupportTicket $ticket;
-
-    public $user_role;
 
     public SupportTicketReply $reply;
 
@@ -33,18 +34,18 @@ class Reply extends Component
     public function reply()
     {
         $this->validate();
-
+        $this->authorize('reply', $this->ticket);
         $this->reply->ticket()->associate($this->ticket);
-        if ($this->user_role === 'admin' || $this->user_role === 'super_admin') {
+        if (Auth::user()->hasRole('user')) {
+            $this->reply->user()->associate(Auth::user()); // $this->ticket->user_id
+            $this->ticket->status()->associate(1); // open
+        } else {
             $this->reply->admin()->associate(Auth::user());
             $this->ticket->status()->associate(2); // hold
-        } else {
-            $this->reply->user()->associate(Auth::user());
-            $this->ticket->status()->associate(1); // open
         }
         $this->ticket->save();
         if (!empty($this->attachment)) {
-            $attachment_name = $this->attachment->getClientOriginalName() . "-" . \Str::random(20) . "-" . Carbon::now()->timestamp . '.' . $this->attachment->extension();
+            $attachment_name = Str::limit($this->attachment->getClientOriginalName()) . "-" . $this->attachment->hashName() . "-" . Carbon::now()->timestamp . '.' . $this->attachment->extension();
             if (!empty($this->reply->attachment)) {
                 Storage::delete('supports/tickets/reply/' . $this->reply->attachment);
             }
@@ -59,7 +60,6 @@ class Reply extends Component
 
     public function mount()
     {
-        $this->user_role = Auth::user()->getRoleNames()->first();
         $this->reply = new SupportTicketReply;
         $this->ticket->load('replies.user');
     }

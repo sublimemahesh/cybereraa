@@ -11,11 +11,11 @@
         @foreach ($statuses as $status)
             <tr>
                 <td>
-                    {{-- @can('update', $status) --}}
-                    <a class="btn btn-xs btn-info" href="{{ route('admin.support.tickets.status.edit', $status) }}">
-                        Edit
-                    </a>
-                    {{-- @endcan --}}
+                    @can('support_ticket.status.update')
+                        <a class="btn btn-xs btn-info" href="{{ route('admin.support.tickets.status.edit', $status) }}">
+                            Edit
+                        </a>
+                    @endcan
                 </td>
                 <td>{{ $status->name }}</td>
                 <td><span class="badge" style="background-color:{{ $status->color }}">{{ $status->color }}</span></td>

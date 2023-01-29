@@ -20,9 +20,7 @@ class RegisteredUserController extends Controller
             abort_if(!$request->hasValidSignature(), Response::HTTP_UNAUTHORIZED, 'Invalid referral link!');
             $parent = $request->get('ref', null);
             $sponsor = User::whereUsername($parent)
-                ->whereDoesntHave('roles', function ($q) {
-                    $q->whereIn('name', ['super_admin', 'admin']);
-                })
+                ->whereRelation('roles', 'name', 'user')
                 ->where(function ($q) {
                     $q->where(function ($q) {
                         $q->where('username', '<>', config('fortify.super_parent_username'))
@@ -38,9 +36,7 @@ class RegisteredUserController extends Controller
     public function findUsers($search_text): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
         $users = User::where('username', 'LIKE', "%{$search_text}%")
-            ->whereDoesntHave('roles', function ($q) {
-                $q->whereIn('name', ['super_admin', 'admin']);
-            })
+            ->whereRelation('roles', 'name', 'user')
             ->where(function ($q) {
                 $q->where(function ($q) {
                     $q->where('id', '<>', config('fortify.super_parent_id'))

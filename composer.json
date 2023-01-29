@@ -51,7 +51,8 @@
     "files": [
       "app/Helper/UploadHelper.php",
       "app/Helper/StorageHelpers.php",
-      "app/Helper/SendMessage.php"
+      "app/Helper/SendMessage.php",
+      "app/Helper/App.php"
     ],
     "psr-4": {
       "App\\": "app/",
