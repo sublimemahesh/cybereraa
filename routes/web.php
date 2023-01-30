@@ -53,7 +53,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::post('verify/mobile', 'MobileVerifyController@verifyPhone');
     });
 
-    Route::group(["prefix" => "super-admin"/*, 'middleware' => ['role:admin|super_admin']*/, 'excluded_middleware' => ['role:user'], "as" => 'super_admin.'], function () {
+    Route::group(["prefix" => "super-admin", 'middleware' => ['has_any_admin_role'], "as" => 'super_admin.'], function () {
         Route::get('dashboard', 'SuperAdmin\DashboardController@index')->name('dashboard');
 
         ////////////////////////// Permissions  route  /////////////////////
@@ -87,7 +87,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
 
     });
 
-    Route::group(["prefix" => "admin", 'excluded_middleware' => ['role:user'], "as" => 'admin.'], function () {
+    Route::group(["prefix" => "admin", 'middleware' => ['has_any_admin_role'], "as" => 'admin.'], function () {
         Route::get('dashboard', 'Admin\DashboardController@index')->name('dashboard');
 
         Route::get('users', 'Admin\UserController@index')->name('users.index');
