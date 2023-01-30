@@ -95,18 +95,17 @@ class PermissionSeeder extends Seeder
 
             ['name' => 'transactions.viewAny', 'guard_name' => 'web'],
 
-            ['name' => 'user.profile.viewAny', 'guard_name' => 'web'],
-            ['name' => 'user.profile.create', 'guard_name' => 'web'],
-            ['name' => 'user.profile.update', 'guard_name' => 'web'],
-            ['name' => 'user.profile.delete', 'guard_name' => 'web'],
-
             ['name' => 'place_pending_members_in_genealogy', 'guard_name' => 'web'],
             ['name' => 'users.genealogy', 'guard_name' => 'web'],
+
             ['name' => 'users.add-new', 'guard_name' => 'web'],
             ['name' => 'users.viewAny', 'guard_name' => 'web'],
+            ['name' => 'users.view.profile', 'guard_name' => 'web'],
             ['name' => 'users.manage-permissions', 'guard_name' => 'web'],
             ['name' => 'users.update', 'guard_name' => 'web'],
             ['name' => 'users.delete', 'guard_name' => 'web'],
+
+            ['name' => 'admin.users.viewAny', 'guard_name' => 'web'],
 
             ['name' => 'wallet.viewAny', 'guard_name' => 'web'],
 

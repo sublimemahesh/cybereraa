@@ -33,7 +33,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        abort_if(Gate::denies('users.viewAny'), Response::HTTP_FORBIDDEN);
+        abort_if(Gate::denies('admin.users.viewAny'), Response::HTTP_FORBIDDEN);
         if ($request->wantsJson()) {
             $users = User::with('roles')
                 ->whereRelation('roles', 'name', '<>', 'user')
@@ -57,7 +57,7 @@ class UserController extends Controller
 
     public function create()
     {
-        abort_if(Gate::denies('users.add-new'), Response::HTTP_FORBIDDEN);
+        abort_if(Gate::none(['users.add-new', 'admin.users.viewAny']), Response::HTTP_FORBIDDEN);
         $roles = Role::where('name', '<>', 'user')->pluck('name', 'id')->all();
         $countries = Country::orderBy('name')->get(['name', 'iso', 'id'])->keyBy('iso');
         return view('backend.super_admin.users.create', compact('roles', 'countries'));

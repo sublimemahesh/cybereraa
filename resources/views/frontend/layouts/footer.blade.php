@@ -100,7 +100,8 @@
 
                     </div>
                     <!-- Social Media Profiles Starts -->
-                    <div class="social-footer">
+                    {!! $footer_numbers['social_media_links']->content !!}
+                    {{--<div class="social-footer">
                         <ul>
                             <li>
                                 <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
@@ -115,7 +116,7 @@
                                 <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
                             </li>
                         </ul>
-                    </div>
+                    </div>--}}
                     <!-- Social Media Profiles Ends -->
                 </div>
                 <!-- Footer Widget Ends -->

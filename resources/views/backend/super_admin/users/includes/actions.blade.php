@@ -14,7 +14,7 @@
         <i class="fa fa-eye" aria-hidden="true"></i>
     </a>
 @endcan
-@can('users.viewAny')
+@can('users.view.profile')
     <a href='{{ route('admin.users.profile.show', $user) }}' class='btn btn-xs btn-success sharp me-1 shadow'>
         <i class='fa fa-user' aria-hidden='true'></i>
     </a>
