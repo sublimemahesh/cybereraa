@@ -36,11 +36,16 @@ class BinancePayController extends Controller
             'method' => ['required', 'in:binance-pay,wallet'],
             'purchase_for' => [
                 'nullable',
-                Rule::exists('users', 'id')
-                    ->where(static function ($query) {
-                        $query->where('id', '<>', Auth::user()->id)->whereRelation('roles', 'name', 'user');
-                    })
-            ]
+                Rule::exists('users', 'id'),
+                function ($attribute, $value, $fail) {
+                    $exists = User::where('id', $value)->where('id', '<>', Auth::user()->id)
+                        ->whereRelation('roles', 'name', 'user')
+                        ->exists();
+                    if (!$exists){
+                        $fail('Selected user invalid or does not allowed to be purchased a package!.');
+                    }
+                }
+            ],
         ])->validate();
 
         if (!empty($validated['purchase_for'])) {

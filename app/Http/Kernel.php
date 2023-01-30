@@ -65,6 +65,7 @@ class Kernel extends HttpKernel
         'verified' => \App\Http\Middleware\EnsureEmailIsVerified::class,
         'mobile_verified' => \App\Http\Middleware\EnsureMobileIsVerified::class,
         'has_any_role' => \App\Http\Middleware\EnsureUserHasAnyRole::class,
+        'has_any_admin_role' => \App\Http\Middleware\EnsureUserHasAnyAdministratorRole::class,
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
