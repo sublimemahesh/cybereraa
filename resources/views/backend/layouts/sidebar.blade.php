@@ -12,7 +12,7 @@
         </a>
     </li>
 @endcan
-@canany(['users.manage-permissions','users.viewAny'])
+@canany(['users.manage-permissions','admin.users.viewAny'])
     <li>
         <a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
             <i class="material-icons fs-28" style="margin-right: 5px !important;">manage_accounts</i>

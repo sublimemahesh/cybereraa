@@ -58,7 +58,7 @@ class UserController extends Controller
                 ->addColumn('joined', fn($user) => $user->created_at->format('Y-m-d h:i A'))
                 ->addColumn('actions', function ($user) {
                     $manage_kyc = Gate::allows('kyc.viewAny');
-                    $view_profile = Gate::allows('users.viewAny');
+                    $view_profile = Gate::allows('users.view.profile');
                     $update = Gate::allows('users.update');
                     $btn = '';
                     if ($manage_kyc) {
@@ -91,7 +91,7 @@ class UserController extends Controller
 
     public function profileShow(User $user)
     {
-        abort_if(Gate::denies('users.viewAny'), Response::HTTP_FORBIDDEN);
+        abort_if(Gate::denies('users.view.profile'), Response::HTTP_FORBIDDEN);
 
         $latest_transactions = Withdraw::with('receiver')
             ->where('user_id', $user->id)

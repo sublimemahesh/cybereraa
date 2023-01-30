@@ -20,12 +20,22 @@ class KycDocumentPolicy
 
     public function approve(User $user, KycDocument $document)
     {
-        return ($document->status === "pending" || $document->status === "rejected") && ($user->hasPermissionTo('kyc.approve'));
+        if ($document->status !== "pending" && $document->status !== "rejected") {
+            return false;
+        }
+        if ($user->hasPermissionTo('kyc.approve')) {
+            return true;
+        }
     }
 
     public function reject(User $user, KycDocument $document)
     {
-        return ($document->status === "pending" || $document->status === "accepted") && $user->hasPermissionTo('kyc.reject');
+        if ($document->status !== "pending" && $document->status !== "accepted") {
+            return false;
+        }
+        if ($user->hasPermissionTo('kyc.reject')) {
+            return true;
+        }
     }
 
     /**
