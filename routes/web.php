@@ -81,7 +81,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::get('users/{user}/change-password', 'SuperAdmin\UserController@changePassword')->name('users.changePassword');
         Route::post('users/{user}/save-password', 'SuperAdmin\UserController@savePassword')->name('users.savePassword');
 
-        Route::get('users/{user}/show', 'SuperAdmin\UserController@showPermissions')->name('users.show');
+        Route::get('users/{user}/view-permissions', 'SuperAdmin\UserController@showPermissions')->name('users.show-permissions');
         Route::get('users/{user}/manage-permission', 'SuperAdmin\UserController@managePermissions')->name('users.manage');
         Route::post('users/{user}/store-permissions', 'SuperAdmin\UserController@savePermissions')->name('users.store-permissions');
 
