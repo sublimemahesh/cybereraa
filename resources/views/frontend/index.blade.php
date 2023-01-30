@@ -186,7 +186,7 @@
         </div>
     </section>
 
-    <section>
+    {{-- <section>
         <div class="container">
             <div class="owl-carousel owl-theme casino-slider">
                 @foreach ($packages->children as $section)
@@ -200,7 +200,7 @@
                 @endforeach
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <!-- Quote and Chart Section Ends -->
     <!-- Comment Section Starts -->
