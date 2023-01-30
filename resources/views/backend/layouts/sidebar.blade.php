@@ -15,7 +15,7 @@
 @canany(['users.manage-permissions','users.viewAny'])
     <li>
         <a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
-             <i class="material-icons fs-28" style="margin-right: 5px !important;">manage_accounts</i>
+            <i class="material-icons fs-28" style="margin-right: 5px !important;">manage_accounts</i>
             <span class="nav-text">User Roles</span>
         </a>
         <ul aria-expanded="false">
@@ -76,13 +76,16 @@
     </li>
 @endcan
 
-@can('withdraw.viewAny')
+@can('withdraw.p2p.viewAny')
     <li>
         <a href="{{ route('admin.transfers.p2p', ['status' => 'success','date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .'to'.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}" class="" aria-expanded="false">
             <i class="bi fa-arrow-turn-down"></i>
             <span class="nav-text"> P2P Transactions </span>
         </a>
     </li>
+@endcan
+
+@can('withdrawals.viewAny')
     <li>
         <a href="{{ route('admin.transfers.withdrawals', ['status' => 'processing','date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .'to'.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}" class="" aria-expanded="false">
             <i class="bi fa-arrow-turn-up"></i>
@@ -90,6 +93,7 @@
         </a>
     </li>
 @endcan
+
 @canany(['commissions.viewAny', 'rank_bonus.viewAny'])
     <li>
         <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
@@ -114,6 +118,7 @@
         </ul>
     </li>
 @endcan
+
 @can('rank_gift.viewAny')
     <li>
         <a href="{{ route('admin.ranks.gifts') }}" class="" aria-expanded="false">
@@ -122,6 +127,7 @@
         </a>
     </li>
 @endcan
+
 @can('package.viewAny')
     <li>
         <a href="{{ route('admin.packages.index') }}" class="" aria-expanded="false">

@@ -41,7 +41,7 @@ class PackagePolicy
     public function delete(User $user, Package $package)
     {
         $package->loadCount('purchasedPackages');
-        if ($package->user_packages_count === 0 && $user->hasPermissionTo('package.delete')) {
+        if ($package->purchased_packages_count === 0 && $user->hasPermissionTo('package.delete')) {
             return true;
         }
     }
@@ -56,7 +56,7 @@ class PackagePolicy
     public function forceDelete(User $user, Package $package)
     {
         $package->load('purchasedPackages');
-        if ($package->user_packages_count === 0 && $user->hasPermissionTo('package.delete')) {
+        if ($package->purchased_packages_count === 0 && $user->hasPermissionTo('package.delete')) {
             return true;
         }
     }

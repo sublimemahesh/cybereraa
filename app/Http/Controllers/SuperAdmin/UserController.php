@@ -191,6 +191,17 @@ class UserController extends Controller
     }
 
 
+    public function showPermissions(User $user)
+    {
+        abort_if(Gate::denies('users.manage-permission'), Response::HTTP_FORBIDDEN);
+
+        $directPermissionsNames = $user->getPermissionNames();
+        $user->load('roles.permissions');
+
+        return view('backend.super_admin.users.show', compact('directPermissionsNames', 'user'));
+    }
+
+
     public function managePermissions(User $user)
     {
         abort_if(Gate::denies('users.manage-permission'), Response::HTTP_FORBIDDEN);
@@ -216,16 +227,6 @@ class UserController extends Controller
         }
         $user->syncPermissions($input['permissions'] ?? []);
         return redirect()->back()->with('success', 'Permissions saved.!');
-    }
-
-    public function showPermissions(User $user)
-    {
-        abort_if(Gate::denies('users.manage-permission'), Response::HTTP_FORBIDDEN);
-
-        $directPermissionsNames = $user->getPermissionNames();
-        $user->load('roles.permissions');
-
-        return view('backend.super_admin.users.show', compact('directPermissionsNames', 'user'));
     }
 
 
