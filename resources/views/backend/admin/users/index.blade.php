@@ -122,6 +122,7 @@
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.print.min.js') }}"></script>
         <script src="{{ asset('assets/backend/js/global-datatable-extension.js') }}"></script>
         <script src="{{ asset('assets/backend/js/admin/users/kyc/main.js') }}"></script>
+        {{--<script src="{{ asset('assets/backend/js/admin/users/suspend.js') }}"></script>--}}
 
     @endpush
 </x-backend.layouts.app>

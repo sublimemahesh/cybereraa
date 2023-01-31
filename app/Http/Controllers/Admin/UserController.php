@@ -61,6 +61,8 @@ class UserController extends Controller
                     $manage_kyc = Gate::allows('kyc.viewAny');
                     $view_profile = Gate::allows('users.view.profile');
                     $update = Gate::allows('users.update');
+                    $suspend = Gate::allows('users.suspend', $user);
+                    $activate = Gate::allows('users.activate-suspended', $user);
                     $btn = '';
                     if ($manage_kyc) {
                         $btn .= "<a class='btn btn-xs btn-google sharp my-1 mr-1 shadow' href='" . route('admin.users.kycs.index', $user) . "'>
@@ -80,6 +82,16 @@ class UserController extends Controller
                     if ($view_profile) {
                         $btn .= "<a class='btn btn-xs btn-success sharp my-1 mr-1 shadow' href='" . route('admin.users.profile.show', $user) . "' >
                                             <i class='fa fa-user' aria-hidden='true'></i>
+                                        </a>";
+                    }
+                    if ($suspend) {
+                        $btn .= "<a class='btn btn-xs btn-danger sharp my-1 mr-1 shadow suspend-user' data-user='" . $user->id . "' href='javascript:void(0)' >
+                                            <i class='fa fa-ban' aria-hidden='true'></i>
+                                        </a>";
+                    }
+                    if ($activate) {
+                        $btn .= "<a class='btn btn-xs btn-success sharp my-1 mr-1 shadow activate-suspended-user' data-user='" . $user->id . "' href='javascript:void(0)' >
+                                            <i class='fa fa-check-double' aria-hidden='true'></i>
                                         </a>";
                     }
                     return "<div class='d-flex'>{$btn}</div>";
@@ -129,5 +141,31 @@ class UserController extends Controller
         $wallet = $user->wallet;
 
         return view('backend.admin.users.profile.show', compact('user', 'types', 'Profile_details', 'wallet', 'latest_transactions', 'income', 'withdraw', 'qualified_commissions', 'lost_commissions'));
+    }
+
+    public function suspendUser(User $user)
+    {
+        abort_if(Gate::denies('users.suspend', $user), Response::HTTP_FORBIDDEN);
+
+        $user->update(['suspended_at' => Carbon::now()]);
+
+        $json['status'] = true;
+        $json['message'] = "User is suspended!";
+        $json['icon'] = 'success'; // warning | info | question | success | error
+        $json['redirectUrl'] = null;
+        return response()->json($json, Response::HTTP_OK);
+    }
+
+    public function activateUser(User $user)
+    {
+        abort_if(Gate::denies('users.activate-suspended', $user), Response::HTTP_FORBIDDEN);
+
+        $user->update(['suspended_at' => null]);
+
+        $json['status'] = true;
+        $json['message'] = "User is now active!";
+        $json['icon'] = 'success'; // warning | info | question | success | error
+        $json['redirectUrl'] = null;
+        return response()->json($json, Response::HTTP_OK);
     }
 }

@@ -16,9 +16,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
-use Spatie\Permission\PermissionRegistrar;
 use Spatie\Permission\Traits\HasRoles;
-use Spatie\Permission\Traits\RefreshesPermissionCache;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 use Throwable;
 use URL;
@@ -47,7 +45,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var string[]
      */
     protected $fillable = [
-        'name', 'email', 'password', 'phone', 'phone_verified_at', 'super_parent_id', 'parent_id', 'username', 'position'
+        'name', 'email', 'password', 'phone', 'phone_verified_at', 'super_parent_id', 'parent_id', 'username', 'position', 'suspended_at'
     ];
 
     /**
@@ -100,6 +98,11 @@ class User extends Authenticatable implements MustVerifyEmail
             }
         }
         return $is_complete;
+    }
+
+    public function getIsSuspendedAttribute(): bool
+    {
+        return $this->suspended_at !== null;
     }
 
     public function getIsMobileVerifiedAttribute(): bool
