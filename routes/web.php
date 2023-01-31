@@ -45,7 +45,7 @@ Route::get('test', function () {
 Route::get('payments/binancepay/response', 'Payment\BinancePayController@response');
 Route::get('payments/binancepay/fallback', 'Payment\BinancePayController@fallback');
 
-Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream.auth_session'), 'verified', 'has_any_role']], function () {
+Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream.auth_session'), 'verified', 'active_user', 'has_any_role']], function () {
 
     Route::withoutMiddleware('mobile_verified')->group(static function () {
         Route::get('verify/mobile', 'MobileVerifyController@index')->name('mobile.verification.notice');
@@ -91,6 +91,10 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::get('dashboard', 'Admin\DashboardController@index')->name('dashboard');
 
         Route::get('users', 'Admin\UserController@index')->name('users.index');
+
+        Route::post('users/{user}/suspend', 'Admin\UserController@suspendUser')->name('users.suspend');
+        Route::post('users/{user}/activate', 'Admin\UserController@activateUser')->name('users.activate');
+
         Route::get('users/{user:username}/kycs', 'Admin\KycController@index')->name('users.kycs.index');
         Route::get('users/kycs/{kyc}', 'Admin\KycController@show')->name('users.kycs.show');
         Route::post('users/kyc-documents/{document}/status', 'Admin\KycController@status');

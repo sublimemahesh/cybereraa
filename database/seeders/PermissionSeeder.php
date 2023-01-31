@@ -104,6 +104,8 @@ class PermissionSeeder extends Seeder
             ['name' => 'users.manage-permissions', 'guard_name' => 'web'],
             ['name' => 'users.update', 'guard_name' => 'web'],
             ['name' => 'users.delete', 'guard_name' => 'web'],
+            ['name' => 'users.suspend', 'guard_name' => 'web'],
+            ['name' => 'users.activate-suspended', 'guard_name' => 'web'],
 
             ['name' => 'admin.users.viewAny', 'guard_name' => 'web'],
 
@@ -121,6 +123,6 @@ class PermissionSeeder extends Seeder
             ['name' => 'withdraw.reject', 'guard_name' => 'web'],
         ];
 
-        Permission::insert($permissions);
+        Permission::upsert($permissions, 'name');
     }
 }

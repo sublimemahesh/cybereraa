@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use Artisan;
-use DB;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Command\Command as CommandAlias;
 
@@ -30,12 +29,9 @@ class RefreshPermissionsTable extends Command
      */
     public function handle()
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        DB::table('permissions')->truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         Artisan::call('db:seed --class=PermissionSeeder');
         Artisan::call('permission:cache-reset');
-        $this->info('Permissions table renewed.!');
+        $this->info('Permissions table updated.!');
         return CommandAlias::SUCCESS;
     }
 }
