@@ -4,13 +4,6 @@ $(function () {
     const date_range = urlParams.get("date-range");
 
     let table = $('#binance-trx').DataTable({
-        language: {
-            paginate: {
-                next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
-                previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
-            }
-        },
-        lengthMenu: [[25, 50, 100, 250, 500, -1], [25, 50, 100, 250, 500, "All"],],
         scrollX: true,
         destroy: true,
         processing: true,
@@ -19,7 +12,7 @@ $(function () {
         responsive: true,
         order: [[4, 'desc']],
         stateSave: true,
-        ajax: location.href,
+        ajax: WITHDRAW_REPORT_URL,
         columns: [
             {data: "actions", searchable: true},
             {data: "user", name: 'user.username', searchable: true},
@@ -67,17 +60,17 @@ $(function () {
         },],
     });
 
-    flatpickr("#date-range", {
+    flatpickr("#binance-trx-date-range", {
         mode: "range", dateFormat: "Y-m-d", defaultDate: date_range && date_range.split("to"),
     });
 
-    $(document).on("click", "#search", function (e) {
+    $(document).on("click", "#binance-trx-search", function (e) {
         e.preventDefault();
-        urlParams.set("date-range", $("#date-range").val());
-        urlParams.set("status", $("#status").val());
-        urlParams.set("user_id", $("#user_id").val());
-        let url = location.href.split(/\?|\#/)[0] + "?" + urlParams.toString();
-        history.replaceState({}, "", url);
+        urlParams.set("date-range", $("#binance-trx-date-range").val());
+        urlParams.set("status", $("#binance-trx-status").val());
+        urlParams.set("receiver_id", $("#user_id").val());
+        let url = WITHDRAW_REPORT_URL.split(/\?|\#/)[0] + "?" + urlParams.toString();
+        HISTORY_STATE && history.replaceState({}, "", url);
         table.ajax.url(url).load();
     });
 

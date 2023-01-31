@@ -2,6 +2,7 @@ $(function () {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const date_range = urlParams.get("date-range");
+    let data_url = TRANSACTION_URL;
 
     let table = $('#transactions').DataTable({
         scrollX: true,
@@ -12,7 +13,7 @@ $(function () {
         responsive: true,
         order: [[6, 'desc']],
         //stateSave: true,
-        ajax: location.href,
+        ajax: data_url,
         columns: [
             {data: "user_id", searchable: false},
             {data: "username", name: 'user.username'},
@@ -74,18 +75,18 @@ $(function () {
         ],
     });
 
-    flatpickr("#date-range", {
+    flatpickr("#transaction-date-range", {
         mode: "range", dateFormat: "Y-m-d", defaultDate: date_range && date_range.split("to"),
     });
 
-    $(document).on("click", "#search", function (e) {
+    $(document).on("click", "#transaction-search", function (e) {
         e.preventDefault();
-        urlParams.set("date-range", $("#date-range").val());
-        urlParams.set("status", $("#status").val());
+        urlParams.set("date-range", $("#transaction-date-range").val());
+        urlParams.set("status", $("#transaction-status").val());
         urlParams.set("user_id", $("#user_id").val());
         urlParams.set("currency-type", $("#currency-type").val());
-        let url = location.href.split(/\?|\#/)[0] + "?" + urlParams.toString();
-        history.replaceState({}, "", url);
+        let url = data_url.split(/\?|\#/)[0] + "?" + urlParams.toString();
+        HISTORY_STATE && history.replaceState({}, "", url);
         table.ajax.url(url).load();
     });
 

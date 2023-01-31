@@ -4,13 +4,6 @@ $(function () {
     const date_range = urlParams.get("date-range");
 
     let table = $('#earnings').DataTable({
-        language: {
-            paginate: {
-                next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
-                previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
-            }
-        },
-        lengthMenu: [[25, 50, 100, 250, 500, -1], [25, 50, 100, 250, 500, "All"],],
         scrollX: true,
         destroy: true,
         processing: true,
@@ -18,8 +11,8 @@ $(function () {
         fixedHeader: true,
         responsive: true,
         order: [[5, 'desc']],
-        stateSave: true,
-        ajax: location.href,
+        //stateSave: true,
+        ajax: EARNING_URL,
         columns: [
             {data: "type", searchable: false},
             {data: "user_id", searchable: false},
@@ -59,71 +52,74 @@ $(function () {
         ],
     });
 
-    flatpickr("#date-range", {
+    flatpickr("#earnings-date-range", {
         mode: "range", dateFormat: "Y-m-d", defaultDate: date_range && date_range.split("to"),
     });
 
-    $(document).on("click", "#search", function (e) {
+    $(document).on("click", "#earnings-search", function (e) {
         e.preventDefault();
-        urlParams.set("date-range", $("#date-range").val());
-        urlParams.set("status", $("#status").val());
+        urlParams.set("date-range", $("#earnings-date-range").val());
+        urlParams.set("status", $("#earnings-status").val());
         urlParams.set("user_id", $("#user_id").val());
         urlParams.set("earning-type", $("#earning-type").val());
-        let url = location.href.split(/\?|\#/)[0] + "?" + urlParams.toString();
-        history.replaceState({}, "", url);
+        let url = EARNING_URL.split(/\?|\#/)[0] + "?" + urlParams.toString();
+        HISTORY_STATE && history.replaceState({}, "", url);
         table.ajax.url(url).load();
     });
 
-    $(document).on('click', '#calculate-profit', function (e) {
-        e.preventDefault();
-        Swal.fire({
-            title: "Are You Sure?",
-            text: `Calculate profit for today(${moment().format('Y-MM-D')}) now!`,
-            icon: "info",
-            showCancelButton: true,
-        }).then((calculate) => {
-            if (calculate.isConfirmed) {
-                loader()
-                axios.post(APP_URL + "/admin/reports/users/earnings/calculate-profit").then(response => {
-                    Toast.fire({
-                        icon: response.data.icon, title: response.data.message,
+    if (HISTORY_STATE) {
+        $(document).on('click', '#calculate-profit', function (e) {
+            e.preventDefault();
+            Swal.fire({
+                title: "Are You Sure?",
+                text: `Calculate profit for today(${moment().format('Y-MM-D')}) now!`,
+                icon: "info",
+                showCancelButton: true,
+            }).then((calculate) => {
+                if (calculate.isConfirmed) {
+                    loader()
+                    axios.post(APP_URL + "/admin/reports/users/earnings/calculate-profit").then(response => {
+                        Toast.fire({
+                            icon: response.data.icon, title: response.data.message,
+                        })
+                        let url = location.href.split(/\?|\#/)[0];
+                        history.replaceState({}, "", url);
+                        table.ajax.url(url).load();
+                    }).catch(error => {
+                        console.log(error)
+                        Toast.fire({
+                            icon: 'error', title: error.response.data.message || "Something went wrong!",
+                        })
                     })
-                    let url = location.href.split(/\?|\#/)[0];
-                    history.replaceState({}, "", url);
-                    table.ajax.url(url).load();
-                }).catch(error => {
-                    console.log(error)
-                    Toast.fire({
-                        icon: 'error', title: error.response.data.message || "Something went wrong!",
+                }
+            });
+        })
+        $(document).on('click', '#calculate-commission', function (e) {
+            e.preventDefault();
+            Swal.fire({
+                title: "Are You Sure?",
+                text: `Calculate commission allowance for today(${moment().format('Y-MM-D')}) now!`,
+                icon: "info",
+                showCancelButton: true,
+            }).then((calculate) => {
+                if (calculate.isConfirmed) {
+                    loader()
+                    axios.post(APP_URL + "/admin/reports/users/earnings/calculate-commission").then(response => {
+                        Toast.fire({
+                            icon: response.data.icon, title: response.data.message,
+                        })
+                        let url = location.href.split(/\?|\#/)[0];
+                        history.replaceState({}, "", url);
+                        table.ajax.url(url).load();
+                    }).catch(error => {
+                        console.log(error)
+                        Toast.fire({
+                            icon: 'error', title: error.response.data.message || "Something went wrong!",
+                        })
                     })
-                })
-            }
-        });
-    })
-    $(document).on('click', '#calculate-commission', function (e) {
-        e.preventDefault();
-        Swal.fire({
-            title: "Are You Sure?",
-            text: `Calculate commission allowance for today(${moment().format('Y-MM-D')}) now!`,
-            icon: "info",
-            showCancelButton: true,
-        }).then((calculate) => {
-            if (calculate.isConfirmed) {
-                loader()
-                axios.post(APP_URL + "/admin/reports/users/earnings/calculate-commission").then(response => {
-                    Toast.fire({
-                        icon: response.data.icon, title: response.data.message,
-                    })
-                    let url = location.href.split(/\?|\#/)[0];
-                    history.replaceState({}, "", url);
-                    table.ajax.url(url).load();
-                }).catch(error => {
-                    console.log(error)
-                    Toast.fire({
-                        icon: 'error', title: error.response.data.message || "Something went wrong!",
-                    })
-                })
-            }
-        });
-    })
+                }
+            });
+        })
+    }
+
 })

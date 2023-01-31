@@ -3,47 +3,33 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Withdraw;
+use App\Services\WithdrawService;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
-use Yajra\DataTables\Facades\DataTables;
 
 class WithdrawController extends Controller
 {
     /**
      * @throws Exception
      */
-    public function p2p(Request $request)
+    public function p2p(Request $request, WithdrawService $withdrawService)
     {
         abort_if(Gate::denies('withdraw.p2p.viewAny'), Response::HTTP_FORBIDDEN);
 
         if ($request->wantsJson()) {
+            $withdrawals = $withdrawService->filter(request()->input('user_id'), request()->input('receiver_id'))
+                ->where('type', 'P2P');
 
-            $withdrawals = Withdraw::with('receiver', 'user')
-                ->when(!empty($request->get('user_id')), static function ($query) use ($request) {
-                    $query->where('user_id', $request->get('user_id'));
-                })->when(!empty($request->get('receiver_id')), static function ($query) use ($request) {
-                    $query->where('receiver_id', $request->get('receiver_id'));
-                })->filter()
-                ->where('type', 'P2P')
-                //->where('created_at', '<=', date('Y-m-d H:i:s'))
-                ->latest();
-
-            return DataTables::of($withdrawals)
+            return $withdrawService->datatable($withdrawals)
                 ->addColumn('sender', static function ($withdraw) {
-
                     return str_pad($withdraw->user_id, '4', '0', STR_PAD_LEFT) .
                         " - <code class='text-uppercase'>{$withdraw->user->username}</code>";
                 })->addColumn('receiver', static function ($withdraw) {
                     return str_pad($withdraw->receiver_id, '4', '0', STR_PAD_LEFT) .
                         " - <code class='text-uppercase'>{$withdraw->receiver->username}</code>";
                 })
-                ->addColumn('amount', fn($withdraw) => number_format($withdraw->amount, 2))
-                ->addColumn('fee', fn($withdraw) => number_format($withdraw->transaction_fee, 2))
-                ->addColumn('total', fn($withdraw) => number_format($withdraw->amount + $withdraw->transaction_fee, 2))
-                ->addColumn('created_at', fn($withdraw) => $withdraw->created_at->format('Y-m-d H:i:s'))
                 ->rawColumns(['sender', 'receiver'])
                 ->make();
         }
@@ -54,29 +40,19 @@ class WithdrawController extends Controller
     /**
      * @throws Exception
      */
-    public function withdrawals(Request $request)
+    public function withdrawals(Request $request, WithdrawService $withdrawService)
     {
-         abort_if(Gate::denies('withdrawals.viewAny'), Response::HTTP_FORBIDDEN);
+        abort_if(Gate::denies('withdrawals.viewAny'), Response::HTTP_FORBIDDEN);
 
         if ($request->wantsJson()) {
+            $withdrawals = $withdrawService->filter(null, request()->input('receiver_id'))
+                ->where('type', 'BINANCE');
 
-            $withdrawals = Withdraw::with('receiver', 'user')
-                ->when(!empty($request->get('user_id')), static function ($query) use ($request) {
-                    $query->where('user_id', $request->get('user_id'));
-                })->filter()
-                ->where('type', 'BINANCE')
-                //->where('created_at', '<=', date('Y-m-d H:i:s'))
-                ->latest();
-
-            return DataTables::of($withdrawals)
+            return $withdrawService->datatable($withdrawals)
                 ->addColumn('user', static function ($withdraw) {
                     return str_pad($withdraw->user_id, '4', '0', STR_PAD_LEFT) .
                         " - <code class='text-uppercase'>{$withdraw->user->username}</code>";
                 })
-                ->addColumn('amount', fn($withdraw) => number_format($withdraw->amount, 2))
-                ->addColumn('fee', fn($withdraw) => number_format($withdraw->transaction_fee, 2))
-                ->addColumn('total', fn($withdraw) => number_format($withdraw->amount + $withdraw->transaction_fee, 2))
-                ->addColumn('created_at', fn($withdraw) => $withdraw->created_at->format('Y-m-d H:i:s'))
                 ->addColumn('actions', static function ($withdraw) {
                     // withdraw.approve | withdraw.reject
                     /*if ($withdraw->status === 'PROCESSING') {
@@ -96,7 +72,6 @@ class WithdrawController extends Controller
         return view('backend.admin.users.transfers.withdraw');
 
     }
-
 
 
 }

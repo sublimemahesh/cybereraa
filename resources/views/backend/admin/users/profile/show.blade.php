@@ -3,7 +3,11 @@
     @section('header-title', 'View profile')
     @section('plugin-styles')
         <!-- Datatable -->
-
+        <link href="{{ asset('assets/backend/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/backend/vendor/datatables/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/backend/vendor/datatables/css/buttons.bootstrap5.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/backend/vendor/datatables/css/datatable-extension.css') }}" rel="stylesheet">
+        @vite(['resources/css/app-jetstream.css'])
     @endsection
 
     @section('breadcrumb-items')
@@ -396,6 +400,108 @@
             </div>
         </div>
     </div>
+    <div class="row dark"> {{--! Tailwind css used. if using tailwind plz run npm run dev and add tailwind classes--}}
+        @can('transactions.viewAny')
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <h4 class="card-title">Transaction/Sales</h4>
+                        </div>
+                        @include('backend.admin.users.transactions.components.report-table')
+                    </div>
+                </div>
+            </div>
+        @endcan
+        @can('wallet.topup-history.viewAny')
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <h4 class="card-title">Topup History</h4>
+                        </div>
+                        @include('backend.admin.users.wallets.components.report-table')
+                    </div>
+                </div>
+            </div>
+        @endcan
+        @can('withdraw.p2p.viewAny')
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <h4 class="card-title">P2P History</h4>
+                        </div>
+                        @include('backend.admin.users.transfers.components.report-table')
+                    </div>
+                </div>
+            </div>
+        @endcan
+        @can('withdrawals.viewAny')
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <h4 class="card-title">Withdrawals</h4>
+                        </div>
+                        @include('backend.admin.users.transfers.components.withdraw-report-table')
+                    </div>
+                </div>
+            </div>
+        @endcan
+        @can('commissions.viewAny')
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <h4 class="card-title">Commissions</h4>
+                        </div>
+                        @include('backend.admin.users.incomes.components.report-table')
+                    </div>
+                </div>
+            </div>
+        @endcan
+        @can('earnings.viewAny')
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <h4 class="card-title">Earnings/Incomes</h4>
+                        </div>
+                        @include('backend.admin.users.earnings.components.report-table')
+                    </div>
+                </div>
+            </div>
+        @endcan
+    </div>
+
+    <input id="user_id" type="hidden" value="{{ $user->id }}"/>
     @push('scripts')
+        <script !src="">
+            const TRANSACTION_URL = "{{ route('admin.transactions.index', ['user_id' => $user->id]) }}";
+            const TOPUP_HISTORY_URL = "{{ route('admin.wallet.topup.history', ['user_id' => $user->id]) }}";
+            const P2P_URL = "{{ route('admin.transfers.p2p', ['user_id' => $user->id]) }}";
+            const WITHDRAW_REPORT_URL = "{{ route('admin.transfers.withdrawals', ['receiver_id' => $user->id]) }}";
+            const INCOMES_URL = "{{ route('admin.incomes.commission', ['user_id' => $user->id]) }}";
+            const EARNING_URL = "{{ route('admin.earnings.index', ['user_id' => $user->id]) }}";
+            const HISTORY_STATE = false;
+        </script>
+        <!-- Datatable -->
+        <script src="{{ asset('assets/backend/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('assets/backend/vendor/datatables/extensions/dataTables.buttons.min.js') }}"></script>
+        <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.colVis.min.js') }}"></script>
+        <script src="{{ asset('assets/backend/vendor/datatables/extensions/jszip.min.js') }}"></script>
+        <script src="{{ asset('assets/backend/vendor/datatables/extensions/pdfmake.min.js') }}"></script>
+        <script src="{{ asset('assets/backend/vendor/datatables/extensions/vfs_fonts.js') }}"></script>
+        <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.html5.min.js') }}"></script>
+        <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.print.min.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/global-datatable-extension.js') }}"></script>
+
+        <script src="{{ asset('assets/backend/js/admin/transactions/main.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/admin/users/wallets/history.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/admin/transfers/p2p.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/admin/transfers/withdraws.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/admin/incomes/commissions.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/admin/earnings/earnings.js') }}"></script>
     @endpush
 </x-backend.layouts.app>

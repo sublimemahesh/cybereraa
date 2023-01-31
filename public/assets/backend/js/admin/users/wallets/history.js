@@ -12,7 +12,7 @@ $(function () {
         responsive: true,
         order: [[4, 'desc']],
         stateSave: true,
-        ajax: location.href,
+        ajax: TOPUP_HISTORY_URL,
         columns: [
             {data: "sender", name: 'user.username', searchable: true},
             {data: "receiver", name: 'receiver.username', searchable: true},
@@ -53,17 +53,17 @@ $(function () {
         },],
     });
 
-    flatpickr("#date-range", {
+    flatpickr("#topup-history-date-range", {
         mode: "range", dateFormat: "Y-m-d", defaultDate: date_range && date_range.split("to"),
     });
 
-    $(document).on("click", "#search", function (e) {
+    $(document).on("click", "#topup-history-search", function (e) {
         e.preventDefault();
+        urlParams.set("sender_id", $("#sender_id").val());
         urlParams.set("user_id", $("#user_id").val());
-        urlParams.set("receiver_id", $("#receiver_id").val());
-        urlParams.set("date-range", $("#date-range").val());
-        let url = location.href.split(/\?|\#/)[0] + "?" + urlParams.toString();
-        history.replaceState({}, "", url);
+        urlParams.set("date-range", $("#topup-history-date-range").val());
+        let url = TOPUP_HISTORY_URL.split(/\?|\#/)[0] + "?" + urlParams.toString();
+        HISTORY_STATE && history.replaceState({}, "", url);
         table.ajax.url(url).load();
     });
 

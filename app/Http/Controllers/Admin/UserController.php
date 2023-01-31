@@ -7,6 +7,7 @@ use App\Models\Commission;
 use App\Models\Earning;
 use App\Models\User;
 use App\Models\Withdraw;
+use App\Services\WalletTopupHistoryService;
 use Carbon;
 use DB;
 use Exception;
@@ -89,7 +90,10 @@ class UserController extends Controller
         return view('backend.admin.users.index');
     }
 
-    public function profileShow(User $user)
+    /**
+     * @throws Exception
+     */
+    public function profileShow(Request $request, User $user, WalletTopupHistoryService $topupHistoryService)
     {
         abort_if(Gate::denies('users.view.profile'), Response::HTTP_FORBIDDEN);
 
@@ -99,6 +103,15 @@ class UserController extends Controller
             ->limit(8)
             ->get();
 
+        $types = [
+            'direct' => 'DIRECT',
+            'indirect' => 'INDIRECT',
+            //'rank_bonus' => 'BONUS',
+            //'rank_gift' => 'GIFT',
+        ];
+
+        //earnings
+        //rank_benefits
         $income = Earning::currentMonthForUser($user)
             ->where('status', 'RECEIVED')
             ->where('type', '<>', 'P2P')
@@ -115,6 +128,6 @@ class UserController extends Controller
         $Profile_details = $user->profile;
         $wallet = $user->wallet;
 
-        return view('backend.admin.users.profile.show', compact('user', 'Profile_details', 'wallet', 'latest_transactions', 'income', 'withdraw', 'qualified_commissions', 'lost_commissions'));
+        return view('backend.admin.users.profile.show', compact('user', 'types', 'Profile_details', 'wallet', 'latest_transactions', 'income', 'withdraw', 'qualified_commissions', 'lost_commissions'));
     }
 }
