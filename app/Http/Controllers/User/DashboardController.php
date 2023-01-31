@@ -19,29 +19,30 @@ class DashboardController extends Controller
             ->whereIn('status', ['PAID', 'EXPIRED'])
             ->get();
 
-        $total_investment = number_format($transactions->sum('amount'));
-        $active_investment = number_format($transactions->where('status', 'PAID')->sum('amount'));
-        $expired_investment = number_format($transactions->where('status', 'EXPIRED')->sum('amount'));
+        $total_investment = number_format($transactions->sum('amount'), 2);
+        $active_investment = number_format($transactions->where('status', 'PAID')->sum('amount'), 2);
+        $expired_investment = number_format($transactions->where('status', 'EXPIRED')->sum('amount'), 2);
 
         $income = number_format(Earning::where('user_id', Auth::user()->id)
             ->where('status', 'RECEIVED')
-            ->sum('amount'));
+            ->where('type', '<>', 'P2P')
+            ->sum('amount'), 2);
 
         $invest_income = number_format(Earning::where('user_id', Auth::user()->id)
             ->where('type', 'PACKAGE')
-            ->where('status', 'RECEIVED')->sum('amount'));
+            ->where('status', 'RECEIVED')->sum('amount'), 2);
 
-        $withdraw = Withdraw::where('user_id', Auth::user()->id)
+        $withdraw = number_format(Withdraw::where('user_id', Auth::user()->id)
             ->where('status', 'SUCCESS')
-            ->sum(DB::raw('amount + transaction_fee'));
+            ->sum(DB::raw('amount + transaction_fee')), 2);
 
-        $qualified_commissions = Commission::where('user_id', Auth::user()->id)
+        $qualified_commissions = number_format(Commission::where('user_id', Auth::user()->id)
             ->where('status', 'QUALIFIED')
-            ->sum('amount');
+            ->sum('amount'), 2);
 
-        $lost_commissions = Commission::where('user_id', Auth::user()->id)
+        $lost_commissions = number_format(Commission::where('user_id', Auth::user()->id)
             ->whereStatus('DISQUALIFIED')
-            ->sum('amount');
+            ->sum('amount'), 2);
 
         Auth::user()->loadCount(['directSales as pending_direct_sales_count' => fn($query) => $query->whereNull('parent_id')->whereHas('activePackages')]);
         $wallet = Auth::user()->wallet;

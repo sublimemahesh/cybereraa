@@ -204,7 +204,7 @@
                                         </span>
                                         <div class="media-body text-white">
                                             <p class="mb-1">WALLET BALANCE</p>
-                                            <h4 class="text-white"> USDT {{ number_format($wallet->balance) }}</h4>
+                                            <h4 class="text-white"> USDT {{ number_format($wallet->balance,2) }}</h4>
                                             <small> </small>
                                         </div>
                                     </div>
@@ -273,7 +273,7 @@
                                             <p class="mb-1">TOTAL EARNED</p>
                                             <h4 class="text-white"> USDT {{ $income }}</h4>
                                             <br>
-                                            <small> All kind of total received USDT</small>
+                                            <small> Total Earnings</small>
                                         </div>
                                     </div>
                                 </div>
