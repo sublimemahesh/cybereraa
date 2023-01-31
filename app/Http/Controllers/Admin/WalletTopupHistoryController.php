@@ -8,6 +8,7 @@ use App\Models\Earning;
 use App\Models\User;
 use App\Models\Wallet;
 use App\Models\WalletTopupHistory;
+use App\Services\WalletTopupHistoryService;
 use Auth;
 use DB;
 use Exception;
@@ -22,7 +23,6 @@ use Str;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 use Validator;
-use Yajra\DataTables\Facades\DataTables;
 
 class WalletTopupHistoryController extends Controller
 {
@@ -36,43 +36,15 @@ class WalletTopupHistoryController extends Controller
     /**
      * @throws Exception
      */
-    public function history(Request $request)
+    public function history(Request $request, WalletTopupHistoryService $topupHistoryService)
     {
         abort_if(Gate::denies('wallet.topup-history.viewAny'), Response::HTTP_FORBIDDEN);
-
         if ($request->wantsJson()) {
-
-            $topup_history = WalletTopupHistory::with('receiver', 'user')
-                ->when(!empty($request->get('user_id')), static function ($query) use ($request) {
-                    $query->where('user_id', $request->get('user_id'));
-                })->when(!empty($request->get('receiver_id')), static function ($query) use ($request) {
-                    $query->where('receiver_id', $request->get('receiver_id'));
-                })->filter()
-                //->where('created_at', '<=', date('Y-m-d H:i:s'))
-                ->latest();
-
-            return DataTables::eloquent($topup_history)
-                ->addColumn('sender', static function ($topup) {
-                    return str_pad($topup->user_id, '4', '0', STR_PAD_LEFT) .
-                        " - <code class='text-uppercase'>{$topup->user->username}</code>";
-                })->addColumn('receiver', static function ($topup) {
-                    return str_pad($topup->receiver_id, '4', '0', STR_PAD_LEFT) .
-                        " - <code class='text-uppercase'>{$topup->receiver->username}</code>";
-                })->addColumn('proof', static function ($topup) {
-                    return "<a href='" . storage('wallets/topup/' . $topup->proof_documentation) . "' target='_blank' class='btn btn-info shadow btn-xs my-1 sharp me-1'>
-                                <i class='fas fa-check-to-slot'></i>
-                            </a>";
-                })->addColumn('remark', static function ($topup) {
-                    return "<span title='{$topup->remark}'>" . Str::limit($topup->remark, 15) . "</span>";
-                })
-                ->addColumn('created_at', fn($topup) => $topup->created_at->format('Y-m-d H:i:s'))
-                ->addColumn('amount', fn($topup) => number_format($topup->amount, 2))
+            return $topupHistoryService->datatable($request->get('sender_id'), $request->get('user_id'))
                 ->rawColumns(['sender', 'receiver', 'proof', 'remark'])
                 ->make();
         }
-
         return view('backend.admin.users.wallets.history');
-
     }
 
     /**

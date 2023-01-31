@@ -4,13 +4,6 @@ $(function () {
     const date_range = urlParams.get("date-range");
 
     let table = $('#rewards').DataTable({
-        language: {
-            paginate: {
-                next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
-                previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
-            }
-        },
-        lengthMenu: [[25, 50, 100, 250, 500, -1], [25, 50, 100, 250, 500, "All"],],
         scrollX: true,
         destroy: true,
         processing: true,
@@ -18,8 +11,8 @@ $(function () {
         fixedHeader: true,
         responsive: true,
         order: [[5, 'desc']],
-        stateSave: true,
-        ajax: location.href,
+        //stateSave: true,
+        ajax: INCOMES_URL,
         columns: [
             {data: "user_id", searchable: false},
             {data: "username", name: 'user.username', searchable: true},
@@ -70,18 +63,18 @@ $(function () {
         ],
     });
 
-    flatpickr("#date-range", {
+    flatpickr("#rewards-date-range", {
         mode: "range", dateFormat: "Y-m-d", defaultDate: date_range && date_range.split("to"),
     });
 
-    $(document).on("click", "#search", function (e) {
+    $(document).on("click", "#rewards-search", function (e) {
         e.preventDefault();
-        urlParams.set("date-range", $("#date-range").val());
-        urlParams.set("status", $("#status").val());
+        urlParams.set("date-range", $("#rewards-date-range").val());
+        urlParams.set("status", $("#rewards-status").val());
         urlParams.set("user_id", $("#user_id").val());
         urlParams.set("type", $("#type").val());
-        let url = location.href.split(/\?|\#/)[0] + "?" + urlParams.toString();
-        history.replaceState({}, "", url);
+        let url = INCOMES_URL.split(/\?|\#/)[0] + "?" + urlParams.toString();
+        HISTORY_STATE && history.replaceState({}, "", url);
         table.ajax.url(url).load();
     });
 

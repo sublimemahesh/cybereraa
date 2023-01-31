@@ -19,7 +19,7 @@ $(function () {
         responsive: true,
         order: [[4, 'desc']],
         stateSave: true,
-        ajax: location.href,
+        ajax: P2P_URL,
         columns: [
             {data: "sender", name: 'user.username', searchable: true},
             {data: "receiver", name: 'receiver.username', searchable: true},
@@ -67,18 +67,18 @@ $(function () {
         },],
     });
 
-    flatpickr("#date-range", {
+    flatpickr("#p2p-trx-date-range", {
         mode: "range", dateFormat: "Y-m-d", defaultDate: date_range && date_range.split("to"),
     });
 
-    $(document).on("click", "#search", function (e) {
+    $(document).on("click", "#p2p-trx-search", function (e) {
         e.preventDefault();
-        urlParams.set("date-range", $("#date-range").val());
-        urlParams.set("status", $("#status").val());
+        urlParams.set("date-range", $("#p2p-trx-date-range").val());
+        urlParams.set("status", $("#p2p-trx-status").val());
         urlParams.set("user_id", $("#user_id").val());
-        urlParams.set("receiver_id", $("#receiver_id").val());
-        let url = location.href.split(/\?|\#/)[0] + "?" + urlParams.toString();
-        history.replaceState({}, "", url);
+        urlParams.set("receiver_id", $("#p2p-trx-receiver_id").val());
+        let url = P2P_URL.split(/\?|\#/)[0] + "?" + urlParams.toString();
+        HISTORY_STATE && history.replaceState({}, "", url);
         table.ajax.url(url).load();
     });
 
