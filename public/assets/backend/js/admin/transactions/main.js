@@ -4,13 +4,6 @@ $(function () {
     const date_range = urlParams.get("date-range");
 
     let table = $('#transactions').DataTable({
-        language: {
-            paginate: {
-                next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
-                previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
-            }
-        },
-        lengthMenu: [[25, 50, 100, 250, 500, -1], [25, 50, 100, 250, 500, "All"],],
         scrollX: true,
         destroy: true,
         processing: true,
@@ -18,7 +11,7 @@ $(function () {
         fixedHeader: true,
         responsive: true,
         order: [[6, 'desc']],
-        stateSave: true,
+        //stateSave: true,
         ajax: location.href,
         columns: [
             {data: "user_id", searchable: false},
@@ -27,7 +20,8 @@ $(function () {
             {data: "package", searchable: false},
             {data: "type", searchable: false},
             {data: "status", searchable: false},
-            {data: "paid_at", searchable: false},
+            {data: "paid_at", name: 'created_at', searchable: true},
+            {data: "gas_fee", name: 'gas_fee', searchable: false},
             {data: "trx_amount", name: 'amount', searchable: false},
         ],
         footerCallback: function (row, data, start, end, display) {
@@ -48,8 +42,21 @@ $(function () {
 
             // Update footer
 
+
+            let sumVal = function (column, page = 'current') {
+                return api
+                    .column(column, page)
+                    .data()
+                    .reduce(function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0);
+            }
+
             pageTotal = new Intl.NumberFormat().format(pageTotal);
-            $(api.column(7).footer()).html(`Page Total: USDT ${pageTotal}`);
+            $(api.column(7).footer()).html(`Gas Fee Total: USDT ${pageTotal}`);
+
+            let paidTotal8 = new Intl.NumberFormat().format(sumVal(8));
+            $(api.column(7).footer()).append(`<br><br>Amount Total: USDT ${paidTotal8}`);
         },
         columnDefs: [
             {
@@ -62,7 +69,7 @@ $(function () {
                 render: function (amount, type, full, meta) {
                     return `<div style='min-width:120px' class="text-right"> ${amount} </div>`;
                 },
-                targets: 7,
+                targets: [7, 8],
             },
         ],
     });

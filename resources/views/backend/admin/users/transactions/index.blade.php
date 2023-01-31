@@ -122,6 +122,7 @@
                                 <th>TYPE</th>
                                 <th>STATUS</th>
                                 <th>PAID/CLOSED AT</th>
+                                <th class="text-right">(USDT) Gas Fee</th>
                                 <th class="text-right">(USDT) AMOUNT</th>
                             </tr>
                             </thead>
