@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\NextPaymentDate;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -13,7 +14,7 @@ use function Illuminate\Events\queueable;
 
 class PurchasedPackage extends Pivot
 {
-    use SoftDeletes;
+    use SoftDeletes, NextPaymentDate;
 
     protected $fillable = ['last_earned_at', 'commission_issued_at', 'transaction_id', 'user_id', 'purchaser_id', 'package_id', 'invested_amount', 'payable_percentage', 'status', 'expired_at', 'package_info'];
 
@@ -111,32 +112,4 @@ class PurchasedPackage extends Pivot
             ->whereIn('user_id', $user->descendants()->pluck('id')->toArray());
     }
 
-    public function getNextPaymentDateAttribute(): string
-    {
-        $today = Carbon::parse(date('Y-m-d') . ' ' . $this->created_at->format('H:i:s'));
-
-        $nextPayDay = $today;
-        if (Carbon::parse($this->last_earned_at)->isToday()) {
-            $nextPayDay = $today->addDay();
-        }
-        if ($nextPayDay->isSaturday() || $nextPayDay->isSunday()) {
-            $nextPayDay = $nextWeekday = $today->nextWeekday();
-        }
-        return $nextPayDay->format('Y-m-d H:i:s');
-        /*
-        $today = Carbon::parse(date('Y-m-d') . ' ' . $this->created_at->format('H:i:s'));
-        $firstPayDate = $this->created_at->addDays(5);
-
-        $nextPayDay = $firstPayDate;
-        if ($firstPayDate->isPast()) {
-            $nextPayDay = $today;
-        }
-        if ($firstPayDate->isPast() && Carbon::parse($this->last_earned_at)->isToday()) {
-            $nextPayDay = $today->addDay();
-        }
-        if ($nextPayDay->isSaturday() || $nextPayDay->isSunday()) {
-            $nextPayDay = $nextPayDay->nextWeekday();
-        }
-        return $nextPayDay->format('Y-m-d H:i:s');*/
-    }
 }
