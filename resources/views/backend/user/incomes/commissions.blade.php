@@ -110,6 +110,7 @@
                                 <th>TYPE</th>
                                 <th>STATUS</th>
                                 <th>REMARK</th>
+                                <th>REFERRER</th>
                                 <th>CREATED AT</th>
                                 <th>NEXT PAY DATE</th>
                                 <th class="text-right">AMOUNT</th>
@@ -118,7 +119,7 @@
                             </thead>
                             <tfoot>
                             <tr>
-                                <th colspan="7" style="text-align:right"></th>
+                                <th colspan="8" style="text-align:right"></th>
                             </tr>
                             </tfoot>
                         </table>
@@ -140,6 +141,6 @@
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.html5.min.js') }}"></script>
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.print.min.js') }}"></script>
         <script src="{{ asset('assets/backend/js/global-datatable-extension.js') }}"></script>
-        <script src="{{ asset('assets/backend/js/user/income/commission.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/user/income/commission.js?1675313941') }}"></script>
     @endpush
 </x-backend.layouts.app>

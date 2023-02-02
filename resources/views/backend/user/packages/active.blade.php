@@ -58,7 +58,7 @@
     </div> --}}
 
     <div class="alert alert-info">
-        Effective from 02-02-2023 all package earnings will be generated after 5 days from the date of purchase. This will affect all packages purchased from 02-02-2023 onwards.
+        Effective from 02-02-2023 all package earnings will be generated after 5 days from the date of purchase. This will affect all packages purchased from 01-02-2023 onwards.
     </div>
 
     <div class="row">
