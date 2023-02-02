@@ -55,11 +55,19 @@ $(function () {
     })
 
     function generateInvoice(payMethod, package_slug) {
+        let purchase_for_user_info = 'Yourself';
+        try {
+            let el = document.getElementById("purchase_for")
+            purchase_for_user_info = el.options[el.selectedIndex].text
+        } catch (e) {
+        }
+        let footer = purchase_for_user_info.length > 0 && 'Package Purchase for: ' + purchase_for_user_info;
         Swal.fire({
             title: "Are You Sure?",
             text: "Purchase selected package?. Please note that you cannot reverse this order after completing the purchase!",
             icon: "info",
             showCancelButton: true,
+            footer: '<small style="color:green">' + footer + '</small>'
         }).then((purchase) => {
             if (purchase.isConfirmed) {
                 loader()

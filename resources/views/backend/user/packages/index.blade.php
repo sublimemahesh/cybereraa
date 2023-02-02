@@ -70,19 +70,19 @@
                                 Please <code>search username in below box</code> and <code>select the
                                     username</code> you want to purchase package for.
                             </p>
-                            <p>
+                            <div>
                                 Please Note:
-                            <ul class="list-disc">
-                                <li class="mt-2">If you want to purchase a package for <code>Yourself</code> Please
-                                    <code>keep the select box empty</code>
-                                </li>
-                                <li class="mt-2">
-                                    If you purchase a package for someone else and <code>SELECTED USER DOES NOT HAVE ANY PREVIOUS INVESTMENTS</code>,
-                                    then <code>RELEVANT GAS FEE</code> will be added to the order.
-                                </li>
-                            </ul>
-
-                            </p>
+                                <ul class="list-disc">
+                                    <li class="mt-2">If you want to purchase a package for <code>Yourself</code> Please
+                                        <code>keep the select box empty</code>
+                                    </li>
+                                    <li class="mt-2">
+                                        If you purchase a package for someone else and
+                                        <code>SELECTED USER DOES NOT HAVE ANY PREVIOUS INVESTMENTS</code>,
+                                        then <code>RELEVANT GAS FEE</code> will be added to the order.
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-12 mb-4">
@@ -160,6 +160,6 @@
             const ALLOWED_PACKAGES = {!! json_encode($packages->pluck('slug'),JSON_THROW_ON_ERROR) !!};
         </script>
         <script src="{{ asset('assets/backend/vendor/select2/js/select2.full.min.js') }}"></script>
-        <script src="{{ asset('assets/backend/js/packages/choose.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/packages/choose.js?1675313941') }}"></script>
     @endpush
 </x-backend.layouts.app>
