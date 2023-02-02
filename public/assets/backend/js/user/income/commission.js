@@ -13,14 +13,14 @@ $(function () {
         ajax: location.href,
         order: [[4, 'desc']],
         columns: [
-            {data: "type", searchable: false},
-            {data: "status", searchable: false},
-            {data: "package", searchable: false},
-            {data: "referer", searchable: false},
-            {data: "created_at", searchable: false},
+            {data: "type", searchable: false, orderable: false},
+            {data: "status", name: 'status', searchable: false, orderable: false},
+            {data: "package", searchable: false, orderable: false},
+            {data: "referer", searchable: true, name: 'purchasedPackage.user.username', orderable: false},
+            {data: "created_date", name: 'created_at', searchable: false},
             {data: "next_payment_date", searchable: false, orderable: false},
-            {data: "amount", name: 'amount', searchable: false},
-            {data: "paid", name: 'paid', searchable: false},
+            {data: "amount", name: 'amount', searchable: false, orderable: false},
+            {data: "paid", name: 'paid', searchable: false, orderable: false},
         ],
         footerCallback: function (row, data, start, end, display) {
             let api = this.api();
