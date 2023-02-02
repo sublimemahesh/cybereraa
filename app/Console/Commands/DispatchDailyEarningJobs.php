@@ -6,6 +6,7 @@ use App\Jobs\GenerateUserDailyEarning;
 use App\Models\PurchasedPackage;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Database\Eloquent\Builder;
 use Symfony\Component\Console\Command\Command as CommandAlias;
 
 class DispatchDailyEarningJobs extends Command
@@ -37,7 +38,10 @@ class DispatchDailyEarningJobs extends Command
         if (!$today->isWeekend()) {
             $activePackages = PurchasedPackage::with('user')
                 ->where('status', 'active')
-                ->whereRaw('`created_at` + INTERVAL 5 DAY <= NOW()') // after 5 days from package purchase
+                ->where(function (Builder $query) {
+                    $query->whereRaw('`created_at` + INTERVAL 5 DAY <= NOW()') // after 5 days from package purchase
+                        ->orWhereDate('created_at', '<', '2023-02-01');
+                })
                 ->where('expired_at', '>=', Carbon::now())
                 ->whereDoesntHave('earnings', fn($query) => $query->whereDate('created_at', date('Y-m-d')))
                 ->chunk(100, function ($activePackages) {
