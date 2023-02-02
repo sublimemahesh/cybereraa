@@ -8,6 +8,9 @@
         <li class="breadcrumb-item">My Wallet</li>
     @endsection
 
+    <div class="alert alert-info">
+        Effective from 02-02-2023 all package earnings will be generated after 5 days from the date of purchase. This will affect all packages purchased from 27-01-2023 onwards.
+    </div>
     <div class="row">
         <div class="col-xl-4 col-lg-4">
             <div class="card prim-card">
@@ -139,7 +142,7 @@
                                                 <span class="text-success">{{ $trx->package_info_json->currency }} {{ $trx->amount }}</span>
                                                 <br>
                                                 <small> TRX FEE: {{ $trx->transaction_fee }}</small>
-                                            </td> 
+                                            </td>
                                             <td class="fs-14 font-w400">{{ $trx->created_at->format('Y-m-d H:i:s') }}</td>
                                             <td class="py-2 text-end">
                                                 <div class="dropdown">

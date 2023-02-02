@@ -57,6 +57,9 @@
 
     </div> --}}
 
+    <div class="alert alert-info">
+        Effective from 02-02-2023 all package earnings will be generated after 5 days from the date of purchase. This will affect all packages purchased from 27-01-2023 onwards.
+    </div>
 
     <div class="row">
         @foreach ($activePackages as $subscription)
@@ -66,11 +69,11 @@
                         <div class="card-header">
                             <h5 class="card-title text-white">
                                 {{ $subscription->transaction->create_order_request_info->goods->goodsName }} | <span
-                                    class='card-currency'>
+                                        class='card-currency'>
                                     {{ $subscription->transaction->currency }}{{ $subscription->transaction->amount }}</span>
                             </h5>
                             <p class="card-text text-wite d-inline"><i class="fa fa-check-circle icon-green"
-                                aria-hidden="true" ></i> {{ $subscription->status }}</p>
+                                        aria-hidden="true"></i> {{ $subscription->status }}</p>
                         </div>
                         <div class="card-body mb-0 package-body">
                             <p class="card-text"><i class="fa fa-angle-double-right" aria-hidden="true"></i> . START
@@ -85,7 +88,8 @@
                         <div class="card-footer d-sm-flex justify-content-between align-items-center">
                             <div class="card-footer-link mb-4 mb-sm-0">
                                 <a href="{{ route('user.packages.index') }}"
-                                class="btn bg-white text-primary btn-card">More Packages</a>
+                                        class="btn bg-white text-primary btn-card">More Packages
+                                </a>
                             </div>
                         </div>
                     </div>
