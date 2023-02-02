@@ -189,7 +189,7 @@
                                 </span>
                                 <div class="media-body text-white">
                                     <p class="mb-1">TOTAL WALLET BALANCE</p>
-                                    <h4 class="text-white"> $ {{ $total_available_wallet_balance }}</h4>
+                                    <h4 class="text-white  dashboard-card-font-size-change"> $ {{ $total_available_wallet_balance }}</h4>
                                     <br>
                                     <small> Wallet balance </small>
                                 </div>
@@ -206,7 +206,7 @@
                                 </span>
                                 <div class="media-body text-white">
                                     <p class="mb-1">TOTAL PAYABLE</p>
-                                    <h4 class="text-white"> $ {{ $total_withdraw_limit_wallet_balance }}</h4>
+                                    <h4 class="text-white dashboard-card-font-size-change"> $ {{ $total_withdraw_limit_wallet_balance }}</h4>
                                     <br>
                                     <small>Current total liability </small>
                                 </div>
@@ -224,7 +224,7 @@
                                 </span>
                                 <div class="media-body text-white">
                                     <p class="mb-1">TOTAL ACTIVE SALES</p>
-                                    <h4 class="text-white"> $ {{ $total_active_package_balance }}</h4>
+                                    <h4 class="text-white dashboard-card-font-size-change"> $ {{ $total_active_package_balance }}</h4>
                                     <br>
                                     <small>Current total Active packages </small>
                                 </div>
@@ -241,7 +241,7 @@
                                 </span>
                                 <div class="media-body text-white">
                                     <p class="mb-1">TOTAL EXPIRED SALES</p>
-                                    <h4 class="text-white"> $ {{ $total_expired_package_balance }}</h4>
+                                    <h4 class="text-white dashboard-card-font-size-change"> $ {{ $total_expired_package_balance }}</h4>
                                     <br>
                                     <small>Current total Inactive packages </small>
                                 </div>
