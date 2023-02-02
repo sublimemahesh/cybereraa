@@ -3,6 +3,7 @@
     @section('header-title', 'Kyc Entry' )
     @section('styles')
         <link rel="stylesheet" href="{{ asset('assets/backend/css/user/kyc.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     @endsection
     @section('breadcrumb-items')
         <li class="breadcrumb-item">
@@ -38,11 +39,12 @@
                                     <td>
                                         <div class="badge badge-xs badge-{{ $document->status_color }} light">{{ strtoupper($document->status) }}</div>
                                     </td>
-                                    <td>
+                                    <td class="imgDiv">
                                         @can ('view', $document)
-                                            <a target="_blank" class="btn btn-primary btn-xxs mb-2" href="{{ storage('user/kyc/'. $kyc->type .'/'. $document->document_name) }}">
-                                                <i class="fas fa-eye"></i>
-                                            </a>
+                                        <a src="{{ storage('user/kyc/' . $kyc->type . '/' . $document->document_name) }}"
+                                            class="btn btn-primary btn-xxs mb-2" href="#">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
                                         @endcan
                                         @can('approve', $document)
                                             <a target="_blank" class="btn btn-success btn-xxs mb-2 approve-kyc" data-document="{{ $document->id }}" href="javascript:void(0);">
@@ -66,6 +68,7 @@
     </div>
 
     @push('scripts')
-        <script src="{{ asset('assets/backend/js/admin/users/kyc-approve.js') }}"></script>
+    <script src="{{ asset('assets/backend/js/admin/users/ezoom.js') }}"></script>
+    <script src="{{ asset('assets/backend/js/admin/users/kyc-approve.js') }}"></script>
     @endpush
 </x-backend.layouts.app>

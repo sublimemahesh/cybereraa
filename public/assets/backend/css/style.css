@@ -48830,6 +48830,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
   .table-responsive-my{
     min-width: 890px !important;
  }
+ #zoomModalImg {margin-top:300px !important;}
 }
 
  @media (min-width: 992px) {
@@ -48838,7 +48839,10 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
         width:100% !important;
     }
 
+    #zoomModalImg {margin-left: 500px !important}
+
 }
 
 .profile-img{
     width:100px !important;
+}

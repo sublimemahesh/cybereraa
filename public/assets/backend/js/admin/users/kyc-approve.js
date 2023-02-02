@@ -33,3 +33,20 @@ $(function () {
         })
     })
 })
+
+////////////////////////////////  KYC Image rotation initialize //////////////////////
+
+ $(document).ready(function() {
+
+            ezoom.onInit($('.imgDiv a'), {
+                hideControlBtn: false,
+                onClose: function(result) {
+                    console.log(result);
+                },
+                onRotate: function(result) {
+                    console.log(result);
+                },
+
+            });
+
+        });
