@@ -598,3 +598,12 @@ jQuery(window).on('resize', function () {
     }, 1000);
 });
 /*  Window Resize END */
+
+/* font size change  */
+$('.dashboard-card-font-size-change').each(function(){
+    var el= $(this);
+      var textLength = el.html().length;
+       if (textLength >8 && textLength <15) {
+           el.css('font-size', '1.2em');
+       }
+});
