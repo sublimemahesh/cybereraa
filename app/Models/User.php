@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Dyrynda\Database\Support\CascadeSoftDeletes;
+use Haruncpi\LaravelUserActivity\Traits\Loggable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -24,6 +25,7 @@ use URL;
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasRoles;
+    use Loggable;
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
@@ -58,6 +60,15 @@ class User extends Authenticatable implements MustVerifyEmail
         'remember_token',
         'two_factor_recovery_codes',
         'two_factor_secret',
+    ];
+
+    public array $exclude = [
+        'password',
+        'remember_token',
+        'two_factor_recovery_codes',
+        'two_factor_secret',
+        'two_factor_confirmed_at',
+        'current_team_id'
     ];
 
     /**

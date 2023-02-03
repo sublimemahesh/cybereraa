@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use Haruncpi\LaravelUserActivity\Traits\Loggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Kyc extends Model
 {
     use SoftDeletes;
+    use Loggable;
 
     protected $withCount = ['documents'];
 

@@ -143,9 +143,9 @@
             <span class="nav-text">CMS</span>
         </a>
         <ul aria-expanded="false">
-            @can('country.viewAny')
+            @can('blogs.viewAny')
                 <li>
-                    <a href="{{ route('admin.countries.index') }}">Country</a>
+                    <a href="{{ route('admin.blogs.index') }}">Blog</a>
                 </li>
             @endcan
             @can('page.viewAny')
@@ -153,14 +153,19 @@
                     <a href="{{ route('admin.pages.index') }}">Pages</a>
                 </li>
             @endcan
-            @can('blogs.viewAny')
+            @can('country.viewAny')
                 <li>
-                    <a href="{{ route('admin.blogs.index') }}">Blog</a>
+                    <a href="{{ route('admin.countries.index') }}">Country</a>
                 </li>
             @endcan
             @can('currency.viewAny')
                 <li>
                     <a href="{{ route('admin.currencies.index') }}">Currencies</a>
+                </li>
+            @endcan
+            @can('testimonial.viewAny')
+                <li>
+                    <a href="{{ route('admin.testimonials.index') }}">Testimonials</a>
                 </li>
             @endcan
         </ul>
@@ -220,13 +225,5 @@
                 </li>
             @endcan
         </ul>
-    </li>
-@endcan
-@can('testimonial.viewAny')
-    <li>
-        <a href="{{ route('admin.testimonials.index') }}" class="" aria-expanded="false">
-            <i class="bi bi-wifi"></i>
-            <span class="nav-text">Testimonials</span>
-        </a>
     </li>
 @endcan

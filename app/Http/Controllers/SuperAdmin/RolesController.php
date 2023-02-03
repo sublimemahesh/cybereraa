@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\SuperAdmin;
 
 
+use App\Actions\ActivityLogAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
 use Illuminate\Support\Facades\Gate;
+use JsonException;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Symfony\Component\HttpFoundation\Response;
@@ -45,12 +47,22 @@ class RolesController extends Controller
         return view('backend.super_admin.roles.edit', compact('permissions', 'role'));
     }
 
-    public function update(UpdateRoleRequest $request, Role $role)
+    /**
+     * @throws JsonException
+     */
+    public function update(UpdateRoleRequest $request, Role $role, ActivityLogAction $activityLog)
     {
         if (Gate::allows('default.roles.manage', $role)) {
             $role->update(['name' => $request->input('name')]);
         }
+        $previousData = [
+            'permissions' => $role->permissions,
+        ];
         $role->syncPermissions($request->input('permissions', []));
+        $newData = [
+            'permissions' => $role->permissions,
+        ];
+        $activityLog->exce('role.manage', $previousData, $newData);
         return redirect()->route('super_admin.roles.index')->with('success', 'Role updated successfully');
     }
 

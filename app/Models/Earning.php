@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Auth;
 use Carbon\Carbon;
+use Haruncpi\LaravelUserActivity\Traits\Loggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -13,6 +14,7 @@ use Psr\Container\NotFoundExceptionInterface;
 class Earning extends Model
 {
     use SoftDeletes;
+    use Loggable;
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

@@ -8,6 +8,7 @@ use App\Models\KycDocument;
 use Auth;
 use Carbon;
 use DB;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Storage;
@@ -73,12 +74,17 @@ class KycController extends Controller
 
     public function update(Request $request, Kyc $kyc)
     {
-        $pending_count = $kyc->documents()->whereNull('document_name')->count();
+        $pending_count = $kyc->documents()
+            ->where(function (Builder $q) {
+                $q->whereNull('document_name')
+                    ->orWhere('status', 'rejected');
+            })
+            ->count();
         $validated = Validator::make($request->all(), [
             'nic' => [Rule::requiredIf($kyc->type === 'nic'), 'max:250'],
             'driving_lc' => [Rule::requiredIf($kyc->type === 'driving_lc'), 'max:250'],
             'passport' => [Rule::requiredIf($kyc->type === 'passport'), 'max:250'],
-            'documents' => [Rule::requiredIf($pending_count > 0), 'nullable', 'array', 'size:' . $pending_count],
+            'documents' => [Rule::requiredIf($pending_count > 0), 'nullable', 'array'],
             'documents.*.document_file' => 'nullable', 'base64image', 'base64max:1024',
             'documents.*.id' => 'required|exists:kyc_documents,id',
             // 'type' => 'required|in:front,back,other'

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\SuperAdmin;
 //namespace App\Actions\Fortify;
 
+use App\Actions\ActivityLogAction;
 use App\Actions\Fortify\PasswordValidationRules;
 use App\Http\Controllers\Controller;
 use App\Models\Country;
@@ -11,11 +12,13 @@ use App\Models\Team;
 use App\Models\User;
 use DB;
 use Exception;
+use Haruncpi\LaravelUserActivity\Traits\Log;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
+use JsonException;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,6 +30,7 @@ use Yajra\DataTables\Facades\DataTables;
 class UserController extends Controller
 {
     use PasswordValidationRules;
+    use Log;
 
     /**
      * @throws Exception
@@ -211,7 +215,10 @@ class UserController extends Controller
         return view('backend.super_admin.users.manage', compact('roles', 'permissions', 'user'));
     }
 
-    public function savePermissions(Request $request, User $user)
+    /**
+     * @throws JsonException
+     */
+    public function savePermissions(Request $request, User $user, ActivityLogAction $activityLog)
     {
         abort_if(Gate::denies('users.manage-permission'), Response::HTTP_FORBIDDEN);
         $input = $this->validate($request, [
@@ -220,12 +227,23 @@ class UserController extends Controller
             'role' => 'required|exists:roles,id'
         ]);
 
+        $previousData = [
+            'Roles' => $user->getRoleNames(),
+            'permissions' => $user->getDirectPermissions(),
+        ];
         if (!$user->hasRole('user')) {
             $user->syncRoles($request->input('role'));
         } else {
             session()->flash('warning', 'Users Role cannot be modified!');
         }
         $user->syncPermissions($input['permissions'] ?? []);
+
+        $newData = [
+            'Roles' => $user->getRoleNames(),
+            'permissions' => $user->getDirectPermissions(),
+        ];
+
+        $activityLog->exce('users.manage-permission', $previousData, $newData);
         return redirect()->back()->with('success', 'Permissions saved.!');
     }
 

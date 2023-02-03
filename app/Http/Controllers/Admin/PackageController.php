@@ -101,6 +101,26 @@ class PackageController extends Controller
         return response()->json($json);
     }
 
+    public function sort()
+    {
+        $this->authorize('update', Package::class);
+        $packages = Package::orderBy('order')->get();
+        return view('backend.admin.packages.arrange', compact('packages'));
+    }
+
+    public function storeSort(Request $request)
+    {
+        $this->authorize('update', Package::class);
+        if ($request->has('ids')) {
+            foreach ($request->get('ids') as $sortOrder => $id) {
+                Package::find($id)->update([
+                    "order" => $sortOrder
+                ]);
+            }
+            return ['status' => true, 'message' => 'Arrange success', "icon" => 'success'];
+        }
+        return response()->json(['status' => false, 'message' => 'Something went wrong', "icon" => 'danger']);
+    }
     /*public function buypackage()
     {
         $packages = Package::activePackages()->get();

@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use Cviebrock\EloquentSluggable\Sluggable;
+use Haruncpi\LaravelUserActivity\Traits\Loggable;
 use Illuminate\Database\Eloquent\Model;
 
 class Blog extends Model
 {
     use Sluggable;
+    use Loggable;
 
     /**
      * The attributes that are mass assignable.

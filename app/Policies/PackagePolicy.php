@@ -31,7 +31,7 @@ class PackagePolicy
         }
     }
 
-    public function update(User $user, Package $package)
+    public function update(User $user, Package|null $package = null)
     {
         if ($user->hasPermissionTo('package.update')) {
             return true;
