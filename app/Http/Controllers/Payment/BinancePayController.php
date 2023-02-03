@@ -41,7 +41,7 @@ class BinancePayController extends Controller
                     $exists = User::where('id', $value)->where('id', '<>', Auth::user()->id)
                         ->whereRelation('roles', 'name', 'user')
                         ->exists();
-                    if (!$exists){
+                    if (!$exists) {
                         $fail('Selected user invalid or does not allowed to be purchased a package!.');
                     }
                 }
@@ -70,8 +70,8 @@ class BinancePayController extends Controller
         try {
             return DB::transaction(function () use ($package, $user, $purchased_by, $validated) {
 
-                $amount = $package->amount;
-                $gas_fee = $user->purchasedPackages()->count() <= 0 ? $package->gas_fee : 0;
+                //$amount = $package->amount;
+                //$gas_fee = $user->purchasedPackages()->count() <= 0 ? $package->gas_fee : 0;
 
                 $transaction = Transaction::create([
                     'user_id' => $user->id,
@@ -79,7 +79,7 @@ class BinancePayController extends Controller
                     'package_id' => $package->id,
                     'currency' => "USDT",
                     'amount' => $package->amount,
-                    'gas_fee' => $gas_fee,
+                    'gas_fee' => $package->gas_fee,
                     'type' => ($validated['method'] === 'wallet') ? 'wallet' : 'crypto',
                     'status' => "INITIAL",
                 ]);

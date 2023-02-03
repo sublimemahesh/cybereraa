@@ -10,9 +10,9 @@
 
     <div class="row">
         @foreach($packages as $package)
-            @php
+            {{--@php
                 $gas_fee = $is_gas_fee_added ? $package->gas_fee : 0;
-            @endphp
+            @endphp--}}
             <div class="col-xl-3 col-md-6 col-sm-12 col-lg-3">
                 <div class="card text-center">
                     <div class="card-header">
@@ -23,16 +23,16 @@
                             <ul class="list-group">
                                 <li class="list-group-item active">
                                     {{ $package->currency }}
-                                    <b> {{ $package->amount + $gas_fee }} </b>
+                                    <b> {{ $package->amount + $package->gas_fee }} </b>
                                 </li>
                                 <li class="list-group-item"><b>Price </b>USDT {{ $package->amount }}</li>
                                 <li class="list-group-item">
-                                    @if(!$is_gas_fee_added)
+                                    {{--@if(!$is_gas_fee_added)
                                         <del><b>Gas Fee </b>USDT {{ $package->gas_fee }}</del>
                                     @endif
-                                    @if($is_gas_fee_added)
-                                        <b>Gas Fee </b>USDT {{ $package->gas_fee }}
-                                    @endif
+                                    @if($is_gas_fee_added)--}}
+                                    <b>Gas Fee </b>USDT {{ $package->gas_fee }}
+                                    {{--@endif--}}
                                 </li>
                                 <li class="list-group-item"><b>Package </b>{{ $package->name }}</li>
                                 <li class="list-group-item">
