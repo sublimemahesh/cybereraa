@@ -82,7 +82,7 @@ class ActivityController extends Controller
                 ->orderBy('log_date', 'desc')
                 ->whereNotIn('id', [$logId])
                 ->where(['table_name' => $table, 'log_type' => 'edit'])
-                ->where('data', 'LIKE', '%"id":' . $id . '%')->get();
+                ->where('data->id', $id)->get();
             return ['current_data' => $currentData, 'edit_history' => $editHistory, 'dirty_data' => $dirty_data];
         }
         return [];
