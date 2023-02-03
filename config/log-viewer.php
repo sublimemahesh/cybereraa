@@ -58,7 +58,7 @@ return [
     |
     */
 
-    'middleware' => ['web', 'auth', 'role:super_admin|admin'],
+    'middleware' => ['web', 'auth', 'role:super_admin'],
 
     /*
     |--------------------------------------------------------------------------

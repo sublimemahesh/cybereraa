@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon;
+use Haruncpi\LaravelUserActivity\Traits\Loggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,6 +13,7 @@ use JsonException;
 class RankGift extends Model
 {
     use SoftDeletes;
+    use Loggable;
 
     protected $fillable = ['user_id', 'rank_id', 'image_name', 'status'];
 

@@ -110,6 +110,8 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::post('ranks/gifts/{gift}/issue', 'Admin\RankGiftController@issueGift');
 
         //Packages
+        Route::get('packages/arrange', 'Admin\PackageController@sort')->name('packages.arrange');
+        Route::post('packages/arrange', 'Admin\PackageController@storeSort')->name('packages.arrange.store');
         Route::resource('packages', 'Admin\PackageController')->except('create', 'show');
 
         // topup

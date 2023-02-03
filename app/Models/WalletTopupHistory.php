@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon;
+use Haruncpi\LaravelUserActivity\Traits\Loggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -15,6 +16,7 @@ use stdClass;
 class WalletTopupHistory extends Model
 {
     use SoftDeletes;
+    use Loggable;
 
     protected $fillable = ['user_id', 'receiver_id', 'amount', 'proof_documentation', 'remark'];
 

@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Actions\ActivityLogAction;
 use App\Http\Controllers\Controller;
 use App\Models\Earning;
 use Artisan;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use JsonException;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -40,10 +42,13 @@ class EarningController extends Controller
         return view('backend.admin.users.earnings.index');
     }
 
-    public function calculateProfit(): \Illuminate\Http\JsonResponse
+    /**
+     * @throws JsonException
+     */
+    public function calculateProfit(ActivityLogAction $activityLog): \Illuminate\Http\JsonResponse
     {
         abort_if(Gate::denies('generate_daily_package_earnings'), Response::HTTP_FORBIDDEN);
-
+        $activityLog->exce('generate_daily_package_earnings');
         //$this->authorize('calculate_profit');
         $res = Artisan::call('calculate:profit');
         $json['status'] = $res === 0;
@@ -53,11 +58,13 @@ class EarningController extends Controller
         return response()->json($json, $code);
     }
 
-    public function calculateCommission(): \Illuminate\Http\JsonResponse
+    /**
+     * @throws JsonException
+     */
+    public function calculateCommission(ActivityLogAction $activityLog): \Illuminate\Http\JsonResponse
     {
         abort_if(Gate::denies('generate_daily_commission'), Response::HTTP_FORBIDDEN);
-
-        //$this->authorize('calculate_profit');
+        $activityLog->exce('generate_daily_commission');
         $res = Artisan::call('calculate:commission');
         $json['status'] = $res === 0;
         $json['message'] = Artisan::output();
@@ -66,11 +73,13 @@ class EarningController extends Controller
         return response()->json($json, $code);
     }
 
-    public function calculateRankBonusEarning(): \Illuminate\Http\JsonResponse
+    /**
+     * @throws JsonException
+     */
+    public function calculateRankBonusEarning(ActivityLogAction $activityLog): \Illuminate\Http\JsonResponse
     {
         abort_if(Gate::denies('generate_daily_rank_bonus'), Response::HTTP_FORBIDDEN);
-
-        //$this->authorize('calculate_profit');
+        $activityLog->exce('generate_daily_rank_bonus');
         $res = Artisan::call('calculate:rank-benefit-earning');
         $json['status'] = $res === 0;
         $json['message'] = Artisan::output();
@@ -80,11 +89,13 @@ class EarningController extends Controller
     }
 
 
-    public function issueMonthlyRankBonuses(): \Illuminate\Http\JsonResponse
+    /**
+     * @throws JsonException
+     */
+    public function issueMonthlyRankBonuses(ActivityLogAction $activityLog): \Illuminate\Http\JsonResponse
     {
         abort_if(Gate::denies('generate_monthly_rank_bonus'), Response::HTTP_FORBIDDEN);
-
-        //$this->authorize('calculate_profit');
+        $activityLog->exce('generate_monthly_rank_bonus');
         $res = Artisan::call('calculate:rank-bonus');
         $json['status'] = $res === 0;
         $json['message'] = Artisan::output();
@@ -92,4 +103,6 @@ class EarningController extends Controller
         $code = $res === 0 ? 200 : 422;
         return response()->json($json, $code);
     }
+
+
 }

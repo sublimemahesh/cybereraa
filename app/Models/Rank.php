@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Arr;
 use DB;
+use Haruncpi\LaravelUserActivity\Traits\Loggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -15,6 +16,7 @@ use Throwable;
 class Rank extends Model
 {
     use SoftDeletes;
+    use Loggable;
 
     protected $fillable = [
         'user_id',

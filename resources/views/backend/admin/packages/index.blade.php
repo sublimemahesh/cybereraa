@@ -16,6 +16,14 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
+                    @can('update', \App\Models\Package::class)
+                        <div class="mb-4">
+                            <a class="btn btn-dark btn-xs btn-rounded" href="{{ route('admin.packages.arrange') }}">
+                                Arrange
+                            </a>
+                        </div>
+                        <hr>
+                    @endcan
                     @include('backend.admin.packages.save', ['btn_id' => 'create'])
                 </div>
             </div>

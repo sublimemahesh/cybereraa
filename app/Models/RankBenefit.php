@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Auth;
 use Carbon\Carbon;
+use Haruncpi\LaravelUserActivity\Traits\Loggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -16,6 +17,7 @@ use stdClass;
 class RankBenefit extends Model
 {
     use SoftDeletes;
+    use Loggable;
 
     protected $fillable = ['last_earned_at', 'status', 'paid', 'amount'];
 

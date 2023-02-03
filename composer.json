@@ -57,6 +57,7 @@
     "psr-4": {
       "App\\": "app/",
       "CryptoPay\\Binancepay\\": "packages/crypto-pay/binancepay/src",
+      "Haruncpi\\LaravelUserActivity\\": "packages/laravel-user-activity/src",
       "Database\\Factories\\": "database/factories/",
       "Database\\Seeders\\": "database/seeders/"
     }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Auth;
 use Carbon\Carbon;
+use Haruncpi\LaravelUserActivity\Traits\Loggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -16,6 +17,7 @@ use stdClass;
 class Withdraw extends Model
 {
     use SoftDeletes;
+    use Loggable;
 
     protected $fillable = ['user_id', 'receiver_id', 'amount', 'transaction_fee', 'status', 'type'];
 
