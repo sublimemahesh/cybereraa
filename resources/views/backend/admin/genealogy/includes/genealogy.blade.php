@@ -1,8 +1,14 @@
+@php
+    $params = request()->has('filter-user') ? ['filter-user' => request()->input('filter-user')] : [];
+@endphp
 <div class="row">
     <div class="col-sm-12 ">
-        @if (!empty($user->parent_id) && config('fortify.super_parent_id') !== $user->id)
+        @if (!empty($user->parent_id) && config('fortify.super_parent_id') !== $user->id && request()->input('filter-user') !== $user->username)
             <div class="d-flex justify-content-center mb-md-2 mb-sm-5">
-                <a href="{{ route('admin.genealogy', $user->parent) }}" class="next-genealogy">
+                @php
+                    $params['user'] = $user->parent
+                @endphp
+                <a href="{{ URL::signedRoute('admin.genealogy', $params) }}" class="next-genealogy">
                     <i class="fas fa-arrow-up fs-2"></i>
                 </a>
             </div>
@@ -26,9 +32,10 @@
                                         @if (isset($descendants[$i]))
                                             @php
                                                 $descendant = $descendants[$i];
+                                                $params['user'] = $descendant
                                             @endphp
                                             <div class="swiper-slide">
-                                                <a href="{{ route('admin.genealogy', $descendant) }}" class="next-genealogy">
+                                                <a href="{{ URL::signedRoute('admin.genealogy', $params) }}" class="next-genealogy">
                                                     @include('backend.user.genealogy.includes.genealogy-card', ['user' => $descendant])
                                                 </a>
                                             </div>

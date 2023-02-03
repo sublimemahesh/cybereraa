@@ -20,13 +20,17 @@ Route::get('upcoming-projects', 'FrontendController@upcomingProject')->name('Upc
 
 Route::get('packages', 'FrontendController@pricing')->name('pricing');
 Route::get('faq', 'FrontendController@faq')->name('faq');
-Route::get('contact', 'FrontendController@contact')->name('contact');
+// Route::get('contact', 'FrontendController@contact')->name('contact');
 Route::get('news', 'FrontendController@news')->name('news');
 Route::get('news/{news:slug}', 'FrontendController@showNews')->name('news.show');
 
 Route::get('terms-and-conditions', 'FrontendController@termsConditions')->name('terms&Conditions');
 Route::get('disclaimer', 'FrontendController@disclaimer')->name('disclaimer');
 Route::post('filter/sponsors/{search_text}', 'RegisteredUserController@findUsers');
+
+Route::get('contact', 'ContactController@index')->name('contact');
+Route::post('contact-us/send-mail', 'ContactController@sendMail')->name('send.mail');
+
 
 // Register custom routes
 Route::group(['prefix' => 'register', 'middleware' => 'guest:' . config('fortify.guard')], function () {
@@ -102,7 +106,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         // Profile
         Route::get('/users/{user:username}/profile', 'Admin\UserController@profileShow')->name('users.profile.show');
 
-        Route::get('genealogy/{user:username?}', 'Admin\GenealogyController@index')->name('genealogy');
+        Route::get('genealogy/{user:username?}', 'Admin\GenealogyController@index')->name('genealogy')->middleware('signed');
 
         // RANK GIFtS
         Route::get('ranks/gifts', 'Admin\RankGiftController@index')->name('ranks.gifts');
