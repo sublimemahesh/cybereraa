@@ -607,3 +607,5 @@ $('.dashboard-card-font-size-change').each(function(){
            el.css('font-size', '1.2em');
        }
 });
+
+
