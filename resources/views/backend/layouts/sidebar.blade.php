@@ -53,7 +53,7 @@
 @endcan
 @can('users.genealogy')
     <li>
-        <a href="{{ route('admin.genealogy') }}" class="" aria-expanded="false">
+        <a href="{{ URL::signedRoute('admin.genealogy') }}" class="" aria-expanded="false">
             <i class="bi bi-diagram-3-fill"></i>
             <span class="nav-text">User Genealogy</span>
         </a>

@@ -19,8 +19,8 @@ class CreateLogTable extends Migration
             $table->dateTime('log_date');
             $table->string('table_name',50)->nullable();
             $table->string('log_type',50);
-            $table->longText('data');
-            $table->longText('dirty_data')->nullable();
+            $table->json('data')->nullable();
+            $table->json('dirty_data')->nullable();
         });
     }
 
