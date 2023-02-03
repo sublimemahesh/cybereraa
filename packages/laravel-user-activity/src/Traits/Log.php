@@ -20,6 +20,7 @@ trait Log
         if (!auth()->check() || $model->excludeLogging || !config('user-activity.activated', true)) {
             return;
         }
+        $dirtyData = json_encode(Arr::except($model->toArray(), $model->exclude), JSON_THROW_ON_ERROR);
         if ($logType === 'create') {
             $originalData = json_encode($model, JSON_THROW_ON_ERROR);
         } else if (version_compare(app()->version(), '7.0.0', '>=')) {
@@ -38,7 +39,8 @@ trait Log
             'log_date' => $dateTime,
             'table_name' => $tableName,
             'log_type' => $logType,
-            'data' => $originalData
+            'data' => $originalData,
+            'dirty_data' => $dirtyData,
         ]);
 
         if (!auth()->user()->hasRole('user')) {

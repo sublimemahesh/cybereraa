@@ -7,6 +7,7 @@ use App\User;
 use Haruncpi\LaravelUserActivity\Models\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Str;
 
 class ActivityController extends Controller
 {
@@ -53,6 +54,9 @@ class ActivityController extends Controller
         return $data->paginate(10);
     }
 
+    /**
+     * @throws \JsonException
+     */
     private function handleCurrentData(Request $request)
     {
         $this->validate($request, [
@@ -64,13 +68,19 @@ class ActivityController extends Controller
         $table = request('table');
         $id = request('id');
         $logId = request('log_id');
-        $currentData = DB::table($table)->find($id);
+        $currentData = Log::findOrNew($logId);
+        //dd($currentData);
+        if (Str::isJson($currentData->dirty_data)) {
+            $currentData = json_decode($currentData->dirty_data, false, 512, JSON_THROW_ON_ERROR);
+        } else {
+            $currentData = DB::table($table)->find($id);
+        }
         if ($currentData) {
             $editHistory = Log::with('user')
                 ->orderBy('log_date', 'desc')
                 ->whereNotIn('id', [$logId])
                 ->where(['table_name' => $table, 'log_type' => 'edit'])
-                ->whereRaw('data like ?', array('%"id":"' . $id . '"%'))->get();
+                ->where('data', 'LIKE', '%"id":' . $id . '%')->get();
             return ['current_data' => $currentData, 'edit_history' => $editHistory];
         }
         return [];
@@ -79,12 +89,12 @@ class ActivityController extends Controller
     private function handleUserAutocomplete(Request $request)
     {
         $this->validate($request, [
-            'user' => 'required|string|max:50'
+            'user' => 'required | string | max:50'
         ]);
 
         $user = request('user');
         return $this->userInstance::select('id', 'name', 'email')
-            ->where('name', 'like', '%' . $user . '%')
+            ->where('name', 'like', ' % ' . $user . ' % ')
             ->orWhere('id', $user)
             ->limit(10)->get();
     }
@@ -109,12 +119,12 @@ class ActivityController extends Controller
             }
         }
 
-        $connection = config('database.default');
+        $connection = config('database .default');
         $driver = DB::connection($connection)->getDriverName();
         switch ($driver) {
             case 'pgsql':
                 $sql = sprintf(
-                    "SELECT table_name FROM information_schema.tables where table_schema = '%s' ORDER BY table_schema,table_name;",
+                    "SELECT table_name FROM information_schema.tables where table_schema = ' % s' ORDER BY table_schema,table_name;",
                     DB::connection($connection)->getConfig('schema') ?: 'public'
                 );
                 $all = array_map('current', DB::select($sql));
@@ -127,7 +137,7 @@ class ActivityController extends Controller
                 $all = array_map('current', DB::select('SHOW TABLES'));
         }
 
-        $exclude = config('user-activity.exclude_tables');
+        $exclude = config('user - activity . exclude_tables');
         $tables = array_diff($all, $exclude);
 
         return view('LaravelUserActivity::index', ['tables' => $tables]);
@@ -140,7 +150,7 @@ class ActivityController extends Controller
             $action = $request->get('action');
             switch ($action) {
                 case 'delete':
-                    $dayLimit = config('user-activity.delete_limit');
+                    $dayLimit = config('user - activity . delete_limit');
                     Log::whereRaw('log_date < NOW() - INTERVAL ? DAY', [$dayLimit])->delete();
                     return ['success' => true, 'message' => "Successfully deleted log data older than $dayLimit days"];
                     break;

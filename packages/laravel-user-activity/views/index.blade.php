@@ -1247,7 +1247,7 @@
                             <tr>
                                 <td>@{{ ['edit','delete'].includes(selected.log_type)?'FIELD':'' }}</td>
                                 <td>@{{ selected.log_type==='edit'?'PREVIOUS':'DATA' }}</td>
-                                <td ng-show="selected.log_type==='edit'">CURRENT</td>
+                                <td ng-show="selected.log_type==='edit'">MODIFIED</td>
                             </tr>
                             </thead>
                             <tbody>
