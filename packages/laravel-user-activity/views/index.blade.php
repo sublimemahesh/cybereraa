@@ -1248,6 +1248,7 @@
                                 <td>@{{ ['edit','delete'].includes(selected.log_type)?'FIELD':'' }}</td>
                                 <td>@{{ selected.log_type==='edit'?'PREVIOUS':'DATA' }}</td>
                                 <td ng-show="selected.log_type==='edit'">MODIFIED</td>
+                                <td ng-show="selected.log_type==='edit'">CURRENT</td>
                             </tr>
                             </thead>
                             <tbody>
@@ -1255,6 +1256,9 @@
                             <tr ng-repeat="(field,value) in selected.json_data">
                                 <td class="field_cell">@{{ field }}</td>
                                 <td>@{{ value }}</td>
+                                <td ng-show="selected.log_type==='edit'" ng-class="value!=dirtyData[field]?'changed':''">
+                                    @{{ dirtyData[field] }}
+                                </td>
                                 <td ng-show="selected.log_type==='edit'" ng-class="value!=currentData[field]?'changed':''">
                                     @{{ currentData[field] }}
                                 </td>
