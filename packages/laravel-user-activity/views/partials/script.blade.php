@@ -56,11 +56,13 @@
                 id: logData.json_data.id,
                 log_id: logData.id
             };
+            $scope.dirtyData = {};
             $scope.currentData = {};
             $scope.editHistory = {};
             var url = ROUTE_PATH + objectToQueryString(param);
             $http.get(url)
                 .success(function (data) {
+                    $scope.dirtyData = data.dirty_data;
                     $scope.currentData = data.current_data;
                     $scope.editHistory = data.edit_history;
                     console.log(data)
