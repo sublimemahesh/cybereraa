@@ -39,11 +39,13 @@
                                     <td>
                                         <div class="badge badge-xs badge-{{ $document->status_color }} light">{{ strtoupper($document->status) }}</div>
                                     </td>
-                                    <td class="imgDiv">
+                                    <td>
+
                                         @can ('view', $document)
                                         <a src="{{ storage('user/kyc/' . $kyc->type . '/' . $document->document_name) }}"
-                                            class="btn btn-primary btn-xxs mb-2" href="#">
+                                            class="btn btn-primary btn-xxs mb-2 imgDiv" href="#">
                                             <i class="fas fa-eye"></i>
+
                                         </a>
                                         @endcan
                                         @can('approve', $document)
@@ -70,5 +72,10 @@
     @push('scripts')
     <script src="{{ asset('assets/backend/js/admin/users/ezoom.js') }}"></script>
     <script src="{{ asset('assets/backend/js/admin/users/kyc-approve.js') }}"></script>
+
+    <style>
+        
+    </style>
+
     @endpush
 </x-backend.layouts.app>

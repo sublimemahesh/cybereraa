@@ -38,7 +38,7 @@ $(function () {
 
  $(document).ready(function() {
 
-            ezoom.onInit($('.imgDiv a'), {
+            ezoom.onInit($('.imgDiv'), {
                 hideControlBtn: false,
                 onClose: function(result) {
                     console.log(result);
