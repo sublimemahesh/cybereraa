@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="header-logo-img">
-                <img class='shimmer' src="{{ asset('assets/frontend/images/project/header_icon_img.png') }}" alt="">
+                <img class='shimmer' src="{{ asset('assets/frontend/images/project/header_icon_img.png') }}"  alt="safest trades">
             </div>
         </div>
     </div>
@@ -35,7 +35,7 @@
         <div class="container">
             <div class="row">
                 <!-- Footer Widget Starts -->
-                <div class="col-sm-4 col-md-2">
+                <div class="col-sm-4 col-md-3">
                     <h4>Short Links</h4>
                     <div class="menu">
                         <ul>
@@ -53,7 +53,7 @@
                 </div>
                 <!-- Footer Widget Ends -->
                 <!-- Footer Widget Starts -->
-                <div class="col-sm-4 col-md-2">
+                <div class="col-sm-4 col-md-3">
                     <h4>Important Links</h4>
                     <div class="menu">
                         <ul>
@@ -85,7 +85,7 @@
                 </div>
                 <!-- Footer Widget Ends -->
                 <!-- Footer Widget Starts -->
-                <div class="col-sm-12 col-md-5">
+                <div class="col-sm-12 col-md-3">
                     {!! $footer_numbers['social_media_links']->content !!}
                 </div>
                 <!-- Footer Widget Ends -->
@@ -99,9 +99,8 @@
             <div class="row">
                 <div class="col-xs-12">
                     <!-- Copyright Text Starts -->
-                    <p class="text-center">© <?php echo date("Y"); ?> Safest Trades. All Rights Reserved. | Solution by
-                        <a href="https://www.synotec.lk/" target="_blank">Synotec Holdings Pvt. Ltd
-                        </a>
+                    <p class="text-center">
+                        © <?php echo date("Y"); ?> Safest Trades. All Rights Reserved.
                     </p>
                     <!-- Copyright Text Ends -->
                 </div>

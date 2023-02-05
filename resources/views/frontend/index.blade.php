@@ -28,7 +28,7 @@
                         <div class="row">
                             <div class="col-sm-12 col-md-5 col-lg-6 loging-area">
                                 <img class="w-100 shadow vert-move image222"
-                                    src="{{ asset('assets/frontend/images/project/banner-img.png') }}" id='hero-img' />
+                                    src="{{ asset('assets/frontend/images/project/banner-img.png') }}" id='hero-img' alt="safest trades" />
                             </div>
                             <div class="col-sm-12 col-md-5 col-lg-6">
                                 <div id='hero-text'>
@@ -202,7 +202,7 @@
                     <div class="item">
                         <a href="https://www.747live.net/
                             " target="_blank">
-                            <img src="{{ storage('pages/' . $section->image) }}" alt="">
+                            <img src="{{ storage('pages/' . $section->image) }}" alt="safest trades">
                         </a>
                     </div>
                 @endforeach
