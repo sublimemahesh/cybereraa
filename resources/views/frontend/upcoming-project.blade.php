@@ -1,13 +1,23 @@
  <x-frontend.layouts.app>
-     @section('title', 'Upcoming Project')
+     @section('title', 'Upcoming Project | Safest Trades | One to One Marketing Website')
      @section('header-title', 'Welcome ')
+
+     @section('meta')
+         <meta name="description"
+             content="We have the plan to make investments in the real estate sector in the future. There, we expect to buy and sell lands, residential properties, commercial">
+         <meta name="keywords"
+             content="safesttrades, safest trades, one to one marketing, one to one marketing website, network marketing website, e money sites, money investment sites, cryptocurrency trading, trade, trade online, trades websites">
+         <meta name="author" content="SAFEST TRADES">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     @endsection
+
      @section('styles')
 
          <link rel="stylesheet" href="{{ asset('assets/frontend/css/responsive-circle-image-slide.css') }}">
 
      @endsection
 
-    
+
 
      <div id="page">
         <section id="hero" class='net-hero'>

@@ -1,6 +1,16 @@
 <x-frontend.layouts.app>
-    @section('title', 'News')
+    @section('title', 'News | Safest Trades | One to One Marketing Website')
     @section('header-title', 'Welcome ')
+
+    @section('meta')
+        <meta name="description"
+            content="What if your dream investment can be made in the safest spot on the earth? just invest and wait and enjoy up to a guaranteed return of 400% in 15 months.">
+        <meta name="keywords"
+            content="safesttrades, safest trades, one to one marketing, one to one marketing website, network marketing website, e money sites, money investment sites, cryptocurrency trading, trade, trade online, trades websites">
+        <meta name="author" content="SAFEST TRADES">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @endsection
+
     @section('styles')
     @endsection
 
@@ -83,6 +93,6 @@
     <!-- News Section Ends -->
 
     @push('scripts')
-    <script src="{{ asset('assets/frontend/js/net.js') }}"></script>
+        <script src="{{ asset('assets/frontend/js/net.js') }}"></script>
     @endpush
 </x-frontend.layouts.app>

@@ -1,6 +1,16 @@
 <x-frontend.layouts.app>
-    @section('title', 'TERMS & CONDITIONS')
+    @section('title', 'Terms and Conditions | Safest Trades | One to One Marketing Website')
     @section('header-title', 'Welcome ')
+
+    @section('meta')
+        <meta name="description"
+            content="All the information made available here is generally provided to serve as an example only, without obligation and without specific recommendations for action.">
+        <meta name="keywords"
+            content="safesttrades, safest trades, one to one marketing, one to one marketing website, network marketing website, e money sites, money investment sites, cryptocurrency trading, trade, trade online, trades websites">
+        <meta name="author" content="SAFEST TRADES">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @endsection
+
     @section('styles')
     <link href="{{ asset('assets/frontend/css/terms-and-conditions.css') }}" rel="stylesheet">
 

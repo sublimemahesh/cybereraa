@@ -1,6 +1,16 @@
 <x-frontend.layouts.app>
-    @section('title', 'Package')
+    @section('title', 'Package | Safest Trades | One to One Marketing Website')
     @section('header-title', 'Welcome ')
+
+    @section('meta')
+        <meta name="description"
+            content="Trading in options involves considerable risk and is not a suitable form of investment for all investors. The risk in options trading that you will lose your">
+        <meta name="keywords"
+            content="safesttrades, safest trades, one to one marketing, one to one marketing website, network marketing website, e money sites, money investment sites, cryptocurrency trading, trade, trade online, trades websites">
+        <meta name="author" content="SAFEST TRADES">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @endsection
+
     @section('styles')
 
         <link href="{{ asset('assets/frontend/css/pricing.css') }}" rel="stylesheet">
@@ -86,6 +96,6 @@
     </section>
 
     @push('scripts')
-    <script src="{{ asset('assets/frontend/js/net.js') }}"></script>
+        <script src="{{ asset('assets/frontend/js/net.js') }}"></script>
     @endpush
 </x-frontend.layouts.app>

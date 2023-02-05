@@ -36,7 +36,7 @@
             <div class="row">
                 <!-- Footer Widget Starts -->
                 <div class="col-sm-4 col-md-2">
-                    <h4>Our Company</h4>
+                    <h4>Short Links</h4>
                     <div class="menu">
                         <ul>
                             <li>
@@ -44,18 +44,6 @@
                             </li>
                             <li>
                                 <a href="{{ route('about') }}">About Us</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('project') }}">Existing Projects</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('Upcoming-project') }}">Upcoming Projects</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('pricing') }}">Packages</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('news') }}">News</a>
                             </li>
                             <li>
                                 <a href="{{ route('contact') }}">Contact</a>
@@ -66,7 +54,7 @@
                 <!-- Footer Widget Ends -->
                 <!-- Footer Widget Starts -->
                 <div class="col-sm-4 col-md-2">
-                    <h4>Help & Support</h4>
+                    <h4>Important Links</h4>
                     <div class="menu">
                         <ul>
                             <li>
@@ -78,11 +66,6 @@
                             <li>
                                 <a href="{{ route('disclaimer') }}">Disclaimer</a>
                             </li>
-                            {{-- <li><a href="terms-of-services.html">Terms of Services</a></li>
-                            <li><a href="404.html">404</a></li>
-                            <li><a href="register.html">Register</a></li>
-                            <li><a href="login.html">Login</a></li>
-                            <li><a href="coming-soon.html">Coming Soon</a></li> --}}
                         </ul>
                     </div>
                 </div>
@@ -97,63 +80,13 @@
                         <div>
                             <span> Safest Trades, Proton Trading Pro LLC., 140 21ST ST STE R, Sacramento, CA 95811.</span>
                         </div>
-
                     </div>
-                    <!-- Social Media Profiles Starts -->
-                    {!! $footer_numbers['social_media_links']->content !!}
-                    {{--<div class="social-footer">
-                        <ul>
-                            <li>
-                                <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank"><i class="fa fa-google-plus"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
-                            </li>
-                        </ul>
-                    </div>--}}
                     <!-- Social Media Profiles Ends -->
                 </div>
                 <!-- Footer Widget Ends -->
                 <!-- Footer Widget Starts -->
                 <div class="col-sm-12 col-md-5">
-                    <!-- Facts Starts -->
-                    <div class="facts-footer">
-                        <div>
-                            <h5>{{ $footer_numbers['today_registrations'] }}</h5>
-                            <span>Today Registrations</span>
-                        </div>
-                        <div>
-                            <h5>{{ $footer_numbers['active_accounts'] }}</h5>
-                            <span>active accounts</span>
-                        </div>
-                        <div>
-                            <h5>{{ $footer_numbers['daily_transactions'] }}</h5>
-                            <span>daily transactions</span>
-                        </div>
-
-                        <div>
-                            <h5>{{ $footer_numbers['support_countries'] }}</h5>
-                            <span>supported countries</span>
-                        </div>
-                    </div>
-                    <!-- Facts Ends -->
-                    <hr>
-                    <!-- Supported Payment Cards Logo Starts -->
-                    {{-- <div class="payment-logos">
-                        <h4 class="payment-title">supported payment methods</h4>
-                        <img src="{{ asset('assets/frontend/images/icons/payment/american-express.png') }}" alt="american-express">
-                        <img src="{{ asset('assets/frontend/images/icons/payment/mastercard.png') }}" alt="mastercard">
-                        <img src="{{ asset('assets/frontend/images/icons/payment/visa.png') }}" alt="visa">
-                        <img src="{{ asset('assets/frontend/images/icons/payment/paypal.png') }}" alt="paypal">
-                        <img class="last" src="{{ asset('assets/frontend/images/icons/payment/maestro.png') }}" alt="maestro">
-                    </div> --}}
-                    <!-- Supported Payment Cards Logo Ends -->
+                    {!! $footer_numbers['social_media_links']->content !!}
                 </div>
                 <!-- Footer Widget Ends -->
             </div>

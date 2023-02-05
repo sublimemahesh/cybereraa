@@ -1,6 +1,16 @@
 <x-frontend.layouts.app>
-    @section('title', 'Contact Us')
+    @section('title', 'Contact Us | Safest Trades | One to One Marketing Website')
     @section('header-title', 'Welcome ')
+
+    @section('meta')
+        <meta name="description"
+            content="Need to speak to us? Do you have any queries or suggestions? Please contact us about all enquiries including membership and volunteer work using the form below.">
+        <meta name="keywords"
+            content="safesttrades, safest trades, one to one marketing, one to one marketing website, network marketing website, e money sites, money investment sites, cryptocurrency trading, trade, trade online, trades websites">
+        <meta name="author" content="SAFEST TRADES">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @endsection
+
     @section('styles')
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     @endsection
