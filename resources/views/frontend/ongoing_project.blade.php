@@ -1,6 +1,16 @@
  <x-frontend.layouts.app>
-     @section('title', 'Project')
+     @section('title', 'On Going Project | Safest Trades | One to One Marketing Website')
      @section('header-title', 'Welcome ')
+
+     @section('meta')
+         <meta name="description"
+             content="Basically, what happens throughout the process of cryptocurrency mining is producing new bitcoins. Cryptocurrency mining ensures that transactions are valid">
+         <meta name="keywords"
+             content="safesttrades, safest trades, one to one marketing, one to one marketing website, network marketing website, e money sites, money investment sites, cryptocurrency trading, trade, trade online, trades websites">
+         <meta name="author" content="SAFEST TRADES">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     @endsection
+
      @section('styles')
 
          <link rel="stylesheet" href="{{ asset('assets/frontend/css/responsive-circle-image-slide.css') }}">
@@ -8,39 +18,39 @@
      @endsection
 
      <div id="page">
-        <section id="hero" class='net-hero'>
-            <div class="background">
-                <canvas id="hero-background"></canvas>
-            </div>
-            <div class="foreground">
-                <div class="main">
-                    <section class="banner-area">
-                        <div class="banner-overlay">
-                            <div class="banner-text text-center">
-                                <div class="container">
-                                    <!-- Section Title Starts -->
-                                    <div class="row text-center">
-                                        <div class="col-xs-12">
-                                            <!-- Title Starts -->
-                                            <h2 class="title-head">Existing <span> Projects</span></h2>
-                                            <!-- Title Ends -->
-                                            <hr>
-                                            <!-- Breadcrumb Starts -->
-                                            <ul class="breadcrumb">
-                                                <li><a href="{{ route('/') }}"> home</a></li>
-                                                <li>Existing  Projects</li>
-                                            </ul>
-                                            <!-- Breadcrumb Ends -->
-                                        </div>
-                                    </div>
-                                    <!-- Section Title Ends -->
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-        </section>
-    </div>
+         <section id="hero" class='net-hero'>
+             <div class="background">
+                 <canvas id="hero-background"></canvas>
+             </div>
+             <div class="foreground">
+                 <div class="main">
+                     <section class="banner-area">
+                         <div class="banner-overlay">
+                             <div class="banner-text text-center">
+                                 <div class="container">
+                                     <!-- Section Title Starts -->
+                                     <div class="row text-center">
+                                         <div class="col-xs-12">
+                                             <!-- Title Starts -->
+                                             <h2 class="title-head">Existing <span> Projects</span></h2>
+                                             <!-- Title Ends -->
+                                             <hr>
+                                             <!-- Breadcrumb Starts -->
+                                             <ul class="breadcrumb">
+                                                 <li><a href="{{ route('/') }}"> home</a></li>
+                                                 <li>Existing Projects</li>
+                                             </ul>
+                                             <!-- Breadcrumb Ends -->
+                                         </div>
+                                     </div>
+                                     <!-- Section Title Ends -->
+                                 </div>
+                             </div>
+                         </div>
+                     </section>
+                 </div>
+         </section>
+     </div>
 
 
 
@@ -107,6 +117,6 @@
      </div>
 
      @push('scripts')
-     <script src="{{ asset('assets/frontend/js/net.js') }}"></script>
+         <script src="{{ asset('assets/frontend/js/net.js') }}"></script>
      @endpush
  </x-frontend.layouts.app>

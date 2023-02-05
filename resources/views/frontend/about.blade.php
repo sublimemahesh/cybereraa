@@ -1,14 +1,20 @@
 <x-frontend.layouts.app>
-    @section('title', 'About Us')
+    @section('title', 'About Us | Safest Trades | One to One Marketing Website')
     @section('header-title', 'Welcome ')
-    @section('styles')
 
-        <link href="{{ asset('assets/frontend/css/road_map.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/frontend/css/mvv.css') }}" rel="stylesheet">
-
+    @section('meta')
+        <meta name="description"
+            content="We started SAFEST TRADING as a closely-knitted group of trading experts in 2019 with just 5 trading teams. As a 4 years old platform, SAFEST TRADING is ideal">
+        <meta name="keywords"
+            content="safesttrades, safest trades, one to one marketing, one to one marketing website, network marketing website, e money sites, money investment sites, cryptocurrency trading, trade, trade online, trades websites">
+        <meta name="author" content="SAFEST TRADES">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     @endsection
 
-
+    @section('styles')
+        <link href="{{ asset('assets/frontend/css/road_map.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/frontend/css/mvv.css') }}" rel="stylesheet">
+    @endsection
 
     <div id="page">
         <section id="hero" class='net-hero'>

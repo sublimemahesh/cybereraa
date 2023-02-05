@@ -1,14 +1,21 @@
 <x-frontend.layouts.app>
-    @section('title', 'Home')
+    @section('title', 'Home Page | Safest Trades | One to One Marketing Website')
     @section('header-title', 'Welcome ')
-    @section('styles')
 
+    @section('meta')
+        <meta name="description"
+            content="SAFEST TRADES is an independent platform that is dedicated to cryptocurrency trading, gold trading, gold mining, diamond trading, diamond mining">
+        <meta name="keywords"
+            content="safesttrades, safest trades, one to one marketing, one to one marketing website, network marketing website, e money sites, money investment sites, cryptocurrency trading, trade, trade online, trades websites">
+        <meta name="author" content="SAFEST TRADES">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @endsection
+
+    @section('styles')
         <link href="{{ asset('assets/frontend/css/testimonials.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/frontend/css/hiw2.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/frontend/css/net.css') }}" rel="stylesheet">
-
     @endsection
-
 
     <div id="page">
         <section id="hero" class='net-hero'>
@@ -21,7 +28,7 @@
                         <div class="row">
                             <div class="col-sm-12 col-md-5 col-lg-6 loging-area">
                                 <img class="w-100 shadow vert-move image222"
-                                        src="{{ asset('assets/frontend/images/project/banner-img.png') }}" id='hero-img'/>
+                                    src="{{ asset('assets/frontend/images/project/banner-img.png') }}" id='hero-img' />
                             </div>
                             <div class="col-sm-12 col-md-5 col-lg-6">
                                 <div id='hero-text'>
@@ -29,7 +36,8 @@
                                     </h1>
                                     <p class="about-text">
                                         What if your dream investment can be made in the safest spot on
-                                        the earth? just invest and wait and enjoy up to a guaranteed return of 400% in 15 months. Daily withdrawals, No claim Bonuses, and many more massive benefits.
+                                        the earth? just invest and wait and enjoy up to a guaranteed return of 400% in
+                                        15 months. Daily withdrawals, No claim Bonuses, and many more massive benefits.
                                     </p>
                                 </div>
                             </div>
@@ -45,7 +53,8 @@
             <!-- Section Title Starts -->
             <div class="row text-center">
                 <h2 class="title-head">THE SAFEST SPOT ON THE EARTH <br>
-                    <span> WHERE YOU CAN INVEST YOUR MONEY.</span></h2>
+                    <span> WHERE YOU CAN INVEST YOUR MONEY.</span>
+                </h2>
                 <div class="title-head-subtitle">
                     <p>WWW.SAFESTTRADES.COM</p>
                 </div>
@@ -156,11 +165,11 @@
                                 @foreach ($benefits as $section)
                                     <div class="col-sm-6 col-md-6 col-xs-12">
                                         <div class="feature text-center">
-                                        <span class="feature-icon">
-                                            <img id="strong-security"
+                                            <span class="feature-icon">
+                                                <img id="strong-security"
                                                     src="{{ storage('pages/' . $section->image) }}"
                                                     alt="strong security">
-                                        </span>
+                                            </span>
                                             <h3 class="feature-title">{{ $section->title }}</h3>
                                             {!! $section->content !!}<br>
                                         </div>
@@ -186,21 +195,20 @@
         </div>
     </section>
 
-     <section>
+    <section>
         <div class="container">
             <div class="owl-carousel owl-theme casino-slider">
                 @foreach ($packages->children as $section)
                     <div class="item">
                         <a href="https://www.747live.net/
                             " target="_blank">
-                            <img
-                                    src="{{ storage('pages/' . $section->image) }}" alt="">
+                            <img src="{{ storage('pages/' . $section->image) }}" alt="">
                         </a>
                     </div>
                 @endforeach
             </div>
         </div>
-    </section> 
+    </section>
 
     <!-- Quote and Chart Section Ends -->
     <!-- Comment Section Starts -->
@@ -287,9 +295,8 @@
                             <div class="latest-post">
                                 <!-- Featured Image Starts -->
                                 <a href="{{ route('news.show', $news) }}">
-                                    <img class="img-responsive"
-                                            src="{{ storage('blogs/' . $news->image) }}"
-                                            alt="{{ storage('blogs/' . $news->image) }}">
+                                    <img class="img-responsive" src="{{ storage('blogs/' . $news->image) }}"
+                                        alt="{{ storage('blogs/' . $news->image) }}">
                                 </a>
                                 <!-- Featured Image Ends -->
                                 <!-- Article Content Starts -->

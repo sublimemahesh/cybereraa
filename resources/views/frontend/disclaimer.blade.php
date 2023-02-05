@@ -1,6 +1,16 @@
 <x-frontend.layouts.app>
-    @section('title', 'DISCLAIMER')
+    @section('title', 'Disclaimer | Safest Trades | One to One Marketing Website')
     @section('header-title', 'Welcome ')
+
+    @section('meta')
+        <meta name="description"
+            content="Any and all liability for risks resulting from investment transactions or other asset dispositions carried out by the customer based on information received">
+        <meta name="keywords"
+            content="safesttrades, safest trades, one to one marketing, one to one marketing website, network marketing website, e money sites, money investment sites, cryptocurrency trading, trade, trade online, trades websites">
+        <meta name="author" content="SAFEST TRADES">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @endsection
+
     @section('styles')
 
     <link href="{{ asset('assets/frontend/css/disclaimer.css') }}" rel="stylesheet">
