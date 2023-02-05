@@ -124,10 +124,7 @@
         <!--**********************************  Footer start   ***********************************-->
         <div class="footer out-footer">
             <div class="copyright">
-                <p>Copyright © Developed by
-                    <a href="https://www.synotec.lk" target="_blank">Synotec</a>
-                    {{ date('Y') }}
-                </p>
+                <p>© {{ date('Y') }} Safest Trades. All Rights Reserved.</p>
             </div>
         </div>
         <!--********************************** Footer end  ***********************************-->

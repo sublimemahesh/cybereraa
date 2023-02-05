@@ -2,4 +2,4 @@
 
 @section('title', __('Not Found'))
 @section('code', '405')
-@section('message', __('Not Found!'))
+@section('message', 'Sorry, The page you were looking for does not allowed')

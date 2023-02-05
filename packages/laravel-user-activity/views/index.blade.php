@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html ng-app="myApp">
+<html ng-app="myApp" lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>User Activity</title>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
-            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.10/angular.min.js"></script>
     <script>
         angular.module('__paging', []).directive('paging', function () {
@@ -405,7 +404,8 @@
     </script>
 
     <!-- inject:style:css -->
-    <style>body {
+    <style>
+        body {
             margin: 0;
             padding: 0;
             background: #f4f4f4;
@@ -1160,8 +1160,7 @@
                             <span ng-switch-when="create" class="lbl_table">to @{{log.table_name}}</span>
                             <span ng-switch-when="edit" class="badge warning edit_badge">@{{log.log_type}}</span>
 
-                            <span ng-switch-when="edit|delete"
-                                    ng-switch-when-separator="|" class="lbl_table">from @{{ log.table_name }}</span>
+                            <span ng-switch-when="edit|delete" ng-switch-when-separator="|" class="lbl_table">from @{{ log.table_name }}</span>
 
                             <span ng-switch-default class="badge debug">@{{log.log_type}}</span>
                         </td>

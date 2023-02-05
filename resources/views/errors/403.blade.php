@@ -2,4 +2,4 @@
 
 @section('title', __('Forbidden'))
 @section('code', '403')
-@section('message', __($exception->getMessage() ?: 'Forbidden'))
+@section('message', 'You do not have correct permissions to access this page. Feel free to contact us if the support needed.'))

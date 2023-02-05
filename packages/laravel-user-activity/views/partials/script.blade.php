@@ -62,7 +62,18 @@
             var url = ROUTE_PATH + objectToQueryString(param);
             $http.get(url)
                 .success(function (data) {
-                    $scope.dirtyData = data.dirty_data;
+                    if (data.dirty_data && Object.entries(data.dirty_data).length > 0) {
+                        for (const [key, value] of Object.entries(data.dirty_data)) {
+                            console.log(key, value, moment(value, 'YYYY-MM-DDTHH:mm:ss.000000Z', true).isValid())
+                            if (moment(value, 'YYYY-MM-DDTHH:mm:ss.000000Z', true).isValid()) {
+                                $scope.dirtyData[key] = moment(value).format('YYYY-MM-DD HH:mm:ss')
+                                console.log($scope.dirtyData[key])
+                            } else {
+                                $scope.dirtyData[key] = value
+                            }
+                        }
+                    }
+                    //$scope.dirtyData = data.dirty_data;
                     $scope.currentData = data.current_data;
                     $scope.editHistory = data.edit_history;
                     console.log(data)
