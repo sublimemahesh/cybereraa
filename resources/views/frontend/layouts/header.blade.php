@@ -7,7 +7,7 @@
                 <div class="main-logo col-xs-12 col-md-3 col-md-3 col-lg-3 hidden-xs">
                     <a href="{{ route('/') }}">
                         <img id="logo" class="img-responsive mys-logo"
-                            src="{{ asset('assets/frontend/images/down/logo.png') }}" alt="logo">
+                            src="{{ asset('assets/frontend/images/down/logo.png') }}"  alt="safest trades logo">
                     </a>
                 </div>
                 <!-- Logo Ends -->
@@ -28,7 +28,7 @@
                                                     days)</p>
                                                 <h5 class="ttt">$<?php echo number_format($section->value, 2); ?></h5>
                                                 <img src="{{ storage('currencies/' . $section->image_name) }}"
-                                                    class="cryimg">
+                                                    class="cryimg" alt="safest trades">
                                             </div>
                                         </div>
                                     </div>
@@ -77,7 +77,7 @@
                     <!-- Logo For ONLY Mobile display Starts -->
                     <a class="logo-mobile" href="index.php">
                         <img id="logo-mobile" class="img-responsive"
-                            src="{{ asset('assets/frontend/images/down/logo.png') }}" alt="">
+                            src="{{ asset('assets/frontend/images/down/logo.png') }}"  alt="safest trades">
                     </a>
                     <!-- Logo For ONLY Mobile display Ends -->
                     <!-- Toggle Icon for Mobile Starts -->

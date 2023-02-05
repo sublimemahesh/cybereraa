@@ -66,7 +66,7 @@
                     <article>
                         <!-- Figure Starts -->
                         <figure class="blog-figure">
-                            <img class="img-responsive" src="{{ storage('blogs/' . $news->image) }}" alt="">
+                            <img class="img-responsive" src="{{ storage('blogs/' . $news->image) }}"  alt="safest trades">
                         </figure>
                         <div class="meta second-font">
                             <span><i class="fa fa-user"></i> <a href="#">admin</a></span>
@@ -95,7 +95,7 @@
                                 <li>
                                     <div class="posts-thumb pull-left">
                                         <a href="{{ route('news.show', $news_recent) }}">
-                                            <img alt="img" src="{{ storage('blogs/' . $news_recent->image) }}"">
+                                            <img alt="img" src="{{ storage('blogs/' . $news_recent->image) }}"  alt="safest trades">
                                         </a>
                                     </div>
                                     <div class="post-info">

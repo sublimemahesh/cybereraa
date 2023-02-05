@@ -68,7 +68,7 @@
                              <div class="col-sm-12 col-md-5 col-lg-6 text-center">
                                  <img id="about-us" class="img-responsive img-about-us"
                                      src="{{ storage('pages/' . $project->image) }}"
-                                     alt="{{ storage('pages/' . $project->image) }}">
+                                     alt="{{ storage('pages/' . $project->title) }}">
                              </div>
                              <!-- Image Ends -->
                              <!-- Content Starts -->
