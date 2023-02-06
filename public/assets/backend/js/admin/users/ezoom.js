@@ -293,9 +293,13 @@ ezoom = {
 
         $(document).on("keydown", function (e) {
             e = e || window.event;
+            //alert('fff');
             ezoom._preventDefault(e);
             if (e.keyCode && ezoom.isShow) {
                 // console.log(e.keyCode);
+                if (e.keyCode == 82 && e.ctrlKey) {
+                    ezoom.doRotate("right");
+                 }
 
                 if (!ezoom.options.hideControlBtn) {
                     // Arrow direction key and the A D W S key
@@ -315,6 +319,8 @@ ezoom = {
                         // down S
                         ezoom.setTransformOrigin(1, 180, 0, 0);
                     }
+
+
                 }
 
                 // ESC key
@@ -332,8 +338,8 @@ ezoom = {
                         }
                     }
                 }
-                // R key
-                if (e.keyCode == 82) {
+                // U key
+                if (e.keyCode == 73) {
                     ezoom.doRotate("right");
                 }
             }

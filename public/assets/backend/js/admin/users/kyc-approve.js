@@ -46,6 +46,9 @@ $(function () {
                 onRotate: function(result) {
                     console.log(result);
                 },
+                onShow: function(){
+                    $("div#zoomModal").css("display", "flex !important");
+                },
 
             });
 
