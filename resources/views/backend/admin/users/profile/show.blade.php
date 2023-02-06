@@ -181,13 +181,13 @@
                     <div class="profile-tab">
                         <div class="custom-tab-1">
                             <div class="tab-content">
-                                <h4 class="text-primary">Personal Information</h4>
+                                <h4 class="text-primary">Personal information</h4>
                                 <hr>
                                 <div class="profile-personal-info">
 
                                     <div class="row mb-2">
                                         <div class="col-sm-3 col-5">
-                                            <h5 class="f-w-500"> NIC No <span class="pull-end">:</span>
+                                            <h5 class="f-w-500"> NIC no <span class="pull-end">:</span>
                                             </h5>
                                         </div>
                                         <div class="col-sm-9 col-7"><h5>{{$user->profile->nic}}</h5>
@@ -195,10 +195,18 @@
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col-sm-3 col-5">
-                                            <h5 class="f-w-500"> Passport No <span class="pull-end">:</span>
+                                            <h5 class="f-w-500"> Passport no <span class="pull-end">:</span>
                                             </h5>
                                         </div>
                                         <div class="col-sm-9 col-7"><h5>{{$user->profile->passport_number}}</h5>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-sm-3 col-5">
+                                            <h5 class="f-w-500"> Driving license no<span class="pull-end">:</span>
+                                            </h5>
+                                        </div>
+                                        <div class="col-sm-9 col-7"><h5>{{$user->profile->driving_lc_number}}</h5>
                                         </div>
                                     </div>
                                     <div class="row mb-2">
@@ -219,7 +227,7 @@
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col-sm-3 col-5">
-                                            <h5 class="f-w-500">Date Of Birthday <span class="pull-end">:</span></h5>
+                                            <h5 class="f-w-500">Date of birthday <span class="pull-end">:</span></h5>
                                         </div>
                                         <div class="col-sm-9 col-7"><h5>{{ $user->profile->dob }}</h5>
                                         </div>
@@ -244,7 +252,7 @@
                     <div class="profile-tab">
                         <div class="custom-tab-1">
                             <div class="tab-content">
-                                <h4 class="text-primary">Loctions Information</h4>
+                                <h4 class="text-primary">Loctions information</h4>
                                 <hr>
                                 <div class="profile-personal-info">
 
@@ -307,7 +315,7 @@
                     <div class="profile-tab">
                         <div class="custom-tab-1">
                             <div class="tab-content">
-                                <h4 class="text-primary">Contacts Information</h4>
+                                <h4 class="text-primary">Contacts information</h4>
                                 <hr>
                                 <div class="profile-personal-info">
 
@@ -329,7 +337,7 @@
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col-sm-3 col-5">
-                                            <h5 class="f-w-500">Home phone No <span class="pull-end">:</span>
+                                            <h5 class="f-w-500">Home phone no <span class="pull-end">:</span>
                                             </h5>
                                         </div>
                                         <div class="col-sm-9 col-7"><h5>{{ $user->profile->home_phone }}</h5>
@@ -347,7 +355,7 @@
                     <div class="profile-tab">
                         <div class="custom-tab-1">
                             <div class="tab-content">
-                                <h4 class="text-primary">Verified & Created Information</h4>
+                                <h4 class="text-primary">Verified & created information</h4>
                                 <hr>
                                 <div class="profile-personal-info">
 
@@ -369,7 +377,7 @@
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col-sm-3 col-5">
-                                            <h5 class="f-w-500">NIC verified at <span class="pull-end">:</span>
+                                            <h5 class="f-w-500">NIC Verified At <span class="pull-end">:</span>
                                             </h5>
                                         </div>
                                         <div class="col-sm-9 col-7"><h5>{{$user->profile->nic_verified_at}}</h5>
