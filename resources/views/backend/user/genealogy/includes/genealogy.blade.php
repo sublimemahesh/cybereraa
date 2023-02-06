@@ -1,3 +1,4 @@
+
 <div class="row">
     <div class="col-sm-12 ">
         @if (!empty($user->parent_id) && Auth::user()->id !== $user->id)
@@ -9,19 +10,20 @@
         @endif
     </div>
 </div>
-<div class="row mobile-margine">
+<div>
     <div class="col-sm-12 add-tree">
-        <div class="tree remove-mobile">
-            <ul class="remove-mobile">
-                <li class="remove-mobile">
+        <br><br>
+        <div class="tree">
+            <ul>
+                <li>
                     <a href="javascript:void(0)" class="add-tree-2">
                         @include('backend.user.genealogy.includes.genealogy-card', compact('user'))
                     </a>
-                    <ul class="remove-mobile ">
+                    <ul>
                         <div class="swiper swiper-container">
                             <div class="swiper-wrapper add-tree-3">
                                 @for ($i = 1; $i <= 5; $i++)
-                                    <li class="position-{{ $i }} remove-mobile">
+                                    <li class="position-{{ $i }}">
                                         @if (isset($descendants[$i]))
                                             @php
                                                 $descendant = $descendants[$i];
@@ -32,24 +34,21 @@
                                                 </a>
                                             </div>
                                         @else
-                                            <div class="swiper-slide">
                                                 <a href="{{ URL::signedRoute('user.genealogy.position.manage', ['parent' => $user, 'position' => $i]) }}">
                                                     <div class="genealogy item">
                                                         <div class="card">
                                                             <div class="card-img"></div>
                                                             <div class="card-info">
-                                                                <h5 class="text-title">Empty</h5><br>
+                                                                <h5 class="text-title">Empty    </h5><br>
                                                                 <p class="text-body">Add your new member</p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </a>
-                                            </div>
                                         @endif
                                     </li>
                                 @endfor
                             </div>
-                            <div class="swiper-pagination " slot="pagination" id='swiper-pagination-set'></div>
                         </div>
                     </ul>
                 </li>
@@ -57,3 +56,4 @@
         </div>
     </div>
 </div>
+

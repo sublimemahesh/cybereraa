@@ -48,7 +48,7 @@
 /* //////////////////////// Genealogy CSS ////////////////////////////////// */
 
 .genealogy .card {
-    width: 190px;
+    width: 186px;
     height: 208px;
     background: #25164f;
     overflow: visible;
@@ -147,8 +147,12 @@
 margin-top: 45px;
 }
 
+.tree ul {
+    display: '';
+}
+
 .genealogy .card-img2-mob {
-    left:14px;
+    /* left:14px; */
 }
 
 
@@ -172,6 +176,11 @@ margin-top: 45px;
     .mbv {
      display: none;
     }
+
+    .tree ul {
+        display: flex;
+    }
+   
 }
 
 .arrow-margin{
