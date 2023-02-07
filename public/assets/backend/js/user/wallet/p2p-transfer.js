@@ -33,6 +33,7 @@ $(function () {
         e.preventDefault();
         let receiver = $('#p2p-transfer').val();
         let amount = $('#transfer-amount').val();
+        let remark = $('#remark').val();
         let password = $('#password').val();
         let code = $('#code').val();
         if (receiver === null || receiver.length <= 0) {
@@ -62,6 +63,7 @@ $(function () {
                     axios.post(APP_URL + '/user/wallet/transfer/p2p', {
                         receiver,
                         amount,
+                        remark,
                         password,
                         code
                     }).then(response => {

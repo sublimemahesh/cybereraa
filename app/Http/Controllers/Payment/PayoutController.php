@@ -41,6 +41,7 @@ class PayoutController extends Controller
             'amount' => ['required', 'numeric', 'min:' . $minimum_payout_limit->value, 'max:' . $max_withdraw_limit],
             'password' => 'required',
             'code' => 'nullable',
+            'remark' => 'nullable',
         ])->validate();
 
         if (!$sender->profile->is_kyc_verified) {
@@ -105,7 +106,8 @@ class PayoutController extends Controller
                 'amount' => $validated['amount'] - $p2p_transfer_fee->value,
                 'transaction_fee' => $p2p_transfer_fee->value,
                 'status' => 'SUCCESS',
-                'type' => 'P2P'
+                'type' => 'P2P',
+                'remark' => $validated['remark'] ?? null
             ]);
 
             $sender_wallet->decrement('balance', $validated['amount']);
