@@ -3,7 +3,7 @@
     <div class="col-sm-12 ">
         @if (!empty($user->parent_id) && Auth::user()->id !== $user->id)
             <div class="d-flex justify-content-center mb-md-2 mb-sm-5">
-                <a href="{{ route('user.genealogy', $user->parent) }}" class="next-genealogy">
+                <a href="{{ route('user.genealogy', $user->parent) }}" class="next-genealogy head-arrow">
                     <i class="fas fa-arrow-up fs-2"></i>
                 </a>
             </div>

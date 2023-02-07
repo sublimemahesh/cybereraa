@@ -13,7 +13,7 @@
         <li class="breadcrumb-item">Genealogy</li>
     @endsection
 
-    <div id="genealogy">
+    <div id="genealogy" class="genealogy-scrooling">
         @include('backend.admin.genealogy.includes.genealogy', compact('user','descendants'))
     </div>
 
@@ -94,20 +94,20 @@
 
             let des = 0;
 
-            function responsive(x) {
-                if (x.matches) {
-                    // If media query matches
-                    $('.remove-mobile').contents().unwrap();
-                    des = des + 1;
-                    swiper = initSwiper()
-                } else {
-                    if (des > 0) {
-                        location.reload();
-                    }
-                }
-            }
+            // function responsive(x) {
+            //     if (x.matches) {
+            //         // If media query matches
+            //         $('.remove-mobile').contents().unwrap();
+            //         des = des + 1;
+            //         swiper = initSwiper()
+            //     } else {
+            //         if (des > 0) {
+            //             location.reload();
+            //         }
+            //     }
+            // }
 
-            responsive(x) // Call listener function at run time
+            // responsive(x) // Call listener function at run time
             x.addListener(responsive) // Attach listener function on state changes
 
         </script>
