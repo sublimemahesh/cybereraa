@@ -3,7 +3,7 @@
     @section('header-title', 'My Genealogy')
     @section('plugin-styles')
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-     
+
     @endsection
     @section('styles')
         <link rel="stylesheet" href="{{ asset('assets/backend/css/user/genealogy.css') }}">
@@ -59,7 +59,7 @@
     </div>
 
     @push('scripts')
-        <script>
+        <script> 
             function copyToClipBoard() {
                 const copyText = document.getElementById("clipboard-input");
                 copyText.select();

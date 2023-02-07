@@ -5,16 +5,12 @@
 }
 
 
-.genealogy-scrooling{
-   width: 100%; 
-   overflow-x: auto;
-   
-}
+
 
 .tree ul {
     padding-top: 32px;
     position: relative;
-    
+
     justify-content: center;
     transition: all 0.5s;
     -webkit-transition: all 0.5s;

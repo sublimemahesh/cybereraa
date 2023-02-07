@@ -151,21 +151,25 @@ margin-top: 45px;
     display: '';
 }
 
-.genealogy .card-img2-mob {
-    /* left:14px; */
+.genealogy-scrooling{
+    overflow-x: auto;
+ }
+
+ .genealogy-scrooling::-webkit-scrollbar {
+    height: 10px;
+}
+
+.head-arrow{
+    margin-left: 715px;
 }
 
 
-/* #flex {
-    display: flex;
-  }
 
-#flex > .position1 { order: 5; }
-#flex > .position2 { order: 2; }
-#flex > .position3 { order: 3; }
-#flex > .position4 { order: 3; }
-#flex > .position5 { order: 1; }
- */
+
+
+ .genealogy .card{
+    width: max-content !important;
+ }
 
 
 
@@ -180,7 +184,7 @@ margin-top: 45px;
     .tree ul {
         display: flex;
     }
-   
+
 }
 
 .arrow-margin{

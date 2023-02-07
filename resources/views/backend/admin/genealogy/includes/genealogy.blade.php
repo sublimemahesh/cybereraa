@@ -8,7 +8,7 @@
                 @php
                     $params['user'] = $user->parent
                 @endphp
-                <a href="{{ URL::signedRoute('admin.genealogy', $params) }}" class="next-genealogy">
+                <a href="{{ URL::signedRoute('admin.genealogy', $params) }}" class="next-genealogy head-arrow">
                     <i class="fas fa-arrow-up fs-2"></i>
                 </a>
             </div>
