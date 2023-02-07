@@ -25,10 +25,14 @@ class WithdrawController extends Controller
             return $withdrawService->datatable($withdrawals)
                 ->addColumn('sender', static function ($withdraw) {
                     return str_pad($withdraw->user_id, '4', '0', STR_PAD_LEFT) .
-                        " - <code class='text-uppercase'>{$withdraw->user->username}</code>";
+                        " - <a href='" . route('admin.users.profile.show', $withdraw->user) . "' target='_blank'>
+                                    <code class='text-uppercase'>{$withdraw->user->username}</code>
+                                </a>";
                 })->addColumn('receiver', static function ($withdraw) {
                     return str_pad($withdraw->receiver_id, '4', '0', STR_PAD_LEFT) .
-                        " - <code class='text-uppercase'>{$withdraw->receiver->username}</code>";
+                        " - <a href='" . route('admin.users.profile.show', $withdraw->receiver) . "' target='_blank'>
+                                    <code class='text-uppercase'>{$withdraw->receiver->username}</code>
+                          </a>";
                 })
                 ->rawColumns(['sender', 'receiver'])
                 ->make();
