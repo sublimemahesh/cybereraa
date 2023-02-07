@@ -39,6 +39,6 @@
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.html5.min.js') }}"></script>
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.print.min.js') }}"></script>
         <script src="{{ asset('assets/backend/js/global-datatable-extension.js') }}"></script>
-        <script src="{{ asset('assets/backend/js/admin/transfers/p2p.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/admin/transfers/p2p.js?12345') }}"></script>
     @endpush
 </x-backend.layouts.app>

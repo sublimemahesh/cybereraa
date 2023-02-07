@@ -9,7 +9,7 @@
     @endsection
     <div class="row">
         <div class="col-xl-8 col-sm-6">
-            <div class="card"> 
+            <div class="card">
                 <div class="card-body">
                     <div class="mb-4">
                         <h4 class="card-title">P2P Transfer</h4>
@@ -41,6 +41,10 @@
                                     </div>
                                 </div>
 
+                                <div class="mb-3 mt-2">
+                                    <label for="remark">Remark</label>
+                                    <textarea id="remark" name="remark" rows="3" placeholder="Remark" class="form-control h-auto"></textarea>
+                                </div>
                                 <hr>
                                 <p>
                                     Please confirm access to your account by entering the <code>password</code> and
@@ -73,6 +77,6 @@
             const MAX_WITHDRAW_LIMIT = "{{ $max_withdraw_limit }}";
         </script>
         <script src="{{ asset('assets/backend/vendor/select2/js/select2.full.min.js') }}"></script>
-        <script src="{{ asset('assets/backend/js/user/wallet/p2p-transfer.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/user/wallet/p2p-transfer.js?12345') }}"></script>
     @endpush
 </x-backend.layouts.app>

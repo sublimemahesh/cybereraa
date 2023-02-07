@@ -93,6 +93,7 @@
             <th>TYPE</th>
             <th>STATUS</th>
             <th>CREATED AT</th>
+            <th>REMARK</th>
             <th class="text-right">AMOUNT</th>
             <th class="text-right">FEE</th>
             <th class="text-right">TOTAL</th>
@@ -100,7 +101,7 @@
         </thead>
         <tfoot>
         <tr>
-            <th colspan="8" style="text-align:right"></th>
+            <th colspan="9" style="text-align:right"></th>
         </tr>
         </tfoot>
     </table>

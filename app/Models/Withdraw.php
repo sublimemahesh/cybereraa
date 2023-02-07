@@ -19,7 +19,7 @@ class Withdraw extends Model
     use SoftDeletes;
     use Loggable;
 
-    protected $fillable = ['user_id', 'receiver_id', 'amount', 'transaction_fee', 'status', 'type'];
+    protected $fillable = ['user_id', 'receiver_id', 'amount', 'transaction_fee', 'status', 'type', 'remark'];
 
     protected $appends = [
         'package_info_json'

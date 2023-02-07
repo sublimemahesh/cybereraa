@@ -26,6 +26,7 @@ $(function () {
             {data: "type", searchable: false},
             {data: "status", searchable: false},
             {data: "created_at", searchable: false},
+            {data: "remark", searchable: false},
             {data: "amount", name: 'amount', searchable: false},
             {data: "transaction_fee", name: 'transaction_fee', searchable: false},
             {data: "total", searchable: false}
@@ -47,14 +48,14 @@ $(function () {
                     }, 0);
             }
 
-            let amount = new Intl.NumberFormat().format(sumVal(5));
-            $(api.column(7).footer()).html(`Current page total amount: USDT ${amount}`);
+            let amount = new Intl.NumberFormat().format(sumVal(6));
+            $(api.column(8).footer()).html(`Current page total amount: USDT ${amount}`);
 
-            let transaction_fee = new Intl.NumberFormat().format(sumVal(6));
-            $(api.column(7).footer()).append(`<br><br>Current Page Trx fees: USDT ${transaction_fee}`);
+            let transaction_fee = new Intl.NumberFormat().format(sumVal(7));
+            $(api.column(8).footer()).append(`<br><br>Current Page Trx fees: USDT ${transaction_fee}`);
 
-            let total = new Intl.NumberFormat().format(sumVal(7));
-            $(api.column(7).footer()).append(`<br><br>Current Page Total: USDT ${total}`);
+            let total = new Intl.NumberFormat().format(sumVal(8));
+            $(api.column(8).footer()).append(`<br><br>Current Page Total: USDT ${total}`);
         },
         columnDefs: [{
             render: function (date, type, full, meta) {
@@ -63,7 +64,7 @@ $(function () {
         }, {
             render: function (amount, type, full, meta) {
                 return `<div style='min-width:100px' class="text-right"> ${amount} </div>`;
-            }, targets: [5, 6, 7],
+            }, targets: [6, 7, 8],
         },],
     });
 
