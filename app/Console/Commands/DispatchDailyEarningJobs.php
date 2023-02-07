@@ -32,15 +32,19 @@ class DispatchDailyEarningJobs extends Command
      */
     public function handle(): int
     {
-        logger()->notice("calculate:profit started");
+        logger()->notice("calculate:profit started: " . Carbon::now());
         // Retrieve all users with purchased packages
         $today = Carbon::today();
         if (!$today->isWeekend()) {
             $activePackages = PurchasedPackage::with('user')
                 ->where('status', 'active')
                 ->where(function (Builder $query) {
-                    $query->whereRaw('`created_at` + INTERVAL 5 DAY <= NOW()') // after 5 days from package purchase
-                        ->orWhereDate('created_at', '<', '2023-02-01');
+                    $query->whereRaw(
+                        '(WEEKDAY(`created_at`) IN (1,2,3,4) AND DATE(`created_at`) + INTERVAL 6 DAY <= DATE(NOW())) OR
+                            (WEEKDAY(`created_at`) = 5 AND DATE(`created_at`) + INTERVAL 5 DAY <= DATE(NOW())) OR
+	                        (WEEKDAY(`created_at`) IN (0,6) AND DATE(`created_at`) + INTERVAL 4 DAY <= DATE(NOW()))'
+                    ) // after 5 days from package purchase
+                    ->orWhereDate('created_at', '<', '2023-02-01');
                 })
                 ->where('expired_at', '>=', Carbon::now())
                 ->whereDoesntHave('earnings', fn($query) => $query->whereDate('created_at', date('Y-m-d')))
