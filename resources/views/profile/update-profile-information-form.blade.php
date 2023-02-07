@@ -23,24 +23,24 @@
                                 <!-- Current Profile Photo -->
                                 <div class="mt-2" x-show="! photoPreview">
                                     <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}"
-                                            class="rounded-full h-20 w-20 object-cover">
+                                         class="rounded-full h-20 w-20 object-cover">
                                 </div>
 
                                 <!-- New Profile Photo Preview -->
                                 <div class="mt-2" x-show="photoPreview" style="display: none;">
                                     <span class="block rounded-full w-20 h-20 bg-cover bg-no-repeat bg-center"
-                                            x-bind:style="'background-image: url(\'' + photoPreview + '\');'">
+                                          x-bind:style="'background-image: url(\'' + photoPreview + '\');'">
                                     </span>
                                 </div>
 
                                 <x-jet-secondary-button class="mt-2 mr-2" type="button"
-                                        x-on:click.prevent="$refs.photo.click()">
+                                                        x-on:click.prevent="$refs.photo.click()">
                                     {{ __('Select A New Photo') }}
                                 </x-jet-secondary-button>
 
                                 @if ($this->user->profile_photo_path)
                                     <x-jet-secondary-button type="button" class="mt-2"
-                                            wire:click="deleteProfilePhoto">
+                                                            wire:click="deleteProfilePhoto">
                                         {{ __('Remove Photo') }}
                                     </x-jet-secondary-button>
                                 @endif
@@ -130,6 +130,11 @@
                         <label class="form-label" for="home_phone"> {{ __('Recover Phone') }} </label>
                         <x-jet-input id="home_phone" wire:model.defer="state.profile_info.home_phone" class="block mt-1 w-full form-control" type="text" name="home_phone"/>
                         <x-jet-input-error for="profile_info.home_phone" class="mt-2"/>
+                    </div>
+                    <div class="col-lg-12 m-b30">
+                        <label class="form-label" for="wallet_address"> {{ __('Wallet Address (TRC20 USDT)') }} </label>
+                        <x-jet-input id="wallet_address" wire:model.defer="state.profile_info.wallet_address" class="block mt-1 w-full form-control" type="text" name="wallet_address"/>
+                        <x-jet-input-error for="profile_info.wallet_address" class="mt-2"/>
                     </div>
                 </div>
             </div>
