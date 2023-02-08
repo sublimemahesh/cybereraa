@@ -4,7 +4,6 @@ namespace App\Jobs;
 
 use App\Models\Earning;
 use App\Models\PurchasedPackage;
-use App\Models\Strategy;
 use App\Models\Wallet;
 use Carbon\Carbon;
 use DB;
@@ -65,7 +64,7 @@ class GenerateUserDailyEarning implements ShouldQueue
                     if ($allowed_amount < ($already_earned_amount + $earned_amount)) {
                         $earned_amount = $allowed_amount - $already_earned_amount;
                         $purchase->update(['status' => 'EXPIRED']);
-                        logger()->info("Package {$purchase->id} | COMPLETED {$earned_amount}");
+                        logger()->info("Package {$purchase->id} | COMPLETED {$earned_amount}. | Purchased Date: " . $purchase->created_at . " | User: " . $purchase->user->username . "-" . $purchase->user_id);
                     }
 
                     if ($earned_amount > 0) {
@@ -89,13 +88,13 @@ class GenerateUserDailyEarning implements ShouldQueue
 
                     }
                     //Wallet::updateOrCreate(['user_id' => $purchase->user_id]);
-                    logger()->notice("Purchased Package Earning saved (" . date('Y-m-d') . ")");
+                    logger()->notice("Purchased Package Earning saved (" . date('Y-m-d') . "). | Package: " . $purchase->id . " Purchased Date: " . $purchase->created_at . " | User: " . $purchase->user->username . "-" . $purchase->user_id);
                 } else {
-                    logger()->warning("Purchased Package Already earned! (" . date('Y-m-d') . ")");
+                    logger()->warning("Purchased Package Already earned! (" . date('Y-m-d') . "). | Package: " . $purchase->id . " Purchased Date: " . $purchase->created_at . " | User: " . $purchase->user->username . "-" . $purchase->user_id);
                 }
             });
         } catch (\Throwable $e) {
-            logger()->error($e->getMessage());
+            logger()->error($e->getMessage() . " | Package: " . $purchase->id . " Purchased Date: " . $purchase->created_at . " | User: " . $purchase->user->username . "-" . $purchase->user_id);
         }
 
     }

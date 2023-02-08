@@ -40,9 +40,9 @@ class DispatchDailyEarningJobs extends Command
                 ->where('status', 'active')
                 ->where(function (Builder $query) {
                     $query->whereRaw(
-                        '(WEEKDAY(`created_at`) IN (1,2,3,4) AND DATE(`created_at`) + INTERVAL 6 DAY <= DATE(NOW())) OR
-                            (WEEKDAY(`created_at`) = 5 AND DATE(`created_at`) + INTERVAL 5 DAY <= DATE(NOW())) OR
-	                        (WEEKDAY(`created_at`) IN (0,6) AND DATE(`created_at`) + INTERVAL 4 DAY <= DATE(NOW()))'
+                        "(WEEKDAY(`created_at`) IN (1,2,3,4) AND DATE(`created_at`) + INTERVAL 6 DAY <= DATE('" . Carbon::now() . "')) OR
+                            (WEEKDAY(`created_at`) = 5 AND DATE(`created_at`) + INTERVAL 5 DAY <= DATE('" . Carbon::now() . "')) OR
+	                        (WEEKDAY(`created_at`) IN (0,6) AND DATE(`created_at`) + INTERVAL 4 DAY <= DATE('" . Carbon::now() . "'))"
                     ) // after 5 days from package purchase
                     ->orWhereDate('created_at', '<', '2023-02-01');
                 })
@@ -59,7 +59,7 @@ class DispatchDailyEarningJobs extends Command
                         if ($executionTime->isWeekend()) {
                             continue;
                         }
-                        logger()->notice("calculate:profit jobs dispatching");
+                        logger()->notice("calculate:profit jobs dispatching. | Package: " . $package->id . " Purchased Date: " . $package->created_at . " | User: " . $package->user->username . "-" . $package->user_id);
                         GenerateUserDailyEarning::dispatch($package, $executionTime)->afterCommit();
 
                         // TODO: uncomment if need to run exact time they purchased enable this
