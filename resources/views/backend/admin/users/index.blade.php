@@ -8,6 +8,8 @@
         <link href="{{ asset('assets/backend/vendor/datatables/css/buttons.bootstrap5.min.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/backend/vendor/datatables/css/datatable-extension.css') }}" rel="stylesheet">
         @vite(['resources/css/app-jetstream.css'])
+
+        
     @endsection
 
     @section('breadcrumb-items')
@@ -23,11 +25,6 @@
                 <div class="card-body">
                     <div class="w-full my-3 dark:bg-gray-800">
                         <div class="rounded-sm">
-                            <div class="px-4 py-3 cursor-pointer dark:bg-secondary-dark border border-gray-200 dark:border-gray-600">
-                                <button class="appearance-none text-left text-base font-medium text-gray-500 focus:outline-none dark:text-gray-300" type="button">
-                                    Filter
-                                </button>
-                            </div>
                             <div class="border-l border-b border-r border-gray-200 dark:border-gray-600 px-2 py-4 dark:border-0  dark:bg-secondary-dark">
                                 <div>
                                     <div class="md:flex md:flex-wrap">
@@ -93,11 +90,8 @@
                             <thead>
                             <tr>
                                 <th>PIC</th>
-                                <th>User ID.</th>
-                                <th>USERNAME</th>
-                                <th>NAME</th>
-                                <th>MOBILE</th>
-                                <th>EMAIL</th>
+                                <th>User Details</th>
+                                <th>Contact Details</th>
                                 <th>JOINED DATE</th>
                                 <th>action</th>
                             </tr>

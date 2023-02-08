@@ -25,10 +25,13 @@ class UserController extends Controller
     public function index(Request $request)
     {
 
+
+
         abort_if(Gate::denies('users.viewAny'), Response::HTTP_FORBIDDEN);
 
         if ($request->wantsJson()) {
             $users = User::whereRelation('roles', 'name', 'user')
+
                 ->when($request->get('date-range'), function (Builder $q) {
                     $period = explode(' to ', request()->input('date-range'));
                     try {
@@ -53,14 +56,29 @@ class UserController extends Controller
                     }
                 });
             return DataTables::eloquent($users)
+
                 ->addColumn('profile_photo', function ($user) {
                     return "<img class='rounded-circle' width='35' src='" . $user->profile_photo_url . "' alt='' />";
                 })
+
+                ->addColumn('user_details', function ($user) {
+                    return "<i class='fa fa-user-circle'></i> $user->id <br>
+                            <i class='fa fa-user'></i> $user->username<br>
+                            <i class='fa fa-user'></i> $user->name<br>
+                            ";
+                })
+
+                ->addColumn('contact_details', function ($user) {
+                    return "<i class='fa fa-phone'></i> $user->phone <br>
+                            <i class='fa fa-envelope'></i> $user->email<br>";
+                })
+
+
                 ->addColumn('joined', fn($user) => $user->created_at->format('Y-m-d h:i A'))
                 ->addColumn('actions', function ($user) {
                     return view('backend.admin.users.includes.users-actions', compact('user'))->render();
                 })
-                ->rawColumns(['actions', 'profile_photo'])
+                ->rawColumns(['actions', 'profile_photo','user_details','contact_details'])
                 ->make();
         }
         return view('backend.admin.users.index');
