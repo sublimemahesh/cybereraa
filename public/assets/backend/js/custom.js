@@ -599,12 +599,22 @@ jQuery(window).on('resize', function () {
 });
 /*  Window Resize END */
 
-/* font size change  */
+/*super-admin dashboard card currency font size change  */
 $('.dashboard-card-font-size-change').each(function(){
     var el= $(this);
       var textLength = el.html().length;
-       if (textLength >8 && textLength <15) {
+       if (textLength >8) {
            el.css('font-size', '1.2em');
+       }
+});
+
+
+/*user dashboard card currency font size change  */
+$('.user-dashboard-card-font-size-change').each(function(){
+    var el= $(this);
+      var textLength = el.html().length;
+       if (textLength >9) {
+           el.css('font-size', '1.0em');
        }
 });
 
