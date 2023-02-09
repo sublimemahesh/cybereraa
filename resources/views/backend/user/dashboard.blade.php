@@ -183,7 +183,7 @@
                                     <div class="students d-flex align-items-center justify-content-between flex-wrap">
                                         <div>
                                             <h4>{{ Auth::user()->pending_direct_sales_count }}</h4>
-                                            <h5>PENDING USERS COUNT</h5>
+                                            <h5>PENDING USER COUNT</h5>
                                             <span>Waiting to assign in genealogy</span>
                                         </div>
                                         <div>
