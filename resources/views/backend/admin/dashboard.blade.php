@@ -274,7 +274,7 @@
                                     <i class="la la-coins"></i>
                                 </span>
                                 <div class="media-body text-white">
-                                    <p class="mb-1">TOTAL P2P TRANSACTION</p>
+                                    <p class="mb-1">TOTAL P2P TRANSACTIONS</p>
                                     <h4 class="text-white"> $ {{ $total_p2p_transfers }}</h4>
                                     <br>
                                     <small>Total P2P Transactions </small>

@@ -155,7 +155,7 @@
             @endcan
             @can('country.viewAny')
                 <li>
-                    <a href="{{ route('admin.countries.index') }}">Country</a>
+                    <a href="{{ route('admin.countries.index') }}">Countries</a>
                 </li>
             @endcan
             @can('currency.viewAny')
