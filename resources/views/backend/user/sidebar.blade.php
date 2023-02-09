@@ -17,14 +17,14 @@
             <li>
                 <a href="{{ route('user.packages.index') }}" class="" aria-expanded="false">
                     <i class="bi bi-stack"></i>
-                    <span class="nav-text">Buy Package</span>
+                    <span class="nav-text">Buy Packages</span>
                 </a>
             </li>
 
             <li>
                 <a href="{{ route('user.packages.active') }}" class="" aria-expanded="false">
                     <i class="bi bi-box"></i>
-                    <span class="nav-text">Active Package</span>
+                    <span class="nav-text">Active Packages</span>
                 </a>
             </li>
             <li>
@@ -36,13 +36,13 @@
             <li>
                 <a href="{{ route('user.transactions.index', ['status' => 'paid']) }}" class="" aria-expanded="false">
                     <i class="bi fa-chain-broken"></i>
-                    <span class="nav-text">Transaction</span>
+                    <span class="nav-text">Transactions</span>
                 </a>
             </li>
             <li>
                 <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
                     <i class="bi bi-currency-exchange"></i>
-                    <span class="nav-text">My Incomes</span>
+                    <span class="nav-text">My Income</span>
                 </a>
                 <ul aria-expanded="false">
                     <li>
@@ -66,7 +66,7 @@
             <li>
                 <a href="{{ route('user.earnings.index') }}" class="" aria-expanded="false">
                     <i class="bi bi-cash"></i>
-                    <span class="nav-text">My Earnings</span>
+                    <span class="nav-text">My Earning</span>
                 </a>
             </li>
             <li>
