@@ -120,7 +120,7 @@
                                 </span>
                                 <div class="media-body text-white">
                                     <p class="mb-1">TOTAL PACKAGE EARNINGS</p>
-                                    <h4 class="text-white"> $ {{ $total_package_earnings }}</h4>
+                                    <h4 class="text-white  dashboard-card-font-size-change"> $ {{ $total_package_earnings }}</h4>
                                     <br>
                                     <small> Package daily income </small>
                                 </div>
@@ -137,7 +137,7 @@
                                 </span>
                                 <div class="media-body text-white">
                                     <p class="mb-1">TOTAL DIRECT EARNINGS</p>
-                                    <h4 class="text-white"> $ {{ $total_direct_commission_earnings }}</h4>
+                                    <h4 class="text-white dashboard-card-font-size-change"> $ {{ $total_direct_commission_earnings }}</h4>
                                     <br>
                                     <small> Daily direct commissions </small>
                                 </div>
@@ -154,7 +154,7 @@
                                 </span>
                                 <div class="media-body text-white">
                                     <p class="mb-1">TOTAL INDIRECT EARNINGS</p>
-                                    <h4 class="text-white"> $ {{ $total_indirect_commission_earnings }}</h4>
+                                    <h4 class="text-white dashboard-card-font-size-change"> $ {{ $total_indirect_commission_earnings }}</h4>
                                     <br>
                                     <small> Daily indirect commission </small>
                                 </div>
@@ -171,7 +171,7 @@
                                 </span>
                                 <div class="media-body text-white">
                                     <p class="mb-1">TOTAL RANK BONUSES</p>
-                                    <h4 class="text-white"> $ {{ $total_rank_bonus_earnings }}</h4>
+                                    <h4 class="text-white dashboard-card-font-size-change"> $ {{ $total_rank_bonus_earnings }}</h4>
                                     <br>
                                     <small> Daily Rank Bonus </small>
                                 </div>
@@ -258,7 +258,7 @@
                                 </span>
                                 <div class="media-body text-white">
                                     <p class="mb-1">PENDING WITHDRAWALS</p>
-                                    <h4 class="text-white"> $ {{ $total_pending_withdrawal_balance }}</h4>
+                                    <h4 class="text-white dashboard-card-font-size-change"> $ {{ $total_pending_withdrawal_balance }}</h4>
                                     <br>
                                     <small>Pending to accept </small>
                                 </div>
@@ -275,7 +275,7 @@
                                 </span>
                                 <div class="media-body text-white">
                                     <p class="mb-1">TOTAL P2P TRANSACTIONS</p>
-                                    <h4 class="text-white"> $ {{ $total_p2p_transfers }}</h4>
+                                    <h4 class="text-white dashboard-card-font-size-change"> $ {{ $total_p2p_transfers }}</h4>
                                     <br>
                                     <small>Total P2P Transactions </small>
                                 </div>
@@ -292,7 +292,7 @@
                                 </span>
                                 <div class="media-body text-white">
                                     <p class="mb-1">TOTAL WITHDRAWALS</p>
-                                    <h4 class="text-white"> $ {{ $total_withdraws }}</h4>
+                                    <h4 class="text-white dashboard-card-font-size-change"> $ {{ $total_withdraws }}</h4>
                                     <br>
                                     <small>Total Withdrawal amount </small>
                                 </div>
@@ -309,7 +309,7 @@
                                 </span>
                                 <div class="media-body text-white">
                                     <p class="mb-1">TOTAL TRANSACTION FEES</p>
-                                    <h4 class="text-white"> $ {{ number_format($total_p2p_transaction_fees + $total_withdraws_transaction_fees,2) }}</h4>
+                                    <h4 class="text-white dashboard-card-font-size-change"> $ {{ number_format($total_p2p_transaction_fees + $total_withdraws_transaction_fees,2) }}</h4>
                                     <br>
                                     <small> P2P: $ {{ $total_p2p_transaction_fees }} / Withdraw: $ {{ $total_withdraws_transaction_fees }} </small>
                                 </div>
