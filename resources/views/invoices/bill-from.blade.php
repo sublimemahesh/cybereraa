@@ -3,12 +3,14 @@
         <strong>{{ $invoice->sender->name }}</strong>
     </p>
     <p class="seller-address">
-        Address: {{ $invoice->sender->address }}
+        Email: {{ $invoice->sender->address }}
     </p>
-    <p class="seller-code">
-        Postcode: {{ $invoice->sender->postal_code }}
-    </p>
-    <p class="seller-phone">
+    @if(isset($invoice->sender->postal_code))
+        <p class="seller-code">
+            Address: {{ $invoice->sender->postal_code }}
+        </p>
+    @endif
+    {{--<p class="seller-phone">
         Phone: {{ $invoice->sender->phone }}
     </p>
     @if(isset($invoice->sender->registration_number))
@@ -20,6 +22,6 @@
         <p class="seller-vat">
             VAT number: {{ $invoice->sender->vat_number }}
         </p>
-    @endif
+    @endif--}}
 
 </td>

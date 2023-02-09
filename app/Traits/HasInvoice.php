@@ -39,4 +39,13 @@ trait HasInvoice
 
         return 'data:image/' . $type . ';base64,' . base64_encode($data);
     }
+
+    private function getQr(): string
+    {
+        $url = asset('assets/images/safesttrades.com-qr.png');
+        $type = pathinfo($url, PATHINFO_EXTENSION);
+        $data = file_get_contents($url);
+
+        return 'data:image/' . $type . ';base64,' . base64_encode($data);
+    }
 }

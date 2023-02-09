@@ -128,76 +128,84 @@
 </head>
 
 <body>
-    @if (!empty($invoice->id))
-        <div class="body invoice-container">
-            {{-- Header --}}
-            <img src="{{ $invoice->logo }}" alt="logo" width="250">
-            <table class="table mt-5">
-                <tbody>
-                <tr>
-                    <td class="border-0 pl-0" width="52%">
-                        <h4 class="text-uppercase">
-                            <strong>INVOICE</strong>
-                        </h4>
-                    </td>
-                    <td class="border-0 pl-0">
-                        <h4 class="text-uppercase cool-gray">
-                            <strong>STATUS: {{ $invoice->status }}</strong>
-                        </h4>
-                        <p>Invoice number: #<strong>{{ str_pad($invoice->id, 5, 0, STR_PAD_LEFT) }}</strong></p>
-                        <p>Serial number: <strong>{{ $invoice->serial }}</strong></p>
-                        <p>PayMethod: <strong>{{ $invoice->method ?? '-' }}</strong></p>
-                        <p>Date: <strong>{{ $invoice->created_at }}</strong></p>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            {{-- Seller - Buyer --}}
-            <table class="table">
-                <thead>
-                <tr>
-                    <th class="border-0 pl-0 party-header" width="48.5%">
-                        Bill From
-                    </th>
-                    <th class="border-0" width="3%"></th>
-                    <th class="border-0 pl-0 party-header">
-                        Bill To
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    @include('invoices.bill-from')
-                    <td class="border-0"></td>
-                    @include('invoices.bill-to')
-                </tr>
-                </tbody>
-            </table>
-            {{-- Table --}}
-            <table class="table table-items">
-                <thead>
-                <tr>
-                    <th scope="col" class="border-0 pl-0">Description</th>
-                    <th scope="col" class="text-right border-0">Amount</th>
-                    <th scope="col" class="text-right border-0">
-                        @if(!empty($invoice->fee))
-                            Gas Fee
-                        @endif
-                    </th>
-                    <th scope="col" class="text-right border-0">Sub total</th>
-                </tr>
-                </thead>
-                <tbody>
-                {{-- Items --}}
-                @include('invoices.items')
-                </tbody>
-            </table>
+@if (!empty($invoice->id))
+    <div class="body invoice-container" style="width:100%">
+        {{-- Header --}}
+        <img src="{{ $invoice->logo }}" alt="logo" width="250">
+        <table class="table mt-5">
+            <tbody>
+            <tr>
+                <td class="border-0 pl-0" width="52%">
+                    <h4 class="text-uppercase">
+                        <strong>INVOICE</strong>
+                    </h4>
+                </td>
+                <td class="border-0 pl-0">
+                    <h4 class="text-uppercase cool-gray">
+                        <strong>STATUS: {{ $invoice->status }}</strong>
+                    </h4>
+                    <p>Invoice number: #<strong>{{ str_pad($invoice->id, 5, 0, STR_PAD_LEFT) }}</strong></p>
+                    <p>Serial number: <strong>{{ $invoice->serial }}</strong></p>
+                    <p>PayMethod: <strong>{{ $invoice->method ?? '-' }}</strong></p>
+                    <p>Date: <strong>{{ $invoice->created_at }}</strong></p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        {{-- Seller - Buyer --}}
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="border-0 pl-0 party-header" width="48.5%">
+                    Bill From
+                </th>
+                <th class="border-0" width="3%"></th>
+                <th class="border-0 pl-0 party-header">
+                    Bill To
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                @include('invoices.bill-from')
+                <td class="border-0"></td>
+                @include('invoices.bill-to')
+            </tr>
+            </tbody>
+        </table>
+        {{-- Table --}}
+        <table class="table table-items">
+            <thead>
+            <tr>
+                <th scope="col" class="border-0 pl-0">Description</th>
+                <th scope="col" class="text-right border-0">Amount</th>
+                <th scope="col" class="text-right border-0">
+                    @if(!empty($invoice->fee))
+                        {{ $invoice->method !== 'P2P' ? 'Gas' : '' }} Fee
+                    @endif
+                </th>
+                <th scope="col" class="text-right border-0">Sub total</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{-- Items --}}
+            @include('invoices.items')
+            </tbody>
+        </table>
+        @if($invoice?->note)
             <p> NOTES: {{ $invoice->note }}</p>
+        @endif
+        @if(isset($invoice->terms))
+            {!! $invoice?->terms !!}
+        @endif
+        <div style="width:100%; display:block">
+            <img style="float:right" src="{{ $invoice->site_qr }}" width="150" alt="https://www.safesttrades.com">
         </div>
-    @else
-        <div class="body invoice-container">
-            Invoice not found.
-        </div>
-    @endif
+    </div>
+@else
+    <div class="body invoice-container">
+        Invoice not found.
+    </div>
+@endif
 </body>
 </html>
