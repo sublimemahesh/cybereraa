@@ -22,7 +22,11 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('calculate:rank-bonus')->monthly()->dailyAt('00:01')->withoutOverlapping();
         $schedule->command('genealogy:assign')->everySixHours()->withoutOverlapping();
+
+        $schedule->command('remind:payment')->fridays()->at('01:00')->withoutOverlapping();
+
         $schedule->command('queue:work', ['--stop-when-empty'])->everyMinute()->withoutOverlapping();
+
     }
 
     /**
