@@ -3,10 +3,10 @@
         <strong>{{ $invoice->receiver->name }}</strong>
     </p>
     <p class="buyer-address">
-        Address: {{ $invoice->receiver->address }}
+        Email: {{ $invoice->receiver->address }}
     </p>
     <p class="buyer-code">
-        Postcode: {{ $invoice->receiver->postal_code }}
+        Address: {{ $invoice->receiver->postal_code }}
     </p>
     <p class="buyer-phone">
         Phone: {{ $invoice->receiver->phone }}

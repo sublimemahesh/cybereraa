@@ -99,6 +99,12 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->profile_info = $profile->toArray();
     }
 
+    public function getAddressAttribute()
+    {
+
+        return $this->address = ($this->profile->address . ', ') . ($this->profile->state . ', ') . $this->profile->zip_code;
+    }
+
     public function getProfileIsCompleteAttribute(): bool
     {
         $required = ['street', 'state', 'address', 'zip_code', 'home_phone', 'recover_email', 'gender', 'dob'];

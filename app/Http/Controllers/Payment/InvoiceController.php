@@ -54,7 +54,7 @@ class InvoiceController extends Controller
         $invoice['id'] = $trx->id;
         $invoice['status'] = $trx->status;
         $invoice['created_at'] = $trx->created_at;
-        $invoice['title'] = $trx->create_order_request_info->goods->goodsName ?? '-';
+        $invoice['title'] = 'Invoice ' . $trx->create_order_request_info?->goods?->goodsName . ' ' . $trx->type . ' #' . $trx->id;
         $invoice['amount'] = $trx->amount;
         $invoice['fee'] = $trx->gas_fee ?? 0;
         $invoice['method'] = $trx->type;
@@ -69,24 +69,26 @@ class InvoiceController extends Controller
 
         $invoice['sender'] = (object)[
             'name' => 'SafestTrades.com',
-            'registration_number' => 'XXXXXXXX',
-            'vat_number' => 'XXXXXXXX',
+            'registration_number' => null,
+            'vat_number' => null,
             'address' => 'info@safesttrades.com',
             'email' => 'info@safesttrades.com',
-            'postal_code' => '',
-            'phone' => '+88 0123 4567 890',
+            'postal_code' => null,
+            'phone' => null,
         ];
         $invoice['receiver'] = (object)[
             'name' => $user->name,
             'address' => $user->email,
             'email' => $user->email,
-            'postal_code' => '',
+            'postal_code' => $user->address,
             'phone' => $user->phone,
         ];
 
 
-        $invoice['note'] = 'Invested money back guarantee';
+        $invoice['note'] = null;
+        $invoice['terms'] = view('invoices.terms')->render();
         $invoice['logo'] = $this->getLogo();
+        $invoice['site_qr'] = $this->getQr();
 
         return (object)$invoice;
 
@@ -106,20 +108,21 @@ class InvoiceController extends Controller
         $invoice['id'] = $withdraw->id;
         $invoice['status'] = $withdraw->status;
         $invoice['created_at'] = $withdraw->created_at;
-        $invoice['title'] = $withdraw->package_info_json->name;
+        $invoice['title'] = 'Invoice ' . $withdraw->type . ' #' . $withdraw->id;
         $invoice['amount'] = $withdraw->amount;
         $invoice['fee'] = $withdraw->transaction_fee;
+        $invoice['method'] = 'P2P';
         $invoice['serial'] = "#TRX" . str_pad($withdraw->id, 5, '0', STR_PAD_LEFT);
 
         if ($withdraw->type === 'P2P') {
             $sender = $user;
 
-            $invoice['description'] = "TO {$receiver->username}";
+            $invoice['description'] = "TO {$receiver->id}-{$receiver->username}";
             $invoice['sender'] = (object)[
                 'name' => $sender->name,
                 'address' => $sender->email,
                 'email' => $sender->email,
-                'postal_code' => '',
+                'postal_code' => $sender->address,
                 'phone' => $sender->phone,
             ];
         }
@@ -131,12 +134,12 @@ class InvoiceController extends Controller
             $invoice['description'] = "TO {$receiver->username}";
             $invoice['sender'] = (object)[
                 'name' => 'SafestTrades.com',
-                'registration_number' => 'XXXXXXXX',
-                'vat_number' => 'XXXXXXXX',
+                'registration_number' => null,
+                'vat_number' => null,
                 'address' => 'info@safesttrades.com',
                 'email' => 'info@safesttrades.com',
                 'postal_code' => '',
-                'phone' => '+88 0123 4567 890',
+                'phone' => null,
             ];
 
         }
@@ -145,13 +148,15 @@ class InvoiceController extends Controller
             'name' => $receiver->name,
             'address' => $receiver->email,
             'email' => $receiver->email,
-            'postal_code' => '',
+            'postal_code' => $receiver->address,
             'phone' => $receiver->phone,
         ];
 
 
         $invoice['note'] = 'Payments are none refundable';
+        $invoice['terms'] = null;
         $invoice['logo'] = $this->getLogo();
+        $invoice['site_qr'] = $this->getQr();
 
         return (object)$invoice;
 
