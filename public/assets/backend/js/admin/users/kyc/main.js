@@ -10,31 +10,35 @@ $(function () {
         serverSide: true,
         fixedHeader: true,
         responsive: true,
-        order: [[6, 'desc']],
+        order: [[3, 'desc']],
         //stateSave: true,
         ajax: location.href,
         columns: [
             {data: "profile_photo", searchable: false, orderable: false},
-            {data: "id", name: 'id', searchable: true},
-            {data: "username", name: 'username', searchable: true, orderable: false},
-            {data: "name", name: 'id', searchable: true},
-            {data: "phone", name: 'phone', searchable: true, orderable: false},
-            {data: "email", name: 'email', searchable: true, orderable: false},
+            {data: "user_details", name:'name', searchable: true, orderable: false},
+            {data: "contact_details", searchable: true, orderable: false},
             {data: "joined", name: 'created_at', searchable: false},
             {data: "actions", searchable: false, orderable: false},
         ],
         columnDefs: [
             {
                 render: function (data, type, full, meta) {
-                    return `<div style='max-width:60px' > ${data} </div>`;
+                    return `<div style='width:50px'> ${data} </div>`;
                 },
                 targets: 0,
             },
             {
                 render: function (data, type, full, meta) {
-                    return `<div style='min-width:180px' > ${data} </div>`;
+                    return `<div style='min-width:180px'> ${data} </div>`;
                 },
-                targets: 6,
+                targets: 3,
+            },
+
+            {
+                render: function (data, type, full, meta) {
+                    return `<div style='min-width:180px'> ${data} </div>`;
+                },
+                targets: 2,
             },
         ],
     });
