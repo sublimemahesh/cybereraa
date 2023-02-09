@@ -173,7 +173,7 @@
                                                         fill="white"/>
                                             </svg>
                                         </div>
-                                    </div>
+                                     </div>
                                 </div>
                             </div>
                         </div>
@@ -204,7 +204,7 @@
                                         </span>
                                         <div class="media-body text-white">
                                             <p class="mb-1">WALLET BALANCE</p>
-                                            <h4 class="text-white"> USDT {{ number_format($wallet->balance,2) }}</h4>
+                                            <h4 class="text-white user-dashboard-card-font-size-change"> USDT {{ number_format($wallet->balance,2) }}</h4>
                                             <small> </small>
                                         </div>
                                     </div>
@@ -220,7 +220,7 @@
                                         </span>
                                         <div class="media-body text-white">
                                             <p class="mb-1">TOTAL INVESTMENT</p>
-                                            <h4 class="text-white"> USDT {{ $total_investment }}</h4>
+                                            <h4 class="text-white  user-dashboard-card-font-size-change"> USDT {{ $total_investment }}</h4>
                                             <br>
                                             <small> Active/Expired </small>
                                         </div>
@@ -237,7 +237,7 @@
                                         </span>
                                         <div class="media-body text-white">
                                             <p class="mb-1">ACTIVE INVESTMENT</p>
-                                            <h4 class="text-white"> USDT {{ $active_investment }}</h4>
+                                            <h4 class="text-white user-dashboard-card-font-size-change"> USDT {{ $active_investment }}</h4>
                                             <br>
                                             <small> Currently active total </small>
                                         </div>
@@ -254,7 +254,7 @@
                                         </span>
                                         <div class="media-body text-white">
                                             <p class="mb-1">EXPIRED INVESTMENT</p>
-                                            <h4 class="text-white"> USDT {{ $expired_investment }}</h4>
+                                            <h4 class="text-white user-dashboard-card-font-size-change"> USDT {{ $expired_investment }}</h4>
                                             <br>
                                             <small> Inactive (expired) total </small>
                                         </div>
@@ -271,7 +271,7 @@
                                         </span>
                                         <div class="media-body text-white">
                                             <p class="mb-1">TOTAL EARNED</p>
-                                            <h4 class="text-white"> USDT {{ $income }}</h4>
+                                            <h4 class="text-white user-dashboard-card-font-size-change"> USDT {{ $income }}</h4>
                                             <br>
                                             <small> Total Earnings</small>
                                         </div>
@@ -288,7 +288,7 @@
                                         </span>
                                         <div class="media-body text-white">
                                             <p class="mb-1">PACKAGE INCOME</p>
-                                            <h4 class="text-white"> USDT {{ $invest_income }}</h4>
+                                            <h4 class="text-white user-dashboard-card-font-size-change"> USDT {{ $invest_income }}</h4>
                                             <br>
                                             <small> Total investment profit </small>
                                         </div>
@@ -305,7 +305,7 @@
                                         </span>
                                         <div class="media-body text-white">
                                             <p class="mb-1">COMMISSIONS</p>
-                                            <h4 class="text-white"> USDT {{ $qualified_commissions }}</h4>
+                                            <h4 class="text-white user-dashboard-card-font-size-change"> USDT {{ $qualified_commissions }}</h4>
                                             <br>
                                             <small> Direct / Indirect </small>
                                         </div>
@@ -322,7 +322,7 @@
                                         </span>
                                         <div class="media-body text-white">
                                             <p class="mb-1">LOSTs</p>
-                                            <h4 class="text-white"> USDT {{ $lost_commissions }}</h4>
+                                            <h4 class="text-white user-dashboard-card-font-size-change"> USDT {{ $lost_commissions }}</h4>
                                             <br>
                                             <small> Disqualified </small>
                                         </div>
@@ -339,7 +339,7 @@
                                         </span>
                                         <div class="media-body text-white">
                                             <p class="mb-1">Total Withdrawal</p>
-                                            <h4 class="text-white mb-0">USDT {{ $withdraw }}</h4>
+                                            <h4 class="text-white user-dashboard-card-font-size-change"> USDT {{ $withdraw }}</h4>
                                             <br>
                                             <small>Payout limit USDT {{ $wallet->withdraw_limit }}</small>
                                         </div>
