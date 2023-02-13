@@ -7,6 +7,7 @@ use App\Http\Resources\Select2UserResource;
 use App\Models\Strategy;
 use App\Models\User;
 use App\Models\Withdraw;
+use App\Services\WithdrawService;
 use DataTables;
 use Exception;
 use Illuminate\Http\Request;
@@ -20,29 +21,31 @@ class WithdrawController extends Controller
     /**
      * @throws Exception
      */
-    public function p2pHistory(Request $request)
+    public function p2pHistory(Request $request, WithdrawService $withdrawService)
     {
         if ($request->wantsJson()) {
 
-            $withdrawals = Withdraw::with('receiver')
-                ->where('user_id', Auth::user()->id)
-                ->when(!empty($request->get('receiver_id')), static function ($query) use ($request) {
-                    $query->where('receiver_id', $request->get('receiver_id'));
-                })
-                ->filter()
-                ->where('type', 'P2P')
-                //->where('created_at', '<=', date('Y-m-d H:i:s'))
-                ->latest();
+            if ($request->get('filter') === 'received') {
+                $withdrawals = $withdrawService
+                    ->filter($request->get('receiver_id'), Auth::user()->id)
+                    ->where('type', 'P2P');
+            } else {
+                $withdrawals = $withdrawService
+                    ->filter(Auth::user()->id, $request->get('receiver_id'))
+                    ->where('type', 'P2P');
+            }
+ 
+            return $withdrawService->datatable($withdrawals)
+                ->addColumn('receiver', static function ($withdraw) use ($request) {
+                    if ($request->get('filter') === 'received') {
+                        return str_pad($withdraw->user_id, '4', '0', STR_PAD_LEFT) .
+                            " - <code class='text-uppercase'>{$withdraw->user->username}</code>";
+                    }
 
-            return DataTables::of($withdrawals)
-                ->addColumn('receiver', static function ($withdraw) {
                     return str_pad($withdraw->receiver_id, '4', '0', STR_PAD_LEFT) .
                         " - <code class='text-uppercase'>{$withdraw->receiver->username}</code>";
+
                 })
-                ->addColumn('amount', fn($withdraw) => number_format($withdraw->amount, 2))
-                ->addColumn('fee', fn($withdraw) => number_format($withdraw->transaction_fee, 2))
-                ->addColumn('total', fn($withdraw) => number_format($withdraw->amount + $withdraw->transaction_fee, 2))
-                ->addColumn('created_at', fn($withdraw) => $withdraw->created_at->format('Y-m-d H:i:s'))
                 ->addColumn('actions', function ($withdraw) {
                     return '<div class="dropdown">
                                     <button class="btn btn-primary tp-btn-light sharp" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -57,6 +60,7 @@ class WithdrawController extends Controller
                 })
                 ->rawColumns(['receiver', 'actions'])
                 ->make();
+
         }
 
         return view('backend.user.withdrawals.history.p2p');

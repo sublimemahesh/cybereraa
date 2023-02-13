@@ -15,6 +15,17 @@
     @endsection
 
     <div class="row dark"> {{--! Tailwind css used. if using tailwind plz run npm run dev and add tailwind classes--}}
+        <div class="flex mb-2">
+            <div>
+                <div class=" pt-2 p-2 ">
+                    <div class="relative">
+                        <a href="{{ route('user.transfers.p2p', ['status' => 'success', 'filter' => request()->input('filter') === 'received' ? 'sent' : 'received']) }}" class="mt-1 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
+                            View {{ request()->input('filter') === 'received' ? 'Sent' : 'received' }} P2P funds
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
@@ -31,7 +42,9 @@
                                         <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
                                             <div>
                                                 <div class=" pt-2 p-2 ">
-                                                    <label for="receiver_id" class="text-gray-700 dark:text-gray-300">RECEIVER ID</label>
+                                                    <label for="receiver_id" class="text-gray-700 dark:text-gray-300">
+                                                        {{ request()->input('filter') === 'received' ? 'SENDER' : 'RECEIVER' }} ID
+                                                    </label>
                                                     <div class="relative">
                                                         <input id="receiver_id" value="{{ request()->input('receiver_id') }}" placeholder="Enter User ID" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500"/>
                                                     </div>
@@ -98,7 +111,7 @@
                             <thead>
                             <tr>
                                 <th>ACTION</th>
-                                <th>RECEIVER</th>
+                                <th>{{ request()->input('filter') === 'received' ? 'SENDER' : 'RECEIVER' }}</th>
                                 <th>TYPE</th>
                                 <th>STATUS</th>
                                 <th>CREATED AT</th>
