@@ -2,6 +2,7 @@ $(function () {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const date_range = urlParams.get("date-range");
+    const filter = urlParams.get("filter");
 
     let table = $('#p2p-trx').DataTable({
         language: {
@@ -18,11 +19,11 @@ $(function () {
         fixedHeader: true,
         responsive: true,
         order: [[4, 'desc']],
-        stateSave: true,
+        //stateSave: true,
         ajax: location.href,
         columns: [
             {data: "actions", searchable: true},
-            {data: "receiver", name: 'receiver.username', searchable: true},
+            {data: "receiver", name: filter === 'received' ? 'user.username' : 'receiver.username', searchable: true},
             {data: "type", searchable: false},
             {data: "status", searchable: false},
             {data: "created_at", searchable: false},
