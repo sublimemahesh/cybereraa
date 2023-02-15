@@ -14,8 +14,8 @@ $(function () {
         //stateSave: true,
         ajax: location.href,
         columns: [
-            {data: "profile_photo", searchable: false, orderable: false},
-            {data: "user_details", name:'name', searchable: true, orderable: false},
+            {data: "profile_photo",  name:'id',  searchable: true, orderable: false},
+            {data: "user_details", name:'name',searchable: true, orderable: false},
             {data: "contact_details", searchable: true, orderable: false},
             {data: "joined", name: 'created_at', searchable: false},
             {data: "actions", searchable: false, orderable: false},
