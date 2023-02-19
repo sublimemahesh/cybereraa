@@ -14,7 +14,7 @@
                                 <div class=" pt-2 p-2 ">
                                     <label for="user_id" class="text-gray-700 dark:text-gray-300">USER ID</label>
                                     <div class="relative">
-                                        <input id="user_id" value="{{ request()->input('receiver_id') }}" placeholder="Enter User ID" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500"/>
+                                        <input id="user_id" value="{{ request()->input('user_id') }}" placeholder="Enter User ID" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500"/>
                                     </div>
                                 </div>
                             </div>
@@ -44,6 +44,7 @@
                                 <div class="relative">
                                     <select id="binance-trx-status" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
                                         <option value="">ALL</option>
+                                        <option value="pending" {{ request()->input('status') === 'pending' ? 'selected' : '' }}>PENDING</option>
                                         <option value="processing" {{ request()->input('status') === 'processing' ? 'selected' : '' }}>PROCESSING</option>
                                         <option value="success" {{ request()->input('status') === 'success' ? 'selected' : '' }}>SUCCESS</option>
                                         <option value="fail" {{ request()->input('status') === 'fail' ? 'selected' : '' }}>FAIL</option>
@@ -76,7 +77,7 @@
     </div>
 </div>
 <div class="table-responsive">
-    <table id="binance-trx" class="mb-1 nowrap table-responsive-my">
+    <table id="binance-trx" class="mb-1 nowrap table-responsive-my display" style="table-layout: fixed">
         <thead>
         <tr>
             <th>ACTIONS</th>

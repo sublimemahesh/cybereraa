@@ -106,7 +106,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         // Profile
         Route::get('/users/{user:username}/profile', 'Admin\UserController@profileShow')->name('users.profile.show');
 
-        Route::get('genealogy/{user:username?}', 'Admin\GenealogyController@index')->name('genealogy')->middleware('signed');
+        Route::match(['get', 'post'], 'genealogy/{user:username?}', 'Admin\GenealogyController@index')->name('genealogy')->middleware('signed');
 
         // RANK GIFtS
         Route::get('ranks/gifts', 'Admin\RankGiftController@index')->name('ranks.gifts');
@@ -125,7 +125,6 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::post('filter/users/{search_text}', 'Admin\WalletTopupHistoryController@findUsers');
 
         //Route::get('packages/buy-package', 'Admin\PackageController@buypackage')->name('packages.buyBackage');
-        //Route::get('users/transfers/withdrawals/form', 'Admin\WithdrawController@withdrawalsForm')->name('transfers.withdrawals.form');
 
         //Country
         Route::resource('countries', 'Admin\CountryController')->except('create', 'show');
@@ -157,6 +156,8 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
             // withdraws
             Route::get('users/transfers/p2p', 'Admin\WithdrawController@p2p')->name('transfers.p2p');
             Route::get('users/transfers/withdrawals', 'Admin\WithdrawController@withdrawals')->name('transfers.withdrawals');
+            Route::match(['get', 'post'], 'users/transfers/withdrawals/{withdraw}/approve', 'Admin\WithdrawController@approve')->name('transfers.withdrawals.approve');
+            Route::get('users/transfers/withdrawals/{withdraw}/summery', 'Admin\WithdrawController@show')->name('transfers.withdrawals.view');
         });
 
         // Strategies
@@ -226,7 +227,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
 
         // My Genealogy
         Route::get('genealogy/new-registration', 'User\GenealogyController@registerForm')->name('genealogy.position.register');
-        Route::get('genealogy/{user:username?}', 'User\GenealogyController@index')->name('genealogy');
+        Route::match(['get', 'post'], 'genealogy/{user:username?}', 'User\GenealogyController@index')->name('genealogy');
 
         Route::group(['prefix' => 'genealogy/{parent:username}/position-{position}'], function () {
             Route::get('', 'User\GenealogyController@managePosition')->name('genealogy.position.manage')->middleware('signed');

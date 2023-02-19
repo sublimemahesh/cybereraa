@@ -61,7 +61,7 @@
 @endcan
 @can('transactions.viewAny')
     <li>
-        <a href="{{ route('admin.transactions.index', ['status' => 'paid','date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .'to'.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}" class="" aria-expanded="false">
+        <a href="{{ route('admin.transactions.index', ['status' => 'paid','date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .' to '.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}" class="" aria-expanded="false">
             <i class="bi fa-chain-broken"></i>
             <span class="nav-text"> User Payments </span>
         </a>
@@ -69,7 +69,7 @@
 @endcan
 @can('earnings.viewAny')
     <li>
-        <a href="{{ route('admin.earnings.index', ['status' => 'received','date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .'to'.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}" class="" aria-expanded="false">
+        <a href="{{ route('admin.earnings.index', ['status' => 'received','date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .' to '.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}" class="" aria-expanded="false">
             <i class="bi bi-cash-stack"></i>
             <span class="nav-text"> User Earnings </span>
         </a>
@@ -78,7 +78,7 @@
 
 @can('withdraw.p2p.viewAny')
     <li>
-        <a href="{{ route('admin.transfers.p2p', ['status' => 'success','date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .'to'.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}" class="" aria-expanded="false">
+        <a href="{{ route('admin.transfers.p2p', ['status' => 'success','date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .' to '.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}" class="" aria-expanded="false">
             <i class="bi fa-arrow-turn-down"></i>
             <span class="nav-text"> P2P Transactions </span>
         </a>
@@ -87,7 +87,7 @@
 
 @can('withdrawals.viewAny')
     <li>
-        <a href="{{ route('admin.transfers.withdrawals', ['status' => 'processing','date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .'to'.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}" class="" aria-expanded="false">
+        <a href="{{ route('admin.transfers.withdrawals', ['status' => 'pending']) }}" class="" aria-expanded="false">
             <i class="bi fa-arrow-turn-up"></i>
             <span class="nav-text"> Withdrawals </span>
         </a>
@@ -103,14 +103,14 @@
         <ul aria-expanded="false">
             @can('commissions.viewAny')
                 <li>
-                    <a href="{{ route('admin.incomes.commission', ['status' => 'qualified','date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .'to'.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}" class="" aria-expanded="false">
+                    <a href="{{ route('admin.incomes.commission', ['status' => 'qualified','date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .' to '.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}" class="" aria-expanded="false">
                         Commissions
                     </a>
                 </li>
             @endcan
             @can('rank_bonus.viewAny')
                 <li>
-                    <a href="{{ route('admin.incomes.rewards', ['status' => 'qualified','date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .'to'.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}" class="" aria-expanded="false">
+                    <a href="{{ route('admin.incomes.rewards', ['status' => 'qualified','date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .' to '.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}" class="" aria-expanded="false">
                         Rewards
                     </a>
                 </li>

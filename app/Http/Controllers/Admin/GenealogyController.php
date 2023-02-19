@@ -15,7 +15,7 @@ class GenealogyController extends Controller
     {
         abort_if(Gate::denies('users.genealogy'), Response::HTTP_FORBIDDEN);
 
-        if (optional($user)->id === null) {
+        if ($user?->id === null) {
             $system_super_user = config('fortify.super_parent_id');
             $user = User::find($system_super_user);
         }
@@ -28,7 +28,7 @@ class GenealogyController extends Controller
             ->get()
             ->keyBy('position');
 
-        if ($request->wantsJson()) {
+        if ($request->wantsJson() && $request->isMethod('POST')) {
             $json['status'] = true;
             $json['username'] = $user->username;
             $json['message'] = 'Success';
@@ -43,7 +43,7 @@ class GenealogyController extends Controller
     public function placePendingUsersInGenealogy(): \Illuminate\Http\JsonResponse
     {
         abort_if(Gate::denies('place_pending_members_in_genealogy'), Response::HTTP_FORBIDDEN);
- 
+
         $res = Artisan::call('genealogy:assign');
         $json['status'] = $res === 0;
         $json['message'] = Artisan::output();

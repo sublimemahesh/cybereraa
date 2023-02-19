@@ -34,7 +34,7 @@ class WithdrawController extends Controller
                     ->filter(Auth::user()->id, $request->get('receiver_id'))
                     ->where('type', 'P2P');
             }
- 
+
             return $withdrawService->datatable($withdrawals)
                 ->addColumn('receiver', static function ($withdraw) use ($request) {
                     if ($request->get('filter') === 'received') {
@@ -75,15 +75,14 @@ class WithdrawController extends Controller
 
             $withdrawals = Withdraw::filter()
                 ->where('user_id', Auth::user()->id)
-                ->where('type', 'BINANCE')
-                //->where('created_at', '<=', date('Y-m-d H:i:s'))
-                ->latest();
+                ->where('type', 'MANUAL');
 
             return DataTables::of($withdrawals)
+                ->addColumn('withdraw_id', fn($withdraw) => str_pad($withdraw->id, 4, 0, STR_PAD_LEFT))
                 ->addColumn('amount', fn($withdraw) => number_format($withdraw->amount, 2))
                 ->addColumn('fee', fn($withdraw) => number_format($withdraw->transaction_fee, 2))
                 ->addColumn('total', fn($withdraw) => number_format($withdraw->amount + $withdraw->transaction_fee, 2))
-                ->addColumn('created_at', fn($withdraw) => $withdraw->created_at->format('Y-m-d H:i:s'))
+                ->addColumn('date', fn($withdraw) => $withdraw->created_at->format('Y-m-d H:i:s'))
                 ->addColumn('actions', static function ($withdraw) {
                     return '-';
                 })
@@ -111,12 +110,13 @@ class WithdrawController extends Controller
     {
         $strategies = Strategy::whereIn('name', ['payout_transfer_fee', 'minimum_payout_limit'])->get();
         $wallet = Auth::user()->wallet;
+        $profile = Auth::user()->profile;
 
         $payout_transfer_fee = $strategies->where('name', 'payout_transfer_fee')->first(null, new Strategy(['value' => 5]));
         $minimum_payout_limit = $strategies->where('name', 'minimum_payout_limit')->first(null, new Strategy(['value' => 10]));
         $max_withdraw_limit = $wallet->withdraw_limit;
 
-        return view('backend.user.withdrawals.binance-payouts', compact('payout_transfer_fee', 'max_withdraw_limit', 'minimum_payout_limit', 'wallet'));
+        return view('backend.user.withdrawals.binance-payouts', compact('profile', 'payout_transfer_fee', 'max_withdraw_limit', 'minimum_payout_limit', 'wallet'));
     }
 
     public function findUser(User $user): \Illuminate\Http\JsonResponse

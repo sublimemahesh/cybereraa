@@ -131,7 +131,22 @@
                         <x-jet-input id="home_phone" wire:model.defer="state.profile_info.home_phone" class="block mt-1 w-full form-control" type="text" name="home_phone"/>
                         <x-jet-input-error for="profile_info.home_phone" class="mt-2"/>
                     </div>
-                    <div class="col-lg-12 m-b30">
+                    <div class="col-lg-6 m-b30">
+                        <label class="form-label" for="binance_email"> {{ __('Binance Email') }} </label>
+                        <x-jet-input id="binance_email" wire:model.defer="state.profile_info.binance_email" class="block mt-1 w-full form-control" type="email" name="binance_email"/>
+                        <x-jet-input-error for="profile_info.binance_email" class="mt-2"/>
+                    </div>
+                    <div class="col-lg-6 m-b30">
+                        <label class="form-label" for="binance_id"> {{ __('Binance Id') }} </label>
+                        <x-jet-input id="binance_id" wire:model.defer="state.profile_info.binance_id" class="block mt-1 w-full form-control" type="text" name="binance_id"/>
+                        <x-jet-input-error for="profile_info.binance_id" class="mt-2"/>
+                    </div>
+                    <div class="col-lg-6 m-b30">
+                        <label class="form-label" for="binance_phone"> {{ __('Binance Phone') }} </label>
+                        <x-jet-input id="binance_phone" wire:model.defer="state.profile_info.binance_phone" class="block mt-1 w-full form-control" type="text" name="binance_phone"/>
+                        <x-jet-input-error for="profile_info.binance_phone" class="mt-2"/>
+                    </div>
+                    <div class="col-lg-6 m-b30">
                         <label class="form-label" for="wallet_address"> {{ __('Wallet Address (TRC20 USDT)') }} </label>
                         <x-jet-input id="wallet_address" wire:model.defer="state.profile_info.wallet_address" class="block mt-1 w-full form-control" type="text" name="wallet_address"/>
                         <x-jet-input-error for="profile_info.wallet_address" class="mt-2"/>
