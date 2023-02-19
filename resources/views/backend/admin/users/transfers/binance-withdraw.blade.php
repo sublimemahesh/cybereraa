@@ -1,6 +1,6 @@
 <x-backend.layouts.app>
-    @section('title', 'Binance withdrawals Transactions | Reports')
-    @section('header-title', 'Binance withdrawals | Reports' )
+    @section('title', 'Withdrawals Transactions | Reports')
+    @section('header-title', 'Withdrawals | Reports' )
     @section('plugin-styles')
         <!-- Datatable -->
         <link href="{{ asset('assets/backend/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
@@ -11,7 +11,7 @@
     @endsection
 
     @section('breadcrumb-items')
-        <li class="breadcrumb-item">Binance withdrawals Transfers</li>
+        <li class="breadcrumb-item">Withdrawals</li>
     @endsection
 
     <div class="row dark"> {{--! Tailwind css used. if using tailwind plz run npm run dev and add tailwind classes--}}

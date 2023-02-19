@@ -5,15 +5,19 @@ $(function () {
         let amount = parseFloat($('#withdraw-amount').val()) || 0;
         if (amount < MINIMUM_PAYOUT_LIMIT) {
             $('#withdraw-amount').val(MINIMUM_PAYOUT_LIMIT).change();
-            $('#show-receiving-amount').html('USDT ' + (MINIMUM_PAYOUT_LIMIT - P2P_TRANSFER_FEE))
+            $('#show-receiving-amount').html('USDT ' + (MINIMUM_PAYOUT_LIMIT + P2P_TRANSFER_FEE))
             return false
         }
     })
 
     $(document).on('click', '#confirm-payout', function (e) {
         e.preventDefault();
-        let amount = $('#withdraw-amount').val();
-        let password = $('#password').val();
+        const amount = $('#withdraw-amount').val();
+        const remark = $('#remark').val();
+        const password = $('#password').val();
+        const code = $('#code').val();
+        const wallet_type = $("input[name='wallet_type']:checked").val();
+
         if (amount.length <= 0 || parseFloat(amount) < MINIMUM_PAYOUT_LIMIT || parseFloat(amount) > MAX_WITHDRAW_LIMIT) {
             Toast.fire({
                 icon: 'error', title: "Please Enter a valid amount to transfer!",
@@ -33,7 +37,7 @@ $(function () {
             }).then((transfer) => {
                 if (transfer.isConfirmed) {
                     loader()
-                    axios.post(APP_URL + '/user/wallet/withdraw/binance', {amount, password}).then(response => {
+                    axios.post(APP_URL + '/user/wallet/withdraw/binance', {amount, remark, wallet_type, password, code}).then(response => {
                         Toast.fire({
                             icon: response.data.icon, title: response.data.message,
                         }).then(res => {

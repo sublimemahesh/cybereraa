@@ -1,9 +1,8 @@
 <x-backend.layouts.app>
-    @section('title', 'withdraw | form')
-    @section('header-title', 'withdraw | form')
+    @section('title', 'Withdraw USDT | Payouts')
+    @section('header-title', 'Withdraw USDT')
     @section('plugin-styles')
         <!-- Datatable -->
-        <link href="{{ asset('assets/backend/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
     @endsection
 
     @section('breadcrumb-items')
@@ -11,28 +10,72 @@
     @endsection
 
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-8">
             <div class="card">
                 <div class="card-body">
-                    <form class="theme-form" enctype="multipart/form-data" wire:submit.prevent="save" id="withdraw-form">
+                    <form class="theme-form" enctype="multipart/form-data" id="approval-form">
+                        <div class="mb-2">
+                            User ID: <code>{{ $withdraw->user_id }}</code> | Username:
+                            <code>{{ $withdraw->user->username }}</code>
+                            <br/>
+                            <hr/>
+                            Please note this <code class="text-uppercase">process cannot be reversed</code>.
+                            <hr/>
+                        </div>
                         <div class="row">
-                            <div class="col-sm-8">
-                                <div class="form-group row mb-2">
-                                    <label class="col-sm-3 col-form-label" for="">Amount</label>
-                                    <div class="col-sm-9">
-                                        <input class="form-control" type="text" name='amount' id="amount">
+                            <div class="col-sm-12">
+                                <div class="mb-3 mt-2">
+                                    <label for="withdraw-amount">
+                                        Requested Withdrawal Amount (Balance:
+                                        <code>USDT {{ $withdraw->user->wallet->balance }}</code> / Payout limit:
+                                        <code>USDT {{ $withdraw->user->wallet->withdraw_limit }}</code>)
+                                    </label>
+                                    <div class="form-control">{{ $withdraw->amount }}</div>
+                                    <div class="text-info">
+                                        Transactions Fee: <code>{{ number_format($withdraw->transaction_fee,2) }}</code> /
+                                        Total: <code>{{ number_format($withdraw->amount + $withdraw->transaction_fee,2) }}</code>
                                     </div>
                                 </div>
+                                <div class="mb-3 mt-2">
+                                    <label for="remark">Remark</label>
+                                    <div class="form-control h-100" style="min-height: 50px">{{ $withdraw->remark }}</div>
+                                </div>
+                                <div class="mb-3 mt-2">
+                                    <label for="payout_info">Payout Info</label>
+                                    <div id="payout_info" disabled rows="3" placeholder="Remark" class="form-control h-auto">
+                                        <p class="mb-0"><b>Email:</b> {{ $payout_info->email }}</p>
+                                        <p class="mb-0"><b>Id:</b> {{ $payout_info->id }}</p>
+                                        <p class="mb-0"><b>Address:</b> {{ $payout_info->address }}</p>
+                                        <p class="mb-0"><b>Phone:</b> {{ $payout_info->phone }}</p>
+                                    </div>
+                                    <div class="text-info">View Profile Details:
+                                        <a href="{{ route('admin.users.profile.show', $withdraw->user) }}">View Profile</a>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="mb-3 mt-2">
+                                    <label for="proof_document">Proof</label>
+                                    <input class="form-control" data-input='payout' type="file" name='proof_document' id='proof_document'>
+                                </div>
+                                <hr>
+                                <p>
+                                    Please confirm access to your account by entering the <code>password</code> and
+                                    <code>authentication code</code> provided by your authenticator application
+                                </p>
 
-                                <div class="form-group row mb-2">
-                                    <label class="col-sm-3 col-form-label" for="">Proof</label>
-                                    <div class="col-sm-9">
-                                        <input class="form-control" type="file" name='proof' id='proof'>
-                                    </div>
+                                <div class="mb-3 mt-2">
+                                    <label for="password">Password</label>
+                                    <input id="password" type="password" name="password" data-input='payout' class="form-control" autocomplete="new-password">
                                 </div>
+                                @if(Auth::user()?->two_factor_secret && in_array( \Laravel\Fortify\TwoFactorAuthenticatable::class, class_uses_recursive(Auth::user()),true))
+                                    <div class="mb-3 mt-2">
+                                        <label for="code">Two Factor code / Recovery Code </label>
+                                        <input id="code" name="code" type="password" data-input='payout' class="form-control" autocomplete="one-time-password" placeholder="2FA code OR Recovery Code">
+                                    </div>
+                                @endif
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary" id="create-withdraw-form" wire:loading.remove>Save</button>
+                        <button type="submit" class="btn btn-primary" id="approveWithdraw">APPROVE</button>
                     </form>
                 </div>
             </div>
@@ -40,6 +83,6 @@
     </div>
 
     @push('scripts')
-    <script src="{{ asset('assets/backend/js/admin/transfers/withdraw_form.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/admin/transfers/withdraw_form.js') }}"></script>
     @endpush
 </x-backend.layouts.app>

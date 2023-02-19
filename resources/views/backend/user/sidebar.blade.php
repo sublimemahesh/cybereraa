@@ -99,7 +99,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('user.transfers.withdrawals', ['status' => 'processing']) }}" class="" aria-expanded="false">
+                <a href="{{ route('user.transfers.withdrawals') }}" class="" aria-expanded="false">
                     <i class="bi fa-arrow-turn-up"></i>
                     <span class="nav-text"> Withdrawal History</span>
                 </a>

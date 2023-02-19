@@ -15,8 +15,25 @@ class Profile extends Model
 
     protected $withCount = ['kycs'];
 
-    protected $fillable = ['user_id', 'country_id', 'nic_verified_at', 'driving_lc_verified_at', 'passport_verified_at',
-        'street', 'state', 'address', 'zip_code', 'home_phone', 'recover_email', 'gender', 'dob', 'wallet_address'];
+    protected $fillable = [
+        'user_id',
+        'country_id',
+        'nic_verified_at',
+        'driving_lc_verified_at',
+        'passport_verified_at',
+        'street',
+        'state',
+        'address',
+        'zip_code',
+        'home_phone',
+        'recover_email',
+        'gender',
+        'dob',
+        'wallet_address',
+        'binance_email',
+        'binance_id',
+        'binance_phone'
+    ];
 
     protected $appends = [
         'is_nic_verified',

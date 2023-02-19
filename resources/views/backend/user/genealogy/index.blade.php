@@ -2,7 +2,7 @@
     @section('title', $user->username . ' | My Genealogy')
     @section('header-title', 'My Genealogy')
     @section('plugin-styles')
-        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
 
     @endsection
     @section('styles')
@@ -28,9 +28,9 @@
                         </div>
                         <div class="input-group mb-3 input-primary">
                             <input type="text" readonly class="form-control" id="clipboard-input"
-                                value="{{ Auth::user()->referral_link }}">
+                                   value="{{ Auth::user()->referral_link }}">
                             <span class="input-group-text border-0 clipboard-tooltip" onclick="copyToClipBoard()"
-                                onmouseout="outFunc()">
+                                  onmouseout="outFunc()">
                                 <span class="tooltip-text" id="clipboard-tooltip">Copy to clipboard</span>
                                 Copy Link
                             </span>
@@ -39,7 +39,7 @@
                             <p>Via Register a new user now </p>
                         </div>
                         <a href="{{ route('user.genealogy.position.register') }}"
-                            class="btn btn-sm btn-primary email-btn">Register now</a>
+                           class="btn btn-sm btn-primary email-btn">Register now</a>
                     </div>
                 </div>
             </div>
@@ -59,7 +59,12 @@
     </div>
 
     @push('scripts')
-        <script> 
+
+        <script>
+            const x = window.matchMedia("(max-width: 700px)");
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+
             function copyToClipBoard() {
                 const copyText = document.getElementById("clipboard-input");
                 copyText.select();
@@ -75,12 +80,7 @@
                 tooltip.innerHTML = "Copy to clipboard";
             }
 
-            let swiper = null;
-            const x = window.matchMedia("(max-width: 700px)");
-            const queryString = window.location.search;
-            const urlParams = new URLSearchParams(queryString);
-
-            $(document).on('click', '.next-genealogy', function(e) {
+            $(document).on('click', '.next-genealogy', function (e) {
                 e.preventDefault();
                 let url = $(this).attr('href');
                 loadGenealogy(url)
@@ -88,20 +88,14 @@
 
             function loadGenealogy(url) {
                 loader('');
-                axios.get(url).then(function(response) {
+                axios.post(url).then(function (response) {
                     if (response.data.status) {
                         $('#genealogy').html(response.data.genealogy)
                         history.replaceState({}, "", url);
                         document.title = response.data.username + " | My Genealogy"
                     }
-                    try {
-                        responsive(x)
-                    } catch (e) {
-                        console.log(e)
-                    }
-
                     Swal.close()
-                }).catch(function(error) {
+                }).catch(function (error) {
                     Toast.fire({
                         icon: 'error',
                         title: error.response.data.message || "Something went wrong!",
@@ -109,48 +103,6 @@
                 })
             }
 
-            const initSwiper = function() {
-                if (swiper !== null) {
-                    swiper.destroy()
-                }
-                return new Swiper('.swiper', {
-                    // Default parameters
-                    slidesPerView: 1,
-                    spaceBetween: 10,
-                    // Responsive breakpoints
-                    breakpoints: {
-                        769: {
-                            slidesPerView: 4,
-                            spaceBetween: 40
-                        }
-                    },
-                    pagination: {
-                        el: ".swiper-pagination",
-                    },
-                })
-            }
-
-            if (x.matches) {
-                swiper = initSwiper()
-            }
-
-            let des = 0;
-
-            // function responsive(x) {
-            //     if (x.matches) {
-            //         // If media query matches
-            //         $('.remove-mobile').contents().unwrap();
-            //         des = des + 1;
-            //         swiper = initSwiper()
-            //     } else {
-            //         if (des > 0) {
-            //             location.reload();
-            //         }
-            //     }
-            // }
-
-            // responsive(x) // Call listener function at run time
-            x.addListener(responsive) // Attach listener function on state changes
         </script>
     @endpush
 </x-backend.layouts.app>

@@ -16,21 +16,22 @@ class GenealogyController extends Controller
 {
     public function index(Request $request, User|null $user)
     {
-        if (optional($user)->id === null) {
+
+        if ($user?->id === null) {
             $user = Auth::user();
         }
-        $user->load('currentRank', 'descendants');
-        $user->loadCount('activePackages');
-        $descendants = $user->children()
+        $user?->load('currentRank', 'descendants');
+        $user?->loadCount('activePackages');
+        $descendants = $user?->children()
             ->with('currentRank', 'descendants')
             ->withCount('activePackages')
             ->orderBy('position')
             ->get()
             ->keyBy('position');
 
-        if ($request->wantsJson()) {
+        if ($request->expectsJson() && $request->isMethod('POST')) {
             $json['status'] = true;
-            $json['username'] = $user->username;
+            $json['username'] = $user?->username;
             $json['message'] = 'Success';
             $json['icon'] = 'success'; // warning | info | question | success | error
             $json['genealogy'] = view('backend.user.genealogy.includes.genealogy', compact('user', 'descendants'))->render();

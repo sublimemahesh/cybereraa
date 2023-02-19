@@ -11,17 +11,17 @@ $(function () {
         fixedHeader: true,
         responsive: true,
         order: [[4, 'desc']],
-        stateSave: true,
+        //stateSave: true,
         ajax: WITHDRAW_REPORT_URL,
         columns: [
-            {data: "actions", searchable: true},
-            {data: "user", name: 'user.username', searchable: true},
-            {data: "type", searchable: false},
-            {data: "status", searchable: false},
-            {data: "created_at", searchable: false},
-            {data: "amount", name: 'amount', searchable: false},
-            {data: "transaction_fee", name: 'transaction_fee', searchable: false},
-            {data: "total", searchable: false}
+            {data: "actions", searchable: true, orderable: false},
+            {data: "user", name: 'user.username', searchable: true, orderable: false},
+            {data: "type_n_wallet", name: 'type', searchable: false, orderable: false},
+            {data: "status", searchable: false, orderable: false},
+            {data: "date", name: 'created_at', searchable: false},
+            {data: "amount", name: 'amount', searchable: false, orderable: false},
+            {data: "transaction_fee", name: 'transaction_fee', searchable: false, orderable: false},
+            {data: "total", searchable: false, orderable: false}
         ],
         footerCallback: function (row, data, start, end, display) {
             let api = this.api();
@@ -68,7 +68,7 @@ $(function () {
         e.preventDefault();
         urlParams.set("date-range", $("#binance-trx-date-range").val());
         urlParams.set("status", $("#binance-trx-status").val());
-        urlParams.set("receiver_id", $("#user_id").val());
+        urlParams.set("user_id", $("#user_id").val());
         let url = WITHDRAW_REPORT_URL.split(/\?|\#/)[0] + "?" + urlParams.toString();
         HISTORY_STATE && history.replaceState({}, "", url);
         table.ajax.url(url).load();

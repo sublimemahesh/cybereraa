@@ -11,16 +11,17 @@ $(function () {
         fixedHeader: true,
         responsive: true,
         order: [[4, 'desc']],
-        stateSave: true,
+        //stateSave: true,
         ajax: location.href,
         columns: [
-            {data: "actions", searchable: true},
-            {data: "type", searchable: false},
-            {data: "status", searchable: false},
-            {data: "created_at", searchable: false},
-            {data: "amount", name: 'amount', searchable: false},
-            {data: "transaction_fee", name: 'transaction_fee', searchable: false},
-            {data: "total", searchable: false}
+            {data: "actions", searchable: false, orderable: false},
+            {data: "withdraw_id", name: 'id', searchable: false, orderable: false},
+            {data: "type", searchable: false, orderable: false},
+            {data: "status", searchable: false, orderable: false},
+            {data: "date", name: 'created_at', searchable: false},
+            {data: "amount", name: 'amount', searchable: false, orderable: false},
+            {data: "fee", name: 'transaction_fee', searchable: false, orderable: false},
+            {data: "total", searchable: false, orderable: false}
         ],
         footerCallback: function (row, data, start, end, display) {
             let api = this.api();
@@ -39,23 +40,23 @@ $(function () {
                     }, 0);
             }
 
-            let amount = new Intl.NumberFormat().format(sumVal(4));
-            $(api.column(6).footer()).html(`Current page total amount: USDT ${amount}`);
+            let amount = new Intl.NumberFormat().format(sumVal(5));
+            $(api.column(7).footer()).html(`Current page total amount: USDT ${amount}`);
 
-            let transaction_fee = new Intl.NumberFormat().format(sumVal(5));
-            $(api.column(6).footer()).append(`<br><br>Current Page Trx fees: USDT ${transaction_fee}`);
+            let transaction_fee = new Intl.NumberFormat().format(sumVal(6));
+            $(api.column(7).footer()).append(`<br><br>Current Page Trx fees: USDT ${transaction_fee}`);
 
-            let total = new Intl.NumberFormat().format(sumVal(6));
-            $(api.column(6).footer()).append(`<br><br>Current Page Total: USDT ${total}`);
+            let total = new Intl.NumberFormat().format(sumVal(7));
+            $(api.column(7).footer()).append(`<br><br>Current Page Total: USDT ${total}`);
         },
         columnDefs: [{
             render: function (date, type, full, meta) {
                 return `<div style='font-size: 0.76rem !important;'> ${date} </div>`;
-            }, targets: 3,
+            }, targets: 4,
         }, {
             render: function (amount, type, full, meta) {
                 return `<div style='min-width:100px' class="text-right"> ${amount} </div>`;
-            }, targets: [4, 5, 6],
+            }, targets: [5, 6, 7],
         },],
     });
 
