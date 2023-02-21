@@ -3,11 +3,15 @@
         {{ $invoice->title }}
 
         @if($invoice->description)
-            <p class="cool-gray">{{ $invoice->description }}</p>
+            <div class="cool-gray mb-0">{!! $invoice->description !!}</div>
         @endif
     </td>
     <td class="text-right">
-        USDT {{ $invoice->amount }}
+        @if(in_array($invoice->method, ['P2P', 'MANUAL', 'BINANCE'], true))
+            USDT {{ $invoice->amount + $invoice->fee }}
+        @else
+            USDT {{ $invoice->amount }}
+        @endif
     </td>
     <td class="text-right">
         @if(!empty($invoice->fee))
@@ -15,7 +19,11 @@
         @endif
     </td>
     <td class="text-right">
-        USDT {{ $invoice->amount + $invoice->fee }}
+        @if(in_array($invoice->method, ['P2P', 'MANUAL', 'BINANCE'], true))
+            USDT {{ $invoice->amount }}
+        @else
+            USDT {{ $invoice->amount + $invoice->fee }}
+        @endif
     </td>
 </tr>
 
@@ -23,6 +31,10 @@
 <tr>
     <td colspan="3" class="text-right pl-0">Total amount</td>
     <td class="text-right total-amount">
-        USDT {{ $invoice->amount + $invoice->fee }}
+        @if(in_array($invoice->method, ['P2P', 'MANUAL', 'BINANCE'], true))
+            USDT {{ $invoice->amount }}
+        @else
+            USDT {{ $invoice->amount + $invoice->fee }}
+        @endif
     </td>
 </tr>

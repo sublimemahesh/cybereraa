@@ -19,7 +19,17 @@ class WithdrawPolicy
 
     public function view(User $user, Withdraw $withdraw)
     {
-        if ($user->hasPermissionTo('withdrawals.viewAny')) {
+        if ($withdraw->user_id === $user->id || $user->hasPermissionTo('withdrawals.viewAny')) {
+            return true;
+        }
+    }
+
+    public function processWithdraw(User $user, Withdraw $withdraw)
+    {
+        if ($withdraw->status !== 'PENDING') {
+            return false;
+        }
+        if ($user->hasPermissionTo('withdraw.approve')) {
             return true;
         }
     }
@@ -32,6 +42,11 @@ class WithdrawPolicy
         if ($user->hasPermissionTo('withdraw.approve')) {
             return true;
         }
+    }
+
+    public function cancelWithdraw(User $user, Withdraw $withdraw)
+    {
+        return $user->hasRole('user') && $withdraw->status === 'PENDING';
     }
 
     public function rejectWithdraw(User $user, Withdraw $withdraw)
