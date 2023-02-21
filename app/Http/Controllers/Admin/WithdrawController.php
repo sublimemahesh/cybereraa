@@ -7,6 +7,7 @@ use App\Mail\SendPayoutConfirmationMail;
 use App\Models\Withdraw;
 use App\Services\TwoFactorAuthenticateService;
 use App\Services\WithdrawService;
+use Carbon;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
@@ -15,6 +16,7 @@ use JsonException;
 use Mail;
 use Str;
 use Symfony\Component\HttpFoundation\Response;
+use Throwable;
 use Validator;
 
 class WithdrawController extends Controller
@@ -77,9 +79,19 @@ class WithdrawController extends Controller
                                     <i class="fa fa-eye"></i>
                                 </a>';
                     }
+                    if (Gate::allows('processWithdraw', $withdraw)) {
+                        $actions .= '<a href="javascript:void(0)" data-id="' . $withdraw->id . '" class="btn btn-xs btn-google sharp process-withdraw my-1 mr-1 shadow">
+                                    <i class="fa fa-history"></i>
+                                </a>';
+                    }
                     if (Gate::allows('approveWithdraw', $withdraw)) {
                         $actions .= '<a href="' . route('admin.transfers.withdrawals.approve', $withdraw) . '" class="btn btn-xs btn-success sharp my-1 mr-1 shadow">
                                     <i class="fa fa-check-double"></i>
+                                </a>';
+                    }
+                    if (Gate::allows('rejectWithdraw', $withdraw)) {
+                        $actions .= '<a href="' . route('admin.transfers.withdrawals.reject', $withdraw) . '" class="btn btn-xs btn-danger sharp my-1 mr-1 shadow">
+                                    <i class="fa fa-ban"></i>
                                 </a>';
                     }
                     return $actions;
@@ -105,8 +117,31 @@ class WithdrawController extends Controller
 
     /**
      * @throws AuthorizationException
+     * @throws Throwable
+     */
+    public function process(Request $request, Withdraw $withdraw)
+    {
+        $this->authorize('processWithdraw', $withdraw);
+
+        \DB::transaction(function () use ($withdraw) {
+            $withdraw->update([
+                'status' => 'PROCESSING',
+                'processed_at' => \Carbon::now(),
+            ]);
+            // TODO: SEND MAIL
+        });
+
+        $json['status'] = true;
+        $json['message'] = 'Payout Processed';
+        $json['icon'] = 'success'; // warning | info | question | success | error
+
+        return response()->json($json);
+    }
+
+    /**
+     * @throws AuthorizationException
      * @throws JsonException
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function approve(Request $request, Withdraw $withdraw, TwoFactorAuthenticateService $authenticateService)
     {
@@ -149,7 +184,7 @@ class WithdrawController extends Controller
                 }
             }
 
-            \DB::transaction(function () use ($payout_info, $validated, $withdraw) {
+            \DB::transaction(function () use ($validated, $withdraw, $payout_info) {
                 $file = $validated['proof_document'];
                 $proof_documentation = Str::limit(Str::slug($file->getClientOriginalName()), 50) . "-" . $file->hashName();
                 $file->storeAs('payouts/manual', $proof_documentation);
@@ -159,6 +194,12 @@ class WithdrawController extends Controller
                     'proof_document' => $proof_documentation,
                     'approved_at' => \Carbon::now(),
                 ]);
+
+                if ($withdraw->processed_at === null) {
+                    $withdraw->update([
+                        'processed_at' => \Carbon::now(),
+                    ]);
+                }
 
                 Mail::to($withdraw->user->email)->cc($payout_info?->email)->send(new SendPayoutConfirmationMail($withdraw));
             });
@@ -176,5 +217,64 @@ class WithdrawController extends Controller
 
     }
 
+    /**
+     * @throws AuthorizationException
+     * @throws Throwable
+     * @throws JsonException
+     */
+    public function rejectWithdraw(Request $request, Withdraw $withdraw)
+    {
+        $this->authorize('rejectWithdraw', $withdraw);
 
+        $user = $withdraw->user;
+        $user_wallet = $user?->wallet;
+        $profile = $user?->profile;
+
+        $skel = '{"email":"","id":"","address":"","phone":""}';
+        $payout_info = json_decode($withdraw->payout_details ?? $skel, false, 512, JSON_THROW_ON_ERROR);
+
+        if ($request->wantsJson() && $request->isMethod('post')) {
+
+            $validated = Validator::make($request->all(), [
+                'repudiate_note' => 'required|string'
+            ])->validate();
+
+            \DB::transaction(function () use ($withdraw, $user_wallet, $user, $validated) {
+
+                $total_amount = $withdraw->amount + $withdraw->transaction_fee;
+
+                $user_wallet->increment('balance', $total_amount);
+                if ($withdraw->wallet_type === 'MAIN') {
+                    $user_wallet->increment('withdraw_limit', $total_amount);
+
+                    $expired_packages = explode(',', $withdraw->expired_packages);
+
+                    if (count($expired_packages) > 0) {
+                        $user->purchasedPackages()
+                            ->where('expired_at', '>=', Carbon::now()->format('Y-m-d H:i:s'))
+                            ->whereIn('id', $expired_packages)
+                            ->update(['status' => 'ACTIVE']);
+                    }
+                }
+
+                $withdraw->update([
+                    'status' => 'REJECT',
+                    'repudiate_note' => $validated['repudiate_note'] ?? null,
+                    'rejected_at' => \Carbon::now(),
+                ]);
+
+                // TODO: SEND MAIL
+            });
+
+            $json['status'] = true;
+            $json['message'] = 'Payout Rejected!';
+            $json['icon'] = 'success'; // warning | info | question | success | error
+            $json['redirectUrl'] = route('admin.transfers.withdrawals.view', $withdraw);
+            $json['data'] = $validated;
+
+            return response()->json($json);
+        }
+
+        return view('backend.admin.users.transfers.reject-payouts', compact('withdraw', 'payout_info', 'profile'));
+    }
 }

@@ -79,6 +79,13 @@ class PayoutController extends Controller
             return response()->json($json, Response::HTTP_UNAUTHORIZED);
         }
 
+        if ($sender_wallet->withdraw_limit < $validated['amount']) {
+            $json['status'] = false;
+            $json['message'] = "Withdraw Limit exceeded!";
+            $json['icon'] = 'error'; // warning | info | question | success | error
+            return response()->json($json, Response::HTTP_UNAUTHORIZED);
+        }
+
         $receiver = User::find($validated['receiver']);
 
         $p2p_transfer_fee = $strategies->where('name', 'p2p_transfer_fee')->first(null, new Strategy(['value' => 2.5]));
@@ -188,6 +195,13 @@ class PayoutController extends Controller
             return response()->json($json, Response::HTTP_UNAUTHORIZED);
         }
 
+        if ($user_wallet->withdraw_limit < $total_amount) {
+            $json['status'] = false;
+            $json['message'] = "Withdraw Limit exceeded!";
+            $json['icon'] = 'error'; // warning | info | question | success | error
+            return response()->json($json, Response::HTTP_UNAUTHORIZED);
+        }
+
         $withdraw = DB::transaction(static function () use ($user, $validated, $p2p_transfer_fee, $user_wallet, $total_amount) {
 
             $payout_details = [
@@ -213,6 +227,9 @@ class PayoutController extends Controller
                 $user_wallet->decrement('withdraw_limit', $total_amount);
 
                 if ($user_wallet->withdraw_limit <= 0) {
+                    $withdraw->update([
+                        'expired_packages' => implode(',', $user->activePackages()->pluck('id')->toArray())
+                    ]);
                     $user->activePackages()->update(['status' => 'EXPIRED']);
                 }
             }

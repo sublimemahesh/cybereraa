@@ -6,7 +6,7 @@
     @endsection
 
     @section('breadcrumb-items')
-        <li class="breadcrumb-item"><a href="{{ route('admin.transfers.withdrawals') }}">Withdraws</a></li>
+        <li class="breadcrumb-item">Withdraws</li>
         <li class="breadcrumb-item active">Withdraw Summery</li>
     @endsection
 
@@ -43,7 +43,7 @@
                             </div>
                             <div class="mb-3 mt-2">
                                 <label for="remark">Remark</label>
-                                <div class="form-control h-100" style="min-height: 50px">{{ $withdraw->remark }}</div>
+                                <div class="form-control h-100" style="min-height: 50px">{{ $withdraw->remark ?? '-' }}</div>
                             </div>
                             <div class="mb-3 mt-2">
                                 <label for="payout_info">Payout Info</label>
@@ -54,16 +54,54 @@
                                     <p class="mb-0"><b>Phone:</b> {{ $payout_info->phone }}</p>
                                 </div>
                                 <div class="text-info">View Profile Details:
-                                    <a href="{{ route('admin.users.profile.show', $withdraw->user) }}">View Profile</a>
+                                    @if(Auth::user()->hasRole('user'))
+                                        <a href="{{ route('profile.show') }}">View Profile</a>
+                                    @else
+                                        <a href="{{ route('admin.users.profile.show', $withdraw->user) }}">View Profile</a>
+                                    @endif
                                 </div>
                             </div>
                             <hr>
-                            @if($withdraw->proof_document !== null)
+                            <div class="mb-3 mt-2">
+                                <label for="status">Status</label>
+                                <div class="form-control h-100" style="min-height: 50px">
+                                    Status: {{ $withdraw->status }} <br>
+                                    Requested at: {{ $withdraw->created_at }} <br>
+                                    @switch($withdraw->status)
+                                        @case('SUCCESS')
+                                            Processed at: {{ $withdraw->processed_at }} <br>
+                                            Approved at: {{ $withdraw->approved_at }} <br>
+                                            @if($withdraw->proof_document !== null)
+                                                <div class="mb-3 mt-2">
+                                                    <div class="text-info">
+                                                        <label for="proof_document">Proof: </label>
+                                                        <a href="{{ asset('storage/payouts/manual/' . $withdraw->proof_document) }}" target="_blank">View Proof</a>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                            @break
+                                        @case('PROCESSING')
+                                            Processed at: {{ $withdraw->processed_at }} <br>
+                                            @break
+                                        @case('CANCELLED')
+                                            Cancelled at: {{ $withdraw->cancelled_at }} <br>
+                                            Reason: {{ $withdraw->repudiate_note }}
+                                            @break
+                                        @case('REJECT')
+                                            Reject at: {{ $withdraw->reject_at }} <br>
+                                            Reason: {{ $withdraw->repudiate_note }}
+                                            @break
+                                        @case('FAIL')
+                                            Failed at: {{ $withdraw->failed_at }} <br>
+                                            Reason: {{ $withdraw->repudiate_note }}
+                                            @break
+                                    @endswitch
+                                </div>
+                            </div>
+                            @if($withdraw->expired_packages !== null)
                                 <div class="mb-3 mt-2">
-                                    <label for="proof_document">Proof</label>
-                                    <div class="text-info">
-                                        <a href="{{ asset('storage/payouts/manual/' . $withdraw->proof_document) }}" target="_blank">View Proof</a>
-                                    </div>
+                                    <label for="remark">Expired Packages</label>
+                                    <div class="form-control h-100" style="min-height: 50px">{{ $withdraw->expired_packages }}</div>
                                 </div>
                             @endif
                         </div>

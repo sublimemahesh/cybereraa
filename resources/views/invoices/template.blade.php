@@ -181,7 +181,7 @@
                 <th scope="col" class="text-right border-0">Amount</th>
                 <th scope="col" class="text-right border-0">
                     @if(!empty($invoice->fee))
-                        {{ $invoice->method !== 'P2P' ? 'Gas' : '' }} Fee
+                        {{ !in_array($invoice->method, ['P2P', 'MANUAL', 'BINANCE'], true) ? 'Gas' : '' }} Fee
                     @endif
                 </th>
                 <th scope="col" class="text-right border-0">Sub total</th>

@@ -43,7 +43,8 @@ Route::group(['middleware' => 'guest:' . config('fortify.guard')], function () {
 });
 
 Route::get('test', function () {
-
+    $user = Auth::user();
+    dd(implode(',', $user->activePackages()->pluck('id')->toArray()));
 });
 
 Route::get('payments/binancepay/response', 'Payment\BinancePayController@response');
@@ -156,8 +157,10 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
             // withdraws
             Route::get('users/transfers/p2p', 'Admin\WithdrawController@p2p')->name('transfers.p2p');
             Route::get('users/transfers/withdrawals', 'Admin\WithdrawController@withdrawals')->name('transfers.withdrawals');
-            Route::match(['get', 'post'], 'users/transfers/withdrawals/{withdraw}/approve', 'Admin\WithdrawController@approve')->name('transfers.withdrawals.approve');
             Route::get('users/transfers/withdrawals/{withdraw}/summery', 'Admin\WithdrawController@show')->name('transfers.withdrawals.view');
+            Route::match(['get', 'post'], 'users/transfers/withdrawals/{withdraw}/approve', 'Admin\WithdrawController@approve')->name('transfers.withdrawals.approve');
+            Route::match(['get', 'post'], 'users/transfers/withdrawals/{withdraw}/reject', 'Admin\WithdrawController@rejectWithdraw')->name('transfers.withdrawals.reject');
+            Route::post('users/transfers/withdrawals/{withdraw}/process', 'Admin\WithdrawController@process');
         });
 
         // Strategies
@@ -243,15 +246,17 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::get('incomes/rewards', 'User\EarningController@rewards')->name('incomes.rewards');
         Route::get('earnings', 'User\EarningController@index')->name('earnings.index');
 
-        Route::get('wallet', 'User\WalletController@index')->name('wallet.index');
-        Route::get('wallet/transfer', 'User\WithdrawController@p2pTransfer')->name('wallet.transfer');
-        Route::get('wallet/withdraw', 'User\WithdrawController@withdraw')->name('wallet.withdraw');
-
         Route::post('wallet/transfer/filter/users/{user:username}', 'User\WithdrawController@findUser');
         Route::post('filter/users/{search_text}', 'User\WithdrawController@findUsers');
 
+        Route::get('wallet', 'User\WalletController@index')->name('wallet.index');
+        Route::get('wallet/transfer', 'User\WithdrawController@p2pTransfer')->name('wallet.transfer');
         Route::post('wallet/transfer/p2p', 'Payment\PayoutController@p2pTransfer');
+
+        Route::get('wallet/withdraw', 'User\WithdrawController@withdraw')->name('wallet.withdraw');
+        Route::get('wallet/withdraws/{withdraw}/summery', 'User\WithdrawController@show')->name('wallet.withdraw.view');
         Route::post('wallet/withdraw/binance', 'Payment\PayoutController@withdraw');
+        Route::match(['get', 'post'], 'wallet/withdraws/{withdraw}/cancel-request', 'User\WithdrawController@cancelWithdraw')->name('wallet.withdraw.cancel');
 
         Route::get('wallet/transfers/p2p/history', 'User\WithdrawController@p2pHistory')->name('transfers.p2p');
         Route::get('wallet/transfers/withdrawals/history', 'User\WithdrawController@withdrawalsHistory')->name('transfers.withdrawals');

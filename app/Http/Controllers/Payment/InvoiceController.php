@@ -47,7 +47,7 @@ class InvoiceController extends Controller
         $loggedUser = Auth::user();
         $user = $trx->user;
 
-        abort_if($loggedUser->id !== $trx->user_id && $loggedUser->id !== $trx->purchaser_id, 404);
+        abort_if($loggedUser?->id !== $trx->user_id && $loggedUser?->id !== $trx->purchaser_id, 404);
 
         $invoice = [];
 
@@ -77,7 +77,7 @@ class InvoiceController extends Controller
             'phone' => null,
         ];
         $invoice['receiver'] = (object)[
-            'name' => $user->name,
+            'name' => $user->name . ' - ' . $user->username,
             'address' => $user->email,
             'email' => $user->email,
             'postal_code' => $user->address,
@@ -101,7 +101,7 @@ class InvoiceController extends Controller
         $receiver = $withdraw->receiver;
         $sender = new User;
 
-        abort_if($loggedUser->id !== $user->id && $loggedUser->id !== $receiver->id, 404);
+        abort_if($loggedUser?->id !== $user->id && $loggedUser?->id !== $receiver->id, 404);
 
         $invoice = [];
 
@@ -111,7 +111,7 @@ class InvoiceController extends Controller
         $invoice['title'] = 'Invoice ' . $withdraw->type . ' #' . $withdraw->id;
         $invoice['amount'] = $withdraw->amount;
         $invoice['fee'] = $withdraw->transaction_fee;
-        $invoice['method'] = 'P2P';
+        $invoice['method'] = $withdraw->type;
         $invoice['serial'] = "#TRX" . str_pad($withdraw->id, 5, '0', STR_PAD_LEFT);
 
         if ($withdraw->type === 'P2P') {
@@ -119,7 +119,7 @@ class InvoiceController extends Controller
 
             $invoice['description'] = "TO {$receiver->id}-{$receiver->username}";
             $invoice['sender'] = (object)[
-                'name' => $sender->name,
+                'name' => $sender->name . ' - ' . $sender->username,
                 'address' => $sender->email,
                 'email' => $sender->email,
                 'postal_code' => $sender->address,
@@ -127,25 +127,28 @@ class InvoiceController extends Controller
             ];
         }
 
-        if ($withdraw->type === 'binance') {
+        if ($withdraw->type === 'MANUAL') {
 
             $receiver = $user;
 
             $invoice['description'] = "TO {$receiver->username}";
+            if (in_array($withdraw->status, ['CANCELLED', 'FAIL', 'REJECT'])) {
+                $invoice['description'] .= " <br> <b>Reason:</b> {$withdraw->repudiate_note}";
+            }
             $invoice['sender'] = (object)[
                 'name' => 'SafestTrades.com',
                 'registration_number' => null,
                 'vat_number' => null,
                 'address' => 'info@safesttrades.com',
                 'email' => 'info@safesttrades.com',
-                'postal_code' => '',
+                'postal_code' => null,
                 'phone' => null,
             ];
 
         }
 
         $invoice['receiver'] = (object)[
-            'name' => $receiver->name,
+            'name' => $receiver->name . ' - ' . $receiver->username,
             'address' => $receiver->email,
             'email' => $receiver->email,
             'postal_code' => $receiver->address,

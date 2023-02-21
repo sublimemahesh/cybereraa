@@ -19,8 +19,8 @@ class Withdraw extends Model
     use SoftDeletes;
     use Loggable;
 
-    protected $fillable = ['user_id', 'receiver_id', 'amount', 'transaction_fee', 'status', 'type', 'remark', 'wallet_type',
-        'remark', 'payout_details', 'proof_document', 'approved_at', 'rejected_at', 'failed_at', 'processed_at'
+    protected $fillable = ['user_id', 'receiver_id', 'amount', 'transaction_fee', 'status', 'type', 'remark', 'wallet_type', 'expired_packages',
+        'repudiate_note', 'remark', 'payout_details', 'proof_document', 'approved_at', 'rejected_at', 'failed_at', 'processed_at', 'cancelled_at'
     ];
 
     protected $appends = [
@@ -97,7 +97,8 @@ class Withdraw extends Model
                 static function ($query) {
                     $query->where('type', request()->input('type'));
                 })
-            ->when(!empty(request()->input('status')) && in_array(request()->input('status'), ['pending', 'processing', 'success', 'fail', 'reject']),
+            ->when(!empty(request()->input('status')) && in_array(request()->input('status'),
+                    ['pending', 'processing', 'success', 'cancelled', 'fail', 'reject']),
                 function ($query) {
                     $query->where('status', request()->input('status'));
                 });

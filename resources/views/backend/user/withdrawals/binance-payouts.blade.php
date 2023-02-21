@@ -19,20 +19,34 @@
                             transaction fee will be added with the every withdrawal request.
                         </p>
                         <p>
-                            Your Wallet Balance: <code>USDT {{ $wallet->balance }}</code>
-                            Your current payout limit:
-                            <code>USDT {{ $wallet->withdraw_limit }}</code> (Purchase a new package to increase your payout limit)
+                            Your Wallet Balance: <code>USDT {{ $wallet->balance }}</code>.
+                            Your current payout limit: <code>USDT {{ $wallet->withdraw_limit }}</code>. <br>
+                            (Purchase a new package to increase your payout limit)
                         </p>
-                        <p>When payout limit is reached 0, All the active packages will be expired. (The withdrawal limit is reduced only when withdrawing money using the main wallet)</p>
+                        <p>When payout limit is reached 0, All the active packages will be expired. <br>
+                            (The withdrawal limit is reduced only when withdrawing money using the main wallet)</p>
+
+                        <p>
+                            MAIN WALLET <br>
+                            &emsp; Balance: <code>USDT {{ $wallet->balance }}</code> <br>
+                            &emsp; Payout limit: <code>USDT {{ $wallet->withdraw_limit }}</code>
+                        </p>
+
+                        <p>
+                            TOPUP WALLET <br>
+                            &emsp; Balance: <code>USDT {{ $wallet->topup_balance }}</code>
+                        </p>
+                        <p>
+                            BONUS WALLET <br>
+                            &emsp; Balance: <code>USDT {{ $wallet->bonus_balance }}</code>
+                        </p>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
                             <form x-data="{payout_amount: {{$minimum_payout_limit->value}} }">
                                 <div class="mb-3 mt-2">
                                     <label for="withdraw-amount">
-                                        Withdrawal Amount (Balance:
-                                        <code>USDT {{ $wallet->balance }}</code> / Payout limit:
-                                        <code>USDT {{ $wallet->withdraw_limit }}</code>)
+                                        Withdrawal Amount
                                     </label>
                                     <input min="{{ $minimum_payout_limit->value }}" x-model="payout_amount" id="withdraw-amount" type="number" class="form-control">
                                     <div class="text-info">Total Amount:

@@ -47,6 +47,7 @@
                                         <option value="pending" {{ request()->input('status') === 'pending' ? 'selected' : '' }}>PENDING</option>
                                         <option value="processing" {{ request()->input('status') === 'processing' ? 'selected' : '' }}>PROCESSING</option>
                                         <option value="success" {{ request()->input('status') === 'success' ? 'selected' : '' }}>SUCCESS</option>
+                                        <option value="cancelled" {{ request()->input('status') === 'cancelled' ? 'selected' : '' }}>CANCELLED</option>
                                         <option value="fail" {{ request()->input('status') === 'fail' ? 'selected' : '' }}>FAIL</option>
                                         <option value="reject" {{ request()->input('status') === 'reject' ? 'selected' : '' }}>REJECT</option>
                                     </select>

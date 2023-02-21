@@ -64,6 +64,35 @@ $(function () {
         mode: "range", dateFormat: "Y-m-d", defaultDate: date_range && date_range.split("to"),
     });
 
+    $(document).on("click", ".process-withdraw", function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: "Are You Sure?",
+            text: "Process This payout?. Please note this process cannot be reversed.",
+            icon: "info",
+            showCancelButton: true,
+        }).then((process) => {
+            if (process.isConfirmed) {
+                loader()
+                let withdraw = $(this).data('id')
+                // formData.append(proof_document, proof_document)
+                axios.post(`${APP_URL}/admin/reports/users/transfers/withdrawals/${withdraw}/process`)
+                    .then(response => {
+                        Toast.fire({
+                            icon: response.data.icon, title: response.data.message,
+                        }).then(res => {
+                            table.draw();
+                        })
+                    })
+                    .catch((error) => {
+                        Toast.fire({
+                            icon: 'error', title: error.response.data.message || "Something went wrong!",
+                        })
+                    })
+            }
+        });
+    });
+
     $(document).on("click", "#binance-trx-search", function (e) {
         e.preventDefault();
         urlParams.set("date-range", $("#binance-trx-date-range").val());
