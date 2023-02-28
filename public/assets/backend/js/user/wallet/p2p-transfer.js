@@ -31,11 +31,12 @@ $(function () {
 
     $(document).on('click', '#confirm-transfer', function (e) {
         e.preventDefault();
-        let receiver = $('#p2p-transfer').val();
-        let amount = $('#transfer-amount').val();
-        let remark = $('#remark').val();
-        let password = $('#password').val();
-        let code = $('#code').val();
+        const receiver = $('#p2p-transfer').val();
+        const amount = $('#transfer-amount').val();
+        const remark = $('#remark').val();
+        const wallet_type = $("input[name='wallet_type']:checked").val();
+        const password = $('#password').val();
+        const code = $('#code').val();
         if (receiver === null || receiver.length <= 0) {
             Toast.fire({
                 icon: 'error', title: "Please Enter a valid username for the receive fund!",
@@ -65,6 +66,7 @@ $(function () {
                         amount,
                         remark,
                         password,
+                        wallet_type,
                         code
                     }).then(response => {
                         Toast.fire({

@@ -7,15 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Wallet extends Model
+class WalletTransfer extends Model
 {
-    use SoftDeletes;
     use Loggable;
+    use SoftDeletes;
 
-    protected $fillable = ['user_id', 'balance', 'topup_balance', 'withdraw_limit'];
+    protected $fillable = ['user_id', 'from', 'to', 'amount', 'fee', 'remark'];
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id')->withDefault(new User);
+        return $this->belongsTo(User::class, 'user_id')->withDefault(new User());
     }
 }

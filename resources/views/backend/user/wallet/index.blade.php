@@ -29,11 +29,11 @@
                     </div>
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="prim-info">
-                            <span>WALLET</span>
+                            <span>MAIN WALLET</span>
                             <h4>AVAILABLE BALANCE</h4>
                         </div>
                         <div class="master-card">
-                            <img src="{{ asset('assets/backend/images/logo/logo.png') }}" alt="logo" width="88"/>
+                            <img src="{{ asset('assets/backend/images/logo/logo.png') }}" alt="logo" width="50"/>
                             {{--<svg width="88" height="56" viewBox="0 0 88 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="28" cy="28" r="28" fill="#FF5B5B"/>
                                 <circle cx="60" cy="28" r="28" fill="#F79F19"/>
@@ -44,10 +44,36 @@
                 </div>
             </div>
         </div>
+        <div class="col-xl-4 col-lg-4">
+            <div class="card prim-card">
+                <div class="card-body py-3">
+                    <i class="material-icons text-white" style="font-size: 60px;">trending_up</i>
+                    <div class="d-flex">
+                        <h4 class="number mt-2">{{ $wallet->currency }} {{ $wallet->topup_balance }}</h4>
+                        <div class="rec-design">
+                            <div class="rec-design1">
+                            </div>
+                            <div class="rec-design2">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="prim-info">
+                            <span>TOPUP WALLET</span>
+                            <h4>AVAILABLE BALANCE</h4>
+                        </div>
+                        <div class="master-card">
+                            <img src="{{ asset('assets/backend/images/logo/logo.png') }}" alt="logo" width="50"/>
+                            <span class="text-white d-block mt-1">Safest Trades</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-xxl-2 col-xl-2">
             <div class="card">
                 <div class="card-header border-0 pb-0">
-                    <h2 class="heading mb-0 m-auto">Income</h2>
+                    <h5 class="fs-18 heading mb-0 m-auto">Income <code class="fs-12">USDT</code></h5>
                 </div>
                 <div class="card-body text-center pt-3">
                     <div class="icon-box bg-primary">
@@ -57,14 +83,14 @@
                         </svg>
                     </div>
                     <div class="mt-3">This Month</div>
-                    <div class="count-num mt-1"><code class="fs-12">USDT</code> {{ $income }}</div>
+                    <div class="count-num mt-1 fs-18"> {{ $income }}</div>
                 </div>
             </div>
         </div>
         <div class="col-xxl-2 col-xl-2">
             <div class="card">
                 <div class="card-header border-0 pb-0">
-                    <h2 class="heading mb-0 m-auto">Withdraw</h2>
+                    <h5 class="fs-18 heading mb-0 m-auto">Withdraw <code class="fs-12">USDT</code></h5>
                 </div>
                 <div class="card-body text-center pt-3">
                     <div class="icon-box bg-primary">
@@ -74,14 +100,14 @@
                         </svg>
                     </div>
                     <div class="mt-3">This Month</div>
-                    <div class="count-num mt-1"><code class="fs-12">USDT</code> {{ $withdraw }}</div>
+                    <div class="count-num mt-1 fs-18"> {{ $withdraw }}</div>
                 </div>
             </div>
         </div>
         <div class="col-xxl-2 col-xl-2">
             <div class="card">
                 <div class="card-header border-0 pb-0">
-                    <h2 class="heading mb-0 m-auto  text-responsiv">Commissions</h2>
+                    <h5 class="fs-16 heading mb-0 m-auto  text-responsiv">Commissions <code class="fs-12">USDT</code></h5>
                 </div>
                 <div class="card-body text-center pt-3">
                     <div class="icon-box bg-primary">
@@ -91,14 +117,14 @@
                         </svg>
                     </div>
                     <div class="mt-3">This Month</div>
-                    <div class="count-num mt-1"><code class="fs-12">USDT</code> {{ $qualified_commissions }}</div>
+                    <div class="count-num mt-1 fs-18"> {{ $qualified_commissions }}</div>
                 </div>
             </div>
         </div>
         <div class="col-xxl-2 col-xl-2">
             <div class="card">
                 <div class="card-header border-0 pb-0">
-                    <h2 class="heading mb-0 m-auto">Losts</h2>
+                    <h5 class="fs-18 heading mb-0 m-auto">Losts <code class="fs-12">USDT</code></h5>
                 </div>
                 <div class="card-body text-center pt-3">
                     <div class="icon-box bg-primary">
@@ -108,7 +134,7 @@
                         </svg>
                     </div>
                     <div class="mt-3">This Month</div>
-                    <div class="count-num mt-1"><code class="fs-12">USDT</code> {{ $lost_commissions }}</div>
+                    <div class="count-num mt-1 fs-18"> {{ $lost_commissions }}</div>
                 </div>
             </div>
         </div>

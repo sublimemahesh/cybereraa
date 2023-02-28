@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Models\Rank;
 use App\Models\RankBenefit;
+use App\Models\Wallet;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Bus\Queueable;
@@ -45,7 +46,7 @@ class GenerateMonthlyRankBonus implements ShouldQueue
                     ->whereYear('created_at', Carbon::now()->subMonth()->format('Y'))
                     ->doesntExist();
                 if ($earned) {
-                    RankBenefit::forceCreate([
+                    $benefit = RankBenefit::forceCreate([
                         'user_id' => $this->rank->user_id,
                         'rank_id' => $this->rank->id,
                         'amount' => $this->amount,
@@ -53,6 +54,14 @@ class GenerateMonthlyRankBonus implements ShouldQueue
                         'type' => 'RANK_BONUS',
                         'status' => 'QUALIFIED'
                     ]);
+
+                    $wallet = Wallet::firstOrCreate(
+                        ['user_id' => $benefit->user_id],
+                        ['balance' => 0]
+                    );
+                    $wallet->increment('topup_balance', $benefit->amount);
+                    $benefit->update(['paid' => $benefit->amount]);
+
                     logger()->notice("Rank: {$this->rank->id} | Rank Bonus saved (" . date('Y-m-d') . ")");
                 } else {
                     logger()->warning("Rank: {$this->rank->id} | Rank Bonus Already earned! (" . date('Y-m-d') . ")");

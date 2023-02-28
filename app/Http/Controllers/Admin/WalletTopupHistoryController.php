@@ -8,11 +8,11 @@ use App\Models\Earning;
 use App\Models\User;
 use App\Models\Wallet;
 use App\Models\WalletTopupHistory;
+use App\Services\TwoFactorAuthenticateService;
 use App\Services\WalletTopupHistoryService;
 use Auth;
 use DB;
 use Exception;
-use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Fortify\Events\RecoveryCodeReplaced;
@@ -50,7 +50,7 @@ class WalletTopupHistoryController extends Controller
     /**
      * @throws Throwable
      */
-    public function topup(Request $request): \Illuminate\Http\JsonResponse
+    public function topup(Request $request, TwoFactorAuthenticateService $authenticateService): \Illuminate\Http\JsonResponse
     {
         abort_if(Gate::denies('wallet.topup'), Response::HTTP_FORBIDDEN);
 
@@ -64,14 +64,15 @@ class WalletTopupHistoryController extends Controller
             'code' => 'nullable',
         ])->validate();
 
-        if (!Hash::check($validated['password'], $sender->password)) {
+        if (!$authenticateService->checkPassword($sender, $validated['password'] ?? null)) {
             $json['status'] = false;
             $json['message'] = 'Password is incorrect';
             $json['icon'] = 'error'; // warning | info | question | success | error
             return response()->json($json, Response::HTTP_UNAUTHORIZED);
         }
 
-        if (optional($sender)->two_factor_secret && in_array(TwoFactorAuthenticatable::class, class_uses_recursive($sender), true)) {
+        if ($authenticateService->isTwoFactorEnabled($sender)) {
+
             if ($validated['code'] === null) {
                 $json['status'] = false;
                 $json['message'] = 'The two factor authentication code is required.';
@@ -79,27 +80,13 @@ class WalletTopupHistoryController extends Controller
                 return response()->json($json, Response::HTTP_UNAUTHORIZED);
             }
 
-            $recoveryCode = collect($sender->recoveryCodes())->first(static function ($known_code) use ($validated) {
-                if (hash_equals($known_code, $validated['code'])) {
-                    return $validated['code'];
-                }
-                return null;
-            });
-
-            if ($recoveryCode !== null) {
-                $sender->replaceRecoveryCode($recoveryCode);
-                event(new RecoveryCodeReplaced($sender, $recoveryCode));
-            } else {
-                $valid = (new TwoFactorAuthenticationProvider(new Google2FA))->verify(decrypt($sender->two_factor_secret), $validated['code']);
-                if (!$valid) {
-                    $json['status'] = false;
-                    $json['message'] = 'The provided two factor authentication code was invalid.';
-                    $json['icon'] = 'error'; // warning | info | question | success | error
-                    return response()->json($json, Response::HTTP_UNAUTHORIZED);
-                }
+            if (!$authenticateService->checkTwoFactor($sender, $validated['code'])) {
+                $json['status'] = false;
+                $json['message'] = 'The provided two factor authentication code was invalid.';
+                $json['icon'] = 'error'; // warning | info | question | success | error
+                return response()->json($json, Response::HTTP_UNAUTHORIZED);
             }
         }
-
 
         $receiver = User::find($validated['receiver']);
         DB::transaction(static function () use ($validated, $sender, $receiver) {
@@ -126,10 +113,10 @@ class WalletTopupHistoryController extends Controller
 
             $receiver_wallet = Wallet::firstOrCreate(
                 ['user_id' => $receiver->id],
-                ['balance' => 0, 'withdraw_limit' => 0]
+                ['topup_balance' => 0, 'withdraw_limit' => 0]
             );
 
-            $receiver_wallet->increment('balance', $topup->amount);
+            $receiver_wallet->increment('topup_balance', $topup->amount);
 
             return $topup;
         });

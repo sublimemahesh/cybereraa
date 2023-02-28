@@ -42,11 +42,11 @@ class DashboardController extends Controller
         $total_active_package_balance = number_format(PurchasedPackage::activePackages()->sum('invested_amount'), 2);
         $total_expired_package_balance = number_format(PurchasedPackage::expiredPackages()->sum('invested_amount'), 2);
 
-        $total_pending_withdrawal_balance = number_format(Withdraw::where('status', 'PROCESSING')->Where('type', 'BINANCE')->sum('amount'), 2);
-        $total_p2p_transfers = number_format(Withdraw::where('status', 'SUCCESS')->Where('type', 'P2P')->sum('amount'), 2);
-        $total_withdraws = number_format(Withdraw::where('status', 'SUCCESS')->Where('type', 'BINANCE')->sum('amount'), 2);
-        $total_p2p_transaction_fees = Withdraw::where('status', 'SUCCESS')->Where('type', 'P2P')->sum('transaction_fee');
-        $total_withdraws_transaction_fees = Withdraw::where('status', 'SUCCESS')->Where('type', 'BINANCE')->sum('transaction_fee');
+        $total_pending_withdrawal_balance = number_format(Withdraw::whereIn('status', ['PENDING', 'PROCESSING'])->whereIn('type', ['BINANCE', 'MANUAL'])->sum('amount'), 2);
+        $total_p2p_transfers = number_format(Withdraw::where('status', 'SUCCESS')->where('type', 'P2P')->sum('amount'), 2);
+        $total_withdraws = number_format(Withdraw::where('status', 'SUCCESS')->whereIn('type', ['BINANCE', 'MANUAL'])->sum('amount'), 2);
+        $total_p2p_transaction_fees = Withdraw::where('status', 'SUCCESS')->where('type', 'P2P')->sum('transaction_fee');
+        $total_withdraws_transaction_fees = Withdraw::where('status', 'SUCCESS')->whereIn('type', ['BINANCE', 'MANUAL'])->sum('transaction_fee');
 
         $pending_sales_count = User::whereNull('parent_id')->whereHas('activePackages')->count();
         $registrations_count = User::count();

@@ -5,13 +5,6 @@ $(function () {
     const filter = urlParams.get("filter");
 
     let table = $('#p2p-trx').DataTable({
-        language: {
-            paginate: {
-                next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
-                previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
-            }
-        },
-        lengthMenu: [[25, 50, 100, 250, 500, -1], [25, 50, 100, 250, 500, "All"],],
         scrollX: true,
         destroy: true,
         processing: true,
@@ -22,14 +15,14 @@ $(function () {
         //stateSave: true,
         ajax: location.href,
         columns: [
-            {data: "actions", searchable: true},
-            {data: "receiver", name: filter === 'received' ? 'user.username' : 'receiver.username', searchable: true},
-            {data: "type", searchable: false},
-            {data: "status", searchable: false},
-            {data: "created_at", searchable: false},
-            {data: "amount", name: 'amount', searchable: false},
-            {data: "transaction_fee", name: 'transaction_fee', searchable: false},
-            {data: "total", searchable: false}
+            {data: "actions", searchable: true, orderable: false},
+            {data: "receiver", name: filter === 'received' ? 'user.username' : 'receiver.username', searchable: true, orderable: false},
+            {data: "type", searchable: false, orderable: false},
+            {data: "status", searchable: false, orderable: false},
+            {data: "date", name: 'created_at', searchable: false},
+            {data: "amount", name: 'amount', searchable: false, orderable: false},
+            {data: "transaction_fee", name: 'transaction_fee', searchable: false, orderable: false},
+            {data: "total", searchable: false, orderable: false}
         ],
         footerCallback: function (row, data, start, end, display) {
             let api = this.api();

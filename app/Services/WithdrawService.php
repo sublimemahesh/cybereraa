@@ -29,6 +29,7 @@ class WithdrawService
             ->addColumn('amount', fn($withdraw) => number_format($withdraw->amount, 2))
             ->addColumn('fee', fn($withdraw) => number_format($withdraw->transaction_fee, 2))
             ->addColumn('total', fn($withdraw) => number_format($withdraw->amount + $withdraw->transaction_fee, 2))
-            ->addColumn('date', fn($withdraw) => $withdraw->created_at->format('Y-m-d H:i:s'));
+            ->addColumn('date', fn($withdraw) => $withdraw->created_at->format('Y-m-d H:i:s'))
+            ->addColumn('type', fn($withdraw) => $withdraw->type . " - " . $withdraw->wallet_type);
     }
 }

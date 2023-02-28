@@ -183,8 +183,14 @@ class WithdrawController extends Controller
 
                 $total_amount = $withdraw->amount + $withdraw->transaction_fee;
 
-                $user_wallet->increment('balance', $total_amount);
+                $withdraw->update([
+                    'status' => 'CANCELLED',
+                    'repudiate_note' => $validated['repudiate_note'] ?? null,
+                    'cancelled_at' => \Carbon::now(),
+                ]);
+
                 if ($withdraw->wallet_type === 'MAIN') {
+                    $user_wallet->increment('balance', $total_amount);
                     $user_wallet->increment('withdraw_limit', $total_amount);
 
                     $expired_packages = explode(',', $withdraw->expired_packages);
@@ -197,11 +203,10 @@ class WithdrawController extends Controller
                     }
                 }
 
-                $withdraw->update([
-                    'status' => 'CANCELLED',
-                    'repudiate_note' => $validated['repudiate_note'] ?? null,
-                    'cancelled_at' => \Carbon::now(),
-                ]);
+                if ($withdraw->wallet_type === 'TOPUP') {
+                    $user_wallet->increment('topup_balance', $total_amount);
+                }
+
 
                 // TODO: SEND MAIL
             });
