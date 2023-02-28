@@ -37,6 +37,7 @@ class PayoutController extends Controller
             'amount' => ['required', 'numeric', 'min:' . $minimum_payout_limit->value, 'max:' . $max_withdraw_limit],
             'password' => 'required',
             'code' => 'nullable',
+            'wallet_type' => 'required|in:main,topup',
             'remark' => 'nullable',
         ])->validate();
 
@@ -71,41 +72,56 @@ class PayoutController extends Controller
             }
         }
 
+        $p2p_transfer_fee = $strategies->where('name', 'p2p_transfer_fee')->first(null, new Strategy(['value' => 2.5]));
+        $total_amount = $validated['amount'] + $p2p_transfer_fee->value;
 
-        if ($sender_wallet->balance < $validated['amount']) {
+        if ($validated['wallet_type'] === 'main') {
+            if ($sender_wallet->balance < $total_amount) {
+                $json['status'] = false;
+                $json['message'] = "Not enough funds in wallet to proceed!";
+                $json['icon'] = 'error'; // warning | info | question | success | error
+                return response()->json($json, Response::HTTP_UNAUTHORIZED);
+            }
+            if ($sender_wallet->withdraw_limit < $total_amount) {
+                $json['status'] = false;
+                $json['message'] = "Withdraw Limit exceeded!";
+                $json['icon'] = 'error'; // warning | info | question | success | error
+                return response()->json($json, Response::HTTP_UNAUTHORIZED);
+            }
+        }
+
+        if (($validated['wallet_type'] === 'topup') && $sender_wallet->topup_balance < $total_amount) {
             $json['status'] = false;
             $json['message'] = "Not enough funds in wallet to proceed!";
             $json['icon'] = 'error'; // warning | info | question | success | error
             return response()->json($json, Response::HTTP_UNAUTHORIZED);
         }
 
-        if ($sender_wallet->withdraw_limit < $validated['amount']) {
-            $json['status'] = false;
-            $json['message'] = "Withdraw Limit exceeded!";
-            $json['icon'] = 'error'; // warning | info | question | success | error
-            return response()->json($json, Response::HTTP_UNAUTHORIZED);
-        }
-
         $receiver = User::find($validated['receiver']);
 
-        $p2p_transfer_fee = $strategies->where('name', 'p2p_transfer_fee')->first(null, new Strategy(['value' => 2.5]));
-
-        $withdraw = DB::transaction(static function () use ($sender, $receiver, $validated, $p2p_transfer_fee, $sender_wallet) {
+        $withdraw = DB::transaction(static function () use ($sender, $receiver, $validated, $p2p_transfer_fee, $sender_wallet, $total_amount) {
             $withdraw = Withdraw::create([
                 'user_id' => $sender->id,
                 'receiver_id' => $receiver->id,
-                'amount' => $validated['amount'] - $p2p_transfer_fee->value,
+                'amount' => $validated['amount'],
                 'transaction_fee' => $p2p_transfer_fee->value,
                 'status' => 'SUCCESS',
                 'type' => 'P2P',
+                'wallet_type' => strtoupper($validated['wallet_type']),
                 'remark' => $validated['remark'] ?? null
             ]);
 
-            $sender_wallet->decrement('balance', $validated['amount']);
-            $sender_wallet->decrement('withdraw_limit', $validated['amount']);
+            if ($withdraw->wallet_type === 'MAIN') {
+                $sender_wallet->decrement('balance', $total_amount);
+                $sender_wallet->decrement('withdraw_limit', $total_amount);
 
-            if ($sender_wallet->withdraw_limit <= 0) {
-                $sender->activePackages()->update(['status' => 'EXPIRED']);
+                if ($sender_wallet->withdraw_limit <= 0) {
+                    $sender->activePackages()->update(['status' => 'EXPIRED']);
+                }
+            }
+
+            if ($withdraw->wallet_type === 'TOPUP') {
+                $sender_wallet->decrement('topup_balance', $total_amount);
             }
 
             $withdraw->earnings()->save(Earning::forceCreate([
@@ -118,10 +134,10 @@ class PayoutController extends Controller
 
             $receiver_wallet = Wallet::firstOrCreate(
                 ['user_id' => $receiver->id],
-                ['balance' => 0, 'withdraw_limit' => 0]
+                ['topup_balance' => 0, 'withdraw_limit' => 0]
             );
 
-            $receiver_wallet->increment('balance', $withdraw->amount);
+            $receiver_wallet->increment('topup_balance', $withdraw->amount);
 
             return $withdraw;
         });
@@ -184,25 +200,33 @@ class PayoutController extends Controller
                 return response()->json($json, Response::HTTP_UNAUTHORIZED);
             }
         }
-        $p2p_transfer_fee = $strategies->where('name', 'payout_transfer_fee')->first(null, new Strategy(['value' => 5]));
+        $payout_transfer_fee = $strategies->where('name', 'payout_transfer_fee')->first(null, new Strategy(['value' => 5]));
 
-        $total_amount = $validated['amount'] + $p2p_transfer_fee->value;
+        $total_amount = $validated['amount'] + $payout_transfer_fee->value;
 
-        if ($user_wallet->balance < $total_amount) {
+        if ($validated['wallet_type'] === 'main') {
+            if ($user_wallet->balance < $total_amount) {
+                $json['status'] = false;
+                $json['message'] = "Not enough funds in wallet to proceed!";
+                $json['icon'] = 'error'; // warning | info | question | success | error
+                return response()->json($json, Response::HTTP_UNAUTHORIZED);
+            }
+
+            if ($user_wallet->withdraw_limit < $total_amount) {
+                $json['status'] = false;
+                $json['message'] = "Withdraw Limit exceeded!";
+                $json['icon'] = 'error'; // warning | info | question | success | error
+                return response()->json($json, Response::HTTP_UNAUTHORIZED);
+            }
+        }
+
+        if (($validated['wallet_type'] === 'topup') && $user_wallet->topup_balance < $total_amount) {
             $json['status'] = false;
             $json['message'] = "Not enough funds in wallet to proceed!";
             $json['icon'] = 'error'; // warning | info | question | success | error
             return response()->json($json, Response::HTTP_UNAUTHORIZED);
         }
-
-        if ($user_wallet->withdraw_limit < $total_amount) {
-            $json['status'] = false;
-            $json['message'] = "Withdraw Limit exceeded!";
-            $json['icon'] = 'error'; // warning | info | question | success | error
-            return response()->json($json, Response::HTTP_UNAUTHORIZED);
-        }
-
-        $withdraw = DB::transaction(static function () use ($user, $validated, $p2p_transfer_fee, $user_wallet, $total_amount) {
+        $withdraw = DB::transaction(static function () use ($user, $validated, $payout_transfer_fee, $user_wallet, $total_amount) {
 
             $payout_details = [
                 'email' => $user->profile->binance_email,
@@ -214,16 +238,16 @@ class PayoutController extends Controller
             $withdraw = Withdraw::create([
                 'user_id' => $user->id,
                 'amount' => $validated['amount'],
-                'transaction_fee' => $p2p_transfer_fee->value,
+                'transaction_fee' => $payout_transfer_fee->value,
                 'status' => 'PENDING',
                 'type' => 'MANUAL',
-                'wallet_type' => 'MAIN',
+                'wallet_type' => strtoupper($validated['wallet_type']),
                 'remark' => $validated['remark'] ?? null,
                 'payout_details' => json_encode($payout_details, JSON_THROW_ON_ERROR)
             ]);
 
-            $user_wallet->decrement('balance', $total_amount);
             if ($withdraw->wallet_type === 'MAIN') {
+                $user_wallet->decrement('balance', $total_amount);
                 $user_wallet->decrement('withdraw_limit', $total_amount);
 
                 if ($user_wallet->withdraw_limit <= 0) {
@@ -232,6 +256,10 @@ class PayoutController extends Controller
                     ]);
                     $user->activePackages()->update(['status' => 'EXPIRED']);
                 }
+            }
+
+            if ($withdraw->wallet_type === 'TOPUP') {
+                $user_wallet->decrement('topup_balance', $total_amount);
             }
             return $withdraw;
         });

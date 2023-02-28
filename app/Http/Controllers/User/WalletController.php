@@ -29,6 +29,11 @@ class WalletController extends Controller
         $qualified_commissions = Commission::authUserCurrentMonth()->where('status', 'QUALIFIED')->sum('amount');
         $lost_commissions = Commission::authUserCurrentMonth()->whereStatus('DISQUALIFIED')->sum('amount');
 
+        $income = number_format($income, 2);
+        $withdraw = number_format($withdraw, 2);
+        $qualified_commissions = number_format($qualified_commissions, 2);
+        $lost_commissions = number_format($lost_commissions, 2);
+
         $wallet = Auth::user()->wallet;
 
         return view('backend.user.wallet.index', compact('wallet', 'latest_transactions', 'income', 'withdraw', 'qualified_commissions', 'lost_commissions'));

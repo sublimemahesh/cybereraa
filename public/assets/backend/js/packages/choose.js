@@ -25,25 +25,32 @@ $(function () {
 
     // BIND event for only valid packages base on the package
     ALLOWED_PACKAGES.map(package_slug => {
-        let element = `#${package_slug}-choose`;
-        let wallet_method_element = `#wallet-${package_slug}`;
-        let binancepay_method_element = `#binance-pay-${package_slug}`;
+        const element = `#${package_slug}-choose`;
+
+        const wallet_method_element = `#wallet-${package_slug}`;
+        const topup_wallet_method_element = `#topup-wallet-${package_slug}`;
+        const binancepay_method_element = `#binance-pay-${package_slug}`;
 
         $(document).on("click", element, function (e) {
             e.preventDefault();
             $(".pay-method-wallet").attr('id', `wallet-${package_slug}`)
+            $(".pay-method-topup-wallet").attr('id', `topup-wallet-${package_slug}`)
             $(".pay-method-binance-pay").attr('id', `binance-pay-${package_slug}`)
             payMethodChooseModal.show();
         });
 
+        $(document).on('click', topup_wallet_method_element, function () {
+            generateInvoice("topup", package_slug)
+        });
+
         $(document).on('click', wallet_method_element, function () {
-            generateInvoice("wallet", package_slug)
+            generateInvoice("main", package_slug)
         });
 
         $(document).on('click', binancepay_method_element, function () {
             payMethodChooseModal.hide()
             tempBinancePay.show()
-            //generateInvoice("binance-pay", package_slug)
+            //generateInvoice("binance", package_slug)
         });
     })
 

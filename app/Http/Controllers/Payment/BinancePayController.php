@@ -17,6 +17,7 @@ use Carbon\Carbon;
 use CryptoPay\Binancepay\BinancePay;
 use DB;
 use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -33,7 +34,7 @@ class BinancePayController extends Controller
     {
         $validated = Validator::make($request->all(), [
             'package' => ['required', 'exists:packages,slug'],
-            'method' => ['required', 'in:binance-pay,wallet'],
+            'method' => ['required', 'in:binance,main,topup'],/*,manual*/
             'purchase_for' => [
                 'nullable',
                 Rule::exists('users', 'id'),
@@ -68,7 +69,7 @@ class BinancePayController extends Controller
         }
 
         try {
-            return DB::transaction(function () use ($package, $user, $purchased_by, $validated) {
+            return DB::transaction(function () use ($user, $purchased_by, $package, $validated) {
 
                 //$amount = $package->amount;
                 //$gas_fee = $user->purchasedPackages()->count() <= 0 ? $package->gas_fee : 0;
@@ -80,7 +81,8 @@ class BinancePayController extends Controller
                     'currency' => "USDT",
                     'amount' => $package->amount,
                     'gas_fee' => $package->gas_fee,
-                    'type' => ($validated['method'] === 'wallet') ? 'wallet' : 'crypto',
+                    'type' => in_array(strtolower($validated['method']), ['main', 'topup', 'manual']) ? 'wallet' : 'crypto',
+                    'pay_method' => $validated['method'],
                     'status' => "INITIAL",
                 ]);
 
@@ -100,7 +102,7 @@ class BinancePayController extends Controller
                     ]
                 ];
 
-                if ($transaction->type === 'wallet') {
+                if ($transaction->type === 'wallet') { // 'main', 'topup', 'manual'
 
                     $req_data = [
                         "orderAmount" => $data['order_amount'],
@@ -120,7 +122,24 @@ class BinancePayController extends Controller
 
                     $transaction->create_order_request = json_encode($req_data, JSON_THROW_ON_ERROR);
 
-                    if ($purchased_by->wallet->balance < $transaction_amount) {
+                    if (strtolower($transaction->pay_method) === 'main') {
+                        $wallet_balance_check = $purchased_by->wallet->balance < $transaction_amount;
+                        $withdraw_limit_check = $purchased_by->wallet->withdraw_limit < $transaction_amount;
+                        if ($wallet_balance_check || $withdraw_limit_check) {
+                            $res_data['bizStatus'] = 'PAY_CLOSED';
+
+                            $transaction->status = 'CANCELED';
+                            $transaction->status_response = json_encode($res_data, JSON_THROW_ON_ERROR);
+                            $transaction->save();
+
+                            $json['status'] = false;
+                            $json['message'] = $wallet_balance_check ? "Not enough funds in wallet to proceed!" : "Withdraw Limit exceeded!";
+                            $json['icon'] = 'error'; // warning | info | question | success | error
+                            return response()->json($json, Response::HTTP_UNPROCESSABLE_ENTITY);
+                        }
+                    }
+
+                    if ($purchased_by->wallet->topup_balance < $transaction_amount && (strtolower($transaction->pay_method) === 'topup')) {
                         $res_data['bizStatus'] = 'PAY_CLOSED';
 
                         $transaction->status = 'CANCELED';
@@ -128,26 +147,35 @@ class BinancePayController extends Controller
                         $transaction->save();
 
                         $json['status'] = false;
-                        $json['message'] = "Not enough funds in wallet to proceed!";
+                        $json['message'] = "Not enough funds in topup wallet to proceed!";
                         $json['icon'] = 'error'; // warning | info | question | success | error
                         return response()->json($json, Response::HTTP_UNPROCESSABLE_ENTITY);
                     }
 
-                    $res_data['bizStatus'] = 'PAY_SUCCESS';
+                    /*if (strtolower($transaction->pay_method) === 'manual') {
+                         // perform by separate function
+                    }*/
 
-                    $transaction->status = 'PAID';
-                    $transaction->status_response = json_encode($res_data, JSON_THROW_ON_ERROR);
-                    $transaction->save();
-
-                    DB::transaction(function () use ($transaction, $transaction_amount) {
+                    DB::transaction(function () use ($transaction, $purchased_by, $transaction_amount) {
                         $res = $this->grantCommissionsToUsers($transaction);
 
-                        $wallet = Wallet::firstOrCreate(
-                            ['user_id' => $transaction->purchaser_id],
-                            ['balance' => 0]
-                        );
+                        $wallet = $purchased_by->wallet;
 
-                        $wallet->decrement('balance', $transaction_amount);
+                        if (strtolower($transaction->pay_method) === 'main') {
+                            $wallet->decrement('balance', $transaction_amount);
+                            $wallet->decrement('withdraw_limit', $transaction_amount);
+                        }
+
+                        if (strtolower($transaction->pay_method) === 'topup') {
+                            $wallet->decrement('topup_balance', $transaction_amount);
+                        }
+
+                        $res_data['bizStatus'] = 'PAY_SUCCESS';
+
+                        $transaction->update([
+                            'status' => 'PAID',
+                            'status_response' => json_encode($res_data, JSON_THROW_ON_ERROR),
+                        ]);
                     });
 
                     $json['status'] = true;
@@ -157,7 +185,7 @@ class BinancePayController extends Controller
                     return response()->json($json);
                 }
 
-                if ($transaction->type === 'crypto') {
+                if (strtolower($transaction->pay_method) === 'binance') { // crypto
                     // dd(env("BINANCE_SERVICE_WEBHOOK_URL"));
                     $binancePay = new BinancePay("binancepay/openapi/v2/order");
 
@@ -212,7 +240,7 @@ class BinancePayController extends Controller
         return redirect()->route('user.packages.active')->with('warning', 'Wallet transaction cannot be retry when canceled. Please select a package and purchase!'); // show success invoice
     }
 
-    public function callback(Request $request): \Illuminate\Http\JsonResponse
+    public function callback(Request $request): JsonResponse
     {
         //This line gets all your json response from binance when a customer makes payment
         header("Content-Type: application/json");
@@ -250,6 +278,7 @@ class BinancePayController extends Controller
                                 break;
                         }
                     } catch (\Exception $e) {
+                    } catch (Throwable $e) {
                         $data = date('Y-m-d H:i:s') . " | [Note] line:139 | BinancePayController: " . $e->getMessage() . "\n";
                         file_put_contents(public_path() . "/storage/binance-pay/error-log.log", $data, FILE_APPEND);
                     }

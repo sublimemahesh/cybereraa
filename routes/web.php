@@ -250,6 +250,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::post('filter/users/{search_text}', 'User\WithdrawController@findUsers');
 
         Route::get('wallet', 'User\WalletController@index')->name('wallet.index');
+        Route::match(['get', 'post'], 'wallet/transfer/to-wallet', 'User\WalletTransferController@transfer')->name('wallet.transfer.to-wallet');
         Route::get('wallet/transfer', 'User\WithdrawController@p2pTransfer')->name('wallet.transfer');
         Route::post('wallet/transfer/p2p', 'Payment\PayoutController@p2pTransfer');
 

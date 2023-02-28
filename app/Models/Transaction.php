@@ -25,6 +25,7 @@ class Transaction extends Model
         'amount',
         'gas_fee',
         'type',
+        'pay_method',
         'status',
     ];
 

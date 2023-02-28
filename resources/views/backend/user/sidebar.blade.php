@@ -81,6 +81,11 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{ route('user.wallet.transfer.to-wallet') }}">
+                            <span>Between Wallet Transfer</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('user.wallet.transfer') }}">
                             <span>Transfer Funds</span>
                         </a>

@@ -21,7 +21,7 @@
                         <p>
                             Your Wallet Balance: <code>USDT {{ $wallet->balance }}</code>.
                             Your current payout limit: <code>USDT {{ $wallet->withdraw_limit }}</code>. <br>
-                            (Purchase a new package to increase your payout limit)
+                            (Simply Purchase a new package to increase your payout limit)
                         </p>
                         <p>When payout limit is reached 0, All the active packages will be expired. <br>
                             (The withdrawal limit is reduced only when withdrawing money using the main wallet)</p>
@@ -83,8 +83,8 @@
                                             </div>
                                         </label>
 
-                                        <label class="plan complete-plan col-sm-4" for="topup" title="Coming soon...">
-                                            <input type="radio" id="topup" name="wallet_type" value="topup" disabled/>
+                                        <label class="plan complete-plan col-sm-4" for="topup" >
+                                            <input type="radio" id="topup" name="wallet_type" value="topup" />
                                             <div class="plan-content">
                                                 <img loading="lazy" src="https://raw.githubusercontent.com/ismailvtl/ismailvtl.github.io/master/images/potted-plant-img.svg" alt=""/>
                                                 <div class="plan-details">

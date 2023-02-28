@@ -139,7 +139,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function sponsor(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(self::class, 'super_parent_id', 'id')->withDefault(new User);
+        return $this->belongsTo(self::class, 'super_parent_id', 'id')->withDefault(new self);
     }
 
     public function directSales(): \Illuminate\Database\Eloquent\Relations\HasMany

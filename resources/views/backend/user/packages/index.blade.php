@@ -56,7 +56,7 @@
     @push('modals')
         <!-- Modal -->
         <div class="modal fade" id="pay-method-modal">
-            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Select Payment method</h5>
@@ -77,9 +77,7 @@
                                         <code>keep the select box empty</code>
                                     </li>
                                     <li class="mt-2">
-                                        If you purchase a package for someone else and
-                                        <code>SELECTED USER DOES NOT HAVE ANY PREVIOUS INVESTMENTS</code>,
-                                        then <code>RELEVANT GAS FEE</code> will be added to the order.
+                                        <code>GAS FEE</code> will be added to the every order.
                                     </li>
                                 </ul>
                             </div>
@@ -93,22 +91,32 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-4">
                                 <div class="card bg-secondary pay-method-wallet cursor-pointer" id="wallet">
                                     <a class="card-body card-link">
                                         <div class="text-center"><span><i class="fa fa-wallet fa-4x"></i></span>
                                             <div class="mb-3"></div>
-                                            <h4>VIA WALLET</h4>
+                                            <h6>MAIN WALLET</h6>
                                         </div>
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-4">
+                                <div class="card bg-secondary pay-method-topup-wallet cursor-pointer" id="topup-wallet">
+                                    <a class="card-body card-link">
+                                        <div class="text-center"><span><i class="fa fa-chart-line fa-4x"></i></span>
+                                            <div class="mb-3"></div>
+                                            <h6>TOPUP WALLET</h6>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-4">
                                 <div class="card bg-secondary pay-method-binance-pay cursor-pointer" id="binance-pay">
                                     <div class="card-body card-link">
                                         <div class="text-center"><span><i class="fa fa-qrcode fa-4x"></i></span>
                                             <div class="mb-3"></div>
-                                            <h4>BINANCE PAY</h4>
+                                            <h6>BINANCE PAY</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -160,6 +168,6 @@
             const ALLOWED_PACKAGES = {!! json_encode($packages->pluck('slug'),JSON_THROW_ON_ERROR) !!};
         </script>
         <script src="{{ asset('assets/backend/vendor/select2/js/select2.full.min.js') }}"></script>
-        <script src="{{ asset('assets/backend/js/packages/choose.js?1675313941') }}"></script>
+        <script src="{{ asset('assets/backend/js/packages/choose.js') }}"></script>
     @endpush
 </x-backend.layouts.app>
