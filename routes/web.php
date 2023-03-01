@@ -148,7 +148,11 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
             Route::post('users/earnings/calculate-commission', 'Admin\EarningController@calculateCommission');
 
             // Transactions
+            Route::get('users/purchased-packages', 'Admin\PurchasedPackageController@index')->name('purchased-packages');
             Route::get('users/transactions', 'Admin\TransactionController@index')->name('transactions.index');
+            Route::get('users/transactions/{transaction}/summery', 'Admin\TransactionController@summery')->name('transactions.summery');
+            Route::match(['get', 'post'], 'users/transactions/{transaction}/approve', 'Admin\TransactionController@approve')->name('transactions.approve');
+            Route::match(['get', 'post'], 'users/transactions/{transaction}/reject', 'Admin\TransactionController@reject')->name('transactions.reject');
 
             // Incomes
             Route::get('users/incomes/commission', 'Admin\IncomeController@commission')->name('incomes.commission');
@@ -224,6 +228,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         // Packages
         Route::get('packages', 'User\PackageController@index')->name('packages.index');
         Route::get('packages/active', 'User\PackageController@active')->name('packages.active');
+        Route::get('packages/{package:slug}/{purchase_for?}', 'User\PackageController@manualPurchase')->name('packages.manual.purchase');
 
         // RANK GIFtS
         Route::get('ranks/gifts', 'User\RankGiftController@index')->name('ranks.gifts');

@@ -26,6 +26,8 @@ class Transaction extends Model
         'gas_fee',
         'type',
         'pay_method',
+        'proof_document',
+        'repudiate_note',
         'status',
     ];
 
@@ -115,8 +117,11 @@ class Transaction extends Model
             })
             ->when(!empty(request()->input('currency-type')) && in_array(request()->input('currency-type'), ['crypto', 'wallet']), function ($query) {
                 $query->where('type', request()->input('currency-type'));
+            })->when(!empty(request()->input('pay-method')) && in_array(request()->input('pay-method'), ['main', 'topup', 'manual', 'binance']), function ($query) {
+                $query->where('pay_method', request()->input('pay-method'));
             })
-            ->when(!empty(request()->input('status')) && in_array(request()->input('status'), ['initial', 'paid', 'canceled', 'expired']), function ($query) {
+            ->when(!empty(request()->input('status')) && in_array(request()->input('status'),
+                    ['initial', 'pending', 'paid', 'canceled', 'expired', 'rejected']), function ($query) {
                 $query->where('status', request()->input('status'));
             });
     }

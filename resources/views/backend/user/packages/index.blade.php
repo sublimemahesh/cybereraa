@@ -56,7 +56,7 @@
     @push('modals')
         <!-- Modal -->
         <div class="modal fade" id="pay-method-modal">
-            <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down modal-lg" role="document">
+            <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down modal-md" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Select Payment method</h5>
@@ -91,7 +91,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-sm-6">
                                 <div class="card bg-secondary pay-method-wallet cursor-pointer" id="wallet">
                                     <a class="card-body card-link">
                                         <div class="text-center"><span><i class="fa fa-wallet fa-4x"></i></span>
@@ -101,7 +101,7 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-sm-6">
                                 <div class="card bg-secondary pay-method-topup-wallet cursor-pointer" id="topup-wallet">
                                     <a class="card-body card-link">
                                         <div class="text-center"><span><i class="fa fa-chart-line fa-4x"></i></span>
@@ -111,12 +111,22 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-sm-6">
                                 <div class="card bg-secondary pay-method-binance-pay cursor-pointer" id="binance-pay">
                                     <div class="card-body card-link">
                                         <div class="text-center"><span><i class="fa fa-qrcode fa-4x"></i></span>
                                             <div class="mb-3"></div>
                                             <h6>BINANCE PAY</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="card bg-secondary pay-method-manual-pay cursor-pointer" id="manual-pay">
+                                    <div class="card-body card-link">
+                                        <div class="text-center"><span><i class="fa fa-hand fa-4x"></i></span>
+                                            <div class="mb-3"></div>
+                                            <h6>MANUAL PAY</h6>
                                         </div>
                                     </div>
                                 </div>

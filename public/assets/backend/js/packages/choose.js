@@ -30,11 +30,13 @@ $(function () {
         const wallet_method_element = `#wallet-${package_slug}`;
         const topup_wallet_method_element = `#topup-wallet-${package_slug}`;
         const binancepay_method_element = `#binance-pay-${package_slug}`;
+        const manual_method_element = `#manual-pay-${package_slug}`;
 
         $(document).on("click", element, function (e) {
             e.preventDefault();
             $(".pay-method-wallet").attr('id', `wallet-${package_slug}`)
             $(".pay-method-topup-wallet").attr('id', `topup-wallet-${package_slug}`)
+            $(".pay-method-manual-pay").attr('id', `manual-pay-${package_slug}`)
             $(".pay-method-binance-pay").attr('id', `binance-pay-${package_slug}`)
             payMethodChooseModal.show();
         });
@@ -47,15 +49,21 @@ $(function () {
             generateInvoice("main", package_slug)
         });
 
-        $(document).on('click', binancepay_method_element, function () {
-            payMethodChooseModal.hide()
-            tempBinancePay.show()
-            //generateInvoice("binance", package_slug)
+        $(document).on('click', wallet_method_element, function () {
+            generateInvoice("main", package_slug)
+        });
+
+        $(document).on('click', manual_method_element, function () {
+            loader()
+            let purchase_for = $('#purchase_for').val()
+            location.href = `${APP_URL}/user/packages/${package_slug}/${purchase_for !== null ? purchase_for : ''}`;
         });
     })
 
     document.getElementById('pay-method-modal').addEventListener('hidden.bs.modal', event => {
         $(".pay-method-wallet").attr('id', 'wallet')
+        $(".pay-method-topup-wallet").attr('id', 'topup-wallet')
+        $(".pay-method-manual-pay").attr('id', 'manual-pay')
         $(".pay-method-binance-pay").attr('id', 'binance-pay')
         $('#purchase_for').val(null).trigger('change')
         $('#purchase_for').empty()
@@ -80,7 +88,9 @@ $(function () {
                 loader()
                 let purchase_for = $('#purchase_for').val()
                 axios.post(`${APP_URL}/user/binancepay/order/create`, {
-                    method: payMethod, purchase_for, package: package_slug
+                    method: payMethod,
+                    purchase_for,
+                    package: package_slug
                 }).then(response => {
                     payMethodChooseModal.hide()
                     Swal.fire({

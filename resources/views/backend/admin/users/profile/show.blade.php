@@ -516,7 +516,7 @@
             const TRANSACTION_URL = "{{ route('admin.transactions.index', ['user_id' => $user->id]) }}";
             const TOPUP_HISTORY_URL = "{{ route('admin.wallet.topup.history', ['user_id' => $user->id]) }}";
             const P2P_URL = "{{ route('admin.transfers.p2p', ['user_id' => $user->id]) }}";
-            const WITHDRAW_REPORT_URL = "{{ route('admin.transfers.withdrawals', ['receiver_id' => $user->id]) }}";
+            const WITHDRAW_REPORT_URL = "{{ route('admin.transfers.withdrawals', ['user_id' => $user->id]) }}";
             const INCOMES_URL = "{{ route('admin.incomes.commission', ['user_id' => $user->id]) }}";
             const EARNING_URL = "{{ route('admin.earnings.index', ['user_id' => $user->id]) }}";
             const HISTORY_STATE = false;

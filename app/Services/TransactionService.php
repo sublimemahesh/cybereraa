@@ -27,13 +27,17 @@ class TransactionService
         return DataTables::eloquent($this->filter($user_id))
             ->addColumn('user_id', fn($trx) => str_pad($trx->user_id, '4', '0', STR_PAD_LEFT))
             ->addColumn('trx_id', fn($trx) => '#' . str_pad($trx->id, '4', '0', STR_PAD_LEFT))
-            ->addColumn('username', fn($earn) => $earn->user->username)
+            ->addColumn('username', static function ($trx) {
+                return str_pad($trx->user_id, '4', '0', STR_PAD_LEFT) .
+                    " - <code class='text-uppercase'>{$trx->user->username}</code>";
+            })
             ->addColumn('package', fn($trx) => $trx->create_order_request_info->goods->goodsName ?? '-')
             ->addColumn('trx_amount', fn($trx) => number_format($trx->amount, 2))
             ->addColumn('paid_at', fn($trx) => Carbon::parse($trx->created_at)->format('Y-m-d H:i:s'))
+            ->addColumn('type', fn($trx) => $trx->type . '/' . $trx->pay_method)
             //->addColumn('created_at', fn($trx) => $trx->created_at->format('Y-m-d h:i A'))
             //->addColumn('updated_at', fn($trx) => $trx->updated_at->format('Y-m-d h:i A'))
-            ->addColumn('action', function (Transaction $trx) {
+            ->addColumn('actions', function (Transaction $trx) {
                 return "";
             });
     }

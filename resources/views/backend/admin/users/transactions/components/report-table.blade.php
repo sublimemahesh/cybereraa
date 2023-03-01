@@ -64,8 +64,10 @@
                                     <select id="transaction-status" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
                                         <option value="">ALL</option>
                                         <option value="initial" {{ request()->input('status') === 'initial' ? 'selected' : '' }}>INITIAL</option>
+                                        <option value="pending" {{ request()->input('status') === 'pending' ? 'selected' : '' }}>PENDING</option>
                                         <option value="paid" {{ request()->input('status') === 'paid' ? 'selected' : '' }}>PAID</option>
                                         <option value="canceled" {{ request()->input('status') === 'canceled' ? 'selected' : '' }}>CANCELED</option>
+                                        <option value="rejected" {{ request()->input('status') === 'rejected' ? 'selected' : '' }}>REJECTED</option>
                                         <option value="expired" {{ request()->input('status') === 'expired' ? 'selected' : '' }}>EXPIRED</option>
                                     </select>
                                     <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
@@ -94,18 +96,18 @@
     </div>
 </div>
 <div class="table-responsive">
-    <table id="transactions" class="display table-responsive-my">
+    <table id="transactions" class="display mb-1 nowrap table-responsive-my" style="table-layout: fixed">
         <thead>
         <tr>
-            <th>USER ID</th>
-            <th>USERNAME</th>
+            <th>ACTIONS</th>
             <th>TRX ID</th>
+            <th>USERNAME</th>
             <th>PACKAGE</th>
             <th>TYPE</th>
             <th>STATUS</th>
             <th>PAID/CLOSED AT</th>
-            <th class="text-right">(USDT) Gas Fee</th>
-            <th class="text-right">(USDT) AMOUNT</th>
+            <th class="text-right">Gas Fee</th>
+            <th class="text-right">AMOUNT</th>
         </tr>
         </thead>
         <tfoot>

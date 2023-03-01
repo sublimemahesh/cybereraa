@@ -94,6 +94,8 @@ class PermissionSeeder extends Seeder
             ['name' => 'testimonial.delete', 'guard_name' => 'web'],
 
             ['name' => 'transactions.viewAny', 'guard_name' => 'web'],
+            ['name' => 'transactions.approve', 'guard_name' => 'web'],
+            ['name' => 'transactions.reject', 'guard_name' => 'web'],
 
             ['name' => 'place_pending_members_in_genealogy', 'guard_name' => 'web'],
             ['name' => 'users.genealogy', 'guard_name' => 'web'],

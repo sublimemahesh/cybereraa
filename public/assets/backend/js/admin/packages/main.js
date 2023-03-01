@@ -2,7 +2,6 @@ $(function () {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const date_range = urlParams.get("date-range");
-    let data_url = TRANSACTION_URL;
 
     let table = $('#transactions').DataTable({
         scrollX: true,
@@ -13,17 +12,16 @@ $(function () {
         responsive: true,
         order: [[6, 'desc']],
         //stateSave: true,
-        ajax: data_url,
+        ajax: location.href,
         columns: [
-            {data: "actions", searchable: false, orderable: false},
-            {data: "trx_id", name: 'id', searchable: true, orderable: false},
-            {data: "username", name: 'user.username', orderable: false},
-            {data: "package", searchable: false, orderable: false},
-            {data: "type", searchable: false, orderable: false},
+            {data: "trx_id", name: 'transaction_id', searchable: true, orderable: false},
+            {data: "user", name: 'user.username', orderable: false},
             {data: "status", searchable: false, orderable: false},
-            {data: "paid_at", name: 'created_at', searchable: true},
-            {data: "gas_fee", name: 'gas_fee', searchable: false, orderable: false},
-            {data: "trx_amount", name: 'amount', searchable: false, orderable: false},
+            {data: "last_earned", name: 'last_earned_at', searchable: false, orderable: false},
+            {data: "commission_issued", name: 'commission_issued_at', searchable: false, orderable: false},
+            {data: "expired", name: 'expired_at', searchable: false, orderable: false},
+            {data: "created", name: 'created_at', searchable: false, orderable: true},
+            {data: "invested", name: 'invested_amount', searchable: false, orderable: false},
         ],
         footerCallback: function (row, data, start, end, display) {
             let api = this.api();
@@ -54,23 +52,21 @@ $(function () {
             }
 
             pageTotal = new Intl.NumberFormat().format(pageTotal);
-            $(api.column(7).footer()).html(`Gas Fee Total: USDT ${pageTotal}`);
+            $(api.column(7).footer()).html(`Total: USDT ${pageTotal}`);
 
-            let paidTotal8 = new Intl.NumberFormat().format(sumVal(8));
-            $(api.column(7).footer()).append(`<br><br>Amount Total: USDT ${paidTotal8}`);
         },
         columnDefs: [
             {
                 render: function (data, type, full, meta) {
                     return `<div style="font-size: 0.76rem !important;" > ${data} </div>`;
                 },
-                targets: 6,
+                targets: [0, 1, 3, 4, 5, 6],
             },
             {
                 render: function (amount, type, full, meta) {
                     return `<div style='min-width:120px' class="text-right"> ${amount} </div>`;
                 },
-                targets: [7, 8],
+                targets: [2, 7],
             },
         ],
     });
@@ -84,9 +80,9 @@ $(function () {
         urlParams.set("date-range", $("#transaction-date-range").val());
         urlParams.set("status", $("#transaction-status").val());
         urlParams.set("user_id", $("#user_id").val());
-        urlParams.set("currency-type", $("#currency-type").val());
-        let url = data_url.split(/\?|\#/)[0] + "?" + urlParams.toString();
-        HISTORY_STATE && history.replaceState({}, "", url);
+        urlParams.set("purchaser_id", $("#purchaser_id").val());
+        let url = location.href.split(/\?|\#/)[0] + "?" + urlParams.toString();
+        history.replaceState({}, "", url);
         table.ajax.url(url).load();
     });
 

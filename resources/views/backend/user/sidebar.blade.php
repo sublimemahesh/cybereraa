@@ -34,7 +34,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('user.transactions.index', ['status' => 'paid']) }}" class="" aria-expanded="false">
+                <a href="{{ route('user.transactions.index') }}" class="" aria-expanded="false">
                     <i class="bi fa-chain-broken"></i>
                     <span class="nav-text">Transactions</span>
                 </a>

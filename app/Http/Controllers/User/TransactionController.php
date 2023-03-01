@@ -30,8 +30,9 @@ class TransactionController extends Controller
                 ->addColumn('package', fn($trx) => $trx->create_order_request_info->goods->goodsName ?? '-')
                 ->addColumn('trx_amount', fn($trx) => number_format($trx->amount, 2))
                 ->addColumn('paid_at', fn($trx) => $trx->response_info ? Carbon::createFromTimestamp($trx->response_info->data->transactTime / 1000)->format('Y-m-d h:i A') : '-')
-                ->addColumn('created_at', fn($trx) => $trx->created_at->format('Y-m-d h:i A'))
-                ->addColumn('updated_at', fn($trx) => $trx->updated_at->format('Y-m-d h:i A'))
+                //->addColumn('created_at', fn($trx) => $trx->created_at->format('Y-m-d h:i A'))
+                //->addColumn('updated_at', fn($trx) => $trx->updated_at->format('Y-m-d h:i A'))
+                ->addColumn('type', fn($trx) => $trx->type . '/' . $trx->pay_method)
                 ->addColumn('action', function (Transaction $trx) {
                     $url = URL::signedRoute('user.transactions.invoice', $trx);
                     $retryBtn = '';
@@ -50,9 +51,9 @@ class TransactionController extends Controller
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-end border py-0" style="">
                                         <div class="py-1">
-                                            <a class="dropdown-item" href="' . $url . '">Invoice</a> 
-                                        </div>                                        
-                                        ' . $retryBtn . '                                                                            
+                                            <a class="dropdown-item" href="' . $url . '">Invoice</a>
+                                        </div>
+                                        ' . $retryBtn . '
                                     </div>
                                 </div>';
 

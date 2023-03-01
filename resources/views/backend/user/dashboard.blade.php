@@ -338,7 +338,7 @@
                                             <i class="la la-user"></i>
                                         </span>
                                         <div class="media-body text-white">
-                                            <p class="mb-1">Total Withdrawal</p>
+                                            <p class="mb-1">Total P2P & Withdrawal</p>
                                             <h4 class="text-white user-dashboard-card-font-size-change"> USDT {{ $withdraw }}</h4>
                                             <br>
                                             <small>Payout limit USDT {{ $wallet->withdraw_limit }}</small>
@@ -386,10 +386,8 @@
                                                     <div class="list-row px-3">
                                                         <span class="p-0">{{ $sale->amount }}</span>
                                                         <span class="p-0">{{ $sale->paid }}</span>
-                                                        <span
-                                                                class="p-0">{{ $sale->purchasedPackage->user->username }}</span>
-                                                        <span
-                                                                class="p-0">{{ Carbon::parse($sale->next_payment_date)->format('Y-m-d') }}</span>
+                                                        <span class="p-0">{{ $sale->purchasedPackage->user->username }}</span>
+                                                        <span class="p-0">{{ Carbon::parse($sale->next_payment_date)->format('Y-m-d') }}</span>
                                                         <div class="bg-layer"></div>
                                                     </div>
                                                 @endforeach
@@ -408,10 +406,8 @@
                                                     <div class="list-row px-3">
                                                         <span class="p-0">{{ $sale->amount }}</span>
                                                         <span class="p-0">{{ $sale->paid }}</span>
-                                                        <span
-                                                                class="p-0">{{ $sale->purchasedPackage->user->username }}</span>
-                                                        <span
-                                                                class="p-0">{{ Carbon::parse($sale->next_payment_date)->format('Y-m-d') }}</span>
+                                                        <span class="p-0">{{ $sale->purchasedPackage->user->username }}</span>
+                                                        <span class="p-0">{{ Carbon::parse($sale->next_payment_date)->format('Y-m-d') }}</span>
                                                         <div class="bg-layer"></div>
                                                     </div>
                                                 @endforeach

@@ -61,9 +61,17 @@
 @endcan
 @can('transactions.viewAny')
     <li>
-        <a href="{{ route('admin.transactions.index', ['status' => 'paid','date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .' to '.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}" class="" aria-expanded="false">
+        <a href="{{ route('admin.transactions.index', ['date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .' to '.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}" class="" aria-expanded="false">
             <i class="bi fa-chain-broken"></i>
             <span class="nav-text"> User Payments </span>
+        </a>
+    </li>
+@endcan
+@can('purchase_packages.viewAny')
+    <li>
+        <a href="{{ route('admin.purchased-packages', ['date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .' to '.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}" class="" aria-expanded="false">
+            <i class="bi bi-box"></i>
+            <span class="nav-text"> User Packages </span>
         </a>
     </li>
 @endcan
