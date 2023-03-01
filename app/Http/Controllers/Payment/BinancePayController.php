@@ -2,26 +2,23 @@
 
 namespace App\Http\Controllers\Payment;
 
+use App\Actions\ActivateTransaction;
 use App\Http\Controllers\Controller;
-use App\Jobs\NewUserGenealogyAutoPlacement;
-use App\Jobs\SaleLevelCommissionJob;
 use App\Models\Package;
-use App\Models\PurchasedPackage;
-use App\Models\Strategy;
 use App\Models\Transaction;
 use App\Models\User;
-use App\Models\Wallet;
 use Arr;
 use Auth;
-use Carbon\Carbon;
 use CryptoPay\Binancepay\BinancePay;
 use DB;
 use Exception;
+use Gate;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Storage;
+use Str;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 use URL;
@@ -30,11 +27,12 @@ use Validator;
 class BinancePayController extends Controller
 {
 
-    public function initiateBinancePay(Request $request)
+    public function initiateBinancePay(Request $request, ActivateTransaction $activateTransaction)
     {
         $validated = Validator::make($request->all(), [
             'package' => ['required', 'exists:packages,slug'],
-            'method' => ['required', 'in:binance,main,topup'],/*,manual*/
+            'method' => ['required', 'in:binance,main,topup,manual'],/**/
+            'proof_document' => ['required_if:method,manual', 'nullable', 'file:pdf,jpg,jpeg,png'],
             'purchase_for' => [
                 'nullable',
                 Rule::exists('users', 'id'),
@@ -60,16 +58,16 @@ class BinancePayController extends Controller
         $user->loadMax('purchasedPackages', 'invested_amount');
 
         $package = Package::whereSlug($validated['package'])->firstOrFail();
-
-        if ($user->purchased_packages_max_invested_amount > $package->amount) {
+        $max_amount = $user->purchased_packages_max_invested_amount;
+        if (Gate::inspect('purchase', [$package, $max_amount])->denied()) {
             $json['status'] = false;
-            $json['message'] = "Please select a package amount is higher than or equal to USDT " . $user->purchased_packages_max_invested_amount;
+            $json['message'] = "Please select a package amount is higher than or equal to USDT " . $max_amount;
             $json['icon'] = 'error'; // warning | info | question | success | error
             return response()->json($json, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
         try {
-            return DB::transaction(function () use ($user, $purchased_by, $package, $validated) {
+            return DB::transaction(function () use ($activateTransaction, $user, $purchased_by, $package, $validated) {
 
                 //$amount = $package->amount;
                 //$gas_fee = $user->purchasedPackages()->count() <= 0 ? $package->gas_fee : 0;
@@ -152,12 +150,31 @@ class BinancePayController extends Controller
                         return response()->json($json, Response::HTTP_UNPROCESSABLE_ENTITY);
                     }
 
-                    /*if (strtolower($transaction->pay_method) === 'manual') {
-                         // perform by separate function
-                    }*/
+                    if (strtolower($transaction->pay_method) === 'manual') {
+                        $validated_file = Validator::make(['proof_document' => request()->file('proof_document')], [
+                            'proof_document' => 'required|file:pdf,jpg,jpeg,png',
+                        ])->validate();
+                        $file = $validated_file['proof_document'];
+                        $proof_documentation = Str::limit(Str::slug($file->getClientOriginalName()), 50) . "-" . $file->hashName();
+                        $file->storeAs('user/manual-purchase', $proof_documentation);
 
-                    DB::transaction(function () use ($transaction, $purchased_by, $transaction_amount) {
-                        $res = $this->grantCommissionsToUsers($transaction);
+                        $res_data['bizStatus'] = 'PAY_PENDING';
+
+                        $transaction->status = 'PENDING';
+                        $transaction->proof_document = $proof_documentation;
+                        $transaction->status_response = json_encode($res_data, JSON_THROW_ON_ERROR);
+                        $transaction->save();
+
+                        $json['status'] = true;
+                        $json['message'] = 'Request successful';
+                        $json['icon'] = 'success'; // warning | info | question | success | error
+                        $json['data'] = ['checkoutUrl' => URL::signedRoute('user.transactions.invoice', $transaction)];
+                        return response()->json($json);
+                    }
+
+                    DB::transaction(function () use ($activateTransaction, $transaction, $purchased_by, $transaction_amount) {
+
+                        $res = $activateTransaction->execute($transaction);
 
                         $wallet = $purchased_by->wallet;
 
@@ -240,7 +257,7 @@ class BinancePayController extends Controller
         return redirect()->route('user.packages.active')->with('warning', 'Wallet transaction cannot be retry when canceled. Please select a package and purchase!'); // show success invoice
     }
 
-    public function callback(Request $request): JsonResponse
+    public function callback(Request $request, ActivateTransaction $activateTransaction): JsonResponse
     {
         //This line gets all your json response from binance when a customer makes payment
         header("Content-Type: application/json");
@@ -264,11 +281,11 @@ class BinancePayController extends Controller
                             case "PAY_SUCCESS":
                                 $order_status = (new BinancePay("binancepay/openapi/v2/order/query"))->query(compact('merchantTradeNo'));
 
+                                $activateTransaction->execute($transaction);
+
                                 $transaction->status = $order_status['data']['status'];
                                 $transaction->status_response = json_encode($webhookResponse, JSON_THROW_ON_ERROR);
                                 $transaction->save();
-
-                                $this->grantCommissionsToUsers($transaction);
 
                                 break;
                             case "PAY_CLOSED":
@@ -332,50 +349,6 @@ class BinancePayController extends Controller
         }
     }
 
-    /**
-     * @throws Throwable
-     */
-    private function grantCommissionsToUsers(Transaction $transaction): bool
-    {
-        return DB::transaction(static function () use ($transaction) {
-            PurchasedPackage::updateOrCreate(['transaction_id' => $transaction->id], [
-                'user_id' => $transaction->user_id,
-                'purchaser_id' => $transaction->purchaser_id,
-                'package_id' => $transaction->package_id,
-                'invested_amount' => $transaction->package->amount,
-                'payable_percentage' => $transaction->package->daily_leverage,
-                'status' => 'ACTIVE',
-                'expired_at' => Carbon::now()->addMonths($transaction->package->month_of_period)->format('Y-m-d H:i:s'),
-                'package_info' => $transaction->package->toJson(),
-            ]);
-
-            $package = $transaction->purchasedPackage;
-            $purchasedUser = $package->user;
-
-            $strategies = Strategy::whereIn('name', ['commissions', 'commission_level_count', 'max_withdraw_limit'])->get();
-
-            $max_withdraw_limit = $strategies->where('name', 'max_withdraw_limit')->first(null, new Strategy(['value' => 400]));
-            $wallet = Wallet::firstOrCreate(
-                ['user_id' => $purchasedUser->id],
-                ['balance' => 0, 'withdraw_limit' => 0]
-            );
-
-            $withdraw_limit = ($package->invested_amount * $max_withdraw_limit->value) / 100;
-            $wallet->increment('withdraw_limit', $withdraw_limit);
-
-            if ($purchasedUser->position === null) {
-                if ($purchasedUser->super_parent_id === config('fortify.super_parent_id')) {
-                    logger()->notice("NewUserGenealogyAutoPlacement::class via BinancePayController");
-                    NewUserGenealogyAutoPlacement::dispatch($purchasedUser)->onConnection('sync');
-                }
-                return true;
-            }
-
-            SaleLevelCommissionJob::dispatch($purchasedUser, $package)->afterCommit()->onConnection('sync');
-
-            return true;
-        });
-    }
 
     /**
      * @param Request $request

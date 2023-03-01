@@ -25,8 +25,6 @@ class UserController extends Controller
     public function index(Request $request)
     {
 
-
-
         abort_if(Gate::denies('users.viewAny'), Response::HTTP_FORBIDDEN);
 
         if ($request->wantsJson()) {

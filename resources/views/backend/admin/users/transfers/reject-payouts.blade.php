@@ -71,7 +71,7 @@
                                 <hr>
                                 <div class="mb-3 mt-2">
                                     <label for="repudiate_note">Reason</label>
-                                    <textarea id="repudiate_note" name="repudiate_note" rows="3" placeholder="Reject Note" class="form-control h-auto">{{ $withdraw->remark }}</textarea>
+                                    <textarea id="repudiate_note" name="repudiate_note" rows="3" placeholder="Reject Note" class="form-control h-auto">{{ $withdraw->repudiate_note }}</textarea>
                                 </div>
                                 <hr>
                                 <button type="submit" id="reject-payout" class="btn btn-sm btn-success mb-2">Confirm & Reject</button>

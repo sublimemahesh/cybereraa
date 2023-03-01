@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use JsonException;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use function Illuminate\Events\queueable;
 
 class PurchasedPackage extends Pivot
@@ -114,4 +116,32 @@ class PurchasedPackage extends Pivot
             ->whereIn('user_id', $user->descendants()->pluck('id')->toArray());
     }
 
+    /**
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
+    public function scopeFilter(Builder $query): Builder
+    {
+        return $query
+            ->when(!empty(request()->input('date-range')), function ($query) {
+                $period = explode(' to ', request()->input('date-range'));
+                try {
+                    $date1 = Carbon::createFromFormat('Y-m-d', $period[0]);
+                    $date2 = Carbon::createFromFormat('Y-m-d', $period[1]);
+                    $query->when($date1 && $date2, fn($q) => $q->whereDate('created_at', '>=', $period[0])->whereDate('created_at', '<=', $period[1]));
+                } finally {
+                    return;
+                }
+            })->when(!empty(request()->input('min-amount')), function ($query) {
+                $query->where('invested_amount', '>=', request()->input('min-amount'));
+            })->when(!empty(request()->input('max-amount')), function ($query) {
+                $query->where('invested_amount', '<=', request()->input('max-amount'));
+            })->when(!empty(request()->input('purchaser_id')), function ($query) {
+                $query->where('purchaser_id', request()->input('purchaser_id'));
+            })
+            ->when(!empty(request()->input('status')) && in_array(request()->input('status'),
+                    ['pending', 'active', 'expired', 'hold', 'ban']), function ($query) {
+                $query->where('status', request()->input('status'));
+            });
+    }
 }
