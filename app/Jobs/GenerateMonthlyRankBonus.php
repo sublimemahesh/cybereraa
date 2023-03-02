@@ -42,8 +42,8 @@ class GenerateMonthlyRankBonus implements ShouldQueue
         try {
             DB::transaction(function () {
                 $earned = $this->rank->benefits()
-                    ->whereMonth('created_at', Carbon::now()->subMonth()->format('m'))
-                    ->whereYear('created_at', Carbon::now()->subMonth()->format('Y'))
+                    ->whereMonth('bonus_date', Carbon::now()->subMonth()->format('m'))
+                    ->whereYear('bonus_date', Carbon::now()->subMonth()->format('Y'))
                     ->doesntExist();
                 if ($earned) {
                     $benefit = RankBenefit::forceCreate([
@@ -52,7 +52,8 @@ class GenerateMonthlyRankBonus implements ShouldQueue
                         'amount' => $this->amount,
                         'paid' => 0,
                         'type' => 'RANK_BONUS',
-                        'status' => 'QUALIFIED'
+                        'status' => 'QUALIFIED',
+                        'bonus_date' => Carbon::now()->subMonth()->format('Y-m-d')
                     ]);
 
                     $wallet = Wallet::firstOrCreate(

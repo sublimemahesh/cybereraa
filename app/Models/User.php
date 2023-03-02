@@ -129,7 +129,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getReferralLinkAttribute(): string
     {
-        return $this->referral_link = URL::signedRoute('register', ['ref' => $this->username]);
+        return $this->referral_link = route('register', ['ref' => $this->username]);
     }
 
     public function getIsActiveAttribute(): bool

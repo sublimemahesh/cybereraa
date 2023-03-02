@@ -78,4 +78,33 @@ $(function () {
         table.ajax.url(url).load();
     });
 
+    if (HISTORY_STATE) {
+        $(document).on('click', '#calculate-bonus', function (e) {
+            e.preventDefault();
+            Swal.fire({
+                title: "Are You Sure?",
+                text: `${$(this).html()} now!`,
+                icon: "info",
+                showCancelButton: true,
+            }).then((calculate) => {
+                if (calculate.isConfirmed) {
+                    loader()
+                    axios.post(APP_URL + "/admin/reports/users/rewards/calculate-bonus").then(response => {
+                        Toast.fire({
+                            icon: response.data.icon, title: response.data.message,
+                        })
+                        let url = location.href.split(/\?|\#/)[0];
+                        history.replaceState({}, "", url);
+                        table.ajax.url(url).load();
+                    }).catch(error => {
+                        console.log(error)
+                        Toast.fire({
+                            icon: 'error', title: error.response.data.message || "Something went wrong!",
+                        })
+                    })
+                }
+            });
+        })
+    }
+
 })

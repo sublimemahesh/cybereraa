@@ -16,6 +16,7 @@ class KycDocument extends Model
         'document_name',
         'type',
         'status',
+        'repudiate_note',
     ];
 
     public const DOCUMENT_TYPES = [

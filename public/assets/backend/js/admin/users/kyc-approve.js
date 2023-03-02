@@ -1,5 +1,5 @@
 $(function () {
-    const clickable_status = ['approve', 'reject']
+    const clickable_status = ['approve'/*, 'reject'*/]
     clickable_status.map(status => {
         $(document).on('click', "." + status + "-kyc", function (e) {
             let document = $(this).data('document');
@@ -36,20 +36,20 @@ $(function () {
 
 ////////////////////////////////  KYC Image rotation initialize //////////////////////
 
- $(document).ready(function() {
+$(document).ready(function () {
 
-            ezoom.onInit($('.imgDiv'), {
-                hideControlBtn: false,
-                onClose: function(result) {
-                    console.log(result);
-                },
-                onRotate: function(result) {
-                    console.log(result);
-                },
-                onShow: function(){
-                    $("div#zoomModal").css("display", "flex !important");
-                },
+    ezoom.onInit($('.imgDiv'), {
+        hideControlBtn: false,
+        onClose: function (result) {
+            console.log(result);
+        },
+        onRotate: function (result) {
+            console.log(result);
+        },
+        onShow: function () {
+            $("div#zoomModal").css("display", "flex !important");
+        },
 
-            });
+    });
 
-        });
+});

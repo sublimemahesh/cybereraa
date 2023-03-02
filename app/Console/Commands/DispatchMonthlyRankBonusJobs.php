@@ -54,7 +54,7 @@ class DispatchMonthlyRankBonusJobs extends Command
             logger()->info("calculate:rank-bonus Month Start: {$first_of_month} | Month End: {$last_of_month}");
 
 
-            $total_sale_amount = PurchasedPackage::whereNotIn('status', ['PENDING'])
+            $total_sale_amount = PurchasedPackage::whereIn('status', ['ACTIVE', 'EXPIRED'])
                 ->whereBetween('created_at', [$first_of_month, $last_of_month])
                 ->sum('invested_amount');
 
@@ -68,15 +68,14 @@ class DispatchMonthlyRankBonusJobs extends Command
 
             foreach ($rank_bonus_levels as $rank_level) {
                 logger()->notice("calculate:rank-bonus Rank: {$rank_level} | stated. | total amount available: {$total_bonus_amount}");
-                $rank_first_of_month = Carbon::now()->subMonths(2)->firstOfMonth()->format('Y-m-d H:i:s');
-                $rank_last_of_month = Carbon::now()->subMonths(2)->lastOfMonth()->format('Y-m-d H:i:s');
+
                 $eligible_ranks = Rank::where('rank', $rank_level)
                     ->whereNotNull('activated_at')
-                    ->whereBetween('activated_at', [$rank_first_of_month, $rank_last_of_month])
-                    ->where('activated_at', '<', $rank_first_of_month)
+                    //->whereBetween('activated_at', [$first_of_month, $last_of_month]) // get previous month
+                    ->where('activated_at', '<', $first_of_month) // ignore previous month rank registration
                     ->whereDoesntHave('benefits', static function ($query) {
-                        $query->whereMonth('created_at', Carbon::now()->subMonth()->format('m'))
-                            ->whereYear('created_at', Carbon::now()->subMonth()->format('Y'));
+                        $query->whereMonth('bonus_date', Carbon::now()->subMonth()->format('m'))
+                            ->whereYear('bonus_date', Carbon::now()->subMonth()->format('Y'));
                     })
                     ->whereHas('user.activePackages', static function ($query) use ($rank_package_requirement, $rank_level) {
                         $query->where('invested_amount', '>=', $rank_package_requirement[$rank_level]);

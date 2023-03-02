@@ -50,9 +50,6 @@ $(function () {
                             errorMap.map(id => {
                                 error.response.data.errors[id] && appendError(id, `<span class="text-danger">${error.response.data.errors[id]}</span>`)
                             })
-                            errorMap.map(id => {
-                                error.response.data.errors[id] && appendError(id, `<span class="text-danger">${error.response.data.errors[id]}</span>`)
-                            })
                         })
                 }
             });

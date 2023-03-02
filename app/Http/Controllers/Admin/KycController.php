@@ -30,10 +30,22 @@ class KycController extends Controller
     /**
      * @throws AuthorizationException
      */
+    public function reject(Kyc $kyc, KycDocument $document)
+    {
+        $this->authorize('reject', $document);
+        abort_if(Gate::denies('kyc.viewAny'), Response::HTTP_FORBIDDEN);
+        $user = $kyc->profile->user;
+        return view('backend.admin.users.kyc.reject-kyc', compact('user', 'kyc', 'document'));
+    }
+
+    /**
+     * @throws AuthorizationException
+     */
     public function status(Request $request, KycDocument $document): \Illuminate\Http\JsonResponse
     {
         $validated = Validator::make($request->all(), [
             'status' => 'required|in:approve,reject',
+            'repudiate_note' => 'required_if:status,reject|nullable'
         ])->validate();
 
         $status = ['approve' => 'accepted', 'reject' => 'rejected'];
@@ -41,6 +53,9 @@ class KycController extends Controller
         $this->authorize($validated['status'], $document);
 
         $document->status = $status[$validated['status']];
+        if ($validated['status'] === 'reject') {
+            $document->repudiate_note = $validated['repudiate_note'];
+        }
         $document->save();
 
         $approved_doc_count = KycDocument::where('kyc_id', $document->kyc_id)->where('status', 'accepted')->count();
