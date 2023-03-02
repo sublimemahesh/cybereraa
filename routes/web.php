@@ -43,8 +43,7 @@ Route::group(['middleware' => 'guest:' . config('fortify.guard')], function () {
 });
 
 Route::get('test', function () {
-    $user = Auth::user();
-    dd(implode(',', $user->activePackages()->pluck('id')->toArray()));
+    
 });
 
 Route::get('payments/binancepay/response', 'Payment\BinancePayController@response');

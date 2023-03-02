@@ -36,8 +36,10 @@ class PurchasedPackage extends Pivot
                     return $q->where('status', 'PENDING');
                 })
                 ->chunk(100, function ($ancestors) {
-                    foreach ($ancestors->rankGifts as $gift) {
-                        $gift->renewStatus();
+                    foreach ($ancestors as $ancestor) {
+                        foreach ($ancestor->rankGifts as $gift) {
+                            $gift->renewStatus();
+                        }
                     }
                 });
         }));
