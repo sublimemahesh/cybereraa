@@ -17,7 +17,7 @@ class RegisteredUserController extends Controller
     {
         $sponsor = new User;
         if ($request->get('ref', false)) {
-            abort_if(!$request->hasValidSignature(), Response::HTTP_UNAUTHORIZED, 'Invalid referral link!');
+            // abort_if(!$request->hasValidSignature(), Response::HTTP_UNAUTHORIZED, 'Invalid referral link!');
             $parent = $request->get('ref', null);
             $sponsor = User::whereUsername($parent)
                 ->whereRelation('roles', 'name', 'user')

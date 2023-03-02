@@ -117,48 +117,47 @@
                     <div class="table-responsive">
                         <table class="table header-border table-responsive-sm">
                             <thead>
-                                <tr>
-                                    <th>DOCUMENT NAME</th>
-                                    <th>DOCUMENT TYPE</th>
-                                    <th>UPLOADED AT</th>
-                                    <th>STATUS</th>
-                                    <th>ACTION</th>
-                                </tr>
+                            <tr>
+                                <th>DOCUMENT NAME</th>
+                                <th>DOCUMENT TYPE</th>
+                                <th>UPLOADED AT</th>
+                                <th>STATUS</th>
+                                <th>ACTION</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                @foreach ($kyc->documents as $document)
-                                    <tr>
-                                        <td>{{ $document->document_type_name }}</td>
-                                        <td>{{ $document->document_type }}</td>
-                                        <td>{{ $document->updated_at }}</td>
-                                        <td>
-                                            <div class="badge badge-xs badge-{{ $document->status_color }} light">
-                                                {{ strtoupper($document->status) }}</div>
-                                        </td>
-                                        <td>
+                            @foreach ($kyc->documents as $document)
+                                <tr>
+                                    <td>{{ $document->document_type_name }}</td>
+                                    <td>{{ $document->document_type }}</td>
+                                    <td>{{ $document->updated_at }}</td>
+                                    <td>
+                                        <div class="badge badge-xs badge-{{ $document->status_color }} light">
+                                            {{ strtoupper($document->status) }}</div>
+                                    </td>
+                                    <td>
 
-                                            @can('view', $document)
-                                                <a src="{{ storage('user/kyc/' . $kyc->type . '/' . $document->document_name) }}"
-                                                    class="btn btn-primary btn-xxs mb-2 imgDiv" href="#">
-                                                    <i class="fas fa-eye"></i>
+                                        @can('view', $document)
+                                            <a src="{{ storage('user/kyc/' . $kyc->type . '/' . $document->document_name) }}"
+                                               class="btn btn-primary btn-xxs mb-2 imgDiv" href="#">
+                                                <i class="fas fa-eye"></i>
 
-                                                </a>
-                                            @endcan
-                                            @can('approve', $document)
-                                                <a target="_blank" class="btn btn-success btn-xxs mb-2 approve-kyc"
-                                                    data-document="{{ $document->id }}" href="javascript:void(0);">
-                                                    <i class="fas fa-check-circle"></i>
-                                                </a>
-                                            @endcan
-                                            @can('reject', $document)
-                                                <a target="_blank" class="btn btn-danger btn-xxs mb-2 reject-kyc"
-                                                    data-document="{{ $document->id }}" href="javascript:void(0);">
-                                                    <i class="fas fa-close"></i>
-                                                </a>
-                                            @endcan
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                            </a>
+                                        @endcan
+                                        @can('approve', $document)
+                                            <a target="_blank" class="btn btn-success btn-xxs mb-2 approve-kyc"
+                                               data-document="{{ $document->id }}" href="javascript:void(0);">
+                                                <i class="fas fa-check-circle"></i>
+                                            </a>
+                                        @endcan
+                                        @can('reject', $document)
+                                            <a target="_blank" class="btn btn-danger btn-xxs mb-2 reject-kyc" data-document="{{ $document->id }}" href="{{ route('admin.users.kycs.document.reject',[$kyc,$document]) }}">
+                                                <i class="fas fa-close"></i>
+                                            </a>
+                                        @endcan
+                                    </td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

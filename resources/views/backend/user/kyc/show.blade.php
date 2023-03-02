@@ -54,6 +54,14 @@
                                             <div class="badge badge-xs badge-{{ $document->status_color }} light">{{ strtoupper($document->status) }}</div>
                                         </div>
                                     </div>
+                                    @if($document->status === 'rejected' && $document->repudiate_note !== null)
+                                        <div class="card-text col-sm-12 mt-3">
+                                            <div>
+                                                Reject Reason:&nbsp;&nbsp;
+                                                <div class="badge badge-xs light">{{ $document->repudiate_note }}</div>
+                                            </div>
+                                        </div>
+                                    @endif
                                 </div>
                                 @can ('view', $document)
                                     <a target="_blank" class="btn btn-block btn-primary btn-sm mb-2" href="{{ storage('user/kyc/'. $kyc->type .'/'. $document->document_name) }}"> View Image</a>

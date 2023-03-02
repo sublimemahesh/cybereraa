@@ -243,8 +243,8 @@ class WithdrawController extends Controller
 
                 $total_amount = $withdraw->amount + $withdraw->transaction_fee;
 
-                $user_wallet->increment('balance', $total_amount);
                 if ($withdraw->wallet_type === 'MAIN') {
+                    $user_wallet->increment('balance', $total_amount);
                     $user_wallet->increment('withdraw_limit', $total_amount);
 
                     $expired_packages = explode(',', $withdraw->expired_packages);
@@ -255,6 +255,10 @@ class WithdrawController extends Controller
                             ->whereIn('id', $expired_packages)
                             ->update(['status' => 'ACTIVE']);
                     }
+                }
+
+                if ($withdraw->wallet_type === 'TOPUP') {
+                    $user_wallet->increment('topup_balance', $total_amount);
                 }
 
                 $withdraw->update([

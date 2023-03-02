@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Rank;
+use App\Models\Strategy;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,7 +45,7 @@ Route::group(['middleware' => 'guest:' . config('fortify.guard')], function () {
 });
 
 Route::get('test', function () {
-    
+
 });
 
 Route::get('payments/binancepay/response', 'Payment\BinancePayController@response');
@@ -101,6 +103,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
 
         Route::get('users/{user:username}/kycs', 'Admin\KycController@index')->name('users.kycs.index');
         Route::get('users/kycs/{kyc}', 'Admin\KycController@show')->name('users.kycs.show');
+        Route::get('users/kycs/{kyc}/document/{document}/reject', 'Admin\KycController@reject')->name('users.kycs.document.reject');
         Route::post('users/kyc-documents/{document}/status', 'Admin\KycController@status');
 
         // Profile
@@ -144,6 +147,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
             // Earnings
             Route::get('users/earnings', 'Admin\EarningController@index')->name('earnings.index');
             Route::post('users/earnings/calculate-profit', 'Admin\EarningController@calculateProfit');
+            Route::post('users/rewards/calculate-bonus', 'Admin\EarningController@issueMonthlyRankBonuses');
             Route::post('users/earnings/calculate-commission', 'Admin\EarningController@calculateCommission');
 
             // Transactions

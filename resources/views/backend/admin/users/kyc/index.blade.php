@@ -1,6 +1,6 @@
 <x-backend.layouts.app>
-    @section('title', 'My KYC')
-    @section('header-title', 'My KYC' )
+    @section('title', 'User KYC')
+    @section('header-title', 'User KYC' )
     @section('styles')
     @endsection
     @section('breadcrumb-items')

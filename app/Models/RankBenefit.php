@@ -19,7 +19,7 @@ class RankBenefit extends Model
     use SoftDeletes;
     use Loggable;
 
-    protected $fillable = ['last_earned_at', 'status', 'paid', 'amount'];
+    protected $fillable = ['last_earned_at', 'status', 'paid', 'amount', 'bonus_date'];
 
     protected $appends = [
         'package_info_json',
