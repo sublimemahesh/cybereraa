@@ -89,6 +89,10 @@ class WithdrawController extends Controller
                 ->addColumn('fee', fn($withdraw) => number_format($withdraw->transaction_fee, 2))
                 ->addColumn('total', fn($withdraw) => number_format($withdraw->amount + $withdraw->transaction_fee, 2))
                 ->addColumn('date', fn($withdraw) => $withdraw->created_at->format('Y-m-d H:i:s'))
+                ->addColumn('type_n_wallet', function ($withdraw) {
+                    return "Type: <code class='text-uppercase'>{$withdraw->type}</code> <br>
+                            Wallet: <code class='text-uppercase'>{$withdraw->wallet_type}</code>";
+                })
                 ->addColumn('actions', function ($withdraw) {
                     $actions = '<div class="d-flex">';
                     $actions .= '<a href="' . URL::signedRoute('user.wallet.transfer.invoice', $withdraw) . '" class="btn btn-xs btn-info sharp my-1 mr-1 shadow">
@@ -107,7 +111,7 @@ class WithdrawController extends Controller
                     $actions .= '</div>';
                     return $actions;
                 })
-                ->rawColumns(['actions'])
+                ->rawColumns(['actions', 'type_n_wallet'])
                 ->make();
         }
 

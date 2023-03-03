@@ -41,6 +41,17 @@ class PayoutController extends Controller
             'remark' => 'nullable',
         ])->validate();
 
+        $receiver = User::find($validated['receiver']);
+
+        $p2p_restricted_users = Strategy::where('name', 'p2p_restricted_users')->firstOr(fn() => new Strategy(['value' => '[3]']));
+        $p2p_restricted_users = json_decode($p2p_restricted_users->value, true, 512, JSON_THROW_ON_ERROR);
+        if (in_array($receiver->id, $p2p_restricted_users, true)) {
+            $json['status'] = false;
+            $json['message'] = 'Selected Receiver cannot accept P2P funds! Please contact web administrator for further information.!';
+            $json['icon'] = 'error'; // warning | info | question | success | error
+            return response()->json($json, Response::HTTP_UNAUTHORIZED);
+        }
+
         if (!$sender?->profile->is_kyc_verified) {
             $json['status'] = false;
             $json['message'] = 'Please submit your KYC for account verification. If you already submitted Contact us for verification.';
@@ -96,8 +107,6 @@ class PayoutController extends Controller
             $json['icon'] = 'error'; // warning | info | question | success | error
             return response()->json($json, Response::HTTP_UNAUTHORIZED);
         }
-
-        $receiver = User::find($validated['receiver']);
 
         $withdraw = DB::transaction(static function () use ($sender, $receiver, $validated, $p2p_transfer_fee, $sender_wallet, $total_amount) {
             $withdraw = Withdraw::create([

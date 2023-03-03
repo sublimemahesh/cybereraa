@@ -190,8 +190,14 @@
                 <a href="{{ route('admin.strategies.withdrawal.index') }}">Withdrawal</a>
             </li>
             <li>
-                <a href="{{ route('admin.strategies.rank-level.index') }}">Rank level</a>
+                <a href="{{ route('admin.strategies.rank-level.index') }}">Rank Bonus</a>
             </li>
+           {{-- <li>
+                <a href="{{ route('admin.strategies.rank-level.index') }}">Rank Gift</a>
+            </li>
+            <li>
+                <a href="{{ route('admin.strategies.rank-level.index') }}">P2P Restrictions</a>
+            </li>--}}
             <li>
                 <a href="{{ route('admin.strategies.commissions.index') }}">Commissions</a>
             </li>

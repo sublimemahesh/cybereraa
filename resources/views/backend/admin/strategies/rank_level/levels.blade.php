@@ -17,9 +17,9 @@
                         <hr>
 
                         <div class="form-group row mb-2">
-                            <label class="col-sm-3 col-form-label" for="rank_gift_levels">Rank gift</label>
+                            <label class="col-sm-3 col-form-label" for="rank_offset_levels">Rank offset (Excluded) 1 to -</label>
                             <div class="col-sm-9">
-                                <input class="form-control" id="rank_gift_levels" value="{{ count($rank_gift_levels) }}" name="rank_gift_levels" placeholder="Enter Count of Rank gift issue" type="text">
+                                <input class="form-control" id="rank_offset_levels" value="{{ $rank_level_count->value - count($rank_bonus_levels) }}" name="rank_offset_levels" placeholder="Enter Count of Rank gift issue" type="text">
                             </div>
                         </div>
 
