@@ -127,6 +127,15 @@
     </li>
 @endcan
 
+@can('rank.viewAny')
+    <li>
+        <a href="{{ route('admin.ranks') }}" class="" aria-expanded="false">
+            <i class="bi bi-star-fill"></i>
+            <span class="nav-text"> Ranks </span>
+        </a>
+    </li>
+@endcan
+
 @can('rank_gift.viewAny')
     <li>
         <a href="{{ route('admin.ranks.gifts') }}" class="" aria-expanded="false">
@@ -135,6 +144,7 @@
         </a>
     </li>
 @endcan
+
 
 @can('package.viewAny')
     <li>
@@ -192,12 +202,12 @@
             <li>
                 <a href="{{ route('admin.strategies.rank-level.index') }}">Rank Bonus</a>
             </li>
-           {{-- <li>
-                <a href="{{ route('admin.strategies.rank-level.index') }}">Rank Gift</a>
-            </li>
-            <li>
-                <a href="{{ route('admin.strategies.rank-level.index') }}">P2P Restrictions</a>
-            </li>--}}
+            {{-- <li>
+                 <a href="{{ route('admin.strategies.rank-level.index') }}">Rank Gift</a>
+             </li>
+             <li>
+                 <a href="{{ route('admin.strategies.rank-level.index') }}">P2P Restrictions</a>
+             </li>--}}
             <li>
                 <a href="{{ route('admin.strategies.commissions.index') }}">Commissions</a>
             </li>

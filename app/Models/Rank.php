@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Arr;
+use Carbon;
 use DB;
 use Haruncpi\LaravelUserActivity\Traits\Loggable;
 use Illuminate\Database\Eloquent\Builder;
@@ -83,10 +83,24 @@ class Rank extends Model
 
     public function scopeFilter(Builder $query): Builder
     {
-        return $query->when(Arr::hasAny(request()->all(), ['user_id', 'rank', 'date-range', 'status']), function ($query) {
-            return $query->whereHas('rankGift', function (Builder $query) {
-                $query->filter();
+        return $query->when(!empty(request()->input('date-range')),
+            static function ($query) {
+                $period = explode(' to ', request()->input('date-range'));
+                try {
+                    $date1 = Carbon::createFromFormat('Y-m-d', $period[0]);
+                    $date2 = Carbon::createFromFormat('Y-m-d', $period[1]);
+                    $query->when($date1 && $date2, fn($q) => $q->whereDate('created_at', '>=', $period[0])->whereDate('created_at', '<=', $period[1]));
+                } finally {
+                    return;
+                }
+            })
+            ->when(!empty(request()->input('status')) && request()->input('status') === 'active', function ($query) {
+                $query->whereNotNull('activated_at');
+            })->when(!empty(request()->input('status')) && request()->input('status') === 'inactive', function ($query) {
+                $query->whereNull('activated_at');
+            })
+            ->when(!empty(request()->input('rank')), function ($query) {
+                $query->where('rank', request()->input('rank'));
             });
-        });
     }
 }

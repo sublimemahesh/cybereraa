@@ -100,17 +100,17 @@
                     </div>
 
                     <div class="col-lg-6 m-b30">
-                        <label class="form-label" for="street">{{ __('Street') }}</label>
+                        <label class="form-label" for="street">{{ __('Address Line 01') }}</label>
                         <x-jet-input id="street" wire:model.defer="state.profile_info.street" class="block mt-1 w-full form-control" type="text" name="street" autofocus autocomplete="street"/>
                         <x-jet-input-error for="profile_info.street" class="mt-2"/>
                     </div>
                     <div class="col-lg-6 m-b30">
-                        <label class="form-label" for="state">{{ __('State') }}</label>
+                        <label class="form-label" for="state">{{ __('City') }}</label>
                         <x-jet-input id="state" wire:model.defer="state.profile_info.state" class="block mt-1 w-full form-control" type="text" name="state" autofocus autocomplete="state"/>
                         <x-jet-input-error for="profile_info.state" class="mt-2"/>
                     </div>
                     <div class="col-lg-6 m-b30">
-                        <label class="form-label" for="address">{{ __('Address') }}</label>
+                        <label class="form-label" for="address">{{ __('State') }}</label>
                         <x-jet-input id="address" wire:model.defer="state.profile_info.address" class="block mt-1 w-full form-control" type="text" name="address" autofocus autocomplete="address"/>
                         <x-jet-input-error for="profile_info.address" class="mt-2"/>
                     </div>

@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Rank;
 use App\Models\Strategy;
 use Illuminate\Support\Facades\Route;
 
@@ -144,6 +143,9 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
 
 
         Route::group(['prefix' => 'reports'], function () {
+            // Ranks
+            Route::get('ranks', 'Admin\RankController@index')->name('ranks');
+
             // Earnings
             Route::get('users/earnings', 'Admin\EarningController@index')->name('earnings.index');
             Route::post('users/earnings/calculate-profit', 'Admin\EarningController@calculateProfit');
