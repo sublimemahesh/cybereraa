@@ -26,11 +26,11 @@ class RankController extends Controller
             return DataTables::eloquent($ranks)
                 ->addColumn('user', function ($rank) {
                     return
-                        "ID: " .str_pad($rank->user_id, '4', '0', STR_PAD_LEFT) . " <br>
+                        "ID: " . str_pad($rank->user_id, '4', '0', STR_PAD_LEFT) . " <br>
                         USERNAME: <code class='text-uppercase'>{$rank->user->username}</code>";
                 })
                 ->addColumn('eligibility', function ($rank) {
-                    return $rank->eligibility;
+                    return ($rank->eligibility * 100 / 5) . '%';
                 })
                 ->addColumn('status', fn($rank) => $rank->is_active ? "ACTIVE" : "INACTIVE")
                 ->addColumn('activated', fn($rank) => $rank->activated_at ? Carbon::parse($rank->activated_at)->format('Y-m-d H:i:s') : '-')
