@@ -16,7 +16,7 @@ $(function () {
         columns: [
             {data: "actions", searchable: false, orderable: false},
             {data: "withdraw_id", name: 'id', searchable: false, orderable: false},
-            {data: "type", searchable: false, orderable: false},
+            {data: "type_n_wallet", 'name': 'type', searchable: false, orderable: false},
             {data: "status", searchable: false, orderable: false},
             {data: "date", name: 'created_at', searchable: false},
             {data: "amount", name: 'amount', searchable: false, orderable: false},

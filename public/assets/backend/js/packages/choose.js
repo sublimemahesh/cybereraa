@@ -49,8 +49,10 @@ $(function () {
             generateInvoice("main", package_slug)
         });
 
-        $(document).on('click', wallet_method_element, function () {
-            generateInvoice("main", package_slug)
+        $(document).on('click', binancepay_method_element, function () {
+            payMethodChooseModal.hide()
+            tempBinancePay.show()
+            //generateInvoice("binance", package_slug)
         });
 
         $(document).on('click', manual_method_element, function () {

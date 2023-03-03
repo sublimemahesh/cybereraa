@@ -21,7 +21,7 @@ $(document).ready(function () {
             Toast.fire({
                 icon: 'error', title: error.response.data.message || "Something went wrong!",
             })
-            let errorMap = ['rank_level_count', 'rank_gift_levels', 'rank_bonus_levels']
+            let errorMap = ['rank_level_count', 'rank_offset_levels', 'rank_bonus_levels']
             errorMap.map(id => {
                 error.response.data.errors[id] && appendError(id, `<span class="text-danger">${error.response.data.errors[id]}</span>`)
             })
@@ -33,10 +33,10 @@ $(document).ready(function () {
         $(html).insertAfter(`#${id}`)
     }
 
-    $("#rank_gift_levels").change(function () {
+    $("#rank_offset_levels").change(function () {
 
         let __rank_level_count = $('#rank_level_count');
-        let __rank_gift_level_count = $('#rank_gift_levels');
+        let __rank_gift_level_count = $('#rank_offset_levels');
         let __rank_bonus_level_count = $('#rank_bonus_levels');
 
         let rank_level_count_val = parseInt(__rank_level_count.val()) || 0;
@@ -65,14 +65,11 @@ $(document).ready(function () {
             __rank_bonus_level_count.val(rank_bonus_level_count_val)
         }
 
-    });
-
-    $("#rank_level_count").change(function () {
-        let rank_level_count_val = parseInt($(this).val()) || 0;
+        let rank_level_offset = parseInt($("#rank_offset_levels").val()) || 0;
         let html = '';
-        for (let i = 1; i <= rank_level_count_val; i++) {
+        for (let i = (rank_level_offset + 1); i <= rank_level_count_val; i++) {
             html += `<div class="form-group row mb-2">
-                                <label class="col-sm-3 col-form-label" for="rank_package_requirement_i" >Rank ${i}</label>
+                                <label class="col-sm-3 col-form-label" for="rank_package_requirement_${i}" >Rank ${i}</label>
                                 <div class="col-sm-9">
                                     <input class="form-control" id="rank_package_requirement_${i}" name="rank_package_requirement[${i}]" placeholder="" type="text">
                                 </div>

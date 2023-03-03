@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Strategy;
+use Arr;
 use DB;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
@@ -190,12 +191,12 @@ class StrategyController extends Controller
 
         $validated = Validator::make($request->all(), [
             'rank_level_count' => ['required', 'integer', 'in:7'],
-            'rank_gift_levels' => ['required', 'integer', 'lte:6', 'gte:1'],
-            'rank_bonus_levels' => ['required', 'integer', 'in:' . $request->get('rank_level_count') - $request->get('rank_gift_levels')],
+            'rank_offset_levels' => ['required', 'integer', 'lte:6', 'gte:1'],
+            'rank_bonus_levels' => ['required', 'integer', 'max:7'],
         ])->validate();
 
-        $rank_gift_levels = range(1, $validated['rank_gift_levels']);
-        $rank_bonus_levels = range($validated['rank_gift_levels'] + 1, $validated['rank_level_count']);
+        $rank_gift_levels = range(1, 7);
+        $rank_bonus_levels = range($validated['rank_offset_levels'] + 1, $validated['rank_level_count']);
 
         if ($validated['rank_level_count'] < (count($rank_gift_levels) + count($rank_bonus_levels))) {
             throw new \RuntimeException("Something went wrong with the level count");
@@ -255,10 +256,10 @@ class StrategyController extends Controller
             throw new RuntimeException('Something does not seem to be ok with commission level count');
         }
 
-        $rank_bonus = $validated['rank_gift'];
-        $rank_gift = $validated['rank_bonus'];
+        $rank_bonus = $validated['rank_bonus'];
+        $rank_gift = $validated['rank_gift'];
 
-        DB::transaction(function () use ($rank_bonus, $rank_gift, $commissions, $commission_level_count) {
+        DB::transaction(function () use ($commission_level_count, $commissions, $rank_gift, $rank_bonus) {
             Strategy::updateOrCreate(
                 ['name' => 'commission_level_count'],
                 ['value' => $commission_level_count]
@@ -297,14 +298,8 @@ class StrategyController extends Controller
         $this->authorize('update', Strategy::class);
 
         $validated = Validator::make($request->all(), [
-            'rank_package_requirement' => ['required', 'array', 'size:7'],
-            'rank_package_requirement.1' => ['required', 'numeric'],
-            'rank_package_requirement.2' => ['required', 'numeric'],
-            'rank_package_requirement.3' => ['required', 'numeric'],
-            'rank_package_requirement.4' => ['required', 'numeric'],
-            'rank_package_requirement.5' => ['required', 'numeric'],
-            'rank_package_requirement.6' => ['required', 'numeric'],
-            'rank_package_requirement.7' => ['required', 'numeric'],
+            'rank_package_requirement' => ['required', 'array', 'min:1', 'max:7'],
+            'rank_package_requirement.*' => ['required', 'numeric'],
         ])->validate();
 
         $rank_package_requirement = json_encode($validated['rank_package_requirement'], JSON_THROW_ON_ERROR);
@@ -312,6 +307,25 @@ class StrategyController extends Controller
             Strategy::updateOrCreate(
                 ['name' => 'rank_package_requirement'],
                 ['value' => $rank_package_requirement]
+            );
+        });
+
+        $rank_gift_levels = range(1, 7);
+
+        $pkg_levels = array_keys($validated['rank_package_requirement']);
+        $rank_bonus_levels = range(Arr::first($pkg_levels), Arr::last($pkg_levels));
+
+        DB::transaction(function () use ($rank_gift_levels, $validated) {
+            Strategy::updateOrCreate(
+                ['name' => 'rank_gift_levels'],
+                ['value' => implode(',', $rank_gift_levels)]
+            );
+        });
+
+        DB::transaction(function () use ($rank_bonus_levels, $validated) {
+            Strategy::updateOrCreate(
+                ['name' => 'rank_bonus_levels'],
+                ['value' => implode(',', $rank_bonus_levels)]
             );
         });
 
@@ -336,7 +350,7 @@ class StrategyController extends Controller
         $validated = Validator::make($request->all(), [
             'direct' => ['required', 'numeric'],
             'indirect' => 'required|numeric',
-            'rank_bonus' => 'required|numeric',
+            'rank_bonus' => 'nullable|numeric',
         ])->validate();
 
         $payable_percentages = json_encode($validated, JSON_THROW_ON_ERROR);

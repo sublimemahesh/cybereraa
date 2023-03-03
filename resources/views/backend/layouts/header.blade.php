@@ -2,7 +2,7 @@
 <div class="nav-header">
     <a href="{{ route('/') }}" class="brand-logo">
         <img src="{{ asset('assets/backend/images/logo/logo.png') }}" class="logo-abbr" id="logo-abbr" alt="">
-        <img src="{{ asset('assets/backend/images/logo/logo-text.png') }}" class="brand-title" id="brand-title"  alt="">
+        <img src="{{ asset('assets/backend/images/logo/logo-text.png') }}" class="brand-title" id="brand-title" alt="">
         <img src="{{ asset('assets/backend/images/logo/logo-color.png') }}" class="logo-color" alt="">
         <img src="{{ asset('assets/backend/images/logo/logo-text-color.png') }}" class="brand-title color-title" alt="">
     </a>
@@ -55,6 +55,15 @@
                             <select class="default-select dashboard-select image-select">
                                 <option data-display="Eng">Eng</option>
                             </select>
+                        </div>
+                        <div class="sidebar-social-link ">
+                            <ul>
+                                <li class="nav-item dropdown notification_dropdown">
+                                    <a class="nav-link bg-transparent bell-link" href="{{ route('user.genealogy') }}">
+                                        <img src="{{ asset('assets/images/invite-friends.svg') }}" alt="" width="54">
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                         <ul>
                             <li class="nav-item dropdown header-profile">

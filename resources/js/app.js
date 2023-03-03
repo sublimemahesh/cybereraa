@@ -20,10 +20,10 @@ window.Toast = Swal.mixin({
     background: '#25164F',
     timer: 3000,
     timerProgressBar: true,
-    // didOpen: (toast) => {
-    //   toast.addEventListener('mouseenter', Swal.stopTimer)
-    //   toast.addEventListener('mouseleave', Swal.resumeTimer)
-    // }
+    didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
 });
 
 window.loader = function (text = "It may take some time...!") {
