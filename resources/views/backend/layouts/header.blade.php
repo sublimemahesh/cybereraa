@@ -56,15 +56,19 @@
                                 <option data-display="Eng">Eng</option>
                             </select>
                         </div>
-                        <div class="sidebar-social-link ">
-                            <ul>
-                                <li class="nav-item dropdown notification_dropdown">
-                                    <a class="nav-link bg-transparent bell-link" href="{{ route('user.genealogy') }}">
-                                        <img src="{{ asset('assets/images/invite-friends.svg') }}" alt="" width="54">
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                        @auth()
+                            @if(auth()->user()->hasRole(['user']))
+                                <div class="sidebar-social-link ">
+                                    <ul>
+                                        <li class="nav-item dropdown notification_dropdown">
+                                            <a class="nav-link bg-transparent bell-link" href="{{ route('user.genealogy') }}">
+                                                <img src="{{ asset('assets/images/invite-friends.svg') }}" alt="" width="54">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            @endif
+                        @endauth
                         <ul>
                             <li class="nav-item dropdown header-profile">
                                 <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
