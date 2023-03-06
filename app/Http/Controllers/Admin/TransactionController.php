@@ -46,7 +46,7 @@ class TransactionController extends Controller
                     }
                     return $actions;
                 })
-                ->rawColumns(['actions', 'username'])
+                ->rawColumns(['actions', 'user', 'purchaser', 'type'])
                 ->make(true);
         }
         return view('backend.admin.users.transactions.index');

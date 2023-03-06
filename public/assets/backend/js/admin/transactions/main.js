@@ -11,17 +11,18 @@ $(function () {
         serverSide: true,
         fixedHeader: true,
         responsive: true,
-        order: [[6, 'desc']],
+        order: [[7, 'desc']],
         //stateSave: true,
         ajax: data_url,
         columns: [
             {data: "actions", searchable: false, orderable: false},
             {data: "trx_id", name: 'id', searchable: true, orderable: false},
-            {data: "username", name: 'user.username', orderable: false},
+            {data: "user", name: 'user.username', searchable: true, orderable: false},
+            {data: "purchaser", name: 'purchaser.username', searchable: true, orderable: false},
             {data: "package", searchable: false, orderable: false},
             {data: "type", searchable: false, orderable: false},
             {data: "status", searchable: false, orderable: false},
-            {data: "paid_at", name: 'created_at', searchable: true},
+            {data: "paid_at", name: 'created_at', searchable: false},
             {data: "gas_fee", name: 'gas_fee', searchable: false, orderable: false},
             {data: "trx_amount", name: 'amount', searchable: false, orderable: false},
         ],
@@ -33,17 +34,6 @@ $(function () {
                 return typeof i === 'string' ? i.replace(/[\$,]/g, '') * 1 : typeof i === 'number' ? i : 0;
             };
 
-            // Total over this page
-            let pageTotal = api
-                .column(7, {page: 'current'})
-                .data()
-                .reduce(function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0);
-
-            // Update footer
-
-
             let sumVal = function (column, page = 'current') {
                 return api
                     .column(column, page)
@@ -53,24 +43,24 @@ $(function () {
                     }, 0);
             }
 
-            pageTotal = new Intl.NumberFormat().format(pageTotal);
-            $(api.column(7).footer()).html(`Gas Fee Total: USDT ${pageTotal}`);
+            let pageTotal = new Intl.NumberFormat().format(sumVal(8));
+            $(api.column(9).footer()).html(`Gas Fee Total: USDT ${pageTotal}`);
 
-            let paidTotal8 = new Intl.NumberFormat().format(sumVal(8));
-            $(api.column(7).footer()).append(`<br><br>Amount Total: USDT ${paidTotal8}`);
+            let paidTotal8 = new Intl.NumberFormat().format(sumVal(9));
+            $(api.column(9).footer()).append(`<br><br>Amount Total: USDT ${paidTotal8}`);
         },
         columnDefs: [
             {
                 render: function (data, type, full, meta) {
-                    return `<div style="font-size: 0.76rem !important;" > ${data} </div>`;
+                    return `<div style="font-size: 0.75rem !important;" > ${data} </div>`;
                 },
-                targets: 6,
+                targets: [5, 7],
             },
             {
                 render: function (amount, type, full, meta) {
                     return `<div style='min-width:120px' class="text-right"> ${amount} </div>`;
                 },
-                targets: [7, 8],
+                targets: [8, 9],
             },
         ],
     });
@@ -83,8 +73,10 @@ $(function () {
         e.preventDefault();
         urlParams.set("date-range", $("#transaction-date-range").val());
         urlParams.set("status", $("#transaction-status").val());
+        urlParams.set("purchaser_id", $("#purchaser_id").val());
         urlParams.set("user_id", $("#user_id").val());
         urlParams.set("currency-type", $("#currency-type").val());
+        urlParams.set("pay-method", $("#pay-method").val());
         let url = data_url.split(/\?|\#/)[0] + "?" + urlParams.toString();
         HISTORY_STATE && history.replaceState({}, "", url);
         table.ajax.url(url).load();

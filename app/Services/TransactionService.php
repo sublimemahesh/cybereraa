@@ -25,16 +25,21 @@ class TransactionService
     public function datatable(int|null $user_id = null): EloquentDataTable|QueryDataTable|DataTableAbstract
     {
         return DataTables::eloquent($this->filter($user_id))
-            ->addColumn('user_id', fn($trx) => str_pad($trx->user_id, '4', '0', STR_PAD_LEFT))
             ->addColumn('trx_id', fn($trx) => '#' . str_pad($trx->id, '4', '0', STR_PAD_LEFT))
-            ->addColumn('username', static function ($trx) {
-                return str_pad($trx->user_id, '4', '0', STR_PAD_LEFT) .
-                    " - <code class='text-uppercase'>{$trx->user->username}</code>";
+            ->addColumn('user', static function ($trx) {
+                return "ID: " . str_pad($trx->user_id, '4', '0', STR_PAD_LEFT) .
+                    "<br> <code class='text-uppercase'>{$trx->user->username}</code>";
+            })->addColumn('purchaser', static function ($trx) {
+                return "ID: " . str_pad($trx->purchaser_id, '4', '0', STR_PAD_LEFT) .
+                    "<br> <code class='text-uppercase'>{$trx->purchaser->username}</code>";
             })
             ->addColumn('package', fn($trx) => $trx->create_order_request_info->goods->goodsName ?? '-')
             ->addColumn('trx_amount', fn($trx) => number_format($trx->amount, 2))
             ->addColumn('paid_at', fn($trx) => Carbon::parse($trx->created_at)->format('Y-m-d H:i:s'))
-            ->addColumn('type', fn($trx) => $trx->type . '/' . $trx->pay_method)
+            ->addColumn('type', static function ($trx) {
+                return "TYPE: <code class='text-uppercase'>" . $trx->type . '</code><br>' .
+                    "METHOD: <code class='text-uppercase'>" . $trx->pay_method . '</code>';
+            })
             //->addColumn('created_at', fn($trx) => $trx->created_at->format('Y-m-d h:i A'))
             //->addColumn('updated_at', fn($trx) => $trx->updated_at->format('Y-m-d h:i A'))
             ->addColumn('actions', function (Transaction $trx) {
