@@ -110,6 +110,8 @@ class Transaction extends Model
                 } finally {
                     return;
                 }
+            })->when(!empty(request()->input('purchaser_id')), function ($query) {
+                $query->where('purchaser_id', request()->input('purchaser_id'));
             })->when(!empty(request()->input('min-amount')), function ($query) {
                 $query->where('amount', '>=', request()->input('min-amount'));
             })->when(!empty(request()->input('max-amount')), function ($query) {
@@ -117,7 +119,8 @@ class Transaction extends Model
             })
             ->when(!empty(request()->input('currency-type')) && in_array(request()->input('currency-type'), ['crypto', 'wallet']), function ($query) {
                 $query->where('type', request()->input('currency-type'));
-            })->when(!empty(request()->input('pay-method')) && in_array(request()->input('pay-method'), ['main', 'topup', 'manual', 'binance']), function ($query) {
+            })
+            ->when(!empty(request()->input('pay-method')) && in_array(request()->input('pay-method'), ['main', 'topup', 'manual', 'binance']), function ($query) {
                 $query->where('pay_method', request()->input('pay-method'));
             })
             ->when(!empty(request()->input('status')) && in_array(request()->input('status'),

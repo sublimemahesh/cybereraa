@@ -20,15 +20,47 @@
                             </div>
                         </div>
                     @endif
+
                     <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
                         <div>
                             <div class=" pt-2 p-2 ">
-                                <label for="currency-type" class="text-gray-700 dark:text-gray-300">METHOD</label>
+                                <label for="purchaser_id" class="text-gray-700 dark:text-gray-300">PURCHASED BY </label>
+                                <div class="relative">
+                                    <input id="purchaser_id" value="{{ request()->input('purchaser_id') }}" placeholder="Enter User ID" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
+                        <div>
+                            <div class=" pt-2 p-2 ">
+                                <label for="currency-type" class="text-gray-700 dark:text-gray-300">CURRENCY</label>
                                 <div class="relative">
                                     <select id="currency-type" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
                                         <option value="">ALL</option>
                                         <option value="crypto" {{ request()->input('currency-type') === 'crypto' ? 'selected' : '' }}>Crypto</option>
                                         <option value="wallet" {{ request()->input('currency-type') === 'wallet' ? 'selected' : '' }}>Wallet</option>
+                                    </select>
+                                    <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
+                                        <svg class="pointer-events-none w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
+                        <div>
+                            <div class=" pt-2 p-2 ">
+                                <label for="pay-method" class="text-gray-700 dark:text-gray-300">PAY METHOD</label>
+                                <div class="relative">
+                                    <select id="pay-method" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
+                                        <option value="">ALL</option>
+                                        <option value="main" {{ request()->input('pay-method') === 'main' ? 'selected' : '' }}>MAIN WALLET</option>
+                                        <option value="topup" {{ request()->input('pay-method') === 'topup' ? 'selected' : '' }}>TOPUP WALLET</option>
+                                        <option value="binance" {{ request()->input('pay-method') === 'binance' ? 'selected' : '' }}>BINANCE</option>
+                                        <option value="manual" {{ request()->input('pay-method') === 'manual' ? 'selected' : '' }}>MANUAL APPROVE</option>
                                     </select>
                                     <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
                                         <svg class="pointer-events-none w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -82,8 +114,9 @@
                     <div class="flex flex-col mb-2">
                         <div>
                             <div class=" pt-2 p-2 ">
+                                <label for="transaction-search" class="text-gray-700 dark:text-gray-300"></label>
                                 <div class="relative">
-                                    <button id="transaction-search" class="mt-1 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
+                                    <button id="transaction-search" class="mt-2 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
                                         Search
                                     </button>
                                 </div>
@@ -96,23 +129,24 @@
     </div>
 </div>
 <div class="table-responsive">
-    <table id="transactions" class="display mb-1 nowrap table-responsive-my" style="table-layout: fixed">
+    <table id="transactions" class="display mb-1 table-responsive-my" style="table-layout: fixed">
         <thead>
         <tr>
             <th>ACTIONS</th>
             <th>TRX ID</th>
-            <th>USERNAME</th>
+            <th>USER</th>
+            <th>PURCHASE</th>
             <th>PACKAGE</th>
-            <th>TYPE</th>
+            <th class="text-center">TYPE</th>
             <th>STATUS</th>
-            <th>PAID/CLOSED AT</th>
-            <th class="text-right">Gas Fee</th>
+            <th class="text-center">CREATED</th>
+            <th class="text-right">GAS FEE</th>
             <th class="text-right">AMOUNT</th>
         </tr>
         </thead>
         <tfoot>
         <tr>
-            <th colspan="8" style="text-align:right"></th>
+            <th colspan="10" style="text-align:right"></th>
         </tr>
         </tfoot>
     </table>
