@@ -166,6 +166,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
             // withdraws
             Route::get('users/transfers/p2p', 'Admin\WithdrawController@p2p')->name('transfers.p2p');
             Route::get('users/transfers/withdrawals', 'Admin\WithdrawController@withdrawals')->name('transfers.withdrawals');
+            Route::get('users/transfers/wallets', 'Admin\WalletTransferController@index')->name('transfers.wallets');
             Route::get('users/transfers/withdrawals/{withdraw}/summery', 'Admin\WithdrawController@show')->name('transfers.withdrawals.view');
             Route::match(['get', 'post'], 'users/transfers/withdrawals/{withdraw}/approve', 'Admin\WithdrawController@approve')->name('transfers.withdrawals.approve');
             Route::match(['get', 'post'], 'users/transfers/withdrawals/{withdraw}/reject', 'Admin\WithdrawController@rejectWithdraw')->name('transfers.withdrawals.reject');

@@ -84,6 +84,32 @@
                         </div>
                     </div>
                     <div class="col-xl-12">
+                        <div class="card prim-card">
+                            <div class="card-body py-3">
+                                <i class="material-icons text-white" style="font-size: 60px;">trending_up</i>
+                                <div class="d-flex">
+                                    <h4 class="number mt-2">{{ $wallet->currency }} {{ number_format($wallet->topup_balance,2) }}</h4>
+                                    <div class="rec-design">
+                                        <div class="rec-design1">
+                                        </div>
+                                        <div class="rec-design2">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="prim-info">
+                                        <span>TOPUP WALLET</span>
+                                        <h4>AVAILABLE BALANCE</h4>
+                                    </div>
+                                    <div class="master-card">
+                                        <img src="{{ asset('assets/backend/images/logo/logo.png') }}" alt="logo" width="50"/>
+                                        <span class="text-white d-block mt-1">Safest Trades</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-12">
                         <div class="card">
                             <div class="card-header border-0 pb-0">
                                 <h2 class="heading mb-0 m-auto">Income</h2>

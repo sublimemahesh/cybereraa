@@ -49,7 +49,7 @@
                 <div class="card-body py-3">
                     <i class="material-icons text-white" style="font-size: 60px;">trending_up</i>
                     <div class="d-flex">
-                        <h4 class="number mt-2">{{ $wallet->currency }} {{ $wallet->topup_balance }}</h4>
+                        <h4 class="number mt-2">{{ $wallet->currency }} {{ number_format($wallet->topup_balance,2) }}</h4>
                         <div class="rec-design">
                             <div class="rec-design1">
                             </div>
