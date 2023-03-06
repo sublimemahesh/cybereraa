@@ -93,6 +93,15 @@
     </li>
 @endcan
 
+@can('wallet.transfers-history.viewAny')
+    <li>
+        <a href="{{ route('admin.transfers.wallets') }}" class="" aria-expanded="false">
+            <i class="bi bi-arrow-clockwise"></i>
+            <span class="nav-text"> Wallet Transactions </span>
+        </a>
+    </li>
+@endcan
+
 @can('withdrawals.viewAny')
     <li>
         <a href="{{ route('admin.transfers.withdrawals', ['status' => 'pending']) }}" class="" aria-expanded="false">

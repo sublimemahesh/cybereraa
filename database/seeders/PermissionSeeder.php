@@ -118,6 +118,7 @@ class PermissionSeeder extends Seeder
 
             ['name' => 'wallet.topup', 'guard_name' => 'web'],
             ['name' => 'wallet.topup-history.viewAny', 'guard_name' => 'web'],
+            ['name' => 'wallet.transfers-history.viewAny', 'guard_name' => 'web'],
 
             ['name' => 'withdraw.p2p.viewAny', 'guard_name' => 'web'],
             ['name' => 'withdrawals.viewAny', 'guard_name' => 'web'],
