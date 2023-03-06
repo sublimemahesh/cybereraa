@@ -188,10 +188,44 @@
                                     <i class="la la-wallet"></i>
                                 </span>
                                 <div class="media-body text-white">
-                                    <p class="mb-1">TOTAL WALLET BALANCE</p>
+                                    <p class="mb-1">MAIN WALLET BALANCE</p>
                                     <h4 class="text-white  dashboard-card-font-size-change"> $ {{ $total_available_wallet_balance }}</h4>
                                     <br>
-                                    <small> Wallet balance </small>
+                                    <small> Total main Wallets balance </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3  col-lg-6 col-sm-6">
+                    <div class="widget-stat card bg-warning">
+                        <div class="card-body  p-4">
+                            <div class="media">
+                                <span class="me-3">
+                                    <i class="la la-wallet"></i>
+                                </span>
+                                <div class="media-body text-white">
+                                    <p class="mb-1">TOPUP WALLET BALANCE</p>
+                                    <h4 class="text-white  dashboard-card-font-size-change"> $ {{ $total_available_wallet_topup_balance }}</h4>
+                                    <br>
+                                    <small>Total topup Wallets balance </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3  col-lg-6 col-sm-6">
+                    <div class="widget-stat card bg-green">
+                        <div class="card-body  p-4">
+                            <div class="media">
+                                <span class="me-3">
+                                    <i class="la la-arrows-h"></i>
+                                </span>
+                                <div class="media-body text-white">
+                                    <p class="mb-1">WALLET TRANSACTIONS</p>
+                                    <h4 class="text-white  dashboard-card-font-size-change"> $ {{ $total_between_wallet_transactions }}</h4>
+                                    <br>
+                                    <small>Transactions between wallets </small>
                                 </div>
                             </div>
                         </div>
@@ -209,6 +243,40 @@
                                     <h4 class="text-white dashboard-card-font-size-change"> $ {{ $total_withdraw_limit_wallet_balance }}</h4>
                                     <br>
                                     <small>Current total liability </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3  col-lg-6 col-sm-6">
+                    <div class="widget-stat card">
+                        <div class="card-body p-4">
+                            <div class="media">
+                                <span class="me-3">
+                                    <i class="la la-coins"></i>
+                                </span>
+                                <div class="media-body text-white">
+                                    <p class="mb-1">MANUAL TRANSACTIONS</p>
+                                    <h4 class="text-white dashboard-card-font-size-change"> $ {{ $total_manual_transactions }}</h4>
+                                    <br>
+                                    <small> Gas Fee: $ {{ $total_manual_transactions_gas_fees }} </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3  col-lg-6 col-sm-6">
+                    <div class="widget-stat card">
+                        <div class="card-body p-4">
+                            <div class="media">
+                                <span class="me-3">
+                                    <i class="la la-coins"></i>
+                                </span>
+                                <div class="media-body text-white">
+                                    <p class="mb-1">WALLET TOPUPS</p>
+                                    <h4 class="text-white dashboard-card-font-size-change"> $ {{ $total_wallet_topup }}</h4>
+                                    <br>
+                                    <small> Total wallet top-ups </small>
                                 </div>
                             </div>
                         </div>

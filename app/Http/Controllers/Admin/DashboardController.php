@@ -7,9 +7,12 @@ use App\Models\Commission;
 use App\Models\Earning;
 use App\Models\PurchasedPackage;
 use App\Models\Rank;
+use App\Models\RankBenefit;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Models\Wallet;
+use App\Models\WalletTopupHistory;
+use App\Models\WalletTransfer;
 use App\Models\Withdraw;
 use Carbon;
 use DB;
@@ -30,7 +33,7 @@ class DashboardController extends Controller
         $total_package_earnings = Earning::where('status', 'RECEIVED')->where('type', 'PACKAGE')->sum('amount');
         $total_direct_commission_earnings = Earning::where('status', 'RECEIVED')->where('type', 'DIRECT')->sum('amount');
         $total_indirect_commission_earnings = Earning::where('status', 'RECEIVED')->where('type', 'INDIRECT')->sum('amount');
-        $total_rank_bonus_earnings = Earning::where('status', 'RECEIVED')->where('type', 'RANK_BONUS')->sum('amount');
+        $total_rank_bonus_earnings = RankBenefit::where('status', '<>', 'DISQUALIFIED')->where('type', 'RANK_BONUS')->sum('amount');
 
         $total_package_earnings = number_format($total_package_earnings, 2);
         $total_direct_commission_earnings = number_format($total_direct_commission_earnings, 2);
@@ -38,7 +41,13 @@ class DashboardController extends Controller
         $total_rank_bonus_earnings = number_format($total_rank_bonus_earnings, 2);
 
         $total_available_wallet_balance = number_format(Wallet::sum('balance'), 2);
+        $total_available_wallet_topup_balance = number_format(Wallet::sum('topup_balance'), 2);
+        $total_between_wallet_transactions = number_format(WalletTransfer::sum('amount'), 2);
         $total_withdraw_limit_wallet_balance = number_format(Wallet::sum('withdraw_limit'), 2);
+
+        $total_manual_transactions = number_format(Transaction::where('status', 'PAID')->where('pay_method', 'MANUAL')->sum('amount'), 2);
+        $total_manual_transactions_gas_fees = number_format(Transaction::where('status', 'PAID')->where('pay_method', 'MANUAL')->sum('gas_fee'), 2);
+        $total_wallet_topup = number_format(WalletTopupHistory::sum('amount'), 2);
         $total_active_package_balance = number_format(PurchasedPackage::activePackages()->sum('invested_amount'), 2);
         $total_expired_package_balance = number_format(PurchasedPackage::expiredPackages()->sum('invested_amount'), 2);
 
@@ -72,7 +81,13 @@ class DashboardController extends Controller
                 'total_rank_bonus_earnings',
 
                 'total_available_wallet_balance',
+                'total_available_wallet_topup_balance',
+                'total_between_wallet_transactions',
                 'total_withdraw_limit_wallet_balance',
+
+                'total_manual_transactions',
+                'total_manual_transactions_gas_fees',
+                'total_wallet_topup',
                 'total_active_package_balance',
                 'total_expired_package_balance',
 
