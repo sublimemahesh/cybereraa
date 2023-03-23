@@ -172,7 +172,7 @@ class PayoutController extends Controller
         $max_withdraw_limit = $user_wallet->withdraw_limit;
 
         $validated = Validator::make($request->all(), [
-            'amount' => ['required', 'numeric', 'min:' . $minimum_payout_limit->value, 'max:' . $max_withdraw_limit],
+            'amount' => ['required', 'numeric', 'min:' . $minimum_payout_limit->value],
             'wallet_type' => ['required', 'in:main,topup'],
             'password' => 'required',
             'code' => 'nullable',
