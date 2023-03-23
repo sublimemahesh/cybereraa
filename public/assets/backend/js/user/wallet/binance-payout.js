@@ -17,8 +17,8 @@ $(function () {
         const password = $('#password').val();
         const code = $('#code').val();
         const wallet_type = $("input[name='wallet_type']:checked").val();
-
-        if (amount.length <= 0 || parseFloat(amount) < MINIMUM_PAYOUT_LIMIT || parseFloat(amount) > MAX_WITHDRAW_LIMIT) {
+            /* || parseFloat(amount) > MAX_WITHDRAW_LIMIT*/
+        if (amount.length <= 0 || parseFloat(amount) < MINIMUM_PAYOUT_LIMIT) {
             Toast.fire({
                 icon: 'error', title: "Please Enter a valid amount to transfer!",
             })

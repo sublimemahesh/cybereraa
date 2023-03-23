@@ -83,8 +83,8 @@
                                             </div>
                                         </label>
 
-                                        <label class="plan complete-plan col-sm-4" for="topup" >
-                                            <input type="radio" id="topup" name="wallet_type" value="topup" />
+                                        <label class="plan complete-plan col-sm-4" for="topup">
+                                            <input type="radio" id="topup" name="wallet_type" value="topup"/>
                                             <div class="plan-content">
                                                 <img loading="lazy" src="https://raw.githubusercontent.com/ismailvtl/ismailvtl.github.io/master/images/potted-plant-img.svg" alt=""/>
                                                 <div class="plan-details">
@@ -151,6 +151,6 @@
             const P2P_TRANSFER_FEE = "{{ $payout_transfer_fee->value }}";
             const MAX_WITHDRAW_LIMIT = "{{ $max_withdraw_limit }}";
         </script>
-        <script src="{{ asset('assets/backend/js/user/wallet/binance-payout.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/user/wallet/binance-payout.js?12345') }}"></script>
     @endpush
 </x-backend.layouts.app>
