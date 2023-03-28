@@ -41,7 +41,7 @@ $(function () {
                 }
 
                 console.log(doc_type)
-                if ($(element_id).val().length <= 0) {
+                if (!$(element_id).val() || $(element_id).val().length <= 0) {
                     console.log(element_id)
                     Toast.fire({
                         icon: 'error', title: "KYC proof document is required",
