@@ -102,12 +102,12 @@
                                                 </div>
                                             </div>
                                             <input type="hidden" class="kyc-doc-val" id="{{ $document->type }}">
-                                            <input type="hidden" value="{{ $document->document_name }}" id="{{ $document->type }}-has-document">
                                             <input type="hidden" value="{{ $document->id }}" id="{{ $kyc->type }}-{{ $document->type }}-id"/>
                                             {{--<button type="submit" id="{{ $kyc->type }}-{{ $document->type }}-submit" data-kyc="{{ $kyc->id }}" class="btn btn-block btn-primary">Save Document</button>--}}
                                         </form>
                                     </section>
                                 @endcan
+                                <input type="hidden" value="{{ $document->document_name }}" id="{{ $document->type }}-has-document">
                             </div>
                             <hr>
                         @endforeach
