@@ -20,7 +20,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('calculate:commission')->weekdays()->dailyAt('00:01')->withoutOverlapping();
 
         //$schedule->command('calculate:rank-benefit-earning')->weekdays()->dailyAt('00:01')->withoutOverlapping();
-        $schedule->command('calculate:rank-bonus')->monthly()->dailyAt('00:01')->withoutOverlapping();
+
+        // $schedule->command('calculate:rank-bonus')->monthly()->dailyAt('00:01')->withoutOverlapping();
 
         $schedule->command('genealogy:assign')->everySixHours()->withoutOverlapping();
 

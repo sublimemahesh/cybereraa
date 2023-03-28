@@ -35,7 +35,7 @@ $(function () {
                 let element_id = `#${doc_type}`;
                 let element__current_value = $(`#${doc_type}-has-document`).val();
 
-                if (element__current_value.length > 0 && $(element_id).val().length <= 0) {
+                if (element__current_value && element__current_value.length > 0 && ($(element_id).val() || $(element_id).val().length <= 0)) {
                     delete data.documents[doc_type];
                     continue;
                 }
