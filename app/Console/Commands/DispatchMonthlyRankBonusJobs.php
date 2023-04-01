@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Jobs\GenerateMonthlyRankBonus;
 use App\Models\PurchasedPackage;
 use App\Models\Rank;
+use App\Models\RankBonusSummery;
 use App\Models\Strategy;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -43,13 +44,13 @@ class DispatchMonthlyRankBonusJobs extends Command
             $rank_bonus_percentage = $strategies->where('name', 'rank_bonus')->first(null, new Strategy(['value' => '10']));
             $rank_bonus_levels = $strategies->where('name', 'rank_bonus_levels')->first(null, new Strategy(['value' => '3,4,5,6,7']));
 
-            $rank_package_requirement = json_decode($rank_package_requirement->value, true, 512, JSON_THROW_ON_ERROR);
             $rank_bonus_percentage = $rank_bonus_percentage->value;
             $rank_bonus_levels = explode(',', $rank_bonus_levels->value);
             $rank_bonus_levels_count = count($rank_bonus_levels);
 
             $first_of_month = Carbon::now()->subMonth()->firstOfMonth()->format('Y-m-d H:i:s');
             $last_of_month = Carbon::now()->subMonth()->lastOfMonth()->format('Y-m-d H:i:s');
+
 
             logger()->info("calculate:rank-bonus Month Start: {$first_of_month} | Month End: {$last_of_month}");
 
@@ -64,10 +65,30 @@ class DispatchMonthlyRankBonusJobs extends Command
 
             logger()->info("calculate:rank-bonus Payable percentage for one rank: {$rank_bonus_percentage}/{$rank_bonus_levels_count} = {$one_rank_bonus_percentage}%");
 
-            $total_bonus_amount = ($total_sale_amount * $one_rank_bonus_percentage) / 100;
+            $one_rank_bonus_amount = ($total_sale_amount * $one_rank_bonus_percentage) / 100;
+            $total_bonus_amount = $one_rank_bonus_amount * $rank_bonus_levels_count;
+
+            $rank_bonus_summery = RankBonusSummery::updateOrCreate(
+                ['start_date' => $first_of_month, 'end_date' => $last_of_month],
+                [
+                    'eligible_rank_levels' => json_encode($rank_bonus_levels, JSON_THROW_ON_ERROR),
+                    'rank_package_requirements' => $rank_package_requirement->value,
+                    'eligible_rank_level_count' => $rank_bonus_levels_count,
+                    'total_rank_bonus_percentage' => $rank_bonus_percentage,
+                    'monthly_total_sale' => $total_sale_amount,
+                    'one_rank_bonus_percentage' => $one_rank_bonus_percentage,
+                    'one_rank_bonus_amount' => $one_rank_bonus_amount,
+                    'total_bonus_amount' => $total_bonus_amount,
+                ]
+            );
+
+            $eligible_rankers_count = [];
+            $remaining_bonus_amount = 0;
+
+            $rank_package_requirement = json_decode($rank_package_requirement->value, true, 512, JSON_THROW_ON_ERROR);
 
             foreach ($rank_bonus_levels as $rank_level) {
-                logger()->notice("calculate:rank-bonus Rank: {$rank_level} | stated. | total amount available: {$total_bonus_amount}");
+                logger()->notice("calculate:rank-bonus Rank: {$rank_level} | stated. | total amount available: {$one_rank_bonus_amount}");
 
                 $eligible_ranks = Rank::where('rank', $rank_level)
                     ->whereNotNull('activated_at')
@@ -82,14 +103,17 @@ class DispatchMonthlyRankBonusJobs extends Command
                     });
                 $eligible_ranks_count = $eligible_ranks->count();
 
+                $eligible_rankers_count[$rank_level] = $eligible_ranks_count;
+
                 if ($eligible_ranks_count <= 0) {
+                    $remaining_bonus_amount += $one_rank_bonus_amount;
                     logger()->notice("calculate:rank-bonus Rank: {$rank_level} | No eligible rank users found.");
                     continue;
                 }
 
                 logger()->notice("calculate:rank-bonus Rank: {$rank_level} | {$eligible_ranks_count} Eligible rank users found.");
 
-                $earned_amount = $total_bonus_amount / $eligible_ranks->count();
+                $earned_amount = $one_rank_bonus_amount / $eligible_ranks->count();
 
                 $eligible_ranks->chunk(50, static function ($ranks) use ($earned_amount) {
                     foreach ($ranks as $rank) {
@@ -98,6 +122,13 @@ class DispatchMonthlyRankBonusJobs extends Command
                     }
                 });
             }
+
+
+            $rank_bonus_summery->update([
+                'remaining_bonus_amount' => $remaining_bonus_amount,
+                'eligible_rankers' => json_encode($eligible_rankers_count, JSON_THROW_ON_ERROR),
+            ]);
+
         } catch (\Exception $e) {
             $this->error('Failed to finish GenerateMonthlyRankBonus Jobs dispatching: ' . $e->getMessage());
             return CommandAlias::FAILURE;
