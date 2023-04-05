@@ -34,7 +34,7 @@ class PayoutController extends Controller
 
         $validated = Validator::make($request->all(), [
             'receiver' => 'required|exists:users,id',
-            'amount' => ['required', 'numeric', 'min:' . $minimum_payout_limit->value, 'max:' . $max_withdraw_limit],
+            'amount' => ['required', 'numeric', 'min:' . $minimum_payout_limit->value],
             'password' => 'required',
             'code' => 'nullable',
             'wallet_type' => 'required|in:main,topup',

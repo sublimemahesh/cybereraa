@@ -42,7 +42,7 @@ $(function () {
                 icon: 'error', title: "Please Enter a valid username for the receive fund!",
             })
             return false
-        } else if (amount.length <= 0 || parseFloat(amount) < MINIMUM_PAYOUT_LIMIT || parseFloat(amount) > MAX_WITHDRAW_LIMIT) {
+        } else if (amount.length <= 0 || parseFloat(amount) < MINIMUM_PAYOUT_LIMIT) {
             Toast.fire({
                 icon: 'error', title: "Please Enter a valid amount to transfer!",
             })
