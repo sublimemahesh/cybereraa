@@ -73,6 +73,34 @@ $(function () {
         mode: "range", dateFormat: "Y-m-d", defaultDate: date_range && date_range.split("to"),
     });
 
+    $(document).on('click', ".make-qualify-gift", function (e) {
+        let gift = $(this).data('gift');
+        e.preventDefault();
+        Swal.fire({
+            title: "Are You Sure?",
+            text: "This will Qualify selected gift? This process cannot be undone!",
+            icon: "info",
+            showCancelButton: true,
+        }).then((qualify) => {
+            if (qualify.isConfirmed) {
+                loader()
+                axios.post(`${APP_URL}/admin/ranks/gifts/${gift}/qualify`)
+                    .then(response => {
+                        Toast.fire({
+                            icon: response.data.icon, title: response.data.message,
+                        })
+                        table.draw()
+                    })
+                    .catch(error => {
+                        console.log(error)
+                        Toast.fire({
+                            icon: 'error', title: error.response.data.message || "Something went wrong!",
+                        })
+                    })
+            }
+        });
+    })
+
     $(document).on("click", "#search", function (e) {
         e.preventDefault();
         urlParams.set("user_id", $("#user_id").val());
