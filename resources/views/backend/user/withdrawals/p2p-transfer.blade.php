@@ -119,6 +119,6 @@
             const MAX_WITHDRAW_LIMIT = "{{ $max_withdraw_limit }}";
         </script>
         <script src="{{ asset('assets/backend/vendor/select2/js/select2.full.min.js') }}"></script>
-        <script src="{{ asset('assets/backend/js/user/wallet/p2p-transfer.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/user/wallet/p2p-transfer.js?12345') }}"></script>
     @endpush
 </x-backend.layouts.app>
