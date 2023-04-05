@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\RankGift;
 use DB;
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Str;
@@ -58,9 +60,14 @@ class RankGiftController extends Controller
                 ->addColumn('total_investment', fn($gift) => number_format($gift->total_investment, 2))
                 ->addColumn('total_team_investment', fn($gift) => number_format($gift->total_team_investment, 2))
                 ->addColumn('actions', function ($gift) {
-                    if ($gift->status === 'QUALIFIED' && Gate::allows('rank_gift.issue_gift')) {
+                    if (Gate::allows('issue', $gift)) {
                         return "<a href='" . route('admin.ranks.gifts.issue', $gift) . "' class='btn btn-green btn-outline-success btn-xs me-1 my-1 shadow sharp'>
                                 <i class='fas fa-gift'></i>
+                            </a>";
+                    }
+                    if (Gate::allows('makeQualify', $gift)) {
+                        return "<a href='javascript:void(0)' data-gift='" . $gift->id . "' class='btn btn-instagram make-qualify-gift btn-xs me-1 my-1 shadow sharp'>
+                                <i class='fas fa-sync-alt'></i>
                             </a>";
                     }
                     return '-';
@@ -71,6 +78,27 @@ class RankGiftController extends Controller
 
 
         return view('backend.admin.ranks.gifts.index');
+    }
+
+    /**
+     * @throws AuthorizationException
+     * @throws Throwable
+     */
+    public function makeQualify(Request $request, RankGift $gift): JsonResponse
+    {
+
+        $this->authorize('makeQualify', $gift);
+
+        $gift = DB::transaction(static function () use ($gift) {
+            return $gift->update([
+                'status' => 'QUALIFIED'
+            ]);
+        });
+
+        $json['status'] = true;
+        $json['message'] = "Gift has been qualified";
+        $json['icon'] = 'success'; // warning | info | question | success | error
+        return response()->json($json, Response::HTTP_OK);
     }
 
     /**

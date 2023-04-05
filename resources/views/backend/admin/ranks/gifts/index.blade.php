@@ -115,7 +115,7 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table id="rewards" class="display mb-1 nowrap table-responsive-my" >
+                        <table id="rewards" class="display mb-1 nowrap table-responsive-my">
                             <thead>
                             <tr>
                                 <th>ACTION</th>
@@ -152,6 +152,6 @@
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.html5.min.js') }}"></script>
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.print.min.js') }}"></script>
         <script src="{{ asset('assets/backend/js/global-datatable-extension.js') }}"></script>
-        <script src="{{ asset('assets/backend/js/admin/ranks/gift.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/admin/ranks/gift.js?12345') }}"></script>
     @endpush
 </x-backend.layouts.app>

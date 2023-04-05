@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Strategy;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -112,8 +111,9 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
 
         // RANK GIFtS
         Route::get('ranks/gifts', 'Admin\RankGiftController@index')->name('ranks.gifts');
-        Route::get('ranks/gifts/{gift}/issue', 'Admin\RankGiftController@issueGift')->name('ranks.gifts.issue');
-        Route::post('ranks/gifts/{gift}/issue', 'Admin\RankGiftController@issueGift');
+        Route::post('ranks/gifts/{gift}/qualify', 'Admin\RankGiftController@makeQualify');
+        Route::match(['get', 'post'], 'ranks/gifts/{gift}/issue', 'Admin\RankGiftController@issueGift')->name('ranks.gifts.issue');
+        // Route::post('ranks/gifts/{gift}/issue', 'Admin\RankGiftController@issueGift');
 
         //Packages
         Route::get('packages/arrange', 'Admin\PackageController@sort')->name('packages.arrange');

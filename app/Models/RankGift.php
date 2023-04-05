@@ -17,6 +17,8 @@ class RankGift extends Model
 
     protected $fillable = ['user_id', 'rank_id', 'image_name', 'status'];
 
+    protected $with = ['user'];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id')->withDefault(new User);
