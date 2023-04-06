@@ -16,7 +16,7 @@ $(function () {
         columns: [
             {data: "profile_photo", name: 'id', searchable: true, orderable: false},
             {data: "user_details", name: 'username', searchable: true, orderable: false},
-            {data: "contact_details", searchable: false, orderable: false},
+            {data: "contact_details", name: 'email', searchable: true, orderable: false},
             {data: "joined", name: 'created_at', searchable: false},
             {data: "actions", searchable: false, orderable: false},
         ],

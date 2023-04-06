@@ -2,6 +2,7 @@
 
 namespace Haruncpi\LaravelUserActivity\Listeners;
 
+use Carbon;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -19,19 +20,20 @@ class LoginListener
             || !config('user-activity.activated', true)) return;
 
         $user = $event->user;
-        $dateTime = date('Y-m-d H:i:s');
+        $dateTime = Carbon::now()->format('Y-m-d H:i:s');
 
         $data = [
-            'ip'         => $this->request->ip(),
+            'date' => $dateTime,
+            'ip' => $this->request->ip(),
             'user_agent' => $this->request->userAgent()
         ];
 
         DB::table('logs')->insert([
-            'user_id'    => $user->id,
-            'log_date'   => $dateTime,
+            'user_id' => $user->id,
+            'log_date' => $dateTime,
             'table_name' => '',
-            'log_type'   => 'login',
-            'data'       => json_encode($data)
+            'log_type' => 'login',
+            'data' => json_encode($data)
         ]);
     }
 }

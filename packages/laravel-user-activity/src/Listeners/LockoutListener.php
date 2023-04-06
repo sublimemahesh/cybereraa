@@ -2,45 +2,54 @@
 
 namespace Haruncpi\LaravelUserActivity\Listeners;
 
-use App\User;
-use Illuminate\Http\Request;
+
+use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Auth\Events\Lockout;
 use Illuminate\Support\Facades\DB;
+use Log;
 
 class LockoutListener
 {
 
-    private $userInstance = "\App\User";
+    private mixed $userInstance = User::class;
 
-    public function __construct(Request $request)
+    public function __construct()
     {
-        $this->request = $request;
-
         $userInstance = config('user-activity.model.user');
-        if(!empty($userInstance)) $this->userInstance = $userInstance;
+        if (!empty($userInstance)) {
+            $this->userInstance = $userInstance;
+        }
     }
 
 
-    public function handle($event)
+    public function handle(Lockout $event)
     {
-        if (!config('user-activity.log_events.on_lockout', false)
-            || !config('user-activity.activated', true)) return;
+        Log::info('User locked out: ' . $event->request->input('username'));
 
-        if (!$event->request->has('email')) return;
-        $user = $this->userInstance::where('email', $event->request->input('email'))->first();
-        if (!$user) return;
+        if (!config('user-activity.log_events.on_lockout', true)
+            || !config('user-activity.activated', true)) {
+            return;
+        }
 
+        $user = $this->userInstance::where('username', $event->request->input('username'))->first();
+
+        if (!$user) {
+            return;
+        }
 
         $data = [
-            'ip'         => $this->request->ip(),
-            'user_agent' => $this->request->userAgent()
+            'date' => Carbon::now()->format('Y-m-d H:i:s'),
+            'ip' => $event->request->ip(),
+            'user_agent' => $event->request->userAgent()
         ];
 
         DB::table('logs')->insert([
-            'user_id'    => $user->id,
-            'log_date'   => date('Y-m-d H:i:s'),
+            'user_id' => $user->id,
+            'log_date' => Carbon::now()->format('Y-m-d H:i:s'),
             'table_name' => '',
-            'log_type'   => 'lockout',
-            'data'       => json_encode($data)
+            'log_type' => 'lockout',
+            'data' => json_encode($data)
         ]);
 
     }

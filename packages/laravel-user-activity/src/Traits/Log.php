@@ -3,6 +3,7 @@
 namespace Haruncpi\LaravelUserActivity\Traits;
 
 use Arr;
+use Carbon;
 use DB;
 use JsonException;
 use Log as Logger;
@@ -31,7 +32,7 @@ trait Log
         }
 
         $tableName = $model->getTable();
-        $dateTime = date('Y-m-d H:i:s');
+        $dateTime = Carbon::now()->format('Y-m-d H:i:s');
         $userId = auth()->user()->id;
 
         DB::table(self::$logTable)->insert([

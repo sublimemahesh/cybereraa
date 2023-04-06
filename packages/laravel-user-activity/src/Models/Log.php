@@ -1,5 +1,7 @@
 <?php namespace Haruncpi\LaravelUserActivity\Models;
 
+use App\Models\User;
+use Carbon;
 use Illuminate\Database\Eloquent\Model;
 use JsonException;
 use Str;
@@ -8,10 +10,10 @@ use Str;
 class Log extends Model
 {
     public $timestamps = false;
-    public $dates = ['log_date'];
+    //public $dates = ['log_date'];
     protected $appends = ['dateHumanize', 'json_data', 'json_dirty_data'];
 
-    private mixed $userInstance = "\App\User";
+    private mixed $userInstance = User::class;
 
     public function __construct()
     {
@@ -21,9 +23,14 @@ class Log extends Model
         }
     }
 
+    public function getLogDateAttribute($log_date)
+    {
+        return $this->log_date = Carbon::parse($log_date)->format('Y-m-d h:i:s A');
+    }
+
     public function getDateHumanizeAttribute()
     {
-        return $this->log_date->diffForHumans();
+        return Carbon::parse($this->log_date)->diffForHumans();
     }
 
     /**
