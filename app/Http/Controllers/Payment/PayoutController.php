@@ -29,7 +29,7 @@ class PayoutController extends Controller
         try {
             $log_data = [
                 'RESPONSIBLE USER' => auth()->user()->only(['id', 'username', 'email']),
-                'DATA' => $request->all(),
+                'DATA' => $request->except(['password']),
                 'HEADERS' => $request->headers->all(),
                 'ACTION' => 'P2P_REQUEST_POST',
             ];
