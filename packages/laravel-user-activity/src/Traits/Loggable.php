@@ -23,6 +23,7 @@ trait Loggable
                             'NEW DATA' => $model->getDirty(),
                             'ACTION' => 'users.change-password',
                         ];
+                        $log_data['NEW DATA']['password'] = 'hidden';
                         $log_data = json_encode($log_data, JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT);
                         Logger::channel('daily')->notice('PASSWORD CHANGE ACTIVITY | DATA: ' . $log_data);
                     }
