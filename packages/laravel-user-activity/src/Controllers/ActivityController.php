@@ -78,6 +78,9 @@ class ActivityController extends Controller
         }
         $currentData = DB::table($table)->find($id);
         if ($currentData) {
+            if ($table === 'users') {
+                $currentData->password = 'hidden';
+            }
             $editHistory = Log::with('user')
                 ->orderBy('log_date', 'desc')
                 ->whereNotIn('id', [$logId])

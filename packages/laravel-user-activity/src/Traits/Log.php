@@ -2,9 +2,11 @@
 
 namespace Haruncpi\LaravelUserActivity\Traits;
 
+use App\Models\User;
 use Arr;
 use Carbon;
 use DB;
+use Exception;
 use JsonException;
 use Log as Logger;
 
@@ -21,19 +23,30 @@ trait Log
         if (!auth()->check() || $model->excludeLogging || !config('user-activity.activated', true)) {
             return;
         }
-        $dirtyData = json_encode(Arr::except($model->toArray(), $model->exclude), JSON_THROW_ON_ERROR);
+        $dirtyData = Arr::except($model->toArray(), $model->exclude);
         if ($logType === 'create') {
-            $originalData = json_encode($model, JSON_THROW_ON_ERROR);
+            $originalData = $model->toArray();
         } else if (version_compare(app()->version(), '7.0.0', '>=')) {
-            $originalData = json_encode(Arr::except($model->getRawOriginal(), $model->exclude), JSON_THROW_ON_ERROR);
+            $originalData = Arr::except($model->getRawOriginal(), $model->exclude);
         } // getRawOriginal available from Laravel 7.x
         else {
-            $originalData = json_encode(Arr::except($model->getOriginal(), $model->exclude), JSON_THROW_ON_ERROR);
+            $originalData = Arr::except($model->getOriginal(), $model->exclude);
         }
 
         $tableName = $model->getTable();
         $dateTime = Carbon::now()->format('Y-m-d H:i:s');
         $userId = auth()->user()->id;
+
+        try {
+            if (($model instanceof User) && $model->isDirty('password')) {
+                $originalData['password'] = 'Password changed';
+                $dirtyData['password'] = 'Password changed';
+            }
+        } catch (Exception $e) {
+
+        }
+        $originalData = json_encode($originalData, JSON_THROW_ON_ERROR);
+        $dirtyData = json_encode($dirtyData, JSON_THROW_ON_ERROR);
 
         DB::table(self::$logTable)->insert([
             'user_id' => $userId,
