@@ -10,6 +10,7 @@
     @endsection
     <div class="row">
         <div class="col-xl-8 col-sm-6">
+            <div class="alert alert-warning">P2P transactions are temporarily suspended for 24 hours from 4.00 Pm on 6th April 2023 to 4.00 pm on 7th April 2023!</div>
             <div class="card">
                 <div class="card-body">
                     <div class="mb-4">

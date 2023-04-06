@@ -11,12 +11,13 @@ use App\Models\Withdraw;
 use App\Services\TwoFactorAuthenticateService;
 use Auth;
 use DB;
+use Exception;
 use Illuminate\Http\Request;
+use Log as Logger;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 use URL;
 use Validator;
-
 
 class PayoutController extends Controller
 {
@@ -25,6 +26,23 @@ class PayoutController extends Controller
      */
     public function p2pTransfer(Request $request, TwoFactorAuthenticateService $authenticateService)
     {
+        try {
+            $log_data = [
+                'RESPONSIBLE USER' => auth()->user()->only(['id', 'username', 'email']),
+                'DATA' => $request->all(),
+                'HEADERS' => $request->headers->all(),
+                'ACTION' => 'P2P_REQUEST_POST',
+            ];
+            $log_data = json_encode($log_data, JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT);
+            Logger::channel('daily')->notice('P2P REQUEST | DATA: ' . $log_data);
+        } catch (Exception $e) {
+        }
+
+        $json['status'] = false;
+        $json['message'] = "P2P transactions are temporarily suspended for 24 hours from 4.00 Pm on 6th April 2023 to 4.00 pm on 7th April 2023!";
+        $json['icon'] = 'error'; // warning | info | question | success | error
+        return response()->json($json, Response::HTTP_UNAUTHORIZED);
+
         $strategies = Strategy::whereIn('name', ['p2p_transfer_fee', 'minimum_payout_limit'])->get();
         $sender = Auth::user();
         $sender_wallet = $sender?->wallet;
