@@ -33,7 +33,7 @@ class ActivityController extends Controller
         ]);
 
         $data = Log::with('user')
-            ->whereRelation('user.roles', 'name', '<>', 'user')
+            //->whereRelation('user.roles', 'name', '<>', 'user')
             ->orderBy('id', 'desc');
 
         if ($request->has('user_id')) {
