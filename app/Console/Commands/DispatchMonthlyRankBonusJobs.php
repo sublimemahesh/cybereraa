@@ -89,7 +89,7 @@ class DispatchMonthlyRankBonusJobs extends Command
             $rank_package_requirement = json_decode($rank_package_requirement->value, true, 512, JSON_THROW_ON_ERROR);
 
             foreach ($rank_bonus_levels as $rank_level) {
-                logger()->notice("calculate:rank-bonus Rank: {$rank_level} | stated. | total amount available: {$one_rank_bonus_amount}");
+                logger()->notice("calculate:rank-bonus Rank: {$rank_level} | started. | total amount available: {$one_rank_bonus_amount}");
 
                 $eligible_ranks = Rank::where('rank', $rank_level)
                     ->whereNotNull('activated_at')

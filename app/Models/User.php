@@ -20,7 +20,6 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 use Throwable;
-use URL;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
