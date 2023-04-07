@@ -1253,12 +1253,12 @@
                             <tbody>
 
                             <tr ng-repeat="(field,value) in selected.json_data">
-                                <td class="field_cell">@{{ field }}</td>
-                                <td style="max-width:220px">@{{ value }}</td>
-                                <td ng-show="selected.log_type==='edit'" ng-class="value!=dirtyData[field]?'changed':''">
+                                <td style="width: 10%;" class="field_cell">@{{ field }}</td>
+                                <td style="width: 30%;overflow-wrap: anywhere;">@{{ value }}</td>
+                                <td style="width: 30%;overflow-wrap: anywhere;" ng-show="selected.log_type==='edit'" ng-class="value!=dirtyData[field]?'changed':''">
                                     @{{ dirtyData[field] }}
                                 </td>
-                                <td ng-show="selected.log_type==='edit'" ng-class="value!=currentData[field]?'changed':''">
+                                <td style="width: 30%;overflow-wrap: anywhere;" ng-show="selected.log_type==='edit'" ng-class="value!=currentData[field]?'changed':''">
                                     @{{ currentData[field] }}
                                 </td>
                             </tr>
