@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Payment;
 
 use App\Http\Controllers\Controller;
+use App\Mail\SendOTPMail;
 use App\Models\Earning;
 use App\Models\Strategy;
 use App\Models\User;
@@ -21,27 +22,68 @@ use Validator;
 
 class PayoutController extends Controller
 {
+
+    /**
+     * @throws Exception
+     */
+    public function twoftVerify(Request $request, TwoFactorAuthenticateService $authenticateService)
+    {
+
+        $validated = Validator::make($request->all(), [
+            'receiver' => 'required|exists:users,id',
+            'minimum_payout_limit' => 'required',
+            'amount' => ['required', 'numeric', 'min:' . $request->minimum_payout_limit],
+            'password' => 'required',
+            'code' => 'nullable',
+            'wallet_type' => 'required|in:main,topup',
+            'remark' => 'nullable',
+        ])->validate();
+
+        try {
+            $log_data = [
+                'RESPONSIBLE USER' => auth()->user()?->only(['id', 'username', 'email', 'phone']),
+                'ip' => $request->ip(),
+                'user_agent' => $request->userAgent(),
+                'DATA' => $request->except(['password']),
+                'HEADERS' => $request->headers->all(),
+                'ACTION' => 'P2P_OTP_REQUEST',
+            ];
+            $log_data = json_encode($log_data, JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT);
+            Logger::channel('daily')->notice('P2P OTP REQUEST | DATA: ' . $log_data);
+        } catch (Exception $e) {
+        }
+
+        $otp = random_int(100000, 999999);
+        // $otp = 123456;
+        $hashed_code = hash("sha512", $otp);
+        $hashed_phone = hash("sha512", auth()->user()?->username);
+        session()->put($hashed_phone, $hashed_code);
+
+        \Mail::to(auth()->user()?->email)->send(new SendOTPMail(auth()->user(), $otp, $validated));
+
+        $phone_validator = Validator::make(['phone' => auth()->user()?->phone], [
+            'phone' => 'required|regex:/^\+94/i',
+        ]);
+
+        if ($phone_validator->passes()) {
+            $validated = $phone_validator->validated();
+            $username = auth()->user()->username;
+            $message = "{$otp} is your one-time password (OTP) to complete your P2P Transaction from username: {$username}. Thank you. safesttrades.com";
+            sendSMS($validated['phone'], $message);
+        }
+
+        $json['status'] = true;
+        $json['sent_verify_code'] = true;
+        $json['message'] = "OTP sent successfully. Please check your inbox!";
+        $json['icon'] = 'success'; // warning | info | question | success | error
+        return response()->json($json);
+    }
+
     /**
      * @throws Throwable
      */
     public function p2pTransfer(Request $request, TwoFactorAuthenticateService $authenticateService)
     {
-        try {
-            $log_data = [
-                'RESPONSIBLE USER' => auth()->user()->only(['id', 'username', 'email']),
-                'DATA' => $request->except(['password']),
-                'HEADERS' => $request->headers->all(),
-                'ACTION' => 'P2P_REQUEST_POST',
-            ];
-            $log_data = json_encode($log_data, JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT);
-            Logger::channel('daily')->notice('P2P REQUEST | DATA: ' . $log_data);
-        } catch (Exception $e) {
-        }
-
-        $json['status'] = false;
-        $json['message'] = "P2P transactions are temporarily suspended for 24 hours from 4.00 Pm on 6th April 2023 to 4.00 pm on 7th April 2023!";
-        $json['icon'] = 'error'; // warning | info | question | success | error
-        return response()->json($json, Response::HTTP_UNAUTHORIZED);
 
         $strategies = Strategy::whereIn('name', ['p2p_transfer_fee', 'minimum_payout_limit'])->get();
         $sender = Auth::user();
@@ -54,10 +96,34 @@ class PayoutController extends Controller
             'receiver' => 'required|exists:users,id',
             'amount' => ['required', 'numeric', 'min:' . $minimum_payout_limit->value],
             'password' => 'required',
+            'otp' => 'required|digits:6',
             'code' => 'nullable',
             'wallet_type' => 'required|in:main,topup',
             'remark' => 'nullable',
         ])->validate();
+
+        try {
+            $log_data = [
+                'RESPONSIBLE USER' => auth()->user()?->only(['id', 'username', 'email', 'phone']),
+                'ip' => $request->ip(),
+                'user_agent' => $request->userAgent(),
+                'DATA' => $request->except(['password']),
+                'HEADERS' => $request->headers->all(),
+                'ACTION' => 'P2P_REQUEST_POST',
+            ];
+            $log_data = json_encode($log_data, JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT);
+            Logger::channel('daily')->notice('P2P REQUEST | DATA: ' . $log_data);
+        } catch (Exception $e) {
+        }
+
+        $hashed_username = hash("sha512", auth()->user()?->username);
+        $hashed_code = hash("sha512", $validated['otp']);
+        if (!session()->has($hashed_username) || session()->get($hashed_username) !== $hashed_code) {
+            $json['status'] = false;
+            $json['message'] = 'Entered OTP code is invalid!';
+            $json['icon'] = 'error'; // warning | info | question | success | error
+            return response()->json($json, Response::HTTP_UNAUTHORIZED);
+        }
 
         $receiver = User::find($validated['receiver']);
 
@@ -169,6 +235,7 @@ class PayoutController extends Controller
             return $withdraw;
         });
 
+        session()->forget($hashed_username);
         $json['status'] = true;
         $json['message'] = "P2P Transaction is successful!";
         $json['icon'] = 'success'; // warning | info | question | success | error

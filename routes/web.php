@@ -263,6 +263,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::get('wallet', 'User\WalletController@index')->name('wallet.index');
         Route::match(['get', 'post'], 'wallet/transfer/to-wallet', 'User\WalletTransferController@transfer')->name('wallet.transfer.to-wallet');
         Route::get('wallet/transfer', 'User\WithdrawController@p2pTransfer')->name('wallet.transfer');
+        Route::post('wallet/transfer/p2p/2ft-verify', 'Payment\PayoutController@twoftVerify');
         Route::post('wallet/transfer/p2p', 'Payment\PayoutController@p2pTransfer');
 
         Route::get('wallet/withdraw', 'User\WithdrawController@withdraw')->name('wallet.withdraw');

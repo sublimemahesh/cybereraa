@@ -1254,7 +1254,7 @@
 
                             <tr ng-repeat="(field,value) in selected.json_data">
                                 <td class="field_cell">@{{ field }}</td>
-                                <td>@{{ value }}</td>
+                                <td style="max-width:220px">@{{ value }}</td>
                                 <td ng-show="selected.log_type==='edit'" ng-class="value!=dirtyData[field]?'changed':''">
                                     @{{ dirtyData[field] }}
                                 </td>

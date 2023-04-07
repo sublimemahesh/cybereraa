@@ -45,6 +45,9 @@ trait Log
         } catch (Exception $e) {
 
         }
+        
+        $originalData['ip'] = request()?->ip();
+        $originalData['user_agent'] = request()?->userAgent();
         $originalData = json_encode($originalData, JSON_THROW_ON_ERROR);
         $dirtyData = json_encode($dirtyData, JSON_THROW_ON_ERROR);
 
