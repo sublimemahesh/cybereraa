@@ -29,6 +29,44 @@ $(function () {
         }
     })
 
+    $(document).on('click', '#send-2ft-code', function (e) {
+        e.preventDefault();
+        const receiver = $('#p2p-transfer').val();
+        const amount = $('#transfer-amount').val();
+        const remark = $('#remark').val();
+        const wallet_type = $("input[name='wallet_type']:checked").val();
+        const password = $('#password').val();
+        const code = $('#code').val();
+        loader()
+        axios.post(APP_URL + '/user/wallet/transfer/p2p/2ft-verify', {
+            receiver,
+            amount,
+            remark,
+            password,
+            wallet_type,
+            code,
+            minimum_payout_limit: MINIMUM_PAYOUT_LIMIT
+        }).then(response => {
+            Toast.fire({
+                icon: response.data.icon, title: response.data.message,
+            })
+            if (response.data.status) {
+                $('#2ft-section').html(`
+                     <div class="mb-3 mt-2">
+                        <label for="code">OTP Code </label>
+                        <input id="otp" type="password" class="form-control" autocomplete="one-time-password" placeholder="OTP code">
+                        <div class="text-info cursor-pointer" id="send-2ft-code">Resend OTP </div>
+                    </div>
+                    <button type="submit" id="confirm-transfer" class="btn btn-sm btn-success mb-2">Confirm & Transfer</button>
+                `)
+            }
+        }).catch(error => {
+            Toast.fire({
+                icon: 'error', title: error.response.data.message || "Something went wrong!",
+            })
+        })
+    })
+
     $(document).on('click', '#confirm-transfer', function (e) {
         e.preventDefault();
         const receiver = $('#p2p-transfer').val();
@@ -37,6 +75,7 @@ $(function () {
         const wallet_type = $("input[name='wallet_type']:checked").val();
         const password = $('#password').val();
         const code = $('#code').val();
+        const otp = $('#otp').val();
         if (receiver === null || receiver.length <= 0) {
             Toast.fire({
                 icon: 'error', title: "Please Enter a valid username for the receive fund!",
@@ -50,6 +89,11 @@ $(function () {
         } else if (password === null || password.length <= 0) {
             Toast.fire({
                 icon: 'error', title: "Please Enter a your account password!",
+            })
+            return false
+        } else if (otp === null || otp.length <= 0) {
+            Toast.fire({
+                icon: 'error', title: "Please Enter a OTP that sent to your email or mobile!",
             })
             return false
         } else {
@@ -67,6 +111,7 @@ $(function () {
                         remark,
                         password,
                         wallet_type,
+                        otp,
                         code
                     }).then(response => {
                         Toast.fire({
