@@ -59,6 +59,13 @@ $(function () {
                     </div>
                     <button type="submit" id="confirm-transfer" class="btn btn-sm btn-success mb-2">Confirm & Transfer</button>
                 `)
+                try {
+                    $('#2ft-section').find('.text-danger').remove()
+                    if (response.data.sms_error !== null) {
+                        $('#2ft-section').after(`<div class="text-danger">${response.data.sms_error}</div>`)
+                    }
+                } catch (e) {
+                }
             }
         }).catch(error => {
             Toast.fire({

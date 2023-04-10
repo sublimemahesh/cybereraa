@@ -69,15 +69,18 @@
                                         fill="white"/>
                                 </svg>
                                 <div class="d-flex">
-                                    <h4 class="number mt-2">{{ $wallet->currency ?? 'USDT' }} {{ number_format($wallet->balance,2) }}</h4>
+                                    <h4 class="number mt-2 mb-0">
+                                        {{ $wallet->currency ?? 'USDT' }} {{ number_format($wallet->balance,2) }}
+                                    </h4>
                                     <div class="rec-design">
                                         <div class="rec-design1"></div>
                                         <div class="rec-design2"></div>
                                     </div>
                                 </div>
+                                <small>Withdraw Limit: USDT {{ number_format($wallet->withdraw_limit,2) }}</small>
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div class="prim-info">
-                                        <span>WALLET</span>
+                                        <span>MAIN WALLET</span>
                                         <h4>AVAILABLE BALANCE</h4>
                                     </div>
                                     <div class="master-card">
