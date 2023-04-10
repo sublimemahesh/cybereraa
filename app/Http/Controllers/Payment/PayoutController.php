@@ -65,11 +65,18 @@ class PayoutController extends Controller
             'phone' => 'required|regex:/^\+94/i',
         ]);
 
+        $json['sms_error'] = null;
         if ($phone_validator->passes()) {
             $validated = $phone_validator->validated();
             $username = auth()->user()->username;
             $message = "{$otp} is your one-time password (OTP) to complete your P2P Transaction from username: {$username}. Thank you. safesttrades.com";
-            sendSMS($validated['phone'], $message);
+            try {
+                if (!sendSMS($validated['phone'], $message)) {
+                    $json['sms_error'] = "SMS send failed!.";
+                }
+            } catch (Exception $e) {
+                $json['sms_error'] = $e->getMessage();
+            }
         }
 
         $json['status'] = true;
