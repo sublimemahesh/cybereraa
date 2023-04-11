@@ -23,10 +23,27 @@
                     <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
                         <div>
                             <div class=" pt-2 p-2 ">
-                                <label for="binance-trx-date-range" class="text-gray-700 dark:text-gray-300">PERIOD</label>
+                                <label for="binance-trx-date-range" class="text-gray-700 dark:text-gray-300">REQUEST DATE</label>
                                 <div class="relative">
                                     <form autocomplete="off">
                                         <input id="binance-trx-date-range" class="flatpickr block my-1 bg-gray-50 text-gray-700 py-2 px-3 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500 flatpickr-input" type="text" placeholder="Select a period" readonly="readonly">
+                                    </form>
+                                    <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
+                                        <svg class="pointer-events-none w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
+                        <div>
+                            <div class=" pt-2 p-2 ">
+                                <label for="binance-trx-date-approve" class="text-gray-700 dark:text-gray-300">APPROVE DATE</label>
+                                <div class="relative">
+                                    <form autocomplete="off">
+                                        <input id="binance-trx-date-approve" class="flatpickr block my-1 bg-gray-50 text-gray-700 py-2 px-3 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500 flatpickr-input" type="text" placeholder="Select a period" readonly="readonly">
                                     </form>
                                     <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
                                         <svg class="pointer-events-none w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -86,6 +103,9 @@
             <th>TYPE</th>
             <th>STATUS</th>
             <th>CREATED AT</th>
+            <th>PROCESSED</th>
+            <th>APPROVED</th>
+            <th>REJECTED</th>
             <th class="text-right">AMOUNT</th>
             <th class="text-right">FEE</th>
             <th class="text-right">TOTAL</th>
@@ -93,7 +113,7 @@
         </thead>
         <tfoot>
         <tr>
-            <th colspan="8" style="text-align:right"></th>
+            <th colspan="11" style="text-align:right"></th>
         </tr>
         </tfoot>
     </table>

@@ -53,7 +53,11 @@ $(function () {
     });
 
     flatpickr("#earnings-date-range", {
-        mode: "range", dateFormat: "Y-m-d", defaultDate: date_range && date_range.split("to"),
+        mode: "range",
+        dateFormat: "Y-m-d H:i",
+        defaultDate: date_range && date_range.split("to"),
+        enableTime: true,
+        time_24hr: true,
     });
 
     $(document).on("click", "#earnings-search", function (e) {

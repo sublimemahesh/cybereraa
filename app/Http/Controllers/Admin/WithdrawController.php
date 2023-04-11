@@ -65,7 +65,7 @@ class WithdrawController extends Controller
             return $withdrawService->datatable($withdrawals)
                 ->addColumn('user', static function ($withdraw) {
                     return str_pad($withdraw->user_id, '4', '0', STR_PAD_LEFT) .
-                        " - <code class='text-uppercase'>{$withdraw->user->username}</code>";
+                        "<br><code class='text-uppercase' style='font-size:0.7rem'>{$withdraw->user->username}</code>";
                 })
                 ->addColumn('type_n_wallet', function ($withdraw) {
                     return "Type: <code class='text-uppercase'>{$withdraw->type}</code> <br>
