@@ -49,6 +49,8 @@ class StrategyController extends Controller
         $rank_level_count = $strategies->where('name', 'rank_level_count')->first(null, new Strategy(['value' => 7]));
         $rank_gift_levels = $strategies->where('name', 'rank_gift_levels')->first(null, new Strategy(['value' => '1,2']));
         $rank_bonus_levels = $strategies->where('name', 'rank_bonus_levels')->first(null, new Strategy(['value' => '3,4,5,6,7']));
+
+        // TODO: change the requirement
         $rank_package_requirement = $strategies->where('name', 'rank_package_requirement')->first(null, new Strategy(['value' => '{"1":100,"2":250,"3":500,"4":1000,"5":2500,"6":5000,"7":10000}']));
         //$rank_bonus = $strategies->where('name', 'rank_bonus')->first(null, new Strategy(['value' => 10]));
         //$rank_gift = $strategies->where('name', 'rank_gift')->first(null, new Strategy(['value' => 5]));
@@ -296,6 +298,8 @@ class StrategyController extends Controller
     public function savePackageRequirements(Request $request): \Illuminate\Http\JsonResponse
     {
         $this->authorize('update', Strategy::class);
+
+        // TODO: Change the requirement (rank_package_requirement)
 
         $validated = Validator::make($request->all(), [
             'rank_package_requirement' => ['required', 'array', 'min:1', 'max:7'],
