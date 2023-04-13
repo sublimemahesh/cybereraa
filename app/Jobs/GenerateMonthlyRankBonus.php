@@ -60,7 +60,7 @@ class GenerateMonthlyRankBonus implements ShouldQueue
                         ['user_id' => $benefit->user_id],
                         ['balance' => 0]
                     );
-                    $wallet->increment('topup_balance', $benefit->amount);
+                    $wallet->increment('balance', $benefit->amount);
                     $benefit->update(['paid' => $benefit->amount]);
 
                     logger()->notice("Rank: {$this->rank->id} | Rank Bonus saved (" . date('Y-m-d') . ")");

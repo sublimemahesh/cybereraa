@@ -167,6 +167,16 @@ class User extends Authenticatable implements MustVerifyEmail
 
     }
 
+    public function descendantPackages(): \Staudenmeir\LaravelAdjacencyList\Eloquent\Relations\HasManyOfDescendants
+    {
+        return $this->hasManyOfDescendants(PurchasedPackage::class, 'user_id', 'id');
+    }
+
+    public function descendantActivePackages(): \Staudenmeir\LaravelAdjacencyList\Eloquent\Relations\HasManyOfDescendants
+    {
+        return $this->descendantPackages()->activePackages();
+    }
+
     public function earnings(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Earning::class, 'user_id');
@@ -265,7 +275,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public static function getUpgradeRequirements()
     {
         $strategy = Strategy::where('name', 'rank_package_requirement')
-            ->firstOr(fn() => new Strategy(['value' => '{"1":100,"2":250,"3":500,"4":1000,"5":2500,"6":5000,"7":10000}']));
+            ->firstOr(fn() => new Strategy(['value' => '{"3":{"active_investment":1000,"total_team_investment":5000},"4":{"active_investment":2500,"total_team_investment":10000},"5":{"active_investment":5000,"total_team_investment":25000},"6":{"active_investment":10000,"total_team_investment":50000},"7":{"active_investment":25000,"total_team_investment":100000}}']));
         return json_decode($strategy->value, false, 512, JSON_THROW_ON_ERROR);
     }
 
