@@ -117,8 +117,8 @@ class DispatchMonthlyRankBonusJobs extends Command
                         ->get();
                     $eligible_user_ids = [];
                     foreach ($eligible_users as $user) {
-                        $eligible_user_ids = $user->descendants()->pluck('id')->toArray();
-                        $team_invested_amount = \App\Models\PurchasedPackage::whereIn('user_id', $eligible_user_ids)
+                        $descendants = $user->descendants()->pluck('id')->toArray();
+                        $team_invested_amount = \App\Models\PurchasedPackage::whereIn('user_id', $descendants)
                             ->whereDate('created_at', '>=', $first_of_month)
                             ->whereDate('created_at', '<=', $last_of_month)
                             ->sum('invested_amount');
