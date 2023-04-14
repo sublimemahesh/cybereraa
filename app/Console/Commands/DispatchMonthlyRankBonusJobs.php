@@ -117,13 +117,12 @@ class DispatchMonthlyRankBonusJobs extends Command
                         ->get();
                     $eligible_user_ids = [];
                     foreach ($eligible_users as $user) {
-                        $team_investment_satisfied = $user->descendants()
-                            ->whereHas('activePackages', static function ($query) use ($eligible_requirements) {
-                                $query->selectRaw('SUM(invested_amount) as total_team_investment')
-                                    ->havingRaw("total_team_investment >= {$eligible_requirements['total_team_investment']}");
-                            })
-                            ->exists();
-                        if ($team_investment_satisfied) {
+                        $eligible_user_ids = $user->descendants()->pluck('id')->toArray();
+                        $team_invested_amount = \App\Models\PurchasedPackage::whereIn('user_id', $eligible_user_ids)
+                            ->whereDate('created_at', '>=', $first_of_month)
+                            ->whereDate('created_at', '<=', $last_of_month)
+                            ->sum('invested_amount');
+                        if ($team_invested_amount >= $eligible_requirements['total_team_investment']) {
                             $eligible_user_ids[] = $user->id;
                         }
                     }
