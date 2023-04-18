@@ -27,17 +27,28 @@ class EarningController extends Controller
                 ->with('earnable', 'user.ranks')
                 ->when(!empty($request->get('user_id')), function ($query) use ($request) {
                     $query->where('user_id', $request->get('user_id'));
-                })
-                //->where('created_at', '<=', date('Y-m-d H:i:s'))
-                ->latest();
+                });
+            //->where('created_at', '<=', date('Y-m-d H:i:s'));
 
             return DataTables::of($earnings)
+                ->addColumn('user', function ($earn) {
+                    return str_pad($earn->user_id, '4', '0', STR_PAD_LEFT) .
+                        " - <a href='" . route('admin.users.profile.show', $earn->user) . "' target='_blank'>
+                                    <code class='text-uppercase'>{$earn->user->username}</code>
+                                </a>";
+                })
+                ->addColumn('earnable_type', function ($earn) {
+                    return
+                        "<code class='text-uppercase'>{$earn->type}</code> - #".
+                        str_pad($earn->earnable_id, '4', '0', STR_PAD_LEFT) ;
+                })
                 ->addColumn('user_id', fn($earn) => str_pad($earn->user_id, '4', '0', STR_PAD_LEFT))
                 ->addColumn('package', fn($earn) => $earn->earnable->package_info_json->name)
                 ->addColumn('username', fn($earn) => $earn->user->username)
                 ->addColumn('amount', fn($earn) => number_format($earn->amount, 2))
-                ->addColumn('created_at', fn($earn) => $earn->created_at->format('Y-m-d H:i:s'))
-                ->make(true);
+                ->addColumn('date', fn($earn) => $earn->created_at->format('Y-m-d H:i:s'))
+                ->rawColumns(['user', 'earnable_type'])
+                ->make();
         }
         return view('backend.admin.users.earnings.index');
     }

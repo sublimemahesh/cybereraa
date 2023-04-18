@@ -14,15 +14,15 @@ $(function () {
         //stateSave: true,
         ajax: INCOMES_URL,
         columns: [
-            {data: "user_id", searchable: false},
-            {data: "username", name: 'user.username', searchable: true},
-            {data: "type", searchable: false},
-            {data: "next_payment_date", searchable: false},
-            {data: "status", searchable: false},
-            {data: "created_at", searchable: false},
-            {data: "package", searchable: false},
-            {data: "amount", name: 'amount', searchable: false},
-            {data: "paid", name: 'paid', searchable: false},
+            {data: "id", searchable: false, orderable: false},
+            {data: "user", name: 'user.username', searchable: true, orderable: false},
+            {data: "type", searchable: false, orderable: false},
+            {data: "next_payment_date", searchable: false, orderable: false},
+            {data: "status", searchable: false, orderable: false},
+            {data: "date", name: 'created_at', searchable: false},
+            {data: "package", searchable: false, orderable: false},
+            {data: "amount", name: 'amount', searchable: false, orderable: false},
+            {data: "paid", name: 'paid', searchable: false, orderable: false},
         ],
         footerCallback: function (row, data, start, end, display) {
             let api = this.api();
@@ -45,14 +45,14 @@ $(function () {
             $(api.column(7).footer()).html(`Current Page Amount Total: USDT ${amountTotal}`);
 
             let paidTotal8 = new Intl.NumberFormat().format(sumVal(8));
-            $(api.column(7).footer()).append(`<br><br>Current Paid Total: USDT ${paidTotal8}`);
+            $(api.column(7).footer()).append(`<br/><br/>Current Paid Total: USDT ${paidTotal8}`);
         },
         columnDefs: [
             {
                 render: function (date, type, full, meta) {
                     return `<div style='font-size: 0.76rem !important;'> ${date} </div>`;
                 },
-                targets: [3, 5],
+                targets: [2, 3, 4, 5, 6],
             },
             {
                 render: function (amount, type, full, meta) {

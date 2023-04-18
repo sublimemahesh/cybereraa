@@ -96,14 +96,17 @@ class RankBenefit extends Model
     public function getNextPaymentDateAttribute(): string
     {
         $today = Carbon::parse(date('Y-m-d') . ' ' . $this->created_at->format('H:i:s'));
+        if ($this->amount !== $this->paid) {
+            $nextPayDay = $today;
+            if (Carbon::parse($this->last_earned_at)->isToday()) {
+                $nextPayDay = $today->addDay();
+            }
+            if ($nextPayDay->isSaturday() || $nextPayDay->isSunday()) {
+                $nextPayDay = $nextWeekday = $today->nextWeekday();
+            }
+            return $this->next_payment_date = $nextPayDay->format('Y-m-d H:i:s');
+        }
 
-        $nextPayDay = $today;
-        if (Carbon::parse($this->last_earned_at)->isToday()) {
-            $nextPayDay = $today->addDay();
-        }
-        if ($nextPayDay->isSaturday() || $nextPayDay->isSunday()) {
-            $nextPayDay = $nextWeekday = $today->nextWeekday();
-        }
-        return $this->next_payment_date = $nextPayDay->format('Y-m-d H:i:s');
+        return Carbon::parse($this->last_earned_at ?? $this->updated_at)->format('Y-m-d H:i:s');
     }
 }

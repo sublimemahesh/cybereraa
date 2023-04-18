@@ -44,7 +44,7 @@ class WithdrawController extends Controller
                                     <code class='text-uppercase'>{$withdraw->receiver->username}</code>
                           </a>";
                 })
-                ->rawColumns(['sender', 'receiver'])
+                ->rawColumns(['type', 'sender', 'receiver'])
                 ->make();
         }
 

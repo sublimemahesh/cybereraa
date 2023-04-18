@@ -26,17 +26,20 @@ class IncomeController extends Controller
                     $query->where('user_id', $request->get('user_id'));
                 })
                 ->with('purchasedPackage', 'user')
-                ->filter()
-                //->where('created_at', '<=', date('Y-m-d H:i:s'))
-                ->latest();
+                ->filter();
 
             return DataTables::of($earnings)
-                ->addColumn('user_id', fn($commission) => str_pad($commission->user_id, '4', '0', STR_PAD_LEFT))
-                ->addColumn('username', fn($commission) => $commission->user->username)
+                ->addColumn('user', function ($commission) {
+                    return str_pad($commission->user_id, '4', '0', STR_PAD_LEFT) .
+                        " - <a href='" . route('admin.users.profile.show', $commission->user) . "' target='_blank'>
+                                    <code class='text-uppercase'>{$commission->user->username}</code>
+                                </a>";
+                })
                 ->addColumn('package', fn($commission) => $commission->package_info_json->name)
                 ->addColumn('amount', fn($commission) => number_format($commission->amount, 2))
                 ->addColumn('paid', fn($commission) => number_format($commission->paid, 2))
-                ->addColumn('created_at', fn($commission) => $commission->created_at->format('Y-m-d H:i:s'))
+                ->addColumn('date', fn($commission) => $commission->created_at->format('Y-m-d H:i:s'))
+                ->rawColumns(['user'])
                 ->make();
         }
 
@@ -45,7 +48,7 @@ class IncomeController extends Controller
             'indirect' => 'INDIRECT',
         ];
 
-        return view('backend.admin.users.incomes.commissions', compact('types'));
+        return view('backend.admin.users.incomes.commission', compact('types'));
     }
 
     /**
@@ -54,7 +57,7 @@ class IncomeController extends Controller
     public function rewards(Request $request)
     {
         abort_if(Gate::denies('rank_bonus.viewAny'), Response::HTTP_FORBIDDEN);
-
+        
         if ($request->wantsJson()) {
             $earnings = RankBenefit::with('user')
                 ->when(!empty($request->get('user_id')), static function ($query) use ($request) {
@@ -65,12 +68,17 @@ class IncomeController extends Controller
                 ->latest();
 
             return DataTables::of($earnings)
-                ->addColumn('user_id', fn($reward) => str_pad($reward->user_id, '4', '0', STR_PAD_LEFT))
-                ->addColumn('username', fn($reward) => $reward->user->username)
+                ->addColumn('user', function ($commission) {
+                    return str_pad($commission->user_id, '4', '0', STR_PAD_LEFT) .
+                        " - <a href='" . route('admin.users.profile.show', $commission->user) . "' target='_blank'>
+                                    <code class='text-uppercase'>{$commission->user->username}</code>
+                                </a>";
+                })
                 ->addColumn('package', fn($reward) => $reward->package_info_json->name)
                 ->addColumn('amount', fn($reward) => number_format($reward->amount, 2))
                 ->addColumn('paid', fn($reward) => number_format($reward->paid, 2))
-                ->addColumn('created_at', fn($reward) => $reward->created_at->format('Y-m-d H:i:s'))
+                ->addColumn('date', fn($reward) => $reward->created_at->format('Y-m-d H:i:s'))
+                ->rawColumns(['user'])
                 ->make();
         }
 
@@ -79,6 +87,6 @@ class IncomeController extends Controller
             'rank_gift' => 'GIFT',
         ];
 
-        return view('backend.admin.users.incomes.commissions', compact('types'));
+        return view('backend.admin.users.incomes.rewards', compact('types'));
     }
 }

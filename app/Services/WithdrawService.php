@@ -33,6 +33,10 @@ class WithdrawService
             ->addColumn('processed_date', fn($withdraw) => \Carbon::parse($withdraw->processed_at)->format('Y-m-d H:i:s'))
             ->addColumn('approved_date', fn($withdraw) => \Carbon::parse($withdraw->approved_at)->format('Y-m-d H:i:s'))
             ->addColumn('rejected_date', fn($withdraw) => \Carbon::parse($withdraw->rejected_at)->format('Y-m-d H:i:s'))
-            ->addColumn('type', fn($withdraw) => $withdraw->type . " - " . $withdraw->wallet_type);
+            ->addColumn('type', function ($withdraw) {
+                return
+                    "<code class='text-uppercase'>{$withdraw->type} - {$withdraw->wallet_type}</code> - #" .
+                    str_pad($withdraw->id, '4', '0', STR_PAD_LEFT);
+            });
     }
 }
