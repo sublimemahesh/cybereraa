@@ -21,15 +21,15 @@ $(function () {
         stateSave: true,
         ajax: P2P_URL,
         columns: [
-            {data: "sender", name: 'user.username', searchable: true},
-            {data: "receiver", name: 'receiver.username', searchable: true},
-            {data: "type", searchable: false},
-            {data: "status", searchable: false},
-            {data: "created_at", searchable: false},
-            {data: "remark", searchable: false},
-            {data: "amount", name: 'amount', searchable: false},
-            {data: "transaction_fee", name: 'transaction_fee', searchable: false},
-            {data: "total", searchable: false}
+            {data: "sender", name: 'user.username', searchable: true, orderable: false},
+            {data: "receiver", name: 'receiver.username', searchable: true, orderable: false},
+            {data: "type", searchable: false, orderable: false},
+            {data: "status", searchable: false, orderable: false},
+            {data: "date", name: 'created_at', searchable: false},
+            {data: "remark", searchable: false, orderable: false},
+            {data: "amount", name: 'amount', searchable: false, orderable: false},
+            {data: "transaction_fee", name: 'transaction_fee', searchable: false, orderable: false},
+            {data: "total", searchable: false, orderable: false}
         ],
         footerCallback: function (row, data, start, end, display) {
             let api = this.api();
@@ -58,9 +58,9 @@ $(function () {
             $(api.column(8).footer()).append(`<br><br>Current Page Total: USDT ${total}`);
         },
         columnDefs: [{
-            render: function (date, type, full, meta) {
-                return `<div style='font-size: 0.76rem !important;'> ${date} </div>`;
-            }, targets: 4,
+            render: function (data, type, full, meta) {
+                return `<div style='font-size: 0.76rem !important;'> ${data !== null ? data : '-'} </div>`;
+            }, targets: [2, 3, 4, 5],
         }, {
             render: function (amount, type, full, meta) {
                 return `<div style='min-width:100px' class="text-right"> ${amount} </div>`;

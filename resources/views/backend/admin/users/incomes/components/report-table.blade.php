@@ -94,11 +94,11 @@
     </div>
 </div>
 <div class="table-responsive">
-    <table id="rewards" class="display mb-1 nowrap table-responsive-my">
+    <table id="rewards" class="display nowrap mb-1 table-responsive-my" style="table-layout: fixed">
         <thead>
         <tr>
-            <th>USER ID</th>
-            <th>USERNAME</th>
+            <th>REC ID</th>
+            <th>USER</th>
             <th>TYPE</th>
             <th>NEXT PAY</th>
             <th>STATUS</th>
@@ -110,8 +110,7 @@
         </thead>
         <tfoot>
         <tr>
-            <th colspan="8" style="text-align:right"></th>
-
+            <th colspan="9" style="text-align:right"></th>
         </tr>
         </tfoot>
     </table>

@@ -61,7 +61,7 @@ class GenerateMonthlyRankBonus implements ShouldQueue
                         ['balance' => 0]
                     );
                     $wallet->increment('balance', $benefit->amount);
-                    $benefit->update(['paid' => $benefit->amount]);
+                    $benefit->update(['paid' => $benefit->amount, 'last_earned_at' => Carbon::now()]);
 
                     logger()->notice("Rank: {$this->rank->id} | Rank Bonus saved (" . date('Y-m-d') . ")");
                 } else {

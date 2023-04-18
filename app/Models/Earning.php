@@ -37,8 +37,8 @@ class Earning extends Model
             static function ($query) {
                 $period = explode(' to ', request()->input('date-range'));
                 try {
-                    $date1 = Carbon::createFromFormat('Y-m-d H:i', $period[0]);
-                    $date2 = Carbon::createFromFormat('Y-m-d H:i', $period[1]);
+                    $date1 = Carbon::createFromFormat('Y-m-d H:i:s', $period[0]);
+                    $date2 = Carbon::createFromFormat('Y-m-d H:i:s', $period[1]);
                     $query->when($date1 && $date2, fn($q) => $q->where('created_at', '>=', $period[0])->where('created_at', '<=', $period[1]));
                 } catch (Exception $e) {
                     $query->whereDate('created_at', $period[0]);

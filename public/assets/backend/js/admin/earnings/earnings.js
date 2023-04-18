@@ -14,13 +14,14 @@ $(function () {
         //stateSave: true,
         ajax: EARNING_URL,
         columns: [
-            {data: "type", searchable: false},
-            {data: "user_id", searchable: false},
-            {data: "username", name: 'user.username'},
-            {data: "package", searchable: false},
-            {data: "status", searchable: false},
-            {data: "created_at", searchable: false},
-            {data: "amount", name: 'amount'},
+            {data: "id", searchable: false, orderable: false},
+            {data: "earnable_type", searchable: false, orderable: false},
+            {data: "user", name: 'user.username', searchable: true, orderable: false},
+            //{data: "username"},
+            {data: "package", searchable: false, orderable: false},
+            {data: "status", searchable: false, orderable: false},
+            {data: "date", name: 'created_at', searchable: false},
+            {data: "amount", name: 'amount', orderable: false},
         ],
         footerCallback: function (row, data, start, end, display) {
             let api = this.api();
