@@ -57,7 +57,7 @@ class IncomeController extends Controller
     public function rewards(Request $request)
     {
         abort_if(Gate::denies('rank_bonus.viewAny'), Response::HTTP_FORBIDDEN);
-        
+
         if ($request->wantsJson()) {
             $earnings = RankBenefit::with('user')
                 ->when(!empty($request->get('user_id')), static function ($query) use ($request) {
