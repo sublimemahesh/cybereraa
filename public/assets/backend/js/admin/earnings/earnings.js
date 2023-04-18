@@ -14,8 +14,8 @@ $(function () {
         //stateSave: true,
         ajax: EARNING_URL,
         columns: [
-            {data: "id", searchable: false, orderable: false},
             {data: "earnable_type", searchable: false, orderable: false},
+            {data: "user_id", searchable: false, orderable: false},
             {data: "user", name: 'user.username', searchable: true, orderable: false},
             //{data: "username"},
             {data: "package", searchable: false, orderable: false},

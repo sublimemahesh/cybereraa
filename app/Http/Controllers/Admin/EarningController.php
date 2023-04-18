@@ -31,10 +31,10 @@ class EarningController extends Controller
             //->where('created_at', '<=', date('Y-m-d H:i:s'));
 
             return DataTables::of($earnings)
+                ->addColumn('user_id', fn($earn) => str_pad($earn->user_id, '4', '0', STR_PAD_LEFT))
                 ->addColumn('user', function ($earn) {
-                    return str_pad($earn->user_id, '4', '0', STR_PAD_LEFT) .
-                        " - <a href='" . route('admin.users.profile.show', $earn->user) . "' target='_blank'>
-                                    <code class='text-uppercase'>{$earn->user->username}</code>
+                    return " <a href='" . route('admin.users.profile.show', $earn->user) . "' target='_blank'>
+                                    {$earn->user->username}
                                 </a>";
                 })
                 ->addColumn('earnable_type', function ($earn) {

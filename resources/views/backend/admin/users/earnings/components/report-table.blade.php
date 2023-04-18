@@ -100,9 +100,9 @@
     <table id="earnings" class="display mb-1 table-responsive-my" style="table-layout: fixed">
         <thead>
         <tr>
-            <th>EARNING ID</th>
             <th>EARNING TYPE</th>
-            <th>USER</th>
+            <th>USER ID</th>
+            <th>USERNAME</th>
             <th>PACKAGE</th>
             <th>STATUS</th>
             <th>PAYMENT DATE</th>
