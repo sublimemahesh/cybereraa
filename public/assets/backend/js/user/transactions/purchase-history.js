@@ -2,10 +2,10 @@ $(function () {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const date_range = urlParams.get("date-range");
-
-    const user_id = urlParams.get("user_id");
-    if (user_id !== null) {
-        urlParams.delete("user_id");
+    
+    const purchaser_id = urlParams.get("purchaser_id");
+    if (purchaser_id !== null) {
+        urlParams.delete("purchaser_id");
         let url = location.href.split(/\?|\#/)[0] + "?" + urlParams.toString();
         history.replaceState({}, "", url);
     }
@@ -72,16 +72,16 @@ $(function () {
             showAlways: true,
             theme: "light" // or "dark"
         })],
-        defaultDate: date_range && date_range.split(" to "),
+        defaultDate: date_range && date_range.split("to"),
     });
 
     $(document).on("click", "#search", function (e) {
         e.preventDefault();
 
         urlParams.set("date-range", $("#date-range").val());
+        urlParams.delete("purchaser_id");
+        urlParams.set("user_id", $("#user_id").val());
         urlParams.set("status", $("#status").val());
-        urlParams.delete("user_id");
-        urlParams.set("purchaser_id", $("#purchaser_id").val());
         urlParams.set("currency-type", $("#currency-type").val());
 
         let url = location.href.split(/\?|\#/)[0] + "?" + urlParams.toString();
