@@ -145,10 +145,19 @@
     </li>
 @endcan
 
+@can('rank_bonus.viewAny')
+    <li>
+        <a href="{{ route('admin.ranks.benefits.summery') }}" class="" aria-expanded="false">
+            <i class="bi bi-trophy-fill"></i>
+            <span class="nav-text"> Bonus Summary </span>
+        </a>
+    </li>
+@endcan
+
 @can('rank_gift.viewAny')
     <li>
         <a href="{{ route('admin.ranks.gifts') }}" class="" aria-expanded="false">
-            <i class="bi bi-trophy-fill"></i>
+            <i class="bi bi-gift"></i>
             <span class="nav-text"> Rank Gifts </span>
         </a>
     </li>

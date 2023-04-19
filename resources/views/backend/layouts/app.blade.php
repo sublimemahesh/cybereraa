@@ -64,103 +64,103 @@
 </head>
 
 <body class="font-sans antialiased dark" style="background:#15073A">
-    <!--******************* Preloader start ********************-->
-    <div id="loader"></div>
-    <!--******************* Preloader end ********************-->
+<!--******************* Preloader start ********************-->
+<div id="loader"></div>
+<!--******************* Preloader end ********************-->
 
-    <!--**********************************  Main wrapper start ***********************************-->
-    <div id="main-wrapper">
+<!--**********************************  Main wrapper start ***********************************-->
+<div id="main-wrapper">
 
-        @include('backend.layouts.header')
+    @include('backend.layouts.header')
 
-        @include('backend.' . $folder .'.sidebar')
+    @include('backend.' . $folder .'.sidebar')
 
-        <!--********************************** Content body start ***********************************-->
-        <div class="content-body">
-            <!-- row -->
-            <div class="container-fluid">
+    <!--********************************** Content body start ***********************************-->
+    <div class="content-body">
+        <!-- row -->
+        <div class="container-fluid">
 
-                <div class="page-titles">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <a href="{{ route('/') }}"><i class="material-icons">home</i></a>
-                        </li>
-                        <li class="breadcrumb-item">
-                            <a href="{{ !request()->is('*/dashboard') ? route($folder . '.dashboard') : 'javascript:void(0)' }}">Dashboard</a>
-                        </li>
-                        @yield('breadcrumb-items')
-                    </ol>
-                </div>
-                <div id="alert-container">
-                    <x-jet-validation-errors class="alert alert-danger mb-4"/>
-                    @if (session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                    @endif
-                    @if (session('error'))
-                        <div class="alert alert-danger">
-                            {{ session('error') }}
-                        </div>
-                    @endif
-                    @if (session('info'))
-                        <div class="alert alert-info">
-                            {{ session('info') }}
-                        </div>
-                    @endif
-                    @if (session('warning'))
-                        <div class="alert alert-warning">
-                            {{ session('warning') }}
-                        </div>
-                    @endif
-                </div>
-
-                {{ $slot }}
-
+            <div class="page-titles">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="{{ route('/') }}"><i class="material-icons">home</i></a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="{{ !request()->is('*/dashboard') ? route($folder . '.dashboard') : 'javascript:void(0)' }}">Dashboard</a>
+                    </li>
+                    @yield('breadcrumb-items')
+                </ol>
+            </div>
+            <div id="alert-container">
+                <x-jet-validation-errors class="alert alert-danger mb-4"/>
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                @if (session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
+                @if (session('info'))
+                    <div class="alert alert-info">
+                        {{ session('info') }}
+                    </div>
+                @endif
+                @if (session('warning'))
+                    <div class="alert alert-warning">
+                        {{ session('warning') }}
+                    </div>
+                @endif
             </div>
 
+            {{ $slot }}
 
         </div>
-        <!--**********************************  Footer start   ***********************************-->
-        <div class="footer out-footer">
-            <div class="copyright">
-                <p>© {{ date('Y') }} Safest Trades. All Rights Reserved.</p>
-            </div>
-        </div>
-        <!--********************************** Footer end  ***********************************-->
-        <!--********************************** Content body end ***********************************-->
+
+
     </div>
-    <!--********************************** Main wrapper end ***********************************-->
+    <!--**********************************  Footer start   ***********************************-->
+    <div class="footer out-footer">
+        <div class="copyright">
+            <p>© {{ date('Y') }} Safest Trades. All Rights Reserved.</p>
+        </div>
+    </div>
+    <!--********************************** Footer end  ***********************************-->
+    <!--********************************** Content body end ***********************************-->
+</div>
+<!--********************************** Main wrapper end ***********************************-->
 
 
-    @stack('modals')
-    <!--**********************************  Scripts ***********************************-->
-    <!-- Required vendors -->
-    <script src="{{ asset('assets/backend/vendor/global/global.min.js') }}"></script>
+@stack('modals')
+<!--**********************************  Scripts ***********************************-->
+<!-- Required vendors -->
+<script src="{{ asset('assets/backend/vendor/global/global.min.js') }}"></script>
 
-    @powerGridScripts
+@powerGridScripts
 
-    <script src="{{ asset('assets/backend/vendor/chart.js/Chart.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/backend/vendor/apexchart/apexchart.js') }}"></script>
-    <script src="{{ asset('assets/backend/vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
-    <script src="{{ asset('assets/backend/vendor/swiper/js/swiper-bundle.min.js') }}"></script>
+<script src="{{ asset('assets/backend/vendor/chart.js/Chart.bundle.min.js') }}"></script>
+<script src="{{ asset('assets/backend/vendor/apexchart/apexchart.js') }}"></script>
+<script src="{{ asset('assets/backend/vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
+<script src="{{ asset('assets/backend/vendor/swiper/js/swiper-bundle.min.js') }}"></script>
 
-    <!-- Dashboard 1 -->
-    <script src="{{ asset('assets/backend/js/custom.js') }}"></script>
-    <script src="{{ asset('assets/backend/js/deznav-init.js') }}"></script>
-    {{--    <script src="{{ asset('assets/backend/js/dashboard/tradingview-2.js') }}"></script> --}}
+<!-- Dashboard 1 -->
+<script src="{{ asset('assets/backend/js/custom.js') }}"></script>
+<script src="{{ asset('assets/backend/js/deznav-init.js') }}"></script>
+{{--    <script src="{{ asset('assets/backend/js/dashboard/tradingview-2.js') }}"></script> --}}
 
-    @yield('scripts')
-    @stack('scripts')
+@yield('scripts')
+@stack('scripts')
 
-    <script>
-        $(document).ready(function () {
-            setTimeout(function () {
-                dzSettingsOptions.version = 'dark';
-                new dzSettings(dzSettingsOptions);
-            }, 1500)
-        });
-    </script>
+<script>
+    $(document).ready(function () {
+        setTimeout(function () {
+            dzSettingsOptions.version = 'dark';
+            new dzSettings(dzSettingsOptions);
+        }, 1500)
+    });
+</script>
 </body>
 
 </html>

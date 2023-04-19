@@ -64,7 +64,7 @@ class WithdrawController extends Controller
                                     </div>
                                 </div>';
                 })
-                ->rawColumns(['receiver', 'actions'])
+                ->rawColumns(['type', 'receiver', 'actions'])
                 ->make();
 
         }
