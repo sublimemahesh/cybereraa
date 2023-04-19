@@ -109,7 +109,7 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table id="earnings" class="display table-responsive-my ">
+                        <table id="earnings" class="display table-responsive-my " style="table-layout: fixed">
                             <thead>
                             <tr>
                                 <th>EARNING TYPE</th>

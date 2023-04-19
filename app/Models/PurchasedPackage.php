@@ -43,6 +43,13 @@ class PurchasedPackage extends Pivot
                     }
                 });
         }));
+
+        static::updated(function (self $package) {
+            if ($package->status === 'EXPIRED') {
+                $package->expiry_status_changed_at = Carbon::now();
+                $package->saveQuietly();
+            }
+        });
     }
 
     /**
@@ -51,6 +58,11 @@ class PurchasedPackage extends Pivot
     public function getPackageInfoJsonAttribute()
     {
         return $this->package_info_json = json_decode($this->package_info, false, 512, JSON_THROW_ON_ERROR);
+    }
+
+    public function getExpiryStatusChangedAtAttribute($date)
+    {
+        return $this->expiry_status_changed_at = $date ?? $this->updated_at;
     }
 
     public function getIsCommissionIssuedAttribute(): bool
@@ -116,6 +128,20 @@ class PurchasedPackage extends Pivot
     {
         return $query->whereIn('status', ['ACTIVE', 'EXPIRED'])
             ->whereIn('user_id', $user->descendants()->pluck('id')->toArray());
+    }
+
+    public function scopeTotalMonthlyTeamInvestment(Builder $query, User $user, string|null $first_of_month, string|null $end_of_month): Builder
+    {
+        if ($first_of_month === null) {
+            $first_of_month = Carbon::now()->firstOfMonth()->format('Y-m-d H:i:s');
+        }
+        if ($end_of_month === null) {
+            $end_of_month = Carbon::now()->endOfMonth()->format('Y-m-d H:i:s');
+        }
+        $descendants = $user->descendants()->pluck('id')->toArray() ?? [];
+        return $query->whereIn('user_id', $descendants)
+            ->whereDate('created_at', '>=', $first_of_month)
+            ->whereDate('created_at', '<=', $end_of_month);
     }
 
     /**

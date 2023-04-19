@@ -146,6 +146,9 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
             // Ranks
             Route::get('ranks', 'Admin\RankController@index')->name('ranks');
 
+            // Ranks Bonus Summary
+            Route::get('ranks/benefits/summery', 'Admin\RankBenefitSummeryController@index')->name('ranks.benefits.summery');
+
             // Earnings
             Route::get('users/earnings', 'Admin\EarningController@index')->name('earnings.index');
             Route::post('users/earnings/calculate-profit', 'Admin\EarningController@calculateProfit');
@@ -238,6 +241,9 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
 
         // RANK GIFtS
         Route::get('ranks/gifts', 'User\RankGiftController@index')->name('ranks.gifts');
+
+        Route::get('ranks/benefits/summery', 'User\RankBenefitSummeryController@index')->name('ranks.benefits.summery');
+        Route::get('ranks/benefits/requirements', 'User\RankBenefitSummeryController@requirements')->name('ranks.benefits.requirements');
 
         // My Genealogy
         Route::get('genealogy/new-registration', 'User\GenealogyController@registerForm')->name('genealogy.position.register');

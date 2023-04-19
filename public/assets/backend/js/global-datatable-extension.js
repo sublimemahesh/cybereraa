@@ -10,13 +10,20 @@ $(function () {
                 }
             },
             dom: "Bfrtip",
+            autoWidth: false,
             lengthChange: false,
             lengthMenu: [[10, 25, 50, 100, 250, 500, -1], ["10 rows", "25 rows", "50 rows", "100 rows", "250 rows", "500 rows", "Show all"]],
-            buttons: [{
-                extend: 'pdf', split: ['csv', 'excel'], exportOptions: {
-                    columns: [":visible"],
+            buttons: [
+                {
+                    extend: 'pdfHtml5',
+                    split: ['csv', 'excel'],
+                    exportOptions: {
+                        columns: [":visible"],
+                    },
                 },
-            }, "colvis", "pageLength",]
+                "colvis",
+                "pageLength",
+            ]
         });
     }
 

@@ -63,9 +63,8 @@ class IncomeController extends Controller
                 ->when(!empty($request->get('user_id')), static function ($query) use ($request) {
                     $query->where('user_id', $request->get('user_id'));
                 })
-                ->filter()
-                //->where('created_at', '<=', date('Y-m-d H:i:s'))
-                ->latest();
+                ->filter();
+                //->where('created_at', '<=', date('Y-m-d H:i:s'));
 
             return DataTables::of($earnings)
                 ->addColumn('user', function ($commission) {

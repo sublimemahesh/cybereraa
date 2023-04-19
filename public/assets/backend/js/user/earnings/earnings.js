@@ -15,15 +15,15 @@ $(function () {
         destroy: true,
         processing: true,
         serverSide: true,
-        stateSave: true,
+        //stateSave: true,
         ajax: location.href,
-        order: [[4, 'desc']],
+        order: [[3, 'desc']],
         columns: [
-            {data: "type"},
-            {data: "package", searchable: false},
-            {data: "status"},
-            {data: "created_at"},
-            {data: "amount"},
+            {data: "earnable_type", searchable: false, orderable: false},
+            {data: "package", searchable: false, orderable: false},
+            {data: "status", searchable: false, orderable: false},
+            {data: "date", name: "created_at", searchable: false},
+            {data: "amount", searchable: false, orderable: false},
         ],
         footerCallback: function (row, data, start, end, display) {
             let api = this.api();
