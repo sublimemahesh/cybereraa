@@ -36,7 +36,13 @@
             <li>
                 <a href="{{ route('user.transactions.index') }}" class="" aria-expanded="false">
                     <i class="bi fa-chain-broken"></i>
-                    <span class="nav-text">Transactions</span>
+                    <span class="nav-text">My Packages</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('user.transactions.purchased.history') }}" class="" aria-expanded="false">
+                    <i class="bi bi-clipboard-data"></i>
+                    <span class="nav-text">Purchase History</span>
                 </a>
             </li>
             <li>

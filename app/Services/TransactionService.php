@@ -11,20 +11,23 @@ use Yajra\DataTables\QueryDataTable;
 
 class TransactionService
 {
-    public function filter(int|null $user_id = null)
+    public function filter(int|null $user_id = null, int|null $purchase_id = null)
     {
         return Transaction::filter()
             ->with('package', 'user', 'purchaser')
             ->when($user_id !== null, static function ($query) use ($user_id) {
                 $query->where('user_id', $user_id);
+            })
+            ->when($purchase_id !== null, static function ($query) use ($purchase_id) {
+                $query->where('purchaser_id', $purchase_id);
             });
         //->where('created_at', '<=', date('Y-m-d H:i:s'))
         //->latest();
     }
 
-    public function datatable(int|null $user_id = null): EloquentDataTable|QueryDataTable|DataTableAbstract
+    public function datatable(int|null $user_id = null, int|null $purchase_id = null): EloquentDataTable|QueryDataTable|DataTableAbstract
     {
-        return DataTables::eloquent($this->filter($user_id))
+        return DataTables::eloquent($this->filter($user_id, $purchase_id))
             ->addColumn('trx_id', fn($trx) => '#' . str_pad($trx->id, '4', '0', STR_PAD_LEFT))
             ->addColumn('user', static function ($trx) {
                 return "ID: " . str_pad($trx->user_id, '4', '0', STR_PAD_LEFT) .

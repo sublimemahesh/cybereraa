@@ -1,6 +1,6 @@
 <x-backend.layouts.app>
-    @section('title', 'Transactions')
-    @section('header-title', 'My Transactions' )
+    @section('title', 'Purchase History | Transactions')
+    @section('header-title', 'My Purchase History' )
     @section('plugin-styles')
         <!-- Datatable -->
         <link href="{{ asset('assets/backend/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
@@ -11,7 +11,7 @@
     @endsection
 
     @section('breadcrumb-items')
-        <li class="breadcrumb-item">All Transactions</li>
+        <li class="breadcrumb-item">Purchase History</li>
     @endsection
 
     <div class="row dark"> {{--! Tailwind css used. if using tailwind plz run npm run dev and add tailwind classes--}}
@@ -31,9 +31,9 @@
                                         <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
                                             <div>
                                                 <div class=" pt-2 p-2 ">
-                                                    <label for="purchaser_id" class="text-gray-700 dark:text-gray-300">PURCHASED BY </label>
+                                                    <label for="user_id" class="text-gray-700 dark:text-gray-300">PURCHASED FOR </label>
                                                     <div class="relative">
-                                                        <input id="purchaser_id" value="{{ request()->input('purchaser_id') }}" placeholder="Enter User ID" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500"/>
+                                                        <input id="user_id" value="{{ request()->input('user_id') }}" placeholder="Enter User ID" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -121,8 +121,8 @@
                             <tr>
                                 <th class="fs-13 text-center" style="max-width:30px">ACTION</th>
                                 <th class="fs-13">TRX ID</th>
-                                <th class="fs-13">USER(YOU)</th>
-                                <th class="fs-13">PURCHASED BY</th>
+                                <th class="fs-13">PURCHASE FOR</th>
+                                <th class="fs-13">PURCHASE BY (YOU)</th>
                                 <th class="fs-13">PACKAGE</th>
                                 <th class="fs-13">TYPE</th>
                                 <th class="fs-13">STATUS</th>
@@ -153,6 +153,6 @@
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.html5.min.js') }}"></script>
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.print.min.js') }}"></script>
         <script src="{{ asset('assets/backend/js/global-datatable-extension.js') }}"></script>
-        <script src="{{ asset('assets/backend/js/user/transactions/transactions.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/user/transactions/purchase-history.js') }}"></script>
     @endpush
 </x-backend.layouts.app>
