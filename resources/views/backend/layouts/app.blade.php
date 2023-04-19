@@ -61,6 +61,8 @@
     @livewireStyles
     @powerGridStyles
     @livewireScripts
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/plugins/monthSelect/style.css">
 </head>
 
 <body class="font-sans antialiased dark" style="background:#15073A">
@@ -148,6 +150,7 @@
 <!-- Dashboard 1 -->
 <script src="{{ asset('assets/backend/js/custom.js') }}"></script>
 <script src="{{ asset('assets/backend/js/deznav-init.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/plugins/monthSelect/index.js"></script>
 {{--    <script src="{{ asset('assets/backend/js/dashboard/tradingview-2.js') }}"></script> --}}
 
 @yield('scripts')
