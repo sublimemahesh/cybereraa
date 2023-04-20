@@ -23,7 +23,7 @@ class SendOTPMail extends Mailable implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(User $user, int $otp, array $data)
+    public function __construct(User $user, int $otp, array $data = [])
     {
         $this->user = $user;
         $this->otp = $otp;

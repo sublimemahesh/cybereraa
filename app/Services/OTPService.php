@@ -28,12 +28,19 @@ class OTPService
             $json['icon'] = 'error'; // warning | info | question | success | error
             return response()->json($json, Response::HTTP_UNAUTHORIZED);
         }
+        return $this->sendOTPCode($user, $validated);
+    }
 
+    /**
+     * @throws Exception
+     */
+    public function sendOTPCode(User $user, array $validated = []): \Illuminate\Http\JsonResponse
+    {
         $otp = random_int(100000, 999999);
         // $otp = 123456;
         $hashed_code = hash("sha512", $otp);
-        $hashed_phone = hash("sha512", $user?->username);
-        session()->put($hashed_phone, $hashed_code);
+        $hashed_username = hash("sha512", $user?->username);
+        session()->put($hashed_username, $hashed_code);
 
         \Mail::to($user?->email)->send(new SendOTPMail($user, $otp, $validated));
 
