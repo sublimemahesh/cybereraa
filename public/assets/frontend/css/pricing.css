@@ -5,7 +5,7 @@ a,
             text-decoration: none;
             outline: none;
         }
-        
+
         a,
         a:active,
         a:focus {
@@ -22,7 +22,7 @@ a,
             -webkit-transition-duration: .2s;
             -o-transition-duration: .2s;
         }
-        
+
         ul {
             margin: 0;
             padding: 0;
@@ -79,11 +79,11 @@ a,
 .sec-title.light h2,
 .sec-title.light .title{
   color: #ffffff;
-  -webkit-text-fill-color:inherit; 
+  -webkit-text-fill-color:inherit;
 }
 .pricing-section {
     position: relative;
-    padding: 100px 0 80px;
+    padding: 0px 0 80px;
     overflow: hidden;
     background-color: #111111;
 }
@@ -99,9 +99,28 @@ a,
 
 .pricing-block{
   position: relative;
-  padding: 0 30px;
+  /* padding: 0 30px; */
   margin-bottom: 40px;
 }
+
+
+
+@media only screen and (max-width: 600px) {
+    .pricing-block{
+        position: relative;
+        padding: 0 30px;
+        margin-bottom: 40px;
+      }
+
+  }
+
+
+
+
+
+
+
+
 
 .pricing-block .inner-box{
   position: relative;
@@ -279,7 +298,7 @@ a,
 .pricing-block:nth-child(2) .inner-box{
   border-color: #1d95d2;
 } */
-/* 
+/*
 .pricing-block:nth-child(2) .btn-box a,
 .pricing-block:nth-child(2) .icon-box{
   background-color: #1d95d2;
