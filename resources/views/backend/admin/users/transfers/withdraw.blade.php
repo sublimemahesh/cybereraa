@@ -15,8 +15,20 @@
                 <div class="card-body">
                     <form class="theme-form" enctype="multipart/form-data" id="approval-form">
                         <div class="mb-2">
-                            User ID: <code>{{ $withdraw->user_id }}</code> | Username:
-                            <code>{{ $withdraw->user->username }}</code>
+                            TRANSACTION ID: <code>#{{ str_pad($withdraw->id,4,0,STR_PAD_LEFT) }}</code> <br/>
+                            Wallet: <code>{{ $withdraw->wallet_type }}</code><br/>
+                            Withdraw Type: <code>{{ $withdraw->type }}</code><br/>
+                            <hr/>
+                            User ID: <code>{{ $withdraw->user_id }}</code><br/>
+                            Username: <code>{{ $withdraw->user->username }}</code><br/>
+                            Full Name: <code>{{ $withdraw->user->name }}</code><br/>
+                            Email: <code>{{ $withdraw->user->email }}</code><br/>
+                            Phone: <code>{{ $withdraw->user->phone }}</code>
+                            <br/>
+                            <hr/>
+                            Balance: <code>USDT {{ $withdraw->user->wallet->balance }}</code> <br/>
+                            Payout limit: <code>USDT {{ $withdraw->user->wallet->withdraw_limit }}</code>
+
                             <br/>
                             <hr/>
                             Please note this <code class="text-uppercase">process cannot be reversed</code>.
@@ -26,9 +38,7 @@
                             <div class="col-sm-12">
                                 <div class="mb-3 mt-2">
                                     <label for="withdraw-amount">
-                                        Requested Withdrawal Amount (Balance:
-                                        <code>USDT {{ $withdraw->user->wallet->balance }}</code> / Payout limit:
-                                        <code>USDT {{ $withdraw->user->wallet->withdraw_limit }}</code>)
+                                        Requested Withdrawal Amount
                                     </label>
                                     <div class="form-control">{{ $withdraw->amount }}</div>
                                     <div class="text-info">
