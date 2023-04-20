@@ -270,11 +270,12 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::get('wallet', 'User\WalletController@index')->name('wallet.index');
         Route::match(['get', 'post'], 'wallet/transfer/to-wallet', 'User\WalletTransferController@transfer')->name('wallet.transfer.to-wallet');
         Route::get('wallet/transfer', 'User\WithdrawController@p2pTransfer')->name('wallet.transfer');
-        Route::post('wallet/transfer/p2p/2ft-verify', 'Payment\PayoutController@twoftVerify');
+        Route::post('wallet/transfer/p2p/2ft-verify', 'Payment\PayoutController@twoftVerifyP2P');
         Route::post('wallet/transfer/p2p', 'Payment\PayoutController@p2pTransfer');
 
         Route::get('wallet/withdraw', 'User\WithdrawController@withdraw')->name('wallet.withdraw');
         Route::get('wallet/withdraws/{withdraw}/summery', 'User\WithdrawController@show')->name('wallet.withdraw.view');
+        Route::post('wallet/withdraws/2ft-verify', 'Payment\PayoutController@twoftVerifyWithdraw');
         Route::post('wallet/withdraw/binance', 'Payment\PayoutController@withdraw');
         Route::match(['get', 'post'], 'wallet/withdraws/{withdraw}/cancel-request', 'User\WithdrawController@cancelWithdraw')->name('wallet.withdraw.cancel');
 

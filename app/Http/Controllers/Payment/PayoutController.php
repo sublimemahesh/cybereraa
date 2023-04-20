@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Payment;
 
 use App\Http\Controllers\Controller;
-use App\Mail\SendOTPMail;
 use App\Models\Earning;
 use App\Models\Strategy;
 use App\Models\User;
 use App\Models\Wallet;
 use App\Models\Withdraw;
+use App\Services\OTPService;
 use App\Services\TwoFactorAuthenticateService;
 use Auth;
 use DB;
@@ -26,7 +26,7 @@ class PayoutController extends Controller
     /**
      * @throws Exception
      */
-    public function twoftVerify(Request $request, TwoFactorAuthenticateService $authenticateService)
+    public function twoftVerifyP2P(Request $request, OTPService $otpService, TwoFactorAuthenticateService $authenticateService): \Illuminate\Http\JsonResponse
     {
 
         $validated = Validator::make($request->all(), [
@@ -53,37 +53,7 @@ class PayoutController extends Controller
         } catch (Exception $e) {
         }
 
-        $otp = random_int(100000, 999999);
-        // $otp = 123456;
-        $hashed_code = hash("sha512", $otp);
-        $hashed_phone = hash("sha512", auth()->user()?->username);
-        session()->put($hashed_phone, $hashed_code);
-
-        \Mail::to(auth()->user()?->email)->send(new SendOTPMail(auth()->user(), $otp, $validated));
-
-        $phone_validator = Validator::make(['phone' => auth()->user()?->phone], [
-            'phone' => 'required|regex:/^\+94/i',
-        ]);
-
-        $json['sms_error'] = null;
-        if ($phone_validator->passes()) {
-            $validated = $phone_validator->validated();
-            $username = auth()->user()->username;
-            $message = "{$otp} is your one-time password (OTP) to complete your P2P Transaction from username: {$username}. Thank you. safesttrades.com";
-            try {
-                if (!sendSMS($validated['phone'], $message)) {
-                    $json['sms_error'] = "SMS send failed!.";
-                }
-            } catch (Exception $e) {
-                $json['sms_error'] = $e->getMessage();
-            }
-        }
-
-        $json['status'] = true;
-        $json['sent_verify_code'] = true;
-        $json['message'] = "OTP sent successfully. Please check your inbox!";
-        $json['icon'] = 'success'; // warning | info | question | success | error
-        return response()->json($json);
+        return $otpService->sendOTP($validated, Auth::user(), $authenticateService);
     }
 
     /**
@@ -251,6 +221,34 @@ class PayoutController extends Controller
 
     }
 
+    public function twoftVerifyWithdraw(Request $request, OTPService $otpService, TwoFactorAuthenticateService $authenticateService)
+    {
+        $validated = Validator::make($request->all(), [
+            'minimum_payout_limit' => 'required',
+            'amount' => ['required', 'numeric', 'min:' . $request->minimum_payout_limit],
+            'password' => 'required',
+            'code' => 'nullable',
+            'wallet_type' => 'required|in:main,topup',
+            'remark' => 'nullable',
+        ])->validate();
+
+        try {
+            $log_data = [
+                'RESPONSIBLE USER' => auth()->user()?->only(['id', 'username', 'email', 'phone']),
+                'ip' => $request->ip(),
+                'user_agent' => $request->userAgent(),
+                'DATA' => $request->except(['password']),
+                'HEADERS' => $request->headers->all(),
+                'ACTION' => 'MANUAL_WITHDRAWAL_OTP_REQUEST',
+            ];
+            $log_data = json_encode($log_data, JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT);
+            Logger::channel('daily')->notice('MANUAL WITHDRAWAL OTP REQUEST | DATA: ' . $log_data);
+        } catch (Exception $e) {
+        }
+
+        return $otpService->sendOTP($validated, Auth::user(), $authenticateService);
+    }
+
     /**
      * @throws Throwable
      */
@@ -267,9 +265,19 @@ class PayoutController extends Controller
             'amount' => ['required', 'numeric', 'min:' . $minimum_payout_limit->value],
             'wallet_type' => ['required', 'in:main,topup'],
             'password' => 'required',
+            'otp' => 'required|digits:6',
             'code' => 'nullable',
             'remark' => 'nullable',
         ])->validate();
+
+        $hashed_username = hash("sha512", auth()->user()?->username);
+        $hashed_code = hash("sha512", $validated['otp']);
+        if (!session()->has($hashed_username) || session()->get($hashed_username) !== $hashed_code) {
+            $json['status'] = false;
+            $json['message'] = 'Entered OTP code is invalid!';
+            $json['icon'] = 'error'; // warning | info | question | success | error
+            return response()->json($json, Response::HTTP_UNAUTHORIZED);
+        }
 
         if (!$user?->profile->is_kyc_verified) {
             $json['status'] = false;
