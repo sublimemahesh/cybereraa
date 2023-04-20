@@ -53,11 +53,23 @@
         </section>
     </div>
 
+    <section>
+        <div class="container">
+            <div class="owl-carousel owl-theme gift-slider">
 
+                <div class="item"><img src="{{ asset('assets/frontend/images/gift/gift1.jpg') }}" alt="">
+                </div>
+                <div class="item"><img src="{{ asset('assets/frontend/images/gift/gift2.jpg') }}" alt="">
+                </div>
+                <div class="item"><img src="{{ asset('assets/frontend/images/gift/gift3.jpg') }}" alt="">
+                </div>
+                <div class="item"><img src="{{ asset('assets/frontend/images/gift/gift4.jpg') }}"alt=""></div>
+                <div class="item"><img src="{{ asset('assets/frontend/images/gift/gift5.jpg') }}" alt="">
+                </div>
 
-
-
-
+            </div>
+        </div>
+    </section>
 
     <section class="pricing-section">
         <div class="container">
