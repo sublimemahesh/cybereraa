@@ -3,7 +3,11 @@
 @section('content')
     <h2 style="font-weight: 600"> Hello {{ $user->username }} </h2>
     <p>
-        <b>{{ $otp }}</b> is your One-Time Password (OTP) for username: {{ $user->username }} for amount USDT {{ $data['amount'] }}.<br>
+        <b>{{ $otp }}</b> is your One-Time Password (OTP) for username: {{ $user->username }}
+        @if(!empty($data['amount']))
+            for amount USDT {{ $data['amount'] }}
+        @endif
+        .<br>
         Same has been sent to your registered mobile number.
         {{--<br>Please note: OTP is only valid for next 5 minutes.--}}
     </p>

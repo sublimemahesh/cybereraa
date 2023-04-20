@@ -3,6 +3,7 @@
 namespace App\Actions\Fortify;
 
 use App\Models\Profile;
+use App\Traits\MaskCredentials;
 use Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Validator;
@@ -19,6 +20,14 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
      */
     public function update($user, array $input)
     {
+
+        if (MaskCredentials::maskedEmailAddress(auth()->user()->email) === $input['email']) {
+            $input['email'] = auth()->user()->email;
+        }
+        if (MaskCredentials::maskedPhone(auth()->user()->phone) === $input['phone']) {
+            $input['phone'] = auth()->user()->phone;
+        }
+
 
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
