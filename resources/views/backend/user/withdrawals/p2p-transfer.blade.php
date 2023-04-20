@@ -45,7 +45,8 @@
                             <form x-data="{transfer_amount: '{{$minimum_payout_limit->value}}' }">
                                 <div class="mb-3 mt-2">
                                     <label for="p2p-transfer">Select User</label>
-                                    <select class="single-select-placeholder js-states select2-hidden-accessible" id="p2p-transfer">
+                                    <select class="single-select-placeholder js-states select2-hidden-accessible"
+                                            id="p2p-transfer">
                                         <option disabled>Start typing username</option>
                                     </select>
                                 </div>
@@ -53,9 +54,11 @@
                                     <label for="transfer-amount">Transfer Amount (Balance:
                                         <code>USDT {{ $wallet->balance }}</code> / Payout limit:
                                         <code>USDT {{ $wallet->withdraw_limit }}</code>)</label>
-                                    <input min="{{ $minimum_payout_limit->value }}" x-model="transfer_amount" id="transfer-amount" type="number" class="form-control">
+                                    <input min="{{ $minimum_payout_limit->value }}" x-model="transfer_amount"
+                                           id="transfer-amount" type="number" class="form-control">
                                     <div class="text-info">Total Amount:
-                                        <code id="show-receiving-amount" x-html=" 'USDT ' + (parseFloat(transfer_amount) + {{ (float) $p2p_transfer_fee->value }})"></code>
+                                        <code id="show-receiving-amount"
+                                              x-html=" 'USDT ' + (parseFloat(transfer_amount) + {{ (float) $p2p_transfer_fee->value }})"></code>
                                     </div>
                                 </div>
                                 <hr>
@@ -65,7 +68,9 @@
                                         <label class="plan basic-plan col-sm-4" for="main">
                                             <input checked value="main" type="radio" name="wallet_type" id="main"/>
                                             <div class="plan-content">
-                                                <img loading="lazy" src="https://raw.githubusercontent.com/ismailvtl/ismailvtl.github.io/master/images/life-saver-img.svg" alt=""/>
+                                                <img loading="lazy"
+                                                     src="https://raw.githubusercontent.com/ismailvtl/ismailvtl.github.io/master/images/life-saver-img.svg"
+                                                     alt=""/>
                                                 <div class="plan-details">
                                                     <span>Main Wallet</span>
                                                 </div>
@@ -75,7 +80,9 @@
                                         <label class="plan complete-plan col-sm-4" for="topup">
                                             <input type="radio" id="topup" name="wallet_type" value="topup"/>
                                             <div class="plan-content">
-                                                <img loading="lazy" src="https://raw.githubusercontent.com/ismailvtl/ismailvtl.github.io/master/images/potted-plant-img.svg" alt=""/>
+                                                <img loading="lazy"
+                                                     src="https://raw.githubusercontent.com/ismailvtl/ismailvtl.github.io/master/images/potted-plant-img.svg"
+                                                     alt=""/>
                                                 <div class="plan-details">
                                                     <span>Topup Wallet</span>
                                                 </div>
@@ -86,7 +93,8 @@
                                 <hr>
                                 <div class="mb-3 mt-2">
                                     <label for="remark">Remark</label>
-                                    <textarea id="remark" name="remark" rows="3" placeholder="Remark" class="form-control h-auto"></textarea>
+                                    <textarea id="remark" name="remark" rows="3" placeholder="Remark"
+                                              class="form-control h-auto"></textarea>
                                 </div>
                                 <hr>
                                 <p>
@@ -96,16 +104,28 @@
 
                                 <div class="mb-3 mt-2">
                                     <label for="password">Password</label>
-                                    <input id="password" type="password" class="form-control" autocomplete="new-password">
+                                    <input id="password" type="password" class="form-control"
+                                           autocomplete="new-password">
                                 </div>
                                 @if(auth()->user()?->two_factor_secret && in_array(\Laravel\Fortify\TwoFactorAuthenticatable::class, class_uses_recursive(auth()->user()),true))
                                     <div class="mb-3 mt-2">
                                         <label for="code">Two Factor code / Recovery Code </label>
-                                        <input id="code" type="password" class="form-control" autocomplete="one-time-password" placeholder="2FA code OR Recovery Code">
+                                        <input id="code" type="password" class="form-control"
+                                               autocomplete="one-time-password" placeholder="2FA code OR Recovery Code">
                                     </div>
                                 @endif
+                                <p>
+                                    OTP code will be sent to Email: {{ substr(auth()->user()?->email, 0, 2) }}
+                                    *****{{ substr(auth()->user()?->email, -9) }}
+                                    @if(str_starts_with(auth()->user()?->phone, '+94'))
+                                        and Phone:  {{ substr(auth()->user()?->phone, 0, 5) }}
+                                        *****{{ substr(auth()->user()?->phone, -2) }}
+                                    @endif
+                                </p>
                                 <div id="2ft-section">
-                                    <button type="submit" id="send-2ft-code" class="btn btn-sm btn-google mb-2">Send Verification Code</button>
+                                    <button type="submit" id="send-2ft-code" class="btn btn-sm btn-google mb-2">Send
+                                        Verification Code
+                                    </button>
                                 </div>
                                 {{--<button type="submit" id="confirm-transfer" class="btn btn-sm btn-success mb-2">Confirm & Transfer</button>--}}
                             </form>

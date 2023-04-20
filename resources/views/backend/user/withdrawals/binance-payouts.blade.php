@@ -135,7 +135,20 @@
                                         <input id="code" type="password" class="form-control" autocomplete="one-time-password" placeholder="2FA code OR Recovery Code">
                                     </div>
                                 @endif
-                                <button type="submit" id="confirm-payout" class="btn btn-sm btn-success mb-2">Confirm & Withdraw</button>
+                                <p>
+                                    OTP code will be sent to Email: {{ substr(auth()->user()?->email, 0, 2) }}
+                                    *****{{ substr(auth()->user()?->email, -9) }}
+                                    @if(str_starts_with(auth()->user()?->phone, '+94'))
+                                        and Phone:  {{ substr(auth()->user()?->phone, 0, 5) }}
+                                        *****{{ substr(auth()->user()?->phone, -2) }}
+                                    @endif
+                                </p>
+                                <div id="2ft-section">
+                                    <button type="submit" id="send-2ft-code" class="btn btn-sm btn-google mb-2">Send
+                                        Verification Code
+                                    </button>
+                                </div>
+                                {{--<button type="submit" id="confirm-payout" class="btn btn-sm btn-success mb-2">Confirm & Withdraw</button>--}}
                             </form>
                         </div>
                     </div>
@@ -151,6 +164,6 @@
             const P2P_TRANSFER_FEE = "{{ $payout_transfer_fee->value }}";
             const MAX_WITHDRAW_LIMIT = "{{ $max_withdraw_limit }}";
         </script>
-        <script src="{{ asset('assets/backend/js/user/wallet/binance-payout.js?12345') }}"></script>
+        <script src="{{ asset('assets/backend/js/user/wallet/binance-payout.js') }}"></script>
     @endpush
 </x-backend.layouts.app>
