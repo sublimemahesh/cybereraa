@@ -22,7 +22,8 @@
                         User ID: <code>{{ $withdraw->user_id }}</code><br/>
                         Username: <code>{{ $withdraw->user->username }}</code><br/>
                         Full Name: <code>{{ $withdraw->user->name }}</code><br/>
-                        Email: <code>{{ $withdraw->user->email }}</code>
+                        Email: <code>{{ $withdraw->user->email }}</code><br/>
+                        Phone: <code>{{ $withdraw->user->phone }}</code>
                         <br/>
                         <hr/>
                         Balance: <code>USDT {{ $withdraw->user->wallet->balance }}</code> <br/>
