@@ -32,7 +32,7 @@
 
     @yield('plugin-styles')
     <!-- Style css -->
-    <link href="{{ asset('assets/backend/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/backend/css/style.css?7654444567') }}" rel="stylesheet">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" rel="stylesheet">

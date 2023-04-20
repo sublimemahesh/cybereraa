@@ -30,9 +30,15 @@ class WithdrawService
             ->addColumn('fee', fn($withdraw) => number_format($withdraw->transaction_fee, 2))
             ->addColumn('total', fn($withdraw) => number_format($withdraw->amount + $withdraw->transaction_fee, 2))
             ->addColumn('date', fn($withdraw) => $withdraw->created_at->format('Y-m-d H:i:s'))
-            ->addColumn('processed_date', fn($withdraw) => \Carbon::parse($withdraw->processed_at)->format('Y-m-d H:i:s'))
-            ->addColumn('approved_date', fn($withdraw) => \Carbon::parse($withdraw->approved_at)->format('Y-m-d H:i:s'))
-            ->addColumn('rejected_date', fn($withdraw) => \Carbon::parse($withdraw->rejected_at)->format('Y-m-d H:i:s'))
+            ->addColumn('processed_date', function ($withdraw) {
+                return $withdraw->processed_at !== null ? \Carbon::parse($withdraw->processed_at)->format('Y-m-d H:i:s') : '-';
+            })
+            ->addColumn('approved_date', function ($withdraw) {
+                return $withdraw->approved_at !== null ? \Carbon::parse($withdraw->approved_at)->format('Y-m-d H:i:s') : '-';
+            })
+            ->addColumn('rejected_date', function ($withdraw) {
+                return $withdraw->rejected_at !== null ? \Carbon::parse($withdraw->rejected_at)->format('Y-m-d H:i:s') : '-';
+            })
             ->addColumn('type', function ($withdraw) {
                 return
                     "<code class='text-uppercase'>{$withdraw->type} - {$withdraw->wallet_type}</code> - #" .

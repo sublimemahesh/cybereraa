@@ -16,6 +16,7 @@ class RankBenefitSummeryController extends Controller
      */
     public function index(Request $request)
     {
+        $this->authorize('viewAny', RankBonusSummery::class);
 
         if ($request->wantsJson()) {
             $earnings = RankBonusSummery::filter();
@@ -27,7 +28,9 @@ class RankBenefitSummeryController extends Controller
                 ->addColumn('eligible_rankers_str', function ($reward) {
                     $html = '';
                     foreach ($reward->eligible_rankers_array as $rank => $user_count) {
-                        $html .= "Rank 0{$rank} => {$user_count}, <br>";
+                        if (auth()->user()->currentRank->rank >= $rank) {
+                            $html .= "Rank 0{$rank} => {$user_count}, <br>";
+                        }
                     }
                     return $html;
                 })
@@ -41,6 +44,8 @@ class RankBenefitSummeryController extends Controller
 
     public function requirements(Request $request)
     {
+        $this->authorize('viewAny', RankBonusSummery::class);
+
         $user = \Auth::user();
         $validator = \Validator::make($request->all(), [
             'month' => 'required|date_format:Y-m',
