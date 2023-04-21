@@ -4,7 +4,7 @@ namespace App\Mail;
 
 use App\Models\User;
 use App\Models\Withdraw;
-use DragonCode\Contracts\Queue\ShouldQueue;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
