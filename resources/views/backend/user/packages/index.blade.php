@@ -3,10 +3,33 @@
     @section('header-title', 'Packages' )
     @section('plugin-styles')
         <link rel="stylesheet" href="{{ asset('assets/backend/vendor/select2/css/select2.min.css') }}">
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     @endsection
     @section('breadcrumb-items')
         <li class="breadcrumb-item">Buy Package</li>
     @endsection
+
+    <section>
+        <div>
+            <div class="owl-carousel owl-theme gift-slider">
+
+                <div class="item"><img src="{{ asset('assets/backend/images/gift/gift1.jpg') }}" alt="">
+                </div>
+                <div class="item"><img src="{{ asset('assets/backend/images/gift/gift2.jpg') }}" alt="">
+                </div>
+                <div class="item"><img src="{{ asset('assets/backend/images/gift/gift3.jpg') }}" alt="">
+                </div>
+                <div class="item"><img src="{{ asset('assets/backend/images/gift/gift4.jpg') }}"alt=""></div>
+                <div class="item"><img src="{{ asset('assets/backend/images/gift/gift5.jpg') }}" alt="">
+                </div>
+
+            </div>
+        </div>
+    </section>
+<br>
+
 
     <div class="row">
         @foreach($packages as $package)
@@ -179,5 +202,8 @@
         </script>
         <script src="{{ asset('assets/backend/vendor/select2/js/select2.full.min.js') }}"></script>
         <script src="{{ asset('assets/backend/js/packages/choose.js') }}"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+        <script src="{{ asset('assets/backend/js/packages/gift_slider.js') }}"></script>
     @endpush
 </x-backend.layouts.app>
