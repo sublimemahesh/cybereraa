@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Mail\SendPayoutConfirmationMail;
+use App\Mail\SendPayoutRejectMail;
 use App\Models\Withdraw;
 use App\Services\TwoFactorAuthenticateService;
 use App\Services\WithdrawService;
@@ -239,7 +240,7 @@ class WithdrawController extends Controller
                 'repudiate_note' => 'required|string'
             ])->validate();
 
-            \DB::transaction(function () use ($withdraw, $user_wallet, $user, $validated) {
+            \DB::transaction(function () use ($withdraw, $user_wallet, $user, $validated, $payout_info) {
 
                 $total_amount = $withdraw->amount + $withdraw->transaction_fee;
 
@@ -267,7 +268,9 @@ class WithdrawController extends Controller
                     'rejected_at' => \Carbon::now(),
                 ]);
 
-                // TODO: SEND MAIL
+                Mail::to($withdraw->user->email)
+                    ->cc($payout_info?->email)
+                    ->send(new SendPayoutRejectMail($withdraw));
             });
 
             $json['status'] = true;
