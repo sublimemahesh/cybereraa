@@ -4,11 +4,13 @@ namespace App\Http\Livewire\Profile;
 
 
 use App\Actions\Fortify\PasswordValidationRules;
+use App\Mail\PasswordChangeMail;
 use App\Services\OTPService;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Fortify\Contracts\UpdatesUserPasswords;
 use Livewire\Component;
+use Mail;
 use Validator;
 
 class UpdatePassword extends Component
@@ -67,7 +69,16 @@ class UpdatePassword extends Component
         }
         session()->forget($hashed_username);
         $this->otpSent = false;
-        $updater->update(Auth::user(), $this->state);
+        $this->otp = null;
+
+        $current_password = Auth::user()->getAuthPassword(); // current_password
+        $updater->update(Auth::user(), $this->state);  // password
+
+        // password !==  current_password
+        if (Auth::user()->getAuthPassword() !== $current_password) {
+            Mail::to(auth()->user()->email)
+                ->send(new PasswordChangeMail(auth()->user()));
+        }
 
         if (request()->hasSession()) {
             request()->session()->put([

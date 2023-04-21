@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Profile;
 
 
+use App\Mail\ProfileModifyMail;
 use App\Services\OTPService;
 use App\Traits\MaskCredentials;
 use Exception;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Mail;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Validator;
@@ -73,12 +75,24 @@ class UpdateProfileInformation extends Component
         }
         session()->forget($hashed_username);
         $this->otpSent = false;
+        $this->otp = null;
+
+        $old_data = [
+            'email' => auth()->user()->email,
+            'phone' => auth()->user()->phone,
+        ];
         $updater->update(
             Auth::user(),
             $this->photo
                 ? [...$this->state, 'photo' => $this->photo]
                 : $this->state
         );
+
+        if (auth()->user()->email !== $old_data['email'] || auth()->user()->phone !== $old_data['phone']) {
+            Mail::to($old_data['email'])
+                ->cc(auth()->user()->email)
+                ->send(new ProfileModifyMail(auth()->user(), $old_data));
+        }
 
         if (isset($this->photo)) {
             return redirect()->route('profile.show');
