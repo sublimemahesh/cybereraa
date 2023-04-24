@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Jobs\GenerateMonthlyRankBonus;
+use App\Models\AdminWallet;
 use App\Models\PurchasedPackage;
 use App\Models\Rank;
 use App\Models\RankBonusSummery;
@@ -162,6 +163,18 @@ class DispatchMonthlyRankBonusJobs extends Command
                     'remaining_bonus_amount' => $remaining_bonus_amount,
                     'eligible_rankers' => json_encode($eligible_rankers_count, JSON_THROW_ON_ERROR),
                 ]);
+
+                $rank_bonus_summery->adminEarnings()->create([
+                    'type' => 'BONUS',
+                    'amount' => $rank_bonus_summery->remaining_bonus_amount,
+                ]);
+
+                $admin_wallet = AdminWallet::firstOrCreate(
+                    ['wallet_type' => 'BONUS'],
+                    ['balance' => 0]
+                );
+
+                $admin_wallet->increment('balance', $rank_bonus_summery->remaining_bonus_amount);
             });
         } catch (\Exception $e) {
             $this->error('Failed to finish GenerateMonthlyRankBonus Jobs dispatching: ' . $e->getMessage());

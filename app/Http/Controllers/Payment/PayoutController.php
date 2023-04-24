@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Payment;
 
 use App\Http\Controllers\Controller;
+use App\Models\AdminWallet;
 use App\Models\Earning;
 use App\Models\Strategy;
 use App\Models\User;
@@ -208,6 +209,21 @@ class PayoutController extends Controller
             );
 
             $receiver_wallet->increment('topup_balance', $withdraw->amount);
+
+
+            $withdraw->adminEarnings()->create([
+                'user_id' => $withdraw->user_id,
+                'type' => 'P2P_FEE',
+                'amount' => $withdraw->transaction_fee,
+            ]);
+
+            $admin_wallet = AdminWallet::firstOrCreate(
+                ['wallet_type' => 'P2P_FEE'],
+                ['balance' => 0]
+            );
+
+            $admin_wallet->increment('balance', $withdraw->transaction_fee);
+
 
             return $withdraw;
         });

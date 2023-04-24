@@ -143,6 +143,13 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
 
 
         Route::group(['prefix' => 'reports'], function () {
+
+            // Admin Wallets
+            Route::get('wallets/profits', 'Admin\AdminWalletController@index')->name('admin-wallet-profits');
+            Route::get('wallets/profits/history', 'Admin\AdminWalletTransactionController@index')->name('admin-wallet-transaction.index');
+            Route::match(['get', 'post'], 'wallets/profits/withdraw/{wallet}', 'Admin\AdminWalletWithdrawalController@withdraw')->name('admin-wallet-withdraw');
+            Route::get('wallets/profits/withdrawal/history', 'Admin\AdminWalletWithdrawalController@index')->name('admin-wallet-withdrawal.index');
+
             // Ranks
             Route::get('ranks', 'Admin\RankController@index')->name('ranks');
 

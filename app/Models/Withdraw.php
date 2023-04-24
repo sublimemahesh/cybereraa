@@ -42,6 +42,11 @@ class Withdraw extends Model
         return $this->morphMany(Earning::class, 'earnable', 'earnable_type', 'earnable_id');
     }
 
+    public function adminEarnings(): morphMany
+    {
+        return $this->morphMany(AdminWalletTransaction::class, 'earnable');
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id')->withDefault(new User());

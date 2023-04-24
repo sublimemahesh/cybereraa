@@ -58,7 +58,7 @@ class OTPService
                     $json['sms_error'] = "SMS send failed!.";
                 }
             } catch (Exception $e) {
-                $json['sms_error'] = $e->getMessage();
+                $json['sms_error'] = "Something went wrong!";
             }
         }
 

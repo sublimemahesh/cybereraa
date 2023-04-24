@@ -7,6 +7,7 @@ use Haruncpi\LaravelUserActivity\Traits\Loggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use JsonException;
 use Psr\Container\ContainerExceptionInterface;
@@ -93,6 +94,12 @@ class Transaction extends Model
     {
         return $this->hasOne(PurchasedPackage::class, 'transaction_id', 'id');
     }
+
+    public function adminEarnings(): morphMany
+    {
+        return $this->morphMany(AdminWalletTransaction::class, 'earnable');
+    }
+
 
     /**
      * @throws ContainerExceptionInterface
