@@ -4,6 +4,7 @@ namespace App\Actions;
 
 use App\Jobs\NewUserGenealogyAutoPlacement;
 use App\Jobs\SaleLevelCommissionJob;
+use App\Models\AdminWallet;
 use App\Models\PurchasedPackage;
 use App\Models\Strategy;
 use App\Models\Transaction;
@@ -30,6 +31,19 @@ class ActivateTransaction
                 'expired_at' => Carbon::now()->addMonths($transaction->package->month_of_period)->format('Y-m-d H:i:s'),
                 'package_info' => $transaction->package->toJson(),
             ]);
+
+            $transaction->adminEarnings()->create([
+                'user_id' => $transaction->user_id,
+                'type' => 'GAS_FEE',
+                'amount' => $transaction->gas_fee
+            ]);
+
+            $admin_wallet = AdminWallet::firstOrCreate(
+                ['wallet_type' => 'GAS_FEE'],
+                ['balance' => 0]
+            );
+
+            $admin_wallet->increment('balance', $transaction->gas_fee);
 
             $package = $transaction->purchasedPackage;
             $purchasedUser = $package->user;

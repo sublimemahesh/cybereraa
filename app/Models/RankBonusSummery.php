@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use JsonException;
 use Psr\Container\ContainerExceptionInterface;
@@ -39,6 +40,11 @@ class RankBonusSummery extends Model
     public function getEligibleRankersStrAttribute(): string
     {
         return implode('=>', $this->eligible_rankers_array);
+    }
+
+    public function adminEarnings(): morphMany
+    {
+        return $this->morphMany(AdminWalletTransaction::class, 'earnable');
     }
 
     /**

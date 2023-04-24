@@ -16,6 +16,11 @@ class PermissionSeeder extends Seeder
     public function run()
     {
         $permissions = [
+            ['name' => 'admin_wallet.viewAny', 'guard_name' => 'web'],
+            ['name' => 'admin_wallet_transactions.viewAny', 'guard_name' => 'web'],
+            ['name' => 'admin_wallet_withdrawal.viewAny', 'guard_name' => 'web'],
+            ['name' => 'admin_wallet_withdrawal.create', 'guard_name' => 'web'],
+
             ['name' => 'blogs.viewAny', 'guard_name' => 'web'],
             ['name' => 'blogs.create', 'guard_name' => 'web'],
             ['name' => 'blogs.update', 'guard_name' => 'web'],

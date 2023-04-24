@@ -2,6 +2,8 @@
 
 namespace App\Jobs;
 
+use App\Models\AdminWallet;
+use App\Models\AdminWalletTransaction;
 use App\Models\Commission;
 use App\Models\PurchasedPackage;
 use App\Models\Strategy;
@@ -12,8 +14,8 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\Middleware\WithoutOverlapping;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Collection;
 use JsonException;
+use Throwable;
 
 class SaleLevelCommissionJob implements ShouldQueue
 {
@@ -34,7 +36,7 @@ class SaleLevelCommissionJob implements ShouldQueue
     {
         $this->purchasedUser = $purchasedUser;
         $this->package = $package;
-        $this->strategies = Strategy::whereIn('name', ['commissions', 'commission_level_count', 'max_withdraw_limit'])->get();
+        $this->strategies = Strategy::whereIn('name', ['rank_gift', 'commissions', 'commission_level_count', 'max_withdraw_limit'])->get();
     }
 
     public function middleware()
@@ -47,52 +49,121 @@ class SaleLevelCommissionJob implements ShouldQueue
      *
      * @return void
      * @throws JsonException
+     * @throws Throwable
      */
     public function handle()
     {
-        $purchasedUser = $this->purchasedUser;
-        $package = $this->package;
-        $strategies = $this->strategies;
+        \DB::transaction(function () {
+            $purchasedUser = $this->purchasedUser;
+            $package = $this->package;
+            $strategies = $this->strategies;
 
-        $commissions = $strategies->where('name', 'commissions')->first(null, new Strategy(['value' => '{"1":25,"2":20,"3":15,"4":10,"5":5,"6":5,"7":5}']));
-        $commissions = json_decode($commissions->value, true, 512, JSON_THROW_ON_ERROR);
+            $commissions = $strategies->where('name', 'commissions')->first(null, new Strategy(['value' => '{"1":25,"2":20,"3":15,"4":10,"5":5,"6":5,"7":5}']));
+            $commissions = json_decode($commissions->value, true, 512, JSON_THROW_ON_ERROR);
 
-        $commission_start_at = 1;
-        if ($purchasedUser->super_parent_id !== null) {
-            Commission::forceCreate([
-                'user_id' => $purchasedUser->super_parent_id,
-                'purchased_package_id' => $package->id,
-                'amount' => ($package->invested_amount * $commissions[$commission_start_at]) / 100,
-                'paid' => 0,
-                'type' => 'DIRECT',
-                'status' => $purchasedUser->sponsor->is_active ? 'QUALIFIED' : 'DISQUALIFIED'
-            ]);
-            //TODO: Send EMAIL Notification
-        }
+            $commission_start_at = 1;
 
-        if ($purchasedUser->parent_id !== null) {
-            $commission_level_strategy = $strategies->where('name', 'commission_level_count')->first(null, new Strategy(['value' => 7]));
-            $commission_level = (int)$commission_level_strategy->value;
-            $commission_start_at = 2;
-
-            $commission_level_user = $purchasedUser->parent;
-            for ($i = $commission_start_at; $i <= $commission_level; $i++) {
-                Commission::forceCreate([
-                    'user_id' => $commission_level_user->id,
+            $less_level_commissions = $package->invested_amount;
+            if ($purchasedUser->super_parent_id !== null) {
+                $commission = Commission::forceCreate([
+                    'user_id' => $purchasedUser->super_parent_id,
                     'purchased_package_id' => $package->id,
-                    'amount' => ($package->invested_amount * $commissions[$i]) / 100,
+                    'amount' => ($package->invested_amount * $commissions[$commission_start_at]) / 100,
                     'paid' => 0,
-                    'type' => 'INDIRECT',
-                    'status' => $commission_level_user->is_active ? 'QUALIFIED' : 'DISQUALIFIED'
+                    'type' => 'DIRECT',
+                    'status' => $purchasedUser->sponsor->is_active ? 'QUALIFIED' : 'DISQUALIFIED'
                 ]);
-                if ($commission_level_user->parent_id === null) {
-                    break;
+                //TODO: Send EMAIL Notification
+
+                $less_level_commissions -= $commission->amount;
+
+                if (!$purchasedUser->sponsor->is_active) {
+                    $commission->adminEarnings()->create([
+                        'user_id' => $commission->user_id,
+                        'type' => 'DISQUALIFIED_COMMISSION',
+                        'amount' => $commission->amount,
+                    ]);
+
+                    $admin_wallet = AdminWallet::firstOrCreate(
+                        ['wallet_type' => 'DISQUALIFIED_COMMISSION'],
+                        ['balance' => 0]
+                    );
+
+                    $admin_wallet->increment('balance', $commission->amount);
                 }
-                $commission_level_user = $commission_level_user->parent;
             }
-        }
 
-        $package->update(['commission_issued_at' => now()]);
+            if ($purchasedUser->parent_id !== null) {
+                $commission_level_strategy = $strategies->where('name', 'commission_level_count')->first(null, new Strategy(['value' => 7]));
+                $commission_level = (int)$commission_level_strategy->value;
+                $commission_start_at = 2;
 
+                $commission_level_user = $purchasedUser->parent;
+                for ($i = $commission_start_at; $i <= $commission_level; $i++) {
+                    $commission = Commission::forceCreate([
+                        'user_id' => $commission_level_user->id,
+                        'purchased_package_id' => $package->id,
+                        'amount' => ($package->invested_amount * $commissions[$i]) / 100,
+                        'paid' => 0,
+                        'type' => 'INDIRECT',
+                        'status' => $commission_level_user->is_active ? 'QUALIFIED' : 'DISQUALIFIED'
+                    ]);
+
+                    $less_level_commissions -= $commission->amount;
+
+                    if (!$commission_level_user->is_active) {
+                        $commission->adminEarnings()->create([
+                            'user_id' => $commission->user_id,
+                            'type' => 'DISQUALIFIED_COMMISSION',
+                            'amount' => $commission->amount,
+                        ]);
+
+                        $admin_wallet = AdminWallet::firstOrCreate(
+                            ['wallet_type' => 'DISQUALIFIED_COMMISSION'],
+                            ['balance' => 0]
+                        );
+
+                        $admin_wallet->increment('balance', $commission->amount);
+                    }
+
+                    if ($commission_level_user->parent_id === null) {
+                        break;
+                    }
+                    $commission_level_user = $commission_level_user->parent;
+                }
+            }
+
+            if ($less_level_commissions > 0) {
+                AdminWalletTransaction::create([
+                    'user_id' => $purchasedUser->id, // sale purchase user
+                    'type' => 'LESS_LEVEL_COMMISSION',
+                    'amount' => $less_level_commissions,
+                ]);
+
+                $admin_wallet = AdminWallet::firstOrCreate(
+                    ['wallet_type' => 'LESS_LEVEL_COMMISSION'],
+                    ['balance' => 0]
+                );
+
+                $admin_wallet->increment('balance', $less_level_commissions);
+            }
+
+            $rank_gift_percentage = $strategies->where('name', 'rank_gift')->first(null, new Strategy(['value' => '5']));
+            $allocated_for_gift = ($package->invested_amount * $rank_gift_percentage->value) / 100;
+            AdminWalletTransaction::create([
+                'user_id' => $purchasedUser->id, // sale purchase user
+                'type' => 'GIFT',
+                'amount' => $allocated_for_gift,
+            ]);
+
+            $admin_wallet = AdminWallet::firstOrCreate(
+                ['wallet_type' => 'GIFT'],
+                ['balance' => 0]
+            );
+
+            $admin_wallet->increment('balance', $allocated_for_gift);
+
+            $package->update(['commission_issued_at' => now()]);
+        });
     }
 }

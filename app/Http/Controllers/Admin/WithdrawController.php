@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Mail\SendPayoutConfirmationMail;
 use App\Mail\SendPayoutRejectMail;
+use App\Models\AdminWallet;
 use App\Models\Withdraw;
 use App\Services\TwoFactorAuthenticateService;
 use App\Services\WithdrawService;
@@ -202,7 +203,22 @@ class WithdrawController extends Controller
                     ]);
                 }
 
-                Mail::to($withdraw->user->email)->cc($payout_info?->email)->send(new SendPayoutConfirmationMail($withdraw));
+                $withdraw->adminEarnings()->create([
+                    'user_id' => $withdraw->user_id,
+                    'type' => 'WITHDRAWAL_FEE',
+                    'amount' => $withdraw->transaction_fee,
+                ]);
+
+                $admin_wallet = AdminWallet::firstOrCreate(
+                    ['wallet_type' => 'WITHDRAWAL_FEE'],
+                    ['balance' => 0]
+                );
+
+                $admin_wallet->increment('balance', $withdraw->transaction_fee);
+
+                Mail::to($withdraw->user->email)
+                    ->cc($payout_info?->email)
+                    ->send(new SendPayoutConfirmationMail($withdraw));
             });
 
             $json['status'] = true;

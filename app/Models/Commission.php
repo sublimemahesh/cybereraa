@@ -37,6 +37,11 @@ class Commission extends Model
         return $this->morphMany(Earning::class, 'earnable', 'earnable_type', 'earnable_id');
     }
 
+    public function adminEarnings(): morphMany
+    {
+        return $this->morphMany(AdminWalletTransaction::class, 'earnable');
+    }
+
     public function purchasedPackage(): BelongsTo
     {
         return $this->belongsTo(PurchasedPackage::class, 'purchased_package_id')->withDefault(new PurchasedPackage());

@@ -35,6 +35,31 @@
         </ul>
     </li>
 @endcan
+@canany(['admin_wallet.viewAny','admin_wallet_transactions.viewAny','admin_wallet_withdrawal.viewAny'])
+    <li>
+        <a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
+            <i class="bi bi-wallet"></i>
+            <span class="nav-text">Admin Wallet</span>
+        </a>
+        <ul aria-expanded="false">
+            @can('admin_wallet.viewAny')
+                <li>
+                    <a href="{{ route('admin.admin-wallet-profits') }}">Wallets</a>
+                </li>
+            @endcan
+            @can('admin_wallet_transactions.viewAny')
+                <li>
+                    <a href="{{ route('admin.admin-wallet-transaction.index') }}">History</a>
+                </li>
+            @endcan
+            @can('admin_wallet_withdrawal.viewAny')
+                <li>
+                    <a href="{{ route('admin.admin-wallet-withdrawal.index') }}">Withdrawal</a>
+                </li>
+            @endcan
+        </ul>
+    </li>
+@endcan
 @can('wallet.topup')
     <li>
         <a href="{{ route('admin.wallet.topup') }}" class="" aria-expanded="false">
