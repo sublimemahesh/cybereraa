@@ -33,9 +33,12 @@ class AdminWalletTransactionController extends Controller
                         ($earn->earnable_id ? " - #" . str_pad($earn->earnable_id, '4', '0', STR_PAD_LEFT) : '');
                 })
                 ->addColumn('user', function ($earn) {
-                    return "<a href='" . route('admin.users.profile.show', $earn->user) . "' target='_blank'>
+                    if ($earn->user->id !== null) {
+                        return "<a href='" . route('admin.users.profile.show', $earn->user) . "' target='_blank'>
                             {$earn->user->username}
                         </a>";
+                    }
+                    return null;
                 })
                 ->addColumn('amount', fn($earn) => number_format($earn->amount, 2))
                 ->addColumn('date', fn($earn) => $earn->created_at->format('Y-m-d H:i:s'))
