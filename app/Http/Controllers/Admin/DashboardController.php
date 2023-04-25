@@ -63,6 +63,12 @@ class DashboardController extends Controller
         $today_logins = DB::table('sessions')->where('last_activity', '>', Carbon::today()->timestamp)->count();
         $total_rankers = Rank::where('eligibility', 5)->count();
 
+        $top_rankers = Rank::with('user')
+            ->whereNotNull('activated_at')
+            ->orderBy('rank', 'desc')
+            ->orderBy('total_rankers', 'desc')
+            ->limit(10)
+            ->get();
         // $rank_bonus_percentage = Strategy::where('name', 'rank_bonus')->firstOr(fn() => new Strategy(['value' => '10']));
         // $total_balance = Commission::count();
 
@@ -101,6 +107,8 @@ class DashboardController extends Controller
                 'today_logins',
                 'registrations_count',
                 'total_rankers',
+
+                'top_rankers',
             )
         );
     }

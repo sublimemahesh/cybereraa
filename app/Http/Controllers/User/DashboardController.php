@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Commission;
 use App\Models\Currency;
 use App\Models\Earning;
+use App\Models\Rank;
 use App\Models\Transaction;
 use App\Models\Withdraw;
 use Auth;
@@ -60,6 +61,14 @@ class DashboardController extends Controller
 
         $currency_carousel = Currency::all();
 
+        $top_rankers = Rank::with('user')
+            ->whereNotNull('activated_at')
+            ->whereIn('user_id', Auth::user()->descendantsAndSelf()->pluck('id')->toArray())
+            ->orderBy('rank', 'desc')
+            ->orderBy('total_rankers', 'desc')
+            ->limit(10)
+            ->get();
+
         return view('backend.user.dashboard',
             compact(
                 'total_investment',
@@ -73,7 +82,9 @@ class DashboardController extends Controller
                 'withdraw',
                 'qualified_commissions',
                 'lost_commissions',
-                'currency_carousel'
+                'currency_carousel',
+
+                'top_rankers',
             )
         );
     }
