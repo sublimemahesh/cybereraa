@@ -3,7 +3,7 @@
     @section('header-title', 'Packages' )
     @section('plugin-styles')
         <link rel="stylesheet" href="{{ asset('assets/backend/vendor/select2/css/select2.min.css') }}">
-        
+
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     @endsection
@@ -11,7 +11,7 @@
         <li class="breadcrumb-item">Buy Package</li>
     @endsection
 
-    <section>
+    {{-- <section>
         <div>
             <div class="owl-carousel owl-theme gift-slider">
 
@@ -27,7 +27,7 @@
 
             </div>
         </div>
-    </section>
+    </section> --}}
 <br>
 
 
