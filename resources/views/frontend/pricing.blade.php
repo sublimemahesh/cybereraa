@@ -52,8 +52,8 @@
                 </div>
         </section>
     </div>
-
-    <section>
+<br>
+    {{-- <section>
         <div class="container">
             <div class="owl-carousel owl-theme gift-slider">
 
@@ -69,7 +69,7 @@
 
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <section class="pricing-section">
         <div class="container">
