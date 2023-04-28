@@ -66,7 +66,7 @@ class KycController extends Controller
             $profile_verified_columns = ['nic' => 'nic_verified_at', 'driving_lc' => 'driving_lc_verified_at', 'passport' => 'passport_verified_at'];
             $document->kyc->profile()->update([$profile_verified_columns[$document->kyc->type] => now()]);
         } else {
-            $rejected_doc_count = KycDocument::where('kyc_id', $document->kyc_id)->where('status', 'accepted')->count();
+            $rejected_doc_count = KycDocument::where('kyc_id', $document->kyc_id)->where('status', 'rejected')->count();
             if ($document->kyc->required_documents === $rejected_doc_count) {
                 $document->kyc()->update(['status' => 'rejected']);
             }
