@@ -20,6 +20,12 @@
                     <span class="nav-text">Buy Packages</span>
                 </a>
             </li>
+            <li>
+                <a href="{{ route('user.staking-packages.index') }}" class="" aria-expanded="false">
+                    <i class="bi bi-stack"></i>
+                    <span class="nav-text">Staking Packages</span>
+                </a>
+            </li>
 
             <li>
                 <a href="{{ route('user.packages.active') }}" class="" aria-expanded="false">

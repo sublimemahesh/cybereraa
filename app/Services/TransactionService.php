@@ -40,7 +40,8 @@ class TransactionService
             ->addColumn('trx_amount', fn($trx) => number_format($trx->amount, 2))
             ->addColumn('paid_at', fn($trx) => Carbon::parse($trx->created_at)->format('Y-m-d H:i:s'))
             ->addColumn('type', static function ($trx) {
-                return "TYPE: <code class='text-uppercase'>" . $trx->type . '</code><br>' .
+                return "PRODUCT: <code class='text-uppercase'>" . $trx->package_type . '</code><br>' .
+                    "TYPE: <code class='text-uppercase'>" . $trx->type . '</code><br>' .
                     "METHOD: <code class='text-uppercase'>" . $trx->pay_method . '</code>';
             })
             //->addColumn('created_at', fn($trx) => $trx->created_at->format('Y-m-d h:i A'))

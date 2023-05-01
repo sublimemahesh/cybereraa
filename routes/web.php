@@ -241,13 +241,22 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::post('kyc/{kyc}/documents-upload', 'User\KycController@update');
         Route::post('kyc/{kyc}/documents/{document}/upload', 'User\KycDocumentController@update')->scopeBindings();
 
+        // PACKAGES
+
         // BinancePay
         Route::post('binancepay/order/create', 'Payment\BinancePayController@initiateBinancePay');
 
-        // Packages
         Route::get('packages', 'User\PackageController@index')->name('packages.index');
         Route::get('packages/active', 'User\PackageController@active')->name('packages.active');
         Route::get('packages/{package:slug}/{purchase_for?}', 'User\PackageController@manualPurchase')->name('packages.manual.purchase');
+
+        // STAKING PLANS START
+        Route::get('staking-packages', 'User\Staking\StakingPackageController@index')->name('staking-packages.index');
+        Route::get('staking-packages/{package:slug}/plans', 'User\Staking\StakingPackageController@plans')->name('staking-packages.purchase');
+        Route::post('staking-packages/order/create', 'User\Staking\PaymentController@initiatePayment');
+
+        // STAKING PLANS END
+
 
         // RANK GIFtS
         Route::get('ranks/gifts', 'User\RankGiftController@index')->name('ranks.gifts');
