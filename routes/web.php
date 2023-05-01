@@ -39,7 +39,10 @@ Route::group(['prefix' => 'register', 'middleware' => 'guest:' . config('fortify
 
 Route::group(['middleware' => 'guest:' . config('fortify.guard')], function () {
     Route::post('/forgot-password', 'Auth\PasswordResetLinkController@store')->name('password.email');
-    Route::post('/reset-password', 'Auth\NewPasswordController@store')->name('password.update');
+    Route::get('/reset-password/{token}', [\Laravel\Fortify\Http\Controllers\NewPasswordController::class, 'create'])
+        ->name('password.reset')
+        ->middleware('signed');
+    Route::post('/reset-password', 'Auth\NewPasswordController@store')->name('password.update')->middleware('signed');
 });
 
 Route::get('test', function () {

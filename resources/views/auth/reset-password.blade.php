@@ -15,7 +15,7 @@
                             </div>
                             <h4 class="text-center mb-4">Reset Password</h4>
                             <x-jet-validation-errors class="mb-4 text-danger"/>
-                            <form method="POST" action="{{ route('password.update') }}">
+                            <form method="POST" action="{{ URL::signedRoute('password.update') }}">
                                 @csrf
                                 <input type="hidden" name="token" value="{{ $request->route('token') }}">
                                 <div class="col-lg-12  mt-4">
