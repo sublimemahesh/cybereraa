@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Lang;
+use URL;
 
 class ResetPassword extends Notification
 {
@@ -95,7 +96,7 @@ class ResetPassword extends Notification
             return call_user_func(static::$createUrlCallback, $notifiable, $this->token);
         }
 
-        return url(route('password.reset', [
+        return url(URL::signedRoute('password.reset', [
             'token' => $this->token,
             'username' => $notifiable->username,
         ], false));

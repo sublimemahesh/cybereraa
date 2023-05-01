@@ -18,7 +18,7 @@ trait Loggable
                 try {
                     if (($model instanceof User) && $model->isDirty('password')) {
                         $log_data = [
-                            'RESPONSIBLE USER' => auth()->user()->only(['id', 'username', 'email']),
+                            'RESPONSIBLE USER' => auth()->user()?->only(['id', 'username', 'email']),
                             'PREVIOUS DATA' => Arr::except($model->getRawOriginal(), $model->exclude),
                             'NEW DATA' => $model->getDirty(),
                             'ACTION' => 'users.change-password',
