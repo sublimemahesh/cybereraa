@@ -16,7 +16,7 @@ class RankBenefitSummeryController extends Controller
      */
     public function index(Request $request)
     {
-        $this->authorize('viewAny', RankBonusSummery::class);
+        $this->authorize('viewSummery', RankBonusSummery::class);
 
         if ($request->wantsJson()) {
             $earnings = RankBonusSummery::filter();
@@ -44,7 +44,7 @@ class RankBenefitSummeryController extends Controller
 
     public function requirements(Request $request)
     {
-        $this->authorize('viewAny', RankBonusSummery::class);
+        $this->authorize('viewRequirement', RankBonusSummery::class);
 
         $user = \Auth::user();
         $validator = \Validator::make($request->all(), [
