@@ -63,23 +63,28 @@
                     </li>
                 </ul>
             </li>
-            @can('viewAny', \App\Models\RankBonusSummery::class)
+            @canany(['viewSummery','viewRequirement'], \App\Models\RankBonusSummery::class)
                 <li>
                     <a href="javascript:void(0);" class="has-arrow" aria-expanded="false">
                         <i class="bi bi-trophy-fill"></i>
                         <span class="nav-text"> Rank Bonus </span>
                     </a>
                     <ul aria-expanded="false">
-                        <li>
-                            <a href="{{ route('user.ranks.benefits.summery') }}" class="" aria-expanded="false">
-                                <span class="nav-text">Summery</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('user.ranks.benefits.requirements') }}" class="" aria-expanded="false">
-                                <span class="nav-text">Requirement</span>
-                            </a>
-                        </li>
+                        @can('viewSummery', \App\Models\RankBonusSummery::class)
+                            <li>
+                                <a href="{{ route('user.ranks.benefits.summery') }}" class="" aria-expanded="false">
+                                    <span class="nav-text">Summery</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('viewRequirement', \App\Models\RankBonusSummery::class)
+                            <li>
+                                <a href="{{ route('user.ranks.benefits.requirements') }}" class=""
+                                   aria-expanded="false">
+                                    <span class="nav-text">Requirement</span>
+                                </a>
+                            </li>
+                        @endcan
                     </ul>
                 </li>
             @endcan
