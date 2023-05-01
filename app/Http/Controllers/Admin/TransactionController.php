@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Actions\ActivateTransaction;
 use App\Http\Controllers\Controller;
+use App\Models\PurchasedStakingPlan;
 use App\Models\Transaction;
 use App\Services\TransactionService;
 use App\Services\TwoFactorAuthenticateService;
 use Auth;
+use Carbon;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
@@ -99,8 +101,26 @@ class TransactionController extends Controller
                 }
             }
 
-            \DB::transaction(function () use ($activateTransaction, $transaction) {
-                $res = $activateTransaction->execute($transaction);
+            \DB::transaction(function () use ($transaction, $activateTransaction) {
+                if ($transaction->package_type === 'PACKAGE') {
+                    $res = $activateTransaction->execute($transaction);
+                }
+                if ($transaction->package_type === 'STAKING') {
+                    $transaction->product->load('package');
+                    PurchasedStakingPlan::updateOrCreate(
+                        ['transaction_id' => $transaction->id],
+                        [
+                            'user_id' => $transaction->user_id,
+                            'purchaser_id' => $transaction->purchaser_id,
+                            'staking_plan_id' => $transaction->product->id,
+                            'invested_amount' => $transaction->amount,
+                            'interest_rate' => $transaction->product->interest_rate,
+                            'status' => 'ACTIVE',
+                            'maturity_date' => Carbon::now()->addDays($transaction->product->duration)->format('Y-m-d H:i:s'),
+                            'package_info' => $transaction->product->toJson(),
+                        ]
+                    );
+                }
 
                 $res_data = json_decode($transaction->status_response ?? [], true, 512, JSON_THROW_ON_ERROR);
                 $res_data['bizStatus'] = 'PAY_SUCCESS';

@@ -7,7 +7,9 @@ use Haruncpi\LaravelUserActivity\Traits\Loggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use JsonException;
 use Psr\Container\ContainerExceptionInterface;
@@ -75,7 +77,7 @@ class Transaction extends Model
         return null;
     }
 
-    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
@@ -85,12 +87,17 @@ class Transaction extends Model
         return $this->belongsTo(User::class, 'purchaser_id')->withDefault(new User);
     }
 
-    public function package(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function package(): BelongsTo
     {
         return $this->belongsTo(Package::class, 'package_id', 'id');
     }
 
-    public function purchasedPackage(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function product(): MorphTo
+    {
+        return $this->morphTo('product', 'product_type', 'product_id');
+    }
+
+    public function purchasedPackage(): HasOne
     {
         return $this->hasOne(PurchasedPackage::class, 'transaction_id', 'id');
     }
@@ -125,6 +132,9 @@ class Transaction extends Model
                 $query->where('amount', '>=', request()->input('min-amount'));
             })->when(!empty(request()->input('max-amount')), function ($query) {
                 $query->where('amount', '<=', request()->input('max-amount'));
+            })
+            ->when(!empty(request()->input('product-type')) && in_array(request()->input('product-type'), ['package', 'staking']), function ($query) {
+                $query->where('package_type', request()->input('product-type'));
             })
             ->when(!empty(request()->input('currency-type')) && in_array(request()->input('currency-type'), ['crypto', 'wallet']), function ($query) {
                 $query->where('type', request()->input('currency-type'));
