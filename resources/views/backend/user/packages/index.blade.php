@@ -59,10 +59,10 @@
                                 </li>
                                 <li class="list-group-item"><b>Package </b>{{ $package->name }}</li>
                                 <li class="list-group-item">
-                                    <b>During {{ $package->month_of_period }} </b> Month Of Period
+                                     Within Investment Period
                                 </li>
                                 <li class="list-group-item">
-                                    <b> Up to {{ $package->daily_leverage }}% </b>Daily Leverage
+                                    <b> {{ $package->daily_leverage }} % </b> Daily Profit
                                 </li>
                             </ul>
                         </div>

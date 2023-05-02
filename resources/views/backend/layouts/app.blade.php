@@ -29,6 +29,7 @@
 
     <link href="{{ asset('assets/backend/vendor/swiper/css/swiper-bundle.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/backend/vendor/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/backend/css/style.css') }}" rel="stylesheet">
 
     @yield('plugin-styles')
     <!-- Style css -->

@@ -48873,3 +48873,21 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 }
 
 
+.txte-right{
+    float: right !important;
+    position: absolute;
+    margin-left: 615px;
+
+}
+
+.ref-card-body{
+  padding-top: 45px;
+}
+
+.ref-text{
+   width: 400px !important;
+}
+
+#p-with{
+	width:100% !important;
+}

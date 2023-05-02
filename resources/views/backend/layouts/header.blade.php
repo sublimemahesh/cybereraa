@@ -33,6 +33,9 @@
                 <div class="header-left">
                     <div class="dashboard_bar">
                         @yield('header-title')
+                        <span class="txte-right">
+                            @yield('header-title2')
+                        </span>
                     </div>
                 </div>
                 <div class="navbar-nav header-right">
