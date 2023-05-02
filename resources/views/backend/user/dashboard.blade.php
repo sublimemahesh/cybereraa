@@ -1,6 +1,9 @@
 <x-backend.layouts.app>
     @section('title', 'User Dashboard')
     @section('header-title', 'Welcome ' . Auth::user()->name)
+    @section('header-title2',Auth::user()->username)
+
+
 
     <div class="row">
         <div class="col-xl-12">
@@ -101,14 +104,28 @@
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="card bubles">
-                                <div class="card-body">
+                                <div class="card-body ref-card-body">
                                     <div class="buy-coin  bubles-down">
                                         <div>
-                                            <h2>{{ Auth::user()->username }}</h2>
-                                            <p>
-                                                {{ Auth::user()->name }} Welcome to SafestTrades.com,
-                                                <code>DO NOT</code> share your credentials with anyone for your safety
+                                          
+                       
+                        <div class="input-group mb-3 input-primary ref-div">
+                            <input type="text" readonly class="form-control ref-text" id="clipboard-input"
+                                   value="{{ Auth::user()->referral_link }}" >
+                            <span class="input-group-text border-0 clipboard-tooltip" onclick="copyToClipBoard()"
+                                  onmouseout="outFunc()">
+                                <span class="tooltip-text" id="clipboard-tooltip">Copy Link</span>
+                            </span>
+                        </div>
+						<p id='p-with'>
+                                                {{ Auth::user()->name }} Welcome to SafestTrades.com,<br>
+                                               <code> DO NOT</code> share your credentials with anyone for your safety
                                             </p>
+                       
+                    
+
+
+
                                             <a href="{{ route('user.packages.index') }}" class="btn btn-primary">Buy
                                                 Packages
                                             </a>
@@ -467,5 +484,31 @@
     @push('scripts')
         <script src="{{ asset('assets/backend/vendor/webticker/jquery.webticker.min.js') }}"></script>
         <script src="{{ asset('assets/backend/js/user/dashboard.js') }}"></script>
+		
+		   <script>
+		  
+		   function copyToClipBoard() {
+			   
+                const copyText = document.getElementById("clipboard-input");
+                copyText.select();
+                copyText.setSelectionRange(0, 99999);
+                navigator.clipboard.writeText(copyText.value);
+
+                const tooltip = document.getElementById("clipboard-tooltip");
+                tooltip.innerHTML = "Copied: " + copyText.value;
+            }
+			
+			   function outFunc() {
+                const tooltip = document.getElementById("clipboard-tooltip");
+                tooltip.innerHTML = "Copy Link";
+            }
+			
+			
+           
+		   
+		   </script>
+		
+		
+		
     @endpush
 </x-backend.layouts.app>
