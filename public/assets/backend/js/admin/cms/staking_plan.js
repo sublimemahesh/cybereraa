@@ -28,7 +28,7 @@ $(function () {
         loader()
         $('#package-form').find(".text-danger").remove();
         let formData = $('#package-form').serialize();
-        axios.post(`${APP_URL}/admin/packages`, formData) 
+        axios.post(`${APP_URL}/admin/staking-packages/${PACKAGE_ID}/plans`, formData)
             .then(response => {
                 Toast.fire({
                     icon: response.data.icon, title: response.data.message,
@@ -42,7 +42,7 @@ $(function () {
                 icon: 'error', title: error.response.data.message || "Something went wrong!",
             })
             console.error(error.response.data)
-            let errorMap = ['name', 'amount', 'gas_fee', 'month_of_period', 'daily_leverage', 'is_active']
+            let errorMap = ['name', 'duration', 'interest_rate', 'is_active']
             errorMap.map(id => {
                 error.response.data.errors[id] && appendError(id, `<span class="text-danger">${error.response.data.errors[id]}</span>`)
             })
@@ -50,12 +50,13 @@ $(function () {
 
     }
 
+
     function updatePackage(e) {
         e.preventDefault();
         loader()
         $('#package-form').find(".text-danger").remove();
         let formData = $('#package-form').serialize();
-        axios.patch(`${APP_URL}/admin/packages/${PACKAGE_ID}`, formData)
+        axios.patch(`${APP_URL}/admin/plans/${PLAN_ID}`, formData)
             .then(response => {
                 Toast.fire({
                     icon: response.data.icon, title: response.data.message,
@@ -69,7 +70,7 @@ $(function () {
                 icon: 'error', title: error.response.data.message || "Something went wrong!",
             })
             console.error(error.response.data)
-            let errorMap = ['name', 'amount', 'gas_fee', 'month_of_period', 'daily_leverage', 'is_active']
+            let errorMap = ['name', 'duration', 'interest_rate', 'is_active']
             errorMap.map(id => {
                 error.response.data.errors[id] && appendError(id, `<span class="text-danger">${error.response.data.errors[id]}</span>`)
             })
@@ -94,7 +95,7 @@ $(function () {
         }).then((willDelete) => {
             if (willDelete.isConfirmed) {
                 loader()
-                axios.delete(`${APP_URL}/admin/packages/${package_id}`)
+                axios.delete(`${APP_URL}/admin/plans/${package_id}`)
                     .then(response => {
                         Toast.fire({
                             icon: response.data.icon, title: response.data.message,
