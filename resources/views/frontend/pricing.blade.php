@@ -90,8 +90,8 @@
                                 <br>
                                 <br>
                                 <ul class="features">
-                                    <li class="true">Duration {{ $package->month_of_period }} Month</li>
-                                    <li class="true">Up to {{ $package->daily_leverage }} Leverage</li>
+                                    <li class="true">Within Investment Period</li>
+                                    <li class="true">{{ $package->daily_leverage }} % Daily Profit</li>
                                     {{-- <li class="true">20 By Points</li> --}}
                                 </ul>
                                 <div class="btn-box">
