@@ -8,7 +8,7 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class PackagePolicy
 {
-    use HandlesAuthorization;
+    use HandlesAuthorization; 
 
     public function purchase($user, Package $package, $max_amount)
     {

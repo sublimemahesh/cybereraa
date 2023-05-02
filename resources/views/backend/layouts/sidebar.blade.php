@@ -86,7 +86,8 @@
 @endcan
 @can('transactions.viewAny')
     <li>
-        <a href="{{ route('admin.transactions.index', ['date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .' to '.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}" class="" aria-expanded="false">
+        <a href="{{ route('admin.transactions.index', ['date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .' to '.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}"
+           class="" aria-expanded="false">
             <i class="bi fa-chain-broken"></i>
             <span class="nav-text"> User Payments </span>
         </a>
@@ -94,15 +95,18 @@
 @endcan
 @can('purchase_packages.viewAny')
     <li>
-        <a href="{{ route('admin.purchased-packages', ['date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .' to '.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}" class="" aria-expanded="false">
+        <a href="{{ route('admin.purchased-packages', ['date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .' to '.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}"
+           class="" aria-expanded="false">
             <i class="bi bi-box"></i>
             <span class="nav-text"> User Packages </span>
         </a>
     </li>
 @endcan
+
 @can('earnings.viewAny')
     <li>
-        <a href="{{ route('admin.earnings.index', ['status' => 'received','date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .' to '.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}" class="" aria-expanded="false">
+        <a href="{{ route('admin.earnings.index', ['status' => 'received','date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .' to '.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}"
+           class="" aria-expanded="false">
             <i class="bi bi-cash-stack"></i>
             <span class="nav-text"> User Earnings </span>
         </a>
@@ -111,7 +115,8 @@
 
 @can('withdraw.p2p.viewAny')
     <li>
-        <a href="{{ route('admin.transfers.p2p', ['status' => 'success','date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .' to '.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}" class="" aria-expanded="false">
+        <a href="{{ route('admin.transfers.p2p', ['status' => 'success','date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .' to '.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}"
+           class="" aria-expanded="false">
             <i class="bi fa-arrow-turn-down"></i>
             <span class="nav-text"> P2P Transactions </span>
         </a>
@@ -145,14 +150,16 @@
         <ul aria-expanded="false">
             @can('commissions.viewAny')
                 <li>
-                    <a href="{{ route('admin.incomes.commission', ['status' => 'qualified','date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .' to '.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}" class="" aria-expanded="false">
+                    <a href="{{ route('admin.incomes.commission', ['status' => 'qualified','date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .' to '.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}"
+                       class="" aria-expanded="false">
                         Commissions
                     </a>
                 </li>
             @endcan
             @can('rank_bonus.viewAny')
                 <li>
-                    <a href="{{ route('admin.incomes.rewards', ['status' => 'qualified','date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .' to '.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}" class="" aria-expanded="false">
+                    <a href="{{ route('admin.incomes.rewards', ['status' => 'qualified','date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .' to '.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}"
+                       class="" aria-expanded="false">
                         Rewards
                     </a>
                 </li>
@@ -194,6 +201,14 @@
         <a href="{{ route('admin.packages.index') }}" class="" aria-expanded="false">
             <i class="bi bi-stack"></i>
             <span class="nav-text">Packages</span>
+        </a>
+    </li>
+@endcan
+@can('staking_package.viewAny')
+    <li>
+        <a href="{{ route('admin.staking-packages.index') }}" class="" aria-expanded="false">
+            <i class="bi bi-stack"></i>
+            <span class="nav-text">Staking Package</span>
         </a>
     </li>
 @endcan

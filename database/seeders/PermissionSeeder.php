@@ -130,6 +130,12 @@ class PermissionSeeder extends Seeder
             ['name' => 'withdrawals.viewAny', 'guard_name' => 'web'],
             ['name' => 'withdraw.approve', 'guard_name' => 'web'],
             ['name' => 'withdraw.reject', 'guard_name' => 'web'],
+
+            ['name' => 'staking_package.viewAny', 'guard_name' => 'web'],
+            ['name' => 'staking_package.create', 'guard_name' => 'web'],
+            ['name' => 'staking_package.update', 'guard_name' => 'web'],
+            ['name' => 'staking_package.delete', 'guard_name' => 'web'],
+
         ];
 
         Permission::upsert($permissions, 'name');

@@ -123,6 +123,19 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::post('packages/arrange', 'Admin\PackageController@storeSort')->name('packages.arrange.store');
         Route::resource('packages', 'Admin\PackageController')->except('create', 'show');
 
+        //Steaking Package
+        Route::get('staking-packages/arrange', 'Admin\StakingPackageController@sort')->name('staking-packages.arrange');
+        Route::post('staking-packages/arrange', 'Admin\StakingPackageController@storeSort')->name('staking-packages.arrange.store');
+        Route::resource('staking-packages', 'Admin\StakingPackageController')->except('create', 'show');
+
+        Route::resource('staking-packages.plans', 'Admin\StakingPlanController')->except('create', 'show')
+            ->parameters([
+                'staking-packages' => 'package'
+            ])->shallow();
+        Route::get('staking-packages/{package}/arrange', 'Admin\StakingPlanController@sort')->name('staking-packages.plans.arrange');
+        Route::post('plans/arrange', 'Admin\StakingPlanController@storeSort')->name('plans.arrange.store');
+
+
         // topup
         Route::get('wallet/topup', 'Admin\WalletTopupHistoryController@index')->name('wallet.topup');
         Route::get('wallet/topup/history', 'Admin\WalletTopupHistoryController@history')->name('wallet.topup.history');

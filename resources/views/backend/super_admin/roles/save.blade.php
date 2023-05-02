@@ -19,7 +19,7 @@
                         Add Roles
                     </h5>
                     <hr>
-                    <form action="{{ route('super_admin.roles.store') }}" enctype="multipart/form-data" method="post">
+                    <form action="{{ route('super_admin.roles.store')  }}" enctype="multipart/form-data" method="post">
                         @csrf
                         <div class="row">
                             <div class="form-group row mb-2">
