@@ -8,6 +8,7 @@ use App\Models\Page;
 use App\Models\Package;
 use App\Models\Blog;
 use App\Models\Testimonial;
+use App\Models\StakingPackage;
 
 
 class FrontendController extends Controller
@@ -92,6 +93,14 @@ class FrontendController extends Controller
     {
         $packages = Package::all();
         return view('frontend.pricing', compact('packages'));
+
+    }
+
+
+     public function staking()
+    {
+        $stakingpackages = StakingPackage::all();
+        return view('frontend.staking', compact('stakingpackages'));
 
     }
 
