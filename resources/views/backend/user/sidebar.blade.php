@@ -20,11 +20,30 @@
                     <span class="nav-text">Buy Packages</span>
                 </a>
             </li>
-            <li>
+            {{-- <li>
                 <a href="{{ route('user.staking-packages.index') }}" class="" aria-expanded="false">
                     <i class="bi bi-stack"></i>
                     <span class="nav-text">Staking Packages</span>
                 </a>
+            </li> --}}
+
+            <li>
+                <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
+                    <i class="bi bi-stack"></i>
+                    <span class="nav-text">Staking</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li>
+                        <a href="{{ route('user.staking-packages.index') }}" class="" aria-expanded="false">
+                            <span class="nav-text">Staking Packages</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('user.staking-packages.dashboard') }}" class="" aria-expanded="false">
+                            <span class="nav-text">Staking Dashboard</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
 
             <li>
