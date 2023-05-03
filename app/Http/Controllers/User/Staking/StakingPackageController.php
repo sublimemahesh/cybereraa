@@ -25,4 +25,17 @@ class StakingPackageController extends Controller
         $plans = $package->plans;
         return view('backend.user.staking.purchase-plan', compact('package', 'plans'));
     }
+
+
+    public function dashboard()
+    {
+        $packages = StakingPackage::activePackages()->get();
+        //$logged_user = Auth::user()->loadCount('purchasedPackages');
+        //$is_gas_fee_added = $logged_user->purchased_packages_count <= 0;
+//        dd(json_encode($packages->pluck('slug')));
+        return view('backend.user.staking-dashboard.index', compact('packages'));
+    }
+
+
+
 }

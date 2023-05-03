@@ -270,6 +270,9 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::get('staking-packages/{package:slug}/plans', 'User\Staking\StakingPackageController@plans')->name('staking-packages.purchase');
         Route::post('staking-packages/order/create', 'User\Staking\PaymentController@initiatePayment');
 
+        Route::get('staking-dashboard', 'User\Staking\StakingPackageController@dashboard')->name('staking-packages.dashboard');
+
+
         // STAKING PLANS END
 
 
