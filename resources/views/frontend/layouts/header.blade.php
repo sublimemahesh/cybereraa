@@ -102,7 +102,17 @@
                                 </ul>
                             </li>
 
-                            <li id='pricing'><a href="{{ route('pricing') }}"> Packages</a></li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Packages<i
+                                        class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ route('pricing') }}">Trading Investments Packages</a></li>
+                                    <li><a href="{{ route('staking-pricing') }}">Coin Staking Packages</a></li>
+                                </ul>
+                            </li>
+
+                            {{-- <li id='pricing'><a href="{{ route('pricing') }}"> Packages</a></li> --}}
                             <li id='faq'><a href="{{ route('faq') }}">FAQ</a></li>
                             <li id='news'><a href="{{ route('news') }}">News</a></li>
                             <li id='contact'><a href="{{ route('contact') }}">Contact</a></li>

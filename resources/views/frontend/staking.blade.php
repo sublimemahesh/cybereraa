@@ -1,5 +1,5 @@
 <x-frontend.layouts.app>
-    @section('title', 'Package | Safest Trades | One to One Marketing Website')
+    @section('title', 'Staking Package | Safest Trades | One to One Marketing Website')
     @section('header-title', 'Welcome ')
 
     @section('meta')
@@ -33,13 +33,13 @@
                                     <div class="row text-center">
                                         <div class="col-xs-12">
                                             <!-- Title Starts -->
-                                            <h2 class="title-head"><span>Trading Investments Packages</span></h2>
+                                            <h2 class="title-head"><span>Coin Staking Packages</span></h2>
                                             <!-- Title Ends -->
                                             <hr>
                                             <!-- Breadcrumb Starts -->
                                             <ul class="breadcrumb">
                                                 <li><a href="{{ route('/') }}" id='home'> home</a></li>
-                                                <li>Trading Investments Packages</li>
+                                                <li>Coin Staking Packages</li>
                                             </ul>
                                             <!-- Breadcrumb Ends -->
                                         </div>
@@ -76,7 +76,7 @@
             <div class="outer-box">
                 <div class="row">
 
-                    @foreach ($packages as $package)
+                    @foreach ($stakingpackages as $stakingpackage)
                         <!-- Pricing Block Start -->
                         <div class="pricing-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
                             <div class="inner-box">
@@ -84,19 +84,18 @@
                                     <div class="icon-outer"><i class="fas fa-gem"></i></div>
                                 </div>
                                 <div class="price-box">
-                                    <div class="title">{{ $package->name }}</div>
-                                    <h4 class="price">{{ $package->currency }}{{ $package->amount }}</h4>
+                                    <div class="title">{{ $stakingpackage->name }}</div>
+                                    <h4 class="price">{{ $stakingpackage->currency }}{{ $stakingpackage->total_amount }}</h4>
                                 </div>
                                 <br>
                                 <br>
                                 <ul class="features">
-                                    <li class="true">Within Investment Period</li>
-                                    <li class="true">Gas Fee USDT {{ $package->gas_fee }}</li>
-                                    <li class="true">{{ $package->daily_leverage }} % Daily Profit</li>
-                                   
+                                    <li class="true">Price USDT {{ $stakingpackage->amount }}</li>
+                                    <li class="true">Gas Fee USDT {{ $stakingpackage->gas_fee }}</li>
+                                    <li class="true">{{ $stakingpackage->plans_count }} Plans Available</li>
                                 </ul>
-                                <div class="btn-box">
-                                    <a href="{{ route('register') }}" class="theme-btn">Buy Plan</a>
+                                <div class="btn-box cursor-btn">
+                                    <a href="{{ route('user.staking-packages.purchase',$stakingpackage) }}" class="theme-btn" >Buy Plan</a>
                                 </div>
                             </div>
                         </div>

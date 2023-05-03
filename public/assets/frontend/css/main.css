@@ -223,3 +223,7 @@ img.vert-move {
   @keyframes shimmer {
     100% {-webkit-mask-position:left}
   }
+
+  .cursor-btn{
+    cursor:pointer;
+  }

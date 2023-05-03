@@ -19,6 +19,8 @@ Route::get('existing-projects', 'FrontendController@project')->name('project');
 Route::get('upcoming-projects', 'FrontendController@upcomingProject')->name('Upcoming-project');
 
 Route::get('packages', 'FrontendController@pricing')->name('pricing');
+Route::get('staking-packages', 'FrontendController@staking')->name('staking-pricing');
+
 Route::get('faq', 'FrontendController@faq')->name('faq');
 // Route::get('contact', 'FrontendController@contact')->name('contact');
 Route::get('news', 'FrontendController@news')->name('news');
