@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User\Staking;
 
 use App\Http\Controllers\Controller;
+use App\Models\AdminWallet;
 use App\Models\PurchasedStakingPlan;
 use App\Models\StakingPlan;
 use App\Models\User;
@@ -174,6 +175,19 @@ class PaymentController extends Controller
                                 'package_info' => $transaction->product->toJson(),
                             ]
                         );
+
+                        $transaction->adminEarnings()->create([
+                            'user_id' => $transaction->user_id,
+                            'type' => 'GAS_FEE',
+                            'amount' => $transaction->gas_fee
+                        ]);
+
+                        $admin_wallet = AdminWallet::firstOrCreate(
+                            ['wallet_type' => 'GAS_FEE'],
+                            ['balance' => 0]
+                        );
+
+                        $admin_wallet->increment('balance', $transaction->gas_fee);
 
                         $wallet = $purchased_by->wallet;
 

@@ -29,7 +29,7 @@
 
             <li>
                 <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
-                    <i class="bi bi-stack"></i>
+                    <i class="bi bi-coin"></i>
                     <span class="nav-text">Staking</span>
                 </a>
                 <ul aria-expanded="false">
@@ -61,7 +61,7 @@
             <li>
                 <a href="{{ route('user.transactions.index') }}" class="" aria-expanded="false">
                     <i class="bi fa-chain-broken"></i>
-                    <span class="nav-text">My Packages</span>
+                    <span class="nav-text">My Transactions</span>
                 </a>
             </li>
             <li>
