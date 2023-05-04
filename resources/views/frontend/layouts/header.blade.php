@@ -24,8 +24,7 @@
                                     <div class="owl-item coin-list">
                                         <div class="item">
                                             <div>
-                                                <p class='tp'><i class="fa fa-caret-up" aria-hidden="true"></i>{{ $section->change}}%(30
-                                                    days)</p>
+                                                <p class='tp'><i class="fa fa-caret-up" aria-hidden="true"></i>{{ $section->change}}%</p>
                                                 <h5 class="ttt">$<?php echo number_format($section->value, 2); ?></h5>
                                                 <img src="{{ storage('currencies/' . $section->image_name) }}"
                                                     class="cryimg" alt="safest trades">
