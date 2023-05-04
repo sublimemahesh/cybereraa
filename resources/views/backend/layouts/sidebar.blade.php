@@ -102,6 +102,15 @@
         </a>
     </li>
 @endcan
+@can('purchase_staking_plans.viewAny')
+    <li>
+        <a href="{{ route('admin.staking-purchased-packages') }}"
+           class="" aria-expanded="false">
+            <i class="bi bi-coin"></i>
+            <span class="nav-text"> User Stakings </span>
+        </a>
+    </li>
+@endcan
 
 @can('earnings.viewAny')
     <li>

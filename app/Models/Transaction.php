@@ -102,6 +102,11 @@ class Transaction extends Model
         return $this->hasOne(PurchasedPackage::class, 'transaction_id', 'id');
     }
 
+    public function purchasedStakingPlan(): HasOne
+    {
+        return $this->hasOne(PurchasedStakingPlan::class, 'transaction_id');
+    }
+
     public function adminEarnings(): morphMany
     {
         return $this->morphMany(AdminWalletTransaction::class, 'earnable');

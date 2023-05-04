@@ -76,6 +76,7 @@ $(function () {
         urlParams.set("purchaser_id", $("#purchaser_id").val());
         urlParams.set("user_id", $("#user_id").val());
         urlParams.set("currency-type", $("#currency-type").val());
+        urlParams.set("product-type", $("#product-type").val());
         urlParams.set("pay-method", $("#pay-method").val());
         let url = data_url.split(/\?|\#/)[0] + "?" + urlParams.toString();
         HISTORY_STATE && history.replaceState({}, "", url);

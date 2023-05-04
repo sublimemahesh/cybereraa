@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\StakingPackage;
 use App\Models\StakingPlan;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Validator;
@@ -23,11 +24,21 @@ class StakingPlanController extends Controller
         return view('backend.admin.staking-package.plans.index', compact('plans', 'package'));
     }
 
+    public function fetchPlans(StakingPackage $package): JsonResponse
+    {
+        $plans = $package->plans;
+        $json['status'] = true;
+        $json['message'] = 'Successfully fetched!';
+        $json['icon'] = 'success'; // warning | info | question | success | error
+        $json['data'] = $plans;
+        return response()->json($json);
+    }
+
     /**
      * @throws AuthorizationException
      */
 
-    public function store(Request $request, StakingPackage $package): \Illuminate\Http\JsonResponse
+    public function store(Request $request, StakingPackage $package): JsonResponse
     {
         $this->authorize('create', StakingPlan::class);
 

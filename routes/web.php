@@ -62,6 +62,8 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::post('verify/mobile', 'MobileVerifyController@verifyPhone');
     });
 
+    Route::get('staking-packages/{package}/fetch-plans', 'Admin\StakingPlanController@fetchPlans');
+
     Route::group(["prefix" => "super-admin", 'middleware' => ['has_any_admin_role'], "as" => 'super_admin.'], function () {
         Route::get('dashboard', 'SuperAdmin\DashboardController@index')->name('dashboard');
 
@@ -125,7 +127,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::post('packages/arrange', 'Admin\PackageController@storeSort')->name('packages.arrange.store');
         Route::resource('packages', 'Admin\PackageController')->except('create', 'show');
 
-        //Steaking Package
+        //Staking Package
         Route::get('staking-packages/arrange', 'Admin\StakingPackageController@sort')->name('staking-packages.arrange');
         Route::post('staking-packages/arrange', 'Admin\StakingPackageController@storeSort')->name('staking-packages.arrange.store');
         Route::resource('staking-packages', 'Admin\StakingPackageController')->except('create', 'show');
@@ -182,6 +184,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
 
             // Transactions
             Route::get('users/purchased-packages', 'Admin\PurchasedPackageController@index')->name('purchased-packages');
+            Route::get('users/staking-purchased-packages', 'Admin\PurchasedStakingPlanController@index')->name('staking-purchased-packages');
             Route::get('users/transactions', 'Admin\TransactionController@index')->name('transactions.index');
             Route::get('users/transactions/{transaction}/summery', 'Admin\TransactionController@summery')->name('transactions.summery');
             Route::match(['get', 'post'], 'users/transactions/{transaction}/approve', 'Admin\TransactionController@approve')->name('transactions.approve');
@@ -271,6 +274,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::post('staking-packages/order/create', 'User\Staking\PaymentController@initiatePayment');
 
         Route::get('staking-dashboard', 'User\Staking\StakingPackageController@dashboard')->name('staking-packages.dashboard');
+        Route::get('staking/purchased-plans/{purchase}/cancellation', 'User\Staking\StakingCancelRequestController@index')->name('staking-cancel-request.index');
 
 
         // STAKING PLANS END
