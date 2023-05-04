@@ -48876,7 +48876,8 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 .txte-right{
     float: right !important;
     position: absolute;
-    margin-left: 615px;
+    /* margin-left: 600px; */
+	right:-20px;
 
 }
 

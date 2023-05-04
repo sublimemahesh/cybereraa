@@ -107,8 +107,8 @@
                                 <div class="card-body ref-card-body">
                                     <div class="buy-coin  bubles-down">
                                         <div>
-                                          
-                       
+
+
                         <div class="input-group mb-3 input-primary ref-div">
                             <input type="text" readonly class="form-control ref-text" id="clipboard-input"
                                    value="{{ Auth::user()->referral_link }}" >
@@ -121,8 +121,8 @@
                                                 {{ Auth::user()->name }} Welcome to SafestTrades.com,<br>
                                                <code> DO NOT</code> share your credentials with anyone for your safety
                                             </p>
-                       
-                    
+
+
 
 
 
@@ -484,31 +484,29 @@
     @push('scripts')
         <script src="{{ asset('assets/backend/vendor/webticker/jquery.webticker.min.js') }}"></script>
         <script src="{{ asset('assets/backend/js/user/dashboard.js') }}"></script>
-		
+
 		   <script>
-		  
+
 		   function copyToClipBoard() {
-			   
+
                 const copyText = document.getElementById("clipboard-input");
                 copyText.select();
                 copyText.setSelectionRange(0, 99999);
                 navigator.clipboard.writeText(copyText.value);
 
                 const tooltip = document.getElementById("clipboard-tooltip");
-                tooltip.innerHTML = "Copied: " + copyText.value;
+                tooltip.innerHTML = "Copied: ";
             }
-			
+
 			   function outFunc() {
                 const tooltip = document.getElementById("clipboard-tooltip");
-                tooltip.innerHTML = "Copy Link";
+                //tooltip.innerHTML = "Copied";
             }
-			
-			
-           
-		   
+
+
 		   </script>
-		
-		
-		
+
+
+
     @endpush
 </x-backend.layouts.app>
