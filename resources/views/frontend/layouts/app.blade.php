@@ -47,6 +47,10 @@
     <!-- Live Style Switcher JS File - only demo -->
 
     <script src="{{ asset('assets/frontend/js/main.js') }}"></script>
+	
+	<!-- Coin price  -->
+
+    <script src="{{ asset('assets/frontend/js/coin_prices.js') }}"></script>
 
 
     <!-- Wrapper Ends -->
