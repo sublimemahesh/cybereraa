@@ -128,16 +128,16 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::resource('packages', 'Admin\PackageController')->except('create', 'show');
 
         //Staking Package
-        Route::get('staking-packages/arrange', 'Admin\StakingPackageController@sort')->name('staking-packages.arrange');
-        Route::post('staking-packages/arrange', 'Admin\StakingPackageController@storeSort')->name('staking-packages.arrange.store');
-        Route::resource('staking-packages', 'Admin\StakingPackageController')->except('create', 'show');
+        Route::get('staking-packages/arrange', 'Admin\Staking\StakingPackageController@sort')->name('staking-packages.arrange');
+        Route::post('staking-packages/arrange', 'Admin\Staking\StakingPackageController@storeSort')->name('staking-packages.arrange.store');
+        Route::resource('staking-packages', 'Admin\Staking\StakingPackageController')->except('create', 'show');
 
-        Route::resource('staking-packages.plans', 'Admin\StakingPlanController')->except('create', 'show')
+        Route::resource('staking-packages.plans', 'Admin\Staking\StakingPlanController')->except('create', 'show')
             ->parameters([
                 'staking-packages' => 'package'
             ])->shallow();
-        Route::get('staking-packages/{package}/arrange', 'Admin\StakingPlanController@sort')->name('staking-packages.plans.arrange');
-        Route::post('plans/arrange', 'Admin\StakingPlanController@storeSort')->name('plans.arrange.store');
+        Route::get('staking-packages/{package}/arrange', 'Admin\Staking\StakingPlanController@sort')->name('staking-packages.plans.arrange');
+        Route::post('plans/arrange', 'Admin\Staking\StakingPlanController@storeSort')->name('plans.arrange.store');
 
 
         // topup
@@ -184,7 +184,14 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
 
             // Transactions
             Route::get('users/purchased-packages', 'Admin\PurchasedPackageController@index')->name('purchased-packages');
-            Route::get('users/staking-purchased-packages', 'Admin\PurchasedStakingPlanController@index')->name('staking-purchased-packages');
+
+            Route::get('users/staking-purchased-packages', 'Admin\Staking\PurchasedStakingPlanController@index')->name('staking-purchased-packages');
+
+            Route::get('users/staking-purchased-packages/{purchase}/cancellations', 'Admin\Staking\StakingCancelRequestController@index')->name('staking-cancel-request.index');
+            Route::post('users/staking-purchased-packages/cancellations/{cancelRequest}/process', 'Admin\Staking\StakingCancelRequestController@process')->name('staking-cancel-request.process');
+            Route::match(['get', 'post'], 'users/staking-purchased-packages/cancellations/{cancelRequest}/approve', 'Admin\Staking\StakingCancelRequestController@approve')->name('staking-cancel-request.approve');
+            Route::match(['get', 'post'], 'users/staking-purchased-packages/cancellations/{cancelRequest}/reject', 'Admin\Staking\StakingCancelRequestController@reject')->name('staking-cancel-request.reject');
+
             Route::get('users/transactions', 'Admin\TransactionController@index')->name('transactions.index');
             Route::get('users/transactions/{transaction}/summery', 'Admin\TransactionController@summery')->name('transactions.summery');
             Route::match(['get', 'post'], 'users/transactions/{transaction}/approve', 'Admin\TransactionController@approve')->name('transactions.approve');
@@ -274,7 +281,9 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::post('staking-packages/order/create', 'User\Staking\PaymentController@initiatePayment');
 
         Route::get('staking-dashboard', 'User\Staking\StakingPackageController@dashboard')->name('staking-packages.dashboard');
-        Route::get('staking/purchased-plans/{purchase}/cancellation', 'User\Staking\StakingCancelRequestController@index')->name('staking-cancel-request.index');
+        Route::get('staking/purchased-plans/{purchase}/cancellations', 'User\Staking\StakingCancelRequestController@index')->name('staking-cancel-request.index');
+        Route::match(['get', 'post'], 'staking/purchased-plans/{purchase}/cancellations/request', 'User\Staking\StakingCancelRequestController@request')->name('staking-cancel-request.request');
+        Route::match(['get', 'post'], 'staking/purchased-plans/cancellations/{cancelRequest}/reverse', 'User\Staking\StakingCancelRequestController@reverse')->name('staking-cancel-request.reverse');
 
 
         // STAKING PLANS END

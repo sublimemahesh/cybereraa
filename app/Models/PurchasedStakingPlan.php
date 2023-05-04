@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use JsonException;
 use Psr\Container\ContainerExceptionInterface;
@@ -37,6 +38,10 @@ class PurchasedStakingPlan extends Model
             }
             if ($package->status === 'CANCELLED') {
                 $package->cancelled_at = Carbon::now();
+                $package->saveQuietly();
+            }
+            if ($package->status === 'HOLD') {
+                $package->hold_at = Carbon::now();
                 $package->saveQuietly();
             }
         });
@@ -83,12 +88,21 @@ class PurchasedStakingPlan extends Model
      */
     public function getPackageInfoJsonAttribute()
     {
-        return $this->package_info_json = json_decode($this->package_info, false, 512, JSON_THROW_ON_ERROR);
+        $pkg_data = json_decode($this->package_info, false, 512, JSON_THROW_ON_ERROR);
+        if (!empty($pkg_data?->package)) {
+            $pkg_data->name = $pkg_data?->package?->name . '-' . $pkg_data->name;
+        }
+        return $this->package_info_json = $pkg_data;
     }
 
     public function package()
     {
         return $this->package_info_json;
+    }
+
+    public function earnings(): MorphMany
+    {
+        return $this->morphMany(Earning::class, 'earnable');
     }
 
     public function transaction(): BelongsTo

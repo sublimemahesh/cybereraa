@@ -36,9 +36,15 @@ class StakingPackageController extends Controller
         if ($request->wantsJson()) {
             return $purchaseStakingPlanService->datatable(\Auth::user()->id)
                 ->addColumn('actions', function ($staking_pkg) {
-                    return '<a href="' . route('user.staking-cancel-request.index', $staking_pkg) . '" class="btn btn-xs btn-info sharp my-1 mr-1 shadow">
+                    $actions = '<a href="' . route('user.staking-cancel-request.index', $staking_pkg) . '" class="btn btn-xs btn-info sharp my-1 mr-1 shadow">
                                     <i class="fa fa-list"></i>
                                 </a>';
+                    if (\Gate::allows('cancel', $staking_pkg)) {
+                        $actions .= '<a href="' . route('user.staking-cancel-request.request', $staking_pkg) . '" class="btn btn-xs btn-danger sharp my-1 mr-1 shadow">
+                                    <i class="fa fa-close"></i>
+                                </a>';
+                    }
+                    return $actions;
                 })
                 ->rawColumns(['actions', 'user', 'package', 'trx_id'])
                 ->make(true);

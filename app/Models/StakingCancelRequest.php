@@ -11,6 +11,8 @@ class StakingCancelRequest extends Model
 {
     use SoftDeletes;
 
+    protected $with = ['purchasedStakingPlan'];
+
     protected static function booted()
     {
         static::updated(function (self $package) {
@@ -22,11 +24,11 @@ class StakingCancelRequest extends Model
                 $package->approved_at = Carbon::now();
                 $package->saveQuietly();
             }
-            if ($package->status === 'CANCELLED') {
+            if ($package->status === 'REJECTED') {
                 $package->reject_at = Carbon::now();
                 $package->saveQuietly();
             }
-            if ($package->status === 'REJECTED') {
+            if ($package->status === 'CANCELLED') {
                 $package->cancelled_at = Carbon::now();
                 $package->saveQuietly();
             }
@@ -36,11 +38,13 @@ class StakingCancelRequest extends Model
     protected $fillable = [
         'user_id',
         'purchased_staking_plan_id',
-        'status',
+        'status', // 'PENDING', 'PROCESSING', 'APPROVED', 'CANCELLED', 'FAIL', 'REJECTED'
         'remark',
         'repudiate_note',
         'processed_at',
         'approved_at',
+        'total_released_amount',
+        'interest_rate',
         'reject_at',
         'cancelled_at',
     ];
