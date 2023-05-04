@@ -46,7 +46,7 @@ class Earning extends Model
                     return;
                 }
             })
-            ->when(!empty(request()->input('earning-type')) && in_array(request()->input('earning-type'), ['package', 'direct', 'indirect', 'rank_bonus', 'rank_gift', 'p2p']),
+            ->when(!empty(request()->input('earning-type')) && in_array(request()->input('earning-type'), ['package', 'direct', 'indirect', 'rank_bonus', 'rank_gift', 'p2p', 'staking']),
                 static function ($query) {
                     $query->where('type', request()->input('earning-type'));
                 })
