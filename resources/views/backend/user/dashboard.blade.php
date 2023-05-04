@@ -19,7 +19,7 @@
                                                 <div class="me-4">
                                                     <p class="mb-2 fs-13">
                                                         <i class="fa fa-caret-up scale5 me-2 text-success"
-                                                           aria-hidden="true"></i>{{ $section->change}}%(30 days)
+                                                           aria-hidden="true"></i>{{ $section->change}}%
                                                     </p>
                                                     <h4 class="heading mb-0">$<?php echo number_format($section->value, 2); ?></h4>
                                                 </div>
