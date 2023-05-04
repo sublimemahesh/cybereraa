@@ -1,6 +1,6 @@
 var owl_price_slider = $("#price-slider");
 owl_price_slider.owlCarousel({
-    items: 6,
+    items: 4,
     loop: true,
     margin: 10,
     autoplay: true,

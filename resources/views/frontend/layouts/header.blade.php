@@ -19,19 +19,48 @@
                                 <div class="owl-stage"
                                     style="transform: translate3d(-1527px, 0px, 0px); transition: all 0.25s ease 0s; width: 3334px;">
 
-                                    @foreach ($header_currency as $section)
+                                    
 
                                     <div class="owl-item coin-list">
                                         <div class="item">
                                             <div>
-                                                <p class='tp'><i class="fa fa-caret-up" aria-hidden="true"></i>{{ $section->change}}%</p>
-                                                <h5 class="ttt">$<?php echo number_format($section->value, 2); ?></h5>
-                                                <img src="{{ storage('currencies/' . $section->image_name) }}"
-                                                    class="cryimg" alt="safest trades">
+                                                <p class="tp  bitcoin-change"></p>
+                                                <h5 class="ttt bitcoin"></h5>
+                                                <img src="{{asset('assets/frontend/images/coins/bitcoin.png') }}" class="cryimg">
                                             </div>
                                         </div>
                                     </div>
-                                    @endforeach
+									
+									 <div class="owl-item coin-list">
+                                        <div class="item">
+                                            <div>
+                                                <p class="tp litecoin-change"></i></p>
+                                                <h5 class="ttt litecoin"></h5>
+                                                <img src="{{asset('assets/frontend/images/coins/litecoin.png') }}" class="cryimg">
+                                            </div>
+                                        </div>
+                                    </div>
+									
+									 <div class="owl-item coin-list">
+                                        <div class="item">
+                                            <div>
+                                                <p class="tp ethereum-change"></p>
+                                                <h5 class="ttt ethereum"></h5>
+                                                <img src="{{ asset('assets/frontend/images/coins/ethereum.png') }}" class="cryimg">
+                                            </div>
+                                        </div>
+                                    </div>
+									
+									 <div class="owl-item coin-list">
+                                        <div class="item">
+                                            <div>
+                                                <p class="tp  tether-change"></p>
+                                                <h5 class="ttt tether"></h5>
+                                                <img src="{{ asset('assets/frontend/images/coins/tether.png') }}" class="cryimg">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                 </div>
                             </div>
                             <div class="owl-nav disabled">
