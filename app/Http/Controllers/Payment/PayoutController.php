@@ -244,7 +244,7 @@ class PayoutController extends Controller
             'amount' => ['required', 'numeric', 'min:' . $request->minimum_payout_limit],
             'password' => 'required',
             'code' => 'nullable',
-            'wallet_type' => 'required|in:main,topup',
+            'wallet_type' => 'required|in:main,topup,staking',
             'remark' => 'nullable',
         ])->validate();
 
@@ -279,7 +279,7 @@ class PayoutController extends Controller
 
         $validated = Validator::make($request->all(), [
             'amount' => ['required', 'numeric', 'min:' . $minimum_payout_limit->value],
-            'wallet_type' => ['required', 'in:main,topup'],
+            'wallet_type' => ['required', 'in:main,topup,staking'],
             'password' => 'required',
             'otp' => 'required|digits:6',
             'code' => 'nullable',
@@ -351,6 +351,14 @@ class PayoutController extends Controller
             $json['icon'] = 'error'; // warning | info | question | success | error
             return response()->json($json, Response::HTTP_UNAUTHORIZED);
         }
+
+        if (($validated['wallet_type'] === 'staking') && $user_wallet->staking_balance < $total_amount) {
+            $json['status'] = false;
+            $json['message'] = "Not enough funds in wallet to proceed!";
+            $json['icon'] = 'error'; // warning | info | question | success | error
+            return response()->json($json, Response::HTTP_UNAUTHORIZED);
+        }
+
         $withdraw = DB::transaction(static function () use ($user, $validated, $payout_transfer_fee, $user_wallet, $total_amount) {
 
             $payout_details = [
@@ -358,6 +366,11 @@ class PayoutController extends Controller
                 'id' => $user->profile->binance_id,
                 'address' => $user->profile->wallet_address,
                 'phone' => $user->profile->binance_phone,
+            ];
+
+            $user_details = [
+                'email' => $user->email,
+                'phone' => $user->phone,
             ];
 
             $withdraw = Withdraw::create([
@@ -368,7 +381,8 @@ class PayoutController extends Controller
                 'type' => 'MANUAL',
                 'wallet_type' => strtoupper($validated['wallet_type']),
                 'remark' => $validated['remark'] ?? null,
-                'payout_details' => json_encode($payout_details, JSON_THROW_ON_ERROR)
+                'payout_details' => json_encode($payout_details, JSON_THROW_ON_ERROR),
+                'user_info' => json_encode($user_details, JSON_THROW_ON_ERROR)
             ]);
 
             if ($withdraw->wallet_type === 'MAIN') {
@@ -385,6 +399,10 @@ class PayoutController extends Controller
 
             if ($withdraw->wallet_type === 'TOPUP') {
                 $user_wallet->decrement('topup_balance', $total_amount);
+            }
+
+            if ($withdraw->wallet_type === 'STAKING') {
+                $user_wallet->decrement('staking_balance', $total_amount);
             }
             return $withdraw;
         });

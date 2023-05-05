@@ -183,7 +183,7 @@ class WithdrawController extends Controller
                 'repudiate_note' => 'required|string'
             ])->validate();
 
-            \DB::transaction(function () use ($withdraw, $user_wallet, $user, $validated) {
+            \DB::transaction(function () use ($withdraw, $validated, $user_wallet, $user) {
 
                 $total_amount = $withdraw->amount + $withdraw->transaction_fee;
 
@@ -211,6 +211,9 @@ class WithdrawController extends Controller
                     $user_wallet->increment('topup_balance', $total_amount);
                 }
 
+                if ($withdraw->wallet_type === 'STAKING') {
+                    $user_wallet->increment('staking_balance', $total_amount);
+                }
 
                 // TODO: SEND MAIL
             });

@@ -37,8 +37,8 @@
                             &emsp; Balance: <code>USDT {{ $wallet->topup_balance }}</code>
                         </p>
                         <p>
-                            BONUS WALLET <br>
-                            &emsp; Balance: <code>USDT {{ $wallet->bonus_balance }}</code>
+                            STAKING WALLET <br>
+                            &emsp; Balance: <code>USDT {{ $wallet->staking_balance }}</code>
                         </p>
                     </div>
                     <div class="row">
@@ -92,6 +92,16 @@
                                                 </div>
                                             </div>
                                         </label>
+
+                                        <label class="plan complete-plan col-sm-4" for="staking">
+                                            <input type="radio" id="staking" name="wallet_type" value="staking"/>
+                                            <div class="plan-content">
+                                                <img loading="lazy" src="https://raw.githubusercontent.com/ismailvtl/ismailvtl.github.io/master/images/potted-plant-img.svg" alt=""/>
+                                                <div class="plan-details">
+                                                    <span>Staking Wallet</span>
+                                                </div>
+                                            </div>
+                                        </label>
                                     </div>
                                 </div>
                                 <hr>
@@ -131,7 +141,7 @@
                                 </div>
                                 @if(Auth::user()?->two_factor_secret && in_array( \Laravel\Fortify\TwoFactorAuthenticatable::class, class_uses_recursive(Auth::user()),true))
                                     <div class="mb-3 mt-2">
-                                        <label for="code">Two Factor code / Recovery Code </label>
+                                        <label for="code">Two Factor code / Recovery Code</label>
                                         <input id="code" type="password" class="form-control" autocomplete="one-time-password" placeholder="2FA code OR Recovery Code">
                                     </div>
                                 @endif

@@ -21,7 +21,7 @@ class Withdraw extends Model
     use Loggable;
 
     protected $fillable = ['user_id', 'receiver_id', 'amount', 'transaction_fee', 'status', 'type', 'remark', 'wallet_type', 'expired_packages',
-        'repudiate_note', 'remark', 'payout_details', 'proof_document', 'approved_at', 'rejected_at', 'failed_at', 'processed_at', 'cancelled_at'
+        'repudiate_note', 'remark', 'payout_details', 'user_info', 'proof_document', 'approved_at', 'rejected_at', 'failed_at', 'processed_at', 'cancelled_at'
     ];
 
     protected $appends = [

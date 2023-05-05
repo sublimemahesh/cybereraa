@@ -31,8 +31,19 @@
                             Email: <code>{{ $withdraw->user->email }}</code>
                             <br/>
                             <hr/>
-                            Balance: <code>USDT {{ $withdraw->user->wallet->balance }}</code> <br/>
-                            Payout limit: <code>USDT {{ $withdraw->user->wallet->withdraw_limit }}</code>
+                            <p>
+                                MAIN WALLET <br>
+                                &emsp; Balance: <code>USDT {{ $withdraw->user->wallet->balance }}</code> <br/>
+                                &emsp; Payout limit: <code>USDT {{ $withdraw->user->wallet->withdraw_limit }}</code>
+                            </p>
+                            <p>
+                                TOPUP WALLET <br>
+                                &emsp; Balance: <code>USDT {{ $withdraw->user->wallet->topup_balance }}</code>
+                            </p>
+                            <p>
+                                STAKING WALLET <br>
+                                &emsp; Balance: <code>USDT {{ $withdraw->user->wallet->staking_balance }}</code>
+                            </p>
                         </div>
                     </div>
                     <hr>
@@ -48,6 +59,10 @@
                                         Transaction Fee: <code id="show-receiving-amount">{{ $withdraw->transaction_fee }}</code> /
                                         Total: <code id="show-receiving-amount">{{ $withdraw->amount + $withdraw->transaction_fee }}</code>
                                     </div>
+                                </div>
+                                <div class="mb-3 mt-2">
+                                    <label for="remark">Wallet Type</label>
+                                    <div class="form-control h-100" style="min-height: 50px">{{ $withdraw->wallet_type }}</div>
                                 </div>
                                 <div class="mb-3 mt-2">
                                     <label for="remark">Remark</label>
