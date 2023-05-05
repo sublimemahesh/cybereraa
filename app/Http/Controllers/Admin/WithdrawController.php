@@ -278,6 +278,10 @@ class WithdrawController extends Controller
                     $user_wallet->increment('topup_balance', $total_amount);
                 }
 
+                if ($withdraw->wallet_type === 'STAKING') {
+                    $user_wallet->increment('staking_balance', $total_amount);
+                }
+
                 $withdraw->update([
                     'status' => 'REJECT',
                     'repudiate_note' => $validated['repudiate_note'] ?? null,

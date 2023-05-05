@@ -26,8 +26,19 @@
                         Phone: <code>{{ $withdraw->user->phone }}</code>
                         <br/>
                         <hr/>
-                        Balance: <code>USDT {{ $withdraw->user->wallet->balance }}</code> <br/>
-                        Payout limit: <code>USDT {{ $withdraw->user->wallet->withdraw_limit }}</code>
+                        <p>
+                            MAIN WALLET <br>
+                            &emsp; Balance: <code>USDT {{ $withdraw->user->wallet->balance }}</code> <br/>
+                            &emsp; Payout limit: <code>USDT {{ $withdraw->user->wallet->withdraw_limit }}</code>
+                        </p>
+                        <p>
+                            TOPUP WALLET <br>
+                            &emsp; Balance: <code>USDT {{ $withdraw->user->wallet->topup_balance }}</code>
+                        </p>
+                        <p>
+                            STAKING WALLET <br>
+                            &emsp; Balance: <code>USDT {{ $withdraw->user->wallet->staking_balance }}</code>
+                        </p>
                         <hr/>
                     </div>
                     <div class="row">
@@ -41,6 +52,10 @@
                                     Transactions Fee: <code>{{ number_format($withdraw->transaction_fee,2) }}</code> /
                                     Total: <code>{{ number_format($withdraw->amount + $withdraw->transaction_fee,2) }}</code>
                                 </div>
+                            </div>
+                            <div class="mb-3 mt-2">
+                                <label for="remark">Wallet Type</label>
+                                <div class="form-control h-100" style="min-height: 50px">{{ $withdraw->wallet_type }}</div>
                             </div>
                             <div class="mb-3 mt-2">
                                 <label for="remark">Remark</label>
@@ -75,7 +90,7 @@
                                             @if($withdraw->proof_document !== null)
                                                 <div class="mb-3 mt-2">
                                                     <div class="text-info">
-                                                        <label for="proof_document">Proof: </label>
+                                                        <label for="proof_document">Proof:</label>
                                                         <a href="{{ asset('storage/payouts/manual/' . $withdraw->proof_document) }}" target="_blank">View Proof</a>
                                                     </div>
                                                 </div>

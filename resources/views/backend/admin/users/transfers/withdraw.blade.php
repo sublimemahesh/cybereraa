@@ -26,10 +26,20 @@
                             Phone: <code>{{ $withdraw->user->phone }}</code>
                             <br/>
                             <hr/>
-                            Balance: <code>USDT {{ $withdraw->user->wallet->balance }}</code> <br/>
-                            Payout limit: <code>USDT {{ $withdraw->user->wallet->withdraw_limit }}</code>
+                            <p>
+                                MAIN WALLET <br>
+                                &emsp; Balance: <code>USDT {{ $withdraw->user->wallet->balance }}</code> <br/>
+                                &emsp; Payout limit: <code>USDT {{ $withdraw->user->wallet->withdraw_limit }}</code>
+                            </p>
+                            <p>
+                                TOPUP WALLET <br>
+                                &emsp; Balance: <code>USDT {{ $withdraw->user->wallet->topup_balance }}</code>
+                            </p>
+                            <p>
+                                STAKING WALLET <br>
+                                &emsp; Balance: <code>USDT {{ $withdraw->user->wallet->staking_balance }}</code>
+                            </p>
 
-                            <br/>
                             <hr/>
                             Please note this <code class="text-uppercase">process cannot be reversed</code>.
                             <hr/>
@@ -45,6 +55,10 @@
                                         Transactions Fee: <code>{{ number_format($withdraw->transaction_fee,2) }}</code> /
                                         Total: <code>{{ number_format($withdraw->amount + $withdraw->transaction_fee,2) }}</code>
                                     </div>
+                                </div>
+                                <div class="mb-3 mt-2">
+                                    <label for="remark">Wallet Type</label>
+                                    <div class="form-control h-100" style="min-height: 50px">{{ $withdraw->wallet_type }}</div>
                                 </div>
                                 <div class="mb-3 mt-2">
                                     <label for="remark">Remark</label>
@@ -79,7 +93,7 @@
                                 </div>
                                 @if(Auth::user()?->two_factor_secret && in_array( \Laravel\Fortify\TwoFactorAuthenticatable::class, class_uses_recursive(Auth::user()),true))
                                     <div class="mb-3 mt-2">
-                                        <label for="code">Two Factor code / Recovery Code </label>
+                                        <label for="code">Two Factor code / Recovery Code</label>
                                         <input id="code" name="code" type="password" data-input='payout' class="form-control" autocomplete="one-time-password" placeholder="2FA code OR Recovery Code">
                                     </div>
                                 @endif
