@@ -3,9 +3,7 @@ owl_price_slider.owlCarousel({
     items: 4,
     loop: true,
     margin: 10,
-    autoplay: true,
-    autoplayTimeout: 3000,
-    autoplayHoverPause: true,
+    
 });
 
 $(function() {
