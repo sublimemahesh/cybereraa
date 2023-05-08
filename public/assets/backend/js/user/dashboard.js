@@ -5,7 +5,7 @@ let userDash = function () {
     var screenHeight = $(window).height();
     var handleWebpicker = function () {
         $('#crypto-webticker').webTicker({
-            height: 'auto',
+            height: '96px',
             duplicate: true,
             startEmpty: false,
             rssfrequency: 4
