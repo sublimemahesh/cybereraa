@@ -19,8 +19,8 @@ $.ajax(liveprice).done(function (response){
 	var list2 = document.getElementsByClassName('bitcoin-change');
 	var n;
 	for (n = 0; n < list.length; ++n) {
-		list[n].innerHTML=response.bitcoin.usd	;
-		list2[n].innerHTML=response.bitcoin.usd_24h_change.toFixed(2);	;
+		list[n].innerHTML='$'+response.bitcoin.usd.toFixed(2)	;
+		list2[n].innerHTML=response.bitcoin.usd_24h_change.toFixed(2)+'%'	;
 	}
 	
 	
@@ -28,16 +28,16 @@ $.ajax(liveprice).done(function (response){
 	var list2 = document.getElementsByClassName('litecoin-change');
 	var n;
 	for (n = 0; n < list.length; ++n) {
-		list[n].innerHTML=response.litecoin.usd;
-		list2[n].innerHTML=response.litecoin.usd_24h_change.toFixed(2);	;
+		list[n].innerHTML='$'+response.litecoin.usd.toFixed(2);
+		list2[n].innerHTML=response.litecoin.usd_24h_change.toFixed(2)+'%';
 	}
 	
 	var list = document.getElementsByClassName('ethereum');
 	var list2 = document.getElementsByClassName('ethereum-change');
 	var n;
 	for (n = 0; n < list.length; ++n) {
-		list[n].innerHTML=response.ethereum.usd;
-		list2[n].innerHTML=response.ethereum.usd_24h_change.toFixed(2);	;
+		list[n].innerHTML='$'+response.ethereum.usd.toFixed(2);
+		list2[n].innerHTML=response.ethereum.usd_24h_change.toFixed(2)+'%'	;
 	}
 	
 	
@@ -45,8 +45,8 @@ $.ajax(liveprice).done(function (response){
 	var list2 = document.getElementsByClassName('tether-change');
 	var n;
 	for (n = 0; n < list.length; ++n) {
-		list[n].innerHTML=response.tether.usd;
-		list2[n].innerHTML=response.tether.usd_24h_change.toFixed(2);	;
+		list[n].innerHTML='$'+response.tether.usd.toFixed(2);
+		list2[n].innerHTML=response.tether.usd_24h_change.toFixed(2)+'%'	;
 	}
 		
 	   

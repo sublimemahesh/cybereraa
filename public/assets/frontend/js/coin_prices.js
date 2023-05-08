@@ -44,36 +44,36 @@ var liveprice = {
 }
 
 $.ajax(liveprice).done(function (response){
-    btc1.innerHTML = response.bitcoin.usd;
-	ltc1.innerHTML = response.litecoin.usd;
-    eth1.innerHTML = response.ethereum.usd;
-    tet1.innerHTML = response.tether.usd;
+    btc1.innerHTML = '$'+response.bitcoin.usd.toFixed(2);
+	ltc1.innerHTML = '$'+response.litecoin.usd.toFixed(2);
+    eth1.innerHTML = '$'+response.ethereum.usd.toFixed(2);
+    tet1.innerHTML = '$'+response.tether.usd.toFixed(2);
 	
-	btc2.innerHTML = response.bitcoin.usd;
-	ltc2.innerHTML = response.litecoin.usd;
-    eth2.innerHTML = response.ethereum.usd;
-    tet2.innerHTML = response.tether.usd;
+	btc2.innerHTML = '$'+response.bitcoin.usd.toFixed(2);
+	ltc2.innerHTML = '$'+response.litecoin.usd.toFixed(2);
+    eth2.innerHTML = '$'+response.ethereum.usd.toFixed(2);
+    tet2.innerHTML = '$'+response.tether.usd.toFixed(2);
 	
-	btc3.innerHTML = response.bitcoin.usd;
-	ltc3.innerHTML = response.litecoin.usd;
-    eth3.innerHTML = response.ethereum.usd;
-    tet3.innerHTML = response.tether.usd;
+	btc3.innerHTML = '$'+response.bitcoin.usd.toFixed(2);
+	ltc3.innerHTML = '$'+response.litecoin.usd.toFixed(2);
+    eth3.innerHTML = '$'+response.ethereum.usd.toFixed(2);
+    tet3.innerHTML = '$'+response.tether.usd.toFixed(2);
    
-   btc_change1.innerHTML = response.bitcoin.usd_24h_change.toFixed(2);
-   btc_change2.innerHTML = response.bitcoin.usd_24h_change.toFixed(2);
-   btc_change3.innerHTML = response.bitcoin.usd_24h_change.toFixed(2);
+   btc_change1.innerHTML = response.bitcoin.usd_24h_change.toFixed(2)+'%';
+   btc_change2.innerHTML = response.bitcoin.usd_24h_change.toFixed(2)+'%';
+   btc_change3.innerHTML = response.bitcoin.usd_24h_change.toFixed(2)+'%';
    
-   ltc_change1.innerHTML = response.litecoin.usd_24h_change.toFixed(2);
-   ltc_change2.innerHTML = response.litecoin.usd_24h_change.toFixed(2);
-   ltc_change3.innerHTML = response.litecoin.usd_24h_change.toFixed(2);
+   ltc_change1.innerHTML = response.litecoin.usd_24h_change.toFixed(2)+'%';
+   ltc_change2.innerHTML = response.litecoin.usd_24h_change.toFixed(2)+'%';
+   ltc_change3.innerHTML = response.litecoin.usd_24h_change.toFixed(2)+'%';
    
-   eth_change1.innerHTML = response.ethereum.usd_24h_change.toFixed(2);
-   eth_change2.innerHTML = response.ethereum.usd_24h_change.toFixed(2);
-   eth_change3.innerHTML = response.ethereum.usd_24h_change.toFixed(2);
+   eth_change1.innerHTML = response.ethereum.usd_24h_change.toFixed(2)+'%';
+   eth_change2.innerHTML = response.ethereum.usd_24h_change.toFixed(2)+'%';
+   eth_change3.innerHTML = response.ethereum.usd_24h_change.toFixed(2)+'%';
    
-   tet_change1.innerHTML = response.tether.usd_24h_change.toFixed(2);
-   tet_change2.innerHTML = response.tether.usd_24h_change.toFixed(2);
-   tet_change3.innerHTML = response.tether.usd_24h_change.toFixed(2);
+   tet_change1.innerHTML = response.tether.usd_24h_change.toFixed(2)+'%';
+   tet_change2.innerHTML = response.tether.usd_24h_change.toFixed(2)+'%';
+   tet_change3.innerHTML = response.tether.usd_24h_change.toFixed(2)+'%';
    
    
 
