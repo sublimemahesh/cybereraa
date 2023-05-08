@@ -12,6 +12,7 @@ use App\Services\WithdrawService;
 use Carbon;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use JsonException;
@@ -60,9 +61,16 @@ class WithdrawController extends Controller
     {
         abort_if(Gate::denies('withdrawals.viewAny'), Response::HTTP_FORBIDDEN);
 
+
         if ($request->wantsJson()) {
             $withdrawals = $withdrawService->filter(request()->input('user_id'))
-                ->where('type', 'MANUAL');
+                ->where('type', 'MANUAL')
+                ->when($request->routeIs('admin.staking.transfers.withdrawals'), function (Builder $query) {
+                    $query->where('wallet_type', 'STAKING');
+                })
+                ->when(!$request->routeIs('admin.staking.transfers.withdrawals'), function (Builder $query) {
+                    $query->where('wallet_type', '<>','STAKING');
+                });
 
             return $withdrawService->datatable($withdrawals)
                 ->addColumn('user', static function ($withdraw) {
