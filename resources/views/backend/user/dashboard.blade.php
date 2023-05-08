@@ -11,24 +11,69 @@
                 <div class="col-xl-12">
                     <div class="overflow-hidden dz-crypto-scroll shadow-none">
                         <div class="js-conveyor-example">
-                            <ul class="crypto-list" id="crypto-webticker">
-                                @foreach ($currency_carousel as $section)
+                            <ul class="crypto-list"  id="crypto-webticker">
+                               
+							   
                                     <li>
                                         <div class="card overflow-hidden">
                                             <div class="card-body d-flex align-items-center">
                                                 <div class="me-4">
                                                     <p class="mb-2 fs-13">
-                                                        <i class="fa fa-caret-up scale5 me-2 text-success"
-                                                           aria-hidden="true"></i>{{ $section->change}}%
+                                                        <span class="bitcoin-change"></span>
                                                     </p>
-                                                    <h4 class="heading mb-0">$<?php echo number_format($section->value, 2); ?></h4>
+                                                    <h4 class="bitcoin">  </h4>
                                                 </div>
-                                                <img src="{{ storage('currencies/' . $section->image_name) }}"
+                                                <img src="{{asset('assets/frontend/images/coins/bitcoin.png') }}"
                                                      width="42" height="42" viewBox="0 0 42 42" fill="none">
                                             </div>
                                         </div>
                                     </li>
-                                @endforeach
+									
+									  <li>
+                                        <div class="card overflow-hidden">
+                                            <div class="card-body d-flex align-items-center">
+                                                <div class="me-4">
+                                                    <p class="mb-2 fs-13">
+                                                        <span class="litecoin-change"></span>
+                                                    </p>
+                                                    <h4 class="litecoin">  </h4>
+                                                </div>
+                                                <img src="{{asset('assets/frontend/images/coins/litecoin.png') }}"
+                                                     width="42" height="42" viewBox="0 0 42 42" fill="none">
+                                            </div>
+                                        </div>
+                                    </li>
+									
+									  <li>
+                                        <div class="card overflow-hidden">
+                                            <div class="card-body d-flex align-items-center">
+                                                <div class="me-4">
+                                                    <p class="mb-2 fs-13">
+                                                        <span class="ethereum-change"></span>
+                                                    </p>
+                                                    <h4 class="ethereum">  </h4>
+                                                </div>
+                                                <img src="{{ asset('assets/frontend/images/coins/ethereum.png') }}"
+                                                     width="42" height="42" viewBox="0 0 42 42" fill="none">
+                                            </div>
+                                        </div>
+                                    </li>
+									
+									  <li>
+                                        <div class="card overflow-hidden">
+                                            <div class="card-body d-flex align-items-center">
+                                                <div class="me-4">
+                                                    <p class="mb-2 fs-13">
+                                                        <span class="tether-change"></span>
+                                                    </p>
+                                                    <h4 class="tether">  </h4>
+                                                </div>
+                                                <img src="{{ asset('assets/frontend/images/coins/tether.png') }}"
+                                                     width="42" height="42" viewBox="0 0 42 42" fill="none">
+                                            </div>
+                                        </div>
+                                    </li>
+                               
 
                                 {{-- <li>
                                     <div class="card overflow-hidden">
@@ -484,6 +529,7 @@
     @push('scripts')
         <script src="{{ asset('assets/backend/vendor/webticker/jquery.webticker.min.js') }}"></script>
         <script src="{{ asset('assets/backend/js/user/dashboard.js') }}"></script>
+		 <script src="{{ asset('assets/backend/js/user/coin_prices.js') }}"></script>
 
 		   <script>
 
