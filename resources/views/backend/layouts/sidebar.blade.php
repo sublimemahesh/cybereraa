@@ -244,9 +244,9 @@
                 </li>
             @endcan
             @can('currency.viewAny')
-                <li>
+               <!-- <li>
                     <a href="{{ route('admin.currencies.index') }}">Currencies</a>
-                </li>
+                </li>!-->
             @endcan
             @can('testimonial.viewAny')
                 <li>
