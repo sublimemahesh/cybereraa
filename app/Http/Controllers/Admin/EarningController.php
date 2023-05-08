@@ -22,6 +22,10 @@ class EarningController extends Controller
     {
         abort_if(Gate::denies('earnings.viewAny'), Response::HTTP_FORBIDDEN);
 
+        if ($request->routeIs('admin.staking.earnings.index')) {
+            $request->merge(['earning-type' => 'staking']);
+        }
+
         if ($request->wantsJson()) {
             $earnings = Earning::filter()
                 ->with('earnable', 'user.ranks')
@@ -39,8 +43,8 @@ class EarningController extends Controller
                 })
                 ->addColumn('earnable_type', function ($earn) {
                     return
-                        "<code class='text-uppercase'>{$earn->type}</code> - #".
-                        str_pad($earn->earnable_id, '4', '0', STR_PAD_LEFT) ;
+                        "<code class='text-uppercase'>{$earn->type}</code> - #" .
+                        str_pad($earn->earnable_id, '4', '0', STR_PAD_LEFT);
                 })
                 ->addColumn('user_id', fn($earn) => str_pad($earn->user_id, '4', '0', STR_PAD_LEFT))
                 ->addColumn('package', fn($earn) => $earn->earnable->package_info_json->name)

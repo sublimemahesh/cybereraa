@@ -127,7 +127,8 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::post('packages/arrange', 'Admin\PackageController@storeSort')->name('packages.arrange.store');
         Route::resource('packages', 'Admin\PackageController')->except('create', 'show');
 
-        //Staking Package
+        //STAKING Package
+        Route::get('staking/dashboard', 'Admin\Staking\DashboardController@index')->name('staking.dashboard');
         Route::get('staking-packages/arrange', 'Admin\Staking\StakingPackageController@sort')->name('staking-packages.arrange');
         Route::post('staking-packages/arrange', 'Admin\Staking\StakingPackageController@storeSort')->name('staking-packages.arrange.store');
         Route::resource('staking-packages', 'Admin\Staking\StakingPackageController')->except('create', 'show');
@@ -138,7 +139,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
             ])->shallow();
         Route::get('staking-packages/{package}/arrange', 'Admin\Staking\StakingPlanController@sort')->name('staking-packages.plans.arrange');
         Route::post('plans/arrange', 'Admin\Staking\StakingPlanController@storeSort')->name('plans.arrange.store');
-
+        // STAKING END
 
         // topup
         Route::get('wallet/topup', 'Admin\WalletTopupHistoryController@index')->name('wallet.topup');
@@ -185,12 +186,17 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
             // Transactions
             Route::get('users/purchased-packages', 'Admin\PurchasedPackageController@index')->name('purchased-packages');
 
+            // STAKING
             Route::get('users/staking-purchased-packages', 'Admin\Staking\PurchasedStakingPlanController@index')->name('staking-purchased-packages');
+            Route::get('users/staking/transactions', 'Admin\TransactionController@index')->name('staking.transactions.index');
+            Route::get('users/staking/earnings', 'Admin\EarningController@index')->name('staking.earnings.index');
+            Route::get('users/staking/transfers/withdrawals', 'Admin\WithdrawController@withdrawals')->name('staking.transfers.withdrawals');
 
             Route::get('users/staking-purchased-packages/{purchase}/cancellations', 'Admin\Staking\StakingCancelRequestController@index')->name('staking-cancel-request.index');
             Route::post('users/staking-purchased-packages/cancellations/{cancelRequest}/process', 'Admin\Staking\StakingCancelRequestController@process')->name('staking-cancel-request.process');
             Route::match(['get', 'post'], 'users/staking-purchased-packages/cancellations/{cancelRequest}/approve', 'Admin\Staking\StakingCancelRequestController@approve')->name('staking-cancel-request.approve');
             Route::match(['get', 'post'], 'users/staking-purchased-packages/cancellations/{cancelRequest}/reject', 'Admin\Staking\StakingCancelRequestController@reject')->name('staking-cancel-request.reject');
+            // STAKING END
 
             Route::get('users/transactions', 'Admin\TransactionController@index')->name('transactions.index');
             Route::get('users/transactions/{transaction}/summery', 'Admin\TransactionController@summery')->name('transactions.summery');

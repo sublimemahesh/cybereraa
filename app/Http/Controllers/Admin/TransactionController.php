@@ -27,6 +27,9 @@ class TransactionController extends Controller
     {
         abort_if(Gate::denies('transactions.viewAny'), Response::HTTP_FORBIDDEN);
 
+        if ($request->routeIs('admin.staking.transactions.index')) {
+            $request->merge(['product-type' => 'staking']);
+        }
         if ($request->wantsJson()) {
             return $transaction->datatable($request->input('user_id'))
                 ->addColumn('actions', static function ($trx) {

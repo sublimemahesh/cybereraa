@@ -4,6 +4,7 @@
          <span class="nav-text">Purchase Package</span>
      </a>
  </li>--}}
+
 @canany(['users.viewAny','kyc.viewAny'])
     <li>
         <a href="{{ route('admin.users.index') }}" class="" aria-expanded="false">
@@ -12,6 +13,7 @@
         </a>
     </li>
 @endcan
+
 @canany(['users.manage-permissions','admin.users.viewAny'])
     <li>
         <a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
@@ -35,6 +37,7 @@
         </ul>
     </li>
 @endcan
+
 @canany(['admin_wallet.viewAny','admin_wallet_transactions.viewAny','admin_wallet_withdrawal.viewAny'])
     <li>
         <a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
@@ -60,6 +63,58 @@
         </ul>
     </li>
 @endcan
+
+@canany(['transactions.viewAny','purchase_staking_plans.viewAny','withdrawals.viewAny','staking_package.viewAny','earnings.viewAny'])
+    <li>
+        <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
+            <i class="bi bi-coin"></i>
+            <span class="nav-text"> Coin Staking</span>
+        </a>
+        <ul aria-expanded="false">
+            <li>
+                <a href="{{ route('admin.staking.dashboard') }}" class="" aria-expanded="false">
+                    Dashboard
+                </a>
+            </li>
+            @can('transactions.viewAny')
+                <li>
+                    <a href="{{ route('admin.staking.transactions.index') }}" class="" aria-expanded="false">
+                        Manage Payments
+                    </a>
+                </li>
+            @endcan
+            @can('purchase_staking_plans.viewAny')
+                <li>
+                    <a href="{{ route('admin.staking-purchased-packages') }}" class="" aria-expanded="false">
+                        Sales
+                    </a>
+                </li>
+            @endcan
+            @can('earnings.viewAny')
+                <li>
+                    <a href="{{ route('admin.staking.earnings.index') }}" class="" aria-expanded="false">
+                        Earnings
+                    </a>
+                </li>
+            @endcan
+            @can('withdrawals.viewAny')
+                <li>
+                    <a href="{{ route('admin.staking.transfers.withdrawals', ['status' => 'pending']) }}" class="" aria-expanded="false">
+                        Withdrawals
+                    </a>
+                </li>
+            @endcan
+            @can('staking_package.viewAny')
+                <li>
+                    <a href="{{ route('admin.staking-packages.index') }}" class="" aria-expanded="false">
+                        Package/Plans
+                    </a>
+                </li>
+            @endcan
+        </ul>
+    </li>
+@endcan
+
 @can('wallet.topup')
     <li>
         <a href="{{ route('admin.wallet.topup') }}" class="" aria-expanded="false">
@@ -68,6 +123,7 @@
         </a>
     </li>
 @endcan
+
 @can('wallet.topup-history.viewAny')
     <li>
         <a href="{{ route('admin.wallet.topup.history') }}" class="" aria-expanded="false">
@@ -76,6 +132,7 @@
         </a>
     </li>
 @endcan
+
 @can('users.genealogy')
     <li>
         <a href="{{ URL::signedRoute('admin.genealogy') }}" class="" aria-expanded="false">
@@ -84,6 +141,7 @@
         </a>
     </li>
 @endcan
+
 @can('transactions.viewAny')
     <li>
         <a href="{{ route('admin.transactions.index', ['date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .' to '.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}"
@@ -93,21 +151,13 @@
         </a>
     </li>
 @endcan
+
 @can('purchase_packages.viewAny')
     <li>
         <a href="{{ route('admin.purchased-packages', ['date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .' to '.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}"
            class="" aria-expanded="false">
             <i class="bi bi-box"></i>
             <span class="nav-text"> User Packages </span>
-        </a>
-    </li>
-@endcan
-@can('purchase_staking_plans.viewAny')
-    <li>
-        <a href="{{ route('admin.staking-purchased-packages') }}"
-           class="" aria-expanded="false">
-            <i class="bi bi-coin"></i>
-            <span class="nav-text"> User Stakings </span>
         </a>
     </li>
 @endcan
@@ -204,7 +254,6 @@
     </li>
 @endcan
 
-
 @can('package.viewAny')
     <li>
         <a href="{{ route('admin.packages.index') }}" class="" aria-expanded="false">
@@ -213,14 +262,7 @@
         </a>
     </li>
 @endcan
-@can('staking_package.viewAny')
-    <li>
-        <a href="{{ route('admin.staking-packages.index') }}" class="" aria-expanded="false">
-            <i class="bi bi-stack"></i>
-            <span class="nav-text">Staking Package</span>
-        </a>
-    </li>
-@endcan
+
 @canany(['country.viewAny','page.viewAny','blogs.viewAny', 'currency.viewAny'])
     <li>
         <a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
@@ -256,6 +298,7 @@
         </ul>
     </li>
 @endcan
+
 @can('strategy.viewAny')
     <li>
         <a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
@@ -285,6 +328,7 @@
         </ul>
     </li>
 @endcan
+
 @canany(['support_ticket.viewAny','support_ticket.category.viewAny','support_ticket.priority.viewAny','support_ticket.status.viewAny'])
     <li>
         <a class="has-arrow" href="javascript:void(0)">

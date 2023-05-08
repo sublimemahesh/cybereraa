@@ -8,7 +8,7 @@
         <div class="border-l border-b border-r border-gray-200 dark:border-gray-600 px-2 py-4 dark:border-0  dark:bg-secondary-dark">
             <div>
                 <div class="md:flex md:flex-wrap">
-                    @if(request()->routeIs('admin.transfers.withdrawals'))
+                    @if(!request()->routeIs('admin.users.profile.show'))
                         <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
                             <div>
                                 <div class=" pt-2 p-2 ">

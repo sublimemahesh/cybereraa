@@ -8,7 +8,7 @@
         <div class="border-l border-b border-r border-gray-200 dark:border-gray-600 px-2 py-4 dark:border-0  dark:bg-secondary-dark">
             <div>
                 <div class="md:flex md:flex-wrap">
-                    @if(request()->routeIs('admin.earnings.index'))
+                    @if(!request()->routeIs('admin.users.profile.show'))
                         <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
                             <div>
                                 <div class=" pt-2 p-2 ">
@@ -20,30 +20,34 @@
                             </div>
                         </div>
                     @endif
-                    <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
-                        <div>
-                            <div class=" pt-2 p-2 ">
-                                <label for="earning-type" class="text-gray-700 dark:text-gray-300">EARNING TYPE</label>
-                                <div class="relative">
-                                    <select id="earning-type" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
-                                        <option value="">ALL</option>
-                                        <option value="package" {{ request()->input('earning-type') === 'package' ? 'selected' : '' }}>PACKAGE</option>
-                                        <option value="direct" {{ request()->input('earning-type') === 'direct' ? 'selected' : '' }}>DIRECT SALE</option>
-                                        <option value="indirect" {{ request()->input('earning-type') === 'indirect' ? 'selected' : '' }}>INDIRECT SALE</option>
-                                        <option value="p2p" {{ request()->input('earning-type') === 'p2p' ? 'selected' : '' }}>P2P TRANSFER</option>
-                                        <option value="rank_bonus" {{ request()->input('earning-type') === 'rank_bonus' ? 'selected' : '' }}>RANK BONUS</option>
-                                        <option value="rank_gift" {{ request()->input('earning-type') === 'rank_gift' ? 'selected' : '' }}>RANK GIFT</option>
-                                        <option value="staking" {{ request()->input('earning-type') === 'staking' ? 'selected' : '' }}>STAKING</option>
-                                    </select>
-                                    <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
-                                        <svg class="pointer-events-none w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                        </svg>
+                    @if(!request()->routeIs('admin.staking.earnings.index'))
+                        <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
+                            <div>
+                                <div class=" pt-2 p-2 ">
+                                    <label for="earning-type" class="text-gray-700 dark:text-gray-300">EARNING TYPE</label>
+                                    <div class="relative">
+                                        <select id="earning-type" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
+                                            <option value="">ALL</option>
+                                            <option value="package" {{ request()->input('earning-type') === 'package' ? 'selected' : '' }}>PACKAGE</option>
+                                            <option value="direct" {{ request()->input('earning-type') === 'direct' ? 'selected' : '' }}>DIRECT SALE</option>
+                                            <option value="indirect" {{ request()->input('earning-type') === 'indirect' ? 'selected' : '' }}>INDIRECT SALE</option>
+                                            <option value="p2p" {{ request()->input('earning-type') === 'p2p' ? 'selected' : '' }}>P2P TRANSFER</option>
+                                            <option value="rank_bonus" {{ request()->input('earning-type') === 'rank_bonus' ? 'selected' : '' }}>RANK BONUS</option>
+                                            <option value="rank_gift" {{ request()->input('earning-type') === 'rank_gift' ? 'selected' : '' }}>RANK GIFT</option>
+                                            <option value="staking" {{ request()->input('earning-type') === 'staking' ? 'selected' : '' }}>STAKING</option>
+                                        </select>
+                                        <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
+                                            <svg class="pointer-events-none w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                            </svg>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @else
+                        <input type="hidden" name="earning-type" id="earning-type" value="staking">
+                    @endif
                     <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
                         <div>
                             <div class=" pt-2 p-2 ">
@@ -84,6 +88,7 @@
                     <div class="flex flex-col mb-2">
                         <div>
                             <div class=" pt-2 p-2 ">
+                                <label for="" class="dark:text-gray-300 opacity-0 text-gray-700">search</label>
                                 <div class="relative">
                                     <button id="earnings-search" class="mt-1 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
                                         Search
