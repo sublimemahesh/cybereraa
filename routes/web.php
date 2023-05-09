@@ -176,6 +176,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
 
             // Ranks Bonus Summary
             Route::get('ranks/benefits/summery', 'Admin\RankBenefitSummeryController@index')->name('ranks.benefits.summery');
+            Route::get('ranks/benefits/requirements', 'Admin\RankBenefitSummeryController@requirements')->name('ranks.benefits.requirements');
 
             // Earnings
             Route::get('users/earnings', 'Admin\EarningController@index')->name('earnings.index');
