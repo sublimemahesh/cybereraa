@@ -2,7 +2,7 @@ $(function () {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const date_range = urlParams.get("date-range");
-    
+
     const purchaser_id = urlParams.get("purchaser_id");
     if (purchaser_id !== null) {
         urlParams.delete("purchaser_id");
@@ -52,12 +52,12 @@ $(function () {
         columnDefs: [
             {
                 render: function (date, type, full, meta) {
-                    return `<div style='font-size: 0.76rem !important;'> ${date} </div>`;
+                    return `<div style="font-size: 0.76rem !important;"> ${date} </div>`;
                 }, targets: [5, 6, 7],
             },
             {
                 render: function (amount, type, full, meta) {
-                    return `<div style='min-width:100px' class="text-right"> ${amount} </div>`;
+                    return `<div style="min-width:100px" class="text-right"> ${amount} </div>`;
                 }, targets: [8],
             }
         ]
@@ -83,7 +83,7 @@ $(function () {
         urlParams.set("user_id", $("#user_id").val());
         urlParams.set("status", $("#status").val());
         urlParams.set("currency-type", $("#currency-type").val());
-
+        urlParams.set("product-type", $("#product-type").val());
         let url = location.href.split(/\?|\#/)[0] + "?" + urlParams.toString();
         history.replaceState({}, "", url);
         table.ajax.url(url).load();

@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\User\Staking;
 
 use App\Http\Controllers\Controller;
+use App\Models\Earning;
 use App\Models\StakingPackage;
+use App\Models\Withdraw;
 use App\Services\PurchaseStakingPlanService;
 use Auth;
+use DB;
 use Illuminate\Http\Request;
 
 class StakingPackageController extends Controller
@@ -49,10 +52,18 @@ class StakingPackageController extends Controller
                 ->rawColumns(['actions', 'user', 'package', 'trx_id'])
                 ->make(true);
         }
+        $income = Earning::authUserCurrentMonth()->where('status', 'RECEIVED')->where('type', 'STAKING')->sum('amount');
+        $withdraw = Withdraw::authUserCurrentMonth()
+            ->where('status', 'SUCCESS')
+            ->where('wallet_type', 'STAKING')
+            ->sum(DB::raw('amount + transaction_fee'));
+        $income = number_format($income, 2);
+        $withdraw = number_format($withdraw, 2);
+
         $packages = StakingPackage::activePackages()->get();
         $wallet = $user->wallet;
 
-        return view('backend.user.staking.dashboard', compact('packages', 'wallet'));
+        return view('backend.user.staking.dashboard', compact('packages', 'wallet', 'income', 'withdraw'));
     }
 
 

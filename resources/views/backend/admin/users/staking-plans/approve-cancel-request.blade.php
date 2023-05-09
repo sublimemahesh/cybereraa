@@ -54,6 +54,11 @@
                                     <input id="interest_rate" type="text" name="interest_rate" class="form-control h-auto" placeholder="Enter Interest"/>
                                 </div>
                                 <hr>
+                                <div class="mb-3 mt-2">
+                                    <label for="repudiate_note">Repudiate Note</label>
+                                    <textarea id="repudiate_note" name="repudiate_note" class="form-control h-auto" placeholder="Reason"></textarea>
+                                </div>
+                                <hr>
                                 <button type="submit" id="approve-request" class="btn btn-sm btn-success mb-2">Confirm & Approve</button>
                             </form>
                         </div>

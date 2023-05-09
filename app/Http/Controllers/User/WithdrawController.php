@@ -13,6 +13,7 @@ use DataTables;
 use Exception;
 use Gate;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use JsonException;
@@ -80,6 +81,12 @@ class WithdrawController extends Controller
         if ($request->wantsJson()) {
 
             $withdrawals = Withdraw::filter()
+                ->when($request->routeIs('user.staking.transfers.withdrawals'), function (Builder $query) {
+                    $query->where('wallet_type', 'STAKING');
+                })
+                ->when(!$request->routeIs('user.staking.transfers.withdrawals'), function (Builder $query) {
+                    $query->where('wallet_type', '<>', 'STAKING');
+                })
                 ->where('user_id', Auth::user()->id)
                 ->where('type', 'MANUAL');
 

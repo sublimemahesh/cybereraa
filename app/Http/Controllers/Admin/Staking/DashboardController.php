@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Staking;
 use App\Http\Controllers\Controller;
 use App\Models\Earning;
 use App\Models\PurchasedStakingPlan;
+use App\Models\StakingCancelRequest;
 use App\Models\Transaction;
 use App\Models\Wallet;
 use App\Models\Withdraw;
@@ -21,6 +22,11 @@ class DashboardController extends Controller
         $total_earnings = Earning::where('status', 'RECEIVED')->whereIn('type', ['STAKING'])->sum('amount');
         $total_earnings = number_format($total_earnings, 2);
 
+        $total_hold_staking_amount = PurchasedStakingPlan::where('status', 'HOLD')->sum('invested_amount');
+        $total_hold_staking_count = PurchasedStakingPlan::where('status', 'HOLD')->count();
+        $total_canceled_staking_amount = PurchasedStakingPlan::where('status', 'CANCELLED')->sum('invested_amount');
+        $total_canceled_staking_amount_with_interest = StakingCancelRequest::whereRelation('purchasedStakingPlan', 'status', 'CANCELLED')
+            ->sum('total_released_amount');
 
         $total_available_wallet_balance = number_format(Wallet::sum('staking_balance'), 2);
 
@@ -64,7 +70,10 @@ class DashboardController extends Controller
 
                 'total_withdraws_transaction_fees',
 
-
+                'total_hold_staking_amount',
+                'total_hold_staking_count',
+                'total_canceled_staking_amount',
+                'total_canceled_staking_amount_with_interest',
             )
         );
     }

@@ -65,17 +65,19 @@ class StakingCancelRequestController extends Controller
         if ($request->wantsJson() && $request->isMethod('post')) {
 
             $validated = Validator::make($request->all(), [
-                'interest_rate' => 'nullable|numeric'
+                'interest_rate' => 'nullable|numeric',
+                'repudiate_note' => 'nullable|string|max:60000'
             ])->validate();
 
             $interest_rate = $validated['interest_rate'] ?? 0;
 
-            \DB::transaction(function () use ($purchase, $interest_rate, $cancelRequest, $user) {
+            \DB::transaction(function () use ($purchase, $interest_rate, $cancelRequest, $validated, $user) {
 
                 $total_release_staking_amount = $purchase->invested_amount + ($purchase->invested_amount * $interest_rate / 100);
 
                 $cancelRequest->update([
                     'status' => 'APPROVED',
+                    'repudiate_note' => $validated['repudiate_note'] ?? null,
                     'interest_rate' => $interest_rate,
                     'total_released_amount' => $total_release_staking_amount,
                 ]);

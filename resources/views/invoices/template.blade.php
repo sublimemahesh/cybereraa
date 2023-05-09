@@ -146,7 +146,10 @@
                     </h4>
                     <p>Invoice number: #<strong>{{ str_pad($invoice->id, 5, 0, STR_PAD_LEFT) }}</strong></p>
                     <p>Serial number: <strong>{{ $invoice->serial }}</strong></p>
-                    <p>PayMethod: <strong>{{ $invoice->method ?? '-' }}</strong></p>
+                    <p>Pay Method: <strong>{{ strtoupper($invoice->method) ?? '-' }}</strong></p>
+                    @if(isset($invoice->product_type))
+                        <p>Product Type: <strong>{{ $invoice->product_type }}</strong></p>
+                    @endif
                     <p>Date: <strong>{{ $invoice->created_at }}</strong></p>
                 </td>
             </tr>

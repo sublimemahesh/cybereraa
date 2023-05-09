@@ -30,17 +30,22 @@
             <li>
                 <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
                     <i class="bi bi-coin"></i>
-                    <span class="nav-text">Staking</span>
+                    <span class="nav-text">Coin Staking</span>
                 </a>
                 <ul aria-expanded="false">
                     <li>
-                        <a href="{{ route('user.staking-packages.index') }}" class="" aria-expanded="false">
-                            <span class="nav-text">Staking Packages</span>
+                        <a href="{{ route('user.staking-packages.dashboard') }}" class="" aria-expanded="false">
+                            <span class="nav-text">Dashboard</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('user.staking-packages.dashboard') }}" class="" aria-expanded="false">
-                            <span class="nav-text">Staking Dashboard</span>
+                        <a href="{{ route('user.staking-packages.index') }}" class="" aria-expanded="false">
+                            <span class="nav-text">Buy Staking</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('user.staking.transfers.withdrawals') }}" class="" aria-expanded="false">
+                            Withdrawals
                         </a>
                     </li>
                 </ul>

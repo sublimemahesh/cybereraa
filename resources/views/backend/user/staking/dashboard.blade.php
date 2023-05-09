@@ -60,7 +60,7 @@
                         </svg>
                     </div>
                     <div class="mt-3">This Month</div>
-                    <div class="count-num mt-1 fs-18"> 0.00</div>
+                    <div class="count-num mt-1 fs-18"> $ {{ $income }}</div>
                 </div>
             </div>
         </div>
@@ -77,7 +77,7 @@
                         </svg>
                     </div>
                     <div class="mt-3">This Month</div>
-                    <div class="count-num mt-1 fs-18"> 0.00</div>
+                    <div class="count-num mt-1 fs-18"> $ {{ $withdraw }}</div>
                 </div>
             </div>
         </div>

@@ -24,6 +24,7 @@ class Transaction extends Model
         'user_id',
         'purchaser_id',
         'package_id',
+        'package_type',
         'currency',
         'amount',
         'gas_fee',

@@ -56,7 +56,11 @@
                     @endif
                     <div class="col-sm-6 m-b30">
                         <label class="form-label" for="name">{{ __('Name') }}</label>
-                        <input type="text" id="name" class="form-control" wire:model.defer="state.name" autocomplete="name">
+                        @if(auth()->user()->profile->is_kyc_verified)
+                            <div class="form-control">{{ $state['name'] }}</div>
+                        @else
+                            <input type="text" id="name" class="form-control" wire:model.defer="state.name" autocomplete="name">
+                        @endif
                         <x-jet-input-error for="name" class="mt-2"/>
                     </div>
                     <div class="col-sm-6 m-b30">
@@ -178,7 +182,7 @@
                         </div>
                     @else
                         <div class="mb-3 mt-2">
-                            <label for="otp">OTP Code </label>
+                            <label for="otp">OTP Code</label>
                             <input id="otp" type="text" wire:model.lazy="otp" class="block mt-1 w-full form-control" autocomplete="one-time-password" placeholder="OTP code">
                             <div class="text-info cursor-pointer" wire:click="sendOTP" id="send-2ft-code">Resend OTP</div>
                             @error('otp')
