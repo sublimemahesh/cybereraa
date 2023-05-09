@@ -179,12 +179,12 @@ class PaymentController extends Controller
 
                         $transaction->adminEarnings()->create([
                             'user_id' => $transaction->user_id,
-                            'type' => 'GAS_FEE',
+                            'type' => 'STAKING_GAS_FEE',
                             'amount' => $transaction->gas_fee
                         ]);
 
                         $admin_wallet = AdminWallet::firstOrCreate(
-                            ['wallet_type' => 'GAS_FEE'],
+                            ['wallet_type' => 'STAKING_GAS_FEE'],
                             ['balance' => 0]
                         );
 

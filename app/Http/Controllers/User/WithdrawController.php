@@ -146,14 +146,15 @@ class WithdrawController extends Controller
             return redirect()->route('profile.show')->with('warning', 'Please Fill your Binance Account details, before continuing.!');
         }
 
-        $strategies = Strategy::whereIn('name', ['payout_transfer_fee', 'minimum_payout_limit'])->get();
+        $strategies = Strategy::whereIn('name', ['payout_transfer_fee', 'minimum_payout_limit', 'staking_withdrawal_fee'])->get();
         $wallet = Auth::user()->wallet;
 
         $payout_transfer_fee = $strategies->where('name', 'payout_transfer_fee')->first(null, new Strategy(['value' => 5]));
+        $staking_withdrawal_fee = $strategies->where('name', 'staking_withdrawal_fee')->first(null, new Strategy(['value' => 5]));
         $minimum_payout_limit = $strategies->where('name', 'minimum_payout_limit')->first(null, new Strategy(['value' => 10]));
         $max_withdraw_limit = $wallet->withdraw_limit;
 
-        return view('backend.user.withdrawals.binance-payouts', compact('profile', 'payout_transfer_fee', 'max_withdraw_limit', 'minimum_payout_limit', 'wallet'));
+        return view('backend.user.withdrawals.binance-payouts', compact('profile', 'payout_transfer_fee', 'staking_withdrawal_fee', 'max_withdraw_limit', 'minimum_payout_limit', 'wallet'));
     }
 
     /**

@@ -1,13 +1,25 @@
 $(function () {
 
-    $(document).on('change', '#withdraw-amount', function (e) {
+    setTimeout(() => {
+        $('#withdraw-amount').val(MINIMUM_PAYOUT_LIMIT).change();
+    }, 500)
+
+    $(document).on('change', '#withdraw-amount, #main, #topup, #staking', function (e) {
         e.preventDefault();
+        const wallet_type = $("input[name='wallet_type']:checked").val();
         let amount = parseFloat($('#withdraw-amount').val()) || 0;
+        let trx_fee = parseFloat(P2P_TRANSFER_FEE);
+        console.log(wallet_type, wallet_type === 'staking')
+        if (wallet_type === 'staking') {
+            trx_fee = parseFloat(STAKING_TRANSFER_FEE);
+        }
         if (amount < MINIMUM_PAYOUT_LIMIT) {
             $('#withdraw-amount').val(MINIMUM_PAYOUT_LIMIT).change();
-            $('#show-receiving-amount').html('USDT ' + (MINIMUM_PAYOUT_LIMIT + P2P_TRANSFER_FEE))
-            return false
+            $('#show-receiving-amount').html('USDT ' + (MINIMUM_PAYOUT_LIMIT + trx_fee))
+            return
         }
+
+        $('#show-receiving-amount').html('USDT ' + (amount + trx_fee))
     })
 
     $(document).on('click', '#send-2ft-code', function (e) {
@@ -62,7 +74,7 @@ $(function () {
         const code = $('#code').val();
         const wallet_type = $("input[name='wallet_type']:checked").val();
         const otp = $('#otp').val();
-        
+
         /* || parseFloat(amount) > MAX_WITHDRAW_LIMIT*/
         if (amount.length <= 0 || parseFloat(amount) < MINIMUM_PAYOUT_LIMIT) {
             Toast.fire({
