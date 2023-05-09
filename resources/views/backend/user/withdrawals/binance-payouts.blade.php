@@ -14,9 +14,9 @@
                     <div class="mb-4">
                         <h4 class="card-title">Binance Payout</h4>
                         <p>
-                            Please note that
-                            <code>USDT {{ $payout_transfer_fee->value }}</code>
-                            transaction fee will be added with the every withdrawal request.
+                            Please note that transaction fees will be added to every withdrawal request based on your wallet type. <br>
+                            For wallets with type <code>"MAIN" & "TOPUP"</code>, the transaction fee is <code>USDT {{ $payout_transfer_fee->value }}</code>.<br>
+                            For wallets with type <code>"STAKING"</code>, the transaction fee is <code>USDT {{ $staking_withdrawal_fee->value }}</code>.
                         </p>
                         <p>
                             Your Wallet Balance: <code>USDT {{ $wallet->balance }}</code>.
@@ -50,7 +50,8 @@
                                     </label>
                                     <input min="{{ $minimum_payout_limit->value }}" x-model="payout_amount" id="withdraw-amount" type="number" class="form-control">
                                     <div class="text-info">Total Amount:
-                                        <code id="show-receiving-amount" x-html=" 'USDT ' + (parseFloat(payout_amount) + {{ (float) $payout_transfer_fee->value }})"></code>
+                                        <code id="show-receiving-amount"></code>
+                                        {{--<code id="show-receiving-amount" x-html=" 'USDT ' + (parseFloat(payout_amount) + {{ (float) $payout_transfer_fee->value }})"></code>--}}
                                     </div>
                                 </div>
                                 <div class="mb-3 mt-2">
@@ -168,9 +169,10 @@
 
     @push('scripts')
         <script>
-            const MINIMUM_PAYOUT_LIMIT = "{{ $minimum_payout_limit->value }}";
-            const P2P_TRANSFER_FEE = "{{ $payout_transfer_fee->value }}";
-            const MAX_WITHDRAW_LIMIT = "{{ $max_withdraw_limit }}";
+            const MINIMUM_PAYOUT_LIMIT = parseFloat("{{ $minimum_payout_limit->value }}");
+            const P2P_TRANSFER_FEE = parseFloat("{{ $payout_transfer_fee->value }}");
+            const STAKING_TRANSFER_FEE = parseFloat("{{ $staking_withdrawal_fee->value }}");
+            const MAX_WITHDRAW_LIMIT = parseFloat("{{ $max_withdraw_limit }}");
         </script>
         <script src="{{ asset('assets/backend/js/user/wallet/binance-payout.js') }}"></script>
     @endpush

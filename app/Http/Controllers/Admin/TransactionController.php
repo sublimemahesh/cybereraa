@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Actions\ActivateTransaction;
 use App\Http\Controllers\Controller;
+use App\Models\AdminWallet;
 use App\Models\PurchasedStakingPlan;
 use App\Models\Transaction;
 use App\Services\TransactionService;
@@ -123,6 +124,19 @@ class TransactionController extends Controller
                             'package_info' => $transaction->product->toJson(),
                         ]
                     );
+
+                    $transaction->adminEarnings()->create([
+                        'user_id' => $transaction->user_id,
+                        'type' => 'STAKING_GAS_FEE',
+                        'amount' => $transaction->gas_fee
+                    ]);
+
+                    $admin_wallet = AdminWallet::firstOrCreate(
+                        ['wallet_type' => 'STAKING_GAS_FEE'],
+                        ['balance' => 0]
+                    );
+
+                    $admin_wallet->increment('balance', $transaction->gas_fee);
                 }
 
                 $res_data = json_decode($transaction->status_response ?? [], true, 512, JSON_THROW_ON_ERROR);

@@ -69,7 +69,7 @@ class WithdrawController extends Controller
                     $query->where('wallet_type', 'STAKING');
                 })
                 ->when(!$request->routeIs('admin.staking.transfers.withdrawals'), function (Builder $query) {
-                    $query->where('wallet_type', '<>','STAKING');
+                    $query->where('wallet_type', '<>', 'STAKING');
                 });
 
             return $withdrawService->datatable($withdrawals)
@@ -211,14 +211,16 @@ class WithdrawController extends Controller
                     ]);
                 }
 
+                $admin_wallet_type = $withdraw->wallet_type === 'STAKING' ? 'STAKING_WITHDRAWAL_FEE' : 'WITHDRAWAL_FEE';
+
                 $withdraw->adminEarnings()->create([
                     'user_id' => $withdraw->user_id,
-                    'type' => 'WITHDRAWAL_FEE',
+                    'type' => $admin_wallet_type,
                     'amount' => $withdraw->transaction_fee,
                 ]);
 
                 $admin_wallet = AdminWallet::firstOrCreate(
-                    ['wallet_type' => 'WITHDRAWAL_FEE'],
+                    ['wallet_type' => $admin_wallet_type],
                     ['balance' => 0]
                 );
 

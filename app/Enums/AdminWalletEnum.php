@@ -14,7 +14,8 @@ trait AdminWalletEnum
             'LESS_LEVEL_COMMISSION',
             'GIFT',
             'BONUS',
-            //'MONTHLY_DISQUALIFIED_BONUS',
+            'STAKING_GAS_FEE',
+            'STAKING_WITHDRAWAL_FEE',
         ];
     }
 }
