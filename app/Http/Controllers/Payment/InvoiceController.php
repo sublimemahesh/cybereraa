@@ -58,6 +58,7 @@ class InvoiceController extends Controller
         $invoice['amount'] = $trx->amount;
         $invoice['fee'] = $trx->gas_fee ?? 0;
         $invoice['method'] = $trx->type;
+        $invoice['product_type'] = $trx->package_type;
         if ($trx->type === 'crypto') {
             $invoice['serial'] = "#TRXC" . str_pad($trx->merchant_trade_no, 5, '0', STR_PAD_LEFT);
             $invoice['description'] = "Pay via Binance pay. BTRX: " . ($trx->transaction_id ?? '-');
@@ -86,7 +87,7 @@ class InvoiceController extends Controller
 
 
         $invoice['note'] = null;
-        $invoice['terms'] = view('invoices.terms')->render();
+        $invoice['terms'] = view('invoices.terms', ['type' => $trx->package_type])->render();
         $invoice['logo'] = $this->getLogo();
         $invoice['site_qr'] = $this->getQr();
 

@@ -69,6 +69,7 @@ class PaymentController extends Controller
                     'gas_fee' => $plan->package->gas_fee,
                     'type' => in_array(strtolower($validated['method']), ['main', 'topup', 'manual']) ? 'wallet' : 'crypto',
                     'pay_method' => $validated['method'],
+                    'package_type' => "STAKING",
                     'status' => "INITIAL",
                 ]);
 
