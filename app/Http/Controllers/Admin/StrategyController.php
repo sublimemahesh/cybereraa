@@ -24,16 +24,24 @@ class StrategyController extends Controller
     {
         $this->authorize('viewAny', Strategy::class);
 
-        $strategies = Strategy::whereIn('name', ['withdrawal_limits', 'max_withdraw_limit', 'minimum_payout_limit', 'payout_transfer_fee', 'p2p_transfer_fee'])->get();
+        $strategies = Strategy::whereIn('name', [
+            'withdrawal_limits',
+            'max_withdraw_limit',
+            'minimum_payout_limit',
+            'payout_transfer_fee',
+            'staking_withdrawal_fee',
+            'p2p_transfer_fee'
+        ])->get();
         $withdrawal_limits = $strategies->where('name', 'withdrawal_limits')->first(null, new Strategy(['value' => '{"package": 300, "commission": 100}']));
         $max_withdraw_limit = $strategies->where('name', 'max_withdraw_limit')->first(null, new Strategy(['value' => 400]));
         $minimum_payout_limit = $strategies->where('name', 'minimum_payout_limit')->first(null, new Strategy(['value' => 10]));
         $payout_transfer_fee = $strategies->where('name', 'payout_transfer_fee')->first(null, new Strategy(['value' => 5]));
+        $staking_withdrawal_fee = $strategies->where('name', 'staking_withdrawal_fee')->first(null, new Strategy(['value' => 5]));
         $p2p_transfer_fee = $strategies->where('name', 'p2p_transfer_fee')->first(null, new Strategy(['value' => 2.5]));
 
         $withdrawal_limits = json_decode($withdrawal_limits->value, false, 512, JSON_THROW_ON_ERROR);
 
-        return view('backend.admin.strategies.withdrawal.index', compact('withdrawal_limits', 'max_withdraw_limit', 'minimum_payout_limit', 'payout_transfer_fee', 'p2p_transfer_fee'));
+        return view('backend.admin.strategies.withdrawal.index', compact('withdrawal_limits', 'staking_withdrawal_fee', 'max_withdraw_limit', 'minimum_payout_limit', 'payout_transfer_fee', 'p2p_transfer_fee'));
     }
 
     /**
@@ -156,6 +164,7 @@ class StrategyController extends Controller
         $this->authorize('update', Strategy::class);
 
         $validated = Validator::make($request->all(), [
+            'staking_withdrawal_fee' => ['required', 'numeric'],
             'payout_transfer_fee' => ['required', 'numeric'],
             'p2p_transfer_fee' => 'required|numeric',
         ])->validate();
@@ -164,6 +173,17 @@ class StrategyController extends Controller
             Strategy::updateOrCreate(
                 ['name' => 'payout_transfer_fee'],
                 ['value' => $validated['payout_transfer_fee']]
+            );
+        });
+
+        DB::transaction(function () use ($validated) {
+            Strategy::updateOrCreate(
+                ['name' => 'staking_withdrawal_fee'],
+                [
+                    'value' => $validated['staking_withdrawal_fee'],
+                    'data_type' => 'double',
+                    'comment' => 'Transaction fee for withdrawal from staking wallet'
+                ]
             );
         });
 

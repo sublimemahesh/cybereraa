@@ -273,7 +273,7 @@ class PayoutController extends Controller
         $user = Auth::user();
         $user_wallet = $user?->wallet;
 
-        $strategies = Strategy::whereIn('name', ['payout_transfer_fee', 'minimum_payout_limit'])->get();
+        $strategies = Strategy::whereIn('name', ['payout_transfer_fee', 'minimum_payout_limit', 'staking_withdrawal_fee'])->get();
         $minimum_payout_limit = $strategies->where('name', 'minimum_payout_limit')->first(null, new Strategy(['value' => 10]));
         $max_withdraw_limit = $user_wallet->withdraw_limit;
 
@@ -326,8 +326,16 @@ class PayoutController extends Controller
             }
         }
         $payout_transfer_fee = $strategies->where('name', 'payout_transfer_fee')->first(null, new Strategy(['value' => 5]));
+        $staking_withdrawal_fee = $strategies->where('name', 'staking_withdrawal_fee')->first(null, new Strategy(['value' => 5]));
 
-        $total_amount = $validated['amount'] + $payout_transfer_fee->value;
+        if ($validated['wallet_type'] === 'staking') {
+            $total_amount = $validated['amount'] + $staking_withdrawal_fee->value;
+            $transaction_fee = $staking_withdrawal_fee->value;
+        } else {
+            $total_amount = $validated['amount'] + $payout_transfer_fee->value;
+            $transaction_fee = $payout_transfer_fee->value;
+        }
+
 
         if ($validated['wallet_type'] === 'main') {
             if ($user_wallet->balance < $total_amount) {
@@ -359,7 +367,7 @@ class PayoutController extends Controller
             return response()->json($json, Response::HTTP_UNAUTHORIZED);
         }
 
-        $withdraw = DB::transaction(static function () use ($user, $validated, $payout_transfer_fee, $user_wallet, $total_amount) {
+        $withdraw = DB::transaction(static function () use ($user, $validated, $transaction_fee, $user_wallet, $total_amount) {
 
             $payout_details = [
                 'email' => $user->profile->binance_email,
@@ -376,7 +384,7 @@ class PayoutController extends Controller
             $withdraw = Withdraw::create([
                 'user_id' => $user->id,
                 'amount' => $validated['amount'],
-                'transaction_fee' => $payout_transfer_fee->value,
+                'transaction_fee' => $transaction_fee,
                 'status' => 'PENDING',
                 'type' => 'MANUAL',
                 'wallet_type' => strtoupper($validated['wallet_type']),

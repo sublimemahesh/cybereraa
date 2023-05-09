@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Strategy extends Model
 {
     use Loggable;
-    protected $fillable = ['value'];
+
+    protected $fillable = ['value', 'name', 'data_type', 'comment'];
 }
