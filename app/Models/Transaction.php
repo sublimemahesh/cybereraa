@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Mail\TransactionMail;
 use Carbon\Carbon;
 use Haruncpi\LaravelUserActivity\Traits\Loggable;
 use Illuminate\Database\Eloquent\Builder;
@@ -12,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use JsonException;
+use Mail;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
@@ -19,6 +21,16 @@ class Transaction extends Model
 {
     use SoftDeletes;
     use Loggable;
+
+    protected static function booted()
+    {
+        static::updated(function (self $transaction) {
+            if ($transaction->status === 'PAID' && $transaction->isDirty('status')) {
+                $user = $transaction->user;
+                Mail::to($user->email)->send(new TransactionMail($transaction, $user));
+            }
+        });
+    }
 
     protected $fillable = [
         'user_id',
