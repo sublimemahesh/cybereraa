@@ -263,6 +263,32 @@ class User extends Authenticatable implements MustVerifyEmail
             ->withDefault(new Rank);
     }
 
+    public function getMonthlyTotalTeamInvestmentAttribute()
+    {
+        $validator = \Validator::make(request()?->all(), [
+            'month' => 'required|date_format:Y-m',
+        ]);
+        if ($validator->fails()) {
+            $month = \Carbon::now();
+        } else {
+            $validated = $validator->validated();
+            $month = \Carbon::parse($validated['month']);
+        }
+        $first_of_month = $month->firstOfMonth()->format('Y-m-d H:i:s');
+        $last_of_month = $month->lastOfMonth()->format('Y-m-d H:i:s');
+
+        if (!$month->isFuture() || $month::today()) {
+            return PurchasedPackage::totalMonthlyTeamInvestment($this, $first_of_month, $last_of_month)
+                ->sum('invested_amount');
+        }
+        return 0;
+    }
+
+    public function getTotalTeamInvestmentAttribute()
+    {
+        return PurchasedPackage::totalTeamInvestment($this)->sum('invested_amount');
+    }
+
     public function getHighestRankAttribute(): int
     {
         $rank = $this->ranks()->whereNotNull('activated_at')->orderBy('rank', 'desc')->first();
