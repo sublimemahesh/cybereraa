@@ -114,6 +114,7 @@ class PermissionSeeder extends Seeder
             ['name' => 'users.delete', 'guard_name' => 'web'],
             ['name' => 'users.suspend', 'guard_name' => 'web'],
             ['name' => 'users.activate-suspended', 'guard_name' => 'web'],
+            ['name' => 'users.change-sponsor', 'guard_name' => 'web'],
 
             ['name' => 'admin.users.viewAny', 'guard_name' => 'web'],
 

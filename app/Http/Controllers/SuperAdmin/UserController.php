@@ -6,6 +6,7 @@ namespace App\Http\Controllers\SuperAdmin;
 use App\Actions\ActivityLogAction;
 use App\Actions\Fortify\PasswordValidationRules;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Select2UserResource;
 use App\Models\Country;
 use App\Models\Profile;
 use App\Models\Team;
@@ -15,9 +16,11 @@ use Exception;
 use Haruncpi\LaravelUserActivity\Traits\Log;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 use JsonException;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -65,6 +68,54 @@ class UserController extends Controller
         $roles = Role::where('name', '<>', 'user')->pluck('name', 'id')->all();
         $countries = Country::orderBy('name')->get(['name', 'iso', 'id'])->keyBy('iso');
         return view('backend.super_admin.users.create', compact('roles', 'countries'));
+    }
+
+    public function changeSponsor(Request $request, User $user)
+    {
+        abort_if(Gate::denies('users.update'), Response::HTTP_FORBIDDEN);
+        if ($request->isMethod('post')) {
+
+            $validated = Validator::make($request->all(), [
+                'new_sponsor_user' => [
+                    'required',
+                    Rule::exists('users', 'id')
+                        ->where(function ($query) {
+                            $query->where(function ($query) {
+                                $query->where('id', '<>', config('fortify.super_parent_id'))
+                                    ->whereNotNull('position')->whereNotNull('parent_id');
+                            })->orWhere('id', config('fortify.super_parent_id'));
+                        })
+                ],
+            ], [], ['new_sponsor_user' => 'New Sponsor'])->validate();
+
+            if ($user->super_parent_id !== null && $user->parent_id === null && $user->position === null) {
+                $user->forceFill([
+                    'super_parent_id' => $validated['new_sponsor_user'],
+                ])->save();
+                return redirect()->route('super_admin.users.change-sponsor', $user)
+                    ->with('success', 'Sponsor is change successfully!');
+            }
+
+            return redirect()->route('super_admin.users.change-sponsor', $user)
+                ->with('error', 'Permission denied: Cannot update sponsor this user is already in the genealogy!');
+        }
+
+        return view('backend.super_admin.users.change-sponsor', compact('user'));
+    }
+
+    public function findUsers($search_text): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+    {
+        $users = User::where('username', 'LIKE', "%{$search_text}%")
+            ->where('id', '<>', 3)
+            ->where(function (Builder $query) {
+                $query->where(function (Builder $query) {
+                    $query->where('id', '<>', config('fortify.super_parent_id'))
+                        ->whereNotNull('position')->whereNotNull('parent_id');
+                })->orWhere('id', config('fortify.super_parent_id'));
+            })
+            ->whereRelation('roles', 'name', 'user')
+            ->get();
+        return Select2UserResource::collection($users);
     }
 
     /**

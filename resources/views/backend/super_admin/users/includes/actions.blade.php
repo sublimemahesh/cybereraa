@@ -19,12 +19,12 @@
         <i class='fa fa-user' aria-hidden='true'></i>
     </a>
 @endcan
-@can('users.suspend', $user)
+@can('suspend', $user)
     <a class='btn btn-xs btn-danger sharp my-1 mr-1 shadow suspend-user' data-user='{{ $user->id }}' href='javascript:void(0)'>
         <i class='fa fa-ban' aria-hidden='true'></i>
     </a>
 @endcan
-@can('users.activate-suspended', $user)
+@can('reActivate', $user)
     <a class='btn btn-xs btn-success sharp my-1 mr-1 shadow activate-suspended-user' data-user='{{ $user->id }}' href='javascript:void(0)'>
         <i class='fa fa-check-double' aria-hidden='true'></i>
     </a>
