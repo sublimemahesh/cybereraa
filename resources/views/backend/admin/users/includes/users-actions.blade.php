@@ -4,6 +4,7 @@
             <i class='fas fa-check-to-slot'></i>
         </a>
     @endcan
+
     @can('users.genealogy')
         <a class='btn btn-xs btn-google sharp my-1 mr-1 shadow' href='{{ URL::signedRoute('admin.genealogy', ['user' => $user, 'filter-user' => $user->username]) }}'>
             <i class='bi bi-diagram-3-fill'></i>
@@ -35,6 +36,7 @@
             <i class='fa fa-check-double' aria-hidden='true'></i>
         </a>
     @endcan
+
     @can('changeSponsor', $user)
         <a class='btn btn-xs btn-warning sharp my-1 mr-1 shadow' data-user='{{  $user->id  }}' href='{{ route('super_admin.users.change-sponsor', $user) }}'>
             <i class='fa fa-exchange' aria-hidden='true'></i>
