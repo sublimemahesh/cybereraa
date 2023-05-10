@@ -72,12 +72,12 @@ class UserController extends Controller
 
     public function changeSponsor(Request $request, User $user)
     {
-        abort_if(Gate::denies('users.update'), Response::HTTP_FORBIDDEN);
+        abort_if(Gate::denies('changeSponsor', $user), Response::HTTP_FORBIDDEN);
         if ($request->isMethod('post')) {
-
             $validated = Validator::make($request->all(), [
                 'new_sponsor_user' => [
                     'required',
+                    'not_in:' . $user->id,
                     Rule::exists('users', 'id')
                         ->where(function ($query) {
                             $query->where(function ($query) {

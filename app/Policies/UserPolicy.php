@@ -11,6 +11,9 @@ class UserPolicy
 
     public function changeSponsor(User $loggedUser, User $user)
     {
+        if ($user->id === (int)config('fortify.super_parent_id')) {
+            return false;
+        }
         if ($loggedUser->hasPermissionTo('users.change-sponsor', 'web') || $loggedUser->hasRole('super_admin', 'web')) {
             return $user->super_parent_id !== null && $user->parent_id === null && $user->position === null;
         }
