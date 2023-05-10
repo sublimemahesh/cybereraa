@@ -86,8 +86,10 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::get('users/create', 'SuperAdmin\UserController@create')->name('users.create');
         Route::post('users/store', 'SuperAdmin\UserController@store')->name('users.store');
         Route::get('users/{user}/edit', 'SuperAdmin\UserController@edit')->name('users.edit');
+        Route::match(['get', 'post'], 'users/{user}/change-sponsor', 'SuperAdmin\UserController@changeSponsor')->name('users.change-sponsor');
         Route::post('users/{user}', 'SuperAdmin\UserController@update')->name('users.update');
         Route::delete('users/{user}', 'SuperAdmin\UserController@destroy')->name('users.destroy');
+        Route::post('filter/users/{search_text}', 'SuperAdmin\UserController@findUsers');
 
         Route::get('users/{user}/change-password', 'SuperAdmin\UserController@changePassword')->name('users.changePassword');
         Route::post('users/{user}/save-password', 'SuperAdmin\UserController@savePassword')->name('users.savePassword');

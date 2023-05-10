@@ -121,7 +121,7 @@ class UserController extends Controller
 
     public function suspendUser(User $user)
     {
-        abort_if(Gate::denies('users.suspend', $user), Response::HTTP_FORBIDDEN);
+        abort_if(Gate::denies('suspend', $user), Response::HTTP_FORBIDDEN);
 
         $user->update(['suspended_at' => Carbon::now()]);
 
@@ -134,7 +134,7 @@ class UserController extends Controller
 
     public function activateUser(User $user)
     {
-        abort_if(Gate::denies('users.activate-suspended', $user), Response::HTTP_FORBIDDEN);
+        abort_if(Gate::denies('reActivate', $user), Response::HTTP_FORBIDDEN);
 
         $user->update(['suspended_at' => null]);
 

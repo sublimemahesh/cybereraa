@@ -38,12 +38,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::after(function (User $user, $ability, $result, $arguments) {
-            if ($ability === 'users.suspend' && $user->hasRole('super_admin', 'web')) {
-                return !$arguments[0]->is_suspended;
-            }
-            if ($ability === 'users.activate-suspended' && $user->hasRole('super_admin', 'web')) {
-                return $arguments[0]->is_suspended;
-            }
+            
             return $user->hasRole('super_admin', 'web');
         });
     }
