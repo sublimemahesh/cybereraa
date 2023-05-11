@@ -67,6 +67,7 @@
                          <li><a class="cd-faq__category truncate" href="#9">How to buy Packages</a></li>
                          <li><a class="cd-faq__category truncate" href="#10">KYC activation</a></li>
                          <li><a class="cd-faq__category truncate" href="#11">Withdrawal</a></li>
+                         <li><a class="cd-faq__category truncate" href="#12">Coin Staking</a></li>
                          {{-- <li><a class="cd-faq__category truncate" href="#64">Invite Friends</a></li> --}}
 
                      </ul> <!-- cd-faq__categories -->
@@ -171,6 +172,24 @@
                              @endif
                          @endforeach
                      </ul>
+                     <ul id="12" class="cd-faq__group">
+                        <div class='div-faq-ul'></div>
+                        <li class="cd-faq__title">
+                            <h2>Coin Staking</h2>
+                        </li>
+                        @foreach ($faqs as $faq)
+                            @if ($faq->parent_id == 126)
+                                <li class="cd-faq__item">
+                                    <a class="cd-faq__trigger" href="#0"><span>{{ $faq->title }}</span></a>
+                                    <div class="cd-faq__content">
+                                        <div class="text-component">
+                                            {!! html_entity_decode($faq->content) !!}
+                                        </div>
+                                    </div> <!-- cd-faq__content -->
+                                </li>
+                            @endif
+                        @endforeach
+                    </ul>
                      <!-- cd-faq__group -->
                      {{-- <ul id="64" class="cd-faq__group">
                         <li class="cd-faq__title">
