@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\KYCApproveMail;
+use App\Mail\KYCRejectMail;
 use App\Models\Kyc;
 use App\Models\KycDocument;
 use App\Models\User;
@@ -52,16 +54,21 @@ class KycController extends Controller
 
         $this->authorize($validated['status'], $document);
 
+        $user = $document->kyc->profile->user;
+
         $document->status = $status[$validated['status']];
         if ($validated['status'] === 'reject') {
             $document->repudiate_note = $validated['repudiate_note'];
+            \Mail::to($document->kyc->profile->user->email)->send(new KYCRejectMail($user, $document));
         }
+        
         $document->save();
 
         $approved_doc_count = KycDocument::where('kyc_id', $document->kyc_id)->where('status', 'accepted')->count();
 
         if ($document->kyc->required_documents === $approved_doc_count) {
             $document->kyc()->update(['status' => 'accepted']);
+            \Mail::to($document->kyc->profile->user->email)->send(new KYCApproveMail($user));
 
             $profile_verified_columns = ['nic' => 'nic_verified_at', 'driving_lc' => 'driving_lc_verified_at', 'passport' => 'passport_verified_at'];
             $document->kyc->profile()->update([$profile_verified_columns[$document->kyc->type] => now()]);

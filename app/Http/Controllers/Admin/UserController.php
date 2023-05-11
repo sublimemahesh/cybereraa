@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\AccountReactivateMail;
+use App\Mail\AccountSuspendMail;
 use App\Models\Commission;
 use App\Models\Earning;
 use App\Models\User;
@@ -125,6 +127,8 @@ class UserController extends Controller
 
         $user->update(['suspended_at' => Carbon::now()]);
 
+        \Mail::to($user->email)->send(new AccountSuspendMail($user));
+
         $json['status'] = true;
         $json['message'] = "User is suspended!";
         $json['icon'] = 'success'; // warning | info | question | success | error
@@ -137,6 +141,8 @@ class UserController extends Controller
         abort_if(Gate::denies('reActivate', $user), Response::HTTP_FORBIDDEN);
 
         $user->update(['suspended_at' => null]);
+
+        \Mail::to($user->email)->send(new AccountReactivateMail($user));
 
         $json['status'] = true;
         $json['message'] = "User is now active!";
