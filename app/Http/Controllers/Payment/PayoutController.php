@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Payment;
 
 use App\Http\Controllers\Controller;
+use App\Mail\P2PTransactionMail;
 use App\Models\AdminWallet;
 use App\Models\Earning;
 use App\Models\Strategy;
@@ -224,6 +225,8 @@ class PayoutController extends Controller
 
             $admin_wallet->increment('balance', $withdraw->transaction_fee);
 
+            \Mail::to($sender->email)->send(new P2PTransactionMail(true, $sender, $receiver, $withdraw));
+            \Mail::to($receiver->email)->send(new P2PTransactionMail(false, $sender, $receiver, $withdraw));
 
             return $withdraw;
         });
