@@ -28,6 +28,13 @@
                     </button>
                 @endcan
             @endif
+            @if(request()->routeIs('admin.staking.earnings.index'))
+                @can('release_staking_interest')
+                    <button id="release-staking-interest" class="mb-3 ml-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
+                        Release Staking Interest ({{ date('Y-m-d') }})
+                    </button>
+                @endcan
+            @endif
         </div>
         <div class="col-12">
             <div class="card">
