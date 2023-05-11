@@ -120,7 +120,8 @@
                             <tr>
                                 <th>DOCUMENT NAME</th>
                                 <th>DOCUMENT TYPE</th>
-                                <th>UPLOADED AT</th>
+                                <th>CREATED AT</th>
+                                <th>UPDATED AT</th>
                                 <th>STATUS</th>
                                 <th>ACTION</th>
                             </tr>
@@ -130,6 +131,7 @@
                                 <tr>
                                     <td>{{ $document->document_type_name }}</td>
                                     <td>{{ $document->document_type }}</td>
+                                    <td>{{ $document->created_at }}</td>
                                     <td>{{ $document->updated_at }}</td>
                                     <td>
                                         <div class="badge badge-xs badge-{{ $document->status_color }} light">
@@ -140,7 +142,7 @@
                                         @can('view', $document)
                                             <a src="{{ storage('user/kyc/' . $kyc->type . '/' . $document->document_name) }}"
                                                class="btn btn-primary btn-xxs mb-2 imgDiv" href="#">
-                                                <i class="fas fa-eye"></i>
+                                                <i class="fas fa-id-card-alt"></i>
 
                                             </a>
                                         @endcan
@@ -155,6 +157,13 @@
                                                 <i class="fas fa-close"></i>
                                             </a>
                                         @endcan
+
+                                        @if($document->repudiate_note !== null)
+                                            <a class="btn btn-warning btn-xxs mb-2 repudiate-note" data-document="{{ $document->id }}">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <input type="hidden" class="" data-id="{{ $document->id }}" id="repudiate-note-{{ $document->id }}" value="{{ $document->repudiate_note }}">
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
@@ -166,12 +175,55 @@
         </div>
     </div>
 
+    @push('modals')
+
+        <div class="modal fade" id="repudiate-note-modal">
+            <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Reject Reason</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card bg-secondary cursor-pointer">
+                                    <a class="card-body card-link">
+                                        <div class="text-center">
+                                            {{--<div class="mb-3"></div>--}}
+                                            {{--<img class="w-100" src="{{ asset('assets/backend/images/wallets/safe.png') }}" alt="wallet-address">--}}
+                                            <div class="my-2" id="show-note">
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endpush
+
     @push('scripts')
         <script src="{{ asset('assets/backend/js/admin/users/ezoom.js') }}"></script>
         <script src="{{ asset('assets/backend/js/admin/users/kyc-approve.js') }}"></script>
 
-        <style>
+        <script>
+            const rejectNoteModal = new bootstrap.Modal('#repudiate-note-modal', {
+                backdrop: 'static',
+            })
 
-        </style>
+            $(document).on('click', '.repudiate-note', function (e) {
+                e.preventDefault()
+                console.log('repudiate-note')
+                const document = $(this).data('document')
+                const repudiate_note = $('#repudiate-note-' + document).val()
+                $('#show-note').html(repudiate_note)
+                rejectNoteModal.show()
+            })
+        </script>
     @endpush
 </x-backend.layouts.app>

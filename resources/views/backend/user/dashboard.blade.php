@@ -4,76 +4,75 @@
     @section('header-title2',Auth::user()->username)
 
 
-
     <div class="row">
         <div class="col-xl-12">
             <div class="row main-card">
                 <div class="col-xl-12">
                     <div class="overflow-hidden dz-crypto-scroll shadow-none">
                         <div class="js-conveyor-example">
-                            <ul class="crypto-list"  id="crypto-webticker">
-                               
-							   
-                                    <li>
-                                        <div class="card overflow-hidden">
-                                            <div class="card-body d-flex align-items-center">
-                                                <div class="me-4">
-                                                    <p class="mb-2 fs-13">
-                                                        <span class="bitcoin-change"></span>
-                                                    </p>
-                                                    <h4 class="bitcoin">  </h4>
-                                                </div>
-                                                <img src="{{asset('assets/frontend/images/coins/bitcoin.png') }}"
-                                                     width="42" height="42" viewBox="0 0 42 42" fill="none">
+                            <ul class="crypto-list" id="crypto-webticker">
+
+
+                                <li>
+                                    <div class="card overflow-hidden">
+                                        <div class="card-body d-flex align-items-center">
+                                            <div class="me-4">
+                                                <p class="mb-2 fs-13">
+                                                    <span class="bitcoin-change"></span>
+                                                </p>
+                                                <h4 class="bitcoin"></h4>
                                             </div>
+                                            <img src="{{asset('assets/frontend/images/coins/bitcoin.png') }}"
+                                                 width="42" height="42" viewBox="0 0 42 42" fill="none">
                                         </div>
-                                    </li>
-									
-									  <li>
-                                        <div class="card overflow-hidden">
-                                            <div class="card-body d-flex align-items-center">
-                                                <div class="me-4">
-                                                    <p class="mb-2 fs-13">
-                                                        <span class="litecoin-change"></span>
-                                                    </p>
-                                                    <h4 class="litecoin">  </h4>
-                                                </div>
-                                                <img src="{{asset('assets/frontend/images/coins/litecoin.png') }}"
-                                                     width="42" height="42" viewBox="0 0 42 42" fill="none">
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="card overflow-hidden">
+                                        <div class="card-body d-flex align-items-center">
+                                            <div class="me-4">
+                                                <p class="mb-2 fs-13">
+                                                    <span class="litecoin-change"></span>
+                                                </p>
+                                                <h4 class="litecoin"></h4>
                                             </div>
+                                            <img src="{{asset('assets/frontend/images/coins/litecoin.png') }}"
+                                                 width="42" height="42" viewBox="0 0 42 42" fill="none">
                                         </div>
-                                    </li>
-									
-									  <li>
-                                        <div class="card overflow-hidden">
-                                            <div class="card-body d-flex align-items-center">
-                                                <div class="me-4">
-                                                    <p class="mb-2 fs-13">
-                                                        <span class="ethereum-change"></span>
-                                                    </p>
-                                                    <h4 class="ethereum">  </h4>
-                                                </div>
-                                                <img src="{{ asset('assets/frontend/images/coins/ethereum.png') }}"
-                                                     width="42" height="42" viewBox="0 0 42 42" fill="none">
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="card overflow-hidden">
+                                        <div class="card-body d-flex align-items-center">
+                                            <div class="me-4">
+                                                <p class="mb-2 fs-13">
+                                                    <span class="ethereum-change"></span>
+                                                </p>
+                                                <h4 class="ethereum"></h4>
                                             </div>
+                                            <img src="{{ asset('assets/frontend/images/coins/ethereum.png') }}"
+                                                 width="42" height="42" viewBox="0 0 42 42" fill="none">
                                         </div>
-                                    </li>
-									
-									  <li>
-                                        <div class="card overflow-hidden">
-                                            <div class="card-body d-flex align-items-center">
-                                                <div class="me-4">
-                                                    <p class="mb-2 fs-13">
-                                                        <span class="tether-change"></span>
-                                                    </p>
-                                                    <h4 class="tether">  </h4>
-                                                </div>
-                                                <img src="{{ asset('assets/frontend/images/coins/tether.png') }}"
-                                                     width="42" height="42" viewBox="0 0 42 42" fill="none">
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="card overflow-hidden">
+                                        <div class="card-body d-flex align-items-center">
+                                            <div class="me-4">
+                                                <p class="mb-2 fs-13">
+                                                    <span class="tether-change"></span>
+                                                </p>
+                                                <h4 class="tether"></h4>
                                             </div>
+                                            <img src="{{ asset('assets/frontend/images/coins/tether.png') }}"
+                                                 width="42" height="42" viewBox="0 0 42 42" fill="none">
                                         </div>
-                                    </li>
-                               
+                                    </div>
+                                </li>
+
 
                                 {{-- <li>
                                     <div class="card overflow-hidden">
@@ -154,21 +153,18 @@
                                         <div>
 
 
-                        <div class="input-group mb-3 input-primary ref-div">
-                            <input type="text" readonly class="form-control ref-text" id="clipboard-input"
-                                   value="{{ Auth::user()->referral_link }}" >
-                            <span class="input-group-text border-0 clipboard-tooltip" onclick="copyToClipBoard()"
-                                  onmouseout="outFunc()">
+                                            <div class="input-group mb-3 input-primary ref-div">
+                                                <input type="text" readonly class="form-control ref-text" id="clipboard-input"
+                                                       value="{{ Auth::user()->referral_link }}">
+                                                <span class="input-group-text border-0 clipboard-tooltip" onclick="copyToClipBoard()"
+                                                      onmouseout="outFunc()">
                                 <span class="tooltip-text" id="clipboard-tooltip">Copy Link</span>
                             </span>
-                        </div>
-						<p id='p-with'>
+                                            </div>
+                                            <p id='p-with'>
                                                 {{ Auth::user()->name }} Welcome to SafestTrades.com,<br>
-                                               <code> DO NOT</code> share your credentials with anyone for your safety
+                                                <code> DO NOT</code> share your credentials with anyone for your safety
                                             </p>
-
-
-
 
 
                                             <a href="{{ route('user.packages.index') }}" class="btn btn-primary">Buy
@@ -526,14 +522,48 @@
         </div>
     </div>
 
+    @push('modals')
+        <div class="modal fade" id="notification-modal">
+            <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Pending DownLiners ({{ Auth::user()->pending_direct_sales_count }})</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card bg-secondary cursor-pointer">
+                                    <div class="text-center">
+                                        <div class="my-4" id="show-note">
+                                            <div>
+                                                You have pending downline requests to approve.
+                                                Please approve the requests to place your downlines in the genealogy.
+                                            </div>
+                                            <a href="{{ route('user.genealogy') }}" class="btn btn-primary mt-3">
+                                                Place Now
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endpush
+
     @push('scripts')
         <script src="{{ asset('assets/backend/vendor/webticker/jquery.webticker.min.js') }}"></script>
         <script src="{{ asset('assets/backend/js/user/dashboard.js') }}"></script>
-		 <script src="{{ asset('assets/backend/js/user/coin_prices.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/user/coin_prices.js') }}"></script>
 
-		   <script>
+        <script>
 
-		   function copyToClipBoard() {
+            function copyToClipBoard() {
 
                 const copyText = document.getElementById("clipboard-input");
                 copyText.select();
@@ -544,15 +574,22 @@
                 tooltip.innerHTML = "Copied: ";
             }
 
-			   function outFunc() {
+            function outFunc() {
                 const tooltip = document.getElementById("clipboard-tooltip");
                 //tooltip.innerHTML = "Copied";
             }
 
 
-		   </script>
+        </script>
 
-
-
+        <script>
+            const pending_assign_count = parseInt("{{ Auth::user()->pending_direct_sales_count }}")
+            if (pending_assign_count > 0) {
+                const notificationNoteModal = new bootstrap.Modal('#notification-modal', {
+                    backdrop: 'static',
+                })
+                notificationNoteModal.show()
+            }
+        </script>
     @endpush
 </x-backend.layouts.app>
