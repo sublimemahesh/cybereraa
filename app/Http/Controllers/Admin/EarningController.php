@@ -120,4 +120,19 @@ class EarningController extends Controller
     }
 
 
+    /**
+     * @throws JsonException
+     */
+    public function releaseStakingInterest(ActivityLogAction $activityLog): \Illuminate\Http\JsonResponse
+    {
+        abort_if(Gate::denies('release_staking_interest'), Response::HTTP_FORBIDDEN);
+        $activityLog->exce('release_staking_interest');
+        $res = Artisan::call('calculate:staking-interest');
+        $json['status'] = $res === 0;
+        $json['message'] = Artisan::output();
+        $json['icon'] = $res === 0 ? 'success' : 'error'; // warning | info | question | success | error
+        $code = $res === 0 ? 200 : 422;
+        return response()->json($json, $code);
+    }
+
 }

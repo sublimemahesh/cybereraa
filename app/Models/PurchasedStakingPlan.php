@@ -33,7 +33,7 @@ class PurchasedStakingPlan extends Model
     {
         static::updated(function (self $package) {
             if ($package->status === 'EXPIRED') {
-                $package->expiry_at = Carbon::now();
+                $package->expired_at = Carbon::now();
                 $package->saveQuietly();
             }
             if ($package->status === 'CANCELLED') {

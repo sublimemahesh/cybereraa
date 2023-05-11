@@ -185,6 +185,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
             Route::post('users/earnings/calculate-profit', 'Admin\EarningController@calculateProfit');
             Route::post('users/rewards/calculate-bonus', 'Admin\EarningController@issueMonthlyRankBonuses');
             Route::post('users/earnings/calculate-commission', 'Admin\EarningController@calculateCommission');
+            Route::post('users/earnings/release-staking-interest', 'Admin\EarningController@releaseStakingInterest');
 
             // Transactions
             Route::get('users/purchased-packages', 'Admin\PurchasedPackageController@index')->name('purchased-packages');

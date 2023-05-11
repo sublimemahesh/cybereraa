@@ -46,7 +46,7 @@ $(function () {
         columnDefs: [
             {
                 render: function (amount, type, full, meta) {
-                    return `<div style='min-width:120px' class="text-right"> ${amount} </div>`;
+                    return `<div style="min-width:120px" class="text-right"> ${amount} </div>`;
                 },
                 targets: 6,
             },
@@ -122,6 +122,34 @@ $(function () {
                             icon: 'error', title: error.response.data.message || "Something went wrong!",
                         })
                     })
+                }
+            });
+        })
+        $(document).on('click', '#release-staking-interest', function (e) {
+            e.preventDefault();
+            Swal.fire({
+                title: "Are You Sure?",
+                text: `Release the staking interest for maturity date (${moment().format('Y-MM-D')})!`,
+                icon: "info",
+                showCancelButton: true,
+            }).then((calculate) => {
+                if (calculate.isConfirmed) {
+                    loader()
+                    axios.post(APP_URL + "/admin/reports/users/earnings/release-staking-interest")
+                        .then(response => {
+                            Toast.fire({
+                                icon: response.data.icon, title: response.data.message,
+                            })
+                            let url = location.href.split(/\?|\#/)[0];
+                            history.replaceState({}, "", url);
+                            table.ajax.url(url).load();
+                        })
+                        .catch(error => {
+                            console.log(error)
+                            Toast.fire({
+                                icon: 'error', title: error.response.data.message || "Something went wrong!",
+                            })
+                        })
                 }
             });
         })

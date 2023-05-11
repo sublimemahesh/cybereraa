@@ -56,6 +56,7 @@ class PermissionSeeder extends Seeder
             ['name' => 'page.delete', 'guard_name' => 'web'],
 
             ['name' => 'generate_daily_package_earnings', 'guard_name' => 'web'],
+            ['name' => 'release_staking_interest', 'guard_name' => 'web'],
             ['name' => 'purchase_packages.viewAny', 'guard_name' => 'web'],
 
             ['name' => 'generate_monthly_rank_bonus', 'guard_name' => 'web'],
