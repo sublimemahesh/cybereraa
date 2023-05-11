@@ -131,7 +131,20 @@
 @if (!empty($invoice->id))
     <div class="body invoice-container" style="width:100%">
         {{-- Header --}}
-        <img src="{{ $invoice->logo }}" alt="logo" width="250">
+        <table class="table ">
+            <tbody>
+            <tr>
+                <td>
+                    <img src="{{ $invoice->logo }}" alt="logo" width="250">
+                </td>
+                <td>
+                    <div style="width:100%; display:flex;justify-content: end;align-items: end">
+                        <img style="float:right" src="{{ $invoice->site_qr }}" width="80" alt="https://www.safesttrades.com">
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
         <table class="table mt-5">
             <tbody>
             <tr>
@@ -201,9 +214,6 @@
         @if(isset($invoice->terms))
             {!! $invoice?->terms !!}
         @endif
-        <div style="width:100%; display:block">
-            <img style="float:right" src="{{ $invoice->site_qr }}" width="150" alt="https://www.safesttrades.com">
-        </div>
     </div>
 @else
     <div class="body invoice-container">
