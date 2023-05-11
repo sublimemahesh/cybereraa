@@ -16,16 +16,18 @@
 
     <div class="row dark"> {{--! Tailwind css used. if using tailwind plz run npm run dev and add tailwind classes--}}
         <div class="col-sm-12">
-            @can('generate_daily_package_earnings')
-                <button id="calculate-profit" class="mb-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
-                    Calculate Profit ({{ date('Y-m-d') }})
-                </button>
-            @endcan
-            @can('generate_daily_commission')
-                <button id="calculate-commission" class="mb-3 ml-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
-                    Calculate Commission ({{ date('Y-m-d') }})
-                </button>
-            @endcan
+            @if(request()->routeIs('admin.earnings.index'))
+                @can('generate_daily_package_earnings')
+                    <button id="calculate-profit" class="mb-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
+                        Calculate Profit ({{ date('Y-m-d') }})
+                    </button>
+                @endcan
+                @can('generate_daily_commission')
+                    <button id="calculate-commission" class="mb-3 ml-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
+                        Calculate Commission ({{ date('Y-m-d') }})
+                    </button>
+                @endcan
+            @endif
         </div>
         <div class="col-12">
             <div class="card">
