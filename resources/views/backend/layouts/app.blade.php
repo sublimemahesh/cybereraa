@@ -86,7 +86,9 @@
             <div class="page-titles">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="{{ route('/') }}"><i class="material-icons">home</i></a>
+                        <a href="{{ route('/') }}">
+                            <i class="material-icons">home</i>
+                        </a>
                     </li>
                     <li class="breadcrumb-item">
                         <a href="{{ !request()->is('*/dashboard') ? route($folder . '.dashboard') : 'javascript:void(0)' }}">Dashboard</a>
@@ -157,7 +159,19 @@
 
 @yield('scripts')
 @stack('scripts')
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XNCT9N2XLP"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
 
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-XNCT9N2XLP');
+</script>
 <script>
     $(document).ready(function () {
         setTimeout(function () {

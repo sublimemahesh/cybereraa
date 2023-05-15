@@ -29,34 +29,47 @@
 </head>
 
 <body>
-    @include('frontend.layouts.header')
+@include('frontend.layouts.header')
 
 
-    {{ $slot }}
+{{ $slot }}
 
-    @include('frontend.layouts.footer')
-    <!-- Template JS Files -->
+@include('frontend.layouts.footer')
+<!-- Template JS Files -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    <script src="{{ asset('assets/frontend/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/frontend/js/select2.min.js') }}"></script>
-    <script src="{{ asset('assets/frontend/js/jquery.magnific-popup.min.js') }}"></script>
-    <script src="{{ asset('assets/frontend/js/custom.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script src="{{ asset('assets/frontend/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('assets/frontend/js/select2.min.js') }}"></script>
+<script src="{{ asset('assets/frontend/js/jquery.magnific-popup.min.js') }}"></script>
+<script src="{{ asset('assets/frontend/js/custom.js') }}"></script>
 
-    <!-- Live Style Switcher JS File - only demo -->
+<!-- Live Style Switcher JS File - only demo -->
 
-    <script src="{{ asset('assets/frontend/js/main.js') }}"></script>
-	
-	<!-- Coin price  -->
+<script src="{{ asset('assets/frontend/js/main.js') }}"></script>
 
-    <script src="{{ asset('assets/frontend/js/coin_prices.js') }}"></script>
+<!-- Coin price  -->
+
+<script src="{{ asset('assets/frontend/js/coin_prices.js') }}"></script>
 
 
-    <!-- Wrapper Ends -->
-    @yield('scripts')
-    @stack('scripts')
+<!-- Wrapper Ends -->
+@yield('scripts')
+@stack('scripts')
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XNCT9N2XLP"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-XNCT9N2XLP');
+</script>
 </body>
 
 </html>
