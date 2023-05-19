@@ -115,7 +115,7 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table id="rewards" class="display mb-1 nowrap table-responsive-my">
+                        <table id="rewards" class="display mb-1 nowrap table-responsive-my" style="table-layout:fixed">
                             <thead>
                             <tr>
                                 <th>ACTION</th>

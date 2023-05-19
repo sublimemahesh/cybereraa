@@ -25,18 +25,19 @@ $(function () {
                 render: function (data, type, full, meta) {
                     return `<div style='width:50px'> ${data} </div>`;
                 },
+                width: "50px",
                 targets: 0,
             },
             {
                 render: function (data, type, full, meta) {
-                    return `<div style='min-width:180px'> ${data} </div>`;
+                    return `<div style="font-size: 0.76rem !important;width:150px"> ${data} </div>`;
                 },
+                width: "150px",
                 targets: 3,
             },
-
             {
                 render: function (data, type, full, meta) {
-                    return `<div style='min-width:180px'> ${data} </div>`;
+                    return `<div style='min-width:150px'> ${data} </div>`;
                 },
                 targets: 2,
             },
@@ -51,6 +52,7 @@ $(function () {
         e.preventDefault();
         urlParams.set("date-range", $("#date-range").val());
         urlParams.set("kyc-status", $("#kyc-status").val());
+        urlParams.set("status", $("#status").val());
         let url = location.href.split(/\?|\#/)[0] + "?" + urlParams.toString();
         history.replaceState({}, "", url);
         table.ajax.url(url).load();
