@@ -84,7 +84,11 @@ $(function () {
         if (input.files && input.files[0]) {
             let data_el = $(input).data('type');
             canvasResize(input.files[0], {
-                width: 600, height: 600, crop: false, quality: 80, //rotate: 90,
+                width: 700,
+                height: 0,
+                crop: false,
+                quality: 300,
+                //rotate: 90,
                 callback: function (file, width, height) {
                     $('#' + data_el).val(file)
                 }
