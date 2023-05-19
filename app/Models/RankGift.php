@@ -50,7 +50,7 @@ class RankGift extends Model
 
     public function renewStatus()
     {
-        if (($this->status === 'PENDING') && $this->gift_requirement->total_investment <= $this->total_investment && $this->gift_requirement->total_team_investment <= $this->total_team_investment) {
+        if ($this->status === 'PENDING' && $this->gift_requirement->total_investment <= $this->total_investment && $this->gift_requirement->total_team_investment <= $this->total_team_investment) {
             $this->update(['status' => 'QUALIFIED']);
         }
         return $this->status;

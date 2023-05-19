@@ -32,6 +32,12 @@ class UserController extends Controller
         if ($request->wantsJson()) {
             $users = User::with('sponsor')
                 ->whereRelation('roles', 'name', 'user')
+                ->when($request->get('status') === 'suspend', function (Builder $q) {
+                    $q->whereNotNull('suspended_at');
+                })
+                ->when($request->get('status') === 'active', function (Builder $q) {
+                    $q->whereNull('suspended_at');
+                })
                 ->when($request->get('date-range'), function (Builder $q) {
                     $period = explode(' to ', request()->input('date-range'));
                     try {
