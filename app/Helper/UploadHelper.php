@@ -4,9 +4,9 @@ use Verot\Upload\Upload;
 
 function store($data, $path, $name, $config = NULL, $options = [])
 {
-    $options = array_merge(["update" => FALSE, "full_path" => false, "clean" => true], $options);
+    $options = ["update" => FALSE, "full_path" => false, "clean" => true, ...$options];
     if (!$options['full_path']) {
-        $path = "$path/";
+        $path = "{$path}/";
     }
     $handle = new Upload($data);
     if ($handle->uploaded) {
@@ -14,7 +14,8 @@ function store($data, $path, $name, $config = NULL, $options = [])
         $handle->dir_auto_create = TRUE;
         $handle->mime_check = TRUE;
         $handle->file_overwrite = TRUE;
-        $handle->file_new_name_ext = !$options['update'] ? array_search($handle->file_src_mime, $handle->mime_types) : FALSE;
+        $handle->jpeg_quality = 300;
+        $handle->file_new_name_ext = !$options['update'] ? array_search($handle->file_src_mime, $handle->mime_types, true) : FALSE;
         if ($config && is_array($config)) {
             foreach ($config as $key => $value) {
                 $handle->{$key} = $value;

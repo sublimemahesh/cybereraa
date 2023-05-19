@@ -133,7 +133,7 @@
             <script src="{{ asset('assets/backend/vendor/canvasResize/binaryajax.js') }}"></script>
             <script src="{{ asset('assets/backend/vendor/canvasResize/exif.js') }}"></script>
             <script src="{{ asset('assets/backend/vendor/canvasResize/canvasResize.js') }}"></script>
-            <script src="{{ asset('assets/backend/js/user/kyc/dropzone.js') }}"></script>
+            <script src="{{ asset('assets/backend/js/user/kyc/dropzone.js?12345') }}"></script>
         @endpush
     @endcan
 </x-backend.layouts.app>
