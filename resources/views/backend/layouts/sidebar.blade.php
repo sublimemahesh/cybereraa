@@ -324,12 +324,12 @@
             <li>
                 <a href="{{ route('admin.strategies.rank-level.index') }}">Rank Bonus</a>
             </li>
+            <li>
+                <a href="{{ route('admin.strategies.rank-gift-level.index') }}">Rank Gift</a>
+            </li>
             {{-- <li>
-                 <a href="{{ route('admin.strategies.rank-level.index') }}">Rank Gift</a>
-             </li>
-             <li>
-                 <a href="{{ route('admin.strategies.rank-level.index') }}">P2P Restrictions</a>
-             </li>--}}
+                <a href="{{ route('admin.strategies.rank-level.index') }}">P2P Restrictions</a>
+            </li>--}}
             <li>
                 <a href="{{ route('admin.strategies.commissions.index') }}">Commissions</a>
             </li>

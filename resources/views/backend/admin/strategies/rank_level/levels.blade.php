@@ -17,16 +17,16 @@
                         <hr>
 
                         <div class="form-group row mb-2">
-                            <label class="col-sm-3 col-form-label" for="rank_offset_levels">Rank offset (Excluded) 1 to -</label>
+                            <label class="col-sm-3 col-form-label" for="rank_offset_levels">Rank offset (Excluded Levels)</label>
                             <div class="col-sm-9">
-                                <input class="form-control" id="rank_offset_levels" value="{{ $rank_level_count->value - count($rank_bonus_levels) }}" name="rank_offset_levels" placeholder="Enter Count of Rank gift issue" type="text">
+                                <input class="form-control" id="rank_offset_levels" min="0" max="6" value="{{ $rank_level_count->value - count($rank_bonus_levels) }}" name="rank_offset_levels" placeholder="Enter Count of Rank bonus ignore level" type="number">
                             </div>
                         </div>
 
                         <div class="form-group row mb-2">
-                            <label class="col-sm-3 col-form-label" for="rank_bonus_levels">Rank bonus </label>
+                            <label class="col-sm-3 col-form-label" for="rank_bonus_levels">Rank bonus</label>
                             <div class="col-sm-9">
-                                <input class="form-control" readonly id="rank_bonus_levels" value="{{ count($rank_bonus_levels) }}" name="rank_bonus_levels" placeholder="Enter Count of Rank bonus issue" type="text">
+                                <input class="form-control" readonly id="rank_bonus_levels" value="{{ count($rank_bonus_levels) }}" name="rank_bonus_levels" placeholder="Enter Count of Rank bonus issue" type="number">
                             </div>
                         </div>
 

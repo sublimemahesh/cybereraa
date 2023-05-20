@@ -228,8 +228,10 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
             Route::patch('withdrawal/fees', 'saveWithdrawFees');
 
             Route::get('rank-level', 'rankLevel')->name('rank-level.index');
+            Route::get('rank-gifts-levels', 'rankGiftLevel')->name('rank-gift-level.index');
             Route::patch('rank/levels', 'saveRankLevels');
             Route::patch('rank/package-requirements', 'savePackageRequirements');
+            Route::patch('rank/gift-requirements', 'saveRankGiftInvestmentRequirement');
 
             Route::get('commissions', 'commissions')->name('commissions.index');
             Route::patch('commissions', 'saveCommissions');
