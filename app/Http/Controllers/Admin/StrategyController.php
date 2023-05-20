@@ -52,22 +52,38 @@ class StrategyController extends Controller
     {
         $this->authorize('viewAny', Strategy::class);
 
-        $strategies = Strategy::whereIn('name', ['rank_level_count', 'rank_bonus_levels', 'rank_gift_levels', 'rank_package_requirement'])->get();
+        $strategies = Strategy::whereIn('name', ['rank_level_count', 'rank_bonus_levels', 'rank_package_requirement'])->get();
 
         $rank_level_count = $strategies->where('name', 'rank_level_count')->first(null, new Strategy(['value' => 7]));
-        $rank_gift_levels = $strategies->where('name', 'rank_gift_levels')->first(null, new Strategy(['value' => '1,2']));
         $rank_bonus_levels = $strategies->where('name', 'rank_bonus_levels')->first(null, new Strategy(['value' => '3,4,5,6,7']));
 
-        // TODO: change the requirement
-        $rank_package_requirement = $strategies->where('name', 'rank_package_requirement')->first(null, new Strategy(['value' => '{"1":100,"2":250,"3":500,"4":1000,"5":2500,"6":5000,"7":10000}']));
-        //$rank_bonus = $strategies->where('name', 'rank_bonus')->first(null, new Strategy(['value' => 10]));
-        //$rank_gift = $strategies->where('name', 'rank_gift')->first(null, new Strategy(['value' => 5]));
+        $rank_package_requirement = $strategies->where('name', 'rank_package_requirement')->first(null, new Strategy(['value' => '{"3":{"active_investment":"1000","total_team_investment":"5000"},"4":{"active_investment":"2500","total_team_investment":"10000"},"5":{"active_investment":"5000","total_team_investment":"25000"},"6":{"active_investment":"10000","total_team_investment":"50000"},"7":{"active_investment":"25000","total_team_investment":"100000"}}']));
 
-        $rank_gift_levels = explode(',', $rank_gift_levels->value);
         $rank_bonus_levels = explode(',', $rank_bonus_levels->value);
         $rank_package_requirement = json_decode($rank_package_requirement->value, true, 512, JSON_THROW_ON_ERROR);
 
-        return view('backend.admin.strategies.rank_level.index', compact('rank_level_count', 'rank_gift_levels', 'rank_bonus_levels', 'rank_package_requirement'));
+        return view('backend.admin.strategies.rank_level.index', compact('rank_level_count', 'rank_bonus_levels', 'rank_package_requirement'));
+    }
+
+    /**
+     * @throws JsonException
+     * @throws AuthorizationException
+     */
+    public function rankGiftLevel()
+    {
+        $this->authorize('viewAny', Strategy::class);
+
+        $strategies = Strategy::whereIn('name', ['rank_level_count', 'rank_gift_levels', 'rank_gift_requirements'])->get();
+
+        $rank_level_count = $strategies->where('name', 'rank_level_count')->first(null, new Strategy(['value' => 7]));
+        $rank_gift_levels = $strategies->where('name', 'rank_gift_levels')->first(null, new Strategy(['value' => '1,2,3,4,5,6,7']));
+
+        $rank_gift_requirements = $strategies->where('name', 'rank_gift_requirements')->first(null, new Strategy(['value' => '{"1":{"total_investment":250,"total_team_investment":2000},"2":{"total_investment":500,"total_team_investment":12000},"3":{"total_investment":1000,"total_team_investment":75000},"4":{"total_investment":2500,"total_team_investment":400000},"5":{"total_investment":5000,"total_team_investment":2500000},"6":{"total_investment":10000,"total_team_investment":15000000},"7":{"total_investment":25000,"total_team_investment":100000000}}']));
+
+        $rank_gift_levels = explode(',', $rank_gift_levels->value);
+        $rank_gift_requirements = json_decode($rank_gift_requirements->value, true, 512, JSON_THROW_ON_ERROR);
+
+        return view('backend.admin.strategies.rank_gift.index', compact('rank_level_count', 'rank_gift_levels', 'rank_gift_requirements'));
     }
 
     /**
@@ -213,23 +229,23 @@ class StrategyController extends Controller
 
         $validated = Validator::make($request->all(), [
             'rank_level_count' => ['required', 'integer', 'in:7'],
-            'rank_offset_levels' => ['required', 'integer', 'lte:6', 'gte:1'],
+            'rank_offset_levels' => ['required', 'integer', 'lte:6', 'gte:0'],
             'rank_bonus_levels' => ['required', 'integer', 'max:7'],
         ])->validate();
 
-        $rank_gift_levels = range(1, 7);
+        //$rank_gift_levels = range(1, 7);
         $rank_bonus_levels = range($validated['rank_offset_levels'] + 1, $validated['rank_level_count']);
 
-        if ($validated['rank_level_count'] < (count($rank_gift_levels) + count($rank_bonus_levels))) {
+        if ((int)$validated['rank_level_count'] < count($rank_bonus_levels)) {
             throw new \RuntimeException("Something went wrong with the level count");
         }
 
-        DB::transaction(function () use ($rank_gift_levels, $validated) {
-            Strategy::updateOrCreate(
-                ['name' => 'rank_gift_levels'],
-                ['value' => implode(',', $rank_gift_levels)]
-            );
-        });
+//        DB::transaction(function () use ($rank_gift_levels, $validated) {
+//            Strategy::updateOrCreate(
+//                ['name' => 'rank_gift_levels'],
+//                ['value' => implode(',', $rank_gift_levels)]
+//            );
+//        });
 
         DB::transaction(function () use ($rank_bonus_levels, $validated) {
             Strategy::updateOrCreate(
@@ -319,11 +335,12 @@ class StrategyController extends Controller
     {
         $this->authorize('update', Strategy::class);
 
-        // TODO: Change the requirement (rank_package_requirement)
-
+        //dd($request->all());
         $validated = Validator::make($request->all(), [
-            'rank_package_requirement' => ['required', 'array', 'min:1', 'max:7'],
-            'rank_package_requirement.*' => ['required', 'numeric'],
+            'rank_package_requirement' => ['required', 'array'],
+            'rank_package_requirement.*' => ['required', 'array'],
+            'rank_package_requirement.*.active_investment' => ['required', 'numeric',],
+            'rank_package_requirement.*.total_team_investment' => ['required', 'numeric',],
         ])->validate();
 
         $rank_package_requirement = json_encode($validated['rank_package_requirement'], JSON_THROW_ON_ERROR);
@@ -334,17 +351,17 @@ class StrategyController extends Controller
             );
         });
 
-        $rank_gift_levels = range(1, 7);
+        //$rank_gift_levels = range(1, 7);
 
         $pkg_levels = array_keys($validated['rank_package_requirement']);
         $rank_bonus_levels = range(Arr::first($pkg_levels), Arr::last($pkg_levels));
 
-        DB::transaction(function () use ($rank_gift_levels, $validated) {
-            Strategy::updateOrCreate(
-                ['name' => 'rank_gift_levels'],
-                ['value' => implode(',', $rank_gift_levels)]
-            );
-        });
+//        DB::transaction(function () use ($rank_gift_levels, $validated) {
+//            Strategy::updateOrCreate(
+//                ['name' => 'rank_gift_levels'],
+//                ['value' => implode(',', $rank_gift_levels)]
+//            );
+//        });
 
         DB::transaction(function () use ($rank_bonus_levels, $validated) {
             Strategy::updateOrCreate(
@@ -354,7 +371,7 @@ class StrategyController extends Controller
         });
 
         $json['status'] = true;
-        $json['message'] = 'Rank commission minimum package values saved!';
+        $json['message'] = 'Rank Bonus requirements updated!';
         $json['icon'] = 'success'; // warning | info | question | success | error
         $json['data'] = $validated;
 
@@ -362,6 +379,49 @@ class StrategyController extends Controller
         return response()->json($json);
     }
 
+    /**
+     * @throws AuthorizationException
+     * @throws Throwable
+     */
+    public function saveRankGiftInvestmentRequirement(Request $request): \Illuminate\Http\JsonResponse
+    {
+        $this->authorize('update', Strategy::class);
+
+        //dd($request->all());
+        $validated = Validator::make($request->all(), [
+            'rank_gift_requirements' => ['required', 'array'],
+            'rank_gift_requirements.*' => ['required', 'array'],
+            'rank_gift_requirements.*.total_investment' => ['required', 'numeric',],
+            'rank_gift_requirements.*.total_team_investment' => ['required', 'numeric',],
+        ])->validate();
+
+        //dd($validated);
+        $rank_gift_requirements = json_encode($validated['rank_gift_requirements'], JSON_THROW_ON_ERROR);
+        DB::transaction(function () use ($rank_gift_requirements) {
+            Strategy::updateOrCreate(
+                ['name' => 'rank_gift_requirements'],
+                ['value' => $rank_gift_requirements]
+            );
+        });
+
+        $pkg_levels = array_keys($validated['rank_gift_requirements']);
+        $rank_gift_levels = range(Arr::first($pkg_levels), Arr::last($pkg_levels));
+
+        DB::transaction(function () use ($rank_gift_levels) {
+            Strategy::updateOrCreate(
+                ['name' => 'rank_gift_levels'],
+                ['value' => implode(',', $rank_gift_levels)]
+            );
+        });
+
+        $json['status'] = true;
+        $json['message'] = 'Rank Gift requirements updated!';
+        $json['icon'] = 'success'; // warning | info | question | success | error
+        $json['data'] = $validated;
+
+        session()->flash('info', $json['message']);
+        return response()->json($json);
+    }
 
     /**
      * @throws AuthorizationException
