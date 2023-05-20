@@ -1,13 +1,13 @@
 <x-backend.layouts.app>
-    @section('title', 'Strategies | commissions')
-    @section('header-title', 'Strategies | Rank level')
+    @section('title', 'Strategies | Benefits')
+    @section('header-title', 'Strategies | Rank Gift level')
     @section('plugin-styles')
         <!-- Datatable -->
     @endsection
 
     @section('breadcrumb-items')
         <li class="breadcrumb-item">
-            <a class="active">Rank level</a>
+            <a class="active">Rank Gift level</a>
         </li>
     @endsection
 
@@ -18,7 +18,7 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">Rank package requirement</h5>
+                    <h5 class="card-title">Rank Gift requirement</h5>
                 </div>
                 <div class="card-body">
                     <div class="row">

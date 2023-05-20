@@ -1,7 +1,7 @@
 <div class="col-sm-12">
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title">Rank package requirement</h5>
+            <h5 class="card-title">Rank Bonus requirement</h5>
         </div>
         <div class="card-body">
             <div class="row">
