@@ -108,6 +108,7 @@ class RankGiftController extends Controller
     {
 
         $this->authorize('issue', $gift);
+        $gift->load(['rank', 'user']);
 
         if ($request->wantsJson()) {
             $validated = Validator::make($request->all(), [
@@ -132,7 +133,8 @@ class RankGiftController extends Controller
             return response()->json($json, Response::HTTP_OK);
         }
 
-        $gift->load(['rank', 'user']);
-        return view('backend.admin.ranks.gifts.issue', compact('gift'));
+        $shippingInfo = json_decode($gift->shipping_details ?? '{"name":"","address":"","mobile_number":"","shirt_size":""}', false, 512, JSON_THROW_ON_ERROR);
+
+        return view('backend.admin.ranks.gifts.issue', compact('gift', 'shippingInfo'));
     }
 }

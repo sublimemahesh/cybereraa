@@ -10,6 +10,11 @@ class RankGiftPolicy
 {
     use HandlesAuthorization;
 
+    public function addShippingInfo(User $user, RankGift $gift)
+    {
+        return $gift->status === 'QUALIFIED' && $gift->user_id === $user->id;
+    }
+
     public function viewAny(User $user)
     {
         if ($user->hasPermissionTo('rank_gift.viewAny')) {

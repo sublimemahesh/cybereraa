@@ -19,10 +19,10 @@
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="rewards" class="display mb-1 nowrap table-responsive-my">
+                        <table id="rewards" class="display mb-1 nowrap table-responsive-my" style="table-layout: fixed">
                             <thead>
                             <tr>
-                                <th>IMAGE</th>
+                                <th>ACTIONS</th>
                                 <th class="text-left">RANK</th>
                                 <th>STATUS</th>
                                 <th>CREATED AT</th>

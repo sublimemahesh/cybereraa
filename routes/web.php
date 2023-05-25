@@ -303,6 +303,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
 
         // RANK GIFtS
         Route::get('ranks/gifts', 'User\RankGiftController@index')->name('ranks.gifts');
+        Route::match(['get', 'post'], 'ranks/gifts/{gift}/shipping-info', 'User\RankGiftController@shippingInfo')->name('ranks.gifts.shipping-info');
 
         Route::get('ranks/benefits/summery', 'User\RankBenefitSummeryController@index')->name('ranks.benefits.summery');
         Route::get('ranks/benefits/requirements', 'User\RankBenefitSummeryController@requirements')->name('ranks.benefits.requirements');

@@ -15,7 +15,7 @@ class RankGift extends Model
     use SoftDeletes;
     use Loggable;
 
-    protected $fillable = ['user_id', 'rank_id', 'image_name', 'status'];
+    protected $fillable = ['user_id', 'rank_id', 'shipping_details', 'image_name', 'status'];
 
     protected $with = ['user'];
 
