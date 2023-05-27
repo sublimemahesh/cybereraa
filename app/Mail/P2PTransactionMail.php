@@ -24,7 +24,7 @@ class P2PTransactionMail extends Mailable implements ShouldQueue
     {
         $this->isSender = $isSender;
         $this->sender = $sender;
-        $this->receiver = $sender;
+        $this->receiver = $receiver;
         $this->withdraw = $withdraw;
     }
 
