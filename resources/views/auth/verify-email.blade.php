@@ -34,9 +34,14 @@
                             </form>
 
                             <div class="d-flex row new-account mt-3">
+                                <div class="col-lg-12">
+                                    @auth
+                                        <b>Email:</b> {{ auth()->user()->email }} <br>
+                                    @endauth
+                                </div>
                                 <div class="col-lg-6  mt-4">
                                     <a href="{{ route('profile.show') }}" class="underline text-sm text-gray-600 hover:text-gray-900">
-                                        {{ __('Edit Profile') }}
+                                        {{ __('Change the email') }}
                                     </a>
                                 </div>
                                 <div class="col-lg-6 mt-4">
