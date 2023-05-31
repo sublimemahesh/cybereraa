@@ -15,7 +15,7 @@ class StakingPackageController extends Controller
 {
     public function index()
     {
-        $packages = StakingPackage::activePackages()->get();
+        $packages = StakingPackage::activePackages()->orderBy('order')->get();
         //$logged_user = Auth::user()->loadCount('purchasedPackages');
         //$is_gas_fee_added = $logged_user->purchased_packages_count <= 0;
 //        dd(json_encode($packages->pluck('slug')));
@@ -27,7 +27,7 @@ class StakingPackageController extends Controller
 //        if (Gate::inspect('purchase', [$package, $max_amount])->denied()) {
 //            session()->flash('error', "Please select a package amount is higher than or equal to USDT " . $user->purchased_packages_max_invested_amount);
 //        }
-        $plans = $package->plans;
+        $plans = $package->plans()->activePackages()->orderBy('order')->get();
         return view('backend.user.staking.purchase-plan', compact('package', 'plans'));
     }
 

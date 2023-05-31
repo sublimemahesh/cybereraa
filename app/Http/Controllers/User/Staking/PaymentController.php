@@ -55,6 +55,14 @@ class PaymentController extends Controller
 
         $plan = StakingPlan::findOrFail($validated['staking_plan']);
 
+        if (!$plan->package->is_active || !$plan->is_active) {
+            $json['status'] = false;
+            $json['message'] = "Cannot purchase this package";
+            $json['code'] = 422;
+            $json['icon'] = 'error'; // warning | info | question | success | error
+            return response()->json($json, Response::HTTP_FORBIDDEN);
+        }
+
         try {
             return DB::transaction(function () use ($plan, $user, $purchased_by, $validated) {
 

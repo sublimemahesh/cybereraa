@@ -62,7 +62,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::post('verify/mobile', 'MobileVerifyController@verifyPhone');
     });
 
-    Route::get('staking-packages/{package}/fetch-plans', 'Admin\StakingPlanController@fetchPlans');
+    Route::get('staking-packages/{package}/fetch-plans', 'Admin\Staking\StakingPlanController@fetchPlans');
 
     Route::group(["prefix" => "super-admin", 'middleware' => ['has_any_admin_role'], "as" => 'super_admin.'], function () {
         Route::get('dashboard', 'SuperAdmin\DashboardController@index')->name('dashboard');
