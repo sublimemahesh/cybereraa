@@ -1,162 +1,165 @@
-<div class="wrapper">
-    <!-- Header Starts -->
-    <header class="header">
-        <div class="container">
-            <div class="row">
-                <!-- Logo Starts -->
-                <div class="main-logo col-xs-12 col-md-3 col-md-3 col-lg-3 hidden-xs">
-                    <a href="{{ route('/') }}">
-                        <img id="logo" class="img-responsive mys-logo"
-                            src="{{ asset('assets/frontend/images/down/logo.png') }}"  alt="safest trades logo">
-                    </a>
-                </div>
-                <!-- Logo Ends -->
-                <!-- Statistics Starts -->
-                <div class='mbd'>
-                    <div class="col-md-6 col-lg-6 ">
-                        <div class="owl-carousel owl-theme owl-loaded owl-drag div-r  " id="price-slider">
-                            <div class="owl-stage-outer">
-                                <div class="owl-stage"
-                                    style="transform: translate3d(-1527px, 0px, 0px); transition: all 0.25s ease 0s; width: 3334px;">
+<header class="site-header header-style-3 topbar-transparent">
 
-                                    
+        <div class="top-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="clearfix">
+                        <div class="wt-topbar-left">
+                               <ul class="list-unstyled e-p-bx pull-left">
+                                <li><i class="fa fa-envelope"></i>mail@bitinvest.com</li>
+                                <li><i class="fa fa-phone"></i>(654) 321-7654</li>
+                            </ul>
+                        </div>
 
-                                    <div class="owl-item coin-list">
-                                        <div class="item">
-                                            <div>
-                                                <p class="tp  bitcoin-change"></p>
-                                                <h5 class="ttt bitcoin"></h5>
-                                                <img src="{{asset('assets/frontend/images/coins/bitcoin.png') }}" class="cryimg">
-                                            </div>
-                                        </div>
-                                    </div>
-									
-									 <div class="owl-item coin-list">
-                                        <div class="item">
-                                            <div>
-                                                <p class="tp litecoin-change"></i></p>
-                                                <h5 class="ttt litecoin"></h5>
-                                                <img src="{{asset('assets/frontend/images/coins/litecoin.png') }}" class="cryimg">
-                                            </div>
-                                        </div>
-                                    </div>
-									
-									 <div class="owl-item coin-list">
-                                        <div class="item">
-                                            <div>
-                                                <p class="tp ethereum-change"></p>
-                                                <h5 class="ttt ethereum"></h5>
-                                                <img src="{{ asset('assets/frontend/images/coins/ethereum.png') }}" class="cryimg">
-                                            </div>
-                                        </div>
-                                    </div>
-									
-									 <div class="owl-item coin-list">
-                                        <div class="item">
-                                            <div>
-                                                <p class="tp  tether-change"></p>
-                                                <h5 class="ttt tether"></h5>
-                                                <img src="{{ asset('assets/frontend/images/coins/tether.png') }}" class="cryimg">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
+                        <div class="wt-topbar-right">
+                            <div class=" language-select pull-right">
+                                  <div class="dropdown">
+                                        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Language
+                                        <span class="caret"></span></button>
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                          <li><a href="#"><img src="images/united-states.png" alt="">English</a></li>
+                                          <li><a href="#"><img src="images/france.png" alt="">French</a></li>
+                                          <li><a href="#"><img src="images/germany.png" alt="">German</a></li>
+                                        </ul>
+                                  </div>
                             </div>
-                            <div class="owl-nav disabled">
-                            </div>
+
+                            <ul class="list-unstyled e-p-bx pull-right">
+                                <li><a href="#" data-toggle="modal" data-target="#Login-form"><i class="fa fa-user"></i>Login</a></li>
+                                <li><a href="#" data-toggle="modal" data-target="#Register-form"><i class="fa fa-sign-in"></i>Register</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-                <!-- Statistics Ends -->
-                <!-- User Sign In/Sign Up Starts -->
-                <div class="col-md-3 col-lg-3">
-                    <ul class="unstyled user">
-                        @auth
-                            <li class="sign-in" id='log-btn'>
-                                <a href="{{ route(authUserFolder() . '.dashboard') }}"
-                                    class="btn btn-primary  header-btn">
-                                    {{-- <i class="fa fa-tachometer" aria-hidden="true"></i> --}}
-                                    <i class="fas fa-tachometer-alt"> </i>
-                                    My account </a>
-                            </li>
-                        @endauth
-                        @guest
-                            <li class="sign-in">
-                                <a href="{{ route('login') }}" class="btn btn-primary  header-btn">
-                                    <i class="fa fa-user"></i>
-                                    signin</a>
-                            </li>
-                            <li class="sign-up">
-                                <a href="{{ route('register') }}" class="btn btn-primary  header-btn"><i
-                                        class="fa fa-user-plus"></i> register</a>
-                            </li>
-                        @endguest
-
-                    </ul>
-                </div>
-                <!-- User Sign In/Sign Up Ends -->
             </div>
         </div>
-        <!-- Navigation Menu Starts -->
-        <nav class="site-navigation navigation" id="site-navigation">
-            <div class="container">
-                <div class="site-nav-inner">
-                    <!-- Logo For ONLY Mobile display Starts -->
-                    <a class="logo-mobile" href="index.php">
-                        <img id="logo-mobile" class="img-responsive"
-                            src="{{ asset('assets/frontend/images/down/logo.png') }}"  alt="safest trades">
-                    </a>
-                    <!-- Logo For ONLY Mobile display Ends -->
-                    <!-- Toggle Icon for Mobile Starts -->
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <!-- Toggle Icon for Mobile Ends -->
-                    <div class="collapse navbar-collapse navbar-responsive-collapse">
-                        <!-- Main Menu Starts -->
-                        <ul class="nav navbar-nav">
-                            <li id='index'><a href="{{ route('/') }}">Home</a></li>
-                            <li id='about'><a href="{{ route('about') }}">About Us</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects<i
-                                        class="fa fa-angle-down"></i></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ route('project') }}">Existing Projects</a></li>
-                                    <li><a href="{{ route('Upcoming-project') }}">Upcoming Projects</a></li>
-                                </ul>
-                            </li>
 
-
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Packages<i
-                                        class="fa fa-angle-down"></i></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ route('pricing') }}">Trading Investments Packages</a></li>
-                                    <li><a href="{{ route('staking-pricing') }}">Coin Staking Packages</a></li>
-                                </ul>
-                            </li>
-
-                            {{-- <li id='pricing'><a href="{{ route('pricing') }}"> Packages</a></li> --}}
-                            <li id='faq'><a href="{{ route('faq') }}">FAQ</a></li>
-                            <li id='news'><a href="{{ route('news') }}">News</a></li>
-                            <li id='contact'><a href="{{ route('contact') }}">Contact</a></li>
-                        </ul>
-                        <!-- Main Menu Ends -->
-                    </div>
-                </div>
-            </div>
-            <!-- Search Input Starts -->
-            <div class="site-search">
+        <div class="sticky-header main-bar-wraper">
+            <div class="main-bar">
                 <div class="container">
-                    <input type="text" placeholder="type your keyword and hit enter ...">
-                    <span class="close">×</span>
+
+                        <div class="logo-header mostion">
+                            <a href="index-2.html">
+                                <img src="images/logo-light.png" width="230" height="67" alt="" />
+                            </a>
+                        </div>
+
+                        <!-- NAV Toggle Button -->
+                        <button data-target=".header-nav" data-toggle="collapse" type="button" class="navbar-toggle collapsed">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+
+
+                        <!-- ETRA Nav -->
+                        <div class="extra-nav">
+                            <div class="extra-cell">
+                                <a href="#search" class="site-search-btn"><i class="fa fa-search"></i></a>
+                            </div>
+                            <div class="extra-cell">
+                                <a href="javascript:;" class="wt-cart cart-btn" title="Your Cart">
+                                    <span class="link-inner">
+                                        <span class="woo-cart-total"> </span>
+                                        <span class="woo-cart-count">
+                                            <span class="shopping-bag wcmenucart-count ">2</span>
+                                        </span>
+                                    </span>
+                                </a>
+
+                              <div class="cart-dropdown-item-wraper clearfix">
+                                <div class="nav-cart-content">
+
+                                    <div class="nav-cart-items p-a15">
+                                        <div class="nav-cart-item clearfix">
+                                            <div class="nav-cart-item-image">
+                                                <a href="#"><img src="images/cart/pic-3.jpg" alt="p-1"></a>
+                                            </div>
+                                            <div class="nav-cart-item-desc">
+                                                <a href="#">Product Three</a>
+                                                <span class="nav-cart-item-price"><strong>2</strong> x $19.99</span>
+                                                <a href="#" class="nav-cart-item-quantity">x</a>
+                                            </div>
+                                        </div>
+                                        <div class="nav-cart-item clearfix">
+                                            <div class="nav-cart-item-image">
+                                                <a href="#"><img src="images/cart/pic-4.jpg" alt="p-2"></a>
+                                            </div>
+                                            <div class="nav-cart-item-desc">
+                                                <a href="#">Product Four</a>
+                                                <span class="nav-cart-item-price"><strong>1</strong> x $24.99</span>
+                                                <a href="#" class="nav-cart-item-quantity">x</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="nav-cart-title p-tb10 p-lr15 clearfix">
+                                        <h4  class="pull-left m-a0">Subtotal:</h4>
+                                        <h5 class="pull-right m-a0">$114.95</h5>
+                                    </div>
+                                    <div class="nav-cart-action p-a15 clearfix">
+                                        <button class="site-button  btn-block m-b15 " type="button">View Cart</button>
+                                        <button class="site-button  btn-block" type="button">Checkout </button>
+                                    </div>
+                                </div>
+                              </div>
+
+                            </div>
+                         </div>
+
+                        <!-- SITE Search -->
+                        <div id="search">
+                        <span class="close"></span>
+                        <form role="search" id="searchform" action="http://thewebmax.com/search" method="get" class="radius-xl">
+                            <div class="input-group">
+                                <input value="" name="q" type="search" placeholder="Type to search"/>
+                                <span class="input-group-btn"><button type="button" class="search-btn"><i class="fa fa-search"></i></button></span>
+                            </div>
+                        </form>
+                    </div>
+
+                        <!-- MAIN Vav -->
+                        <div class="header-nav navbar-collapse collapse ">
+                        <ul class=" nav navbar-nav">
+                            <li class="active">
+                                <a href="index.php">HOME</i></a>
+                            </li>
+                            <li>
+                                <a href="about-us.php">ABOUT US</i></a>
+                            </li>
+
+                            <li>
+                                    <a href="javascript:;">PROJECTS<i class="fa fa-chevron-down"></i></a>
+                                        <ul class="sub-menu">
+                                            <li><a href="existing-projects.php">EXISTING PROJECTS</a></li>
+                                            <li><a href="upcoming-projects.php">UPCOMING PROJECTS</a></li>
+                                        </ul>
+                                </li>
+
+                            <li>
+                                <a href="packages.php">PACKAGES</i></a>
+                            </li>
+
+                            <li>
+                                <a href="faq.php">FAQ</i></a>
+                            </li>
+
+                            <li>
+                                <a href="news.php">NEWS</i></a>
+                            </li>
+
+                            <li>
+                                <a href="contact.php">CONTACT US</i></a>
+                            </li>
+
+
+
+                        </ul>
+                    </div>
+
                 </div>
             </div>
-            <!-- Search Input Ends -->
-        </nav>
-        <!-- Navigation Menu Ends -->
+        </div>
+
     </header>
+    
