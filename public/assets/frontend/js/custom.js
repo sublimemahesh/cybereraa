@@ -1,454 +1,664 @@
+/* =====================================
+All JavaScript fuctions Start
+======================================*/ 
+
+/*--------------------------------------------------------------------------------------------
+	document.ready ALL FUNCTION START
+---------------------------------------------------------------------------------------------*/
+ /* 
+	> Top Search bar Show Hide function by = custom.js  		
+	> On scroll content animated function by = Viewportchecker.js 	
+	> Video responsive function by = custom.js 
+	> magnificPopup function	by = magnific-popup.js
+	> magnificPopup for video function	by = magnific-popup.js
+	> Vertically center Bootstrap modal popup function by = custom.js
+	> Main menu sticky on top  when scroll down function by = custom.js
+	> page scroll top on button click function by = custom.js	
+	> input type file function by = custom.js	 	
+	> input Placeholder in IE9 function by = custom.js
+    > box height match window height according function by = custom.js 	
+	> footer fixed on bottom function by = custom.js	
+	> accordion active calss function by = custom.js
+	> Top cart list Show Hide function by = custom.js
+    > Nav submenu show hide on mobile by = custom.js
+	> Home Carousel_1 Full Screen with no margin function by = owl.carousel.js
+	> Home Carousel_2 Full Screen with no margin function by = owl.carousel.js
+	> home_logo_carousel() function by = owl.carousel.js
+    >clouds images moving function by = jquery.bgscroll.js	
+	>graph images moving function by = jquery.bgscroll.js	
+	>coin images moving function by = jquery.bgscroll.js	
+
+	
+ */	
+
+/*--------------------------------------------------------------------------------------------
+	window on load ALL FUNCTION START
+---------------------------------------------------------------------------------------------*/
+ /* 
+	 > equal each box 
+	 > skills bar function function by  = custom.js 
+		2.1 skills bar tooltips
+		2.2 skills bar widths
+		
+	 > Bootstrap Select box function by  = bootstrap-select.min.js 
+	 > TouchSpin box function by  = jquery.bootstrap-touchspin.js 
+	 > TouchSpin box function by  = jquery.bootstrap-touchspin.js 
+	 > masonry function function by = isotope.pkgd.min.js
+	 > page loader function by = custom.js
+	
+ */	
+
+/*--------------------------------------------------------------------------------------------
+	Window Scroll ALL FUNCTION START
+---------------------------------------------------------------------------------------------*/
+ /*
+	 > Window on scroll header color fill 
+ */
+/*--------------------------------------------------------------------------------------------
+	Window Resize ALL FUNCTION START
+---------------------------------------------------------------------------------------------*/
+ 
 (function ($) {
+    'use strict';
+	
+/*--------------------------------------------------------------------------------------------
+	document.ready ALL FUNCTION START
+---------------------------------------------------------------------------------------------*/
+	
+//  > Top Search bar Show Hide function by = custom.js =================== //	
+	 function site_search(){
+			jQuery('a[href="#search"]').on('click', function(event) {                    
+			jQuery('#search').addClass('open');
+			jQuery('#search > form > input[type="search"]').focus();
+		});
+					
+		jQuery('#search, #search button.close').on('click keyup', function(event) {
+			if (event.target === this || event.target.className === 'close') {
+				jQuery(this).removeClass('open');
+			}
+		});  
+	 }	
+	 
 
-    "use strict";
+// > Video responsive function by = custom.js ========================= //	
+	function video_responsive(){	  
+		jQuery('iframe[src*="youtube.com"]').wrap('<div class="embed-responsive embed-responsive-16by9"></div>');
+		jQuery('iframe[src*="vimeo.com"]').wrap('<div class="embed-responsive embed-responsive-16by9"></div>');	
+	}  
+	
+// > magnificPopup function	by = magnific-popup.js =========================== //
+	function magnific_popup(){
+        jQuery('.mfp-gallery').magnificPopup({
+          delegate: '.mfp-link',
+          type: 'image',
+          tLoading: 'Loading image #%curr%...',
+          mainClass: 'mfp-img-mobile',
+          gallery: {
+            enabled: true,
+            navigateByImgClick: true,
+            preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+          },
+          image: {
+            tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+          }
+       });
+	}
 
-    $(window).on("load", function () {
+// > magnificPopup for video function	by = magnific-popup.js ===================== //	
+	function magnific_video(){	
+		jQuery('.mfp-video').magnificPopup({
+			type: 'iframe',
+		});
+	}
+		
+// Vertically center Bootstrap modal popup function by = custom.js ==============//
+	function popup_vertical_center(){	
+		jQuery(function() {
+			function reposition() {
+				var modal = jQuery(this),
+				dialog = modal.find('.modal-dialog');
+				modal.css('display', 'block');
+				
+				// Dividing by two centers the modal exactly, but dividing by three 
+				// or four works better for larger screens.
+				dialog.css("margin-top", Math.max(0, (jQuery(window).height() - dialog.height()) / 2));
+			}
+			// Reposition when a modal is shown
+			jQuery('.modal').on('show.bs.modal', reposition);
+			// Reposition when the window is resized
+			jQuery(window).on('resize', function() {
+				jQuery('.modal:visible').each(reposition);
+			});
+		});
+	}
+	
+// > Main menu sticky on top  when scroll down function by = custom.js ========== //		
+	function sticky_header(){
+		if(jQuery('.sticky-header').length){
+			var sticky = new Waypoint.Sticky({
+			  element: jQuery('.sticky-header')
+			})
+		}
+	}
+	
+// > page scroll top on button click function by = custom.js ===================== //	
+	function scroll_top(){
+		jQuery("button.scroltop").on('click', function() {
+			jQuery("html, body").animate({
+				scrollTop: 0
+			}, 1000);
+			return false;
+		});
+	
+		jQuery(window).on("scroll", function() {
+			var scroll = jQuery(window).scrollTop();
+			if (scroll > 900) {
+				jQuery("button.scroltop").fadeIn(1000);
+			} else {
+				jQuery("button.scroltop").fadeOut(1000);
+			}
+		});
+	}
 
-        /* ----------------------------------------------------------- */
-        /*  BITCOIN PRELOADER
-        /* ----------------------------------------------------------- */
+// > input type file function by = custom.js ========================== //	 	 
+	function input_type_file_form(){
+		jQuery(document).on('change', '.btn-file :file', function() {
+			var input = jQuery(this),
+				numFiles = input.get(0).files ? input.get(0).files.length : 1,
+				label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+			input.trigger('fileselect', [numFiles, label]);
+		});
+	
+		jQuery('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+		
+			var input = jQuery(this).parents('.input-group').find(':text'),
+				log = numFiles > 10 ? numFiles + ' files selected' : label;
+		
+			if (input.length) {
+				input.val(log);
+			} else {
+				if (log) alert(log);
+			}
+		
+		});	
+	}
+	
+// > input Placeholder in IE9 function by = custom.js ======================== //	
+	function placeholderSupport(){
+	/* input placeholder for ie9 & ie8 & ie7 */
+		jQuery.support.placeholder = ('placeholder' in document.createElement('input'));
+		/* input placeholder for ie9 & ie8 & ie7 end*/
+		
+		/*fix for IE7 and IE8  */
+		if (!jQuery.support.placeholder) {
+			jQuery("[placeholder]").on('focus', function () {
+				if (jQuery(this).val() === jQuery(this).attr("placeholder")) jQuery(this).val("");
+			}).blur(function () {
+				if (jQuery(this).val() === "") jQuery(this).val(jQuery(this).attr("placeholder"));
+			}).blur();
+	
+			jQuery("[placeholder]").parents("form").on('submit', function () {
+				jQuery(this).find('[placeholder]').each(function() {
+					if (jQuery(this).val() === jQuery(this).attr("placeholder")) {
+						 jQuery(this).val("");
+					}
+				});
+			});
+		}
+		/*fix for IE7 and IE8 end */
+	}	
+	
+// > box height match window height according function by = custom.js ========= //	
+	function set_height() {
+		if(jQuery('.demo-wraper').length){
+			windowHeight = jQuery(window).innerHeight();
+			jQuery('.demo-wraper').css('min-height', windowHeight);
+		}
+	}
+	
+// > footer fixed on bottom function by = custom.js ======================== //	
+	function footer_fixed() {
+	  jQuery('.site-footer').css('display', 'block');
+	  jQuery('.site-footer').css('height', 'auto');
+	  var footerHeight = jQuery('.site-footer').outerHeight();
+	  jQuery('.footer-fixed > .page-wraper').css('padding-bottom', footerHeight);
+	  jQuery('.site-footer').css('height', footerHeight);
+	}
+	
+// > accordion active calss function by = custom.js ========================= //	
+	function accordion_active() {
+		$('.acod-head a').on('click', function() {
+			$('.acod-head').removeClass('acc-actives');
+			$(this).parents('.acod-head').addClass('acc-actives');
+			
+			$('.acod-title').removeClass('acc-actives'); //just to make a visual sense
+			$(this).parent().addClass('acc-actives'); //just to make a visual sense
+			
+			($(this).parents('.acod-head').attr('class'));
+		 });
+	}	
 
-        if ($("#preloader")[0]) {
-            $("#preloader").delay(500).fadeTo(500, 0, function () {
-                $(this).remove();
-            });
-        }
+// > Top cart list Show Hide function by = custom.js =================== //	
+	 function cart_block(){
+		jQuery('.cart-btn').on('click', function () { 
+		jQuery( ".cart-dropdown-item-wraper" ).slideToggle( "slow" );
+	  });  
+	 }
+	 
+// > Nav submenu show hide on mobile by = custom.js
 
-    });
-
-    $(document).ready(function () {
-
-        /* ----------------------------------------------------------- */
-        /*  ADD AND REMOVE OVERFLOW TO DOCUMENT WHEN MENU MOBILE IS OPENED
-        /* ----------------------------------------------------------- */
-
-        $(".navbar-toggle").click(function () {
-            $("html").toggleClass("overflow-hidden");
-        });
-
-        /* ----------------------------------------------------------- */
-        /*  REMOVE # FROM URL
-        /* ----------------------------------------------------------- */
-
-        $("a[href='#']").on("click", (function (e) {
-            e.preventDefault();
-        }));
-
-        /* ----------------------------------------------------------- */
-        /*  FIXED HEADER ON SCROLL
-        /* ----------------------------------------------------------- */
-
-        var navsite = $("#site-navigation");
-        if (navsite.length) {
-            var offset = $("#site-navigation").offset().top;
-        }
-        $(document).scroll(function () {
-            var scrollTop = $(document).scrollTop();
-            if (scrollTop > offset) {
-                $("#site-navigation").addClass("fixed");
-
-            } else {
-                $("#site-navigation").removeClass("fixed");
-            }
-        });
-
-        /* ----------------------------------------------------------- */
-        /*  ADD HEIGHT TO NAVBAR IN MOBILE DEVICES
-        /* ----------------------------------------------------------- */
-
-        $(".navbar-collapse").css({maxHeight: $(window).height() - $(".navbar-header").height() + "px"});
-
-        /* ----------------------------------------------------------- */
-        /*  BOOTSTRAP CAROUSEL
-        /* ----------------------------------------------------------- */
-
-        $("#main-slide").carousel({
-            pause: true,
-            interval: 100000,
-        });
-
-        /* ----------------------------------------------------------- */
-        /*  BACK TO TOP
-        /* ----------------------------------------------------------- */
-
-        $(window).scroll(function () {
-            if ($(this).scrollTop() > 800) {
-                $("#back-to-top").addClass("show-back-to-top");
-            } else {
-                $("#back-to-top").removeClass("show-back-to-top");
-            }
-        });
-        $("#back-to-top").on("click", function () {
-            $("html, body").animate({
-                scrollTop: 0
-            }, 800);
-            return false;
-        });
-
-        /* ----------------------------------------------------------- */
-        /*  TESTIMONIAL CAROUSEL
-        /* ----------------------------------------------------------- */
-
-        $("#carousel-testimonials").carousel({
-            wrap: true,
-            pause: true,
-            interval: 20000
-        });
-
-        /* ----------------------------------------------------------- */
-        /*  REFRESH 503 PAGE
-        /* ----------------------------------------------------------- */
-
-        $("#refresh").on("click", function () {
-            location.reload();
-        });
-
-        /* ----------------------------------------------------------- */
-        /*  TESTIMONIAL CAROUSEL TOUCH OPTIMIZED [ MAIN SLIDER ]
-        /* ----------------------------------------------------------- */
-
-        var cr = $("#main-slide");
-        cr.on("touchstart", function (event) {
-            var xClick = event.originalEvent.touches[0].pageX;
-            $(this).one("touchmove", function (event) {
-                var xMove = event.originalEvent.touches[0].pageX;
-                if (Math.floor(xClick - xMove) > 5) {
-                    cr.carousel("next");
-                } else if (Math.floor(xClick - xMove) < -5) {
-                    cr.carousel("prev");
-                }
-            });
-            cr.on("touchend", function () {
-                $(this).off("touchmove");
-            });
-        });
-
-        /* ----------------------------------------------------------- */
-        /*  TESTIMONIAL CAROUSEL TOUCH OPTIMIZED [ CAROUSEL TESTIMONIALS ]
-        /* ----------------------------------------------------------- */
-
-        var ct = $("#carousel-testimonials");
-        ct.on("touchstart", function (event) {
-            var xClick = event.originalEvent.touches[0].pageX;
-            $(this).one("touchmove", function (event) {
-                var xMove = event.originalEvent.touches[0].pageX;
-                if (Math.floor(xClick - xMove) > 5) {
-                    ct.carousel("next");
-                } else if (Math.floor(xClick - xMove) < -5) {
-                    ct.carousel("prev");
-                }
-            });
-            ct.on("touchend", function () {
-                $(this).off("touchmove");
-            });
-        });
-
-        /* ----------------------------------------------------------- */
-        /*  WIDGET DATA FROM BITCOIN.COM
-        /* ----------------------------------------------------------- */
-
-        (function (b, i, t, C, O, I, N) {
-            window.addEventListener("load", function () {
-                if (b.getElementById(C)) return;
-                I = b.createElement(i), N = b.getElementsByTagName(i)[0];
-                I.src = t;
-                I.id = C;
-                N.parentNode.insertBefore(I, N);
-            }, false)
-        })(document, "script", "https://widgets.bitcoin.com/widget.js", "btcwdgt");
-
-        /* ----------------------------------------------------------- */
-        /*  VARIABLES FOR SELECT INPUT AND BITCOIN CALCULATOR FORM
-        /* ----------------------------------------------------------- */
-
-        var userAgent = navigator.userAgent.toLowerCase(),
-            plugins = {
-                selectFilter: $("#currency-select"),
-                btcCalculator: $("#bitcoin-calculator"),
-            };
+	 function mobile_nav(){
+		jQuery(".sub-menu").parent('li').addClass('has-child');
+		jQuery(".mega-menu").parent('li').addClass('has-child');
+		jQuery("<div class=' glyphicon glyphicon-plus submenu-toogle'></div>").insertAfter(".has-child > a");
+		jQuery('.has-child a+.submenu-toogle').on('click', function(ev) {
+			jQuery(this).next(jQuery('.sub-menu')).slideToggle('fast', function(){
+				jQuery(this).parent().toggleClass('nav-active');
+			});
+			ev.stopPropagation();
+		});
+	 }
+	 
+// > Home Carousel_1 Full Screen with no margin function by = owl.carousel.js ========================== //
+	function home_carousel_1(){
+	jQuery('.home-carousel-1').owlCarousel({
+        loop:true,
+		margin:15,
+		nav:false,
+		dots: true,
+		navText: ['<i class="fa fa-chevron-left"></i>', '<i class="fa fa-chevron-right"></i>'],
+		responsive:{
+			0:{
+				items:1
+			},
+			480:{
+				items:1
+			},			
+			
+			767:{
+				items:1,
+				margin:50
+			},
+			1000:{
+				items:2
+			}
+		}
+		
+	});
+	}
 
 
-        /* ----------------------------------------------------------- */
-        /*  REPLACE OLD SELECT IN BITCOIN CALCULATOR FORM
-        /* ----------------------------------------------------------- */
+// > home_logo_carousel() function by = owl.carousel.js ========================== //
+	function home_logo_carousel(){
+	jQuery('.home-logo-carousel').owlCarousel({
+        loop:true,
+		autoplay:true,
+		margin:0,
+		nav:false,
+		dots: false,
+		navText: ['<i class="fa fa-chevron-left"></i>', '<i class="fa fa-chevron-right"></i>'],
+		responsive:{
+			0:{
+				items:2
+			},
+			480:{
+				items:3
+			},			
+			
+			767:{
+				items:4
+			},
+			1000:{
+				items:5
+			}
+		}
+		
+	});
+	}
+	
+// >clouds images moving function by = jquery.bgscroll.js		
+	function clouds_moving(){
+		jQuery( function() {			  
+	    jQuery('.clouds1').bgscroll({scrollSpeed:50 , direction:'h' });
+		});
+	}
+	
+// >graph images moving function by = jquery.bgscroll.js		
+	function graph_moving(){
+		jQuery( function() {			  
+		jQuery('.graph-slide-image').bgscroll({scrollSpeed:20 , direction:'h' });
+		});
+	}
+	
+// >coin images moving function by = jquery.bgscroll.js		
+	function coin_moving(){
+		jQuery( function() {			  
+		jQuery('.coin-slide').bgscroll({scrollSpeed:10 , direction:'v' });
+		});
+	}		
 
-        if (plugins.selectFilter.length) {
-            for (var i = 0; i < plugins.selectFilter.length; i++) {
-                var select = $(plugins.selectFilter[i]);
-                select.select2({
-                    placeholder: select.attr("data-placeholder") ? select.attr("data-placeholder") : false,
-                    minimumResultsForSearch: select.attr("data-minimum-results-search") ? select.attr("data-minimum-results-search") : 10,
-                    maximumSelectionSize: 3,
-                    dropdownCssClass: select.attr("data-dropdown-class") ? select.attr("data-dropdown-class") : ""
+
+
+/*--------------------------------------------------------------------------------------------
+	Window on load ALL FUNCTION START
+---------------------------------------------------------------------------------------------*/
+
+// > equal each box function by  = custom.js =========================== //	 
+	function equalheight(container) {
+		var currentTallest = 0, 
+			currentRowStart = 0, 
+			rowDivs = new Array(), 
+			$el, topPosition = 0,
+			currentDiv = 0;
+		
+		jQuery(container).each(function() {
+			$el = jQuery(this);
+			jQuery($el).height('auto');
+			var topPostion = $el.position().top;
+	
+			if (currentRowStart != topPostion) {
+				for (currentDiv = 0; currentDiv < rowDivs.length; currentDiv++) {
+					rowDivs[currentDiv].height(currentTallest);
+				}
+				rowDivs.length = 0; // empty the array
+				currentRowStart = topPostion;
+				currentTallest = $el.height();
+				rowDivs.push($el);
+			} else {
+				rowDivs.push($el);
+				currentTallest = (currentTallest < $el.height()) ? ($el.height()) : (currentTallest);
+			}
+			for (currentDiv = 0; currentDiv < rowDivs.length; currentDiv++) {
+				rowDivs[currentDiv].height(currentTallest);
+			}
+		});
+	}
+
+// > On scroll content animated function by = Viewportchecker.js ============= //
+	function animate_content(){
+		jQuery('.animate').scrolla({
+			mobile: false,
+			once: true
+		});
+	}
+
+// > skills bar function function by  = custom.js ========================= //
+	/* 2.1 skills bar tooltips*/
+	function progress_bar_tooltips() {
+		jQuery(function () { 
+		  jQuery('[data-toggle="tooltips"]').tooltip({trigger: 'manual'}).tooltip('show');
+		});  
+	}
+  
+	/* 2.2 skills bar widths*/
+	function progress_bar_width() {	
+		jQuery( window ).on('scroll', function() {   
+		  jQuery(".progress-bar").each(function(){
+			progress_bar_width = jQuery(this).attr('aria-valuenow');
+			jQuery(this).width(progress_bar_width + '%');
+		  });
+		}); 
+	}
+	
+// > Bootstrap Select box function by  = bootstrap-select.min.js =============== // 
+	function select_box_form() {	
+		jQuery('.selectpicker').selectpicker()
+	}
+	
+// > TouchSpin box function by  = jquery.bootstrap-touchspin.js =============== //
+	function input_number_form() {	 
+		jQuery("input[name='demo3']").TouchSpin()
+	}
+	
+// > TouchSpin box function by  = jquery.bootstrap-touchspin.js =============== // 
+	function input_number_vertical_form() {	
+		jQuery("input[name='demo_vertical2']").TouchSpin({
+		  verticalbuttons: true,
+		  verticalupclass: 'glyphicon glyphicon-plus',
+		  verticaldownclass: 'glyphicon glyphicon-minus'
+		})	
+	}
+	
+// > masonry function function by = isotope.pkgd.min.js ========================= //	
+	function masonryBox() {
+        if ( jQuery().isotope ) {      
+		     
+            var $container = jQuery('.portfolio-wrap');
+                $container.isotope({
+                    itemSelector: '.masonry-item',
+                    transitionDuration: '1s',
+					originLeft: true
                 });
-            }
-        }
 
-        /* ----------------------------------------------------------- */
-        /*  BITCOIN CALCULATOR [ WWW.BLOCKCHAIN.INFO API ]
-        /* ----------------------------------------------------------- */
-
-        if (plugins.btcCalculator.length) {
-
-            $.getJSON("https://blockchain.info/ticker", function (btcJsonData) {
-                var currencyList = [];
-                var index = 0;
-
-                for (var currency in btcJsonData) {
-                    currencyList.push({
-                        "id": index,
-                        "text": currency
-                    });
-                    index++;
-                }
-
-                for (var i = 0; i < plugins.btcCalculator.length; i++) {
-                    var btcForm = $(plugins.btcCalculator[i]),
-                        btcFormInput = $(btcForm.find('[name="btc-calculator-value"]')),
-                        btcFormOutput = $(btcForm.find('[name="btc-calculator-result"]')),
-                        btcFormCurrencySelect = $(btcForm.find('[name="btc-calculator-currency"]'));
-
-                    btcFormCurrencySelect.select2({
-                        placeholder: btcFormCurrencySelect.attr("data-placeholder") ? btcFormCurrencySelect.attr("data-placeholder") : false,
-                        minimumResultsForSearch: btcFormCurrencySelect.attr("data-minimum-results-search") ? btcFormCurrencySelect.attr("data-minimum-results-search") : 50,
-                        maximumSelectionSize: 3,
-                        dropdownCssClass: btcFormCurrencySelect.attr("data-dropdown-class") ? btcFormCurrencySelect.attr("data-dropdown-class") : '',
-                        data: currencyList
-                    });
-
-                    if (btcFormInput.length && btcFormOutput.length) {
-                        // BTC => Currency
-                        (function (btcFormInput, btcFormOutput, btcFormCurrencySelect) {
-                            var lastChanged = 'btc';
-
-                            btcFormInput.on('input', function () {
-                                // store current positions in variables
-                                var selectionStart = this.selectionStart,
-                                    selectionEnd = this.selectionEnd;
-
-                                this.value = toCryptoCurrencyFormat(this.value);
-
-                                // restore cursor position
-                                this.setSelectionRange(selectionStart, selectionEnd);
-
-                                btcFormOutput.val(toCurrencyFormat('' + btcJsonData[btcFormCurrencySelect.select2('data')[0].text]["buy"] * this.value));
-                                lastChanged = 'btc';
-                            });
-
-                            // Currency => BTC
-                            btcFormOutput.on('input', function () {
-                                // store current positions in variables
-                                var selectionStart = this.selectionStart,
-                                    selectionEnd = this.selectionEnd;
-
-                                this.value = toCurrencyFormat(this.value);
-
-                                // restore cursor position
-                                this.setSelectionRange(selectionStart, selectionEnd);
-
-                                btcFormInput.val(toCryptoCurrencyFormat('' + this.value / btcJsonData[btcFormCurrencySelect.select2('data')[0].text]["sell"]));
-                                lastChanged = 'currency';
-                            });
-
-                            btcFormInput.trigger('input');
-                            btcFormOutput.blur();
-
-                            btcFormCurrencySelect.on('change', function () {
-                                if (lastChanged === 'btc') {
-                                    btcFormOutput.val(toCurrencyFormat('' + btcJsonData[btcFormCurrencySelect.select2('data')[0].text]["buy"] * btcFormInput.val()));
-                                } else {
-                                    btcFormInput.val(toCryptoCurrencyFormat('' + btcFormOutput.val() / btcJsonData[btcFormCurrencySelect.select2('data')[0].text]["sell"]));
-                                }
-                            });
-                        })(btcFormInput, btcFormOutput, btcFormCurrencySelect);
-                    }
-                }
-            })
-                .fail(function () {
-                    console.log('Error while fetching data from https://blockchain.info/ticker');
-                });
-        }
-
-        function toCurrencyFormat(stringValue) {
-            var value = parseFloat(stringValue.replace(/[^\d.]/g, '')).toFixed(2);
-            return $.isNumeric(value) ? value : 0;
-        }
-
-        function toCryptoCurrencyFormat(stringValue) {
-            var value = stringValue.replace(/[^\d.]/g, '');
-            return $.isNumeric(value) ? value : 0;
-        }
-
-        /* ----------------------------------------------------------- */
-        /*  PRICING TABLES SWITCH ANIMATION
-        /* ----------------------------------------------------------- */
-
-        checkScrolling($(".pricing-body"));
-        $(window).on("resize", function () {
-            window.requestAnimationFrame(function () {
-                checkScrolling($(".pricing-body"))
+            jQuery('.masonry-filter li').on('click',function() {                           
+                var selector = jQuery(this).find("a").attr('data-filter');
+                jQuery('.masonry-filter li').removeClass('active');
+                jQuery(this).addClass('active');
+                $container.isotope({ filter: selector });
+                return false;
             });
-        });
-        $(".pricing-body").on("scroll", function () {
-            var selected = $(this);
-            window.requestAnimationFrame(function () {
-                checkScrolling(selected)
-            });
-        });
 
-        function checkScrolling(tables) {
-            tables.each(function () {
-                var table = $(this),
-                    totalTableWidth = parseInt(table.children(".pricing-features").width(), 10),
-                    tableViewport = parseInt(table.width(), 10);
-                if (table.scrollLeft() >= totalTableWidth - tableViewport - 1) {
-                    table.parent("li").addClass("is-ended");
-                } else {
-                    table.parent("li").removeClass("is-ended");
-                }
-            });
+    	};
+	}	
+	
+// > background image parallax function by = stellar.js ==================== //	
+	function bg_image_stellar(){
+		jQuery(function(){
+				jQuery.stellar({
+					horizontalScrolling: false,
+					verticalOffset:100
+				});
+			});			
+	}	
+	
+// > page loader function by = custom.js ========================= //		
+	function page_loader() {
+		$('.loading-area').fadeOut(1000)
+	};
+
+/*--------------------------------------------------------------------------------------------
+    Window on scroll ALL FUNCTION START
+---------------------------------------------------------------------------------------------*/
+    function color_fill_header() {
+        var scroll = $(window).scrollTop();
+        if(scroll >= 100) {
+            $(".is-fixed").addClass("color-fill");
+        } else {
+            $(".is-fixed").removeClass("color-fill");
         }
+    };	
+	
+/*--------------------------------------------------------------------------------------------
+	document.ready ALL FUNCTION START
+---------------------------------------------------------------------------------------------*/
 
-        bouncy_filter($(".pricing-container"));
+	jQuery(document).ready(function() {
+	
+	// > Top Search bar Show Hide function by = custom.js  		
+		site_search(),
+		
+	// > Video responsive function by = custom.js 
+		video_responsive(),
+	
+	// > magnificPopup function	by = magnific-popup.js
+		magnific_popup(),
+		
+	// > magnificPopup for video function	by = magnific-popup.js
+		magnific_video(),
+		
+	// > Vertically center Bootstrap modal popup function by = custom.js
+		popup_vertical_center();
+		
+	// > Main menu sticky on top  when scroll down function by = custom.js		
+		sticky_header(),
+	
+	// > page scroll top on button click function by = custom.js	
+		scroll_top(),
+		
+	// > input type file function by = custom.js	 	
+		input_type_file_form(),
+	
+	// > input Placeholder in IE9 function by = custom.js		
+		placeholderSupport(),
+		
+	//	> box height match window height according function by = custom.js
+		set_height(),
+	
+	// > footer fixed on bottom function by = custom.js	
+		footer_fixed(),
+		
+	// > accordion active calss function by = custom.js ========================= //			
+		accordion_active(),
+		
+	// > Top cart list Show Hide function by = custom.js =================== //		
+		cart_block(),
 
-        function bouncy_filter(container) {
-            container.each(function () {
-                var pricing_table = $(this);
-                var filter_list_container = pricing_table.children(".pricing-switcher"),
-                    filter_radios = filter_list_container.find("input[type='radio']"),
-                    pricing_table_wrapper = pricing_table.find(".pricing-wrapper");
+	// > Nav submenu on off function by = custome.js ===================//
+		mobile_nav(),
+		
+	// > Home Carousel_1 Full Screen with no margin function by = owl.carousel.js
+	    home_carousel_1(),
+		
+	// > our_pricing_carousel_1  function by = owl.carousel.js
+	    home_logo_carousel(),
+		
+	// >clouds images moving function by = jquery.bgscroll.js	
+		clouds_moving(),
+		
+	// >graph images moving function by = jquery.bgscroll.js	
+	    graph_moving(),
+		
+	// >coin images moving function by = jquery.bgscroll.js	
+		coin_moving()
+			
+		 		
+	}); 
+	
+	
+/*--------------------------------------------------------------------------------------------
+	Window Load START
+---------------------------------------------------------------------------------------------*/
+	jQuery(window).on('load', function () {
+	
+	// > equal each box function by  = custom.js			
+		equalheight(".equal-wraper .equal-col"),
+		
+	// > On scroll content animated function by = Viewportchecker.js	
+		animate_content(),
+		
+	// > skills bar function function by  = custom.js			
+		progress_bar_tooltips(),
+		
+	// > skills bar function function by  = custom.js		
+		progress_bar_width(),
 
-                var table_elements = {};
-                filter_radios.each(function () {
-                    var filter_type = $(this).val();
-                    table_elements[filter_type] = pricing_table_wrapper.find("li[data-type='" + filter_type + "']");
-                });
+	// > On scroll content animated function by = Viewportchecker.js 			
+		select_box_form(),
+		
+	// > TouchSpin box function by  = jquery.bootstrap-touchspin.js		
+		input_number_form(),
+		
+	// > TouchSpin box function by  = jquery.bootstrap-touchspin.js		
+		input_number_vertical_form(),
+		
+	// > box height match window height according function by = custom.js		
+		set_height(),
+		
+	// > masonry function function by = isotope.pkgd.min.js		
+		masonryBox(),
+		
+	// > background image parallax function by = stellar.js	
+		bg_image_stellar(),
+		
+	// > page loader function by = custom.js		
+		page_loader() 
 
-                //detect input change event
-                filter_radios.on("change", function (event) {
-                    event.preventDefault();
-                    //detect which radio input item was checked
-                    var selected_filter = $(event.target).val();
-
-                    //give higher z-index to the pricing table items selected by the radio input
-                    show_selected_items(table_elements[selected_filter]);
-
-                    //rotate each pricing-wrapper
-                    //at the end of the animation hide the not-selected pricing tables and rotate back the .pricing-wrapper
-
-                    if (!Modernizr.cssanimations) {
-                        hide_not_selected_items(table_elements, selected_filter);
-                        pricing_table_wrapper.removeClass("is-switched");
-                    } else {
-                        pricing_table_wrapper.addClass("is-switched").eq(0).one("webkitAnimationEnd oanimationend msAnimationEnd animationend", function () {
-                            hide_not_selected_items(table_elements, selected_filter);
-                            pricing_table_wrapper.removeClass("is-switched");
-                            //change rotation direction if .pricing-list has the .bounce-invert class
-                            if (pricing_table.find(".pricing-list").hasClass("bounce-invert")) pricing_table_wrapper.toggleClass("reverse-animation");
-                        });
-                    }
-                });
-            });
-        }
-
-        function show_selected_items(selected_elements) {
-            selected_elements.addClass("is-selected");
-        }
-
-        function hide_not_selected_items(table_containers, filter) {
-            $.each(table_containers, function (key, value) {
-                if (key != filter) {
-                    $(this).removeClass("is-visible is-selected").addClass("is-hidden");
-
-                } else {
-                    $(this).addClass("is-visible").removeClass("is-hidden is-selected");
-                }
-            });
-        }
-
-        /* ----------------------------------------------------------- */
-        /*  VIDEO POP UP
-        /* ----------------------------------------------------------- */
-        jQuery(".mfp-youtube").magnificPopup({
-            type: "iframe",
-            mainClass: "mfp-fade",
-            removalDelay: 0,
-            preloader: false,
-            fixedContentPos: false,
-            iframe: {
-                patterns: {
-                    youtube: {
-                        src: "https://youtube.com/embed/%id%?autoplay=1&rel=0"
-                    },
-                }
-            }
-        });
-
-        /* ----------------------------------------------------------- */
-        /*  SITE SEARCH
-        /* ----------------------------------------------------------- */
-
-        $(".navbar-nav .fa-search").on("click", function () {
-            //$("html, body").animate({ }, "slow");
-            $(".site-search .container").toggleClass("open");
-        })
-
-        $(".site-search .close").on("click", function () {
-            $(".site-search .container").removeClass("open");
-            ;
-        })
+});
 
 
-        /* ----------------------------------------------------------- */
-        /*  NUMBER SPINNER HORIZONTAL [ QUANTITY IN SHOPPING CART PAGE ]
-        /* ----------------------------------------------------------- */
+ /*===========================
+	Window Scroll ALL FUNCTION START
+===========================*/
 
-        var fieldName;
-        // This button will increment the value
-        $(".qtyplus").on("click", function (e) {
-            // Stop acting like a button
-            e.preventDefault();
-            // Get the field name
-            fieldName = $(this).attr("data-field");
-            // Get its current value
-            var currentVal = parseInt($("input[name=" + fieldName + "]").val(), 10);
-            // If is not undefined
-            if (!isNaN(currentVal)) {
-                // Increment
-                $("input[name=" + fieldName + "]").val(currentVal + 1);
-            } else {
-                // Otherwise put a 0 there
-                $("input[name=" + fieldName + "]").val(0);
-            }
-        });
-        // This button will decrement the value till 0
-        $(".qtyminus").on("click", function (e) {
-            // Stop acting like a button
-            e.preventDefault();
-            // Get the field name
-            fieldName = $(this).attr("data-field");
-            // Get its current value
-            var currentVal = parseInt($("input[name=" + fieldName + "]").val(), 10);
-            // If it isn't undefined or its greater than 0
-            if (!isNaN(currentVal) && currentVal > 1) {
-                // Decrement one
-                $("input[name=" + fieldName + "]").val(currentVal - 1);
-            } else if (currentVal == 0) {
-                $("input[name=" + fieldName + "]").val(1);
-            } else {
-                // Otherwise put a 1 there
-                $("input[name=" + fieldName + "]").val(1);
-            }
-        });
+	jQuery(window).on('scroll', function () {
+		
+	// > Window on scroll header color fill 
+		color_fill_header()
+		
+	});
 
-        /* ----------------------------------------------------------- */
-        /*  TOOLTIP
-        /* ----------------------------------------------------------- */
 
-        $("[data-toggle='tooltip']").tooltip()
+ /*===========================
+	Window Resize ALL FUNCTION START
+===========================*/
+	jQuery(window).on('resize', function () {
+	 
+	// > footer fixed on bottom function by = custom.js		 
+	 	footer_fixed(),
+	// > box height match window height according function by = custom.js
+	 	set_height()
 
-    });
+	});
+	
+	
+/*===========================
+	Document on  Submit FUNCTION START
+===========================*/
 
-    /* ----------------------------------------------------------- */
-
-})(jQuery);
+	// > Contact form (for contact us pages) function by = custom.js	
+	jQuery(document).on('submit', 'form.cons-contact-form2', function(e){
+		e.preventDefault();
+		var form = jQuery(this);
+	
+		/* sending message */
+		jQuery.ajax({
+			url: 'http://thewebmax.com/bitinvest/form-handler.php',
+			data: form.serialize() + "&action=contactform",
+			type: 'POST',
+			dataType: 'JSON',
+			beforeSend: function() {
+				jQuery('.loading-area').show();
+			},
+			success:function(data){
+				jQuery('.loading-area').hide();
+				if(data['success']){
+				jQuery("<div class='alert alert-success'>"+data['message']+"</div>").insertBefore('form.cons-contact-form2');
+				}else{
+				jQuery("<div class='alert alert-danger'>"+data['message']+"</div>").insertBefore('form.cons-contact-form2');	
+				}
+			}
+		});
+		return false;
+	});	
+	
+	// > Contact form (for home pages) function by = custom.js	
+	jQuery(document).on('submit', 'form.cons-contact-form', function(e){
+		e.preventDefault();
+		var form = jQuery(this);
+	
+		/* sending message */
+		jQuery.ajax({
+			url: 'http://thewebmax.com/bitinvest/form-handler2.php',
+			data: form.serialize() + "&action=contactform",
+			type: 'POST',
+			dataType: 'JSON',
+			beforeSend: function() {
+				jQuery('.loading-area').show();
+			},
+			success:function(data){
+				jQuery('.loading-area').hide();
+				if(data['success']){
+				jQuery("<div class='alert alert-success'>"+data['message']+"</div>").insertBefore('form.cons-contact-form');
+				}else{
+				jQuery("<div class='alert alert-danger'>"+data['message']+"</div>").insertBefore('form.cons-contact-form');	
+				}
+			}
+		});
+		return false;
+	});	
+/*===========================
+	Document on  Submit FUNCTION END
+===========================*/	
+	
+	
+})(window.jQuery);
