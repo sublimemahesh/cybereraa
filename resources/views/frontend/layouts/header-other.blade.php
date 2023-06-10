@@ -175,31 +175,31 @@
                             <a href="index.php">HOME</i></a>
                         </li>
                         <li>
-                            <a href="about-us.php">ABOUT US</i></a>
+                            <a href="{{ route('about') }}">ABOUT US</i></a>
                         </li>
 
                         <li>
                                 <a href="javascript:;">PROJECTS<i class="fa fa-chevron-down"></i></a>
                                     <ul class="sub-menu">
-                                        <li><a href="existing-projects.php">EXISTING PROJECTS</a></li>
-                                        <li><a href="upcoming-projects.php">UPCOMING PROJECTS</a></li>
+                                        <li><a href="{{ route('project') }}">EXISTING PROJECTS</a></li>
+                                        <li><a href="{{ route('Upcoming-project') }}">UPCOMING PROJECTS</a></li>
                                     </ul>
                             </li>
 
                         <li>
-                            <a href="packages.php">PACKAGES</i></a>
+                            <a href="{{ route('pricing') }}">PACKAGES</i></a>
                         </li>
 
                         <li>
-                            <a href="faq.php">FAQ</i></a>
+                            <a href="{{ route('faq') }}">FAQ</i></a>
                         </li>
 
                         <li>
-                            <a href="news.php">NEWS</i></a>
+                            <a href="{{ route('news') }}">NEWS</i></a>
                         </li>
 
                         <li>
-                            <a href="contact.php">CONTACT US</i></a>
+                            <a href="{{ route('contact') }}">CONTACT US</i></a>
                         </li>
 
 
