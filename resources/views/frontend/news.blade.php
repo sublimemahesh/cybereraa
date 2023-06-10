@@ -149,7 +149,7 @@
                     <div class="wt-post-info">
 
                         <div class="wt-post-title ">
-                            <h3 class="post-title"><a href="javascript:void(0);">Blogpost With Image slider</a></h3>
+                            <h3 class="post-title"><a href="{{ route('news.show','news') }}">Blogpost With Image slider</a></h3>
                         </div>
                         <div class="wt-post-meta ">
                             <ul>
@@ -187,18 +187,18 @@
                 <div class="blog-post blog-md date-style-1 clearfix">
 
                     <div class="wt-post-media wt-img-effect zoom-slow">
-                        <{{ route('news.show','news') }}><img src="images/blog/grid/pic4.jpg" alt=""></a>
+                        <a href="{{ route('news.show','news') }}"><img src="{{ asset('assets/frontend/images/blog/grid/pic4.jpg') }}" alt=""></a>
                     </div>
                     <div class="wt-post-info">
 
                         <div class="wt-post-title ">
-                            <h3 class="post-title"><{{ route('news.show','news') }}>Blogpost With Image</a></h3>
+                            <h3 class="post-title"><a href="{{ route('news.show','news') }}">Blogpost With Image</a></h3>
                         </div>
                         <div class="wt-post-meta ">
                             <ul>
                                 <li class="post-date"> <i class="fa fa-calendar"></i><strong>20 Dec</strong> <span> 2017</span> </li>
                                 <li class="post-author"><i class="fa fa-user"></i><{{ route('news.show','news') }}>By <span>John</span></a> </li>
-                                <li class="post-comment"><i class="fa fa-comments"></i> <{{ route('news.show','news') }}>0</a> </li>
+                                <li class="post-comment"><i class="fa fa-comments"></i> <a href="{{ route('news.show','news') }}">0</a> </li>
                             </ul>
                         </div>
                         <div class="wt-post-text">
@@ -206,7 +206,7 @@
                         </div>
                         <div class="clearfix">
                             <div class="wt-post-readmore pull-left">
-                                <{{ route('news.show','news') }} title="READ MORE" rel="bookmark" class="site-button-link">Read More</a>
+                                <a href="{{ route('news.show','news') }}" title="READ MORE" rel="bookmark" class="site-button-link">Read More</a>
                             </div>
                             <div class="widget_social_inks pull-right">
                                 <ul class="social-icons social-radius social-dark m-b0">
