@@ -124,11 +124,11 @@
                             <div class="item">
                                 <div class="blog-post blog-grid date-style-1">
                                     <div class="wt-post-media wt-img-effect zoom-slow">
-                                        <a href="javascript:void(0);"><img src="images/blog/grid/pic1.jpg" alt=""></a>
+                                        <a href="{{ route('news.show','news') }}"><img src="{{ asset('assets/frontend/images/blog/grid/pic1.jpg') }}" alt=""></a>
                                     </div>
                                     <div class="wt-post-info p-tb30 p-m30">
                                         <div class="wt-post-title ">
-                                            <h3 class="post-title"><a href="javascript:void(0);">Blogpost With Image</a></h3>
+                                            <h3 class="post-title"><a href="{{ route('news.show','news') }}">Blogpost With Image</a></h3>
                                         </div>
                                         <div class="wt-post-meta ">
                                             <ul>
@@ -142,7 +142,7 @@
                                         </div>
                                         <div class="clearfix">
                                             <div class="wt-post-readmore pull-left">
-                                                <a href="javascript:void(0);" title="READ MORE" rel="bookmark" class="site-button-link">Read More</a>
+                                                <a href="{{ route('news.show','news') }}" title="READ MORE" rel="bookmark" class="site-button-link">Read More</a>
                                             </div>
                                             <div class="widget_social_inks pull-right">
                                                 <ul class="social-icons social-radius social-dark m-b0">
@@ -162,11 +162,11 @@
                             <div class="item">
                                 <div class="blog-post blog-grid date-style-1">
                                     <div class="wt-post-media wt-img-effect zoom-slow">
-                                        <a href="javascript:void(0);"><img src="images/blog/grid/pic2.jpg" alt=""></a>
+                                        <a href="{{ route('news.show','news') }}"><img src="{{ asset('assets/frontend/images/blog/grid/pic2.jpg') }}" alt=""></a>
                                     </div>
                                     <div class="wt-post-info p-tb30 p-m30">
                                         <div class="wt-post-title ">
-                                            <h3 class="post-title"><a href="javascript:void(0);">Blogpost With Image</a></h3>
+                                            <h3 class="post-title"><a href="{{ route('news.show','news') }}">Blogpost With Image</a></h3>
                                         </div>
                                         <div class="wt-post-meta ">
                                             <ul>
@@ -180,7 +180,7 @@
                                         </div>
                                         <div class="clearfix">
                                             <div class="wt-post-readmore pull-left">
-                                                <a href="javascript:void(0);" title="READ MORE" rel="bookmark" class="site-button-link">Read More</a>
+                                                <a href="{{ route('news.show','news') }}" title="READ MORE" rel="bookmark" class="site-button-link">Read More</a>
                                             </div>
                                             <div class="widget_social_inks pull-right">
                                                 <ul class="social-icons social-radius social-dark m-b0">
@@ -200,11 +200,11 @@
                             <div class="item">
                                 <div class="blog-post blog-grid date-style-1">
                                     <div class="wt-post-media wt-img-effect zoom-slow">
-                                        <a href="javascript:void(0);"><img src="images/blog/grid/pic3.jpg" alt=""></a>
+                                        <a href="{{ route('news.show','news') }}"><img src="{{ asset('assets/frontend/images/blog/grid/pic3.jpg') }}" alt=""></a>
                                     </div>
                                     <div class="wt-post-info p-tb30 p-m30">
                                         <div class="wt-post-title ">
-                                            <h3 class="post-title"><a href="javascript:void(0);">Blogpost With Image</a></h3>
+                                            <h3 class="post-title"><a href="{{ route('news.show','news') }}">Blogpost With Image</a></h3>
                                         </div>
                                         <div class="wt-post-meta ">
                                             <ul>
@@ -218,7 +218,7 @@
                                         </div>
                                         <div class="clearfix">
                                             <div class="wt-post-readmore pull-left">
-                                                <a href="javascript:void(0);" title="READ MORE" rel="bookmark" class="site-button-link">Read More</a>
+                                                <a href="{{ route('news.show','news') }}" title="READ MORE" rel="bookmark" class="site-button-link">Read More</a>
                                             </div>
                                             <div class="widget_social_inks pull-right">
                                                 <ul class="social-icons social-radius social-dark m-b0">
@@ -238,7 +238,7 @@
                             <div class="item">
                                 <div class="blog-post blog-grid date-style-1">
                                     <div class="wt-post-media wt-img-effect zoom-slow">
-                                        <a href="javascript:void(0);"><img src="images/blog/grid/pic4.jpg" alt=""></a>
+                                        <a href="{{ route('news.show','news') }}"><img src="{{ asset('assets/frontend/images/blog/grid/pic4.jpg') }}" alt=""></a>
                                     </div>
                                     <div class="wt-post-info p-tb30 p-m30">
                                         <div class="wt-post-title ">
@@ -276,7 +276,7 @@
                             <div class="item">
                                 <div class="blog-post blog-grid date-style-1">
                                     <div class="wt-post-media wt-img-effect zoom-slow">
-                                        <a href="javascript:void(0);"><img src="images/blog/grid/pic5.jpg" alt=""></a>
+                                        <a href="javascript:void(0);"><img src="{{ asset('assets/frontend/images/blog/grid/pic5.jpg') }}" alt=""></a>
                                     </div>
                                     <div class="wt-post-info p-tb30 p-m30">
                                         <div class="wt-post-title ">
