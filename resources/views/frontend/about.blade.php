@@ -1,257 +1,200 @@
 <x-frontend.layouts.app>
-    @section('title', 'About Us | Safest Trades | One to One Marketing Website')
+    @section('title', 'About Us | Owara3m ')
     @section('header-title', 'Welcome ')
 
-    @section('meta')
-        <meta name="description"
-            content="We started SAFEST TRADING as a closely-knitted group of trading experts in 2019 with just 5 trading teams. As a 4 years old platform, SAFEST TRADING is ideal">
-        <meta name="keywords"
-            content="safesttrades, safest trades, one to one marketing, one to one marketing website, network marketing website, e money sites, money investment sites, cryptocurrency trading, trade, trade online, trades websites">
-        <meta name="author" content="SAFEST TRADES">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    @endsection
+    <!-- CONTENT START -->
+    <div class="page-content">
 
-    @section('styles')
-        <link href="{{ asset('assets/frontend/css/road_map.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/frontend/css/mvv.css') }}" rel="stylesheet">
-    @endsection
-
-    <div id="page">
-        <section id="hero" class='net-hero'>
-            <div class="background">
-                <canvas id="hero-background"></canvas>
-            </div>
-            <div class="foreground">
-                <div class="main">
-                    <section class="banner-area">
-                        <div class="banner-overlay">
-                            <div class="banner-text text-center">
-                                <div class="container">
-                                    <!-- Section Title Starts -->
-                                    <div class="row text-center">
-                                        <div class="col-xs-12">
-                                            <!-- Title Starts -->
-                                            <h2 class="title-head">About <span>Us</span></h2>
-                                            <!-- Title Ends -->
-                                            <hr>
-                                            <!-- Breadcrumb Starts -->
-                                            <ul class="breadcrumb">
-                                                <li><a href="{{ route('/') }}"> home</a></li>
-                                                <li>About</li>
-                                            </ul>
-                                            <!-- Breadcrumb Ends -->
-                                        </div>
-                                        <!-- Section Title Ends -->
-                                    </div>
-                                </div>
-                            </div>
-                    </section>
-                </div>
-        </section>
-    </div>
-
-
-    @foreach ($abouts->children as $section)
-        <section class="about-page">
+        <!-- INNER PAGE BANNER -->
+        <div class="wt-bnr-inr overlay-wraper" style="background-image:url({{ asset('assets/frontend/images/banner/about-banner.jpg') }});">
+            <div class="overlay-main bg-black opacity-07"></div>
             <div class="container">
-                <!-- Section Content Starts -->
-                <div class="row about-content">
-                    <!-- Image Starts -->
-                    <div class="col-sm-12 col-md-5 col-lg-6 text-center">
-                        <img id="about-us" class="img-responsive img-about-us"
-                            src="{{ storage('pages/' . $section->image) }}" alt="about us">
-                    </div>
-                    <!-- Image Ends -->
-                    <!-- Content Starts -->
-                    <div class="col-sm-12 col-md-7 col-lg-6">
-                        <div class="feature-about">
-                            <h3 class="title-about">{{ $section->title }}</h3>
-                            {!! $section->content !!}
-                        </div>
-                        {{-- <a class="btn btn-primary btn-services" href="pricing.php">Our Packages</a> --}}
-                    </div>
-                    <!-- Content Ends -->
+                <div class="wt-bnr-inr-entry">
+                    <h1 class="text-white">About Us</h1>
                 </div>
-                <!-- Section Content Ends -->
             </div>
-            <!--/ Content row end -->
-        </section>
-    @endforeach
+        </div>
+        <!-- INNER PAGE BANNER END -->
 
-    <section id="mvv">
-        <div class="pt-5 pb-5">
+        <!-- BREADCRUMB ROW -->
+        <div class="bg-black p-tb20">
             <div class="container">
+                <ul class="wt-breadcrumb breadcrumb-style-2">
+                    <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home</a></li>
+                    <li>About Us </li>
+                </ul>
             </div>
+        </div>
+        <!-- BREADCRUMB  ROW END -->
+
+        <!-- ABOUT COMPANY SECTION START -->
+        <div class="section-full p-tb100 bg-black-light">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 col-md-6 ">
-
-                        <div class="col-lg-12 col-md-12 margin-30px-bottom xs-margin-20px-bottom">
-                            <div class="services-block-three">
-                                <a href="javascript:void(0)">
-                                    <div class="padding-15px-bottom">
-                                        <i class="fa fa-paper-plane-o"></i>
-                                    </div>
-                                    <h4>OUR MISSION</h4>
-
-                                    @foreach ($homes_mission as $key => $hm)
-                                        {!! $hm->content !!}
-                                    @endforeach
-
-                                </a>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="section-head text-left">
+                            <span class="wt-title-subline text-gray-dark font-16 m-b15">What is bitcoin</span>
+                            <h2 class="text-uppercase">A New Kind of Money </h2>
+                            <div class="wt-separator-outer">
+                                <div class="wt-separator bg-primary"></div>
                             </div>
+                            <p><strong>Bitcoin is the world's first advanced decentralized cash and installment organize. Nullam non magna in diam ultricies hendrerit at nec ligula. </strong></p>
+                            <p>
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. remaining essentially unchanged. It was popularised in the with the .
+                            </p>
                         </div>
-
-                        <div class="col-lg-12 col-md-12 margin-30px-bottom xs-margin-20px-bottom">
-                            <div class="services-block-three">
-                                <a href="javascript:void(0)">
-                                    <div class="padding-15px-bottom">
-                                        <i class="fa fa-eercast"></i>
-                                    </div>
-                                    <h4>OUR VISION</h4>
-                                    @foreach ($homes_vission as $key => $hvi)
-                                        {!! $hvi->content !!}
-                                    @endforeach
-                                </a>
-                            </div>
-                        </div>
-
-
                     </div>
-                    <div class="col-lg-6 col-md-6 ">
-                        <div class="col-lg-12 col-md-12 margin-30px-bottom xs-margin-20px-bottom">
-                            <div class="services-block-three">
-                                <a href="javascript:void(0)">
-                                    <div class="padding-15px-bottom">
-                                        <i class="fa fa-diamond"></i>
-                                    </div>
-                                    <h4>OUR VALUES</h4>
-                                    @foreach ($homes_value as $key => $hval)
-                                        {!! $hval->content !!}
-                                    @endforeach
-                                </a>
-                            </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="wt-media">
+                            <img src="{{ asset('assets/frontend/images/gallery/pic3.jpg') }}" alt="" class="img-responsive" />
                         </div>
                     </div>
                 </div>
             </div>
-    </section>
+        </div>
+        <!-- ABOUT COMPANY SECTION END -->
 
-
-
-    <section id="road">
-        <div class="container">
-            <center>
-                <h3 class="title-about">Roadmap</h3>
-            </center><br>
-            <div class="main-timeline">
-
-                <!-- start experience section-->
-                <div class="timeline">
-                    <div class="icon"></div>
-                    <div class="date-content">
-                        <div class="date-outer">
-                            <span class="date">
-                                <span class="month">June</span>
-                                <span class="year">2023</span>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="timeline-content">
-                        <h5 class="title">First Stage</h5>
-                        <p class="description">
-                            Enrolling all the kith and kins by the end of June 2023
-                        </p>
+        <!-- WHY CHOOSE US SECTION START  -->
+        <div class="section-full  p-t80 p-b80 bg-black">
+            <div class="container">
+                <!-- TITLE START-->
+                <div class="section-head text-center">
+                    <h2 class="text-uppercase">Why Choose Bitcoin</h2>
+                    <div class="wt-separator-outer">
+                        <div class="wt-separator bg-primary"></div>
                     </div>
                 </div>
-                <!-- end experience section-->
+                <!-- TITLE END-->
+                <div class="section-content no-col-gap">
+                    <div class="row">
 
-                <!-- start experience section-->
-                <div class="timeline">
-                    <div class="icon"></div>
-                    <div class="date-content">
-                        <div class="date-outer">
-                            <span class="date">
-                                <span class="month">December </span>
-                                <span class="year">2023</span>
-                            </span>
+                        <!-- COLUMNS 1 -->
+                        <div class="col-md-4 col-sm-6 animate_line">
+                            <div class="wt-icon-box-wraper  p-a30 center bg-black-light m-a5">
+                                <div class="icon-lg text-primary m-b20">
+                                    <a href="#" class="icon-cell"><img src="{{asset('assets/frontend/images/icon/pick-29.png') }}" alt=""></a>
+                                </div>
+                                <div class="icon-content">
+                                    <h4 class="wt-tilte text-uppercase font-weight-500">Instant Trading</h4>
+                                    <p>Lorem Ipsum is simply dummy text of the printing and typesg indtrysum has been the Ipsum dummy of the printing indus .</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="timeline-content">
-                        <h5 class="title">Second stage</h5>
-                        <p class="description">
-                            Enrolling 10000 ambassadors by December 2023.
-                        </p>
+                        <!-- COLUMNS 2 -->
+                        <div class="col-md-4 col-sm-6 animate_line">
+                            <div class="wt-icon-box-wraper  p-a30 center bg-black-light m-a5">
+                                <div class="icon-lg text-primary m-b20">
+                                    <a href="#" class="icon-cell"><img src="{{ asset('assets/frontend/images/icon/pick-28.png') }}" alt=""></a>
+                                </div>
+                                <div class="icon-content ">
+                                    <h4 class="wt-tilte text-uppercase font-weight-500">Recurring Buying</h4>
+                                    <p>Lorem Ipsum is simply dummy text of the printing and typesg indtrysum has been the Ipsum dummy of the printing indus .</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- COLUMNS 3 -->
+                        <div class="col-md-4 col-sm-6 animate_line">
+                            <div class="wt-icon-box-wraper  p-a30 center bg-black-light m-a5">
+                                <div class="icon-lg text-primary m-b20">
+                                    <a href="#" class="icon-cell"><img src="{{ asset('assets/frontend/images/icon/pick-17.png') }}" alt=""></a>
+                                </div>
+                                <div class="icon-content">
+                                    <h4 class="wt-tilte text-uppercase font-weight-500">Safe and Secure</h4>
+                                    <p>Lorem Ipsum is simply dummy text of the printing and typesg indtrysum has been the Ipsum dummy of the printing indus .</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- COLUMNS 4 -->
+                        <div class="col-md-4 col-sm-6 animate_line">
+                            <div class="wt-icon-box-wraper  p-a30 center bg-black-light m-a5">
+                                <div class="icon-lg text-primary m-b20">
+                                    <a href="#" class="icon-cell"><img src="{{ asset('assets/frontend/images/icon/pick-19.png') }}" alt=""></a>
+                                </div>
+                                <div class="icon-content">
+                                    <h4 class="wt-tilte text-uppercase font-weight-500">Investment Planning</h4>
+                                    <p>Lorem Ipsum is simply dummy text of the printing and typesg indtrysum has been the Ipsum dummy of the printing indus .</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- COLUMNS 5 -->
+                        <div class="col-md-4 col-sm-6 animate_line">
+                            <div class="wt-icon-box-wraper  p-a30 center bg-black-light m-a5">
+                                <div class="icon-lg text-primary m-b20">
+                                    <a href="#" class="icon-cell"><img src="{{ asset('assets/frontend/images/icon/pick-12.png') }}" alt=""></a>
+                                </div>
+                                <div class="icon-content">
+                                    <h4 class="wt-tilte text-uppercase font-weight-500">Covered By Insurance</h4>
+                                    <p>Lorem Ipsum is simply dummy text of the printing and typesg indtrysum has been the Ipsum dummy of the printing indus .</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- COLUMNS 6 -->
+                        <div class="col-md-4 col-sm-6 animate_line">
+                            <div class="wt-icon-box-wraper  p-a30 center bg-black-light m-a5">
+                                <div class="icon-lg text-primary m-b20">
+                                    <a href="#" class="icon-cell"><img src="{{ asset('assets/frontend/images/icon/pick-38.png') }}" alt=""></a>
+                                </div>
+                                <div class="icon-content">
+                                    <h4 class="wt-tilte text-uppercase font-weight-500">Bitcoin Transaction</h4>
+                                    <p>Lorem Ipsum is simply dummy text of the printing and typesg indtrysum has been the Ipsum dummy of the printing indus .</p>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-                <!-- end experience section-->
-
-                <!-- start experience section-->
-                <div class="timeline">
-                    <div class="icon"></div>
-                    <div class="date-content">
-                        <div class="date-outer">
-                            <span class="date">
-                                <span class="month">June</span>
-                                <span class="year">2023</span>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="timeline-content">
-                        <h5 class="title">Third stage</h5>
-                        <p class="description">
-                            Launching our cryptocurrency by June 2023 and diversifying our cryptocurrency via leading
-                            cryptocurrency exchanges, including Binance gate.io.
-                        </p>
-                    </div>
-                </div>
-                <!-- end experience section-->
-
-                <!-- start experience section-->
-                <div class="timeline">
-                    <div class="icon"></div>
-                    <div class="date-content">
-                        <div class="date-outer">
-                            <span class="date">
-                                <span class="month">End of </span>
-                                <span class="year">2024</span>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="timeline-content">
-                        <h5 class="title">fourth stage</h5>
-                        <p class="description">
-                            Building the community up to 100000 by the end of 2024.
-                        </p>
-                    </div>
-                </div>
-                <!-- end experience section-->
-
-                <!-- start experience section-->
-                <div class="timeline">
-                    <div class="icon"></div>
-                    <div class="date-content">
-                        <div class="date-outer">
-                            <span class="date">
-                                <span class="month">End of </span>
-                                <span class="year">2025 </span>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="timeline-content">
-                        <h5 class="title">Fifth stage</h5>
-                        <p class="description">
-                            Building the community up to 1000000 by the end of 2025 and patronizing our cryptocurrency.
-                        </p>
-                    </div>
-                </div>
-                <!-- end experience section-->
 
             </div>
         </div>
-    </section>
+        <!-- WHY CHOOSE US SECTION END -->
+
+        <!-- SECTION CONTENT -->
+        <div class="section-full bg-primary p-t50 p-b30">
+            <div class="container">
+                <div class="section-content">
+                    <div class="row">
+
+                        <div class="col-md-3 col-sm-6">
+                            <div class="text-black wt-icon-box-wraper center">
+                                <div class="counter font-70 font-weight-800 m-b5">35</div>
+                                <span class="font-18">Support Countries</span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-sm-6">
+                            <div class="m-b30 text-black wt-icon-box-wraper center">
+                                <div class="font-70 font-weight-800 m-b5"><span class="counter">700</span></div>
+                                <span class="font-18">BitCoin ATMs</span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-sm-6">
+                            <div class="m-b30 text-black wt-icon-box-wraper center">
+                                <div class="counter font-70 font-weight-800 m-b5">300</div>
+                                <span class="font-18">Producers</span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-sm-6">
+                            <div class="m-b30 wt-icon-box-wraper center text-black">
+                                <div class="counter font-70 font-weight-800 m-b5">55</div>
+                                <span class="font-18">Operators</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SECTION CONTENT END -->
+
+    </div>
+    <!-- CONTENT END -->
+
+
+
 
     @push('scripts')
-        <script src="{{ asset('assets/frontend/js/net.js') }}"></script>
+    <script src="{{ asset('assets/frontend/js/net.js') }}"></script>
     @endpush
 </x-frontend.layouts.app>
