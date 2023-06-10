@@ -17,9 +17,9 @@
                                     <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Language
                                     <span class="caret"></span></button>
                                     <ul class="dropdown-menu dropdown-menu-right">
-                                      <li><a href="#"><img src="images/united-states.png" alt="">English</a></li>
-                                      <li><a href="#"><img src="images/france.png" alt="">French</a></li>
-                                      <li><a href="#"><img src="images/germany.png" alt="">German</a></li>
+                                      <li><a href="#"><img src="{{ asset('assets/frontend/images/united-states.png') }}" alt="">English</a></li>
+                                      <li><a href="#"><img src="{{ asset('assets/frontend/images/france.png') }}" alt="">French</a></li>
+                                      <li><a href="#"><img src="{{ asset('assets/frontend/images/germany.png') }}" alt="">German</a></li>
                                     </ul>
                               </div>
                         </div>
@@ -40,7 +40,7 @@
         <div class="container">
             <div class="logo-header">
                 <a href="index-2.html">
-                    <img src="images/logo-dark.png" width="216" height="37" alt="" />
+                    <img src="{{ asset('assets/frontend/images/logo-dark.png') }}" width="216" height="37" alt="" />
                 </a>
             </div>
             <div class="header-info">
@@ -106,7 +106,7 @@
                                 <div class="nav-cart-items p-a15">
                                     <div class="nav-cart-item clearfix">
                                         <div class="nav-cart-item-image">
-                                            <a href="#"><img src="images/cart/pic-1.jpg" alt="p-1"></a>
+                                            <a href="#"><img src="{{ asset('assets/frontend/images/cart/pic-1.jpg') }}" alt="p-1"></a>
                                         </div>
                                         <div class="nav-cart-item-desc">
                                             <a href="#">Product One</a>
@@ -116,7 +116,7 @@
                                     </div>
                                     <div class="nav-cart-item clearfix">
                                         <div class="nav-cart-item-image">
-                                            <a href="#"><img src="images/cart/pic-2.jpg" alt="p-2"></a>
+                                            <a href="#"><img src="{{ asset('assets/frontend/images/cart/pic-2.jpg') }}" alt="p-2"></a>
                                         </div>
                                         <div class="nav-cart-item-desc">
                                             <a href="#">Product Two</a>
@@ -126,7 +126,7 @@
                                     </div>
                                     <div class="nav-cart-item clearfix">
                                         <div class="nav-cart-item-image">
-                                            <a href="#"><img src="images/cart/pic-3.jpg" alt="p-1"></a>
+                                            <a href="#"><img src="{{ asset('assets/frontend/images/cart/pic-3.jpg') }}" alt="p-1"></a>
                                         </div>
                                         <div class="nav-cart-item-desc">
                                             <a href="#">Product Three</a>
@@ -136,7 +136,7 @@
                                     </div>
                                     <div class="nav-cart-item clearfix">
                                         <div class="nav-cart-item-image">
-                                            <a href="#"><img src="images/cart/pic-4.jpg" alt="p-2"></a>
+                                            <a href="#"><img src="{{ asset('assets/frontend/images/cart/pic-4.jpg') }}" alt="p-2"></a>
                                         </div>
                                         <div class="nav-cart-item-desc">
                                             <a href="#">Product Four</a>
