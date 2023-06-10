@@ -1,4 +1,4 @@
-<footer class="site-footer footer-dark bg-no-repeat bg-full-height bg-center "  style="background-image:url(images/background/footer-bg.jpg);">
+<footer class="site-footer footer-dark bg-no-repeat bg-full-height bg-center "  style="background-image:url({{ asset('assets/frontend/images/background/footer-bg.jpg') }});">
     <!-- FOOTER BLOCKES START -->
     <div class="footer-top overlay-wraper">
         <div class="overlay-main bg-black opacity-05"></div>
@@ -9,7 +9,7 @@
                     <div class="widget widget_about">
                         <h4 class="widget-title text-white">About Company</h4>
                         <div class="logo-footer clearfix p-b15">
-                            <a href="index-2.html"><img src="images/footer-logo.png" width="230" height="67" alt=""/></a>
+                            <a href="index-2.html"><img src="{{ asset('assets/frontend/images/footer-logo.png') }}" width="230" height="67" alt=""/></a>
                         </div>
                         <p>Thewebmax ipsum dolor sit amet, consectetuer adipiscing elit,
                               sed diam nonummy nibh euismod tincidunt ut laoreet dolore agna aliquam erat .
