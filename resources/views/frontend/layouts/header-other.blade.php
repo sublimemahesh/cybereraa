@@ -172,7 +172,7 @@
                     <div class="header-nav navbar-collapse collapse ">
                     <ul class=" nav navbar-nav">
                         <li class="active">
-                            <a href="index.php">HOME</i></a>
+                            <a href="{{ route('/') }}">HOME</i></a>
                         </li>
                         <li>
                             <a href="{{ route('about') }}">ABOUT US</i></a>
