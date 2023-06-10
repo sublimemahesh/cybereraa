@@ -24,7 +24,7 @@ Route::get('staking-packages', 'FrontendController@staking')->name('staking-pric
 Route::get('faq', 'FrontendController@faq')->name('faq');
 // Route::get('contact', 'FrontendController@contact')->name('contact');
 Route::get('news', 'FrontendController@news')->name('news');
-Route::get('news/{news:slug}', 'FrontendController@showNews')->name('news.show');
+Route::get('news-more', 'FrontendController@showNews')->name('news.show');
 
 Route::get('terms-and-conditions', 'FrontendController@termsConditions')->name('terms&Conditions');
 Route::get('disclaimer', 'FrontendController@disclaimer')->name('disclaimer');
