@@ -23,7 +23,7 @@
         <div class="bg-black p-tb20">
             <div class="container">
                 <ul class="wt-breadcrumb breadcrumb-style-2">
-                    <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home</a></li>
+                    <li><{{ route('news.show','news') }}><i class="fa fa-home"></i> Home</a></li>
                     <li>News</li>
                 </ul>
             </div>
@@ -46,13 +46,13 @@
                     <div class="wt-post-info">
 
                         <div class="wt-post-title ">
-                            <h3 class="post-title"><a href="news-single.php">Blogpost With Youtube</a></h3>
+                            <h3 class="post-title"><a href="{{ route('news.show','news') }}">Blogpost With Youtube</a></h3>
                         </div>
                         <div class="wt-post-meta ">
                             <ul>
                                 <li class="post-date"> <i class="fa fa-calendar"></i><strong>20 Dec</strong> <span> 2017</span> </li>
                                 <li class="post-author"><i class="fa fa-user"></i><a href="news-single.php">By <span>John</span></a> </li>
-                                <li class="post-comment"><i class="fa fa-comments"></i> <a href="news-single.php">0</a> </li>
+                                <li class="post-comment"><i class="fa fa-comments"></i> <a href="{{ route('news.show','news') }}">0</a> </li>
                             </ul>
                         </div>
                         <div class="wt-post-text">
@@ -60,7 +60,7 @@
                         </div>
                         <div class="clearfix">
                             <div class="wt-post-readmore pull-left">
-                                <a href="news-single.php" title="READ MORE" rel="bookmark" class="site-button-link">Read More</a>
+                                <a href="{{ route('news.show','news') }}" title="READ MORE" rel="bookmark" class="site-button-link">Read More</a>
                             </div>
                             <div class="widget_social_inks pull-right">
                                 <ul class="social-icons social-radius social-dark m-b0">
@@ -86,13 +86,13 @@
                     <div class="wt-post-info">
 
                         <div class="wt-post-title ">
-                            <h3 class="post-title"><a href="javascript:void(0);">Blogpost With Vimeo</a></h3>
+                            <h3 class="post-title"><a href="{{ route('news.show','news') }}">Blogpost With Vimeo</a></h3>
                         </div>
                         <div class="wt-post-meta ">
                             <ul>
                                 <li class="post-date"> <i class="fa fa-calendar"></i><strong>20 Dec</strong> <span> 2017</span> </li>
-                                <li class="post-author"><i class="fa fa-user"></i><a href="javascript:void(0);">By <span>John</span></a> </li>
-                                <li class="post-comment"><i class="fa fa-comments"></i> <a href="javascript:void(0);">0</a> </li>
+                                <li class="post-author"><i class="fa fa-user"></i><a href="{{ route('news.show','news') }}">By <span>John</span></a> </li>
+                                <li class="post-comment"><i class="fa fa-comments"></i> <a href="{{ route('news.show','news') }}">0</a> </li>
                             </ul>
                         </div>
                         <div class="wt-post-text">
@@ -100,7 +100,7 @@
                         </div>
                         <div class="clearfix">
                             <div class="wt-post-readmore pull-left">
-                                <a href="javascript:void(0);" title="READ MORE" rel="bookmark" class="site-button-link">Read More</a>
+                                <a href="{{ route('news.show','news') }}" title="READ MORE" rel="bookmark" class="site-button-link">Read More</a>
                             </div>
                             <div class="widget_social_inks pull-right">
                                 <ul class="social-icons social-radius social-dark m-b0">
@@ -154,8 +154,8 @@
                         <div class="wt-post-meta ">
                             <ul>
                                 <li class="post-date"> <i class="fa fa-calendar"></i><strong>20 Dec</strong> <span> 2017</span> </li>
-                                <li class="post-author"><i class="fa fa-user"></i><a href="javascript:void(0);">By <span>John</span></a> </li>
-                                <li class="post-comment"><i class="fa fa-comments"></i> <a href="javascript:void(0);">0</a> </li>
+                                <li class="post-author"><i class="fa fa-user"></i><{{ route('news.show','news') }}>By <span>John</span></a> </li>
+                                <li class="post-comment"><i class="fa fa-comments"></i> <{{ route('news.show','news') }}>0</a> </li>
                             </ul>
                         </div>
 
@@ -165,7 +165,7 @@
 
                         <div class="clearfix">
                             <div class="wt-post-readmore pull-left">
-                                <a href="javascript:void(0);" title="READ MORE" rel="bookmark" class="site-button-link">Read More</a>
+                                <{{ route('news.show','news') }} title="READ MORE" rel="bookmark" class="site-button-link">Read More</a>
                             </div>
                             <div class="widget_social_inks pull-right">
                                 <ul class="social-icons social-radius social-dark m-b0">
@@ -187,18 +187,18 @@
                 <div class="blog-post blog-md date-style-1 clearfix">
 
                     <div class="wt-post-media wt-img-effect zoom-slow">
-                        <a href="javascript:void(0);"><img src="images/blog/grid/pic4.jpg" alt=""></a>
+                        <{{ route('news.show','news') }}><img src="images/blog/grid/pic4.jpg" alt=""></a>
                     </div>
                     <div class="wt-post-info">
 
                         <div class="wt-post-title ">
-                            <h3 class="post-title"><a href="javascript:void(0);">Blogpost With Image</a></h3>
+                            <h3 class="post-title"><{{ route('news.show','news') }}>Blogpost With Image</a></h3>
                         </div>
                         <div class="wt-post-meta ">
                             <ul>
                                 <li class="post-date"> <i class="fa fa-calendar"></i><strong>20 Dec</strong> <span> 2017</span> </li>
-                                <li class="post-author"><i class="fa fa-user"></i><a href="javascript:void(0);">By <span>John</span></a> </li>
-                                <li class="post-comment"><i class="fa fa-comments"></i> <a href="javascript:void(0);">0</a> </li>
+                                <li class="post-author"><i class="fa fa-user"></i><{{ route('news.show','news') }}>By <span>John</span></a> </li>
+                                <li class="post-comment"><i class="fa fa-comments"></i> <{{ route('news.show','news') }}>0</a> </li>
                             </ul>
                         </div>
                         <div class="wt-post-text">
@@ -206,7 +206,7 @@
                         </div>
                         <div class="clearfix">
                             <div class="wt-post-readmore pull-left">
-                                <a href="javascript:void(0);" title="READ MORE" rel="bookmark" class="site-button-link">Read More</a>
+                                <{{ route('news.show','news') }} title="READ MORE" rel="bookmark" class="site-button-link">Read More</a>
                             </div>
                             <div class="widget_social_inks pull-right">
                                 <ul class="social-icons social-radius social-dark m-b0">
