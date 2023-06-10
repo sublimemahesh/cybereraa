@@ -2,6 +2,10 @@
     @section('title', 'Contact Us | Owara3m ')
     @section('header-title', 'Welcome ')
 
+    @section('header')
+    @include('frontend.layouts.header-other')
+
+
     <!-- CONTENT START -->
     <div class="page-content">
 
