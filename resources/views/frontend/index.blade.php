@@ -1,333 +1,438 @@
 <x-frontend.layouts.app>
-    @section('title', 'Home Page | Safest Trades | One to One Marketing Website')
+    @section('title', 'Home Page | Owara3m ')
     @section('header-title', 'Welcome ')
 
-    @section('meta')
-        <meta name="description"
-            content="SAFEST TRADES is an independent platform that is dedicated to cryptocurrency trading, gold trading, gold mining, diamond trading, diamond mining">
-        <meta name="keywords"
-            content="safesttrades, safest trades, one to one marketing, one to one marketing website, network marketing website, e money sites, money investment sites, cryptocurrency trading, trade, trade online, trades websites">
-        <meta name="author" content="SAFEST TRADES">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    @endsection
 
-    @section('styles')
-        <link href="{{ asset('assets/frontend/css/testimonials.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/frontend/css/hiw2.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/frontend/css/net.css') }}" rel="stylesheet">
-    @endsection
+        <!-- CONTENT START -->
+        <div class="page-content">
+            <!-- SLIDER START -->
+            @include('frontend.slider')
+            <!-- SLIDER END -->
 
-    <div id="page">
-        <section id="hero" class='net-hero'>
-            <div class="background">
-                <canvas id="hero-background"></canvas>
-            </div>
-            <div class="foreground">
-                <div class="main">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-5 col-lg-6 loging-area">
-                                <img class="w-100 shadow vert-move image222"
-                                    src="{{ asset('assets/frontend/images/project/banner-img.png') }}" id='hero-img' alt="safest trades" />
-                            </div>
-                            <div class="col-sm-12 col-md-5 col-lg-6">
-                                <div id='hero-text'>
-                                    <h1 class="title-head">INVEST & <span> EARN IN THE SAFEST SPOT ON THE EARTH.</span>
-                                    </h1>
-                                    <p class="about-text">
-                                        What if your dream investment can be made in the safest spot on
-                                        the earth? just invest and wait and enjoy up to a guaranteed return of 400% in
-                                        15 months. Daily withdrawals, No claim Bonuses, and many more massive benefits.
-                                    </p>
-                                </div>
+            <!-- MARQUEE SCROLL -->
+            <div class="bg-black marquee">
+                <div class="TickerNews" id="T1">
+                    <div class="ti_wrapper">
+                        <div class="ti_slide">
+                            <div class="ti_content">
+                                <div class="ti_news"><a href="#"><img src="{{asset('assets/frontend/images/coin-icon/bitcoin.png') }}" alt=""><span>BTC: </span><span>$ 10,633.1</span><span class="text-yellow p-lr5">0.97 %</span></a></div>
+                                <div class="ti_news"><a href="#"><img src="images/coin-icon/bitcoin.png" alt=""><span>BTC: </span><span>¥ 68,008.1</span><span class="text-danger p-lr5">0.00 %</span></a></div>
+                                <div class="ti_news"><a href="#"><img src="images/coin-icon/bitcoin.png" alt=""><span>BTC: </span><span>€ 8,699.23</span><span class="text-white p-lr5">1.08 %</span></a></div>
+
+                                <div class="ti_news"><a href="#"><img src="images/coin-icon/Ethereum.png" alt=""><span>ETH: </span><span>Ƀ 0.08160</span><span class="text-green p-lr5">-0.28 %</span></a></div>
+                                <div class="ti_news"><a href="#"><img src="images/coin-icon/Ethereum.png" alt=""><span>ETH: </span><span>$ 867.93</span><span class="text-danger p-lr5">-0.60 %</span></a></div>
+                                <div class="ti_news"><a href="#"><img src="images/coin-icon/Ethereum.png" alt=""><span>ETH: </span><span>¥ 5,549.46</span><span class="text-white p-lr5">-0.28 %</span></a></div>
+                                <div class="ti_news"><a href="#"><img src="images/coin-icon/Ethereum.png" alt=""><span>ETH: </span><span>€ 709.94</span><span class="text-gray p-lr5">0.26 %</span></a></div>
+
+                                <div class="ti_news"><a href="#"><img src="images/coin-icon/monero.png" alt=""><span>XMR: </span><span>Ƀ 0.0276</span><span class="text-green p-lr5">1.25 %</span></a></div>
+                                <div class="ti_news"><a href="#"><img src="images/coin-icon/monero.png" alt=""><span>XMR: </span><span>$ 295.33</span><span class="text-light-blue p-lr5">0.89 %</span></a></div>
+                                <div class="ti_news"><a href="#"><img src="images/coin-icon/monero.png" alt=""><span>XMR: </span><span>¥ 1,883.14</span><span class="text-green p-lr5">0.25 %</span></a></div>
+                                <div class="ti_news"><a href="#"><img src="images/coin-icon/monero.png" alt=""><span>XMR: </span><span>€ 240.56</span><span class="text-red p-lr5">-0.40 %</span></a></div>
+
+                                <div class="ti_news"><a href="#"><img src="images/coin-icon/litecoin.png" alt=""><span>LTC: </span><span>Ƀ 0.01956</span><span class="text-danger p-lr5">-0.20 %</span></a></div>
+                                <div class="ti_news"><a href="#"><img src="images/coin-icon/litecoin.png" alt=""><span>LTC: </span><span>$ 208.06</span><span class="text-green p-lr5">-1.97 %</span></a></div>
+                                <div class="ti_news"><a href="#"><img src="images/coin-icon/litecoin.png" alt=""><span>LTC: </span><span>¥ 1,330.24</span><span class="text-white p-lr5">-0.20 %</span></a></div>
+                                <div class="ti_news"><a href="#"><img src="images/coin-icon/litecoin.png" alt=""><span>LTC: </span><span>€ 169.91</span><span class="text-yellow p-lr5">-1.29 %</span></a></div>
+
+                                <div class="ti_news"><a href="#"><img src="images/coin-icon/DigitalCash.png" alt=""><span>DASH: </span><span>Ƀ 0.05590</span><span class="text-white p-lr5">0.26 %</span></a></div>
+                                <div class="ti_news"><a href="#"><img src="images/coin-icon/DigitalCash.png" alt=""><span>DASH: </span><span>$ 594.64</span><span class="text-green p-lr5">0.37 %</span></a></div>
+                                <div class="ti_news"><a href="#"><img src="images/coin-icon/DigitalCash.png" alt=""><span>DASH: </span><span>¥ 3,801.65</span><span class="text-red p-lr5">0.99 %</span></a></div>
+                                <div class="ti_news"><a href="#"><img src="images/coin-icon/DigitalCash.png" alt=""><span>DASH: </span><span>€ 486.29</span><span class="text-yellow p-lr5">-10.18 %</span></a></div>
                             </div>
                         </div>
                     </div>
                 </div>
-        </section>
-    </div>
-
-    <!-- About Section Starts -->
-    <section class="about-us about-css" id='iny'>
-        <div class="container">
-            <!-- Section Title Starts -->
-            <div class="row text-center">
-                <h2 class="title-head">THE SAFEST SPOT ON THE EARTH <br>
-                    <span> WHERE YOU CAN INVEST YOUR MONEY.</span>
-                </h2>
-                <div class="title-head-subtitle">
-                    <p>WWW.SAFESTTRADES.COM</p>
-                </div>
             </div>
-            <!-- Section Title Ends -->
+            <!-- MARQUEE SCROLL SECTION  END -->
 
-            <!-- Section Content Starts -->
-            <div class="row about-content">
-                <!-- Image Starts -->
-                <div class="col-sm-12 col-md-5 col-lg-6 text-center">
-
-                    {{-- {!!$homes->children[4]->content !!} --}}
-
-                    @foreach ($homes_video as $key => $hv)
-                        {!! $hv->content !!}
-                    @endforeach
-
-                </div>
-                <!-- Image Ends -->
-                <!-- Content Starts -->
-                <div class="col-sm-12 col-md-7 col-lg-6">
-
-                    @foreach ($homes_contents as $key => $hc)
-                        <h3 class="title-about">{{ $hc->title }}</h3>
-                        <p class="about-text">{!! $hc->content !!}</p>
-                    @endforeach
-
-                    <a class="btn btn-primary" href="{{ route('about') }}">Read More</a>
-                </div>
-                <!-- Content Ends -->
-            </div>
-            <!-- Section Content Ends -->
-        </div>
-    </section>
-    <!-- About Section Ends -->
-    <!-- hiw Section Starts -->
-    <section id='hiw'>
-        <h2 class="title-head text-center">How<span> it works.</span></h2>
-        <div class="title-head-subtitle text-center">
-            <p>Explain How it works with us</p>
-
-        </div>
-        <ul class="infoGraphic">
-            <li>
-                <div class="numberWrap">
-                    <div class="number fontColor1">1</div>
-                    <div class="coverWrap">
-                        <div class="numberCover"></div>
-                    </div>
-                </div>
-                <div class="content">
-                    {{-- <div class="icon iconCodepen"></div> --}}
-                    <h2>First Step</h2>
-                    <p>SING UP AND SIGN IN.</p>
-                </div>
-            </li>
-            <li>
-                <div class="numberWrap">
-                    <div class="number  fontColor3">2</div>
-                    <div class="coverWrap">
-                        <div class="numberCover"></div>
-                    </div>
-                </div>
-                <div class="content">
-                    {{-- <div class="icon iconAirplane"></div> --}}
-                    <h2>Second Step</h2>
-                    <p>BUY PACKAGES.</p>
-                </div>
-            </li>
-            <li>
-                <div class="numberWrap">
-                    <div class="number fontColor2">3</div>
-                    <div class="coverWrap">
-                        <div class="numberCover"></div>
-                    </div>
-                </div>
-                <div class="content">
-                    {{-- <div class="icon iconSocial"></div> --}}
-                    <h2>Third Step</h2>
-                    <p>KYC APPROVAL.</p>
-                </div>
-            </li>
-
-            <li>
-                <div class="numberWrap">
-                    <div class="number  fontColor4">4</div>
-                    <div class="coverWrap">
-                        <div class="numberCover"></div>
-                    </div>
-                </div>
-                <div class="content">
-                    {{-- <div class="icon iconMap"></div> --}}
-                    <h2>Fourth Step</h2>
-                    <p>WITHDRAW MONEY.</p>
-                </div>
-            </li>
-        </ul>
-    </section>
-
-    <section class="image-block bg-image-1 parallax">
-        <div class="container benefit-back">
-            <div class="row">
-                <!-- Features Starts -->
-                <div class="col-md-8 benefit-list">
-                    <div class="row row-merge">
-                        <div class="benifit-mobile">
-                            @if (count($benefits) > 0)
-                                @foreach ($benefits as $section)
-                                    <div class="col-sm-6 col-md-6 col-xs-12">
-                                        <div class="feature text-center">
-                                            <span class="feature-icon">
-                                                <img id="strong-security"
-                                                    src="{{ storage('pages/' . $section->image) }}"
-                                                    alt="strong security">
-                                            </span>
-                                            <h3 class="feature-title">{{ $section->title }}</h3>
-                                            {!! $section->content !!}<br>
+            <!-- OUR VALUE SECTION START -->
+            <div class="section-full bg-black">
+                <div class="container">
+                    <div class="section-content ">
+                        <!-- COLL-TO ACTION START -->
+                        <div class="wt-subscribe-box">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-9 col-sm-9">
+                                        <div class="call-to-action-left p-tb20 ">
+                                            <h4 class="text-uppercase m-b10 font-weight-600">Invest in Cryptocurrency Bitcoin Mining & Easy Way to Trade Bitcoin.</h4>
+                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore edolore magna aliquyam erat.</p>
                                         </div>
                                     </div>
-                                @endforeach
-                            @endif
-                        </div>
-                    </div>
-                </div>
-                <!-- Features Ends -->
-                <!-- Video Starts -->
-                <div class="col-md-4 ts-padding">
-                    <div class='vertical-btn'>
-                        <div class="text-center">
 
-                            <a class="button-video mfp-youtube" href="https://www.youtube.com/watch?v=gtgNs3ITIjE"></a>
-
-                        </div>
-                    </div>
-                </div>
-                <!-- Video Ends -->
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <div class="container">
-            <div class="owl-carousel owl-theme casino-slider">
-                @foreach ($packages->children as $section)
-                    <div class="item">
-                        <a href="https://www.747live.net/
-                            " target="_blank">
-                            <img src="{{ storage('pages/' . $section->image) }}" alt="safest trades">
-                        </a>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-
-    <!-- Quote and Chart Section Ends -->
-    <!-- Comment Section Starts -->
-
-    {{-- <section class="team about-css">
-        <div class="container">
-            <!-- Section Title Starts -->
-            <div class="row text-center">
-                <h2 class="title-head">our <span>testimonials .</span></h2>
-                <div class="title-head-subtitle">
-                    <p>A talented team of invest testimonials </p>
-                </div>
-            </div>
-            <!-- Section Title Ends -->
-            <!-- Team Members Starts -->
-
-            <div id="testim" class="testim">
-                <!--         <div class="testim-cover"> -->
-                <div class="wrap">
-                    <span id="right-arrow" class="arrow right fa fa-chevron-right"></span>
-                    <span id="left-arrow" class="arrow left fa fa-chevron-left "></span>
-                    <ul id="testim-dots" class="dots">
-                        @foreach ($testimonials as $key => $testimonial)
-                            @if ($key == 0)
-                                <li class="dot active"></li>
-                            @else
-                                <li class="dot"></li>
-                            @endif
-                        @endforeach
-                    </ul>
-                    <div id="testim-content" class="cont">
-
-                        @foreach ($testimonials as $key => $testimonial)
-                            @if ($key == 0)
-                                @php
-                                    $status = 'active';
-                                @endphp
-                            @else
-                                @php
-                                    $status = '';
-                                @endphp
-                            @endif
-
-                            <div class="{{ $status }}">
-                                <div class="img"><img src="{{ storage('testimonials/' . $testimonial->image) }}"
-                                        alt=""></div>
-                                <h2>{{ $testimonial->name }}</h2>
-
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt
-                                    ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                    ullamco.</p>
-                            </div>
-                        @endforeach
-
-                    </div>
-
-                </div>
-                <!-- </div> -->
-            </div>
-            <!-- Team Members Ends -->
-        </div>
-    </section> --}}
-    <!-- Comment Section Ends -->
-
-    <!-- Blog Section Starts -->
-    @if (count($all_news) > 0)
-        <section class="blog about-css">
-            <div class="container">
-                <!-- Section Title Starts -->
-                <div class="row text-center">
-                    <h2 class="title-head">LATEST <span> NEWS.</span></h2>
-                    <div class="title-head-subtitle">
-                        <p>Discover About Safest Trades News & Updates</p>
-
-                    </div>
-                </div>
-                <!-- Section Title Ends -->
-                <!-- Section Content Starts -->
-                <div class="row latest-posts-content">
-                    @foreach ($all_news->slice(0, 3) as $news)
-                        <!-- Article Starts -->
-                        <div class="col-sm-4 col-md-4 col-xs-12">
-                            <div class="latest-post">
-                                <!-- Featured Image Starts -->
-                                <a href="{{ route('news.show', $news) }}">
-                                    <img class="img-responsive" src="{{ storage('blogs/' . $news->image) }}"
-                                        alt="{{ storage('blogs/' . $news->image) }}">
-                                </a>
-                                <!-- Featured Image Ends -->
-                                <!-- Article Content Starts -->
-                                <div class="post-body">
-                                    <h4 class="post-title">
-                                        <a href="{{ route('news.show', $news) }}"> {{ $news->title }}</a>
-                                    </h4>
-                                    <div class="post-text">
-                                        {{ $news->short_description }}
+                                    <div class="col-md-3">
+                                        <div class="call-to-action-right p-tb30">
+                                            <a href="contact-1.html" class="site-button-secondry text-uppercase font-weight-600">
+                                                Read More
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="post-date post-color">
-                                    <span>{{ date('d', strtotime($news->created_at)) }}</span>
-                                    <span>{{ date('M', strtotime($news->created_at)) }}</span>
-                                </div>
-                                <a href="{{ route('news.show', $news) }}" class="btn btn-primary">read more</a>
-                                <!-- Article Content Ends -->
                             </div>
                         </div>
-                        <!-- Article Ends -->
-                    @endforeach
+                    </div>
+                </div>
+            </div>
+            <!-- OUR VALUE SECTION  END -->
+
+            <!-- ABOUT COMPANY SECTION START -->
+            <div class="section-full home-about-section p-t80 bg-no-repeat bg-bottom-right bg-black-light" style="background-image:url(images/background/bg-coin.png)">
+                <div class="container-fluid ">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="wt-box text-right">
+                                <img src="{{asset('assets/frontend/images/background/bg-laptop.png')}}" alt="">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="wt-right-part p-b80">
+                                <!-- TITLE START -->
+                                <div class="section-head text-left">
+                                    <span class="wt-title-subline font-16 text-gray-dark m-b15">What is bitcoin</span>
+                                    <h2 class="text-uppercase">New Currency Bitcoin</h2>
+                                    <div class="wt-separator-outer">
+                                        <div class="wt-separator bg-primary"></div>
+                                    </div>
+                                </div>
+                                <!-- TITLE END -->
+                                <div class="section-content">
+                                    <div class="wt-box">
+                                        <p>
+                                            <strong>Lorem Ipsum has been the industry's standard dummy text ever since the when.
+                                                it to make a tyLorem Ipsum is simply dummy text of the printing and typesetting indust
+                                            </strong>
+                                        </p>
+                                        <p>when an unknown printer took a galley of type and scrambled it to make a tyLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.</p>
+                                        <a href="#" class="site-button text-uppercase m-r15">Read More</a>
+                                        <a href="#" class="site-button-secondry text-uppercase">Contact us</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ABOUT COMPANY SECTION  END -->
+
+            <!-- WHY CHOOSE US SECTION START  -->
+
+            <div class="section-full bg-black p-tb90  ">
+                <div class="container">
+                    <!-- TITLE START-->
+                    <div class="section-head text-center">
+                        <span class="wt-title-subline font-16 text-gray-dark m-b15">Buy and Sell Bitcoin</span>
+                        <h2 class="text-uppercase">Why Choose Bitcoin</h2>
+                        <div class="wt-separator-outer">
+                            <div class="wt-separator bg-primary"></div>
+                        </div>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                    </div>
+                    <!-- TITLE END-->
+                    <div class="section-content hover-block-outer" data-toggle="tab-hover">
+                        <div class="row">
+
+                            <div class="col-md-4 col-sm-12 m-b30  p-t30">
+                                <div class="wt-icon-box-wraper bg-black right p-a20" data-target="#tab1" data-toggle="tab">
+                                    <div class="icon-md text-primary">
+                                        <span class="icon-cell  text-primary"><img src="{{asset('assets/frontend/images/icon/pick-17.png')}}" alt=""></span>
+                                    </div>
+                                    <div class="icon-content">
+                                        <h4 class="wt-tilte text-uppercase">Safe and Secure</h4>
+                                        <p>Vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra. </p>
+                                    </div>
+                                </div>
+                                <div class="wt-icon-box-wraper right p-a20" data-target="#tab2" data-toggle="tab">
+                                    <div class="icon-md text-primary">
+                                        <span class="icon-cell  text-primary"><img src="{{asset('assets/frontend/images/icon/pick-29.png')}}" alt=""></span>
+                                    </div>
+                                    <div class="icon-content">
+                                        <h4 class="wt-tilte text-uppercase">Instant Trading</h4>
+                                        <p>Vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra. </p>
+                                    </div>
+                                </div>
+                                <div class="wt-icon-box-wraper right p-a20" data-target="#tab3" data-toggle="tab">
+                                    <div class="icon-md text-primary">
+                                        <span class="icon-cell  text-primary"><img src="{{asset('assets/frontend/images/icon/pick-28.png')}}" alt=""></span>
+                                    </div>
+                                    <div class="icon-content">
+                                        <h4 class="wt-tilte text-uppercase">Recurring Buying</h4>
+                                        <p>Vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra. </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 col-sm-12 m-b30 circle-content-pic ">
+                                <div class="tab-content ">
+                                    <div id="tab1" class="tab-pane active">
+                                        <div class="wt-box">
+                                            <div class="wt-media text-primary m-b20 text-center">
+                                                <img src="{{asset('assets/frontend/images/ipad/safe.png')}}" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="tab2" class="tab-pane">
+                                        <div class="wt-box">
+                                            <div class="wt-media text-primary m-b20 text-center">
+                                                <img src="{{asset('assets/frontend/images/ipad/Trading.png')}}" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="tab3" class="tab-pane">
+                                        <div class="wt-box">
+                                            <div class="wt-media text-primary m-b20 text-center">
+                                                <img src="{{asset('assets/frontend/images/ipad/buying.png')}}" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="tab4" class="tab-pane">
+                                        <div class="wt-box">
+                                            <div class="wt-media text-primary m-b20 text-center">
+                                                <img src="{{asset('assets/frontend/images/ipad/investment.png')}}" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="tab5" class="tab-pane">
+                                        <div class="wt-box">
+                                            <div class="wt-media text-primary m-b20 text-center">
+                                                <img src="{{asset('assets/frontend/images/ipad/insurance.png')}}" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="tab6" class="tab-pane">
+                                        <div class="wt-box">
+                                            <div class="wt-media text-primary m-b20 text-center">
+                                                <img src="{{asset('assets/frontend/images/ipad/transaction.png')}}" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 col-sm-12 m-b30  p-t30">
+                                <div class="wt-icon-box-wraper left p-a20" data-target="#tab4" data-toggle="tab">
+                                    <div class="icon-md text-primary">
+                                        <span class="icon-cell  text-primary"><img src="{{asset('assets/frontend/images/icon/pick-19.png')}}" alt=""></span>
+                                    </div>
+                                    <div class="icon-content">
+                                        <h4 class="wt-tilte text-uppercase">Investment Planning</h4>
+                                        <p>Vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra. </p>
+                                    </div>
+                                </div>
+                                <div class="wt-icon-box-wraper left p-a20" data-target="#tab5" data-toggle="tab">
+                                    <div class="icon-md text-primary">
+                                        <span class="icon-cell  text-primary"><img src="{{asset('assets/frontend/images/icon/pick-12.png')}}" alt=""></span>
+                                    </div>
+                                    <div class="icon-content">
+                                        <h4 class="wt-tilte text-uppercase">Covered By Insurance</h4>
+                                        <p>Vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra. </p>
+                                    </div>
+                                </div>
+                                <div class="wt-icon-box-wraper left p-a20" data-target="#tab6" data-toggle="tab">
+                                    <div class="icon-md text-primary">
+                                        <span class="icon-cell  text-primary"><img src="{{asset('assets/frontend/images/icon/pick-38.png')}}" alt=""></span>
+                                    </div>
+                                    <div class="icon-content">
+                                        <h4 class="wt-tilte text-uppercase">Bitcoin Transaction</h4>
+                                        <p>Vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra. </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WHY CHOOSE US SECTION END -->
+
+            <!-- COMPANY DETAIL SECTION START -->
+            <div class="section-full p-t50 p-b50 overlay-wraper bg-parallax clouds1 bg-repeat" data-stellar-background-ratio="0.5" style="background-image:url({{ asset('assets/frontend/images/background/bg-1.jpg') }});">
+                <div class="overlay-main bg-secondry opacity-05"></div>
+                <div class="container ">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6">
+                            <div class="rocket-pic">
+                                <div class="rocket-animation ">
+                                    <img src="{{asset('assets/frontend/images/rocket.png')}}" alt="" class="floating" />
+                                    <div class="rocket-fire"> <img src="{{asset('assets/frontend/images/fire.gif')}}" alt="" class="floating" /></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-sm-6">
+                            <div class="awesome-counter text-right text-white">
+                                <h3 class="font-24">The Cryptocurrency</h3>
+                                <h2 class="font-60 font-weight-600"><span class="text-primary"> AWESOME FACTS</span></h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In a metus pellentesque, scelerisque ex sed, volutpat nisi. Curabitur tortor mi, eleifend ornare lobortis non. Nulla porta purus quis iaculis ultrices. Proin aliquam sem at nibh hendrerit sagittis. Nullam ornare odio eu lacus tincidunt malesuada.</p>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="status-marks  text-white m-tb10">
+                                        <div class="status-value text-right">
+                                            <span class="counter">1150</span>
+                                            <i class="fa fa-building font-26 m-l15"></i>
+                                        </div>
+                                        <h6 class="text-uppercase text-right">PROJECT COMPLETED</h6>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="status-marks  text-white m-tb10">
+                                        <div class="status-value text-right">
+                                            <span class="counter">5223</span>
+                                            <i class="fa fa-users font-26 m-l15"></i>
+                                        </div>
+                                        <h6 class="text-uppercase text-white text-right">HAPPY CLIENTS</h6>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="status-marks  text-white m-tb10">
+                                        <div class="status-value text-right">
+                                            <span class="counter">4522</span>
+                                            <i class="fa fa-user-plus font-26 m-l15"></i>
+                                        </div>
+                                        <h6 class="text-uppercase text-white text-right">WORKERS EMPLOYED</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- COMPANY DETAIL SECTION End -->
+
+            <!-- HOW IT WORK SECTION START  -->
+            <div class="section-full  p-t80 p-b80 bg-black">
+                <div class="container">
+                    <!-- TITLE START-->
+                    <div class="section-head text-center">
+                        <span class="wt-title-subline font-16 text-gray-dark m-b15">Three steps bticoin</span>
+                        <h2 class="text-uppercase">How It Work</h2>
+                        <div class="wt-separator-outer">
+                            <div class="wt-separator bg-primary"></div>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga eos optio ducimus odit, labore hic fugiat iusto veniam necessitatibus quas doloremque sapiente maiores.</p>
+                    </div>
+                    <!-- TITLE END-->
+                    <div class="section-content no-col-gap">
+                        <div class="row">
+
+                            <!-- COLUMNS 1 -->
+                            <div class="col-md-4 col-sm-4 step-number-block">
+                                <div class="wt-icon-box-wraper  p-a30 center bg-black-light m-a5">
+                                    <div class="icon-lg text-primary m-b20">
+                                        <a href="#" class="icon-cell"><img src="{{asset('assets/frontend/images/icon/pick-4.png')}}" alt=""></a>
+                                    </div>
+                                    <div class="icon-content">
+                                        <div class="step-number">1</div>
+                                        <h4 class="wt-tilte text-uppercase font-weight-500">Create your wallet</h4>
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesg indtrysum has been the Ipsum dummy of the printing indus .</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- COLUMNS 2 -->
+                            <div class="col-md-4 col-sm-4 step-number-block">
+                                <div class="wt-icon-box-wraper  p-a30 center bg-secondry m-a5 ">
+                                    <div class="icon-lg m-b20">
+                                        <a href="#" class="icon-cell"><img src="{{asset('assets/frontend/images/icon/pick-28.png')}}" alt=""></a>
+                                    </div>
+                                    <div class="icon-content text-white">
+                                        <div class="step-number active">2</div>
+                                        <h4 class="wt-tilte text-uppercase font-weight-500">Make payments</h4>
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesg indtrysum has been the Ipsum dummy of the printing indus .</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- COLUMNS 3 -->
+                            <div class="col-md-4 col-sm-4 step-number-block">
+                                <div class="wt-icon-box-wraper  p-a30 center bg-black-light m-a5">
+                                    <div class="icon-lg text-primary m-b20">
+                                        <a href="#" class="icon-cell"><img src="{{asset('assets/frontend/images/icon/pick-12.png')}}" alt=""></a>
+                                    </div>
+                                    <div class="icon-content">
+                                        <div class="step-number">3</div>
+                                        <h4 class="wt-tilte text-uppercase font-weight-500">Buy or Sell Orders</h4>
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesg indtrysum has been the Ipsum dummy of the printing indus .</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
-                <!-- Section Content Ends -->
             </div>
-        </section>
-        <!-- Blog Section Ends -->
-    @endif
-    @push('scripts')
-        <script src="{{ asset('assets/frontend/js/testimonials.js') }}"></script>
-        <script src="{{ asset('assets/frontend/js/hiw2.js') }}"></script>
-        <script src="{{ asset('assets/frontend/js/net_home.js') }}"></script>
-    @endpush
+            <!-- HOW IT WORK  SECTION END -->
+
+            <!-- SECTION CONTENT START -->
+            <div class="section-full no-col-gap bg-repeat">
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 bg-secondry">
+                            <div class="section-content p-tb60 p-r30 clearfix">
+                                <div class="wt-left-part any-query">
+                                    <img src="{{asset('assets/frontend/images/any-query.png')}}" alt="">
+                                    <div class="text-center p-t60">
+                                        <h3 class="text-uppercase font-weight-500 text-white">Any Query?</h3>
+                                        <p class="text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the.</p>
+                                        <h4 class="text-primary">0 321 576 444</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 bg-primary">
+                            <div class="section-content p-tb60 p-l30 clearfix">
+                                <div class="wt-right-part any-query-contact">
+                                    <img src="{{asset('assets/frontend/images/any-query-contact.png')}}" alt="">
+                                    <div class="text-center p-t60">
+                                        <h3 class="text-uppercase font-weight-500 text-white">Contact Us</h3>
+                                        <p class="text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the.</p>
+                                        <h4 class="text-secondry">support@bitinvest.com</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- SECTION CONTENT  END -->
+        </div>
+        <!-- CONTENT END -->
+
+
+        @section('scripts')
+
+        <script type="text/javascript">
+            jQuery(function(){
+                var timer = !1;
+                _Ticker = jQuery("#T1").newsTicker();
+                _Ticker.on("mouseenter",function(){
+                    var __self = this;
+                    timer = setTimeout(function(){
+                        __self.pauseTicker();
+                    },200);
+                });
+                _Ticker.on("mouseleave",function(){
+                    clearTimeout(timer);
+                    if(!timer) return !1;
+                    this.startTicker();
+                });
+            });
+        </script>
+
+        <script src="{{asset('assets/frontend/plugins/revolution/revolution/js/jquery.themepunch.tools.min.js') }}"></script>
+        <script src="{{asset('assets/frontend/plugins/revolution/revolution/js/jquery.themepunch.revolution.min.js') }}"></script>
+
+        <!-- SLIDER REVOLUTION 5.0 EXTENSIONS  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->
+        <script src="{{asset('assets/frontend/plugins/revolution/revolution/js/extensions/revolution-plugin.js') }}plugins/revolution/revolution/js/extensions/revolution-plugin.js"></script>
+        <!-- REVOLUTION SLIDER FUNCTION  ===== -->
+        <script src="{{ asset('assets/frontend/js/rev-script-1.js') }}"></script>
+
+        @endsection
+
 </x-frontend.layouts.app>
