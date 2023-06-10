@@ -1,5 +1,5 @@
 <x-frontend.layouts.app>
-    @section('title', 'Package | Owara3m ')
+    @section('title', 'Packages | Owara3m ')
     @section('header-title', 'Welcome ')
 
     @section('header')
@@ -41,6 +41,7 @@
                     <!-- PRICING STYLE-2 COLUMNS 3 WITH GAP -->
                     <div class="section-content">
                         <div class="pricingtable-row m-b30">
+
                             <div class="row">
 
                                 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 m-b40">
@@ -48,20 +49,18 @@
                                         <div class="pricingtable-inner pricing-table-style-2">
 
                                             <div class="pricingtable-title">
-                                                <h3>Basic Plan</h3>
+                                                <h3>Basic Plan 01</h3>
                                             </div>
 
                                             <div class="pricingtable-price">
-                                                <span class="pricingtable-bx">$29</span>
-                                                <span class="pricingtable-type">M</span>
+                                                <span class="pricingtable-bx">USDT100</span>
+                                                {{-- <span class="pricingtable-type"></span> --}}
                                             </div>
 
                                             <ul class="pricingtable-features">
-                                                <li><i class="fa fa-check"></i> Phone &amp; Email Support </li>
-                                                <li><i class="fa fa-times"></i> 3 Social Account </li>
-                                                <li><i class="fa fa-check"></i> Branded Reports </li>
-                                                <li><i class="fa fa-check"></i> Unlock rewards</li>
-                                                <li><i class="fa fa-times"></i> Support Forum</li>
+                                                <li><i class="fa fa-check"></i>Within Investment Period</li>
+                                                <li><i class="fa fa-check"></i> Gas Fee USDT 10 </li>
+                                                <li><i class="fa fa-check"></i>1 % Daily Profit </li>
                                             </ul>
 
                                             <div class="pricingtable-footer">
@@ -77,20 +76,18 @@
                                         <div class="pricingtable-inner pricing-table-style-2">
 
                                             <div class="pricingtable-title">
-                                                <h3>Basic Plan</h3>
+                                                <h3>Basic Plan 02</h3>
                                             </div>
 
                                             <div class="pricingtable-price">
-                                                <span class="pricingtable-bx">$29</span>
-                                                <span class="pricingtable-type">M</span>
+                                                <span class="pricingtable-bx">USDT250</span>
+                                                {{-- <span class="pricingtable-type"></span> --}}
                                             </div>
 
                                             <ul class="pricingtable-features">
-                                                <li><i class="fa fa-check"></i> Phone &amp; Email Support </li>
-                                                <li><i class="fa fa-times"></i> 3 Social Account </li>
-                                                <li><i class="fa fa-check"></i> Branded Reports </li>
-                                                <li><i class="fa fa-check"></i> Unlock rewards</li>
-                                                <li><i class="fa fa-times"></i> Support Forum</li>
+                                                <li><i class="fa fa-check"></i>Within Investment Period</li>
+                                                <li><i class="fa fa-check"></i> Gas Fee USDT 10 </li>
+                                                <li><i class="fa fa-check"></i>1 % Daily Profit </li>
                                             </ul>
 
                                             <div class="pricingtable-footer">
@@ -106,20 +103,18 @@
                                         <div class="pricingtable-inner pricing-table-style-2">
 
                                             <div class="pricingtable-title">
-                                                <h3>Premium Plan</h3>
+                                                <h3>Basic Plan 03</h3>
                                             </div>
 
                                             <div class="pricingtable-price">
-                                                <span class="pricingtable-bx">$99</span>
-                                                <span class="pricingtable-type">M</span>
+                                                <span class="pricingtable-bx">USDT500</span>
+                                                {{-- <span class="pricingtable-type"></span> --}}
                                             </div>
 
                                             <ul class="pricingtable-features">
-                                                <li><i class="fa fa-check"></i> Phone &amp; Email Support </li>
-                                                <li><i class="fa fa-check"></i> 3 Social Account </li>
-                                                <li><i class="fa fa-check"></i> Branded Reports </li>
-                                                <li><i class="fa fa-check"></i> Unlock rewards</li>
-                                                <li><i class="fa fa-check"></i> Support Forum</li>
+                                                <li><i class="fa fa-check"></i>Within Investment Period</li>
+                                                <li><i class="fa fa-check"></i> Gas Fee USDT 10 </li>
+                                                <li><i class="fa fa-check"></i>1 % Daily Profit </li>
                                             </ul>
 
                                             <div class="pricingtable-footer">
@@ -131,6 +126,92 @@
                                 </div>
 
                             </div>
+
+                            <div class="row">
+
+                                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 m-b40">
+                                    <div class="pricingtable-wrapper">
+                                        <div class="pricingtable-inner pricing-table-style-2">
+
+                                            <div class="pricingtable-title">
+                                                <h3>Basic Plan 04</h3>
+                                            </div>
+
+                                            <div class="pricingtable-price">
+                                                <span class="pricingtable-bx">USDT1000</span>
+                                                {{-- <span class="pricingtable-type"></span> --}}
+                                            </div>
+
+                                            <ul class="pricingtable-features">
+                                                <li><i class="fa fa-check"></i>Within Investment Period</li>
+                                                <li><i class="fa fa-check"></i> Gas Fee USDT 10 </li>
+                                                <li><i class="fa fa-check"></i>1 % Daily Profit </li>
+                                            </ul>
+
+                                            <div class="pricingtable-footer">
+                                                <a href="javascript:void(0);" class="site-button  text-uppercase">Purchase</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 m-b40">
+                                    <div class="pricingtable-wrapper">
+                                        <div class="pricingtable-inner pricing-table-style-2">
+
+                                            <div class="pricingtable-title">
+                                                <h3>Standard 01</h3>
+                                            </div>
+
+                                            <div class="pricingtable-price">
+                                                <span class="pricingtable-bx">USDT2500</span>
+                                                {{-- <span class="pricingtable-type"></span> --}}
+                                            </div>
+
+                                            <ul class="pricingtable-features">
+                                                <li><i class="fa fa-check"></i>Within Investment Period</li>
+                                                <li><i class="fa fa-check"></i> Gas Fee USDT 10 </li>
+                                                <li><i class="fa fa-check"></i>1 % Daily Profit </li>
+                                            </ul>
+
+                                            <div class="pricingtable-footer">
+                                                <a href="javascript:void(0);" class="site-button  text-uppercase">Purchase</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 m-b40">
+                                    <div class="pricingtable-wrapper">
+                                        <div class="pricingtable-inner pricing-table-style-2">
+
+                                            <div class="pricingtable-title">
+                                                <h3>Standard 02</h3>
+                                            </div>
+
+                                            <div class="pricingtable-price">
+                                                <span class="pricingtable-bx">USDT5000</span>
+                                                {{-- <span class="pricingtable-type"></span> --}}
+                                            </div>
+
+                                            <ul class="pricingtable-features">
+                                                <li><i class="fa fa-check"></i>Within Investment Period</li>
+                                                <li><i class="fa fa-check"></i> Gas Fee USDT 10 </li>
+                                                <li><i class="fa fa-check"></i>1 % Daily Profit </li>
+                                            </ul>
+
+                                            <div class="pricingtable-footer">
+                                                <a href="javascript:void(0);" class="site-button  text-uppercase">Purchase</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
                         </div>
                     </div>
 
