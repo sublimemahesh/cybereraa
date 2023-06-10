@@ -232,7 +232,7 @@
                      ]'
 
                      style="z-index: 13;">
-                     <img src="images/main-slider/slider2/earth.png" alt="" class="spin-city">
+                     <img src="{{asset('assets/frontend/images/main-slider/slider2/earth.png') }}" alt="" class="spin-city">
                      </div>
 
                      <!-- LAYER NR. 9 [ for more detail botton ] -->
@@ -259,7 +259,7 @@
 
 
                      style="z-index: 13;">
-                     <img src="images/main-slider/slider2/bitcoin.png" alt="">
+                     <img src="{{ asset('assets/frontend/images/main-slider/slider2/bitcoin.png') }}" alt="">
                      </div>
 
 
@@ -503,7 +503,7 @@
                      {"delay":"wait","speed":300,"to":"opacity:0;","ease":"nothing"}]'
 
                      style="z-index: 13;">
-                     <img src="images/main-slider/slider2/earth2-shadow.png" alt="">
+                     <img src="{{ asset('assets/frontend/images/main-slider/slider2/earth2-shadow.png') }}" alt="">
                      </div>
 
                      <!-- LAYER NR. 10 [ for more detail botton ] -->
@@ -529,7 +529,7 @@
 
 
                      style="z-index: 16;">
-                     <img src="images/main-slider/slider2/rocket.png" alt="" class="floating">
+                     <img src="{{ asset('assets/frontend/images/main-slider/slider2/rocket.png') }}" alt="" class="floating">
                      </div>
 
                      <!-- LAYER NR. 11 [ for more detail botton ] -->
@@ -555,7 +555,7 @@
 
 
                      style="z-index: 15;">
-                     <img src="images/main-slider/slider2/fire.gif" alt="" class="floating">
+                     <img src="{{ asset('assets/frontend/images/main-slider/slider2/fire.gif') }}" alt="" class="floating">
                      </div>
 
                      <!-- LAYER NR. 12 [ for more detail botton ] -->
@@ -583,7 +583,7 @@
 
 
                      style="z-index: 12;">
-                     <div class="coin-slide bg-full-width bg-repeat-y coin-slide-rotate" style="background-image:url(images/main-slider/slider2/coin-sky.png);height:100vh;"></div>
+                     <div class="coin-slide bg-full-width bg-repeat-y coin-slide-rotate" style="background-image:url({{ asset('assets/frontend/images/main-slider/slider2/coin-sky.png') }});height:100vh;"></div>
                      </div>
 
                    </li>
@@ -815,7 +815,7 @@
                      ]'
 
                      style="z-index: 13;">
-                     <img src="images/main-slider/slider2/rock.png" alt="">
+                     <img src="{{ asset('assets/frontend/images/main-slider/slider2/rock.png') }}" alt="">
                      </div>
 
                       <!-- LAYER NR. 9 [ for more detail botton ] -->
@@ -830,7 +830,7 @@
                      ]'
 
                      style="z-index: 13;">
-                     <img src="images/main-slider/slider2/agent.png" alt="">
+                     <img src="{{ asset('assets/frontend/images/main-slider/slider2/agent.png') }}" alt="">
                      </div>
 
                      <!-- LAYER NR. 10 [ for more detail botton ] -->
