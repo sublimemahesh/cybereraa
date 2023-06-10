@@ -12,19 +12,23 @@
     @yield('meta')
 
     @include('frontend.layouts.style')
-   
-   
+
+
     @yield('styles')
 </head>
 
-<body>
-    @include('frontend.layouts.header')
 
+<body id="bg">
 
-    {{ $slot }}
+    <div class="page-wraper">
 
-    @include('frontend.layouts.footer')
-    
+        @include('frontend.layouts.header')
+
+        {{ $slot }}
+
+        @include('frontend.layouts.footer')
+
+    </div>
     <!-- Template JS Files -->
 
     @include('frontend.layouts.script')
