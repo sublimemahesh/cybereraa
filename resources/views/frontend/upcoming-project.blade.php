@@ -1,125 +1,164 @@
  <x-frontend.layouts.app>
-     @section('title', 'Upcoming Project | Safest Trades | One to One Marketing Website')
+     @section('title', 'Upcoming Project | Owara3m ')
      @section('header-title', 'Welcome ')
 
-     @section('meta')
-         <meta name="description"
-             content="We have the plan to make investments in the real estate sector in the future. There, we expect to buy and sell lands, residential properties, commercial">
-         <meta name="keywords"
-             content="safesttrades, safest trades, one to one marketing, one to one marketing website, network marketing website, e money sites, money investment sites, cryptocurrency trading, trade, trade online, trades websites">
-         <meta name="author" content="SAFEST TRADES">
-         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-     @endsection
+  <!-- CONTENT START -->
+  <div class="page-content">
 
-     @section('styles')
-
-         <link rel="stylesheet" href="{{ asset('assets/frontend/css/responsive-circle-image-slide.css') }}">
-
-     @endsection
-
-
-
-     <div id="page">
-        <section id="hero" class='net-hero'>
-            <div class="background">
-                <canvas id="hero-background"></canvas>
+    <!-- INNER PAGE BANNER -->
+    <div class="wt-bnr-inr overlay-wraper" style="background-image:url(images/banner/faq-banner.jpg);">
+        <div class="overlay-main bg-black opacity-07"></div>
+        <div class="container">
+            <div class="wt-bnr-inr-entry">
+                <h1 class="text-white">Upcoming projects</h1>
             </div>
-            <div class="foreground">
-                <div class="main">
-                    <section class="banner-area">
-                        <div class="banner-overlay">
-                            <div class="banner-text text-center">
-                                <div class="container">
-                                    <!-- Section Title Starts -->
-                                    <div class="row text-center">
-                                        <div class="col-xs-12">
-                                            <!-- Title Starts -->
-                                            <h2 class="title-head">Upcoming <span> Projects</span></h2>
-                                            <!-- Title Ends -->
-                                            <hr>
-                                            <!-- Breadcrumb Starts -->
-                                            <ul class="breadcrumb">
-                                                <li><a href="{{ route('/') }}"> home</a></li>
-                                                <li>Upcoming Projects</li>
-                                            </ul>
-                                            <!-- Breadcrumb Ends -->
-                                        </div>
-                                    </div>
-                                    <!-- Section Title Ends -->
-                                </div>
+        </div>
+    </div>
+    <!-- INNER PAGE BANNER END -->
+
+
+    <!-- BREADCRUMB ROW -->
+    <div class="bg-black p-tb20">
+        <div class="container">
+            <ul class="wt-breadcrumb breadcrumb-style-2">
+                <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home</a></li>
+                <li>Upcoming projects</li>
+            </ul>
+        </div>
+    </div>
+    <!-- BREADCRUMB ROW END -->
+
+
+
+    <!-- SECTION CONTENT -->
+    <div class="section-full">
+
+        <div class="row bg-black-light p-t80 p-b50">
+            <div class="container">
+                <div class="col-md-7 col-sm-7">
+                    <div class="wt-info  p-b30">
+                        <h1 class="m-a0">Cryptocurrency Trading</h1>
+                    </div>
+                    <div>
+                        <h5>
+                            What happens in cryptocurrency trading is taking a financial position on the price
+                            direction of individual cryptocurrencies against crypto/dollar pairs. Since it takes
+                            so
+                            much time to become an expert in cryptocurrency trading, most beginner-level traders
+                            fail in this investment model. Of course, cryptocurrency trading is not something
+                            easy.
+
+                            SAFEST TRADING has a dedicated team for cryptocurrency trading so that you have
+                            nothing
+                            to worry about in your investments. We follow the best practices in cryptocurrency
+                            trading so that our investors are always in the safe zone.
+                        </h5>
+                    </div>
+                </div>
+                <div class="col-md-5 col-sm-5">
+                    <!-- Card (Horizontal Flip) -->
+                    <div class="flip-container">
+                        <div class="wt-box ">
+                            <div class="wt-thum-bx">
+                                <img src="{{ asset('assets/frontend/images/our-work/pic6.jpg') }}" alt="">
+                            </div>
+                            <div class="wt-info bg-black text-center p-a20">
+                                <h3 class="text-uppercase">Flip container</h3>
+                                <p>Mozilla Web Developer, MooTools &amp; jQuery Consultant, MooTools Core
+                                    Developer, Javascript Fanatic, CSS Tinkerer, PHP Hacker, and web lover.</p>
                             </div>
                         </div>
-                    </section>
+                    </div>
                 </div>
-        </section>
+            </div>
+        </div>
+
+        <div class="row bg-black p-t80 p-b50">
+            <div class="container">
+                <div class="col-md-5 col-sm-5">
+                    <!-- Card (Horizontal Flip) -->
+                    <div class="flip-container">
+                        <div class="wt-box ">
+                            <div class="wt-thum-bx">
+                                <img src="{{asset('assets/frontend/images/our-work/pic6.jpg') }}" alt="">
+                            </div>
+                            <div class="wt-info bg-black-light text-center p-a20">
+                                <h3 class="text-uppercase">Flip container</h3>
+                                <p>Mozilla Web Developer, MooTools &amp; jQuery Consultant, MooTools Core
+                                    Developer, Javascript Fanatic, CSS Tinkerer, PHP Hacker, and web lover.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-7 col-sm-7">
+                    <div class="wt-info  p-b30">
+                        <h1 class="m-a0">Cryptocurrency Trading</h1>
+                    </div>
+                    <div>
+                        <h5>
+                            What happens in cryptocurrency trading is taking a financial position on the price
+                            direction of individual cryptocurrencies against crypto/dollar pairs. Since it takes
+                            so much time to become an expert in cryptocurrency trading, most beginner-level
+                            traders fail in this investment model. Of course, cryptocurrency trading is not
+                            something easy.
+                            SAFEST TRADING has a dedicated team for cryptocurrency trading so that you have
+                            nothing to worry about in your investments. We follow the best practices in
+                            cryptocurrency trading so that our investors are always in the safe zone.
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row bg-black-light p-t80 p-b50">
+            <div class="container">
+                <div class="col-md-7 col-sm-7">
+                    <div class="wt-info  p-b30">
+                        <h1 class="m-a0">Cryptocurrency Trading</h1>
+                    </div>
+                    <div>
+                        <h5>
+                            What happens in cryptocurrency trading is taking a financial position on the price
+                            direction of individual cryptocurrencies against crypto/dollar pairs. Since it takes
+                            so
+                            much time to become an expert in cryptocurrency trading, most beginner-level traders
+                            fail in this investment model. Of course, cryptocurrency trading is not something
+                            easy.
+
+                            SAFEST TRADING has a dedicated team for cryptocurrency trading so that you have
+                            nothing
+                            to worry about in your investments. We follow the best practices in cryptocurrency
+                            trading so that our investors are always in the safe zone.
+                        </h5>
+                    </div>
+                </div>
+                <div class="col-md-5 col-sm-5">
+                    <!-- Card (Horizontal Flip) -->
+                    <div class="flip-container">
+                        <div class="wt-box ">
+                            <div class="wt-thum-bx">
+                                <img src="{{asset('assets/frontend/images/our-work/pic6.jpg') }}" alt="">
+                            </div>
+                            <div class="wt-info bg-black text-center p-a20">
+                                <h3 class="text-uppercase">Flip container</h3>
+                                <p>Mozilla Web Developer, MooTools &amp; jQuery Consultant, MooTools Core
+                                    Developer, Javascript Fanatic, CSS Tinkerer, PHP Hacker, and web lover.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
+    <!-- SECTION CONTENT END -->
+</div>
+<!-- CONTENT END -->
 
 
 
 
 
-     {{-- /////////////////////  project ///////////////////////////// --}}
-
-     <div id="project">
-         @foreach ($projects as $key => $project)
-             @if ($key % 2 == 0)
-                 <section>
-                     <div class="container">
-                         <!-- 1 st proect Section Content Starts -->
-                         <div class="row about-content">
-                             <!-- Image Starts -->
-                             <div class="col-sm-12 col-md-5 col-lg-6 text-center">
-                                 <img id="about-us" class="img-responsive img-about-us"
-                                     src="{{ storage('pages/' . $project->image) }}"
-                                     alt="{{ storage('pages/' . $project->title) }}">
-                             </div>
-                             <!-- Image Ends -->
-                             <!-- Content Starts -->
-                             <div class="col-sm-12 col-md-7 col-lg-6">
-                                 <div class="feature-about">
-                                     <h3 class="title-about">{{ $project->title }}</h3>
-                                     {!! html_entity_decode($project->content) !!}
-                                 </div>
-                             </div>
-                             <!-- Content Ends -->
-                         </div>
-                         <!-- 1st Section Content Ends -->
-                     </div>
-                     <!--/ Content row end -->
-                 </section>
-             @else
-                 <section class="about-css">
-                     <div class="container">
-                         <!-- 2nd proect Section Content Starts -->
-                         <div class="row about-content">
-
-                             <!-- Content Starts -->
-                             <div class="col-sm-12 col-md-7 col-lg-6">
-                                 <div class="feature-about">
-                                     <h3 class="title-about">{{ $project->title }}</h3>
-                                     {!! html_entity_decode($project->content) !!}
-                                 </div>
-                             </div>
-                             <!-- Content Ends -->
-
-                             <!-- Image Starts -->
-                             <div class="col-sm-12 col-md-5 col-lg-6 text-center">
-                                 <img id="about-us" class="img-responsive img-about-us"
-                                     src="{{ storage('pages/' . $project->image) }}"
-                                     alt="{{ storage('pages/' . $project->image) }}">
-                             </div>
-                             <!-- Image Ends -->
-
-                         </div>
-                         <!--  Section Content Ends -->
-                     </div>
-                     <!--/ Content row end -->
-                 </section>
-             @endif
-         @endforeach
-     </div>
-
-     @push('scripts')
-     <script src="{{ asset('assets/frontend/js/net.js') }}"></script>
-     @endpush
  </x-frontend.layouts.app>
