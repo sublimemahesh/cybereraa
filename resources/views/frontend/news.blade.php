@@ -9,7 +9,7 @@
     <div class="page-content">
 
         <!-- INNER PAGE BANNER -->
-        <div class="wt-bnr-inr overlay-wraper" style="background-image:url(images/banner/blog-banner.jpg);">
+        <div class="wt-bnr-inr overlay-wraper" style="background-image:url({{asset('assets/frontend/images/banner/about-banner.jpg') }});">
             <div class="overlay-main bg-black opacity-07"></div>
             <div class="container">
                 <div class="wt-bnr-inr-entry">
