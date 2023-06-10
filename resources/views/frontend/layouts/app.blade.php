@@ -22,7 +22,7 @@
 
     <div class="page-wraper">
 
-        @include('frontend.layouts.header')
+        @yield('header')
 
         {{ $slot }}
 
