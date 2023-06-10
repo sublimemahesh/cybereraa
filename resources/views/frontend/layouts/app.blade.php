@@ -36,7 +36,7 @@
     <!-- Wrapper Ends -->
 
     @yield('scripts')
-    @stack('scripts')
+    
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XNCT9N2XLP"></script>
