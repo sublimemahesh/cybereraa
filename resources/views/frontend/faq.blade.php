@@ -1,224 +1,197 @@
  <x-frontend.layouts.app>
-     @section('title', 'FAQ | Safest Trades | One to One Marketing Website')
+     @section('title', 'FAQ | Owara3m ')
      @section('header-title', 'Welcome ')
 
-     @section('meta')
-         <meta name="description"
-             content="Here you click on a referral link of a member of our company, fill out the registration form and register. Here you directly type the website url and register.">
-         <meta name="keywords"
-             content="safesttrades, safest trades, one to one marketing, one to one marketing website, network marketing website, e money sites, money investment sites, cryptocurrency trading, trade, trade online, trades websites">
-         <meta name="author" content="SAFEST TRADES">
-         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-     @endsection
 
-     @section('styles')
-         <link href="{{ asset('assets/frontend/css/faq.css') }}" rel="stylesheet">
-         <style>
-             html {
-                 scroll-behavior: smooth;
-             }
-         </style>
+     <!-- CONTENT START -->
+     <div class="page-content">
 
-     @endsection
-     <div id="page">
-         <section id="hero" class='net-hero'>
-             <div class="background">
-                 <canvas id="hero-background"></canvas>
-             </div>
-             <div class="foreground">
-                 <div class="main">
-                     <section class="banner-area">
-                         <div class="banner-overlay">
-                             <div class="banner-text text-center">
-                                 <div class="container">
-                                     <!-- Section Title Starts -->
-                                     <div class="row text-center">
-                                         <div class="col-xs-12">
-                                             <!-- Title Starts -->
-                                             <h2 class="title-head">F<span>AQ</span></h2>
-                                             <!-- Title Ends -->
-                                             <hr>
-                                             <!-- Breadcrumb Starts -->
-                                             <ul class="breadcrumb">
-                                                 <li><a href="{{ route('/') }}" id='home'> home</a></li>
-                                                 <li>FAQ</li>
-                                             </ul>
-                                             <!-- Breadcrumb Ends -->
-                                         </div>
-                                     </div>
-                                     <!-- Section Title Ends -->
-                                 </div>
-                             </div>
-                         </div>
-                     </section>
+         <!-- INNER PAGE BANNER -->
+         <div class="wt-bnr-inr overlay-wraper" style="background-image:url(images/banner/faq-banner.jpg);">
+             <div class="overlay-main bg-black opacity-07"></div>
+             <div class="container">
+                 <div class="wt-bnr-inr-entry">
+                     <h1 class="text-white">Frequently Asked Questions</h1>
                  </div>
-         </section>
-     </div>
-
-     <section id='faq'>
-         <div class='container'>
-             <div class="cd-faq js-cd-faq container2   max-width-md margin-top-lg margin-bottom-lg ">
-                 <div class="cd-faq__categories">
-                     <ul id="faq-cat-holder">
-                         <li><a class="cd-faq__category cd-faq__category-selected truncate" href="#7">Registration
-                                 & Login</a>
-                         </li>
-                         <li><a class="cd-faq__category truncate" href="#8">Security</a></li>
-                         <li><a class="cd-faq__category truncate" href="#9">How to buy Packages</a></li>
-                         <li><a class="cd-faq__category truncate" href="#10">KYC activation</a></li>
-                         <li><a class="cd-faq__category truncate" href="#11">Withdrawal</a></li>
-                         <li><a class="cd-faq__category truncate" href="#12">Coin Staking</a></li>
-                         {{-- <li><a class="cd-faq__category truncate" href="#64">Invite Friends</a></li> --}}
-
-                     </ul> <!-- cd-faq__categories -->
-
-                 </div>
-                 <div class="cd-faq__items">
-                     <ul id="7" class="cd-faq__group">
-                         <div class='div-faq-ul'></div>
-                         <li class="cd-faq__title">
-                             <h2>Registration & Login</h2>
-                         </li>
-
-                         @foreach ($faqs as $faq)
-                             @if ($faq->parent_id == 7)
-                                 <li class="cd-faq__item">
-                                     <a class="cd-faq__trigger" href="#0"><span>{{ $faq->title }}</span></a>
-                                     <div class="cd-faq__content">
-                                         <div class="text-component">
-                                             {!! html_entity_decode($faq->content) !!}
-                                         </div>
-                                     </div> <!-- cd-faq__content -->
-                                 </li>
-                             @endif
-                         @endforeach
-                     </ul>
-                     <!-- cd-faq__group -->
-                     <div id="8">
-                         <div class='div-faq-ul'></div>
-                         <ul class="cd-faq__group">
-                             <li class="cd-faq__title">
-                                 <h2>Security</h2>
-                             </li>
-                             @foreach ($faqs as $faq)
-                                 @if ($faq->parent_id == 8)
-                                     <li class="cd-faq__item">
-                                         <a class="cd-faq__trigger" href="#0"><span>{{ $faq->title }}</span></a>
-                                         <div class="cd-faq__content">
-                                             <div class="text-component">
-                                                 {!! html_entity_decode($faq->content) !!}
-                                             </div>
-                                         </div> <!-- cd-faq__content -->
-                                     </li>
-                                 @endif
-                             @endforeach
-                         </ul>
-                     </div>
-                     <!-- cd-faq__group -->
-                     <ul id="9" class="cd-faq__group">
-                         <div class='div-faq-ul'></div>
-                         <li class="cd-faq__title">
-                             <h2>How to buy Packages</h2>
-                         </li>
-                         @foreach ($faqs as $faq)
-                             @if ($faq->parent_id == 9)
-                                 <li class="cd-faq__item">
-                                     <a class="cd-faq__trigger" href="#0"><span>{{ $faq->title }}</span></a>
-                                     <div class="cd-faq__content">
-                                         <div class="text-component">
-                                             {!! html_entity_decode($faq->content) !!}
-                                         </div>
-                                     </div> <!-- cd-faq__content -->
-                                 </li>
-                             @endif
-                         @endforeach
-                     </ul>
-                     <!-- cd-faq__group -->
-                     <ul id="10" class="cd-faq__group">
-                         <div class='div-faq-ul'></div>
-                         <li class="cd-faq__title">
-                             <h2>KYC activation</h2>
-                         </li>
-                         @foreach ($faqs as $faq)
-                             @if ($faq->parent_id == 10)
-                                 <li class="cd-faq__item">
-                                     <a class="cd-faq__trigger" href="#0"><span>{{ $faq->title }}</span></a>
-                                     <div class="cd-faq__content">
-                                         <div class="text-component">
-                                             {!! html_entity_decode($faq->content) !!}
-                                         </div>
-                                     </div> <!-- cd-faq__content -->
-                                 </li>
-                             @endif
-                         @endforeach
-                     </ul>
-                     <!-- cd-faq__group -->
-
-                     <ul id="11" class="cd-faq__group">
-                         <div class='div-faq-ul'></div>
-                         <li class="cd-faq__title">
-                             <h2>Withdrawal</h2>
-                         </li>
-                         @foreach ($faqs as $faq)
-                             @if ($faq->parent_id == 11)
-                                 <li class="cd-faq__item">
-                                     <a class="cd-faq__trigger" href="#0"><span>{{ $faq->title }}</span></a>
-                                     <div class="cd-faq__content">
-                                         <div class="text-component">
-                                             {!! html_entity_decode($faq->content) !!}
-                                         </div>
-                                     </div> <!-- cd-faq__content -->
-                                 </li>
-                             @endif
-                         @endforeach
-                     </ul>
-                     <ul id="12" class="cd-faq__group">
-                        <div class='div-faq-ul'></div>
-                        <li class="cd-faq__title">
-                            <h2>Coin Staking</h2>
-                        </li>
-                        @foreach ($faqs as $faq)
-                            @if ($faq->parent_id == 126)
-                                <li class="cd-faq__item">
-                                    <a class="cd-faq__trigger" href="#0"><span>{{ $faq->title }}</span></a>
-                                    <div class="cd-faq__content">
-                                        <div class="text-component">
-                                            {!! html_entity_decode($faq->content) !!}
-                                        </div>
-                                    </div> <!-- cd-faq__content -->
-                                </li>
-                            @endif
-                        @endforeach
-                    </ul>
-                     <!-- cd-faq__group -->
-                     {{-- <ul id="64" class="cd-faq__group">
-                        <li class="cd-faq__title">
-                            <h2>Invite Friends</h2>
-                        </li>
-                        @foreach ($faqs as $faq)
-                            @if ($faq->parent_id == 64)
-                                <li class="cd-faq__item">
-                                    <a class="cd-faq__trigger" href="#0"><span>{{ $faq->title }}</span></a>
-                                    <div class="cd-faq__content">
-                                        <div class="text-component">
-                                            {!! html_entity_decode($faq->content) !!}
-                                        </div>
-                                    </div> <!-- cd-faq__content -->
-                                </li>
-                            @endif
-                        @endforeach
-                    </ul> --}}
-                 </div>
-                 <!-- cd-faq__items -->
-                 <a href="#0" class="cd-faq__close-panel text-replace">Close</a>
-                 <div class="cd-faq__overlay" aria-hidden="true"></div>
              </div>
          </div>
-     </section>
+         <!-- INNER PAGE BANNER END -->
 
-     @push('scripts')
-         <script src="{{ asset('assets/frontend/js/util.js') }}"></script>
-         <script src="{{ asset('assets/frontend/js/faq.js') }}"></script>
-         <script src="{{ asset('assets/frontend/js/net.js') }}"></script>
-     @endpush
+         <!-- BREADCRUMB ROW -->
+         <div class="bg-black p-tb20">
+             <div class="container">
+                 <ul class="wt-breadcrumb breadcrumb-style-2">
+                     <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home</a></li>
+                     <li>Frequently Asked Questions </li>
+                 </ul>
+             </div>
+         </div>
+         <!-- BREADCRUMB ROW END -->
+
+         <!-- SECTION CONTENT -->
+         <div class="section-full p-t80 p-b50 bg-black-light">
+             <div class="container">
+                 <div class="row">
+                     <div class="col-md-9">
+                         <!-- TITLE  START -->
+                         <div class="p-b30">
+                             <h2 class="text-uppercase">FAQ</h2>
+                             <div class="wt-separator-outer">
+                                 <div class="wt-separator bg-primary"></div>
+                             </div>
+                         </div>
+                         <!-- TITLE START -->
+
+                         <!-- ACCORDION START -->
+                         <div class="wt-accordion acc-bg-gray" id="accordion5">
+
+                             <div class="panel wt-panel">
+                                 <div class="acod-head acc-actives">
+                                     <h3 class="acod-title">
+                                         <a data-toggle="collapse" href="#collapseOne5" data-parent="#accordion5">
+                                             How do i make a perfect Bitcoin plan?
+                                             <span class="indicator"><i class="fa fa-plus"></i></span>
+                                         </a>
+                                     </h3>
+                                 </div>
+                                 <div id="collapseOne5" class="acod-body collapse in">
+                                     <div class="acod-content p-tb15">
+                                         Web design lorem Ipsum is simply dummy text of the printing and typesetting
+                                         industry. Lorem Ipsum has been the industry's standard dummy text ever since
+                                         the when an unknown printer took a galley of type and scrambled it to make a
+                                         type specimen book. It has survived not only five centuries, but also the
+                                         leap into electronic typesetting, remaining essentially unchanged. It was
+                                         popularised sheets containing Lorem Ipsum passagese.web design lorem Ipsum
+                                         is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                                         has been the industry's standard dummy text ever since the when an unknown
+                                         printer took a galley of type and scrambled it to make a type specimen book.
+                                         It has survived not only five centuries, but also the leap into electronic
+                                         typesetting, remaining essentially unchanged. It was popularised sheets
+                                         containing Lorem Ipsum passagese.
+
+                                     </div>
+                                 </div>
+                             </div>
+
+                             <div class="panel wt-panel">
+                                 <div class="acod-head">
+                                     <h3 class="acod-title">
+                                         <a data-toggle="collapse" href="#collapseTwo5" class="collapsed" data-parent="#accordion5">
+                                             How do I find out the status of my Bitcoin permit application?
+                                             <span class="indicator"><i class="fa fa-plus"></i></span>
+                                         </a>
+                                     </h3>
+                                 </div>
+                                 <div id="collapseTwo5" class="acod-body collapse">
+                                     <div class="acod-content p-tb15">Graphic design lorem Ipsum is simply dummy text
+                                         of the printing and typesetting industry. Lorem Ipsum has been the
+                                         industry's standard dummy text ever since the when an unknown printer took a
+                                         galley of type and scrambled it to make a type specimen book. It has
+                                         survived not only five centuries, but also the leap into electronic
+                                         typesetting, remaining essentially unchanged. It was popularised sheets
+                                         containing Lorem Ipsum passagese.</div>
+                                 </div>
+                             </div>
+
+                             <div class="panel wt-panel">
+                                 <div class="acod-head">
+                                     <h3 class="acod-title">
+                                         <a data-toggle="collapse" href="#collapseThree5" class="collapsed" data-parent="#accordion5">
+                                             How can I schedule an inspection?
+                                             <span class="indicator"><i class="fa fa-plus"></i></span>
+                                         </a>
+                                     </h3>
+                                 </div>
+                                 <div id="collapseThree5" class="acod-body collapse">
+                                     <div class="acod-content p-tb15">Developement lorem Ipsum is simply dummy text
+                                         of the printing and typesetting industry. Lorem Ipsum has been the
+                                         industry's standard dummy text ever since the when an unknown printer took a
+                                         galley of type and scrambled it to make a type specimen book. It has
+                                         survived not only five centuries, but also the leap into electronic
+                                         typesetting, remaining essentially unchanged. It was popularised sheets
+                                         containing Lorem Ipsum passagese.</div>
+                                 </div>
+                             </div>
+
+                             <div class="panel wt-panel">
+                                 <div class="acod-head">
+                                     <h3 class="acod-title">
+                                         <a data-toggle="collapse" href="#collapseFour5" data-parent="#accordion5">
+                                             Do I need to have a business license to do a Bitcoin project?
+                                             <span class="indicator"><i class="fa fa-plus"></i></span>
+                                         </a>
+                                     </h3>
+                                 </div>
+                                 <div id="collapseFour5" class="acod-body collapse">
+                                     <div class="acod-content p-tb15">Web design lorem Ipsum is simply dummy text of
+                                         the printing and typesetting industry. Lorem Ipsum has been the industry's
+                                         standard dummy text ever since the when an unknown printer took a galley of
+                                         type and scrambled it to make a type specimen book. It has survived not only
+                                         five centuries, but also the leap into electronic typesetting, remaining
+                                         essentially unchanged. It was popularised sheets containing Lorem Ipsum
+                                         passagese.</div>
+                                 </div>
+                             </div>
+
+                             <div class="panel wt-panel">
+                                 <div class="acod-head">
+                                     <h3 class="acod-title">
+                                         <a data-toggle="collapse" href="#collapseFive5" class="collapsed" data-parent="#accordion5">
+                                             What is the turnaround time for the approval of a Bitcoin permit?
+                                             <span class="indicator"><i class="fa fa-plus"></i></span>
+                                         </a>
+                                     </h3>
+                                 </div>
+                                 <div id="collapseFive5" class="acod-body collapse">
+                                     <div class="acod-content p-tb15">Graphic design lorem Ipsum is simply dummy text
+                                         of the printing and typesetting industry. Lorem Ipsum has been the
+                                         industry's standard dummy text ever since the when an unknown printer took a
+                                         galley of type and scrambled it to make a type specimen book. It has
+                                         survived not only five centuries, but also the leap into electronic
+                                         typesetting, remaining essentially unchanged. It was popularised sheets
+                                         containing Lorem Ipsum passagese.</div>
+                                 </div>
+                             </div>
+
+                         </div>
+                         <!-- ACCORDION END -->
+                     </div>
+                     <div class="col-md-3 col-sm-3 p-tb15">
+                         <!-- BROCHURES -->
+                         <div class="wt-box m-b30">
+                             <div class="text-left m-b20">
+                                 <h4>Brochures</h4>
+                                 <div class="wt-separator-outer">
+                                     <div class="wt-separator bg-primary"></div>
+                                 </div>
+                             </div>
+                             <div class="wt-icon-box-wraper left bdr-1 bdr-gray p-a15 m-b15">
+                                 <a href="#" class="btn-block">
+                                     <span class="text-black m-r10"><i class="fa fa-file-pdf-o"></i></span>
+                                     <strong class="text-uppercase text-black">Download .PDF</strong>
+                                 </a>
+                             </div>
+                             <div class="wt-icon-box-wraper left bdr-1 bdr-gray p-a15 m-b15">
+                                 <a href="#" class="btn-block">
+                                     <span class="text-black m-r10"><i class="fa fa-file-word-o"></i></span>
+                                     <strong class="text-uppercase text-black"> Download .DOC</strong>
+                                 </a>
+                             </div>
+                             <div class="wt-icon-box-wraper left bdr-1 bdr-gray p-a15 m-b15">
+                                 <a href="#" class="btn-block">
+                                     <span class="text-black m-r10"><i class="fa fa-file-powerpoint-o"></i></span>
+                                     <strong class="text-uppercase text-black">Download .PPT</strong>
+                                 </a>
+                             </div>
+                         </div>
+
+                         <!-- CONTACT US -->
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <!-- SECTION CONTENT END -->
+
+     </div>
+     <!-- CONTENT END -->
  </x-frontend.layouts.app>
