@@ -17,9 +17,9 @@
                                         <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Language
                                         <span class="caret"></span></button>
                                         <ul class="dropdown-menu dropdown-menu-right">
-                                          <li><a href="#"><img src="images/united-states.png" alt="">English</a></li>
-                                          <li><a href="#"><img src="images/france.png" alt="">French</a></li>
-                                          <li><a href="#"><img src="images/germany.png" alt="">German</a></li>
+                                          <li><a href="#"><img src="{{ asset('assets/frontend/images/united-states.png') }}" alt="">English</a></li>
+                                          <li><a href="#"><img src="{{ asset('assets/frontend/images/france.png') }}" alt="">French</a></li>
+                                          <li><a href="#"><img src="{{ asset('assets/frontend/images/germany.png') }}" alt="">German</a></li>
                                         </ul>
                                   </div>
                             </div>
@@ -40,7 +40,7 @@
 
                         <div class="logo-header mostion">
                             <a href="index-2.html">
-                                <img src="images/logo-light.png" width="230" height="67" alt="" />
+                                <img src="{{asset('assets/frontend/images/logo-light.png') }}" width="230" height="67" alt="" />
                             </a>
                         </div>
 
@@ -74,7 +74,7 @@
                                     <div class="nav-cart-items p-a15">
                                         <div class="nav-cart-item clearfix">
                                             <div class="nav-cart-item-image">
-                                                <a href="#"><img src="images/cart/pic-3.jpg" alt="p-1"></a>
+                                                <a href="#"><img src="{{asset('assets/frontend/images/cart/pic-3.jpg') }}" alt="p-1"></a>
                                             </div>
                                             <div class="nav-cart-item-desc">
                                                 <a href="#">Product Three</a>
@@ -84,7 +84,7 @@
                                         </div>
                                         <div class="nav-cart-item clearfix">
                                             <div class="nav-cart-item-image">
-                                                <a href="#"><img src="images/cart/pic-4.jpg" alt="p-2"></a>
+                                                <a href="#"><img src="{{asset('assets/frontend/images/cart/pic-4.jpg') }}" alt="p-2"></a>
                                             </div>
                                             <div class="nav-cart-item-desc">
                                                 <a href="#">Product Four</a>
@@ -122,34 +122,34 @@
                         <div class="header-nav navbar-collapse collapse ">
                         <ul class=" nav navbar-nav">
                             <li class="active">
-                                <a href="index.php">HOME</i></a>
+                                <a href="{{ route('/') }}">HOME</i></a>
                             </li>
                             <li>
-                                <a href="about-us.php">ABOUT US</i></a>
+                                <a href="{{ route('about') }}">ABOUT US</i></a>
                             </li>
 
                             <li>
                                     <a href="javascript:;">PROJECTS<i class="fa fa-chevron-down"></i></a>
                                         <ul class="sub-menu">
-                                            <li><a href="existing-projects.php">EXISTING PROJECTS</a></li>
-                                            <li><a href="upcoming-projects.php">UPCOMING PROJECTS</a></li>
+                                            <li><a href="{{ route('project') }}">EXISTING PROJECTS</a></li>
+                                            <li><a href="{{ route('Upcoming-project') }}">UPCOMING PROJECTS</a></li>
                                         </ul>
                                 </li>
 
                             <li>
-                                <a href="packages.php">PACKAGES</i></a>
+                                <a href="{{ route('pricing') }}">PACKAGES</i></a>
                             </li>
 
                             <li>
-                                <a href="faq.php">FAQ</i></a>
+                                <a href="{{ route('faq') }}">FAQ</i></a>
                             </li>
 
                             <li>
-                                <a href="news.php">NEWS</i></a>
+                                <a href="{{ route('news') }}">NEWS</i></a>
                             </li>
 
                             <li>
-                                <a href="contact.php">CONTACT US</i></a>
+                                <a href="{{ route('contact') }}">CONTACT US</i></a>
                             </li>
 
 
@@ -162,4 +162,3 @@
         </div>
 
     </header>
-    
