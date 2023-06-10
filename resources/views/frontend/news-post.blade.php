@@ -37,7 +37,7 @@
                 <!-- BLOG START -->
                 <div class="blog-post date-style-1 blog-detail">
                     <div class="wt-post-media wt-img-effect">
-                        <a href="javascript:void(0);"><img src="images/blog/default/thum1.jpg" alt=""></a>
+                        <a href="javascript:void(0);"><img src="{{ asset('assets/frontend/images/blog/default/thum1.jpg') }}" alt=""></a>
                     </div>
                     <div class="wt-post-title ">
                         <h3 class="post-title"><a href="javascript:void(0);">Maiores, sunt eveniet doloremque porro hic exercitationem distinctio sequi adipisci. Nulla, fuga perferendis </a></h3>
