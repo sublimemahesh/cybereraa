@@ -1,98 +1,246 @@
 <x-frontend.layouts.app>
-    @section('title', 'News | Safest Trades | One to One Marketing Website')
+    @section('title', 'News | Owara3m ')
     @section('header-title', 'Welcome ')
 
-    @section('meta')
-        <meta name="description"
-            content="What if your dream investment can be made in the safest spot on the earth? just invest and wait and enjoy up to a guaranteed return of 400% in 15 months.">
-        <meta name="keywords"
-            content="safesttrades, safest trades, one to one marketing, one to one marketing website, network marketing website, e money sites, money investment sites, cryptocurrency trading, trade, trade online, trades websites">
-        <meta name="author" content="SAFEST TRADES">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    @endsection
+    <!-- CONTENT START -->
+    <div class="page-content">
 
-    @section('styles')
-    @endsection
-
-
-    <div id="page">
-        <section id="hero" class='net-hero'>
-            <div class="background">
-                <canvas id="hero-background"></canvas>
-            </div>
-            <div class="foreground">
-                <div class="main">
-                    <section class="banner-area">
-                        <div class="banner-overlay">
-                            <div class="banner-text text-center">
-                                <div class="container">
-                                    <!-- Section Title Starts -->
-                                    <div class="row text-center">
-                                        <div class="col-xs-12">
-                                            <!-- Title Starts -->
-                                            <h2 class="title-head">Get in <span>touch</span></h2>
-                                            <!-- Title Ends -->
-                                            <hr>
-                                            <!-- Breadcrumb Starts -->
-                                            <ul class="breadcrumb">
-                                                <li><a href="{{ route('/') }}" id='home'> home</a></li>
-                                                <li>News</li>
-                                            </ul>
-                                            <!-- Breadcrumb Ends -->
-                                        </div>
-                                    </div>
-                                    <!-- Section Title Ends -->
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+        <!-- INNER PAGE BANNER -->
+        <div class="wt-bnr-inr overlay-wraper" style="background-image:url(images/banner/blog-banner.jpg);">
+            <div class="overlay-main bg-black opacity-07"></div>
+            <div class="container">
+                <div class="wt-bnr-inr-entry">
+                    <h1 class="text-white">News</h1>
                 </div>
-        </section>
-    </div>
+            </div>
+        </div>
+        <!-- INNER PAGE BANNER END -->
+
+        <!-- BREADCRUMB ROW -->
+        <div class="bg-black p-tb20">
+            <div class="container">
+                <ul class="wt-breadcrumb breadcrumb-style-2">
+                    <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home</a></li>
+                    <li>News</li>
+                </ul>
+            </div>
+        </div>
+        <!-- BREADCRUMB ROW END -->
+
+        <!-- SECTION CONTENT START -->
+        <div class="section-full p-t80 p-b50 bg-black-light">
+            <div class="container">
+
+                <!-- BLOG POST START -->
+
+                <!-- COLUMNS 1 -->
+                <div class="blog-post blog-md date-style-1 clearfix">
+
+                    <div class="wt-post-media wt-img-effect zoom-slow">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/de9Mhw2dU60"></iframe>
+
+                    </div>
+                    <div class="wt-post-info">
+
+                        <div class="wt-post-title ">
+                            <h3 class="post-title"><a href="news-single.php">Blogpost With Youtube</a></h3>
+                        </div>
+                        <div class="wt-post-meta ">
+                            <ul>
+                                <li class="post-date"> <i class="fa fa-calendar"></i><strong>20 Dec</strong> <span> 2017</span> </li>
+                                <li class="post-author"><i class="fa fa-user"></i><a href="news-single.php">By <span>John</span></a> </li>
+                                <li class="post-comment"><i class="fa fa-comments"></i> <a href="news-single.php">0</a> </li>
+                            </ul>
+                        </div>
+                        <div class="wt-post-text">
+                            <p>Asperiores, tenetur, blanditiis, quaerat odit ex exercitationem pariatur quibusdam veritatis quisquam laboriosam esse beatae hic perferendis velit deserunt soluta iste repellendus officia in neque veniam debitis</p>
+                        </div>
+                        <div class="clearfix">
+                            <div class="wt-post-readmore pull-left">
+                                <a href="news-single.php" title="READ MORE" rel="bookmark" class="site-button-link">Read More</a>
+                            </div>
+                            <div class="widget_social_inks pull-right">
+                                <ul class="social-icons social-radius social-dark m-b0">
+                                    <li><a href="javascript:void(0);" class="fa fa-facebook"></a></li>
+                                    <li><a href="javascript:void(0);" class="fa fa-twitter"></a></li>
+                                    <li><a href="javascript:void(0);" class="fa fa-rss"></a></li>
+                                    <li><a href="javascript:void(0);" class="fa fa-youtube"></a></li>
+                                    <li><a href="javascript:void(0);" class="fa fa-instagram"></a></li>
+                                </ul>
+                            </div>
+                        </div>
 
 
-    <!-- News Section Starts -->
-    <section class="blog">
-        <div class="container">
-            <!-- Section Content Starts -->
-            <div class="row latest-posts-content">
+                    </div>
 
-                @foreach ($all_news as $news)
-                    <div class="col-sm-4 col-md-4 col-xs-12">
-                        <div class="latest-post">
-                            <!-- Featured Image Starts -->
-                            <a href="{{ route('news.show', $news) }}">
-                                <img class="img-responsive" src="{{ storage('blogs/' . $news->image) }}"
-                                    alt="{{ storage('blogs/' . $news->image) }}"></a>
-                            <!-- Featured Image Ends -->
-                            <!-- Article Content Starts -->
-                            <div class="post-body">
-                                <h4 class="post-title">
-                                    <a href="{{ route('news.show', $news) }}">{{ $news->title }}</a>
-                                </h4>
-                                <div class="post-text">
-                                    {{ $news->short_description }}
+                </div>
+                <!-- COLUMNS 2 -->
+                <div class="blog-post blog-md date-style-1 clearfix">
+
+                    <div class="wt-post-media wt-img-effect zoom-slow">
+                        <iframe src="https://player.vimeo.com/video/23534361" width="1000" height="563"></iframe>
+                    </div>
+                    <div class="wt-post-info">
+
+                        <div class="wt-post-title ">
+                            <h3 class="post-title"><a href="javascript:void(0);">Blogpost With Vimeo</a></h3>
+                        </div>
+                        <div class="wt-post-meta ">
+                            <ul>
+                                <li class="post-date"> <i class="fa fa-calendar"></i><strong>20 Dec</strong> <span> 2017</span> </li>
+                                <li class="post-author"><i class="fa fa-user"></i><a href="javascript:void(0);">By <span>John</span></a> </li>
+                                <li class="post-comment"><i class="fa fa-comments"></i> <a href="javascript:void(0);">0</a> </li>
+                            </ul>
+                        </div>
+                        <div class="wt-post-text">
+                            <p>Asperiores, tenetur, blanditiis, quaerat odit ex exercitationem pariatur quibusdam veritatis quisquam laboriosam esse beatae hic perferendis velit deserunt soluta iste repellendus officia in neque veniam debitis</p>
+                        </div>
+                        <div class="clearfix">
+                            <div class="wt-post-readmore pull-left">
+                                <a href="javascript:void(0);" title="READ MORE" rel="bookmark" class="site-button-link">Read More</a>
+                            </div>
+                            <div class="widget_social_inks pull-right">
+                                <ul class="social-icons social-radius social-dark m-b0">
+                                    <li><a href="javascript:void(0);" class="fa fa-facebook"></a></li>
+                                    <li><a href="javascript:void(0);" class="fa fa-twitter"></a></li>
+                                    <li><a href="javascript:void(0);" class="fa fa-rss"></a></li>
+                                    <li><a href="javascript:void(0);" class="fa fa-youtube"></a></li>
+                                    <li><a href="javascript:void(0);" class="fa fa-instagram"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <!-- COLUMNS 3 -->
+                <div class="blog-post blog-md date-style-1 clearfix">
+
+                    <div class="wt-post-media">
+                        <!--Fade slider-->
+                        <div class="owl-carousel owl-fade-slider-one owl-btn-vertical-center owl-dots-bottom-right">
+
+                            <div class="item">
+                                <div class="aon-thum-bx">
+                                    <img src="{{ asset('assets/frontend/images/blog/grid/pic1.jpg') }}" alt="">
                                 </div>
                             </div>
-                            <div class="post-date">
-                                <span>{{ date('d', strtotime($news->created_at)) }}</span>
-                                <span>{{ date('M', strtotime($news->created_at)) }}</span>
+
+                            <div class="item">
+                                <div class="aon-thum-bx">
+                                    <img src="{{ asset('assets/frontend/images/blog/grid/pic2.jpg') }}" alt="">
+                                </div>
                             </div>
-                            <a href="{{ route('news.show', $news) }}" class="btn btn-primary">read more</a>
-                            <!-- Article Content Ends -->
+
+                            <div class="item">
+                                <div class="aon-thum-bx">
+                                    <img src="{{ asset('assets/frontend/images/blog/grid/pic3.jpg') }}" alt="">
+                                </div>
+                            </div>
+
                         </div>
+                        <!--fade slider END-->
                     </div>
-                @endforeach
+
+                    <div class="wt-post-info">
+
+                        <div class="wt-post-title ">
+                            <h3 class="post-title"><a href="javascript:void(0);">Blogpost With Image slider</a></h3>
+                        </div>
+                        <div class="wt-post-meta ">
+                            <ul>
+                                <li class="post-date"> <i class="fa fa-calendar"></i><strong>20 Dec</strong> <span> 2017</span> </li>
+                                <li class="post-author"><i class="fa fa-user"></i><a href="javascript:void(0);">By <span>John</span></a> </li>
+                                <li class="post-comment"><i class="fa fa-comments"></i> <a href="javascript:void(0);">0</a> </li>
+                            </ul>
+                        </div>
+
+                        <div class="wt-post-text">
+                            <p>Asperiores, tenetur, blanditiis, quaerat odit ex exercitationem pariatur quibusdam veritatis quisquam laboriosam esse beatae hic perferendis velit deserunt soluta iste repellendus officia in neque veniam debitis</p>
+                        </div>
+
+                        <div class="clearfix">
+                            <div class="wt-post-readmore pull-left">
+                                <a href="javascript:void(0);" title="READ MORE" rel="bookmark" class="site-button-link">Read More</a>
+                            </div>
+                            <div class="widget_social_inks pull-right">
+                                <ul class="social-icons social-radius social-dark m-b0">
+                                    <li><a href="javascript:void(0);" class="fa fa-facebook"></a></li>
+                                    <li><a href="javascript:void(0);" class="fa fa-twitter"></a></li>
+                                    <li><a href="javascript:void(0);" class="fa fa-rss"></a></li>
+                                    <li><a href="javascript:void(0);" class="fa fa-youtube"></a></li>
+                                    <li><a href="javascript:void(0);" class="fa fa-instagram"></a></li>
+                                </ul>
+                            </div>
+                        </div>
 
 
-                <!-- Article Ends -->
+
+                    </div>
+
+                </div>
+                <!-- COLUMNS 4 -->
+                <div class="blog-post blog-md date-style-1 clearfix">
+
+                    <div class="wt-post-media wt-img-effect zoom-slow">
+                        <a href="javascript:void(0);"><img src="images/blog/grid/pic4.jpg" alt=""></a>
+                    </div>
+                    <div class="wt-post-info">
+
+                        <div class="wt-post-title ">
+                            <h3 class="post-title"><a href="javascript:void(0);">Blogpost With Image</a></h3>
+                        </div>
+                        <div class="wt-post-meta ">
+                            <ul>
+                                <li class="post-date"> <i class="fa fa-calendar"></i><strong>20 Dec</strong> <span> 2017</span> </li>
+                                <li class="post-author"><i class="fa fa-user"></i><a href="javascript:void(0);">By <span>John</span></a> </li>
+                                <li class="post-comment"><i class="fa fa-comments"></i> <a href="javascript:void(0);">0</a> </li>
+                            </ul>
+                        </div>
+                        <div class="wt-post-text">
+                            <p>Asperiores, tenetur, blanditiis, quaerat odit ex exercitationem pariatur quibusdam veritatis quisquam laboriosam esse beatae hic perferendis velit deserunt soluta iste repellendus officia in neque veniam debitis</p>
+                        </div>
+                        <div class="clearfix">
+                            <div class="wt-post-readmore pull-left">
+                                <a href="javascript:void(0);" title="READ MORE" rel="bookmark" class="site-button-link">Read More</a>
+                            </div>
+                            <div class="widget_social_inks pull-right">
+                                <ul class="social-icons social-radius social-dark m-b0">
+                                    <li><a href="javascript:void(0);" class="fa fa-facebook"></a></li>
+                                    <li><a href="javascript:void(0);" class="fa fa-twitter"></a></li>
+                                    <li><a href="javascript:void(0);" class="fa fa-rss"></a></li>
+                                    <li><a href="javascript:void(0);" class="fa fa-youtube"></a></li>
+                                    <li><a href="javascript:void(0);" class="fa fa-instagram"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <!-- BLOG POST END -->
+
+                <!-- PAGINATION START -->
+                <div class="pagination-bx clearfix ">
+                    <ul class="custom-pagination pagination">
+                        <li><a href="#">&laquo;</a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">&raquo;</a></li>
+                    </ul>
+                </div>
+                <!-- PAGINATION END -->
+
             </div>
-            <!-- Section Content Ends -->
         </div>
-    </section>
-    <!-- News Section Ends -->
+        <!-- SECTION CONTENT END -->
 
-    @push('scripts')
-        <script src="{{ asset('assets/frontend/js/net.js') }}"></script>
-    @endpush
+    </div>
+    <!-- CONTENT END -->
+
 </x-frontend.layouts.app>
