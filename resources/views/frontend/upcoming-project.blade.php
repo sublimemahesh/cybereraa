@@ -31,30 +31,24 @@
     </div>
     <!-- BREADCRUMB ROW END -->
 
-
-
-    <!-- SECTION CONTENT -->
-    <div class="section-full">
+      <!-- SECTION CONTENT -->
+      <div class="section-full">
 
         <div class="row bg-black-light p-t80 p-b50">
             <div class="container">
                 <div class="col-md-7 col-sm-7">
-                    <div class="wt-info  p-b30 mob-mtb-20">
-                        <h1 class="m-a0">Cryptocurrency Trading</h1>
+                    <div class="wt-info  p-b30 mob-p-b20">
+                        <h1 class="m-a0">Lorem Ipsum text</h1>
                     </div>
-                    <div>
+                    <div class="mob-p-b30">
                         <h5>
-                            What happens in cryptocurrency trading is taking a financial position on the price
-                            direction of individual cryptocurrencies against crypto/dollar pairs. Since it takes
-                            so
-                            much time to become an expert in cryptocurrency trading, most beginner-level traders
-                            fail in this investment model. Of course, cryptocurrency trading is not something
-                            easy.
-
-                            SAFEST TRADING has a dedicated team for cryptocurrency trading so that you have
-                            nothing
-                            to worry about in your investments. We follow the best practices in cryptocurrency
-                            trading so that our investors are always in the safe zone.
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                            has been the industry's standard dummy text ever since the 1500s, when an unknown
+                            printer took a galley of type and scrambled it to make a type specimen book. It has
+                            survived not only five centuries, but also the leap into electronic typesetting,
+                            remaining essentially unchanged. It was popularised in the 1960s with the release of
+                            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
+                            publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                         </h5>
                     </div>
                 </div>
@@ -83,7 +77,7 @@
                     <div class="flip-container mob-mb-10">
                         <div class="wt-box ">
                             <div class="wt-thum-bx">
-                                <img src="{{asset('assets/frontend/images/our-work/pic6.jpg') }}" alt="">
+                                <img src="{{ asset('assets/frontend/images/our-work/pic6.jpg') }}" alt="">
                             </div>
                             <div class="wt-info bg-black-light text-center p-a20">
                                 <h3 class="text-uppercase">Flip container</h3>
@@ -96,18 +90,17 @@
 
                 <div class="col-md-7 col-sm-7">
                     <div class="wt-info  p-b30 mob-ptb-20">
-                        <h1 class="m-a0">Cryptocurrency Trading</h1>
+                        <h1 class="m-a0">Lorem Ipsum text</h1>
                     </div>
                     <div>
                         <h5>
-                            What happens in cryptocurrency trading is taking a financial position on the price
-                            direction of individual cryptocurrencies against crypto/dollar pairs. Since it takes
-                            so much time to become an expert in cryptocurrency trading, most beginner-level
-                            traders fail in this investment model. Of course, cryptocurrency trading is not
-                            something easy.
-                            SAFEST TRADING has a dedicated team for cryptocurrency trading so that you have
-                            nothing to worry about in your investments. We follow the best practices in
-                            cryptocurrency trading so that our investors are always in the safe zone.
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                            has been the industry's standard dummy text ever since the 1500s, when an unknown
+                            printer took a galley of type and scrambled it to make a type specimen book. It has
+                            survived not only five centuries, but also the leap into electronic typesetting,
+                            remaining essentially unchanged. It was popularised in the 1960s with the release of
+                            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
+                            publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                         </h5>
                     </div>
                 </div>
@@ -117,22 +110,18 @@
         <div class="row bg-black-light p-t80 p-b50">
             <div class="container">
                 <div class="col-md-7 col-sm-7">
-                    <div class="wt-info  p-b30 mob-ptb-20">
-                        <h1 class="m-a0">Cryptocurrency Trading</h1>
+                    <div class="wt-info  p-b30 mob-p-b20">
+                        <h1 class="m-a0">Lorem Ipsum text</h1>
                     </div>
-                    <div>
+                    <div class="mob-p-b30">
                         <h5>
-                            What happens in cryptocurrency trading is taking a financial position on the price
-                            direction of individual cryptocurrencies against crypto/dollar pairs. Since it takes
-                            so
-                            much time to become an expert in cryptocurrency trading, most beginner-level traders
-                            fail in this investment model. Of course, cryptocurrency trading is not something
-                            easy.
-
-                            SAFEST TRADING has a dedicated team for cryptocurrency trading so that you have
-                            nothing
-                            to worry about in your investments. We follow the best practices in cryptocurrency
-                            trading so that our investors are always in the safe zone.
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                            has been the industry's standard dummy text ever since the 1500s, when an unknown
+                            printer took a galley of type and scrambled it to make a type specimen book. It has
+                            survived not only five centuries, but also the leap into electronic typesetting,
+                            remaining essentially unchanged. It was popularised in the 1960s with the release of
+                            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
+                            publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                         </h5>
                     </div>
                 </div>
@@ -141,7 +130,7 @@
                     <div class="flip-container mob-mb-10">
                         <div class="wt-box ">
                             <div class="wt-thum-bx">
-                                <img src="{{asset('assets/frontend/images/our-work/pic6.jpg') }}" alt="">
+                                <img src="{{ asset('assets/frontend/images/our-work/pic6.jpg') }}" alt="">
                             </div>
                             <div class="wt-info bg-black text-center p-a20">
                                 <h3 class="text-uppercase">Flip container</h3>
@@ -157,6 +146,10 @@
 
     </div>
     <!-- SECTION CONTENT END -->
+
+
+
+
 </div>
 <!-- CONTENT END -->
 
