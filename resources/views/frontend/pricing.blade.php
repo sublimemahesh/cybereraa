@@ -161,7 +161,7 @@
                                         <div class="pricingtable-inner pricing-table-style-2">
 
                                             <div class="pricingtable-title">
-                                                <h3>Standard 01</h3>
+                                                <h3>Standard Plan 01</h3>
                                             </div>
 
                                             <div class="pricingtable-price">
@@ -188,7 +188,7 @@
                                         <div class="pricingtable-inner pricing-table-style-2">
 
                                             <div class="pricingtable-title">
-                                                <h3>Standard 02</h3>
+                                                <h3>Standard Plan 02</h3>
                                             </div>
 
                                             <div class="pricingtable-price">
