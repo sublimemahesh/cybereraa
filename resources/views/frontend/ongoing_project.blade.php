@@ -60,7 +60,7 @@
                 </div>
                 <div class="col-md-5 col-sm-5">
                     <!-- Card (Horizontal Flip) -->
-                    <div class="flip-container">
+                    <div class="flip-container mob-mb-10">
                         <div class="wt-box ">
                             <div class="wt-thum-bx">
                                 <img src="{{ asset('assets/frontend/images/our-work/pic6.jpg') }}" alt="">
@@ -80,7 +80,7 @@
             <div class="container">
                 <div class="col-md-5 col-sm-5">
                     <!-- Card (Horizontal Flip) -->
-                    <div class="flip-container">
+                    <div class="flip-container mob-mb-10">
                         <div class="wt-box ">
                             <div class="wt-thum-bx">
                                 <img src="{{ asset('assets/frontend/images/our-work/pic6.jpg') }}" alt="">
@@ -138,7 +138,7 @@
                 </div>
                 <div class="col-md-5 col-sm-5">
                     <!-- Card (Horizontal Flip) -->
-                    <div class="flip-container">
+                    <div class="flip-container mob-mb-10">
                         <div class="wt-box ">
                             <div class="wt-thum-bx">
                                 <img src="{{ asset('assets/frontend/images/our-work/pic6.jpg') }}" alt="">
