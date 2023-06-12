@@ -5026,10 +5026,12 @@ a:focus.video-play-btn{
 
 .social-icons.social-square.social-darkest a,
 .social-icons.social-radius.social-darkest a{
-	border:1px solid #4a4c4c;
+	/* border:1px solid #4a4c4c; */
+	border:1px solid #FFF;
 }
 .social-icons.social-darkest a {
-	color: #454747;
+	/* /color: #454747; */
+	color: #FFF;
 }
 
 .social-icons.social-square.social-darkest a:hover,
