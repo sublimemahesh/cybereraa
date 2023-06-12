@@ -39,7 +39,7 @@
     </div>
 
     <div class="sticky-header main-bar-wraper">
-        <div class="main-bar">
+        <div class="main-bar main-bar-marging">
             <div class="container">
 
                 <div class="logo-header mostion">
