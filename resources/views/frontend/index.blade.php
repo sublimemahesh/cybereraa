@@ -107,7 +107,7 @@
                                         </strong>
                                     </p>
                                     <p>when an unknown printer took a galley of type and scrambled it to make a tyLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.</p>
-                                    <a href="#" class="site-button text-uppercase m-r15">Read More</a>
+                                    <a href="#" class="site-button text-uppercase m-r15 site-button2">Read More</a>
                                     <a href="#" class="site-button-secondry text-uppercase">Contact us</a>
                                 </div>
                             </div>
