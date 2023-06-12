@@ -156,7 +156,7 @@
                             </div>
                             <div class="wt-icon-box-wraper right p-a20">
                                 <div class="icon-md text-primary">
-                                    <span class="icon-cell  text-primary"><img src="{{asset('assets/frontend/images/icon/pick-28.png')}}" alt=""></span>
+                                    <span class="icon-cell  text-primary"><img src="{{asset('assets/frontend/images/icon/payment-method.png')}}" alt=""></span>
                                 </div>
                                 <div class="icon-content">
                                     <h4 class="wt-tilte text-uppercase">Recurring Buying</h4>
@@ -221,7 +221,7 @@
                         <div class="col-md-4 col-sm-12 m-b30  p-t30">
                             <div class="wt-icon-box-wraper left p-a20">
                                 <div class="icon-md text-primary">
-                                    <span class="icon-cell  text-primary"><img src="{{asset('assets/frontend/images/icon/pick-19.png')}}" alt=""></span>
+                                    <span class="icon-cell  text-primary"><img src="{{asset('assets/frontend/images/icon/budget.png')}}" alt=""></span>
                                 </div>
                                 <div class="icon-content">
                                     <h4 class="wt-tilte text-uppercase">Investment Planning</h4>
@@ -342,7 +342,7 @@
                         <div class="col-md-4 col-sm-4 step-number-block">
                             <div class="wt-icon-box-wraper  p-a30 center bg-secondry m-a5 ">
                                 <div class="icon-lg m-b20">
-                                    <a href="#" class="icon-cell"><img src="{{asset('assets/frontend/images/icon/pick-28.png')}}" alt=""></a>
+                                    <a href="#" class="icon-cell"><img src="{{asset('assets/frontend/images/icon/payment-method.png')}}" alt=""></a>
                                 </div>
                                 <div class="icon-content text-white">
                                     <div class="step-number active">2</div>
