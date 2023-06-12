@@ -136,7 +136,7 @@
                     <div class="row">
 
                         <div class="col-md-4 col-sm-12 m-b30  p-t30">
-                            <div class="wt-icon-box-wraper bg-black right p-a20" data-target="#tab1" data-toggle="tab">
+                            <div class="wt-icon-box-wraper  right p-a20" data-target="#tab1" data-toggle="tab">
                                 <div class="icon-md text-primary">
                                     <span class="icon-cell  text-primary"><img src="{{asset('assets/frontend/images/icon/pick-17.png')}}" alt=""></span>
                                 </div>
@@ -145,16 +145,16 @@
                                     <p>Vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra. </p>
                                 </div>
                             </div>
-                            <div class="wt-icon-box-wraper right p-a20" >
+                            <div class="wt-icon-box-wraper right p-a20 " >
                                 <div class="icon-md text-primary">
                                     <span class="icon-cell  text-primary"><img src="{{asset('assets/frontend/images/icon/pick-29.png')}}" alt=""></span>
                                 </div>
                                 <div class="icon-content">
-                                    <h4 class="wt-tilte text-uppercase">Instant Trading</h4>
+                                    <h4 class="wt-tilte text-uppercase ">Instant Trading</h4>
                                     <p>Vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra. </p>
                                 </div>
                             </div>
-                            <div class="wt-icon-box-wraper right p-a20">
+                            <div class="wt-icon-box-wraper right p-a20 ">
                                 <div class="icon-md text-primary">
                                     <span class="icon-cell  text-primary"><img src="{{asset('assets/frontend/images/icon/payment-method.png')}}" alt=""></span>
                                 </div>
@@ -218,8 +218,8 @@
                             </div>
                         </div>
 
-                        <div class="col-md-4 col-sm-12 m-b30  p-t30">
-                            <div class="wt-icon-box-wraper left p-a20">
+                        <div class="col-md-4 col-sm-12 m-b30  p-t30 mob-m">
+                            <div class="wt-icon-box-wraper left p-a20 ">
                                 <div class="icon-md text-primary">
                                     <span class="icon-cell  text-primary"><img src="{{asset('assets/frontend/images/icon/budget.png')}}" alt=""></span>
                                 </div>
@@ -228,7 +228,7 @@
                                     <p>Vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra. </p>
                                 </div>
                             </div>
-                            <div class="wt-icon-box-wraper left p-a20" >
+                            <div class="wt-icon-box-wraper left p-a20 " >
                                 <div class="icon-md text-primary">
                                     <span class="icon-cell  text-primary"><img src="{{asset('assets/frontend/images/icon/pick-12.png')}}" alt=""></span>
                                 </div>
@@ -237,7 +237,7 @@
                                     <p>Vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra. </p>
                                 </div>
                             </div>
-                            <div class="wt-icon-box-wraper left p-a20">
+                            <div class="wt-icon-box-wraper left p-a20 ">
                                 <div class="icon-md text-primary">
                                     <span class="icon-cell  text-primary"><img src="{{asset('assets/frontend/images/icon/pick-38.png')}}" alt=""></span>
                                 </div>

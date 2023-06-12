@@ -42,3 +42,12 @@ YOU CAN WRIGHT CUSTOME CSS
 .site-button2{
     background-color: rgb(255, 152, 0);
 }
+
+
+
+/* Styles for screens with a maximum width of 900px */
+@media (max-width: 900px) {
+    .mob-m{
+        margin-top:-55px !important;
+    }
+  }
