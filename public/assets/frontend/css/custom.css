@@ -54,4 +54,9 @@ YOU CAN WRIGHT CUSTOME CSS
     .mob-mb-10{
         margin-bottom: 10px;
     }
+
+    .mob-ptb-20{
+        padding-bottom: 20px;
+        padding-top: 20px;
+    }
   }
