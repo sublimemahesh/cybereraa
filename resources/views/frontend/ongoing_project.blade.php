@@ -39,7 +39,7 @@
         <div class="row bg-black-light p-t80 p-b50">
             <div class="container">
                 <div class="col-md-7 col-sm-7">
-                    <div class="wt-info  p-b30">
+                    <div class="wt-info  p-b30 mob-ptb-20">
                         <h1 class="m-a0">Cryptocurrency Trading</h1>
                     </div>
                     <div>
@@ -95,7 +95,7 @@
                 </div>
 
                 <div class="col-md-7 col-sm-7">
-                    <div class="wt-info  p-b30">
+                    <div class="wt-info  p-b30 mob-ptb-20">
                         <h1 class="m-a0">Cryptocurrency Trading</h1>
                     </div>
                     <div>
@@ -117,7 +117,7 @@
         <div class="row bg-black-light p-t80 p-b50">
             <div class="container">
                 <div class="col-md-7 col-sm-7">
-                    <div class="wt-info  p-b30">
+                    <div class="wt-info  p-b30 mob-ptb-20">
                         <h1 class="m-a0">Cryptocurrency Trading</h1>
                     </div>
                     <div>
