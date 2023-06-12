@@ -120,7 +120,7 @@
 
         <!-- WHY CHOOSE US SECTION START  -->
 
-        <div class="section-full bg-black p-tb90  ">
+        <div class="section-full bg-black p-t90 p-b30  ">
             <div class="container">
                 <!-- TITLE START-->
                 <div class="section-head text-center">
@@ -145,7 +145,7 @@
                                     <p>Vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra. </p>
                                 </div>
                             </div>
-                            <div class="wt-icon-box-wraper right p-a20" data-target="#tab2" data-toggle="tab">
+                            <div class="wt-icon-box-wraper right p-a20" >
                                 <div class="icon-md text-primary">
                                     <span class="icon-cell  text-primary"><img src="{{asset('assets/frontend/images/icon/pick-29.png')}}" alt=""></span>
                                 </div>
@@ -154,7 +154,7 @@
                                     <p>Vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra. </p>
                                 </div>
                             </div>
-                            <div class="wt-icon-box-wraper right p-a20" data-target="#tab3" data-toggle="tab">
+                            <div class="wt-icon-box-wraper right p-a20">
                                 <div class="icon-md text-primary">
                                     <span class="icon-cell  text-primary"><img src="{{asset('assets/frontend/images/icon/pick-28.png')}}" alt=""></span>
                                 </div>
@@ -169,8 +169,8 @@
                             <div class="tab-content ">
                                 <div id="tab1" class="tab-pane active">
                                     <div class="wt-box">
-                                        <div class="wt-media text-primary m-b20 text-center">
-                                            <img src="{{asset('assets/frontend/images/ipad/safe.png')}}" alt="">
+                                        <div class="wt-media text-primary m-t60 text-center">
+                                            <img class="up-down-animation" src="{{asset('assets/frontend/images/ipad/banner.png')}}" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -178,7 +178,7 @@
                                 <div id="tab2" class="tab-pane">
                                     <div class="wt-box">
                                         <div class="wt-media text-primary m-b20 text-center">
-                                            <img src="{{asset('assets/frontend/images/ipad/Trading.png')}}" alt="">
+                                            <img  class="up-down-animation" src="{{asset('assets/frontend/images/ipad/banner.png')}}" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -194,7 +194,7 @@
                                 <div id="tab4" class="tab-pane">
                                     <div class="wt-box">
                                         <div class="wt-media text-primary m-b20 text-center">
-                                            <img src="{{asset('assets/frontend/images/ipad/investment.png')}}" alt="">
+                                            <img class="up-down-animation" src="{{asset('assets/frontend/images/ipad/banner.png')}}">
                                         </div>
                                     </div>
                                 </div>
@@ -219,7 +219,7 @@
                         </div>
 
                         <div class="col-md-4 col-sm-12 m-b30  p-t30">
-                            <div class="wt-icon-box-wraper left p-a20" data-target="#tab4" data-toggle="tab">
+                            <div class="wt-icon-box-wraper left p-a20">
                                 <div class="icon-md text-primary">
                                     <span class="icon-cell  text-primary"><img src="{{asset('assets/frontend/images/icon/pick-19.png')}}" alt=""></span>
                                 </div>
@@ -228,7 +228,7 @@
                                     <p>Vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra. </p>
                                 </div>
                             </div>
-                            <div class="wt-icon-box-wraper left p-a20" data-target="#tab5" data-toggle="tab">
+                            <div class="wt-icon-box-wraper left p-a20" >
                                 <div class="icon-md text-primary">
                                     <span class="icon-cell  text-primary"><img src="{{asset('assets/frontend/images/icon/pick-12.png')}}" alt=""></span>
                                 </div>
@@ -237,7 +237,7 @@
                                     <p>Vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra. </p>
                                 </div>
                             </div>
-                            <div class="wt-icon-box-wraper left p-a20" data-target="#tab6" data-toggle="tab">
+                            <div class="wt-icon-box-wraper left p-a20">
                                 <div class="icon-md text-primary">
                                     <span class="icon-cell  text-primary"><img src="{{asset('assets/frontend/images/icon/pick-38.png')}}" alt=""></span>
                                 </div>
