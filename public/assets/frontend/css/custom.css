@@ -50,4 +50,8 @@ YOU CAN WRIGHT CUSTOME CSS
     .mob-m{
         margin-top:-55px !important;
     }
+
+    .mob-mb-10{
+        margin-bottom: 10px;
+    }
   }
