@@ -5,7 +5,7 @@
     <title>@yield('title')</title>
 
     <!-- FAVICONS ICON -->
-    <link rel="icon" href="images/favicon.html" type="image/x-icon" />
+    
     <link rel="shortcut icon" type="image/png" href="{{asset('assets/backend/images/favicon.png') }}">
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,7 +36,7 @@
     <!-- Wrapper Ends -->
 
     @yield('scripts')
-    
+
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XNCT9N2XLP"></script>
