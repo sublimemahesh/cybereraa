@@ -82,7 +82,7 @@
         <!-- OUR VALUE SECTION  END -->
 
         <!-- WELCOME SECTION START -->
-        
+
         @foreach ($our_value as $section)
 
         <div class="section-full home-about-section p-t80 bg-no-repeat bg-bottom-right bg-black-light" style="background-image:url(images/background/bg-coin.png)">
@@ -111,7 +111,7 @@
                                             {!! $section->content !!}
                                         </strong>
                                     </p>
-                                    
+
                                     <a href="#" class="site-button text-uppercase m-r15 site-button2">Read More</a>
                                     <a href="#" class="site-button-secondry text-uppercase">Contact us</a>
                                 </div>
@@ -146,8 +146,8 @@
                         <div class="col-md-4 col-sm-12 m-b30  p-t30">
 
                             @if (count($benefits) > 0)
-                                @foreach ($benefits as $key => $section)
-                                @if ($key % 2 == 0)
+                            @foreach ($benefits as $key => $section)
+                            @if ($key % 2 == 0)
 
                             <div class="wt-icon-box-wraper  right p-a20" data-target="#tab1" data-toggle="tab">
                                 <div class="icon-md text-primary">
@@ -159,7 +159,7 @@
                                 </div>
                             </div>
                             @endif
-                           @endforeach
+                            @endforeach
                             @endif
 
                         </div>
@@ -194,7 +194,7 @@
                                 </div>
                             </div>
                             @endif
-                           @endforeach
+                            @endforeach
                             @endif
 
                         </div>
@@ -275,45 +275,41 @@
                 <div class="section-content no-col-gap">
                     <div class="row">
 
+                        @foreach ($how_it_work as $key => $section)
+                        @if ($key%2 == 0)
                         <!-- COLUMNS 1 -->
+
                         <div class="col-md-4 col-sm-4 step-number-block">
                             <div class="wt-icon-box-wraper  p-a30 center bg-black-light m-a5">
                                 <div class="icon-lg text-primary m-b20">
-                                    <a href="#" class="icon-cell"><img src="{{asset('assets/frontend/images/icon/pick-4.png')}}" alt=""></a>
+                                    <a href="#" class="icon-cell"><img src="{{ storage('pages/' . $section->image) }}" alt=""></a>
                                 </div>
                                 <div class="icon-content">
-                                    <div class="step-number">1</div>
-                                    <h4 class="wt-tilte text-uppercase font-weight-500">Create your wallet</h4>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesg indtrysum has been the Ipsum dummy of the printing indus .</p>
+                                    <div class="step-number">{{ $key+1 }}</div>
+                                    <h4 class="wt-tilte text-uppercase font-weight-500">{{ $section->title }}</h4>
+                                    {!! html_entity_decode($section->content) !!}
                                 </div>
                             </div>
                         </div>
+
+                        @else
                         <!-- COLUMNS 2 -->
                         <div class="col-md-4 col-sm-4 step-number-block">
                             <div class="wt-icon-box-wraper  p-a30 center bg-secondry m-a5 ">
                                 <div class="icon-lg m-b20">
-                                    <a href="#" class="icon-cell"><img src="{{asset('assets/frontend/images/icon/payment-method.png')}}" alt=""></a>
+                                    <a href="#" class="icon-cell"><img src="{{ storage('pages/' . $section->image) }}" alt=""></a>
                                 </div>
                                 <div class="icon-content text-white">
-                                    <div class="step-number active">2</div>
-                                    <h4 class="wt-tilte text-uppercase font-weight-500">Make payments</h4>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesg indtrysum has been the Ipsum dummy of the printing indus .</p>
+                                    <div class="step-number active">{{ $key+1 }}</div>
+                                    <h4 class="wt-tilte text-uppercase font-weight-500">{{ $section->title }}</h4>
+                                    {!! html_entity_decode($section->content) !!}
                                 </div>
                             </div>
                         </div>
-                        <!-- COLUMNS 3 -->
-                        <div class="col-md-4 col-sm-4 step-number-block">
-                            <div class="wt-icon-box-wraper  p-a30 center bg-black-light m-a5">
-                                <div class="icon-lg text-primary m-b20">
-                                    <a href="#" class="icon-cell"><img src="{{asset('assets/frontend/images/icon/pick-12.png')}}" alt=""></a>
-                                </div>
-                                <div class="icon-content">
-                                    <div class="step-number">3</div>
-                                    <h4 class="wt-tilte text-uppercase font-weight-500">Buy or Sell Orders</h4>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesg indtrysum has been the Ipsum dummy of the printing indus .</p>
-                                </div>
-                            </div>
-                        </div>
+                        @endif
+                        @endforeach
+
+
                     </div>
                 </div>
 
@@ -362,32 +358,32 @@
     @section('scripts')
 
 
- <script type="text/javascript">
-    jQuery(function() {
-        var timer = !1;
-        _Ticker = jQuery("#T1").newsTicker();
-        _Ticker.on("mouseenter", function() {
-            var __self = this;
-            timer = setTimeout(function() {
-                __self.pauseTicker();
-            }, 200);
+    <script type="text/javascript">
+        jQuery(function() {
+            var timer = !1;
+            _Ticker = jQuery("#T1").newsTicker();
+            _Ticker.on("mouseenter", function() {
+                var __self = this;
+                timer = setTimeout(function() {
+                    __self.pauseTicker();
+                }, 200);
+            });
+            _Ticker.on("mouseleave", function() {
+                clearTimeout(timer);
+                if (!timer) return !1;
+                this.startTicker();
+            });
         });
-        _Ticker.on("mouseleave", function() {
-            clearTimeout(timer);
-            if (!timer) return !1;
-            this.startTicker();
-        });
-    });
 
-</script>
+    </script>
 
-<script src="{{asset('assets/frontend/plugins/revolution/revolution/js/jquery.themepunch.tools.min.js') }}"></script>
-<script src="{{asset('assets/frontend/plugins/revolution/revolution/js/jquery.themepunch.revolution.min.js') }}"></script>
+    <script src="{{asset('assets/frontend/plugins/revolution/revolution/js/jquery.themepunch.tools.min.js') }}"></script>
+    <script src="{{asset('assets/frontend/plugins/revolution/revolution/js/jquery.themepunch.revolution.min.js') }}"></script>
 
-<!-- SLIDER REVOLUTION 5.0 EXTENSIONS  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->
-<script src="{{asset('assets/frontend/plugins/revolution/revolution/js/extensions/revolution-plugin.js') }}"></script>
-<!-- REVOLUTION SLIDER FUNCTION  ===== -->
-<script src="{{ asset('assets/frontend/js/rev-script-1.js') }}"></script>
+    <!-- SLIDER REVOLUTION 5.0 EXTENSIONS  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->
+    <script src="{{asset('assets/frontend/plugins/revolution/revolution/js/extensions/revolution-plugin.js') }}"></script>
+    <!-- REVOLUTION SLIDER FUNCTION  ===== -->
+    <script src="{{ asset('assets/frontend/js/rev-script-1.js') }}"></script>
 
 
 
