@@ -206,6 +206,9 @@
         <!-- WHY CHOOSE US SECTION END -->
 
         <!-- COMPANY DETAIL SECTION START -->
+
+        @foreach ($awesome_facts as $key => $section)
+
         <div class="section-full p-t50 p-b50 overlay-wraper bg-parallax clouds1 bg-repeat" data-stellar-background-ratio="0.5" style="background-image:url({{ asset('assets/frontend/images/background/bg-1.jpg') }});">
             <div class="overlay-main bg-secondry opacity-05"></div>
             <div class="container ">
@@ -221,8 +224,8 @@
                     <div class="col-md-8 col-sm-6">
                         <div class="awesome-counter text-right text-white">
                             <h3 class="font-24">The Cryptocurrency</h3>
-                            <h2 class="font-60 font-weight-600"><span class="text-primary"> AWESOME FACTS</span></h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In a metus pellentesque, scelerisque ex sed, volutpat nisi. Curabitur tortor mi, eleifend ornare lobortis non. Nulla porta purus quis iaculis ultrices. Proin aliquam sem at nibh hendrerit sagittis. Nullam ornare odio eu lacus tincidunt malesuada.</p>
+                            <h2 class="font-60 font-weight-600"><span class="text-primary">{{ $section->title }}</span></h2>
+                            <p> {!! $section->content !!}</p>
                         </div>
                         <div class="row">
                             <div class="col-md-4 col-sm-4">
@@ -257,6 +260,7 @@
                 </div>
             </div>
         </div>
+        @endforeach
         <!-- COMPANY DETAIL SECTION End -->
 
         <!-- HOW IT WORK SECTION START  -->

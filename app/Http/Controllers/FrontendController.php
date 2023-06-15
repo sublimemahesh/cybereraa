@@ -45,6 +45,7 @@ class FrontendController extends Controller
 
 
         $how_it_work = page::where(['parent_id' => 12])->get();
+        $awesome_facts = page::where(['id' => 128])->get();
 
         $our_value = page::where(['id' =>1])->get();
 
@@ -62,7 +63,7 @@ class FrontendController extends Controller
         $packages = page::find(66); //66  45
 
 
-        return view('frontend.index', compact('benefits', 'testimonials', 'packages', 'all_news', 'homes_video', 'homes_contents','our_value','how_it_work'));
+        return view('frontend.index', compact('benefits', 'testimonials', 'packages', 'all_news', 'homes_video', 'homes_contents','our_value','how_it_work','awesome_facts'));
 
     }
 
