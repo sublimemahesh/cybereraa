@@ -50,6 +50,7 @@
         <!-- MARQUEE SCROLL SECTION  END -->
 
         <!-- OUR VALUE SECTION START -->
+
         <div class="section-full bg-black">
             <div class="container">
                 <div class="section-content ">
@@ -77,23 +78,27 @@
                 </div>
             </div>
         </div>
+
         <!-- OUR VALUE SECTION  END -->
 
-        <!-- ABOUT COMPANY SECTION START -->
+        <!-- WELCOME SECTION START -->
+        
+        @foreach ($our_value as $section)
+
         <div class="section-full home-about-section p-t80 bg-no-repeat bg-bottom-right bg-black-light" style="background-image:url(images/background/bg-coin.png)">
             <div class="container-fluid ">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="wt-box text-right">
-                            <img src="{{asset('assets/frontend/images/background/bg-laptop.png')}}" alt="">
+                            <img src="{{ storage('pages/' . $section->image) }}" alt="">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="wt-right-part p-b80">
                             <!-- TITLE START -->
                             <div class="section-head text-left">
-                                <span class="wt-title-subline font-16 text-gray-dark m-b15">What is bitcoin</span>
-                                <h2 class="text-uppercase">New Currency Bitcoin</h2>
+                                <span class="wt-title-subline font-16 text-gray-dark m-b15">What is Owara3m</span>
+                                <h2 class="text-uppercase">{{ $section->title }}</h2>
                                 <div class="wt-separator-outer">
                                     <div class="wt-separator bg-primary"></div>
                                 </div>
@@ -102,11 +107,11 @@
                             <div class="section-content">
                                 <div class="wt-box">
                                     <p>
-                                        <strong>Lorem Ipsum has been the industry's standard dummy text ever since the when.
-                                            it to make a tyLorem Ipsum is simply dummy text of the printing and typesetting indust
+                                        <strong>
+                                            {!! $section->content !!}
                                         </strong>
                                     </p>
-                                    <p>when an unknown printer took a galley of type and scrambled it to make a tyLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.</p>
+                                    
                                     <a href="#" class="site-button text-uppercase m-r15 site-button2">Read More</a>
                                     <a href="#" class="site-button-secondry text-uppercase">Contact us</a>
                                 </div>
@@ -116,7 +121,10 @@
                 </div>
             </div>
         </div>
-        <!-- ABOUT COMPANY SECTION  END -->
+
+        @endforeach
+
+        <!-- WELCOME SECTION  END -->
 
         <!-- WHY CHOOSE US SECTION START  -->
 
@@ -136,7 +144,7 @@
                     <div class="row">
 
                         <div class="col-md-4 col-sm-12 m-b30  p-t30">
-                           
+
                             @if (count($benefits) > 0)
                                 @foreach ($benefits as $key => $section)
                                 @if ($key % 2 == 0)
@@ -153,11 +161,11 @@
                             @endif
                            @endforeach
                             @endif
-                            
+
                         </div>
 
                         <div class="col-md-4 col-sm-12 m-b30 circle-content-pic ">
-                            
+
                             <div class="tab-content ">
                                 <div id="tab1" class="tab-pane active">
                                     <div class="wt-box">
@@ -184,11 +192,11 @@
                                     <h4 class="wt-tilte text-uppercase">{{ $section->title }}</h4>
                                     <p> {!! $section->content !!}</p>
                                 </div>
-                            </div> 
+                            </div>
                             @endif
                            @endforeach
                             @endif
-                            
+
                         </div>
                     </div>
                 </div>
