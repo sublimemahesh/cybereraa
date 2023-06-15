@@ -119,57 +119,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-
-               <div class="col-md-3 col-sm-6  p-tb20">
-                   <div class="wt-icon-box-wraper left  bdr-1 bdr-gray-dark p-tb15 p-lr10 clearfix">
-                        <div class="icon-md text-primary">
-                            <span class="iconmoon-travel"></span>
-                        </div>
-                        <div class="icon-content text-white">
-                            <h5 class="wt-tilte text-uppercase m-b0">Address</h5>
-                            <p>No.123 Chalingt Gates, Supper market New York</p>
-                        </div>
-                   </div>
-                </div>
-               <div class="col-md-3 col-sm-6  p-tb20 ">
-                   <div class="wt-icon-box-wraper left  bdr-1 bdr-gray-dark p-tb15 p-lr10 clearfix ">
-                        <div class="icon-md text-primary">
-                            <span class="iconmoon-smartphone-1"></span>
-                        </div>
-                        <div class="icon-content text-white">
-                            <h5 class="wt-tilte text-uppercase m-b0">Phone</h5>
-                            <p class="m-b0">+41 555 888 9585</p>
-                            <p>+41 555 888 9585</p>
-                        </div>
-                   </div>
-               </div>
-               <div class="col-md-3 col-sm-6  p-tb20">
-                   <div class="wt-icon-box-wraper left  bdr-1 bdr-gray-dark p-tb15 p-lr10 clearfix">
-                        <div class="icon-md text-primary">
-                            <span class="iconmoon-fax"></span>
-                        </div>
-                        <div class="icon-content text-white">
-                            <h5 class="wt-tilte text-uppercase m-b0">Fax</h5>
-                            <p class="m-b0">FAX: (123) 123-4567</p>
-                            <p>FAX: (123) 123-4567</p>
-                        </div>
-                    </div>
-                </div>
-               <div class="col-md-3 col-sm-6 p-tb20">
-                   <div class="wt-icon-box-wraper left  bdr-1 bdr-gray-dark p-tb15 p-lr10 clearfix">
-                        <div class="icon-md text-primary">
-                            <span class="iconmoon-email"></span>
-                        </div>
-                        <div class="icon-content text-white">
-                            <h5 class="wt-tilte text-uppercase m-b0">Email</h5>
-                            <p class="m-b0">info@demo.com</p>
-                            <p>info@demo1234.com</p>
-                        </div>
-                    </div>
-                </div>
-
-          </div>
+            
         </div>
     </div>
     <!-- FOOTER COPYRIGHT -->
