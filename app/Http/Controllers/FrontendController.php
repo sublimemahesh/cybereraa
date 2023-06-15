@@ -9,7 +9,7 @@ use App\Models\Page;
 use App\Models\StakingPackage;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
- 
+
 
 class FrontendController extends Controller
 {
@@ -39,13 +39,17 @@ class FrontendController extends Controller
 
     public function index()
     {
- 
+
         $all_news = Blog::all();
         //$packages = page::find(66) ; // 66  48 package
 
-       
-        
+
+        $how_it_work = page::where(['parent_id' => 12])->get();
+
         $our_value = page::where(['id' =>1])->get();
+
+       // dd($how_it_work);
+
 
 
 
@@ -58,7 +62,7 @@ class FrontendController extends Controller
         $packages = page::find(66); //66  45
 
 
-        return view('frontend.index', compact('benefits', 'testimonials', 'packages', 'all_news', 'homes_video', 'homes_contents','our_value'));
+        return view('frontend.index', compact('benefits', 'testimonials', 'packages', 'all_news', 'homes_video', 'homes_contents','our_value','how_it_work'));
 
     }
 
