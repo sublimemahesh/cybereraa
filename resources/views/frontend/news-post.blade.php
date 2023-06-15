@@ -23,7 +23,7 @@
         <div class="bg-black p-tb20">
             <div class="container">
                 <ul class="wt-breadcrumb breadcrumb-style-2">
-                    <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home</a></li>
+                    <li><a href="{{ route('/') }}"><i class="fa fa-home"></i> Home</a></li>
                     <li>News</li>
                 </ul>
             </div>
@@ -37,43 +37,21 @@
                 <!-- BLOG START -->
                 <div class="blog-post date-style-1 blog-detail">
                     <div class="wt-post-media wt-img-effect">
-                        <a href="javascript:void(0);"><img src="{{ asset('assets/frontend/images/blog/default/thum1.jpg') }}" alt=""></a>
+                        <a href="javascript:void(0);"><img src="{{ storage('blogs/' . $news->image) }}" alt=""></a>
                     </div>
                     <div class="wt-post-title ">
-                        <h3 class="post-title"><a href="javascript:void(0);">Maiores, sunt eveniet doloremque porro hic exercitationem distinctio sequi adipisci. Nulla, fuga perferendis </a></h3>
+                        <h3 class="post-title"><a href="javascript:void(0);">{{ $news->title }}</a></h3>
                     </div>
                     <div class="wt-post-meta ">
                         <ul>
-                            <li class="post-date"> <i class="fa fa-calendar"></i><strong>20 Dec</strong> <span> 2017</span> </li>
+                            <li class="post-date"> <i class="fa fa-calendar"></i><strong>{{ date('d', strtotime($news->created_at)) }} {{ date('M', strtotime($news->created_at)) }}</strong> <span> {{ date('Y', strtotime($news->created_at)) }}</span> </li>
                             <li class="post-author"><i class="fa fa-user"></i><a href="javascript:void(0);">By <span>John</span></a> </li>
                             <li class="post-comment"><i class="fa fa-comments"></i> <a href="javascript:void(0);">0</a> </li>
                         </ul>
                     </div>
                     <div class="wt-post-text">
-                        <p>Asperiores, tenetur, blanditiis, quaerat odit ex exercitationem pariatur quibusdam veritatis quisquam laboriosam esse beatae hic perferendis velit deserunt soluta iste repellendus officia in neque veniam debitis Consectetur, Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium vitae, consequuntur minima tempora cupiditate ratione est, ad molestias deserunt in ipsam ea quasi cum culpa adipisci dolores voluptatum fuga at! assumenda provident lorem ipsum dolor sit amet, consectetur.</p>
 
-                        <p>Nullam id dolor id nibh ultricies vehicula ut id elit. <a href="#">Curabitur blandit tempus porttitor</a>. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Donec id elit non mi porta gravida at eget metus. Vestibulum id ligula porta felis euismod semper.</p>
-
-                        <blockquote>
-                            The trouble with programmers is that you can never tell what a programmer is doing until it's too late. The future belongs to a different kind of person with a different kind of mind: artists, inventors, storytellers-creative and holistic ‘right-brain’ thinkers whose abilities mark the fault line between who gets ahead and who doesn’t.
-                            <div class="p-t15">
-                                <p> – Daniel Pink</p>
-                            </div>
-                        </blockquote>
-
-                        <p class="clearfix">
-                            Asperiores, tenetur, blanditiis, quaerat odit ex exercitationem pariatur quibusdam veritatis quisquam laboriosam esse beatae hic perferendis velit deserunt soluta iste repellendus officia in neque veniam debitis Consectetur, Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium vitae, consequuntur minima tempora cupiditate ratione est, ad molestias deserunt in ipsam ea quasi cum culpa adipisci dolores voluptatum fuga at! assumenda provident lorem ipsum dolor sit amet, consectetur.</p>
-
-                        <p>Nullam id dolor id nibh ultricies vehicula ut id elit. <a href="#">Curabitur blandit tempus porttitor</a>. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Donec id elit non mi porta gravida at eget metus. Vestibulum id ligula porta felis euismod semper.</p>
-
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent id dolor dui, dapibus gravida elit. Donec consequat laoreet sagittis. Suspendisse ultricies ultrices viverra. Morbi rhoncus laoreet tincidunt. Mauris interdum convallis metus. Suspendisse vel lacus est, sit amet tincidunt erat. Etiam purus sem, euismod eu vulputate eget, porta quis sapien. Donec tellus est, rhoncus vel scelerisque id, iaculis eu nibh.</p>
-
-                        <p>Donec posuere bibendum metus. Quisque gravida luctus volutpat. Mauris interdum, lectus in dapibus molestie, quam felis sollicitudin mauris, sit amet tempus velit lectus nec lorem. Nullam vel mollis neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel enim dui. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed tincidunt accumsan massa id viverra. Sed sagittis, nisl sit amet imperdiet convallis, nunc tortor consequat tellus, vel molestie neque nulla non ligula. Proin tincidunt tellus ac porta volutpat. Cras mattis congue lacus id bibendum. Mauris ut sodales libero. Maecenas feugiat sit amet enim in accumsan.</p>
-
-                        <p>Duis vestibulum quis quam vel accumsan. Nunc a vulputate lectus. Vestibulum eleifend nisl sed massa sagittis vestibulum. Vestibulum pretium blandit tellus, sodales volutpat sapien varius vel. Phasellus tristique cursus erat, a placerat tellus laoreet eget. Fusce vitae dui sit amet lacus rutrum convallis. Vivamus sit amet lectus venenatis est rhoncus interdum a vitae velit.
-                        </p>
-
+                        {!! html_entity_decode($news->description) !!}
 
                     </div>
                     <div class="widget bg-black-light  widget_tag_cloud">
