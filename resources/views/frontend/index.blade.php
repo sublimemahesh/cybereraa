@@ -124,8 +124,8 @@
             <div class="container">
                 <!-- TITLE START-->
                 <div class="section-head text-center">
-                    <span class="wt-title-subline font-16 text-gray-dark m-b15">Buy and Sell Bitcoin</span>
-                    <h2 class="text-uppercase">Why Choose Bitcoin</h2>
+                    <span class="wt-title-subline font-16 text-gray-dark m-b15">Our Benefit</span>
+                    <h2 class="text-uppercase">Why Choose Owara3m</h2>
                     <div class="wt-separator-outer">
                         <div class="wt-separator bg-primary"></div>
                     </div>
@@ -136,36 +136,28 @@
                     <div class="row">
 
                         <div class="col-md-4 col-sm-12 m-b30  p-t30">
+                           
+                            @if (count($benefits) > 0)
+                                @foreach ($benefits as $key => $section)
+                                @if ($key % 2 == 0)
+
                             <div class="wt-icon-box-wraper  right p-a20" data-target="#tab1" data-toggle="tab">
                                 <div class="icon-md text-primary">
-                                    <span class="icon-cell  text-primary"><img src="{{asset('assets/frontend/images/icon/pick-17.png')}}" alt=""></span>
+                                    <span class="icon-cell  text-primary"><img src="{{ storage('pages/' . $section->image) }}" alt=""></span>
                                 </div>
                                 <div class="icon-content">
-                                    <h4 class="wt-tilte text-uppercase">Safe and Secure</h4>
-                                    <p>Vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra. </p>
+                                    <h4 class="wt-tilte text-uppercase">{{ $section->title }}</h4>
+                                    <p> {!! $section->content !!}</p>
                                 </div>
                             </div>
-                            <div class="wt-icon-box-wraper right p-a20 " >
-                                <div class="icon-md text-primary">
-                                    <span class="icon-cell  text-primary"><img src="{{asset('assets/frontend/images/icon/pick-29.png')}}" alt=""></span>
-                                </div>
-                                <div class="icon-content">
-                                    <h4 class="wt-tilte text-uppercase ">Instant Trading</h4>
-                                    <p>Vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra. </p>
-                                </div>
-                            </div>
-                            <div class="wt-icon-box-wraper right p-a20 ">
-                                <div class="icon-md text-primary">
-                                    <span class="icon-cell  text-primary"><img src="{{asset('assets/frontend/images/icon/payment-method.png')}}" alt=""></span>
-                                </div>
-                                <div class="icon-content">
-                                    <h4 class="wt-tilte text-uppercase">Recurring Buying</h4>
-                                    <p>Vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra. </p>
-                                </div>
-                            </div>
+                            @endif
+                           @endforeach
+                            @endif
+                            
                         </div>
 
                         <div class="col-md-4 col-sm-12 m-b30 circle-content-pic ">
+                            
                             <div class="tab-content ">
                                 <div id="tab1" class="tab-pane active">
                                     <div class="wt-box">
@@ -175,79 +167,29 @@
                                     </div>
                                 </div>
 
-                                <div id="tab2" class="tab-pane">
-                                    <div class="wt-box">
-                                        <div class="wt-media text-primary m-b20 text-center">
-                                            <img  class="up-down-animation" src="{{asset('assets/frontend/images/ipad/banner.png')}}" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div id="tab3" class="tab-pane">
-                                    <div class="wt-box">
-                                        <div class="wt-media text-primary m-b20 text-center">
-                                            <img src="{{asset('assets/frontend/images/ipad/buying.png')}}" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div id="tab4" class="tab-pane">
-                                    <div class="wt-box">
-                                        <div class="wt-media text-primary m-b20 text-center">
-                                            <img class="up-down-animation" src="{{asset('assets/frontend/images/ipad/banner.png')}}">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div id="tab5" class="tab-pane">
-                                    <div class="wt-box">
-                                        <div class="wt-media text-primary m-b20 text-center">
-                                            <img src="{{asset('assets/frontend/images/ipad/insurance.png')}}" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div id="tab6" class="tab-pane">
-                                    <div class="wt-box">
-                                        <div class="wt-media text-primary m-b20 text-center">
-                                            <img src="{{asset('assets/frontend/images/ipad/transaction.png')}}" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
 
                         <div class="col-md-4 col-sm-12 m-b30  p-t30 mob-m">
-                            <div class="wt-icon-box-wraper left p-a20 ">
-                                <div class="icon-md text-primary">
-                                    <span class="icon-cell  text-primary"><img src="{{asset('assets/frontend/images/icon/budget.png')}}" alt=""></span>
-                                </div>
-                                <div class="icon-content">
-                                    <h4 class="wt-tilte text-uppercase">Investment Planning</h4>
-                                    <p>Vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra. </p>
-                                </div>
-                            </div>
-                            <div class="wt-icon-box-wraper left p-a20 " >
-                                <div class="icon-md text-primary">
-                                    <span class="icon-cell  text-primary"><img src="{{asset('assets/frontend/images/icon/pick-12.png')}}" alt=""></span>
-                                </div>
-                                <div class="icon-content">
-                                    <h4 class="wt-tilte text-uppercase">Covered By Insurance</h4>
-                                    <p>Vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra. </p>
-                                </div>
-                            </div>
-                            <div class="wt-icon-box-wraper left p-a20 ">
-                                <div class="icon-md text-primary">
-                                    <span class="icon-cell  text-primary"><img src="{{asset('assets/frontend/images/icon/pick-38.png')}}" alt=""></span>
-                                </div>
-                                <div class="icon-content">
-                                    <h4 class="wt-tilte text-uppercase">Bitcoin Transaction</h4>
-                                    <p>Vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra. </p>
-                                </div>
-                            </div>
-                        </div>
+                            @if (count($benefits) > 0)
+                            @foreach ($benefits as $key => $section)
+                            @if ($key % 2 != 0)
 
+
+                            <div class="wt-icon-box-wraper left p-a20 ">
+                                <div class="icon-md text-primary">
+                                    <span class="icon-cell  text-primary"><img src="{{ storage('pages/' . $section->image) }}" alt=""></span>
+                                </div>
+                                <div class="icon-content">
+                                    <h4 class="wt-tilte text-uppercase">{{ $section->title }}</h4>
+                                    <p> {!! $section->content !!}</p>
+                                </div>
+                            </div> 
+                            @endif
+                           @endforeach
+                            @endif
+                            
+                        </div>
                     </div>
                 </div>
             </div>
