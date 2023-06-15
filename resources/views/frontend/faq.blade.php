@@ -187,7 +187,7 @@
                                 <h3>Coin Staking</h3>
 
                                 @foreach ($faqs as $key=>$faq)
-                                @if ($faq->parent_id == 12)
+                                @if ($faq->parent_id == 125)
 
                                 <div class="panel wt-panel">
                                     <div class="acod-head">
