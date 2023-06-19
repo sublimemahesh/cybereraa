@@ -66,9 +66,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/plugins/monthSelect/style.css">
 </head>
 
-<body class="font-sans antialiased dark" style="background:#15073A">
+<body class="font-sans antialiased dark" style="background:#020202">
 <!--******************* Preloader start ********************-->
-<div id="loader"></div>
+
 <!--******************* Preloader end ********************-->
 
 <!--**********************************  Main wrapper start ***********************************-->
