@@ -8389,7 +8389,7 @@ ol.comment-list li.comment .comment-respond .comment-form p {
 	text-transform:none;
 }
 .header-nav .nav > li .sub-menu li a:hover {
-	background-color:#171F2C;
+	background-color:var(--theme-color2);
 	color: #1BBCE8;
 	text-decoration: none;
 }
