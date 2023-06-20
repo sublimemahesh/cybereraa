@@ -214,11 +214,11 @@
                         </div>
                         <!-- ACCORDION END -->
                     </div>
-                    <div class="col-md-3 col-sm-3 p-tb15"  style="position:sticky;">
+                    <div class="col-md-3 col-sm-3 p-tb15" >
                         <!-- BROCHURES -->
-                        <div class="wt-box m-b30" id="faq-menu">
+                        <div class="wt-box m-b30 " id="faq-cat-holder">
                             <div class="text-left m-b20">
-                                <h4>Brochures</h4>
+                                <h4>FAQ Menu</h4>
                                 <div class="wt-separator-outer">
                                     <div class="wt-separator bg-primary"></div>
                                 </div>

@@ -1,4 +1,4 @@
-<footer class="site-footer footer-dark bg-no-repeat bg-full-height bg-center "  style="background-image:url({{ asset('assets/frontend/images/background/footer-bg.jpg') }});">
+<footer class="site-footer footer-dark bg-no-repeat bg-full-height bg-center " id='footer'  style="background-image:url({{ asset('assets/frontend/images/background/footer-bg.jpg') }});">
     <!-- FOOTER BLOCKES START -->
     <div class="footer-top overlay-wraper">
         <div class="overlay-main bg-black opacity-05"></div>
