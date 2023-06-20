@@ -1,7 +1,7 @@
 <footer class="site-footer footer-dark bg-no-repeat bg-full-height bg-center " id='footer'  style="background-image:url({{ asset('assets/frontend/images/background/footer-bg.jpg') }});">
     <!-- FOOTER BLOCKES START -->
     <div class="footer-top overlay-wraper">
-        <div class="overlay-main bg-black opacity-05"></div>
+        <div class="overlay-main themecolor-1 opacity-05"></div>
         <div class="container">
             <div class="row">
                 <!-- ABOUT COMPANY -->
@@ -119,11 +119,11 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
     <!-- FOOTER COPYRIGHT -->
-    <div class="footer-bottom  overlay-wraper">
+    <div class="footer-bottom themecolor-1  overlay-wraper">
         <div class="overlay-main"></div>
         <div class="constrot-strip"></div>
         <div class="container p-t30">

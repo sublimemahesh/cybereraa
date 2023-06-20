@@ -14,7 +14,7 @@
         <!-- SLIDER END -->
 
         <!-- MARQUEE SCROLL -->
-        <div class="bg-black marquee">
+        <div class="themecolor-1 marquee">
             <div class="TickerNews" id="T1">
                 <div class="ti_wrapper">
                     <div class="ti_slide">
@@ -51,7 +51,7 @@
 
         <!-- OUR VALUE SECTION START -->
 
-        <div class="section-full bg-black">
+        <div class="section-full themecolor-1">
             <div class="container">
                 <div class="section-content ">
                     <!-- COLL-TO ACTION START -->
@@ -85,7 +85,7 @@
 
         @foreach ($our_value as $section)
 
-        <div class="section-full home-about-section p-t80 bg-no-repeat bg-bottom-right bg-black-light" style="background-image:url(images/background/bg-coin.png)">
+        <div class="section-full home-about-section p-t80 bg-no-repeat bg-bottom-right themecolor-2" style="background-image:url(images/background/bg-coin.png)">
             <div class="container-fluid ">
                 <div class="row">
                     <div class="col-md-6">
@@ -128,7 +128,7 @@
 
         <!-- WHY CHOOSE US SECTION START  -->
 
-        <div class="section-full bg-black p-t90 p-b30  ">
+        <div class="section-full themecolor-1 p-t90 p-b30  ">
             <div class="container">
                 <!-- TITLE START-->
                 <div class="section-head text-center">
@@ -210,7 +210,7 @@
         @foreach ($awesome_facts as $key => $section)
 
         <div class="section-full p-t50 p-b50 overlay-wraper bg-parallax clouds1 bg-repeat" data-stellar-background-ratio="0.5" style="background-image:url({{ asset('assets/frontend/images/background/bg-1.jpg') }});">
-            <div class="overlay-main bg-secondry opacity-05"></div>
+            <div class="overlay-main themecolor-3 opacity-05"></div>
             <div class="container ">
                 <div class="row">
                     <div class="col-md-4 col-sm-6">
@@ -264,7 +264,7 @@
         <!-- COMPANY DETAIL SECTION End -->
 
         <!-- HOW IT WORK SECTION START  -->
-        <div class="section-full  p-t80 p-b80 bg-black">
+        <div class="section-full  p-t80 p-b80 themecolor-1">
             <div class="container">
                 <!-- TITLE START-->
                 <div class="section-head text-center">
@@ -284,7 +284,7 @@
                         <!-- COLUMNS 1 -->
 
                         <div class="col-md-4 col-sm-4 step-number-block">
-                            <div class="wt-icon-box-wraper  p-a30 center bg-black-light m-a5">
+                            <div class="wt-icon-box-wraper  p-a30 center themecolor-2 m-a5">
                                 <div class="icon-lg text-primary m-b20">
                                     <a href="#" class="icon-cell"><img src="{{ storage('pages/' . $section->image) }}" alt=""></a>
                                 </div>
@@ -299,7 +299,7 @@
                         @else
                         <!-- COLUMNS 2 -->
                         <div class="col-md-4 col-sm-4 step-number-block">
-                            <div class="wt-icon-box-wraper  p-a30 center bg-secondry m-a5 ">
+                            <div class="wt-icon-box-wraper  p-a30 center themecolor-3 m-a5 ">
                                 <div class="icon-lg m-b20">
                                     <a href="#" class="icon-cell"><img src="{{ storage('pages/' . $section->image) }}" alt=""></a>
                                 </div>
@@ -326,7 +326,7 @@
             <div class="container-fluid">
 
                 <div class="row">
-                    <div class="col-md-6 col-sm-6 bg-secondry">
+                    <div class="col-md-6 col-sm-6 themecolor-3">
                         <div class="section-content p-tb60 p-r30 clearfix">
                             <div class="wt-left-part any-query">
                                 <img src="{{asset('assets/frontend/images/any-query.png')}}" alt="">
