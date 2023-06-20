@@ -48899,3 +48899,7 @@ button.dt-button, div.dt-button, a.dt-button
 }
 
 
+:is(.dark .dark\:bg-secondary-dark) {
+    background-color: #3a3939;
+  }
+
