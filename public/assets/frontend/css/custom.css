@@ -69,15 +69,24 @@ YOU CAN WRIGHT CUSTOME CSS
     }
 
 
+  }
+
+  @media (min-width: 900px) {
 
 
 
+  .fixed-cat-bar {
+    position: fixed;
+    top: 49px;
+    /* left: 105px; */
+    width: 285px;
+}
 
-
-
-
-
-
+.auto-remove-fixed {
+    position: relative !important;
+    /* top: 100px; */
+  }
 
 
   }
+  
