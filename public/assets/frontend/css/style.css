@@ -8893,7 +8893,7 @@ header .logo{
     position:fixed;
 }
 .header-style-3 .is-fixed.color-fill .main-bar {
-    background:#000;
+    background:var(--theme-color1);
 }
 
 /* header 3 topbar Transparent */
