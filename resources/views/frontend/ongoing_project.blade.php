@@ -10,7 +10,7 @@
 
         <!-- INNER PAGE BANNER -->
         <div class="wt-bnr-inr overlay-wraper" style="background-image:url({{asset('assets/frontend/images/banner/about-banner.jpg') }});">
-            <div class="overlay-main bg-black opacity-07"></div>
+            <div class="overlay-main themecolor-1 opacity-07"></div>
             <div class="container">
                 <div class="wt-bnr-inr-entry">
                     <h1 class="text-white">Existing projects</h1>
@@ -21,7 +21,7 @@
 
 
         <!-- BREADCRUMB ROW -->
-        <div class="bg-black p-tb20">
+        <div class="themecolor-1 p-tb20">
             <div class="container">
                 <ul class="wt-breadcrumb breadcrumb-style-2">
                     <li><a href="{{ route('/') }}"><i class="fa fa-home"></i> Home</a></li>
@@ -39,7 +39,7 @@
             @foreach ($projects as $key => $project)
             @if ($key % 2 == 0)
 
-            <div class="row bg-black-light p-t80 p-b50">
+            <div class="row themecolor-2 p-t80 p-b50">
                 <div class="container">
                     <div class="col-md-7 col-sm-7">
                         <div class="wt-info  p-b30 mob-p-b20">
@@ -58,7 +58,7 @@
                                 <div class="wt-thum-bx">
                                     <img src="{{ storage('pages/' . $project->image) }}" alt="">
                                 </div>
-                                <div class="wt-info bg-black text-center p-a20">
+                                <div class="wt-info themecolor-1 text-center p-a20">
                                     <h3 class="text-uppercase">{{ $project->title }}</h3>
                                     <p></p>
                                 </div>
@@ -68,7 +68,7 @@
                 </div>
             </div>
             @else
-            <div class="row bg-black p-t80 p-b50">
+            <div class="row themecolor-1 p-t80 p-b50">
                 <div class="container">
                     <div class="col-md-5 col-sm-5">
                         <!-- Card (Horizontal Flip) -->
@@ -77,7 +77,7 @@
                                 <div class="wt-thum-bx">
                                     <img src="{{ storage('pages/' . $project->image) }}" alt="">
                                 </div>
-                                <div class="wt-info bg-black-light text-center p-a20">
+                                <div class="wt-info themecolor-2 text-center p-a20">
                                     <h3 class="text-uppercase">{{ $project->title }}</h3>
                                     <p></p>
                                 </div>

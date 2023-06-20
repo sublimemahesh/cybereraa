@@ -11,7 +11,7 @@
 
         <!-- INNER PAGE BANNER -->
         <div class="wt-bnr-inr overlay-wraper" style="background-image:url({{asset('assets/frontend/images/banner/about-banner.jpg') }});">
-            <div class="overlay-main bg-black opacity-07"></div>
+            <div class="overlay-main themecolor-1 opacity-07"></div>
             <div class="container">
                 <div class="wt-bnr-inr-entry">
                     <h1 class="text-white">Contact</h1>
@@ -22,7 +22,7 @@
 
 
         <!-- BREADCRUMB ROW -->
-        <div class="bg-black p-tb20">
+        <div class="themecolor-1 p-tb20">
             <div class="container">
                 <ul class="wt-breadcrumb breadcrumb-style-2">
                     <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home</a></li>
@@ -35,7 +35,7 @@
 
 
         <!-- SECTION CONTENT -->
-        <div class="section-full p-t80 p-b50 bg-black-light">
+        <div class="section-full p-t80 p-b50 themecolor-2">
             <div class="container">
                 <div class="wt-box col-md-6">
                     <h4 class="text-uppercase">Contact Detail </h4>
@@ -44,7 +44,7 @@
                     </div>
 
                     <div class="m-b30">
-                        <div class="wt-icon-box-wraper bx-style-1 p-a15 left clearfix bg-black">
+                        <div class="wt-icon-box-wraper bx-style-1 p-a15 left clearfix themecolor-1">
                             <div class="icon-sm">
                                 <span class="icon-cell text-primary">
                                     <i class="fa fa-phone"></i>
@@ -58,7 +58,7 @@
                     </div>
 
                     <div class="m-b30">
-                        <div class="wt-icon-box-wraper bx-style-1 p-a15 left clearfix bg-black">
+                        <div class="wt-icon-box-wraper bx-style-1 p-a15 left clearfix themecolor-1">
                             <div class="icon-sm">
                                 <span class="icon-cell text-primary">
                                     <i class="fa fa-envelope"></i>
@@ -72,7 +72,7 @@
                     </div>
 
                     <div class="m-b30">
-                        <div class="wt-icon-box-wraper bx-style-1 p-a15 left clearfix bg-black">
+                        <div class="wt-icon-box-wraper bx-style-1 p-a15 left clearfix themecolor-1">
                             <div class="icon-sm">
                                 <span class="icon-cell text-primary">
                                     <i class="fa fa-fax"></i>
@@ -86,7 +86,7 @@
                     </div>
 
                     <div class="m-b30">
-                        <div class="wt-icon-box-wraper bx-style-1 p-a15 left clearfix bg-black">
+                        <div class="wt-icon-box-wraper bx-style-1 p-a15 left clearfix themecolor-1">
                             <div class="icon-sm">
                                 <span class="icon-cell text-primary">
                                     <i class="fa fa-map-marker"></i>
@@ -105,7 +105,7 @@
                     <div class="wt-separator-outer m-b30">
                         <div class="wt-separator bg-primary"></div>
                     </div>
-                    <div class="p-a50 p-b60 bg-black">
+                    <div class="p-a50 p-b60 themecolor-1">
                         <form class="cons-contact-form" method="post" action="http://thewebmax.com/bitinvest/form-handler.php">
                             <div class="form-group">
                                 <div class="input-group">

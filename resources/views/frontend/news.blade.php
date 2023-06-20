@@ -10,7 +10,7 @@
 
         <!-- INNER PAGE BANNER -->
         <div class="wt-bnr-inr overlay-wraper" style="background-image:url({{asset('assets/frontend/images/banner/about-banner.jpg') }});">
-            <div class="overlay-main bg-black opacity-07"></div>
+            <div class="overlay-main themecolor-1 opacity-07"></div>
             <div class="container">
                 <div class="wt-bnr-inr-entry">
                     <h1 class="text-white">News</h1>
@@ -20,7 +20,7 @@
         <!-- INNER PAGE BANNER END -->
 
         <!-- BREADCRUMB ROW -->
-        <div class="bg-black p-tb20">
+        <div class="themecolor-1 p-tb20">
             <div class="container">
                 <ul class="wt-breadcrumb breadcrumb-style-2">
                     <li><a href="{{ route('/') }}"><i class="fa fa-home"></i> Home</a></li>
@@ -31,7 +31,7 @@
         <!-- BREADCRUMB ROW END -->
 
         <!-- SECTION CONTENT START -->
-        <div class="section-full p-t80 p-b50 bg-black-light">
+        <div class="section-full p-t80 p-b50 themecolor-2">
             <div class="container">
 
                 <!-- BLOG POST START -->

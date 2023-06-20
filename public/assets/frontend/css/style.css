@@ -687,6 +687,20 @@ Version: 1.0
 */
 
 
+/*======================================
+1. GENERAL
+======================================*/
+:root {
+    --theme-color1: #0f1635 ;
+    --theme-color2: #131c43 ;
+    --theme-color3: #59607b;
+    --theme-color4: #f1f1f1;
+
+  }
+
+
+
+
 
 
 /*======================================
@@ -1577,6 +1591,25 @@ ol.list-num-count.list-outline-none > li:before {
 ======================================*/
 
 /*-------------------------------------
+	1. theme color
+-------------------------------------*/
+.themecolor-1{
+    background-color:var(--theme-color1);
+}
+.themecolor-2{
+    background-color:var(--theme-color2);
+}
+.themecolor-3{
+    background-color:var(--theme-color3);
+}
+
+.themecolor-4{
+    background-color:var(--theme-color4);
+}
+
+
+
+/*-------------------------------------
 	1. text
 -------------------------------------*/
 .text-white{color:#fff;}
@@ -2228,7 +2261,7 @@ ol.list-num-count.list-outline-none > li:before {
 	border-width:1px;
 	border-style:solid;
 	/* border-color:#ddd; */
-	border-color:#000;;
+	border-color:var(--theme-color1);
 }
 
 .wt-icon-box-wraper.bx-style-2.center [class*="wt-icon-box-"],
@@ -8010,7 +8043,7 @@ ol.comment-list li.comment .comment-respond .comment-form p {
 }
 
 .header-botton {
-	background-color:#171f2c;
+	background-color:var(--theme-color1);
 }
 .header-botton .header-nav .nav {
 	float:none;
@@ -12767,11 +12800,11 @@ ol.commentlist li::after {
 	-o-transition: all 0.5s ease-out;
 	transition: all 0.5s ease-out;
 
-	border:2px solid #000;
+	border:2px solid var(--theme-color1);
 }
 .hover-block-outer .wt-icon-box-wraper:hover{
 	/* background-color:#fff; */
-	background-color:#212121;
+	background-color:var(--theme-color2);
 	cursor:pointer;
 	-webkit-box-shadow: 0 0 20px 0 rgba(0,0,0,0.1);
 	box-shadow: 0 0 20px 0 rgba(0,0,0,0.1);
@@ -12841,5 +12874,4 @@ ol.commentlist li::after {
 .rev-hide-timer .tp-bannertimer{
 	display:none;
 }
-
 

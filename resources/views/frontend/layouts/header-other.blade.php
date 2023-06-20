@@ -40,7 +40,7 @@
     <!-- Search Link -->
 
     <!-- Search Form -->
-    <div class="main-bar header-middle bg-black">
+    <div class="main-bar header-middle themecolor-2">
         <div class="container">
             <div class="logo-header">
                 <a href="index-2.html">

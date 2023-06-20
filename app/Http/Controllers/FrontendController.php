@@ -45,7 +45,7 @@ class FrontendController extends Controller
 
 
         $how_it_work = page::where(['parent_id' => 12])->get();
-        $awesome_facts = page::where(['id' => 128])->get();
+        $awesome_facts = page::where(['id' => 40])->get();
 
         $our_value = page::where(['id' =>1])->get();
 
@@ -81,14 +81,14 @@ class FrontendController extends Controller
 
     public function project()
     {
-        $projects = page::where(['parent_id' => 38])->get(); //38
+        $projects = page::where(['parent_id' => 46])->get(); //38
         return view('frontend.ongoing_project', compact('projects'));
 
     }
 
     public function upcomingProject()
     {
-        $projects = page::where(['parent_id' => 47])->get(); //47
+        $projects = page::where(['parent_id' => 49])->get(); //47
         return view('frontend.upcoming-project', compact('projects'));
 
     }
