@@ -32,30 +32,29 @@
 
         <!-- ABOUT COMPANY SECTION START -->
 
-        @foreach ($abouts as $section)
-       
+
         <div class="section-full p-tb100 themecolor-2">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
                         <div class="section-head text-left">
                             <span class="wt-title-subline text-gray-dark font-16 m-b15">What is Owara3m</span>
-                            <h2 class="text-uppercase">{{ $section->title }}</h2>
+                            <h2 class="text-uppercase">{{ $abouts->title }}</h2>
                             <div class="wt-separator-outer">
                                 <div class="wt-separator bg-primary"></div>
                             </div>
-                             {!! $section->content !!}
+                             {!! $abouts->content !!}
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-6">
                         <div class="wt-media">
-                            <img src="{{ storage('pages/' . $section->image) }} " alt="" class="img-responsive" />
+                            <img src="{{ storage('pages/' . $abouts->image) }} " alt="" class="img-responsive" />
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        @endforeach
+
         <!-- ABOUT COMPANY SECTION END -->
 
         <!-- WHY CHOOSE US SECTION START  -->

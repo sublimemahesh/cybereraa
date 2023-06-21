@@ -2,97 +2,51 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Blog;
 use App\Models\Package;
 use App\Models\Page;
 use App\Models\StakingPackage;
-use App\Models\Testimonial;
 use Illuminate\Http\Request;
-
 
 class FrontendController extends Controller
 {
 
-    public function getDatePage($slug)
-    {
-        $get_date_page = (array)null;
-        $get_date_page_array = page::where(['slug' => $slug])->get();
-
-        if (!count($get_date_page_array) > 0) {
-            return $get_date_page;
-            exit();
-            // dd('count($get_date_page)>0');
-
-        }
-
-        $get_date_page_section = page::where(['parent_id' => $get_date_page_array[0]["id"]])->get();
-
-        if (!count($get_date_page_section) > 0) {
-            return $get_date_page;
-            exit();
-        }
-
-        return $get_date_page_section;
-    }
-
-
     public function index()
     {
 
-        $all_news = Blog::all();
-        //$packages = page::find(66) ; // 66  48 package
+        $how_it_work = Page::where(['slug' => 'how-to-it-works'])->first();
+        $how_it_work = $how_it_work->children;
+        $awesome_facts = Page::where(['slug' => 'company-detail'])->first();
+        $welcome = Page::where(['slug' => 'welcome'])->first();
 
+        $benefits = Page::where(['slug' => 'benefit'])->first();
+        $benefits = $benefits->children;
 
-        $how_it_work = page::where(['parent_id' => 12])->get();
-        $awesome_facts = page::where(['id' => 40])->get();
-
-        $our_value = page::where(['id' =>1])->get();
-
-       // dd($how_it_work);
-
-
-
-
-        $homes_video = page::where(['id' => 59])->get(); // serve 59      50
-        $homes_contents = page::where(['id' => 54])->get(); //    54      45
-        $testimonials = Testimonial::all();
-
-        $benefits = $this->getDatePage('benefit');
-        // $packages=$this->gettePage('package');
-        $packages = page::find(66); //66  45
-
-
-        return view('frontend.index', compact('benefits', 'testimonials', 'packages', 'all_news', 'homes_video', 'homes_contents','our_value','how_it_work','awesome_facts'));
+        return view('frontend.index', compact('benefits', 'welcome', 'how_it_work', 'awesome_facts'));
 
     }
 
     public function about()
     {
-        $abouts = page::where(['id' =>3])->get();; //3
-
-        $homes_mission = page::where(['id' => 56])->get(); //     56      40
-        $homes_value = page::where(['id' => 57])->get(); //       57      44
-        $homes_vission = page::where(['id' => 58])->get(); //     58      45
-
-        return view('frontend.about', compact('abouts', 'homes_mission', 'homes_value', 'homes_vission'));
-
+        $abouts = Page::where(['slug' => 'about-us-page'])->first();
+        return view('frontend.about', compact('abouts'));
     }
 
     public function project()
     {
-        $projects = page::where(['parent_id' => 46])->get(); //38
+        $projects = Page::where(['slug' => 'projects'])->first();
+        $projects = $projects->children;
         return view('frontend.ongoing_project', compact('projects'));
 
     }
 
     public function upcomingProject()
     {
-        $projects = page::where(['parent_id' => 49])->get(); //47
+        $projects = Page::where(['slug' => 'upcoming-projects'])->first();
+        $projects = $projects->children;
         return view('frontend.upcoming-project', compact('projects'));
 
     }
-
 
     public function pricing()
     {
@@ -100,7 +54,6 @@ class FrontendController extends Controller
         return view('frontend.pricing', compact('packages'));
 
     }
-
 
     public function staking()
     {
@@ -112,14 +65,31 @@ class FrontendController extends Controller
     public function faq()
     {
         $faqs = page::all();
+
+        $faq1 = Page::where(['slug' => 'faq-sing-up-and-sign-in'])->first();
+        $faq2 = Page::where(['slug' => 'faq-buy-packages'])->first();
+        $faq3 = Page::where(['slug' => 'faq-invite-members'])->first();
+        $faq4 = Page::where(['slug' => 'faq-withdraw-money'])->first();
+
+
+        $faqs = array(
+            'faq1' => $faq1,
+            'faq2' => $faq2,
+            'faq3' => $faq3,
+            'faq4' => $faq4,
+            
+        );
+        
+
+
+
+
         return view('frontend.faq', compact('faqs'));
 
     }
 
     public function contact()
     {
-        $all_contact_us = page::find(6);
-        return view('frontend.contact', compact('all_contact_us'));
 
     }
 
@@ -129,7 +99,6 @@ class FrontendController extends Controller
         return view('frontend.news', compact('all_news'));
 
     }
-
 
     public function showNews(Request $request, Blog $news)
     {
@@ -154,6 +123,5 @@ class FrontendController extends Controller
         return view('frontend.disclaimer', compact('disclaimers', 'disclaimers_content'));
 
     }
-
 
 }

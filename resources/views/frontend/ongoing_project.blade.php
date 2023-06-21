@@ -37,6 +37,7 @@
         <div class="section-full">
 
             @foreach ($projects as $key => $project)
+            
             @if ($key % 2 == 0)
 
             <div class="row themecolor-2 p-t80 p-b50">

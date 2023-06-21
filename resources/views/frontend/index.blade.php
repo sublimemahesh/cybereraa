@@ -83,14 +83,14 @@
 
         <!-- WELCOME SECTION START -->
 
-        @foreach ($our_value as $section)
+       
 
         <div class="section-full home-about-section p-t80 bg-no-repeat bg-bottom-right themecolor-2" style="background-image:url(images/background/bg-coin.png)">
             <div class="container-fluid ">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="wt-box text-right">
-                            <img src="{{ storage('pages/' . $section->image) }}" alt="">
+                            <img src="{{ storage('pages/' . $welcome->image) }}" alt="">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -98,7 +98,7 @@
                             <!-- TITLE START -->
                             <div class="section-head text-left">
                                 <span class="wt-title-subline font-16 text-gray-dark m-b15">What is Owara3m</span>
-                                <h2 class="text-uppercase">{{ $section->title }}</h2>
+                                <h2 class="text-uppercase">{{ $welcome->title }}</h2>
                                 <div class="wt-separator-outer">
                                     <div class="wt-separator bg-primary"></div>
                                 </div>
@@ -108,7 +108,7 @@
                                 <div class="wt-box">
                                     <p>
                                         <strong>
-                                            {!! $section->content !!}
+                                            {!! $welcome->content !!}
                                         </strong>
                                     </p>
 
@@ -122,8 +122,7 @@
             </div>
         </div>
 
-        @endforeach
-
+      
         <!-- WELCOME SECTION  END -->
 
         <!-- WHY CHOOSE US SECTION START  -->
@@ -207,7 +206,7 @@
 
         <!-- COMPANY DETAIL SECTION START -->
 
-        @foreach ($awesome_facts as $key => $section)
+      
 
         <div class="section-full p-t50 p-b50 overlay-wraper bg-parallax clouds1 bg-repeat" data-stellar-background-ratio="0.5" style="background-image:url({{ asset('assets/frontend/images/background/bg-1.jpg') }});">
             <div class="overlay-main themecolor-3 opacity-05"></div>
@@ -224,8 +223,8 @@
                     <div class="col-md-8 col-sm-6">
                         <div class="awesome-counter text-right text-white">
                             <h3 class="font-24">The Cryptocurrency</h3>
-                            <h2 class="font-60 font-weight-600"><span class="text-primary">{{ $section->title }}</span></h2>
-                            <p> {!! $section->content !!}</p>
+                            <h2 class="font-60 font-weight-600"><span class="text-primary">{{ $awesome_facts->title }}</span></h2>
+                            <p> {!! $awesome_facts->content !!}</p>
                         </div>
                         <div class="row">
                             <div class="col-md-4 col-sm-4">
@@ -260,7 +259,7 @@
                 </div>
             </div>
         </div>
-        @endforeach
+        
         <!-- COMPANY DETAIL SECTION End -->
 
         <!-- HOW IT WORK SECTION START  -->
