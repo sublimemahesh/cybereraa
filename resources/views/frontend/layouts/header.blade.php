@@ -29,8 +29,8 @@
                         </div>
 
                         <ul class="list-unstyled e-p-bx pull-right">
-                            <li><a href="#" data-toggle="modal" data-target="#Login-form"><i class="fa fa-user"></i>Login</a></li>
-                            <li><a href="#" data-toggle="modal" data-target="#Register-form"><i class="fa fa-sign-in"></i>Register</a></li>
+                            <li><a href="{{ route('login') }}" ><i class="fa fa-user"></i>Login</a></li>
+                            <li><a href="{{ route('register')}}" ><i class="fa fa-sign-in"></i>Register</a></li>
                         </ul>
                     </div>
                 </div>
