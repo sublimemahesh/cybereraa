@@ -9,84 +9,21 @@
                     <div class="widget widget_about">
                         <h4 class="widget-title text-white">About Company</h4>
                         <div class="logo-footer clearfix p-b15">
-                            <a href="index-2.html"><img src="{{ asset('assets/frontend/images/footer-logo.png') }}" width="230" height="67" alt=""/></a>
+                            <a href="{{ route('/') }}"><img src="{{ asset('assets/frontend/images/footer-logo.png') }}" width="230" height="67" alt=""/></a>
                         </div>
-                        <p>Thewebmax ipsum dolor sit amet, consectetuer adipiscing elit,
-                              sed diam nonummy nibh euismod tincidunt ut laoreet dolore agna aliquam erat .
-                              wisi enim ad minim veniam, quis tation. sit amet, consec tetuer.
-                              ipsum dolor sit amet, consectetuer adipiscing.ipsum dolor sit .
-                        </p>
+
                     </div>
                 </div>
-                <!-- RESENT POST -->
-                <div class="col-md-3 col-sm-6">
-                    <div class="widget recent-posts-entry-date">
-                        <h4 class="widget-title text-white">Resent Post</h4>
-                        <div class="widget-post-bx">
-                            <div class="bdr-light-blue widget-post clearfix  bdr-b-1 m-b10 p-b10">
-                                <div class="wt-post-date text-center text-uppercase text-white p-t5">
-                                    <strong>20</strong>
-                                    <span>Mar</span>
-                                </div>
-                                <div class="wt-post-info">
-                                    <div class="wt-post-header">
-                                        <h6 class="post-title"><a href="blog-single.html">Blog title first </a></h6>
-                                    </div>
-                                    <div class="wt-post-meta">
-                                        <ul>
-                                            <li class="post-author"><i class="fa fa-user"></i>By Admin</li>
-                                            <li class="post-comment"><i class="fa fa-comments"></i> 28</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bdr-light-blue widget-post clearfix  bdr-b-1 m-b10 p-b10">
-                                <div class="wt-post-date text-center text-uppercase text-white p-t5">
-                                    <strong>30</strong>
-                                    <span>Mar</span>
-                                </div>
-                                <div class="wt-post-info">
-                                    <div class="wt-post-header">
-                                        <h6 class="post-title"><a href="blog-single.html">Blog title first </a></h6>
-                                    </div>
-                                    <div class="wt-post-meta">
-                                        <ul>
-                                            <li class="post-author"><i class="fa fa-user"></i>By Admin</li>
-                                            <li class="post-comment"><i class="fa fa-comments"></i> 29</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bdr-light-blue widget-post clearfix  bdr-b-1 m-b10 p-b10">
-                                <div class="wt-post-date text-center text-uppercase text-white p-t5">
-                                    <strong>31</strong>
-                                    <span>Mar</span>
-                                </div>
-                                <div class="wt-post-info">
-                                    <div class="wt-post-header">
-                                        <h6 class="post-title"><a href="blog-single.html">Blog title first </a></h6>
-                                    </div>
-                                    <div class="wt-post-meta">
-                                        <ul>
-                                            <li class="post-author"><i class="fa fa-user"></i>By Admin</li>
-                                            <li class="post-comment"><i class="fa fa-comments"></i> 30</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- USEFUL LINKS -->
-                <div class="col-md-3 col-sm-6">
+
+                <div class="col-md-6 col-sm-6">
                     <div class="widget widget_services">
                         <h4 class="widget-title text-white">Useful links</h4>
                         <ul>
-                            <li><a href="about-1.html">About</a></li>
-                            <li><a href="faq-1.html">FAQ</a></li>
-                            <li><a href="our-team.html">Our Team</a></li>
-                            <li><a href="services-1.html">Services</a></li>
-                            <li><a href="contact-1.html">Contact Us</a></li>
+                            <li><a href="{{ route('about') }}">About</a></li>
+                            <li><a href="{{ route('faq') }}">FAQ</a></li>
+                            <li><a href="{{ route('pricing') }}">PACKAGES</a></li>
+                            <li><a href="{{ route('news') }}">NEWS</a></li>
+                            <li><a href="{{ route('contact') }}">Contact Us</a></li>
                         </ul>
                     </div>
                 </div>
