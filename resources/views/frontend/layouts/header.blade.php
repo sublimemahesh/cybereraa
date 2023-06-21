@@ -42,7 +42,7 @@
         <div class="main-bar main-bar-marging">
             <div class="container">
 
-                <div class="logo-header mostion">
+                <div class="logo-header mostion mob-width">
                     <a href="{{ route('/') }}">
                         <img src="{{asset('assets/frontend/images/logo-light.png') }}" width="230" height="67" alt="" />
                     </a>
