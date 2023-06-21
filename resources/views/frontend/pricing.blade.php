@@ -51,7 +51,7 @@
                                             <div class="pricingtable-title">
                                                 <h3>{{ $package->name }}</h3>
                                             </div>
-
+  
                                             <div class="pricingtable-price">
                                                 <span class="pricingtable-bx">{{ $package->currency }}{{ $package->amount }}</span>
                                                 {{-- <span class="pricingtable-type"></span> --}}

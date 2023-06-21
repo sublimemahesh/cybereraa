@@ -4545,7 +4545,7 @@ a:focus.video-play-btn{
 .pricingtable-price
 .pricingtable-bx{
 	color:#fff;
-	font-size:48px;
+	font-size:30px;
 }
 
 .pricing-table-style-2 .pricingtable-title{
@@ -4557,7 +4557,7 @@ a:focus.video-play-btn{
 
 @media only screen and (max-width:1200px){
 .pricing-table-style-2 .pricingtable-price .pricingtable-bx {
-    font-size: 36px;
+    font-size: 36px; 
 }
 }
 
