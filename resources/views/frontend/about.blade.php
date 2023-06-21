@@ -31,8 +31,8 @@
         <!-- BREADCRUMB  ROW END -->
 
         <!-- ABOUT COMPANY SECTION START -->
-        
-        @foreach ($abouts->children as $section)
+
+        @foreach ($abouts as $section)
        
         <div class="section-full p-tb100 themecolor-2">
             <div class="container">

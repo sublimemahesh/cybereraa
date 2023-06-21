@@ -69,7 +69,7 @@ class FrontendController extends Controller
 
     public function about()
     {
-        $abouts = page::find(3); //3
+        $abouts = page::where(['id' =>3])->get();; //3
 
         $homes_mission = page::where(['id' => 56])->get(); //     56      40
         $homes_value = page::where(['id' => 57])->get(); //       57      44
