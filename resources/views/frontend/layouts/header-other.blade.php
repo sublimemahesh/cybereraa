@@ -43,7 +43,7 @@
     <div class="main-bar header-middle themecolor-2">
         <div class="container">
             <div class="logo-header">
-                <a href="index-2.html">
+                <a href="{{ route('/') }}">
                     <img src="{{ asset('assets/frontend/images/logo-dark.png') }}" width="216" height="37" alt="" />
                 </a>
             </div>
