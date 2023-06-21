@@ -14,7 +14,7 @@ class Page extends Model
     use HasRecursiveRelationships;
 
     protected $fillable = [
-        'parent-id', 'title', 'image', 'content',
+        'parent_id', 'title', 'image', 'content',
     ];
 
     public function sluggable(): array
@@ -26,4 +26,19 @@ class Page extends Model
             ]
         ];
     }
+
+    public function parent()
+    {
+        return $this->belongsTo(Page::class, 'parent_id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(Page::class, 'parent_id');
+    }
+
+
+
+
+
 }
