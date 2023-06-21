@@ -695,6 +695,7 @@ Version: 1.0
     --theme-color2: #131c43 ;
     --theme-color3: #59607b;
     --theme-color4: #f1f1f1;
+    --theme-color5: #b9b7ca;;
 
   }
 
@@ -4557,7 +4558,7 @@ a:focus.video-play-btn{
 
 @media only screen and (max-width:1200px){
 .pricing-table-style-2 .pricingtable-price .pricingtable-bx {
-    font-size: 36px; 
+    font-size: 36px;
 }
 }
 
@@ -8596,7 +8597,7 @@ header .logo{
 .header-nav .nav{
 	float:none;
 	margin:0;
-	background:#fff;
+	background:var(--theme-color5);
 }
 .header-nav .nav li {
 	float:none;
@@ -8872,7 +8873,7 @@ header .logo{
 }
 @media only screen and (max-width:991px) {
 .header-style-3 .header-nav .nav > li > a {
-	color:#777777;
+	color:#090909;
 }
 }
 .header-style-3 .navbar-toggle .icon-bar {
@@ -8910,7 +8911,7 @@ header .logo{
 @media only screen and (max-width:767px) {
 .header-style-3.topbar-transparent{
 	position:relative;
-	background-color:#000;
+	background-color:var(--theme-color1);
 }
 .header-style-3.topbar-transparent .main-bar {
     position:static;

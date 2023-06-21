@@ -42,7 +42,7 @@
     <!-- Search Form -->
     <div class="main-bar header-middle themecolor-2">
         <div class="container">
-            <div class="logo-header">
+            <div class="logo-header mob-width">
                 <a href="{{ route('/') }}">
                     <img src="{{ asset('assets/frontend/images/logo-dark.png') }}" width="216" height="37" alt="" />
                 </a>
