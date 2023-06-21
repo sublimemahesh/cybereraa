@@ -43,7 +43,7 @@
             <div class="container">
 
                 <div class="logo-header mostion">
-                    <a href="index-2.html">
+                    <a href="{{ route('/') }}">
                         <img src="{{asset('assets/frontend/images/logo-light.png') }}" width="230" height="67" alt="" />
                     </a>
                 </div>
