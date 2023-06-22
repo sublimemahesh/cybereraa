@@ -126,7 +126,7 @@
                                 </div>
                             </div>
                             <div class="text-right">
-                                <button name="submit" type="submit" value="Submit" class="site-button-secondry  m-r15">Submit</button>
+                                <button name="submit" type="submit" value="Submit" class="site-button-secondry ">Submit</button>
                                 <button name="Resat" type="reset" value="Reset" class="site-button ">Reset</button>
                             </div>
                         </form>
