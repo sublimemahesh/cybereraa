@@ -37,7 +37,7 @@
         <div class="section-full">
 
             @foreach ($projects as $key => $project)
-            
+
             @if ($key % 2 == 0)
 
             <div class="row themecolor-2 p-t80 p-b50">
@@ -47,9 +47,9 @@
                             <h1 class="m-a0">{{ $project->title }}</h1>
                         </div>
                         <div class="mob-p-b30">
-                            <h5>
+
                                 {!! html_entity_decode($project->content) !!}
-                            </h5>
+
                         </div>
                     </div>
                     <div class="col-md-5 col-sm-5">
@@ -60,8 +60,7 @@
                                     <img src="{{ storage('pages/' . $project->image) }}" alt="">
                                 </div>
                                 <div class="wt-info themecolor-1 text-center p-a20">
-                                    <h3 class="text-uppercase">{{ $project->title }}</h3>
-                                    <p></p>
+                                    {{ $project->title }}
                                 </div>
                             </div>
                         </div>
@@ -91,9 +90,7 @@
                             <h1 class="m-a0">{{ $project->title }}</h1>
                         </div>
                         <div>
-                            <h5>
                                 {!! html_entity_decode($project->content) !!}
-                            </h5>
                         </div>
                     </div>
                 </div>
