@@ -3,7 +3,7 @@
     @section('header-title', 'Welcome ')
 
     @section('header')
-    @include('frontend.layouts.header')
+        @include('frontend.layouts.header')
     @endsection
 
 
@@ -19,29 +19,105 @@
                 <div class="ti_wrapper">
                     <div class="ti_slide">
                         <div class="ti_content">
-                            <div class="ti_news"><a href="#"><img src="{{asset('assets/frontend/images/coin-icon/bitcoin.png') }}" alt=""><span>BTC: </span><span>$ 10,633.1</span><span class="text-yellow p-lr5">0.97 %</span></a></div>
-                            <div class="ti_news"><a href="#"><img src="{{asset('assets/frontend/images/coin-icon/bitcoin.png') }}" alt=""><span>BTC: </span><span>¥ 68,008.1</span><span class="text-danger p-lr5">0.00 %</span></a></div>
-                            <div class="ti_news"><a href="#"><img src="{{asset('assets/frontend/images/coin-icon/bitcoin.png') }}" alt=""><span>BTC: </span><span>€ 8,699.23</span><span class="text-white p-lr5">1.08 %</span></a></div>
+                            <div class="ti_news">
+                                <a href="#">
+                                    <img src="{{asset('assets/frontend/images/coin-icon/bitcoin.png') }}" alt="">
+                                    <span>BTC: </span><span>$ 10,633.1</span><span class="text-yellow p-lr5">0.97 %</span></a>
+                            </div>
+                            <div class="ti_news">
+                                <a href="#">
+                                    <img src="{{asset('assets/frontend/images/coin-icon/bitcoin.png') }}" alt="">
+                                    <span>BTC: </span><span>¥ 68,008.1</span><span class="text-danger p-lr5">0.00 %</span></a>
+                            </div>
+                            <div class="ti_news">
+                                <a href="#">
+                                    <img src="{{asset('assets/frontend/images/coin-icon/bitcoin.png') }}" alt="">
+                                    <span>BTC: </span><span>€ 8,699.23</span><span class="text-white p-lr5">1.08 %</span></a>
+                            </div>
 
-                            <div class="ti_news"><a href="#"><img src="{{asset('assets/frontend/images/coin-icon/Ethereum.png') }}" alt=""><span>ETH: </span><span>Ƀ 0.08160</span><span class="text-green p-lr5">-0.28 %</span></a></div>
-                            <div class="ti_news"><a href="#"><img src="{{asset('assets/frontend/images/coin-icon/Ethereum.png') }}" alt=""><span>ETH: </span><span>$ 867.93</span><span class="text-danger p-lr5">-0.60 %</span></a></div>
-                            <div class="ti_news"><a href="#"><img src="{{asset('assets/frontend/images/coin-icon/Ethereum.png') }}" alt=""><span>ETH: </span><span>¥ 5,549.46</span><span class="text-white p-lr5">-0.28 %</span></a></div>
-                            <div class="ti_news"><a href="#"><img src="{{asset('assets/frontend/images/coin-icon/Ethereum.png') }}" alt=""><span>ETH: </span><span>€ 709.94</span><span class="text-gray p-lr5">0.26 %</span></a></div>
+                            <div class="ti_news">
+                                <a href="#">
+                                    <img src="{{asset('assets/frontend/images/coin-icon/Ethereum.png') }}" alt="">
+                                    <span>ETH: </span><span>Ƀ 0.08160</span><span class="text-green p-lr5">-0.28 %</span></a>
+                            </div>
+                            <div class="ti_news">
+                                <a href="#">
+                                    <img src="{{asset('assets/frontend/images/coin-icon/Ethereum.png') }}" alt="">
+                                    <span>ETH: </span><span>$ 867.93</span><span class="text-danger p-lr5">-0.60 %</span></a>
+                            </div>
+                            <div class="ti_news">
+                                <a href="#">
+                                    <img src="{{asset('assets/frontend/images/coin-icon/Ethereum.png') }}" alt="">
+                                    <span>ETH: </span><span>¥ 5,549.46</span><span class="text-white p-lr5">-0.28 %</span></a>
+                            </div>
+                            <div class="ti_news">
+                                <a href="#">
+                                    <img src="{{asset('assets/frontend/images/coin-icon/Ethereum.png') }}" alt="">
+                                    <span>ETH: </span><span>€ 709.94</span><span class="text-gray p-lr5">0.26 %</span></a>
+                            </div>
 
-                            <div class="ti_news"><a href="#"><img src="{{asset('assets/frontend/images/coin-icon/monero.png') }}" alt=""><span>XMR: </span><span>Ƀ 0.0276</span><span class="text-green p-lr5">1.25 %</span></a></div>
-                            <div class="ti_news"><a href="#"><img src="{{asset('assets/frontend/images/coin-icon/monero.png') }}" alt=""><span>XMR: </span><span>$ 295.33</span><span class="text-light-blue p-lr5">0.89 %</span></a></div>
-                            <div class="ti_news"><a href="#"><img src="{{asset('assets/frontend/images/coin-icon/monero.png') }}" alt=""><span>XMR: </span><span>¥ 1,883.14</span><span class="text-green p-lr5">0.25 %</span></a></div>
-                            <div class="ti_news"><a href="#"><img src="{{asset('assets/frontend/images/coin-icon/monero.png') }}" alt=""><span>XMR: </span><span>€ 240.56</span><span class="text-red p-lr5">-0.40 %</span></a></div>
+                            <div class="ti_news">
+                                <a href="#">
+                                    <img src="{{asset('assets/frontend/images/coin-icon/monero.png') }}" alt="">
+                                    <span>XMR: </span><span>Ƀ 0.0276</span><span class="text-green p-lr5">1.25 %</span></a>
+                            </div>
+                            <div class="ti_news">
+                                <a href="#">
+                                    <img src="{{asset('assets/frontend/images/coin-icon/monero.png') }}" alt="">
+                                    <span>XMR: </span><span>$ 295.33</span><span class="text-light-blue p-lr5">0.89 %</span></a>
+                            </div>
+                            <div class="ti_news">
+                                <a href="#">
+                                    <img src="{{asset('assets/frontend/images/coin-icon/monero.png') }}" alt="">
+                                    <span>XMR: </span><span>¥ 1,883.14</span><span class="text-green p-lr5">0.25 %</span></a>
+                            </div>
+                            <div class="ti_news">
+                                <a href="#">
+                                    <img src="{{asset('assets/frontend/images/coin-icon/monero.png') }}" alt="">
+                                    <span>XMR: </span><span>€ 240.56</span><span class="text-red p-lr5">-0.40 %</span></a>
+                            </div>
 
-                            <div class="ti_news"><a href="#"><img src="{{asset('assets/frontend/images/coin-icon/litecoin.png') }}" alt=""><span>LTC: </span><span>Ƀ 0.01956</span><span class="text-danger p-lr5">-0.20 %</span></a></div>
-                            <div class="ti_news"><a href="#"><img src="{{asset('assets/frontend/images/coin-icon/litecoin.png') }}" alt=""><span>LTC: </span><span>$ 208.06</span><span class="text-green p-lr5">-1.97 %</span></a></div>
-                            <div class="ti_news"><a href="#"><img src="{{asset('assets/frontend/images/coin-icon/litecoin.png') }}" alt=""><span>LTC: </span><span>¥ 1,330.24</span><span class="text-white p-lr5">-0.20 %</span></a></div>
-                            <div class="ti_news"><a href="#"><img src="{{asset('assets/frontend/images/coin-icon/litecoin.png') }}" alt=""><span>LTC: </span><span>€ 169.91</span><span class="text-yellow p-lr5">-1.29 %</span></a></div>
+                            <div class="ti_news">
+                                <a href="#">
+                                    <img src="{{asset('assets/frontend/images/coin-icon/litecoin.png') }}" alt="">
+                                    <span>LTC: </span><span>Ƀ 0.01956</span><span class="text-danger p-lr5">-0.20 %</span></a>
+                            </div>
+                            <div class="ti_news">
+                                <a href="#">
+                                    <img src="{{asset('assets/frontend/images/coin-icon/litecoin.png') }}" alt="">
+                                    <span>LTC: </span><span>$ 208.06</span><span class="text-green p-lr5">-1.97 %</span></a>
+                            </div>
+                            <div class="ti_news">
+                                <a href="#">
+                                    <img src="{{asset('assets/frontend/images/coin-icon/litecoin.png') }}" alt="">
+                                    <span>LTC: </span><span>¥ 1,330.24</span><span class="text-white p-lr5">-0.20 %</span></a>
+                            </div>
+                            <div class="ti_news">
+                                <a href="#">
+                                    <img src="{{asset('assets/frontend/images/coin-icon/litecoin.png') }}" alt="">
+                                    <span>LTC: </span><span>€ 169.91</span><span class="text-yellow p-lr5">-1.29 %</span></a>
+                            </div>
 
-                            <div class="ti_news"><a href="#"><img src="{{asset('assets/frontend/images/coin-icon/DigitalCash.png') }}" alt=""><span>DASH: </span><span>Ƀ 0.05590</span><span class="text-white p-lr5">0.26 %</span></a></div>
-                            <div class="ti_news"><a href="#"><img src="{{asset('assets/frontend/images/coin-icon/DigitalCash.png') }}" alt=""><span>DASH: </span><span>$ 594.64</span><span class="text-green p-lr5">0.37 %</span></a></div>
-                            <div class="ti_news"><a href="#"><img src="{{asset('assets/frontend/images/coin-icon/DigitalCash.png') }}" alt=""><span>DASH: </span><span>¥ 3,801.65</span><span class="text-red p-lr5">0.99 %</span></a></div>
-                            <div class="ti_news"><a href="#"><img src="{{asset('assets/frontend/images/coin-icon/DigitalCash.png') }}" alt=""><span>DASH: </span><span>€ 486.29</span><span class="text-yellow p-lr5">-10.18 %</span></a></div>
+                            <div class="ti_news">
+                                <a href="#">
+                                    <img src="{{asset('assets/frontend/images/coin-icon/DigitalCash.png') }}" alt="">
+                                    <span>DASH: </span><span>Ƀ 0.05590</span><span class="text-white p-lr5">0.26 %</span></a>
+                            </div>
+                            <div class="ti_news">
+                                <a href="#">
+                                    <img src="{{asset('assets/frontend/images/coin-icon/DigitalCash.png') }}" alt="">
+                                    <span>DASH: </span><span>$ 594.64</span><span class="text-green p-lr5">0.37 %</span></a>
+                            </div>
+                            <div class="ti_news">
+                                <a href="#">
+                                    <img src="{{asset('assets/frontend/images/coin-icon/DigitalCash.png') }}" alt="">
+                                    <span>DASH: </span><span>¥ 3,801.65</span><span class="text-red p-lr5">0.99 %</span></a>
+                            </div>
+                            <div class="ti_news">
+                                <a href="#">
+                                    <img src="{{asset('assets/frontend/images/coin-icon/DigitalCash.png') }}" alt="">
+                                    <span>DASH: </span><span>€ 486.29</span><span class="text-yellow p-lr5">-10.18 %</span></a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -82,7 +158,6 @@
         <!-- OUR VALUE SECTION  END -->
 
         <!-- WELCOME SECTION START -->
-
 
 
         <div class="section-full home-about-section p-t80 bg-no-repeat bg-bottom-right themecolor-2" style="background-image:url(images/background/bg-coin.png)">
@@ -144,21 +219,21 @@
 
                         <div class="col-md-4 col-sm-12 m-b30  p-t30">
 
-                            @if (count($benefits) > 0)
-                            @foreach ($benefits as $key => $section)
-                            @if ($key % 2 == 0)
+                            @if ($benefits !== null && count($benefits) > 0)
+                                @foreach ($benefits as $key => $section)
+                                    @if ($key % 2 == 0)
 
-                            <div class="wt-icon-box-wraper  right p-a20" data-target="#tab1" data-toggle="tab">
-                                <div class="icon-md text-primary">
-                                    <span class="icon-cell  text-primary"><img src="{{ storage('pages/' . $section->image) }}" alt=""></span>
-                                </div>
-                                <div class="icon-content">
-                                    <h4 class="wt-tilte text-uppercase">{{ $section->title }}</h4>
-                                    <p> {!! $section->content !!}</p>
-                                </div>
-                            </div>
-                            @endif
-                            @endforeach
+                                        <div class="wt-icon-box-wraper  right p-a20" data-target="#tab1" data-toggle="tab">
+                                            <div class="icon-md text-primary">
+                                                <span class="icon-cell  text-primary"><img src="{{ storage('pages/' . $section->image) }}" alt=""></span>
+                                            </div>
+                                            <div class="icon-content">
+                                                <h4 class="wt-tilte text-uppercase">{{ $section->title }}</h4>
+                                                <p> {!! $section->content !!}</p>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endforeach
                             @endif
 
                         </div>
@@ -178,22 +253,21 @@
                         </div>
 
                         <div class="col-md-4 col-sm-12 m-b30  p-t30 mob-m">
-                            @if (count($benefits) > 0)
-                            @foreach ($benefits as $key => $section)
-                            @if ($key % 2 != 0)
+                            @if ($benefits !== null && count($benefits) > 0)
+                                @foreach ($benefits as $key => $section)
+                                    @if ($key % 2 != 0)
 
-
-                            <div class="wt-icon-box-wraper left p-a20 ">
-                                <div class="icon-md text-primary">
-                                    <span class="icon-cell  text-primary"><img src="{{ storage('pages/' . $section->image) }}" alt=""></span>
-                                </div>
-                                <div class="icon-content">
-                                    <h4 class="wt-tilte text-uppercase">{{ $section->title }}</h4>
-                                    <p> {!! $section->content !!}</p>
-                                </div>
-                            </div>
-                            @endif
-                            @endforeach
+                                        <div class="wt-icon-box-wraper left p-a20 ">
+                                            <div class="icon-md text-primary">
+                                                <span class="icon-cell  text-primary"><img src="{{ storage('pages/' . $section->image) }}" alt=""></span>
+                                            </div>
+                                            <div class="icon-content">
+                                                <h4 class="wt-tilte text-uppercase">{{ $section->title }}</h4>
+                                                <p> {!! $section->content !!}</p>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endforeach
                             @endif
 
                         </div>
@@ -207,7 +281,6 @@
         <!-- COMPANY DETAIL SECTION START -->
 
 
-
         <div class="section-full p-t50 p-b50 overlay-wraper bg-parallax clouds1 bg-repeat" data-stellar-background-ratio="0.5" style="background-image:url({{ asset('assets/frontend/images/background/bg-1.jpg') }});">
             <div class="overlay-main themecolor-3 opacity-05"></div>
             <div class="container ">
@@ -215,8 +288,10 @@
                     <div class="col-md-4 col-sm-6">
                         <div class="rocket-pic">
                             <div class="rocket-animation ">
-                                <img src="{{asset('assets/frontend/images/rocket.png')}}" alt="" class="floating" />
-                                <div class="rocket-fire"> <img src="{{asset('assets/frontend/images/fire.gif')}}" alt="" class="floating" /></div>
+                                <img src="{{asset('assets/frontend/images/rocket.png')}}" alt="" class="floating"/>
+                                <div class="rocket-fire">
+                                    <img src="{{asset('assets/frontend/images/fire.gif')}}" alt="" class="floating"/>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -279,37 +354,41 @@
                     <div class="row">
 
                         @foreach ($how_it_work as $key => $section)
-                        @if ($key%2 == 0)
-                        <!-- COLUMNS 1 -->
+                            @if ($key%2 == 0)
+                                <!-- COLUMNS 1 -->
 
-                        <div class="col-md-4 col-sm-4 step-number-block">
-                            <div class="wt-icon-box-wraper  p-a30 center themecolor-2 m-a5">
-                                <div class="icon-lg text-primary m-b20">
-                                    <a href="#" class="icon-cell"><img src="{{ storage('pages/' . $section->image) }}" alt=""></a>
+                                <div class="col-md-4 col-sm-4 step-number-block">
+                                    <div class="wt-icon-box-wraper  p-a30 center themecolor-2 m-a5">
+                                        <div class="icon-lg text-primary m-b20">
+                                            <a href="#" class="icon-cell">
+                                                <img src="{{ storage('pages/' . $section->image) }}" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="icon-content">
+                                            <div class="step-number">{{ $key+1 }}</div>
+                                            <h4 class="wt-tilte text-uppercase font-weight-500">{{ $section->title }}</h4>
+                                            {!! html_entity_decode($section->content) !!}
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="icon-content">
-                                    <div class="step-number">{{ $key+1 }}</div>
-                                    <h4 class="wt-tilte text-uppercase font-weight-500">{{ $section->title }}</h4>
-                                    {!! html_entity_decode($section->content) !!}
-                                </div>
-                            </div>
-                        </div>
 
-                        @else
-                        <!-- COLUMNS 2 -->
-                        <div class="col-md-4 col-sm-4 step-number-block">
-                            <div class="wt-icon-box-wraper  p-a30 center themecolor-3 m-a5 ">
-                                <div class="icon-lg m-b20">
-                                    <a href="#" class="icon-cell"><img src="{{ storage('pages/' . $section->image) }}" alt=""></a>
+                            @else
+                                <!-- COLUMNS 2 -->
+                                <div class="col-md-4 col-sm-4 step-number-block">
+                                    <div class="wt-icon-box-wraper  p-a30 center themecolor-3 m-a5 ">
+                                        <div class="icon-lg m-b20">
+                                            <a href="#" class="icon-cell">
+                                                <img src="{{ storage('pages/' . $section->image) }}" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="icon-content text-white">
+                                            <div class="step-number active">{{ $key+1 }}</div>
+                                            <h4 class="wt-tilte text-uppercase font-weight-500">{{ $section->title }}</h4>
+                                            {!! html_entity_decode($section->content) !!}
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="icon-content text-white">
-                                    <div class="step-number active">{{ $key+1 }}</div>
-                                    <h4 class="wt-tilte text-uppercase font-weight-500">{{ $section->title }}</h4>
-                                    {!! html_entity_decode($section->content) !!}
-                                </div>
-                            </div>
-                        </div>
-                        @endif
+                            @endif
                         @endforeach
 
 
@@ -360,35 +439,32 @@
 
     @section('scripts')
 
-
-    <script type="text/javascript">
-        jQuery(function() {
-            var timer = !1;
-            _Ticker = jQuery("#T1").newsTicker();
-            _Ticker.on("mouseenter", function() {
-                var __self = this;
-                timer = setTimeout(function() {
-                    __self.pauseTicker();
-                }, 200);
+        <script type="text/javascript">
+            jQuery(function () {
+                var timer = !1;
+                _Ticker = jQuery("#T1").newsTicker();
+                _Ticker.on("mouseenter", function () {
+                    var __self = this;
+                    timer = setTimeout(function () {
+                        __self.pauseTicker();
+                    }, 200);
+                });
+                _Ticker.on("mouseleave", function () {
+                    clearTimeout(timer);
+                    if (!timer) return !1;
+                    this.startTicker();
+                });
             });
-            _Ticker.on("mouseleave", function() {
-                clearTimeout(timer);
-                if (!timer) return !1;
-                this.startTicker();
-            });
-        });
 
-    </script>
+        </script>
 
-    <script src="{{asset('assets/frontend/plugins/revolution/revolution/js/jquery.themepunch.tools.min.js') }}"></script>
-    <script src="{{asset('assets/frontend/plugins/revolution/revolution/js/jquery.themepunch.revolution.min.js') }}"></script>
+        <script src="{{asset('assets/frontend/plugins/revolution/revolution/js/jquery.themepunch.tools.min.js') }}"></script>
+        <script src="{{asset('assets/frontend/plugins/revolution/revolution/js/jquery.themepunch.revolution.min.js') }}"></script>
 
-    <!-- SLIDER REVOLUTION 5.0 EXTENSIONS  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->
-    <script src="{{asset('assets/frontend/plugins/revolution/revolution/js/extensions/revolution-plugin.js') }}"></script>
-    <!-- REVOLUTION SLIDER FUNCTION  ===== -->
-    <script src="{{ asset('assets/frontend/js/rev-script-1.js') }}"></script>
-
-
+        <!-- SLIDER REVOLUTION 5.0 EXTENSIONS  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->
+        <script src="{{asset('assets/frontend/plugins/revolution/revolution/js/extensions/revolution-plugin.js') }}"></script>
+        <!-- REVOLUTION SLIDER FUNCTION  ===== -->
+        <script src="{{ asset('assets/frontend/js/rev-script-1.js') }}"></script>
 
     @endsection
 
