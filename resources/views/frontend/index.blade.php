@@ -83,7 +83,7 @@
 
         <!-- WELCOME SECTION START -->
 
-       
+
 
         <div class="section-full home-about-section p-t80 bg-no-repeat bg-bottom-right themecolor-2" style="background-image:url(images/background/bg-coin.png)">
             <div class="container-fluid ">
@@ -122,7 +122,7 @@
             </div>
         </div>
 
-      
+
         <!-- WELCOME SECTION  END -->
 
         <!-- WHY CHOOSE US SECTION START  -->
@@ -206,7 +206,7 @@
 
         <!-- COMPANY DETAIL SECTION START -->
 
-      
+
 
         <div class="section-full p-t50 p-b50 overlay-wraper bg-parallax clouds1 bg-repeat" data-stellar-background-ratio="0.5" style="background-image:url({{ asset('assets/frontend/images/background/bg-1.jpg') }});">
             <div class="overlay-main themecolor-3 opacity-05"></div>
@@ -222,7 +222,7 @@
                     </div>
                     <div class="col-md-8 col-sm-6">
                         <div class="awesome-counter text-right text-white">
-                            <h3 class="font-24">The Cryptocurrency</h3>
+                            <h3 class="font-24">The Company </h3>
                             <h2 class="font-60 font-weight-600"><span class="text-primary">{{ $awesome_facts->title }}</span></h2>
                             <p> {!! $awesome_facts->content !!}</p>
                         </div>
@@ -259,7 +259,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- COMPANY DETAIL SECTION End -->
 
         <!-- HOW IT WORK SECTION START  -->
