@@ -47,27 +47,27 @@
 
                         <!-- ACCORDION START -->
                         <div class="wt-accordion acc-bg-gray" id="accordion5">
-                        
-                           
-                        
-                            
-                                
+
+
+
+
+
                                 @foreach ($faqs as $key => $faq)
                                 <div id="{{ $key }}">
                                 <h3>{{ $faq->title }}</h3>
-                                    
+
                                 @foreach ($faq->children  as $key1 => $child)
 
                                 <div class="panel wt-panel">
                                     <div class="acod-head">
                                         <h3 class="acod-title">
-                                            <a data-toggle="collapse" href="#collapseTwo{{ $key1}}" class="collapsed" data-parent="#accordion5">
+                                            <a data-toggle="collapse" href="#collapseTwo{{ $key}}{{ $key1}}" class="collapsed" data-parent="#accordion5">
                                                 {{ $child->title }}
                                                 <span class="indicator"><i class="fa fa-plus"></i></span>
                                             </a>
                                         </h3>
                                     </div>
-                                    <div id="collapseTwo{{ $key1}}" class="acod-body collapse">
+                                    <div id="collapseTwo{{ $key}}{{ $key1}}" class="acod-body collapse">
                                         <div class="acod-content p-tb15">
                                             {!! html_entity_decode($child->content) !!}
                                         </div>
@@ -100,8 +100,8 @@
                                 </a>
                             </div>
                             @endforeach
-                           
-                           
+
+
                         </div>
 
                         <!-- CONTACT US -->
