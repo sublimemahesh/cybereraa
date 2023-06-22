@@ -14,13 +14,13 @@ class FrontendController extends Controller
     public function index()
     {
 
-        $how_it_work = Page::where(['slug' => 'how-to-it-works'])->first();
+        $how_it_work = Page::where(['slug' => 'how-to-it-works'])->firstOrNew();
         $how_it_work = $how_it_work->children;
-        $awesome_facts = Page::where(['slug' => 'company-detail'])->first();
-        $welcome = Page::where(['slug' => 'welcome'])->first();
+        $awesome_facts = Page::where(['slug' => 'company-detail'])->firstOrNew();
+        $welcome = Page::where(['slug' => 'welcome'])->firstOrNew();
 
-        $benefits = Page::where(['slug' => 'benefit'])->first();
-        $benefits = $benefits->children;
+        $benefits = Page::where(['slug' => 'benefit'])->firstOrNew();
+        $benefits = $benefits?->children;
 
         return view('frontend.index', compact('benefits', 'welcome', 'how_it_work', 'awesome_facts'));
 
@@ -77,9 +77,9 @@ class FrontendController extends Controller
             'faq2' => $faq2,
             'faq3' => $faq3,
             'faq4' => $faq4,
-            
+
         );
-        
+
 
 
 
