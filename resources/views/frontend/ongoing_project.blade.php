@@ -60,7 +60,7 @@
                                     <img src="{{ storage('pages/' . $project->image) }}" alt="">
                                 </div>
                                 <div class="wt-info themecolor-1 text-center p-a20">
-                                    {{ $project->title }}
+                                    <h3 class="text-uppercase">{{ $project->title }}</h3>
                                 </div>
                             </div>
                         </div>
