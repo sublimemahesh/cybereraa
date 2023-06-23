@@ -310,7 +310,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public static function upgradeAncestorsRank(self $user, $rank, $position, $is_active = false): void
     {
-        if ($rank > 7) {
+        if ($rank > config('rank-system.rank_level_count', 10)) {
             return;
         }
 
@@ -329,24 +329,24 @@ class User extends Authenticatable implements MustVerifyEmail
 
                 $eligibility = count($children_positions);
                 $eligibility_positions = json_encode($children_positions, JSON_THROW_ON_ERROR);
-                $is_active = $eligibility === 5;
+                $is_active = $eligibility >= config('rank-system.rank_eligibility_activate_at', 3);
                 $activated_at = $is_active ? now() : null;
 
-                $user_rank->update(compact('eligibility', 'eligibility_positions', 'activated_at'));
+                if (!$user_rank->is_active) {
+                    $user_rank->update(compact('eligibility', 'eligibility_positions', 'activated_at'));
 
-
-                if ($is_active && (count(array_diff($children_positions, $current_eligibility_positions)) !== 0)) {
-                    $user->ancestors()->chunk(10, function ($ancestors) use ($rank) {
-                        foreach ($ancestors as $parent) {
-                            $parent->ranks()->where('rank', 1)->increment('total_rankers');
-                        }
-                    });
-                }
-
-                $rank = 2;
-                $position = $user->position;
-                if ($is_active) {
-                    self::upgradeGenealogyAncestorsRank($user, $rank, $position, true);
+                    if ($is_active && (count(array_diff($children_positions, $current_eligibility_positions)) !== 0)) {
+                        $user->ancestors()->chunk(10, function ($ancestors) use ($rank) {
+                            foreach ($ancestors as $parent) {
+                                $parent->ranks()->where('rank', 1)->increment('total_rankers');
+                            }
+                        });
+                    }
+                    $rank = 2;
+                    $position = $user->position;
+                    if ($is_active) {
+                        self::upgradeGenealogyAncestorsRank($user, $rank, $position, true);
+                    }
                 }
             }
 
@@ -359,7 +359,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public static function upgradeGenealogyAncestorsRank(self $user, int $rank, $position, $is_active = false): void
     {
         // logger("line: 304 -" . $user->id);
-        if ($rank > 7) {
+        if ($rank > config('rank-system.rank_level_count', 10)) {
             return;
         }
         if ($is_active && !empty($user->parent_id)) {
@@ -371,7 +371,7 @@ class User extends Authenticatable implements MustVerifyEmail
             }
 
             //dispatch(function () use ($parent, $rank, $position, $is_active) {
-            do {
+            do { // upgrade every parent rank
                 $user_rank = Rank::firstOrCreate(
                     ['user_id' => $parent->id, 'rank' => $rank],
                     ['eligibility' => 0, 'total_rankers' => 0]
@@ -388,22 +388,22 @@ class User extends Authenticatable implements MustVerifyEmail
 
                 $eligibility = count($synced_eligibility_positions);
                 $eligibility_positions = json_encode($synced_eligibility_positions, JSON_THROW_ON_ERROR);
-                $is_active = $eligibility === 5;
+                $is_active = $eligibility >= config('rank-system.rank_eligibility_activate_at', 3);
                 $activated_at = $is_active ? now() : null;
 
-                $user_rank->update(compact('eligibility', 'eligibility_positions', 'activated_at'));
-
-                $position = $parent->position;
-
-                if ($is_active && (count(array_diff($synced_eligibility_positions, $current_eligibility_positions)) !== 0)) {
-                    foreach ($parent->ancestors()->get() as $ancestor) {
-                        $ancestor->ranks()->where('rank', $rank)->increment('total_rankers');
+                if (!$user_rank->is_active) {
+                    $user_rank->update(compact('eligibility', 'eligibility_positions', 'activated_at'));
+                    if ($is_active && (count(array_diff($synced_eligibility_positions, $current_eligibility_positions)) !== 0)) {
+                        foreach ($parent->ancestors()->get() as $ancestor) {
+                            $ancestor->ranks()->where('rank', $rank)->increment('total_rankers');
+                        }
+                    }
+                    $position = $parent->position;
+                    if ($is_active) { // level up every parent rank by one
+                        self::upgradeGenealogyAncestorsRank($parent, $rank + 1, $position, true);
                     }
                 }
 
-                if ($is_active) {
-                    self::upgradeGenealogyAncestorsRank($parent, $rank + 1, $position, true);
-                }
                 // logger("line: 348 -" . $parent->id);
                 if ($parent->parent_id === null) {
                     break;
