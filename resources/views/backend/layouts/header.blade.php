@@ -31,8 +31,8 @@
         <nav class="navbar navbar-expand">
             <div class="collapse navbar-collapse justify-content-between">
                 <div class="header-left">
-                    <div class="dashboard_bar">
-                        @yield('header-title')
+                    <div class="dashboard_bar ">
+                        <h3 class="h3-txt">@yield('header-title')</h3>
                         <span class="txte-right">
                             @yield('header-title2')
                         </span>
