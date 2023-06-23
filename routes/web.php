@@ -326,6 +326,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::get('incomes/commission', 'User\EarningController@commission')->name('incomes.commission');
         Route::get('incomes/rewards', 'User\EarningController@rewards')->name('incomes.rewards');
         Route::get('earnings', 'User\EarningController@index')->name('earnings.index');
+        Route::match(['get', 'post'], 'earnings/summarize-yearly-income', 'User\EarningController@incomeChart')->name('earnings.yearly-income-chart');
 
         Route::post('wallet/transfer/filter/users/{user:username}', 'User\WithdrawController@findUser');
         Route::post('filter/users/{search_text}', 'User\WithdrawController@findUsers');
