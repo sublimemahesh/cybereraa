@@ -28,13 +28,13 @@ class FrontendController extends Controller
 
     public function about()
     {
-        $abouts = Page::where(['slug' => 'about-us-page'])->first();
+        $abouts = Page::where(['slug' => 'about-us-page'])->firstOrNew();
         return view('frontend.about', compact('abouts'));
     }
 
     public function project()
     {
-        $projects = Page::where(['slug' => 'projects'])->first();
+        $projects = Page::where(['slug' => 'projects'])->firstOrNew();
         $projects = $projects->children;
         return view('frontend.ongoing_project', compact('projects'));
 
@@ -42,7 +42,7 @@ class FrontendController extends Controller
 
     public function upcomingProject()
     {
-        $projects = Page::where(['slug' => 'upcoming-projects'])->first();
+        $projects = Page::where(['slug' => 'upcoming-projects'])->firstOrNew();
         $projects = $projects->children;
         return view('frontend.upcoming-project', compact('projects'));
 
@@ -66,10 +66,10 @@ class FrontendController extends Controller
     {
         $faqs = page::all();
 
-        $faq1 = Page::where(['slug' => 'faq-sing-up-and-sign-in'])->first();
-        $faq2 = Page::where(['slug' => 'faq-buy-packages'])->first();
-        $faq3 = Page::where(['slug' => 'faq-invite-members'])->first();
-        $faq4 = Page::where(['slug' => 'faq-withdraw-money'])->first();
+        $faq1 = Page::where(['slug' => 'faq-sing-up-and-sign-in'])->firstOrNew();
+        $faq2 = Page::where(['slug' => 'faq-buy-packages'])->firstOrNew();
+        $faq3 = Page::where(['slug' => 'faq-invite-members'])->firstOrNew();
+        $faq4 = Page::where(['slug' => 'faq-withdraw-money'])->firstOrNew();
 
 
         $faqs = array(
