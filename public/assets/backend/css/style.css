@@ -18732,6 +18732,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
     [data-sidebar-style="mini"] .deznav .nav-text {
         display: none;
+
     }
 
     [data-sidebar-style="mini"] .deznav .slimScrollDiv,
@@ -48903,3 +48904,15 @@ button.dt-button, div.dt-button, a.dt-button
     background-color: #3a3939;
   }
 
+.h3-txt{
+    font-family: 'good-times-regular';
+}
+
+.nav-text{
+    font-family: 'good-times-regular';
+
+}
+
+.mm-collapse .mm-show li a ::before{
+    font-family: 'good-times-regular';
+}

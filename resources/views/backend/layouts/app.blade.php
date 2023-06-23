@@ -64,6 +64,11 @@
     @livewireScripts
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/plugins/confirmDate/confirmDate.min.css" integrity="sha512-i4miv4uj4m8CwmH7M2HfUr2BXzyLTmexzQi+e27yE+aXivR5iQ2urKV34j3rqNeZcesfmXAtSeLuFuaERTxgEA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/plugins/monthSelect/style.css">
+
+    <link href="https://www.dafontfree.net/embed/Z29vZC10aW1lcy1yZWd1bGFyJmRhdGEvMTUvZy83MTY2OS9nb29kIHRpbWVzIHJnLnR0Zg" rel="stylesheet" type="text/css"/>
+
+    <link href='https://fonts.googleapis.com/css?family=Dancing Script' rel='stylesheet'>
+
 </head>
 
 <body class="font-sans antialiased dark" style="background:#020202">
