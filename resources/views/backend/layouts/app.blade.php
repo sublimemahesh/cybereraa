@@ -129,7 +129,7 @@
     <!--**********************************  Footer start   ***********************************-->
     <div class="footer out-footer">
         <div class="copyright">
-            <p>© {{ date('Y') }} Safest Trades. All Rights Reserved.</p>
+            <p>© {{ date('Y') }} Owara3m. All Rights Reserved.</p>
         </div>
     </div>
     <!--********************************** Footer end  ***********************************-->
