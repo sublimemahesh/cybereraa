@@ -31,10 +31,10 @@
                                     <td>
                                         <div class="w-75">
                                             <div class="d-flex justify-content-between">
-                                                <h6> {{ round(($rank->eligibility * 100 / config('rank-system.rank_eligibility_activate_at',3))) }}%</h6>
+                                                <h6> {{ $rank->eligibility_percentage }}%</h6>
                                             </div>
                                             <div class="progress">
-                                                <div class="progress-bar bg-success" style="width: {{ round(($rank->eligibility * 100 / config('rank-system.rank_eligibility_activate_at',3))) }}%"></div>
+                                                <div class="progress-bar bg-success" style="width: {{ $rank->eligibility_percentage }}%"></div>
                                             </div>
                                         </div>
 

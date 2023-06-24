@@ -42,6 +42,37 @@ class EarningController extends Controller
         return view('backend.user.earnings.index');
     }
 
+    /**
+     * @throws Exception
+     */
+    public function teamHighestEarnings(Request $request)
+    {
+        if ($request->wantsJson()) {
+            $descendants = Auth::user()->descendants()->pluck('id')->toArray();
+            $earnings = Earning::filter()
+                ->with(['earnable', 'user'])
+                ->whereIn('user_id', $descendants)
+                ->orderBy('amount', 'desc');
+
+            return DataTables::of($earnings)
+                ->addColumn('earnable_type', function ($earn) {
+                    return
+                        "<code class='text-uppercase'>{$earn->type}</code> - #" .
+                        str_pad($earn->earnable_id, '4', '0', STR_PAD_LEFT);
+                })
+                ->addColumn('user', static function ($trx) {
+                    return "User: " . str_pad($trx->user_id, '4', '0', STR_PAD_LEFT) .
+                        " - <code class='text-uppercase'>{$trx->user->username}</code>";
+                })
+                ->addColumn('amount', fn($commission) => number_format($commission->amount, 2))
+                ->addColumn('package', fn($earn) => $earn->earnable->package_info_json->name)
+                ->addColumn('date', fn($earn) => $earn->created_at->format('Y-m-d H:i:s'))
+                ->rawColumns(['user', 'earnable_type'])
+                ->make();
+        }
+        return view('backend.user.teams.highest-incomes');
+    }
+
 
     public function incomeChart(Request $request)
     {
