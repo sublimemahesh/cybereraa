@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\YealyIncomeBarChartResource;
 use App\Models\Commission;
 use App\Models\Earning;
 use App\Models\RankBenefit;
@@ -45,53 +46,55 @@ class EarningController extends Controller
     public function incomeChart(Request $request)
     {
         $user = Auth::user();
-        if ($request->isMethod('POST') && $request->wantsJson()) {
+        $year = date('Y');
 
+        $validator = \Validator::make($request->all(), ['year' => 'required|date_format:Y']);
+        if ($validator->passes()) {
+            $year = $request->get('year');
+        }
+
+        if ($request->isMethod('POST') && $request->wantsJson()) {
             $yearlyIncome = DB::table('earnings')
-                ->select(DB::raw('MONTH(created_at) AS month, SUM(amount) AS monthly_income'))
+                ->select(DB::raw('MONTH(created_at) AS month, type, SUM(amount) AS monthly_income'))
+                ->whereYear('created_at', $year)
                 ->where('user_id', $user?->id)
                 ->where('status', 'RECEIVED')
-                ->whereYear('created_at', date('Y'))
-                ->groupBy(DB::raw('MONTH(created_at)'))
-                ->orderBy(DB::raw('MONTH(created_at)'))
-                ->get()
-                ->pluck('monthly_income')
-                ->toArray();
+                ->groupBy('month', 'type')
+                ->orderBy('month')
+                ->orderBy('type')
+                ->get();
 
             $descendants = $user?->descendants()->pluck('id')->toArray();
 
             $teamYearlyIncome = DB::table('earnings')
-                ->select(DB::raw('MONTH(created_at) AS month, SUM(amount) AS monthly_income'))
+                ->select(DB::raw('MONTH(created_at) AS month, type, SUM(amount) AS monthly_income'))
                 ->whereIn('user_id', $descendants)
                 ->where('status', 'RECEIVED')
                 ->whereYear('created_at', date('Y'))
-                ->groupBy(DB::raw('MONTH(created_at)'))
-                ->orderBy(DB::raw('MONTH(created_at)'))
-                ->get()
-                ->pluck('monthly_income')
-                ->toArray();
+                ->groupBy('month', 'type')
+                ->orderBy('month')
+                ->orderBy('type')
+                ->get();
 
-            $filledYearlyIncome = [];
-            $filledTeamYearlyIncome = [];
-            for ($month = 0; $month < 12; $month++) {
-                $filledYearlyIncome[$month] = $yearlyIncome[$month] ?? 0;
-                $filledTeamYearlyIncome[$month] = $teamYearlyIncome[$month] ?? 0;
-            }
-            //dd($filledYearlyIncome,$filledTeamYearlyIncome);
-            $json['data'] = [
-                'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                'series' => [$filledYearlyIncome],
-            ];
-            $json['team'] = [
-                'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                'series' => [$filledTeamYearlyIncome],
-            ];
+            $json['my_total_income'] = number_format(Earning::where('user_id', $user?->id)
+                ->where('status', 'RECEIVED')
+                ->whereIn('type', ['PACKAGE', 'DIRECT', 'INDIRECT'])
+                ->whereYear('created_at', date('Y'))->sum('amount'), 2);
+
+            $json['my_income'] = new YealyIncomeBarChartResource($yearlyIncome);
+            $json['team'] = new YealyIncomeBarChartResource($teamYearlyIncome);
             $json['status'] = true;
             $json['message'] = "success";
             $json['icon'] = 'success'; // warning | info | question | success | error
             return response()->json($json, Response::HTTP_OK);
         }
-        return view('backend.user.earnings.charts.yearly-income-chart');
+
+        $yearRangeForFilter = array_unique([
+            \Carbon::parse(Earning::min('created_at'))->format('Y'),
+            \Carbon::parse(Earning::max('created_at'))->format('Y')
+        ]);
+
+        return view('backend.user.earnings.charts.yearly-income-chart', compact('yearRangeForFilter', 'year'));
     }
 
     /**

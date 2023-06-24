@@ -29,59 +29,16 @@
                             <div class="border-l border-b border-r border-gray-200 dark:border-gray-600 px-2 py-4 dark:border-0  dark:bg-secondary-dark">
                                 <div>
                                     <div class="md:flex md:flex-wrap">
+
                                         <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
                                             <div>
                                                 <div class=" pt-2 p-2 ">
-                                                    <label for="earning-type" class="text-gray-700 dark:text-gray-300">EARNING TYPE</label>
+                                                    <label for="year" class="text-gray-700 dark:text-gray-300">YEAR</label>
                                                     <div class="relative">
-                                                        <select id="earning-type" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
-                                                            <option value="">ALL</option>
-                                                            <option value="package">PACKAGE</option>
-                                                            <option value="direct">DIRECT SALE</option>
-                                                            <option value="indirect">INDIRECT SALE</option>
-                                                            <option value="rank_bonus">RANK BONUS</option>
-                                                            <option value="rank_gift">RANK GIFT</option>
-                                                            <option value="p2p">P2P</option>
-                                                            <option value="staking">STAKING</option>
-                                                        </select>
-                                                        <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
-                                                            <svg class="pointer-events-none w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                                            </svg>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
-                                            <div>
-                                                <div class=" pt-2 p-2 ">
-                                                    <label for="input_period_status" class="text-gray-700 dark:text-gray-300">PERIOD</label>
-                                                    <div class="relative">
-                                                        <form autocomplete="off">
-                                                            <input id="date-range"
-                                                                   class="flatpickr block my-1 bg-gray-50 text-gray-700 py-2 px-3 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500 flatpickr-input"
-                                                                   type="text" placeholder="Select a period" readonly="readonly">
-                                                        </form>
-                                                        <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
-                                                            <svg class="pointer-events-none w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                                            </svg>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
-                                            <div>
-                                                <div class=" pt-2 p-2 ">
-                                                    <label for="status" class="text-gray-700 dark:text-gray-300">STATUS</label>
-                                                    <div class="relative">
-                                                        <select id="status" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
-                                                            <option value="">ALL</option>
-                                                            <option value="received">RECEIVED</option>
-                                                            <option value="hold">HOLD</option>
-                                                            <option value="canceled">CANCELED</option>
+                                                        <select id="year" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
+                                                            @foreach($yearRangeForFilter as $filter_year)
+                                                                <option value="{{ $filter_year }}" {{ $year === $filter_year ? 'selected' : '' }} >{{ $filter_year }}</option>
+                                                            @endforeach
                                                         </select>
                                                         <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
                                                             <svg class="pointer-events-none w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -110,28 +67,26 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Income Chart {{ date('Y') }}</h4>
-                                </div>
-                                <div class="card-body">
-                                    <div id="overlapping-bars" class="ct-chart ct-golden-section chartlist-chart"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Total Team Income Chart {{ date('Y') }}</h4>
-                                </div>
-                                <div class="card-body">
-                                    <div id="team-income-chart" class="ct-chart ct-golden-section chartlist-chart"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Income Chart {{ $year }}</h4>
+                </div>
+                <div class="card-body">
+                    <canvas id="overlapping-bars"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Total Team Income Chart {{ $year }}</h4>
+                </div>
+                <div class="card-body">
+                    <canvas id="team-income-chart"></canvas>
                 </div>
             </div>
         </div>
@@ -148,8 +103,8 @@
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.html5.min.js') }}"></script>
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.print.min.js') }}"></script>
         <script src="{{ asset('assets/backend/js/global-datatable-extension.js') }}"></script>
-        <script src="{{ asset('assets/backend/vendor/chartist/chartist.min.js') }}"></script>
-        <script src="{{ asset('assets/backend/vendor/chartist/chartist-plugin-tooltip.min.js') }}"></script>
+        {{--<script src="{{ asset('assets/backend/vendor/chartist/chartist.min.js') }}"></script>--}}
+        {{--<script src="{{ asset('assets/backend/vendor/chartist/chartist-plugin-tooltip.min.js') }}"></script>--}}
         <script src="{{ asset('assets/backend/js/user/earnings/yearly-income-chart.js') }}"></script>
     @endpush
 </x-backend.layouts.app>

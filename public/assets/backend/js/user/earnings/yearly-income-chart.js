@@ -5,46 +5,60 @@
 
         const screenWidth = $(window).width();
         const overlappingBarsChart = function () {
+            loader()
             //Overlapping bars on mobile
-            axios.post(`${APP_URL}/user/earnings/summarize-yearly-income`)
+            axios.post(location.href)
                 .then(response => {
+                    Swal.close()
                     if (response.data.status) {
-                        const data = {
-                            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                            series: [[220300.8665000465, 349120.5151199402, 327511.7729799642, 358804.2576399254, 11435.189020000238]]
-                        };
                         const options = {
-                            seriesBarDistance: 2,
-                            axisX: {
-                                showGrid: true,
-                                offset: 60,
-                                scaleMinSpace: 50,
-                            },
-                            axisY: {
-                                showGrid: true,
-                                offset: 80
-                            },
-                            //showLine: true,
-                            // height: '600px',
-                            plugins: [
-                                Chartist.plugins.tooltip()
-                            ]
-                        };
-                        const responsiveOptions = [
-                            [
-                                'screen and (max-width: 640px)',
-                                {
-                                    seriesBarDistance: 5,
-                                    axisX: {
-                                        labelInterpolationFnc: function (value) {
-                                            return value[0];
-                                        }
+                            type: 'bar',
+                            responsive: true,
+                            options: {
+                                responsive: true, plugins: {
+                                    legend: {
+                                        position: 'top',
+                                    }, title: {
+                                        display: true, text: 'Chart.js Bar Chart'
                                     }
                                 }
-                            ]
-                        ];
-                        new Chartist.Bar('#overlapping-bars', response.data.data, options, responsiveOptions);
-                        new Chartist.Bar('#team-income-chart', response.data.team, options, responsiveOptions);
+                            },
+                        };
+
+                        const myChart = new Chart(document.getElementById('overlapping-bars'), {
+                            type: 'bar',
+                            data: response.data.my_income,
+                            responsive: true,
+                            options: {
+                                responsive: true,
+                                plugins: {
+                                    legend: {
+                                        position: 'top',
+                                    },
+                                    title: {
+                                        display: true,
+                                        text: `My Total Income ${response.data.my_total_income}`
+                                    }
+                                }
+                            },
+                        });
+                        const myTeamChart = new Chart(document.getElementById('team-income-chart'), {
+                            type: 'bar',
+                            data: response.data.team,
+                            responsive: true,
+                            options: {
+                                responsive: true,
+                                plugins: {
+                                    legend: {
+                                        position: 'top',
+                                    },
+                                    /*title: {
+                                        display: true,
+                                        text: 'Chart.js Bar Chart'
+                                    }*/
+                                }
+                            },
+                        });
                     }
                 })
                 .catch(error => {
@@ -52,18 +66,13 @@
                         icon: 'error', title: error.response?.data.message || "Something went wrong!",
                     });
                 });
-
-
         }
         return {
             init: function () {
             },
-
-
             load: function () {
                 overlappingBarsChart();
             },
-
             resize: function () {
                 overlappingBarsChart();
             }
@@ -72,19 +81,30 @@
     }();
 
     jQuery(document).ready(function () {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const year = urlParams.get("year");
+
+        $(document).on("click", "#search", function (e) {
+            e.preventDefault();
+            urlParams.set("year", $("#year").val());
+            let url = location.href.split(/\?|\#/)[0] + "?" + urlParams.toString();
+            history.replaceState({}, "", url);
+            incomeBarChart.load()
+        });
     });
 
     jQuery(window).on('load', function () {
         setTimeout(function () {
-            incomeBarChart.resize();
+            incomeBarChart.load();
         }, 1000);
     });
 
-    jQuery(window).on('resize', function () {
-        setTimeout(function () {
-            incomeBarChart.resize();
-        }, 1000);
-
-    });
+    // jQuery(window).on('resize', function () {
+    //     setTimeout(function () {
+    //         incomeBarChart.resize();
+    //     }, 1000);
+    //
+    // });
 
 })(jQuery);
