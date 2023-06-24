@@ -150,7 +150,7 @@
 
 @powerGridScripts
 
-<script src="{{ asset('assets/backend/vendor/chart.js/Chart.bundle.min.js') }}"></script>
+<script src="{{ asset('assets/backend/vendor/chart.js/chart.min.js') }}"></script>
 <script src="{{ asset('assets/backend/vendor/apexchart/apexchart.js') }}"></script>
 <script src="{{ asset('assets/backend/vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
 <script src="{{ asset('assets/backend/vendor/swiper/js/swiper-bundle.min.js') }}"></script>
