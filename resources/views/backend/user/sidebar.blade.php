@@ -97,13 +97,18 @@
                 <li>
                     <a href="javascript:void(0);" class="has-arrow" aria-expanded="false">
                         <i class="bi bi-trophy-fill"></i>
-                        <span class="nav-text"> Rank Bonus </span>
+                        <span class="nav-text"> Ranks </span>
                     </a>
                     <ul aria-expanded="false">
+                        <li>
+                            <a href="{{ route('user.ranks.team-rankers') }}" class="" aria-expanded="false">
+                                <span class="nav-text">Team Rankers</span>
+                            </a>
+                        </li>
                         @can('viewSummery', \App\Models\RankBonusSummery::class)
                             <li>
                                 <a href="{{ route('user.ranks.benefits.summery') }}" class="" aria-expanded="false">
-                                    <span class="nav-text">Summery</span>
+                                    <span class="nav-text">Bonus Summery</span>
                                 </a>
                             </li>
                         @endcan
@@ -111,7 +116,7 @@
                             <li>
                                 <a href="{{ route('user.ranks.benefits.requirements') }}" class=""
                                    aria-expanded="false">
-                                    <span class="nav-text">Requirement</span>
+                                    <span class="nav-text">Bonus Requirement</span>
                                 </a>
                             </li>
                         @endcan
