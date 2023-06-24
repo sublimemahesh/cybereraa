@@ -61,6 +61,14 @@ class Rank extends Model
         });
     }
 
+    public function getEligibilityPercentageAttribute()
+    {
+        if ($this->eligibility < config('rank-system.rank_eligibility_activate_at', 3)) {
+            return round(($this->eligibility * 100 / config('rank-system.rank_eligibility_activate_at', 3)));
+        }
+        return 100;
+    }
+
     public function getIsActiveAttribute(): bool
     {
         return $this->is_active = $this->activated_at !== null;

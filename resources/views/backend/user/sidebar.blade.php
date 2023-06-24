@@ -93,6 +93,19 @@
                     </li>
                 </ul>
             </li>
+            <li>
+                <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
+                    <i class="bi bi-person-hearts"></i>
+                    <span class="nav-text">My Team</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li>
+                        <a href="{{ route('user.earnings.team-income') }}" class="" aria-expanded="false">
+                            <span class="nav-text">Highest Income</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             @canany(['viewSummery','viewRequirement'], \App\Models\RankBonusSummery::class)
                 <li>
                     <a href="javascript:void(0);" class="has-arrow" aria-expanded="false">
