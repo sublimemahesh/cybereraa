@@ -54,10 +54,10 @@ class StrategyController extends Controller
 
         $strategies = Strategy::whereIn('name', ['rank_level_count', 'rank_bonus_levels', 'rank_package_requirement'])->get();
 
-        $rank_level_count = $strategies->where('name', 'rank_level_count')->first(null, new Strategy(['value' => 7]));
-        $rank_bonus_levels = $strategies->where('name', 'rank_bonus_levels')->first(null, new Strategy(['value' => '3,4,5,6,7']));
+        $rank_level_count = $strategies->where('name', 'rank_level_count')->first(null, fn() => new Strategy(['value' => 7]));
+        $rank_bonus_levels = $strategies->where('name', 'rank_bonus_levels')->first(null, fn() => new Strategy(['value' => '3,4,5,6,7']));
 
-        $rank_package_requirement = $strategies->where('name', 'rank_package_requirement')->first(null, new Strategy(['value' => '{"3":{"active_investment":"1000","total_team_investment":"5000"},"4":{"active_investment":"2500","total_team_investment":"10000"},"5":{"active_investment":"5000","total_team_investment":"25000"},"6":{"active_investment":"10000","total_team_investment":"50000"},"7":{"active_investment":"25000","total_team_investment":"100000"}}']));
+        $rank_package_requirement = $strategies->where('name', 'rank_package_requirement')->first(null, fn() => new Strategy(['value' => '{"3":{"active_investment":"1000","total_team_investment":"5000"},"4":{"active_investment":"2500","total_team_investment":"10000"},"5":{"active_investment":"5000","total_team_investment":"25000"},"6":{"active_investment":"10000","total_team_investment":"50000"},"7":{"active_investment":"25000","total_team_investment":"100000"}}']));
 
         $rank_bonus_levels = explode(',', $rank_bonus_levels->value);
         $rank_package_requirement = json_decode($rank_package_requirement->value, true, 512, JSON_THROW_ON_ERROR);
@@ -75,10 +75,10 @@ class StrategyController extends Controller
 
         $strategies = Strategy::whereIn('name', ['rank_level_count', 'rank_gift_levels', 'rank_gift_requirements'])->get();
 
-        $rank_level_count = $strategies->where('name', 'rank_level_count')->first(null, new Strategy(['value' => 7]));
-        $rank_gift_levels = $strategies->where('name', 'rank_gift_levels')->first(null, new Strategy(['value' => '1,2,3,4,5,6,7']));
+        $rank_level_count = $strategies->where('name', 'rank_level_count')->first(null, fn() => new Strategy(['value' => 7]));
+        $rank_gift_levels = $strategies->where('name', 'rank_gift_levels')->first(null, fn() => new Strategy(['value' => '1,2,3,4,5,6,7']));
 
-        $rank_gift_requirements = $strategies->where('name', 'rank_gift_requirements')->first(null, new Strategy(['value' => '{"1":{"total_investment":250,"total_team_investment":2000},"2":{"total_investment":500,"total_team_investment":12000},"3":{"total_investment":1000,"total_team_investment":75000},"4":{"total_investment":2500,"total_team_investment":400000},"5":{"total_investment":5000,"total_team_investment":2500000},"6":{"total_investment":10000,"total_team_investment":15000000},"7":{"total_investment":25000,"total_team_investment":100000000}}']));
+        $rank_gift_requirements = $strategies->where('name', 'rank_gift_requirements')->first(null, fn() => new Strategy(['value' => '{"1":{"total_investment":250,"total_team_investment":2000},"2":{"total_investment":500,"total_team_investment":12000},"3":{"total_investment":1000,"total_team_investment":75000},"4":{"total_investment":2500,"total_team_investment":400000},"5":{"total_investment":5000,"total_team_investment":2500000},"6":{"total_investment":10000,"total_team_investment":15000000},"7":{"total_investment":25000,"total_team_investment":100000000}}']));
 
         $rank_gift_levels = explode(',', $rank_gift_levels->value);
         $rank_gift_requirements = json_decode($rank_gift_requirements->value, true, 512, JSON_THROW_ON_ERROR);
@@ -96,10 +96,10 @@ class StrategyController extends Controller
 
         $strategies = Strategy::whereIn('name', ['commission_level_count', 'commissions', 'rank_gift', 'rank_bonus'])->get();
 
-        $commission_level_count = $strategies->where('name', 'commission_level_count')->first(null, new Strategy(['value' => 7]));
-        $commissions = $strategies->where('name', 'commissions')->first(null, new Strategy(['value' => '{"1":25,"2":20,"3":15,"4":10,"5":5,"6":5,"7":5}']));
-        $rank_gift = $strategies->where('name', 'rank_gift')->first(null, new Strategy(['value' => 5]));
-        $rank_bonus = $strategies->where('name', 'rank_bonus')->first(null, new Strategy(['value' => 10]));
+        $commission_level_count = $strategies->where('name', 'commission_level_count')->first(null, fn() => new Strategy(['value' => 7]));
+        $commissions = $strategies->where('name', 'commissions')->first(null, fn() => new Strategy(['value' => '{"1":25,"2":20,"3":15,"4":10,"5":5,"6":5,"7":5}']));
+        $rank_gift = $strategies->where('name', 'rank_gift')->first(null, fn() => new Strategy(['value' => 5]));
+        $rank_bonus = $strategies->where('name', 'rank_bonus')->first(null, fn() => new Strategy(['value' => 10]));
 
         $commissions = json_decode($commissions->value, false, 512, JSON_THROW_ON_ERROR);
         $total_percentage = array_sum(get_object_vars($commissions));
