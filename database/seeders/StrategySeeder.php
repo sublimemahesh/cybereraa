@@ -145,7 +145,7 @@ class StrategySeeder extends Seeder
             ],
             [
                 'name' => 'staking_withdrawal_fee',
-                'data_type' => 'staking_withdrawal_fee',
+                'data_type' => 'double',
                 'value' => 10,
                 'comment' => 'Transaction fee for withdrawal from staking wallet',
                 'created_at' => now(),
