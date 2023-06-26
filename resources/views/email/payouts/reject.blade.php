@@ -15,13 +15,13 @@
     <p>
         If you require more information or have any questions about the rejection, please do not hesitate to contact our support team.
         You can create a new support ticket by clicking on the following link:
-        <a href="https://www.safesttrades.com/user/support/tickets/create">Open support ticket</a>
+        <a href="https://www.owara3m.com/user/support/tickets/create">Open support ticket</a>
         We appreciate your understanding in this matter.
     </p>
     <p>
         Best regards,<br>
         Admin<br>
-        safesttrades.com
+        owara3m.com
     </p>
 @endsection
 

@@ -20,6 +20,6 @@
     </p>
     <p>
         Regards, <br>
-        SafestTrades.com
+        owara3m.com
     </p>
 @endsection

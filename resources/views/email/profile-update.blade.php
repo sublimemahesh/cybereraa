@@ -26,6 +26,6 @@
     </p>
     <p>
         Best regards,<br>
-        safesttrades.com Team.
+        owara3m.com Team.
     </p>
 @endsection

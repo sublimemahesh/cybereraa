@@ -5,7 +5,7 @@
     that radical change in your life that would result from doing so.If you have been too busy to invest up until now, we are happy to inform
     you that you can sign up with a single click on the below link.
 </p>
-<a href="https://www.safesttrades.com">www.safesttrades.com</a>
+<a href="https://www.owara3m.com">www.owara3m.com</a>
 
 <p style="margin-top:5px">
     <b>Are you aware that we host a Telegram group?</b>
@@ -34,4 +34,4 @@
 
 <p style="margin-top:5px">Feel free to contact us anytime if you have any further inquiries.</p>
 
-<a href="mailto:info@safesttrades">info@safesttrades.com</a>
+<a href="mailto:info@owara3m">info@owara3m.com</a>
