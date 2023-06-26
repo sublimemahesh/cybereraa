@@ -5,12 +5,19 @@
     @section('header')
     @include('frontend.layouts.header-other')
 
-
+    @section('styles')
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+    @endsection
     <!-- CONTENT START -->
     <div class="page-content">
 
         <!-- INNER PAGE BANNER -->
-        <div class="wt-bnr-inr overlay-wraper" style="background-image:url({{asset('assets/frontend/images/banner/about-banner.jpg') }});">
+        <div class="wt-bnr-inr overlay-wraper"
+            style="background-image:url({{asset('assets/frontend/images/banner/about-banner.jpg') }});">
             <div class="overlay-main themecolor-1 opacity-07"></div>
             <div class="container">
                 <div class="wt-bnr-inr-entry">
@@ -52,16 +59,17 @@
 
 
 
-                                @foreach ($faqs as $key => $faq)
-                                <div id="{{ $key }}">
+                            @foreach ($faqs as $key => $faq)
+                            <div id="{{ $key }}">
                                 <h3>{{ $faq->title }}</h3>
 
-                                @foreach ($faq->children  as $key1 => $child)
+                                @foreach ($faq->children as $key1 => $child)
 
                                 <div class="panel wt-panel">
                                     <div class="acod-head">
                                         <h3 class="acod-title">
-                                            <a data-toggle="collapse" href="#collapseTwo{{ $key}}{{ $key1}}" class="collapsed" data-parent="#accordion5">
+                                            <a data-toggle="collapse" href="#collapseTwo{{ $key}}{{ $key1}}"
+                                                class="collapsed" data-parent="#accordion5">
                                                 {{ $child->title }}
                                                 <span class="indicator"><i class="fa fa-plus"></i></span>
                                             </a>
@@ -81,7 +89,7 @@
                         </div>
                         <!-- ACCORDION END -->
                     </div>
-                    <div class="col-md-3 col-sm-3 p-tb15" >
+                    <div class="col-md-3 col-sm-3 p-tb15">
                         <!-- BROCHURES -->
                         <div class="wt-box m-b30 " id="faq-cat-holder">
                             <div class="text-left m-b20">
