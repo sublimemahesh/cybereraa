@@ -34,7 +34,7 @@
 
     <p>
         Best regards, <br>
-        safesttrades.com
+        owara3m.com
     </p>
 
 @endsection

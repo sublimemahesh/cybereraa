@@ -17,7 +17,7 @@
     </p>
     <p>
         Best regards, <br>
-        SafestTrades.com
+        owara3m.com
 
     </p>
 
