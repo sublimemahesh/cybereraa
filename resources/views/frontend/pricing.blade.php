@@ -5,6 +5,17 @@
     @section('header')
     @include('frontend.layouts.header-other')
 
+    @section('styles')
+    <link href="{{ asset('assets/frontend/css/pricing.css') }}" rel="stylesheet">
+    <!-- BOOTSTRAP STYLE SHEET -->
+   @endsection
+
+
+
+
+
+
+
     <!-- CONTENT START -->
     <div class="page-content">
 
@@ -37,47 +48,39 @@
         <div class="section-full p-t80 p-b50 themecolor-2">
             <div class="container">
 
-                <div class="m-b100">
-                    <!-- PRICING STYLE-2 COLUMNS 3 WITH GAP -->
-                    <div class="section-content">
-                        <div class="pricingtable-row m-b30">
+
+
+
                             <div class="row">
                                 @foreach ($packages as $package)
 
-                                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 m-b40">
-                                    <div class="pricingtable-wrapper">
-                                        <div class="pricingtable-inner pricing-table-style-2">
-
-                                            <div class="pricingtable-title">
-                                                <h3>{{ $package->name }}</h3>
-                                            </div>
-  
-                                            <div class="pricingtable-price">
-                                                <span class="pricingtable-bx">{{ $package->currency }}{{ $package->amount }}</span>
-                                                {{-- <span class="pricingtable-type"></span> --}}
-                                            </div>
-
-                                            <ul class="pricingtable-features">
-                                                <li><i class="fa fa-check"></i>Within Investment Period</li>
-                                                <li><i class="fa fa-check"></i> Gas Fee USDT {{ $package->gas_fee }} </li>
-                                                <li><i class="fa fa-check"></i>{{ $package->daily_leverage }} % Daily Profit </li>
-                                            </ul>
-
-                                            <div class="pricingtable-footer">
-                                                <a href="{{ route('register') }}" class="site-button  text-uppercase">Purchase</a>
-                                            </div>
-
-                                        </div>
+                                <div class="col-sm-4">
+                                    <div class="card text-center">
+                                      <div class="title">
+                                            <img src="{{asset('assets/frontend/images/tether-usdt-icon.svg') }}" class="img-pricin">
+                                        <h2>{{ $package->name }}</h2>
+                                      </div>
+                                      <div class="price">
+                                        <h4><sup class='price-txt'>{{ $package->currency }}</sup>{{ $package->amount }}</h4>
+                                      </div>
+                                      <div class="option">
+                                        <ul>
+                                          <li><i class="fa fa-check" aria-hidden="true"></i>Within Investment Period</li>
+                                          <li><i class="fa fa-check" aria-hidden="true"></i>Gas Fee USDT {{ $package->gas_fee }}</li>
+                                          <li><i class="fa fa-check" aria-hidden="true"></i>{{ $package->daily_leverage }} % Daily Profit</li>
+                                        </ul>
+                                      </div>
+                                      <a href="{{ route('register') }}">Order Now</a>
                                     </div>
-                                </div>
+                                  </div>
 
                                 @endforeach
 
                             </div>
-                        </div>
-                    </div>
 
-                </div>
+
+
+
             </div>
             <!-- SECTION CONTENT END -->
         </div>
