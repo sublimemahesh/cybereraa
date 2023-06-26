@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Models\Earning;
 use App\Models\PurchasedPackage;
+use App\Models\Strategy;
 use App\Models\Wallet;
 use Carbon\Carbon;
 use DB;
@@ -50,16 +51,31 @@ class GenerateUserDailyEarning implements ShouldQueue
                 $earned = $purchase->earnings()->whereDate('created_at', date('Y-m-d'))->doesntExist();
                 // $earned = Earning::where('purchased_package_id', $purchase->id)->whereDate('created_at', date('Y-m-d'))->doesntExist();
                 if ($earned) {
+
+                    $strategies = Strategy::whereIn('name', [
+                        'withdrawal_limits',
+                        'payable_percentages'
+                    ])->get();
+
+                    $payable_percentages = $strategies
+                        ->where('name', 'payable_percentages')
+                        ->first(null, fn() => new Strategy(['value' => '{"direct":0.332,"indirect":0.332,"package":1}']));
+                    $payable_percentages = json_decode($payable_percentages->value, false, 512, JSON_THROW_ON_ERROR);
+                    $payable_percentage = $payable_percentages->package ?? $purchase->payable_percentage;
+
                     $purchase->loadSum('earnings', 'amount');
                     $already_earned_amount = $purchase->earnings_sum_amount;
 
-                    $earned_amount = $purchase->invested_amount * ($purchase->payable_percentage / 100);
+                    $earned_amount = $purchase->invested_amount * ((float)$payable_percentage / 100);
 
                     //$withdrawal_limits = Strategy::whereIn('name', 'withdrawal_limits')->firstOrNew(fn() => new Strategy(['value' => '{"package":"300","commission":"100"}']));
-                    //$package_withdrawal_limits = json_decode($withdrawal_limits->value, false, 512, JSON_THROW_ON_ERROR);
-                    //$package_withdrawal_limits = $package_withdrawal_limits->package;
+                    $withdrawal_limits = $strategies
+                        ->where('name', 'withdrawal_limits')
+                        ->first(null, fn() => new Strategy(['value' => '{"package": 300, "commission": 100}']));
+                    $package_withdrawal_limits = json_decode($withdrawal_limits->value, false, 512, JSON_THROW_ON_ERROR);
+                    $package_withdrawal_limits = $package_withdrawal_limits->package ?? 300;
 
-                    $allowed_amount = ($purchase->invested_amount * 300) / 100; // TODO: IF this need to be work with withdrawal_limits->package amount change this 300 to $package_withdrawal_limits
+                    $allowed_amount = ($purchase->invested_amount * $package_withdrawal_limits) / 100; // TODO: IF this need to be work with withdrawal_limits->package amount change this 300 to $package_withdrawal_limits
 
                     if ($allowed_amount < ($already_earned_amount + $earned_amount)) {
                         $earned_amount = $allowed_amount - $already_earned_amount;
@@ -71,6 +87,7 @@ class GenerateUserDailyEarning implements ShouldQueue
                         $purchase->earnings()->save(Earning::forceCreate([
                             'user_id' => $purchase->user_id,
                             'amount' => $earned_amount,
+                            'payed_percentage' => $payable_percentage,
                             'type' => 'PACKAGE',
                             'status' => 'RECEIVED', // TODO: check eligibility for the gain profit
                             'created_at' => $this->execution_time,
