@@ -46,7 +46,16 @@ class GenerateUserDailyCommission implements ShouldQueue
 
                 if ($earned) {
                     $commission_type = strtolower($this->commission->type);
-                    $payable_percentages = Strategy::where('name', "payable_percentages")->firstOr(fn() => new Strategy(['value' => '{"direct":0.332,"indirect":0.332,"rank_bonus":0.332}']));
+
+                    $strategies = Strategy::whereIn('name', [
+                        'withdrawal_limits',
+                        'payable_percentages'
+                    ])->get();
+
+                    $payable_percentages = $strategies
+                        ->where('name', "payable_percentages")
+                        ->first(null, fn() => new Strategy(['value' => '{"direct":0.332,"indirect":0.332,"rank_bonus":0.332}']));
+
                     $payable_percentages = json_decode($payable_percentages->value, true, 512, JSON_THROW_ON_ERROR);
                     $payable_percentage = $payable_percentages[$commission_type] ?? (1 / 300) * 100;
 
@@ -56,10 +65,13 @@ class GenerateUserDailyCommission implements ShouldQueue
                     $today_amount = $this->commission->amount * ($payable_percentage / 100);
 
                     //$withdrawal_limits = Strategy::whereIn('name', 'withdrawal_limits')->firstOrNew(fn() => new Strategy(['value' => '{"package":"300","commission":"100"}']));
-                    //$commission_withdrawal_limits = json_decode($withdrawal_limits->value, false, 512, JSON_THROW_ON_ERROR);
-                    //$commission_withdrawal_limits = $commission_withdrawal_limits->commission;
+                    $withdrawal_limits = $strategies
+                        ->where('name', 'withdrawal_limits')
+                        ->first(null, fn() => new Strategy(['value' => '{"package": 300, "commission": 100}']));
+                    $commission_withdrawal_limits = json_decode($withdrawal_limits->value, false, 512, JSON_THROW_ON_ERROR);
+                    $commission_withdrawal_limits = $commission_withdrawal_limits->commission;
 
-                    $allowed_amount = ($this->commission->amount * 100) / 100; // TODO: IF this need to be work with withdrawal_limits->commission amount change this 300 to $commission_withdrawal_limits
+                    $allowed_amount = ($this->commission->amount * $commission_withdrawal_limits) / 100; // TODO: IF this need to be work with withdrawal_limits->commission amount change this 300 to $commission_withdrawal_limits
 
                     if ($allowed_amount < ($already_earned_amount + $today_amount)) {
                         $today_amount = $allowed_amount - $already_earned_amount;

@@ -32,12 +32,12 @@ class StrategyController extends Controller
             'staking_withdrawal_fee',
             'p2p_transfer_fee'
         ])->get();
-        $withdrawal_limits = $strategies->where('name', 'withdrawal_limits')->first(null, new Strategy(['value' => '{"package": 300, "commission": 100}']));
-        $max_withdraw_limit = $strategies->where('name', 'max_withdraw_limit')->first(null, new Strategy(['value' => 400]));
-        $minimum_payout_limit = $strategies->where('name', 'minimum_payout_limit')->first(null, new Strategy(['value' => 10]));
-        $payout_transfer_fee = $strategies->where('name', 'payout_transfer_fee')->first(null, new Strategy(['value' => 5]));
-        $staking_withdrawal_fee = $strategies->where('name', 'staking_withdrawal_fee')->first(null, new Strategy(['value' => 5]));
-        $p2p_transfer_fee = $strategies->where('name', 'p2p_transfer_fee')->first(null, new Strategy(['value' => 2.5]));
+        $withdrawal_limits = $strategies->where('name', 'withdrawal_limits')->first(null, fn() => new Strategy(['value' => '{"package": 300, "commission": 100}']));
+        $max_withdraw_limit = $strategies->where('name', 'max_withdraw_limit')->first(null, fn() => new Strategy(['value' => 400]));
+        $minimum_payout_limit = $strategies->where('name', 'minimum_payout_limit')->first(null, fn() => new Strategy(['value' => 10]));
+        $payout_transfer_fee = $strategies->where('name', 'payout_transfer_fee')->first(null, fn() => new Strategy(['value' => 5]));
+        $staking_withdrawal_fee = $strategies->where('name', 'staking_withdrawal_fee')->first(null, fn() => new Strategy(['value' => 5]));
+        $p2p_transfer_fee = $strategies->where('name', 'p2p_transfer_fee')->first(null, fn() => new Strategy(['value' => 2.5]));
 
         $withdrawal_limits = json_decode($withdrawal_limits->value, false, 512, JSON_THROW_ON_ERROR);
 
@@ -115,7 +115,7 @@ class StrategyController extends Controller
     {
         $this->authorize('viewAny', Strategy::class);
 
-        $payable_percentages = Strategy::where('name', 'payable_percentages')->firstOr(fn() => new Strategy(['value' => '{"direct":0.332,"indirect":0.332,"rank_bonus":0.332}']));
+        $payable_percentages = Strategy::where('name', 'payable_percentages')->firstOr(fn() => new Strategy(['value' => '{"direct":0.332,"indirect":0.332,"rank_bonus":0.332,"package":1}']));
         $payable_percentages = json_decode($payable_percentages->value, false, 512, JSON_THROW_ON_ERROR);
 
         return view('backend.admin.strategies.leverages.index', compact('payable_percentages'));
@@ -434,6 +434,7 @@ class StrategyController extends Controller
         $validated = Validator::make($request->all(), [
             'direct' => ['required', 'numeric'],
             'indirect' => 'required|numeric',
+            'package' => 'required|numeric',
             'rank_bonus' => 'nullable|numeric',
         ])->validate();
 
