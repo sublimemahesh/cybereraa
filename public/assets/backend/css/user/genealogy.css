@@ -55,7 +55,7 @@
 .tree li::before, .tree li::after {
     content: '';
     position: absolute;
-    top: -68px;
+    top: -22px;
     right: 50%;
     border-top: 1px solid #ccc;
     width: 50%;

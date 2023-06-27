@@ -4,7 +4,7 @@
             <img class="card-img2  card-img2-mob" src="{{ $user->profile_photo_url }}"  alt="">
         </div>
         <div class="card-info">
-            <h5 class="text-title">{{ $user->username }}</h5><br>
+            <h5 class="text-title">{{ $user->username }}</h5>
             <p class="text-body">{{ $user->name }}</p>
             <p class="text-body">
                 <i class="fa fa-bolt" aria-hidden="true"></i>{{ $user->active_packages_count > 0 ? 'Active' : 'Inactive' }}
