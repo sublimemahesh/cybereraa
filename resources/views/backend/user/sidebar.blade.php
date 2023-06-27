@@ -66,33 +66,39 @@
             <li>
                 <a href="{{ route('user.transactions.index') }}" class="" aria-expanded="false">
                     <i class="bi fa-chain-broken"></i>
-                    <span class="nav-text">My Transactions</span>
+                    <span class="nav-text">Transactions</span>
                 </a>
             </li>
-            <li>
+            {{--<li>
                 <a href="{{ route('user.transactions.purchased.history') }}" class="" aria-expanded="false">
                     <i class="bi bi-clipboard-data"></i>
                     <span class="nav-text">Purchase History</span>
                 </a>
-            </li>
+            </li>--}}
             <li>
-                <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
+                <a href="{{ route('user.incomes.commission') }}" class="" aria-expanded="false">
                     <i class="bi bi-currency-exchange"></i>
                     <span class="nav-text">My Income</span>
                 </a>
-                <ul aria-expanded="false">
-                    <li>
-                        <a href="{{ route('user.incomes.commission') }}" class="" aria-expanded="false">
-                            <span class="nav-text">Commissions</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('user.incomes.rewards') }}" class="" aria-expanded="false">
-                            <span class="nav-text">Rewards</span>
-                        </a>
-                    </li>
-                </ul>
             </li>
+            {{--  <li>
+                  <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
+                      <i class="bi bi-currency-exchange"></i>
+                      <span class="nav-text">My Income</span>
+                  </a>
+                  <ul aria-expanded="false">
+                      <li>
+                          <a href="{{ route('user.incomes.commission') }}" class="" aria-expanded="false">
+                              <span class="nav-text">Commissions</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a href="{{ route('user.incomes.rewards') }}" class="" aria-expanded="false">
+                              <span class="nav-text">Rewards</span>
+                          </a>
+                      </li>
+                  </ul>
+              </li>--}}
             <li>
                 <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
                     <i class="bi bi-person-hearts"></i>

@@ -15,6 +15,7 @@
     @endsection
 
     <div class="row dark"> {{--! Tailwind css used. if using tailwind plz run npm run dev and add tailwind classes--}}
+        @include('backend.user.incomes.top-nav')
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
@@ -103,7 +104,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="table-responsive d-block"> 
+                    <div class="table-responsive d-block">
                         <table id="transactions" class="display table-responsive-my">
                             <thead>
                             <tr>
