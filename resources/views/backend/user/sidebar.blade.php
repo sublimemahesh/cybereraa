@@ -84,7 +84,7 @@
             <li>
                 <a href="{{ route('user.incomes.commission') }}" class="" aria-expanded="false">
                     <i class="bi bi-currency-exchange"></i>
-                    <span class="nav-text">My Income</span>
+                    <span class="nav-text">Income/Earnings</span>
                 </a>
             </li>
             {{--  <li>
@@ -121,7 +121,7 @@
             <li>
                 <a href="{{ route('user.ranks.team-rankers') }}" class="" aria-expanded="false">
                     <i class="bi bi-trophy-fill"></i>
-                    <span class="nav-text"> Ranks </span>
+                    <span class="nav-text"> Recognition </span>
                 </a>
             </li>
             {{--@canany(['viewSummery','viewRequirement'], \App\Models\RankBonusSummery::class)
