@@ -5420,7 +5420,7 @@ fieldset:disabled .btn {
     flex-direction: column;
     padding-left: 0;
     margin-bottom: 0;
-    border-radius: 0.75rem;
+    border-radius:0;
 }
 
 .list-group-item-action {
@@ -41289,7 +41289,7 @@ table.dataTable thead .sorting_asc {
 .order.nav-tabs {
     padding: 6px;
     border: 1px solid var(--primary);
-    border-radius: 0.5rem;
+    border-radius: 0;
 }
 
 @media only screen and (max-width: 35.9375rem) {
@@ -41302,7 +41302,7 @@ table.dataTable thead .sorting_asc {
     border: 1px solid transparent;
     padding: 0.5rem 0.9rem;
     background-color: transparent;
-    border-radius: 0.5rem;
+    border-radius:0;
     margin-right: 5px;
 }
 
@@ -43432,7 +43432,7 @@ div#mCSB_1 {
 }
 
 .crypto-list .card {
-    border-radius: 10px;
+    border-radius: 0;
 }
 
 .market-previews-2 {
