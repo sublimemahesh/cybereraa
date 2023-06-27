@@ -100,6 +100,12 @@
                   </ul>
               </li>--}}
             <li>
+                <a href="{{ route('user.earnings.team-income') }}" class="" aria-expanded="false">
+                    <i class="bi bi-person-hearts"></i>
+                    <span class="nav-text">My Team</span>
+                </a>
+            </li>
+            {{--<li>
                 <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
                     <i class="bi bi-person-hearts"></i>
                     <span class="nav-text">My Team</span>
@@ -111,7 +117,7 @@
                         </a>
                     </li>
                 </ul>
-            </li>
+            </li>--}}
             @canany(['viewSummery','viewRequirement'], \App\Models\RankBonusSummery::class)
                 <li>
                     <a href="javascript:void(0);" class="has-arrow" aria-expanded="false">
@@ -148,12 +154,12 @@
                     <span class="nav-text"> Rank Gifts </span>
                 </a>
             </li>
-            <li>
+            {{--<li>
                 <a href="{{ route('user.earnings.index') }}" class="" aria-expanded="false">
                     <i class="bi bi-cash"></i>
                     <span class="nav-text">My Earning</span>
                 </a>
-            </li>
+            </li>--}}
             <li>
                 <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
                     <i class="bi bi-wallet2"></i>
