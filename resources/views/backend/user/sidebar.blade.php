@@ -64,6 +64,12 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('user.earnings.team-income') }}" class="" aria-expanded="false">
+                    <i class="bi bi-person-hearts"></i>
+                    <span class="nav-text">My Team</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{ route('user.transactions.index') }}" class="" aria-expanded="false">
                     <i class="bi fa-chain-broken"></i>
                     <span class="nav-text">Transactions</span>
@@ -99,12 +105,6 @@
                       </li>
                   </ul>
               </li>--}}
-            <li>
-                <a href="{{ route('user.earnings.team-income') }}" class="" aria-expanded="false">
-                    <i class="bi bi-person-hearts"></i>
-                    <span class="nav-text">My Team</span>
-                </a>
-            </li>
             {{--<li>
                 <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
                     <i class="bi bi-person-hearts"></i>
@@ -167,6 +167,12 @@
                 </a>
             </li>--}}
             <li>
+                <a href="{{ route('user.wallet.index') }}" class="" aria-expanded="false">
+                    <i class="bi bi-wallet2"></i>
+                    <span class="nav-text"> My Wallet </span>
+                </a>
+            </li>
+            {{--<li>
                 <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
                     <i class="bi bi-wallet2"></i>
                     <span class="nav-text">My Wallet</span>
@@ -205,7 +211,7 @@
                     <i class="bi fa-arrow-turn-up"></i>
                     <span class="nav-text"> Withdrawal History</span>
                 </a>
-            </li>
+            </li>--}}
             <li>
                 <a href="{{ route('user.support.tickets.index') }}" class="" aria-expanded="false">
                     <i class="bi bi-question-circle"></i>
