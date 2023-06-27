@@ -12,6 +12,7 @@
         Effective from 2023-02-02 All package earnings will be generated after 3 working days from the date of purchase. This will affect all packages purchased from 01-02-2023 onwards.
     </div>
     <div class="row">
+        @include('backend.user.wallet.top-nav')
         <div class="col-xl-4 col-lg-4">
             <div class="card prim-card">
                 <div class="card-body py-3">

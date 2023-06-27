@@ -9,6 +9,7 @@
         <li class="breadcrumb-item active">Peer To Peer Transfer Funds</li>
     @endsection
     <div class="row">
+        @include('backend.user.wallet.top-nav')
         <div class="col-xl-8 col-sm-6">
             {{--<div class="alert alert-warning">P2P transactions are temporarily suspended for 24 hours from 4.00 Pm on 6th April 2023 to 4.00 pm on 7th April 2023!</div>--}}
             <div class="card">
@@ -53,7 +54,8 @@
                                 <div class="mb-3 mt-2">
                                     <label for="transfer-amount">Transfer Amount (Balance:
                                         <code>USDT {{ $wallet->balance }}</code> / Payout limit:
-                                        <code>USDT {{ $wallet->withdraw_limit }}</code>)</label>
+                                        <code>USDT {{ $wallet->withdraw_limit }}</code>)
+                                    </label>
                                     <input min="{{ $minimum_payout_limit->value }}" x-model="transfer_amount"
                                            id="transfer-amount" type="number" class="form-control">
                                     <div class="text-info">Total Amount:
@@ -109,7 +111,7 @@
                                 </div>
                                 @if(auth()->user()?->two_factor_secret && in_array(\Laravel\Fortify\TwoFactorAuthenticatable::class, class_uses_recursive(auth()->user()),true))
                                     <div class="mb-3 mt-2">
-                                        <label for="code">Two Factor code / Recovery Code </label>
+                                        <label for="code">Two Factor code / Recovery Code</label>
                                         <input id="code" type="password" class="form-control"
                                                autocomplete="one-time-password" placeholder="2FA code OR Recovery Code">
                                     </div>

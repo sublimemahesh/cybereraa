@@ -8,6 +8,7 @@
         <li class="breadcrumb-item active">Make withdrawal request</li>
     @endsection
     <div class="row">
+        @include('backend.user.wallet.top-nav')
         <div class="col-xl-8 col-sm-6">
             <div class="card">
                 <div class="card-body">

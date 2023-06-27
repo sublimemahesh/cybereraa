@@ -15,6 +15,7 @@
     @endsection
 
     <div class="row dark"> {{--! Tailwind css used. if using tailwind plz run npm run dev and add tailwind classes--}}
+        @include('backend.user.wallet.top-nav')
         <div class="col-12">
             <div class="card">
                 <div class="card-body">

@@ -8,6 +8,7 @@
         <li class="breadcrumb-item active">Own account Transfer</li>
     @endsection
     <div class="row">
+        @include('backend.user.wallet.top-nav')
         <div class="col-xl-8 col-sm-6">
             <div class="card">
                 <div class="card-body">
@@ -71,7 +72,7 @@
                                 </div>
                                 @if(auth()->user()?->two_factor_secret && in_array( \Laravel\Fortify\TwoFactorAuthenticatable::class, class_uses_recursive(auth()->user()),true))
                                     <div class="mb-3 mt-2">
-                                        <label for="code">Two Factor code / Recovery Code </label>
+                                        <label for="code">Two Factor code / Recovery Code</label>
                                         <input id="code" type="password" class="form-control" autocomplete="one-time-password" placeholder="2FA code OR Recovery Code">
                                     </div>
                                 @endif

@@ -64,36 +64,48 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('user.transactions.index') }}" class="" aria-expanded="false">
-                    <i class="bi fa-chain-broken"></i>
-                    <span class="nav-text">My Transactions</span>
+                <a href="{{ route('user.earnings.team-income') }}" class="" aria-expanded="false">
+                    <i class="bi bi-person-hearts"></i>
+                    <span class="nav-text">My Team</span>
                 </a>
             </li>
             <li>
+                <a href="{{ route('user.transactions.index') }}" class="" aria-expanded="false">
+                    <i class="bi fa-chain-broken"></i>
+                    <span class="nav-text">Transactions</span>
+                </a>
+            </li>
+            {{--<li>
                 <a href="{{ route('user.transactions.purchased.history') }}" class="" aria-expanded="false">
                     <i class="bi bi-clipboard-data"></i>
                     <span class="nav-text">Purchase History</span>
                 </a>
-            </li>
+            </li>--}}
             <li>
-                <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
+                <a href="{{ route('user.incomes.commission') }}" class="" aria-expanded="false">
                     <i class="bi bi-currency-exchange"></i>
                     <span class="nav-text">My Income</span>
                 </a>
-                <ul aria-expanded="false">
-                    <li>
-                        <a href="{{ route('user.incomes.commission') }}" class="" aria-expanded="false">
-                            <span class="nav-text">Commissions</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('user.incomes.rewards') }}" class="" aria-expanded="false">
-                            <span class="nav-text">Rewards</span>
-                        </a>
-                    </li>
-                </ul>
             </li>
-            <li>
+            {{--  <li>
+                  <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
+                      <i class="bi bi-currency-exchange"></i>
+                      <span class="nav-text">My Income</span>
+                  </a>
+                  <ul aria-expanded="false">
+                      <li>
+                          <a href="{{ route('user.incomes.commission') }}" class="" aria-expanded="false">
+                              <span class="nav-text">Commissions</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a href="{{ route('user.incomes.rewards') }}" class="" aria-expanded="false">
+                              <span class="nav-text">Rewards</span>
+                          </a>
+                      </li>
+                  </ul>
+              </li>--}}
+            {{--<li>
                 <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
                     <i class="bi bi-person-hearts"></i>
                     <span class="nav-text">My Team</span>
@@ -105,8 +117,14 @@
                         </a>
                     </li>
                 </ul>
+            </li>--}}
+            <li>
+                <a href="{{ route('user.ranks.team-rankers') }}" class="" aria-expanded="false">
+                    <i class="bi bi-trophy-fill"></i>
+                    <span class="nav-text"> Ranks </span>
+                </a>
             </li>
-            @canany(['viewSummery','viewRequirement'], \App\Models\RankBonusSummery::class)
+            {{--@canany(['viewSummery','viewRequirement'], \App\Models\RankBonusSummery::class)
                 <li>
                     <a href="javascript:void(0);" class="has-arrow" aria-expanded="false">
                         <i class="bi bi-trophy-fill"></i>
@@ -141,14 +159,20 @@
                     <i class="bi bi-gift"></i>
                     <span class="nav-text"> Rank Gifts </span>
                 </a>
-            </li>
-            <li>
+            </li>--}}
+            {{--<li>
                 <a href="{{ route('user.earnings.index') }}" class="" aria-expanded="false">
                     <i class="bi bi-cash"></i>
                     <span class="nav-text">My Earning</span>
                 </a>
-            </li>
+            </li>--}}
             <li>
+                <a href="{{ route('user.wallet.index') }}" class="" aria-expanded="false">
+                    <i class="bi bi-wallet2"></i>
+                    <span class="nav-text"> My Wallet </span>
+                </a>
+            </li>
+            {{--<li>
                 <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
                     <i class="bi bi-wallet2"></i>
                     <span class="nav-text">My Wallet</span>
@@ -187,7 +211,7 @@
                     <i class="bi fa-arrow-turn-up"></i>
                     <span class="nav-text"> Withdrawal History</span>
                 </a>
-            </li>
+            </li>--}}
             <li>
                 <a href="{{ route('user.support.tickets.index') }}" class="" aria-expanded="false">
                     <i class="bi bi-question-circle"></i>
