@@ -48906,7 +48906,7 @@ button.dt-button, div.dt-button, a.dt-button
 :is(.dark .dark\:bg-secondary-dark) {
     background-color: #3a3939;
   }
-
+/*
 .h3-txt{
     font-family: 'good-times-regular';
 }
@@ -48918,7 +48918,7 @@ button.dt-button, div.dt-button, a.dt-button
 
 .mm-collapse .mm-show li a ::before{
     font-family: 'good-times-regular';
-}
+}*/
 
 
 .rounded-md {

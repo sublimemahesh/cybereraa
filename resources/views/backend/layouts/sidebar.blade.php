@@ -64,7 +64,7 @@
     </li>
 @endcan
 
-@canany(['transactions.viewAny','purchase_staking_plans.viewAny','withdrawals.viewAny','staking_package.viewAny','earnings.viewAny'])
+{{--@canany(['transactions.viewAny','purchase_staking_plans.viewAny','withdrawals.viewAny','staking_package.viewAny','earnings.viewAny'])
     <li>
         <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
             <i class="bi bi-coin"></i>
@@ -113,7 +113,7 @@
             @endcan
         </ul>
     </li>
-@endcan
+@endcan--}}
 
 @can('wallet.topup')
     <li>

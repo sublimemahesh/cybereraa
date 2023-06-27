@@ -23,7 +23,7 @@ class ContactMail extends Mailable implements ShouldQueue
     public function envelope()
     {
         return new Envelope(
-            subject: $this->details['name'] . ' | ' . $this->details['subject'] . ' | ' . config('app.name', 'SafestTrades'),
+            subject: $this->details['name'] . ' | ' . $this->details['subject'] . ' | ' . config('app.name', 'owara3m'),
         );
     }
 
@@ -32,7 +32,7 @@ class ContactMail extends Mailable implements ShouldQueue
     {
 
         return $this->replyTo($this->details['email'], $this->details['name'])
-            //->subject('Customer Inquiry : ' . config('app.name', 'SafestTrades'))
+            //->subject('Customer Inquiry : ' . config('app.name', 'owara3m'))
             ->from(config('mail.from.address'), $this->details['name'])
             ->view('email.inquiry');
 

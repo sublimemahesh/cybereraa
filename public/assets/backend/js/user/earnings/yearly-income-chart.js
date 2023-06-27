@@ -11,20 +11,6 @@
                 .then(response => {
                     Swal.close()
                     if (response.data.status) {
-                        const options = {
-                            type: 'bar',
-                            responsive: true,
-                            options: {
-                                responsive: true, plugins: {
-                                    legend: {
-                                        position: 'top',
-                                    }, title: {
-                                        display: true, text: 'Chart.js Bar Chart'
-                                    }
-                                }
-                            },
-                        };
-
                         const myChart = new Chart(document.getElementById('overlapping-bars'), {
                             type: 'bar',
                             data: response.data.my_income,

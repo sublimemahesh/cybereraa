@@ -11,18 +11,18 @@
     <b>Are you aware that we host a Telegram group?</b>
 </p>
 <p>
-    Spot, futures, option, and many more trading with SafestTrades & Earn, Gifts, NFTs, platform announcements, and more are just some of the
+    Spot, futures, option, and many more trading with owara3m & Earn, Gifts, NFTs, platform announcements, and more are just some of the
     things you can discuss in our telegram group.
 </p>
 <p>
     It would be a chance to miss out on upcoming meetups, webinars, Ask us Anything, or any sessions in your area.
 </p>
 <p>
-    Meet with Safesttrades staff members, Angel investors, industry experts, and special guests to gain a deeper understanding of Forex, stocks,
+    Meet with owara3m staff members, Angel investors, industry experts, and special guests to gain a deeper understanding of Forex, stocks,
     indices, and cryptocurrencies and to debate the latest trends.
 </p>
 <p>
-    Compete for the chance to win unique Safesttrades swag, including hats, t-shirts, laptops, iPhones, and the infamous hoodies.
+    Compete for the chance to win unique owara3m swag, including hats, t-shirts, laptops, iPhones, and the infamous hoodies.
 </p>
 <p>
     Your presence would be greatly valued for you, so please think about allying us.

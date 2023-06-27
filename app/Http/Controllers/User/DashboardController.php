@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\YealyIncomeBarChartResource;
 use App\Models\Commission;
 use App\Models\Currency;
 use App\Models\Earning;
@@ -69,6 +70,17 @@ class DashboardController extends Controller
             ->limit(10)
             ->get();
 
+        $yearlyIncome = DB::table('earnings')
+            ->select(DB::raw('MONTH(created_at) AS month, type, SUM(amount) AS monthly_income'))
+            ->whereYear('created_at', date('Y'))
+            ->where('user_id', Auth::user()->id)
+            ->where('status', 'RECEIVED')
+            ->groupBy('month', 'type')
+            ->orderBy('month')
+            ->orderBy('type')
+            ->get();
+        $yearlyIncomeChartData = new YealyIncomeBarChartResource($yearlyIncome);
+
         return view('backend.user.dashboard',
             compact(
                 'total_investment',
@@ -85,6 +97,7 @@ class DashboardController extends Controller
                 'currency_carousel',
 
                 'top_rankers',
+                'yearlyIncomeChartData',
             )
         );
     }

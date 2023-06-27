@@ -12,7 +12,7 @@
         {{--<br>Please note: OTP is only valid for next 5 minutes.--}}
     </p>
     <p>
-        For security purpose, kindly do not share this OTP with anyone. SafestTrades.com shall not be responsible for any misuse.
+        For security purpose, kindly do not share this OTP with anyone. owara3m.com shall not be responsible for any misuse.
         In case you have not initiated this transaction please contact us immediately.
     </p>
     <p>

@@ -27,7 +27,7 @@
                 </a>
             </li> --}}
 
-            <li>
+            {{--<li>
                 <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
                     <i class="bi bi-coin"></i>
                     <span class="nav-text">Coin Staking</span>
@@ -49,7 +49,7 @@
                         </a>
                     </li>
                 </ul>
-            </li>
+            </li>--}}
 
             <li>
                 <a href="{{ route('user.packages.active') }}" class="" aria-expanded="false">
