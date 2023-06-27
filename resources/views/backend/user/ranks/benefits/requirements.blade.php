@@ -11,6 +11,7 @@
     @endsection
 
     <div class="row dark"> {{--! Tailwind css used. if using tailwind plz run npm run dev and add tailwind classes--}}
+        @include('backend.user.ranks.top-nav')
         @if(!$summery_exists)
             <div class="col-sm-12">
                 <div class="alert alert-warning">This Month Rank bonus does not exist.</div>
