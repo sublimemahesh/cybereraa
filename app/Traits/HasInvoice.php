@@ -33,7 +33,7 @@ trait HasInvoice
 
     private function getLogo(): string
     {
-        $url = asset('assets/backend/images/logo/logo-black-transparent.png');
+        $url = asset('assets/backend/images/logo/logo-full.png');
         $type = pathinfo($url, PATHINFO_EXTENSION);
         $data = file_get_contents($url);
 
@@ -42,7 +42,7 @@ trait HasInvoice
 
     private function getQr(): string
     {
-        $url = asset('assets/images/safesttrades.com-qr.png');
+        $url = asset('assets/images/owara3m.com-qr.png');
         $type = pathinfo($url, PATHINFO_EXTENSION);
         $data = file_get_contents($url);
 

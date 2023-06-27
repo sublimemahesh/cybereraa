@@ -29,7 +29,7 @@ class MobileVerifyController extends Controller
         ]);
 
         $code = $this->generateAccountVerificationCodeAndStore($request->get('phone'));
-        sendSMS($request->get('phone'), "Use verification code {$code} for www.safesttrades.com account verification.");
+        sendSMS($request->get('phone'), "Use verification code {$code} for www.owara3m.com account verification.");
         return response()->json(['sent_verify_code' => true]);
     }
 

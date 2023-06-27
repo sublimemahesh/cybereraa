@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="keywords" content="trade ,safesttrades ,crypto ,crypto wallet,crypto currency, Blockchain Crypto Exchange, Cryptocurrency Exchange, Bitcoin Trading, Ethereum price trend, BNB, CZ, BTC price, ETH wallet registration, LTC price, Binance, Poloniex, Bittrex ">
-    <meta name="author" content="safesttrades">
+    <meta name="keywords" content="trade ,owara3m ,crypto ,crypto wallet,crypto currency, Blockchain Crypto Exchange, Cryptocurrency Exchange, Bitcoin Trading, Ethereum price trend, BNB, CZ, BTC price, ETH wallet registration, LTC price, Binance, Poloniex, Bittrex ">
+    <meta name="author" content="owara3m">
     <meta name="robots" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="At SAFEST TRADING, we see the concept of “investments” in a pretty different way.">
