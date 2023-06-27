@@ -53,12 +53,12 @@
                         </div>
                     </div>
                     <div class="dz-side-menu">
-                        <div class="search-coundry d-flex align-items-center">
+                        {{-- <div class="search-coundry d-flex align-items-center">
                             <img src="{{ asset('assets/backend/images/United.png') }}" alt="">
                             <select class="default-select dashboard-select image-select">
                                 <option data-display="Eng">Eng</option>
                             </select>
-                        </div>
+                        </div> --}}
                         @auth()
                             @if(auth()->user()->hasRole(['user']))
                                 <div class="sidebar-social-link ">
