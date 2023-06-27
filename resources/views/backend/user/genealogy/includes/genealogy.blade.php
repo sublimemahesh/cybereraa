@@ -40,7 +40,7 @@
                                                             <div class="card-img"></div>
                                                             <div class="card-info">
                                                                 <h5 class="text-title">Empty    </h5><br>
-                                                                <p class="text-body">Add your new member</p>
+                                                                <p class="text-body-name">Add your new member</p>
                                                             </div>
                                                         </div>
                                                     </div>
