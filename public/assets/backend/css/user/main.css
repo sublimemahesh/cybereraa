@@ -77,7 +77,7 @@
     background: linear-gradient(to bottom, #42caff 0%, #e81aff 100%);
     position: relative;
     transition: all .3s ease-in-out;
-    margin-top: 70px;
+    margin-top: 62px;
 }
 
 
@@ -97,17 +97,32 @@
 .genealogy .text-title {
     word-break: break-all;
     text-transform: uppercase;
-    margin-top: -12px;
+    margin-top: -18px;
     text-align: center;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 160px;
 }
 
-.genealogy .text-body {
+.genealogy .text-body-name {
     font-size: 1em;
     text-align: center;
-    color: #6f6d78;
+    color: #A098AE;
     font-weight: 500;
     font-style: italic;
     margin-top: -14px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100px;
+
+}
+
+.genealogy .text-body {
+    margin-top: -18px;
 }
 
 .genealogy .img-center1 {
@@ -128,50 +143,53 @@
     margin-top: -5px;
 }
 
-#swiper-pagination-set{
+#swiper-pagination-set {
     bottom: -10px;
 
 }
 
 
-
+.g-icon{
+    padding-bottom: 10px;
+}
 
 
 @media screen and (max-width: 768px) {
-.dv {
- display: none;
-}
+    .dv {
+        display: none;
+    }
 
-.genealogy .card {
-    width:100%;
-}
-.mobile-margine{
-margin-top: 45px;
-}
+    .genealogy .card {
+        width: 100%;
+    }
 
-.tree ul {
-    display: '';
-}
+    .mobile-margine {
+        margin-top: 45px;
+    }
 
-.genealogy-scrooling{
-    overflow-x: auto;
- }
+    .tree ul {
+        display: '';
+    }
 
- .genealogy-scrooling::-webkit-scrollbar {
-    height: 10px;
-}
+    .genealogy-scrooling {
+        overflow-x: auto;
+    }
 
-.head-arrow{
-    margin-left: 715px;
-}
+    .genealogy-scrooling::-webkit-scrollbar {
+        height: 10px;
+    }
 
-
-
+    .head-arrow {
+        margin-left: 715px;
+    }
 
 
- .genealogy .card{
-    width: max-content !important;
- }
+
+
+
+    .genealogy .card {
+        width: max-content !important;
+    }
 
 
 
@@ -180,7 +198,7 @@ margin-top: 45px;
 
 @media screen and (min-width: 768px) {
     .mbv {
-     display: none;
+        display: none;
     }
 
     .tree ul {
@@ -189,13 +207,12 @@ margin-top: 45px;
 
 }
 
-.arrow-margin{
-margin-bottom: 50px;
+.arrow-margin {
+    margin-bottom: 50px;
 }
 
 
-.genealogy .card-active
-{
+.genealogy .card-active {
     border: 2px solid #db980b !important;
 }
 
@@ -214,4 +231,3 @@ margin-bottom: 50px;
     object-fit: cover;
 
 }
-

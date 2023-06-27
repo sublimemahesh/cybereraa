@@ -5,11 +5,11 @@
         </div>
         <div class="card-info">
             <h5 class="text-title">{{ $user->username }}</h5>
-            <p class="text-body">{{ $user->name }}</p>
+            <p class="text-body-name">{{ $user->name }}</p>
             <p class="text-body">
-                <i class="fa fa-bolt" aria-hidden="true"></i>{{ $user->active_packages_count > 0 ? 'Active' : 'Inactive' }}
+                <i class="fa fa-bolt" aria-hidden="true"></i> {{ $user->active_packages_count > 0 ? 'Active' : 'Inactive' }}
             </p>
-            <div class="row text-nowrap">
+            <div class="row text-nowrap g-icon">
                 <div class="col-sm-4 col-4" title="ST No">
                     <div style="text-align: center;">
                         <i class="fa fa-id-card" aria-hidden="true" style="font-size: 15px"></i>
