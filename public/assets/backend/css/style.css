@@ -8090,7 +8090,7 @@ fieldset:disabled .btn {
 
 .text-nowrap {
     white-space: nowrap !important;
-    
+
 }
 
 .text-decoration-none {
@@ -12422,7 +12422,7 @@ h1, .h1, .h1, h2, .h2, .h2, h3, .h3, .h3, h4, .h4, .h4, h5, .h5, .h5, h6, .h6, .
 }
 
 .rounded {
-    border-radius: 0.625rem !important;
+    border-radius: 0!important;
 }
 
 label {
@@ -12558,8 +12558,8 @@ label {
     padding-left: 0rem;
     font-size: 0.875rem;
     background-color: #ffffff;
-    border-top-left-radius: 1.875rem;
-    border-top-right-radius: 1.875rem;
+    border-top-left-radius:0;
+    border-top-right-radius: 0;
     margin-top: 1rem;
 }
 
@@ -18374,7 +18374,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
     -webkit-transition: all 0.5s;
     -ms-transition: all 0.5s;
     transition: all 0.5s;
-    border-radius: 0.625rem;
+    border-radius: 0;
     /* &:before{
 						position:absolute;
 						content:"";
@@ -20517,7 +20517,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 [data-sidebar-position="fixed"][data-layout="vertical"] .nav-header {
     position: fixed;
     border-top-left-radius: 0;
-    border-top-right-radius: 2.5rem;
+    border-top-right-radius: 0;
 }
 
 [data-sidebar-position="fixed"][data-layout="vertical"] .deznav {
@@ -20540,7 +20540,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
 [data-layout="vertical"] .deznav {
     border-bottom-left-radius: 0;
-    border-bottom-right-radius: 1.25rem;
+    border-bottom-right-radius: 0;
 }
 
 [data-sidebar-style="icon-hover"][data-layout="vertical"][data-container="wide-boxed"] .deznav,
@@ -31256,7 +31256,7 @@ input#checkAll.form-check-input:checked {
     line-height: 2.4;
     font-size: 1rem;
     height: 3rem;
-    border-radius: 0.625rem;
+    border-radius:0;
     border-color: #eeee;
 }
 
@@ -32221,7 +32221,7 @@ input#checkAll.form-check-input:checked {
 }
 
 .select2-container--default .select2-selection--single {
-    border-radius: 0.625rem;
+    border-radius: 0;
     border: 0.0625rem solid #c8c8c8;
     height: 3rem;
     background: #fff;
@@ -34113,7 +34113,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 }
 
 .alert {
-    border-radius: 0.625rem;
+    border-radius: 0;
     padding: 1rem 1.5rem;
 }
 
@@ -34469,7 +34469,7 @@ body > * {
 
 .badge {
     line-height: 1.5;
-    border-radius: 0.5rem;
+    border-radius:0;
     font-weight: 600;
     padding: 0.25rem 0.625rem;
     border: 0.0625rem solid transparent;
@@ -34782,7 +34782,7 @@ body > * {
     padding: 0.625rem 1.875rem;
     background: #ffffff;
     margin-bottom: 1.875rem;
-    border-radius: 0.625rem;
+    border-radius: 0;
     position: relative;
     z-index: 1;
 }
@@ -34894,7 +34894,7 @@ button:focus {
 
 .btn {
     padding: 0.7875rem 1.819rem;
-    border-radius: 0.5rem;
+    border-radius: 0;
     font-weight: 600;
     font-size: 14px;
     line-height: 1.5;
@@ -35534,7 +35534,7 @@ button:focus {
 }
 
 .btn-rounded {
-    border-radius: 2.5rem !important;
+    border-radius: 0 !important;
 }
 
 .btn-icon-end {
@@ -35975,7 +35975,7 @@ button:focus {
     transition: all .5s ease-in-out;
     position: relative;
     border: 0rem solid transparent;
-    border-radius: 1.25rem;
+    border-radius: 0;
     box-shadow: 0rem 0.3125rem 0.3125rem 0rem rgba(82, 63, 105, 0.05);
     height: calc(100% - 30px);
 }
@@ -36423,7 +36423,7 @@ button:focus {
     text-align: center;
     font-size: 0.75rem;
     padding: .2rem .8rem;
-    border-radius: 0.5rem;
+    border-radius: 0;
 }
 
 .label-fixed {
@@ -39244,7 +39244,7 @@ td.text-ov {
     height: 48px;
     width: 48px;
     background: transparent;
-    border-radius: 0.625rem;
+    border-radius: 0;
     padding: 0 0.45rem;
     line-height: 3.125rem;
     margin: 0 0.625rem;
@@ -39280,7 +39280,7 @@ td.text-ov {
     line-height: 3.125rem;
     text-align: center;
     font-size: 1.125rem;
-    border-radius: 0.625rem;
+    border-radius: 0;
     border: 0 !important;
     color: var(--primary) !important;
     background: var(--rgba-primary-1) !important;
@@ -39315,7 +39315,7 @@ td.text-ov {
     border: 0.0625rem solid #e2e2e2;
     padding: .3rem 0.5rem;
     color: #715d5d;
-    border-radius: 0.3125rem;
+    border-radius: 0;
 }
 
 [data-theme-version="dark"] .dataTables_wrapper input[type="search"], [data-theme-version="dark"] .dataTables_wrapper input[type="text"], [data-theme-version="dark"] .dataTables_wrapper select {
@@ -39375,7 +39375,7 @@ table.dataTable.no-footer {
 .dataTables_wrapper .dataTables_processing,
 .dataTables_wrapper .dataTables_paginate {
     color: #A098AE;
-    border-radius: 1rem;
+    border-radius:0;
     padding: 0.125rem 0;
     margin-bottom: 1.25rem;
 }
@@ -39969,7 +39969,7 @@ table.dataTable thead .sorting_asc {
     bottom: 1.25rem;
     top: 0rem;
     right: 0;
-    border-radius: 1.875rem 0 0 1.875rem;
+    border-radius: 0 0 0 0;
     display: flex;
     justify-content: space-between;
     flex-direction: column-reverse;
@@ -42084,7 +42084,7 @@ table.dataTable thead .sorting_asc {
 .profile-form .bootstrap-select .dropdown-toggle {
     height: 50px;
     font-size: 1rem;
-    border-radius: 0.625rem;
+    border-radius: 0;
     border-color: #eeee;
 }
 
@@ -42123,7 +42123,7 @@ table.dataTable thead .sorting_asc {
 
 .profile-card {
     border: 1px solid #eeee;
-    border-radius: 0.625rem;
+    border-radius: 0;
 }
 
 .profile-card .card-header {
@@ -48917,3 +48917,17 @@ button.dt-button, div.dt-button, a.dt-button
 .mm-collapse .mm-show li a ::before{
     font-family: 'good-times-regular';
 }
+
+
+.rounded-md {
+    border-radius: 0 !important;
+  }
+
+  .tox-tinymce
+{
+    border-radius: 0 !important;
+}
+
+input {
+    border-radius: 0 !important;
+  }
