@@ -41460,8 +41460,9 @@ table.dataTable thead .sorting_asc {
     }
 
     .buy-coin .coin-img img {
-        width: 230px;
-        bottom: -8px;
+        width: 219px;
+        bottom: -16px;
+        margin-right: 18px;
     }
 }
 
