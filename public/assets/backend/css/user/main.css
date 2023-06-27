@@ -50,7 +50,7 @@
 .genealogy .card {
     width: 186px;
     height: 208px;
-    background: #25164f;
+    background: #6c23c0;
     overflow: visible;
     box-shadow: 0 5px 20px 2px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -77,6 +77,7 @@
     background: linear-gradient(to bottom, #42caff 0%, #e81aff 100%);
     position: relative;
     transition: all .3s ease-in-out;
+    margin-top: 70px;
 }
 
 
@@ -89,7 +90,7 @@
     width: 100%;
     height: 100%;
     transform: translate(-50%, -50%);
-    border: 1rem solid #e8e8e8;
+    border: 1rem solid #1fa6ff;
 }
 
 /*Text*/
@@ -106,7 +107,7 @@
     color: #6f6d78;
     font-weight: 500;
     font-style: italic;
-    margin-top: -19px;
+    margin-top: -14px;
 }
 
 .genealogy .img-center1 {
@@ -119,11 +120,12 @@
 .genealogy .card {
     border: 2px solid white;
     height: max-content;
+    border-radius: 0px;
 }
 
 .swiper {
     overflow: visible !important;
-    margin-top: 60px;
+    margin-top: -5px;
 }
 
 #swiper-pagination-set{
