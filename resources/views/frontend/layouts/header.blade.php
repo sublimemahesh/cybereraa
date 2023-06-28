@@ -46,7 +46,7 @@
                         <ul class="list-unstyled e-p-bx pull-right">
                             @auth()
                                 <li>
-                                    <a href="{{ route('user.dashboard') }}"><i class="fa fa-dashboard"></i>Dashboard</a>
+                                    <a href="{{ route(authUserFolder() .'.dashboard') }}"><i class="fa fa-dashboard"></i>Dashboard</a>
                                 </li>
                             @endauth
                             @guest()
