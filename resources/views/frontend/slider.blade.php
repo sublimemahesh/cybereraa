@@ -91,12 +91,12 @@
 
                      style="z-index: 13;
                      white-space: normal;
-                     font-weight: 700;
+                     font-weight: 600;
                      color: rgb(75, 57, 65);
                      border-width:0px;">
 
                      <div style="font-family: 'Poppins', sans-serif; text-transform:uppercase;">
-                         <span class="text-white" style="padding-right:10px;">The most</span><span class="text-primary">Secure</span>
+                         <span class="text-white" style="padding-right:10px;">The most</span><span class="text-primary">Reliable </span>
                      </div>
 
                      </div>
@@ -126,10 +126,10 @@
 
                      style="z-index: 13;
                      white-space: normal;
-                     font-weight: 700;
+                     font-weight: 600;
                      border-width:0px;">
                      <div style="font-family: 'Poppins', sans-serif; text-transform:uppercase ;">
-                            <span class="text-primary" style="padding-right:10px;">Crypto</span><span class="text-white">Currency</span>
+                            <span class="text-primary" style="padding-right:10px;">Crypto </span><span class="text-white">Investment Project </span>
                      </div>
 
                      </div>
@@ -161,15 +161,19 @@
                      font-weight: 500;
                      color:#fff;
                      border-width:0px;">
-                     <span style="font-family: 'Poppins', sans-serif;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been end</span>
+                     <br>
+                     <br>
+                     <span style="font-family: 'Poppins', sans-serif;">Discover the ultimate secure haven on the planet, where your financial investments are
+                        safeguarded.</span>
                      </div>
-
+                     <br>
+                     <br>
                      <!-- LAYER NR. 6 [ for see all service botton ] -->
-                     <div class="tp-caption tp-resizeme"
+                     <div class="tp-caption tp-resizeme btnn"
                      id="slide-100-layer-6"
                      data-x="['left','left','left','left']" data-hoffset="['30','30','30','100']"
 
-                     data-y="['top','top','top','top']" data-voffset="['530','530','530','600']"
+                     data-y="['top','top','top','top']" data-voffset="['570','570','570','600']"
                      data-lineheight="['none','none','none','none']"
                      data-width="['300','300','300','300']"
                      data-height="['none','none','none','none']"
@@ -188,14 +192,14 @@
                      data-paddingleft="[0,0,0,0]"
 
                      style="z-index:13; text-transform:uppercase;">
-                     <a href="javascript:;" class="site-button slider-btn-left">Contact Us</a>
+                     <a href="{{ route('contact') }}" class="site-button slider-btn-left" >Contact Us</a>
                      </div>
 
                      <!-- LAYER NR. 7 [ for more detail botton ] -->
                      <div class="tp-caption tp-resizeme"
                      id="slide-100-layer-7"
                      data-x="['left','left','left','left']" data-hoffset="['220','220','220','320']"
-                     data-y="['top','top','top','top']" data-voffset="['530','530','530','600']"
+                     data-y="['top','top','top','top']" data-voffset="['570','570','570','600']"
                      data-lineheight="['none','none','none','none']"
                      data-width="['300','300','300','300']"
                      data-height="['none','none','none','none']"
@@ -217,7 +221,7 @@
                      text-transform:uppercase;
                      font-weight:500;
                      ">
-                     <a href="javascript:;" class=" site-button white slider-btn-right">Join Us</a>
+                     <a href="{{ route('login') }}" class=" site-button white slider-btn-right">Join Us</a>
                      </div>
 
                      <!-- LAYER NR. 8 [ for more detail botton ] -->
