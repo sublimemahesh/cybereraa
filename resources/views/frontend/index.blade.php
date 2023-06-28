@@ -187,8 +187,8 @@
                                         </strong>
                                     </p>
 
-                                    <a href="#" class="site-button text-uppercase m-r15 site-button2">Read More</a>
-                                    <a href="#" class="site-button-secondry text-uppercase">Contact us</a>
+                                    <a href="{{ route('about') }}" class="site-button text-uppercase m-r15 site-button2">Read More</a>
+                                    <a href="{{ route('contact') }}" class="site-button-secondry text-uppercase">Contact us</a>
                                 </div>
                             </div>
                         </div>
