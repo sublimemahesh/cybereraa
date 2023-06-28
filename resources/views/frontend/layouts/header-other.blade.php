@@ -29,8 +29,13 @@
                         </div>
 
                         <ul class="list-unstyled e-p-bx pull-right">
+                            @auth()
+                            <li><a href="{{ route('user.dashboard') }}" ><i class="fa fa-dashboard"></i>Dashboard</a></li>
+                            @endauth
+                            @guest()
                             <li><a href="{{ route('login') }}" ><i class="fa fa-user"></i>Login</a></li>
                             <li><a href="{{ route('register') }}"><i class="fa fa-sign-in"></i>Register</a></li>
+                            @endguest
                         </ul>
                     </div>
                 </div>
