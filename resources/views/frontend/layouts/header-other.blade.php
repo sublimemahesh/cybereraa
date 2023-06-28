@@ -21,20 +21,39 @@
                                     <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Language
                                     <span class="caret"></span></button>
                                     <ul class="dropdown-menu dropdown-menu-right">
-                                      <li><a href="#"><img src="{{ asset('assets/frontend/images/united-states.png') }}" alt="">English</a></li>
-                                      <li><a href="#"><img src="{{ asset('assets/frontend/images/france.png') }}" alt="">French</a></li>
-                                      <li><a href="#"><img src="{{ asset('assets/frontend/images/germany.png') }}" alt="">German</a></li>
+                                      <li><a href="#"><img src="{{ asset('assets/frontend/images/united-states.png') }}" alt="">
+                                              English
+                                          </a>
+                                      </li>
+                                        <li>
+                                            <a href="#">
+                                                <img src="{{ asset('assets/frontend/images/france.png') }}" alt="">
+                                                French
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <img src="{{ asset('assets/frontend/images/germany.png') }}" alt="">
+                                                German
+                                            </a>
+                                        </li>
                                     </ul>
                               </div>
                         </div>
 
                         <ul class="list-unstyled e-p-bx pull-right">
                             @auth()
-                            <li><a href="{{ route('user.dashboard') }}" ><i class="fa fa-dashboard"></i>Dashboard</a></li>
+                                <li>
+                                    <a href="{{ route(authUserFolder() .'.dashboard') }}"><i class="fa fa-dashboard"></i>Dashboard</a>
+                                </li>
                             @endauth
                             @guest()
-                            <li><a href="{{ route('login') }}" ><i class="fa fa-user"></i>Login</a></li>
-                            <li><a href="{{ route('register') }}"><i class="fa fa-sign-in"></i>Register</a></li>
+                                <li>
+                                    <a href="{{ route('login') }}"><i class="fa fa-user"></i>Login</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('register') }}"><i class="fa fa-sign-in"></i>Register</a>
+                                </li>
                             @endguest
                         </ul>
                     </div>
@@ -49,7 +68,7 @@
         <div class="container">
             <div class="logo-header mob-width">
                 <a href="{{ route('/') }}">
-                    <img src="{{ asset('assets/frontend/images/logo-dark.png') }}" width="216" height="37" alt="" />
+                    <img src="{{ asset('assets/frontend/images/logo-dark.png') }}" width="216" height="37" alt=""/>
                 </a>
             </div>
             <div class="header-info">
@@ -98,8 +117,8 @@
                 <!-- ETRA Nav -->
 
 
-                    <!-- MAIN Vav -->
-                    <div class="header-nav navbar-collapse collapse ">
+                <!-- MAIN Vav -->
+                <div class="header-nav navbar-collapse collapse ">
                     <ul class=" nav navbar-nav">
                         <li class="active">
                             <a href="{{ route('/') }}">HOME</i></a>
@@ -109,12 +128,16 @@
                         </li>
 
                         <li>
-                                <a href="javascript:;">PROJECTS<i class="fa fa-chevron-down"></i></a>
-                                    <ul class="sub-menu">
-                                        <li><a href="{{ route('project') }}">EXISTING PROJECTS</a></li>
-                                        <li><a href="{{ route('Upcoming-project') }}">UPCOMING PROJECTS</a></li>
-                                    </ul>
-                            </li>
+                            <a href="javascript:;">PROJECTS<i class="fa fa-chevron-down"></i></a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="{{ route('project') }}">EXISTING PROJECTS</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('Upcoming-project') }}">UPCOMING PROJECTS</a>
+                                </li>
+                            </ul>
+                        </li>
 
                         <li>
                             <a href="{{ route('pricing') }}">PACKAGES</i></a>
