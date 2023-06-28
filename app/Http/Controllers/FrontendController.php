@@ -108,7 +108,7 @@ class FrontendController extends Controller
 
     public function termsConditions()
     {
-        $terms_and_conditions = Page::where(['slug' => 'term-and-conditons'])->firstOrNew();
+        $terms_and_conditions = Page::where(['slug' => 'terms-and-conditions'])->firstOrNew();
 
         return view('frontend.terms-and-conditions', compact('terms_and_conditions'));
 
