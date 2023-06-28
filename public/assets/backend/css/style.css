@@ -36571,7 +36571,7 @@ code {
 }
 
 [data-theme-version="dark"] .list-group-item {
-    border-color: #9568FF;
+    border-color: #707070;
 }
 
 .list-group-item.disabled, .list-group-item:disabled {
@@ -47518,12 +47518,12 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 }
 
 [data-theme-version="dark"] .modal-content {
-    background: #25164F;
+    background: #1c1c1c;
 }
 
 [data-theme-version="dark"] .modal-footer,
 [data-theme-version="dark"] .modal-header {
-    border-color: #9568FF;
+    border-color: #707070;
 }
 
 [data-theme-version="dark"] .close {
