@@ -108,21 +108,17 @@ class FrontendController extends Controller
 
     public function termsConditions()
     {
-        $terms_and_conditions = $this->getDatePage('terms-and-conditions');
-        $terms_and_conditions_content = page::where(['id' => 77])->get();
+        $terms_and_conditions = Page::where(['slug' => 'term-and-conditons'])->firstOrNew();
 
-        return view('frontend.terms-and-conditions', compact('terms_and_conditions', 'terms_and_conditions_content'));
+        return view('frontend.terms-and-conditions', compact('terms_and_conditions'));
 
     }
 
     public function disclaimer()
     {
-        //$disclaimers = $this->getDatePage('disclaimer');
-        //$disclaimers_content = page::where(['id' => 80])->get();
-       // $abouts = Page::where(['slug' => 'about-us-page'])->firstOrNew();
-
+       
        $disclaimer = Page::where(['slug' => 'disclaimer'])->firstOrNew();
-        
+
         return view('frontend.disclaimer', compact('disclaimer'));
 
     }
