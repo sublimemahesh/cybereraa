@@ -3,7 +3,7 @@
     @section('header-title', 'Welcome ')
 
     @section('header')
-        @include('frontend.layouts.header')
+    @include('frontend.layouts.header')
     @endsection
 
 
@@ -137,7 +137,7 @@
                                 <div class="col-md-9 col-sm-9">
                                     <div class="call-to-action-left p-tb20 ">
                                         <h5 class="text-uppercase m-b10 font-weight-600">We strive to make the investment process seamless and accessible to all.
-                                        <br>At SECURE INVEST, we firmly believe that everyone has the potential to become an investor.</h5>
+                                            <br>At SECURE INVEST, we firmly believe that everyone has the potential to become an investor.</h5>
                                     </div>
                                 </div>
 
@@ -220,20 +220,20 @@
                         <div class="col-md-4 col-sm-12 m-b30  p-t30">
 
                             @if ($benefits !== null && count($benefits) > 0)
-                                @foreach ($benefits as $key => $section)
-                                    @if ($key % 2 == 0)
+                            @foreach ($benefits as $key => $section)
+                            @if ($key % 2 == 0)
 
-                                        <div class="wt-icon-box-wraper  right p-a20" data-target="#tab1" data-toggle="tab">
-                                            <div class="icon-md text-primary">
-                                                <span class="icon-cell  text-primary"><img src="{{ storage('pages/' . $section->image) }}" alt=""></span>
-                                            </div>
-                                            <div class="icon-content">
-                                                <h4 class="wt-tilte text-uppercase">{{ $section->title }}</h4>
-                                                <p> {!! $section->content !!}</p>
-                                            </div>
-                                        </div>
-                                    @endif
-                                @endforeach
+                            <div class="wt-icon-box-wraper  right p-a20" data-target="#tab1" data-toggle="tab">
+                                <div class="icon-md text-primary">
+                                    <span class="icon-cell  text-primary"><img src="{{ storage('pages/' . $section->image) }}" alt=""></span>
+                                </div>
+                                <div class="icon-content">
+                                    <h4 class="wt-tilte text-uppercase">{{ $section->title }}</h4>
+                                    <p> {!! $section->content !!}</p>
+                                </div>
+                            </div>
+                            @endif
+                            @endforeach
                             @endif
 
                         </div>
@@ -254,20 +254,20 @@
 
                         <div class="col-md-4 col-sm-12 m-b30  p-t30 mob-m">
                             @if ($benefits !== null && count($benefits) > 0)
-                                @foreach ($benefits as $key => $section)
-                                    @if ($key % 2 != 0)
+                            @foreach ($benefits as $key => $section)
+                            @if ($key % 2 != 0)
 
-                                        <div class="wt-icon-box-wraper left p-a20 ">
-                                            <div class="icon-md text-primary">
-                                                <span class="icon-cell  text-primary"><img src="{{ storage('pages/' . $section->image) }}" alt=""></span>
-                                            </div>
-                                            <div class="icon-content">
-                                                <h4 class="wt-tilte text-uppercase">{{ $section->title }}</h4>
-                                                <p> {!! $section->content !!}</p>
-                                            </div>
-                                        </div>
-                                    @endif
-                                @endforeach
+                            <div class="wt-icon-box-wraper left p-a20 ">
+                                <div class="icon-md text-primary">
+                                    <span class="icon-cell  text-primary"><img src="{{ storage('pages/' . $section->image) }}" alt=""></span>
+                                </div>
+                                <div class="icon-content">
+                                    <h4 class="wt-tilte text-uppercase">{{ $section->title }}</h4>
+                                    <p> {!! $section->content !!}</p>
+                                </div>
+                            </div>
+                            @endif
+                            @endforeach
                             @endif
 
                         </div>
@@ -278,126 +278,77 @@
 
         <!-- WHY CHOOSE US SECTION END -->
 
-        <!-- COMPANY DETAIL SECTION START -->
+        <!-- HOW IT WORK SECTION START  -->
 
 
         <div class="section-full p-t50 p-b50 overlay-wraper bg-parallax clouds1 bg-repeat" data-stellar-background-ratio="0.5" style="background-image:url({{ asset('assets/frontend/images/background/bg-1.jpg') }});">
             <div class="overlay-main themecolor-3 opacity-05"></div>
             <div class="container ">
-                <div class="row">
-                    <div class="col-md-4 col-sm-6">
-                        <div class="rocket-pic">
-                            <div class="rocket-animation ">
-                                <img src="{{asset('assets/frontend/images/rocket.png')}}" alt="" class="floating"/>
-                                <div class="rocket-fire">
-                                    <img src="{{asset('assets/frontend/images/fire.gif')}}" alt="" class="floating"/>
-                                </div>
-                            </div>
+
+                <div class="container ">
+                    <!-- TITLE START-->
+                    <div class="section-head text-center">
+                        <span class="wt-title-subline font-16 text-gray-dark m-b15">Three steps Owara3m</span>
+                        <h2 class="text-uppercase">How It Work</h2>
+                        <div class="wt-separator-outer">
+                            <div class="wt-separator bg-primary"></div>
                         </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga eos optio ducimus odit, labore hic fugiat iusto veniam necessitatibus quas doloremque sapiente maiores.</p>
                     </div>
-                    <div class="col-md-8 col-sm-6">
-                        <div class="awesome-counter text-right text-white">
-                            <h3 class="font-24">The Company </h3>
-                            <h2 class="font-60 font-weight-600"><span class="text-primary">{{ $awesome_facts->title }}</span></h2>
-                            <p> {!! $awesome_facts->content !!}</p>
-                        </div>
+                    <!-- TITLE END-->
+                    <div class="section-content no-col-gap">
                         <div class="row">
-                            <div class="col-md-4 col-sm-4">
-                                <div class="status-marks  text-white m-tb10">
-                                    <div class="status-value text-right">
-                                        <span class="counter">1150</span>
-                                        <i class="fa fa-building font-26 m-l15"></i>
-                                    </div>
-                                    <h6 class="text-uppercase text-right">PROJECT COMPLETED</h6>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-4">
-                                <div class="status-marks  text-white m-tb10">
-                                    <div class="status-value text-right">
-                                        <span class="counter">5223</span>
-                                        <i class="fa fa-users font-26 m-l15"></i>
-                                    </div>
-                                    <h6 class="text-uppercase text-white text-right">HAPPY CLIENTS</h6>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-4">
-                                <div class="status-marks  text-white m-tb10">
-                                    <div class="status-value text-right">
-                                        <span class="counter">4522</span>
-                                        <i class="fa fa-user-plus font-26 m-l15"></i>
-                                    </div>
-                                    <h6 class="text-uppercase text-white text-right">WORKERS EMPLOYED</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- COMPANY DETAIL SECTION End -->
-
-        <!-- HOW IT WORK SECTION START  -->
-        <div class="section-full  p-t80 p-b80 themecolor-1">
-            <div class="container">
-                <!-- TITLE START-->
-                <div class="section-head text-center">
-                    <span class="wt-title-subline font-16 text-gray-dark m-b15">Three steps Owara3m</span>
-                    <h2 class="text-uppercase">How It Work</h2>
-                    <div class="wt-separator-outer">
-                        <div class="wt-separator bg-primary"></div>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga eos optio ducimus odit, labore hic fugiat iusto veniam necessitatibus quas doloremque sapiente maiores.</p>
-                </div>
-                <!-- TITLE END-->
-                <div class="section-content no-col-gap">
-                    <div class="row">
-
-                        @foreach ($how_it_work as $key => $section)
+                            @foreach ($how_it_work as $key => $section)
                             @if ($key%2 == 0)
-                                <!-- COLUMNS 1 -->
+                            <!-- COLUMNS 1 -->
 
-                                <div class="col-md-4 col-sm-4 step-number-block">
-                                    <div class="wt-icon-box-wraper  p-a30 center themecolor-2 m-a5">
-                                        <div class="icon-lg text-primary m-b20">
-                                            <a href="#" class="icon-cell">
-                                                <img src="{{ storage('pages/' . $section->image) }}" alt="">
-                                            </a>
-                                        </div>
-                                        <div class="icon-content">
-                                            <div class="step-number">{{ $key+1 }}</div>
-                                            <h4 class="wt-tilte text-uppercase font-weight-500">{{ $section->title }}</h4>
-                                            {!! html_entity_decode($section->content) !!}
-                                        </div>
+                            <div class="col-md-4 col-sm-4 step-number-block">
+                                <div class="wt-icon-box-wraper  p-a30 center themecolor-2 m-a5">
+                                    <div class="icon-lg text-primary m-b20">
+                                        <a href="#" class="icon-cell">
+                                            <img src="{{ storage('pages/' . $section->image) }}" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="icon-content">
+                                        <div class="step-number">{{ $key+1 }}</div>
+                                        <h4 class="wt-tilte text-uppercase font-weight-500">{{ $section->title }}</h4>
+                                        {!! html_entity_decode($section->content) !!}
                                     </div>
                                 </div>
+                            </div>
 
                             @else
-                                <!-- COLUMNS 2 -->
-                                <div class="col-md-4 col-sm-4 step-number-block">
-                                    <div class="wt-icon-box-wraper  p-a30 center themecolor-3 m-a5 ">
-                                        <div class="icon-lg m-b20">
-                                            <a href="#" class="icon-cell">
-                                                <img src="{{ storage('pages/' . $section->image) }}" alt="">
-                                            </a>
-                                        </div>
-                                        <div class="icon-content text-white">
-                                            <div class="step-number active">{{ $key+1 }}</div>
-                                            <h4 class="wt-tilte text-uppercase font-weight-500">{{ $section->title }}</h4>
-                                            {!! html_entity_decode($section->content) !!}
-                                        </div>
+                            <!-- COLUMNS 2 -->
+                            <div class="col-md-4 col-sm-4 step-number-block">
+                                <div class="wt-icon-box-wraper  p-a30 center themecolor-3 m-a5 ">
+                                    <div class="icon-lg m-b20">
+                                        <a href="#" class="icon-cell">
+                                            <img src="{{ storage('pages/' . $section->image) }}" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="icon-content text-white">
+                                        <div class="step-number active">{{ $key+1 }}</div>
+                                        <h4 class="wt-tilte text-uppercase font-weight-500">{{ $section->title }}</h4>
+                                        {!! html_entity_decode($section->content) !!}
                                     </div>
                                 </div>
+                            </div>
                             @endif
-                        @endforeach
+                            @endforeach
 
 
+                        </div>
                     </div>
+
                 </div>
+
 
             </div>
         </div>
+
         <!-- HOW IT WORK  SECTION END -->
+
 
         <!-- SECTION CONTENT START -->
         <div class="section-full no-col-gap bg-repeat">
@@ -439,32 +390,32 @@
 
     @section('scripts')
 
-        <script type="text/javascript">
-            jQuery(function () {
-                var timer = !1;
-                _Ticker = jQuery("#T1").newsTicker();
-                _Ticker.on("mouseenter", function () {
-                    var __self = this;
-                    timer = setTimeout(function () {
-                        __self.pauseTicker();
-                    }, 200);
-                });
-                _Ticker.on("mouseleave", function () {
-                    clearTimeout(timer);
-                    if (!timer) return !1;
-                    this.startTicker();
-                });
+    <script type="text/javascript">
+        jQuery(function() {
+            var timer = !1;
+            _Ticker = jQuery("#T1").newsTicker();
+            _Ticker.on("mouseenter", function() {
+                var __self = this;
+                timer = setTimeout(function() {
+                    __self.pauseTicker();
+                }, 200);
             });
+            _Ticker.on("mouseleave", function() {
+                clearTimeout(timer);
+                if (!timer) return !1;
+                this.startTicker();
+            });
+        });
 
-        </script>
+    </script>
 
-        <script src="{{asset('assets/frontend/plugins/revolution/revolution/js/jquery.themepunch.tools.min.js') }}"></script>
-        <script src="{{asset('assets/frontend/plugins/revolution/revolution/js/jquery.themepunch.revolution.min.js') }}"></script>
+    <script src="{{asset('assets/frontend/plugins/revolution/revolution/js/jquery.themepunch.tools.min.js') }}"></script>
+    <script src="{{asset('assets/frontend/plugins/revolution/revolution/js/jquery.themepunch.revolution.min.js') }}"></script>
 
-        <!-- SLIDER REVOLUTION 5.0 EXTENSIONS  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->
-        <script src="{{asset('assets/frontend/plugins/revolution/revolution/js/extensions/revolution-plugin.js') }}"></script>
-        <!-- REVOLUTION SLIDER FUNCTION  ===== -->
-        <script src="{{ asset('assets/frontend/js/rev-script-1.js') }}"></script>
+    <!-- SLIDER REVOLUTION 5.0 EXTENSIONS  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->
+    <script src="{{asset('assets/frontend/plugins/revolution/revolution/js/extensions/revolution-plugin.js') }}"></script>
+    <!-- REVOLUTION SLIDER FUNCTION  ===== -->
+    <script src="{{ asset('assets/frontend/js/rev-script-1.js') }}"></script>
 
     @endsection
 
