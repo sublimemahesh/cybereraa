@@ -9,7 +9,7 @@
     @endsection
 
     <div class="alert alert-info">
-        Effective from 2023-02-02 All package earnings will be generated after 3 working days from the date of purchase. This will affect all packages purchased from 01-02-2023 onwards.
+        All package earnings will be generated after 3 working days from the date of purchase.
     </div>
     <div class="row">
         @include('backend.user.wallet.top-nav')
