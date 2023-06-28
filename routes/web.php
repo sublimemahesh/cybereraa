@@ -28,6 +28,7 @@ Route::get('news/{news:slug}', 'FrontendController@showNews')->name('news.show')
 
 Route::get('terms-and-conditions', 'FrontendController@termsConditions')->name('terms&Conditions');
 Route::get('disclaimer', 'FrontendController@disclaimer')->name('disclaimer');
+Route::get('privacy-and-policy', 'FrontendController@privacyAndPolicy')->name('privacy-and-policy');
 Route::post('filter/sponsors/{search_text}', 'RegisteredUserController@findUsers');
 
 Route::get('contact', 'ContactController@index')->name('contact');
