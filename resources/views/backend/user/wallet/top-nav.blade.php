@@ -1,5 +1,5 @@
 <div class="col-12">
-    <div class="card">
+    <div class="">
         <div class="card-header border-0  flex-wrap">
             <nav>
                 <div class="order nav nav-tabs">

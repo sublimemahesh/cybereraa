@@ -11,9 +11,9 @@
         @vite(['resources/css/app-jetstream.css'])
     @endsection
 
-    @section('breadcrumb-items')
+     @section('breadcrumb-items')
         <li class="breadcrumb-item">Team Earnings</li>
-    @endsection
+    @endsection 
 
     <div class="row dark"> {{--! Tailwind css used. if using tailwind plz run npm run dev and add tailwind classes--}}
         @include('backend.user.teams.top-nav')

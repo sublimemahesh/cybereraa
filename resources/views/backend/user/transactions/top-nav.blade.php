@@ -1,6 +1,6 @@
 <div class="col-12">
     <div class="card">
-        <div class="card-header border-0  flex-wrap">
+        <div>
             <nav>
                 <div class="order nav nav-tabs">
                     <a class="nav-link {{ request()->routeIs('user.transactions.index') ? 'active' : '' }}" href="{{ !request()->routeIs('user.transactions.index') ? route('user.transactions.index') : 'javascript:void(0)' }}">My Transactions</a>
