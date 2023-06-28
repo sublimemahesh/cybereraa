@@ -34,7 +34,7 @@
                         <ul>
                             <li><a href="{{ route('disclaimer') }}"> DISCLAIMER </a></li>
                             <li><a href="{{ route('terms&Conditions') }}"> TERM AND CONDITONS </a></li>
-                            <li><a href="{{ route('disclaimer') }}"> PRIVACY AND POLICY </a></li>
+                            <li><a href="{{ route('privacy-and-policy') }}"> PRIVACY AND POLICY </a></li>
                         </ul>
                     </div>
                 </div>

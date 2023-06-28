@@ -116,10 +116,19 @@ class FrontendController extends Controller
 
     public function disclaimer()
     {
-       
+
        $disclaimer = Page::where(['slug' => 'disclaimer'])->firstOrNew();
 
         return view('frontend.disclaimer', compact('disclaimer'));
+
+    }
+
+    public function privacyAndPolicy()
+    {
+
+       $privacys = Page::where(['slug' => 'privacy-and-policy'])->firstOrNew();
+
+        return view('frontend.privacy-and-policy', compact('privacys'));
 
     }
 
