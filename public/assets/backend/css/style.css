@@ -18374,7 +18374,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
     -webkit-transition: all 0.5s;
     -ms-transition: all 0.5s;
     transition: all 0.5s;
-    border-radius: 0;
+    border-radius: 2;
     /* &:before{
 						position:absolute;
 						content:"";
@@ -22891,7 +22891,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
 [data-sidebarbg="color_4"][data-theme-version="dark"] .deznav .metismenu > li:hover > a,
 [data-sidebarbg="color_4"] .deznav .metismenu > li:hover > a {
-    background: rgba(255, 255, 255, 0.15) !important;
+     background: #707070 !important; 
 }
 
 [data-sidebarbg="color_4"][data-theme-version="dark"] .deznav .metismenu > li > a,
@@ -22906,8 +22906,8 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
 [data-sidebarbg="color_4"][data-theme-version="dark"] .deznav .metismenu > li.mm-active > a,
 [data-sidebarbg="color_4"] .deznav .metismenu > li.mm-active > a {
-    background: rgba(255, 255, 255, 0.15) !important;
-    color: #fff;
+    background: #1fa6ff !important;
+    color: #fff !important;
 }
 
 [data-sidebarbg="color_4"][data-theme-version="dark"] .deznav .metismenu > li.mm-active > a i,
@@ -29084,7 +29084,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 [data-theme-version="dark"] .deznav .metismenu > li:hover > a, [data-theme-version="dark"] .deznav .metismenu > li:focus > a, [data-theme-version="dark"] .deznav .metismenu > li.mm-active > a {
-    color: #fff !important;
+    color: #fff  !important;
     /* background:var(--rgba-primary-1); */
 }
 
@@ -29096,7 +29096,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 [data-theme-version="dark"] .deznav .metismenu > li:hover > a i, [data-theme-version="dark"] .deznav .metismenu > li:focus > a i, [data-theme-version="dark"] .deznav .metismenu > li.mm-active > a i {
-    color: #fff;
+    color: #1fa6ff  !important;
 }
 
 [data-theme-version="dark"] .deznav .metismenu > li.mm-active ul ul {
@@ -48721,7 +48721,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 }
 
 [data-theme-version="dark"] .deznav .metismenu > li:hover > a, [data-theme-version="dark"] .deznav .metismenu > li:focus > a, [data-theme-version="dark"] .deznav .metismenu > li.mm-active > a {
-    color: #fff !important;
+    color: #1fa6ff !important;
     /* background:var(--rgba-primary-1); */
 }
 
