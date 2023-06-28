@@ -52,6 +52,7 @@ class EarningController extends Controller
             $earnings = Earning::filter()
                 ->with(['earnable', 'user'])
                 ->whereIn('user_id', $descendants)
+                ->whereNotIn('type', ['RANK_BONUS', 'RANK_GIFT', 'P2P', 'STAKING'])
                 ->orderBy('amount', 'desc');
 
             return DataTables::of($earnings)
@@ -70,7 +71,7 @@ class EarningController extends Controller
                 ->rawColumns(['user', 'earnable_type'])
                 ->make();
         }
-        return view('backend.user.teams.highest-incomes');
+        return view('backend.user.teams.highest-earnings');
     }
 
 
@@ -159,6 +160,41 @@ class EarningController extends Controller
         ];
 
         return view('backend.user.incomes.commissions', compact('types'));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function teamCommissions(Request $request)
+    {
+        if ($request->wantsJson()) {
+            $earnings = Commission::filter()
+                ->with(['user', 'purchasedPackage.user'])
+                ->whereIn('user_id', Auth::user()->descendants()->pluck('id')->toArray());
+
+
+            return DataTables::eloquent($earnings)
+                ->addColumn('user', function ($commission) {
+                    return str_pad($commission->user_id, '4', '0', STR_PAD_LEFT) .
+                        " - <code class='text-uppercase'>{$commission->user->username}</code>";
+                })->addColumn('referer', function ($commission) {
+                    return str_pad($commission->purchasedPackage->user_id, '4', '0', STR_PAD_LEFT) .
+                        " - <code class='text-uppercase'>{$commission->purchasedPackage->user->username}</code>";
+                })
+                ->addColumn('package', fn($commission) => $commission->package_info_json->name)
+                ->addColumn('amount', fn($commission) => number_format($commission->amount, 2))
+                ->addColumn('paid', fn($commission) => number_format($commission->paid, 2))
+                ->addColumn('created_date', fn($commission) => $commission->created_at->format('Y-m-d H:i:s'))
+                ->rawColumns(['user', 'referer'])
+                ->make();
+        }
+
+        $types = [
+            'direct' => 'DIRECT',
+            'indirect' => 'INDIRECT',
+        ];
+
+        return view('backend.user.teams.income', compact('types'));
     }
 
     /**

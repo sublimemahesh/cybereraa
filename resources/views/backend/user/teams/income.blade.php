@@ -1,6 +1,6 @@
 <x-backend.layouts.app>
-    @section('title', 'My Income')
-    @section('header-title', 'Commission Income' )
+    @section('title', 'Team Income')
+    @section('header-title', 'Team Commission Income' )
     @section('plugin-styles')
         <!-- Datatable -->
         <link href="{{ asset('assets/backend/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
@@ -11,11 +11,11 @@
     @endsection
 
     @section('breadcrumb-items')
-        <li class="breadcrumb-item">Commission</li>
+        <li class="breadcrumb-item">Team Commission</li>
     @endsection
 
     <div class="row dark"> {{--! Tailwind css used. if using tailwind plz run npm run dev and add tailwind classes--}}
-        @include('backend.user.incomes.top-nav')
+        @include('backend.user.teams.top-nav')
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
@@ -108,6 +108,7 @@
                         <table id="transactions" class="display table-responsive-my" style="table-layout: fixed">
                             <thead>
                             <tr>
+                                <th>USER</th>
                                 <th>TYPE</th>
                                 <th>STATUS</th>
                                 <th>REMARK</th>
@@ -120,7 +121,7 @@
                             </thead>
                             <tfoot>
                             <tr>
-                                <th colspan="8" style="text-align:right"></th>
+                                <th colspan="9" style="text-align:right"></th>
                             </tr>
                             </tfoot>
                         </table>
@@ -142,6 +143,6 @@
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.html5.min.js') }}"></script>
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.print.min.js') }}"></script>
         <script src="{{ asset('assets/backend/js/global-datatable-extension.js') }}"></script>
-        <script src="{{ asset('assets/backend/js/user/income/commission.js?1675313942') }}"></script>
+        <script src="{{ asset('assets/backend/js/user/team/income.js') }}"></script>
     @endpush
 </x-backend.layouts.app>
