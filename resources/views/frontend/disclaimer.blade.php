@@ -1,94 +1,84 @@
 <x-frontend.layouts.app>
-    @section('title', 'Disclaimer | Owara3m | One to One Marketing Website')
+    @section('title', 'Disclaimer | Owara3m ')
     @section('header-title', 'Welcome ')
-
-    @section('meta')
-        <meta name="description"
-            content="Any and all liability for risks resulting from investment transactions or other asset dispositions carried out by the customer based on information received">
-        <meta name="keywords"
-            content="Owara3m, Owara3m, one to one marketing, one to one marketing website, network marketing website, e money sites, money investment sites, cryptocurrency trading, trade, trade online, trades websites">
-        <meta name="author" content="Owara3m">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @section('header')
+    @include('frontend.layouts.header-other')
     @endsection
+    <!-- CONTENT START -->
+    <div class="page-content">
 
-    @section('styles')
-
-    <link href="{{ asset('assets/frontend/css/disclaimer.css') }}" rel="stylesheet">
-
-    @endsection
-
-
-
-    <div id="page">
-        <section id="hero" class='net-hero'>
-            <div class="background">
-                <canvas id="hero-background"></canvas>
+        <!-- INNER PAGE BANNER -->
+        <div class="wt-bnr-inr overlay-wraper" style="background-image:url({{ asset('assets/frontend/images/banner/banner.png') }});">
+            <div class="overlay-main themecolor-1 opacity-07"></div>
+            <div class="container">
+                <div class="wt-bnr-inr-entry">
+                    <h1 class="text-white">Disclaimer</h1>
+                </div>
             </div>
-            <div class="foreground">
-                <div class="main">
-                    <section class="banner-area">
-                        <div class="banner-overlay">
-                            <div class="banner-text text-center">
-                                <div class="container">
-                                    <!-- Section Title Starts -->
-                                    <div class="row text-center">
-                                        <div class="col-xs-12">
-                                            <!-- Title Starts -->
-                                            <h2 class="title-head">Dis<span>claimer</span></h2>
-                                            <!-- Title Ends -->
-                                            <hr>
-                                            <!-- Breadcrumb Starts -->
-                                            <ul class="breadcrumb">
-                                                <li><a href="{{ route('/') }}" id='home'> home</a></li>
-                                                <li>Disclaimer</li>
-                                            </ul>
-                                            <!-- Breadcrumb Ends -->
-                                        </div>
-                                    </div>
-                                    <!-- Section Title Ends -->
-                                </div>
+        </div>
+        <!-- INNER PAGE BANNER END -->
+
+        <!-- BREADCRUMB ROW -->
+        <div class="themecolor-1 p-tb20">
+            <div class="container">
+                <ul class="wt-breadcrumb breadcrumb-style-2">
+                    <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home</a></li>
+                    <li>Disclaimer</li>
+                </ul>
+            </div>
+        </div>
+        <!-- BREADCRUMB  ROW END -->
+
+        <!-- ABOUT COMPANY SECTION START -->
+
+
+        <div class="section-full p-tb100 themecolor-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="section-head text-left">
+                            <span class="wt-title-subline text-gray-dark font-16 m-b15"> </span>
+                            <h2 class="text-uppercase">{{ $disclaimer->title }}</h2>
+                            <div class="wt-separator-outer">
+                                <div class="wt-separator bg-primary"></div>
                             </div>
+                            {!! $disclaimer->content !!}
                         </div>
-                    </section>
+                    </div>
                 </div>
-        </section>
+            </div>
+        </div>
+
+
+
+        <!-- ABOUT COMPANY SECTION END -->
+
+        <!-- WHY CHOOSE US SECTION START  -->
+        <div class="section-full  p-t80 p-b80 themecolor-1">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        @foreach ($disclaimer->children as $section)
+                        <h3 class="text-uppercase">{{ $section->title }}</h3>
+                        <div class="wt-separator-outer">
+                            <div class="wt-separator bg-primary"></div>
+                        </div>
+                        {!! $section->content !!}
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- WHY CHOOSE US SECTION END -->
+
     </div>
-
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-md-12 ">
-                    @if (count($disclaimers_content) > 0)
-                        @foreach ($disclaimers_content as $section)
-                            <div class="col-xs-12"> {!! $section->content !!}</div>
-                        @endforeach
-                    @endif
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section class='disclainmer-section'>
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-md-12">
-                    @if (count($disclaimers) > 0)
-                        @foreach ($disclaimers as $section)
-                            <h3 class="col-xs-12 title-about">{{ $section->title }}</h3>
-                            <div class="col-xs-12 disclainmer-cont"> {!! $section->content !!}</div>
-                        @endforeach
-                    @endif
-                </div>
-
-            </div>
-        </div>
-    </section>
+    <!-- CONTENT END -->
 
 
-    <!-- Contact Section Ends -->
+
 
     @push('scripts')
-        <script src="{{ asset('assets/frontend/js/net.js') }}"></script>
+    <script src="{{ asset('assets/frontend/js/net.js') }}"></script>
     @endpush
 </x-frontend.layouts.app>
