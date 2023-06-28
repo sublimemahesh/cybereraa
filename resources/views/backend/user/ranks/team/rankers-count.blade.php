@@ -22,7 +22,7 @@
                             <tr>
                                 <th class="fs-14">RANK</th>
                                 <th class="fs-14">YOUR ELIGIBILITY</th>
-                                <th class="fs-14">COUNT</th>
+                                <th class="fs-14">DOWNLINE RANKERS</th>
                             </tr>
                             </thead>
                             <tbody>

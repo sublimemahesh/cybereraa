@@ -15,6 +15,7 @@
     @endsection
 
     <div class="row dark"> {{--! Tailwind css used. if using tailwind plz run npm run dev and add tailwind classes--}}
+        @include('backend.user.ranks.top-nav')
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
@@ -114,7 +115,7 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table id="rewards" class="display nowrap mb-1 table-responsive-my" style="table-layout: fixed">
+                        <table id="team-rankers" class="display nowrap mb-1 table-responsive-my" style="table-layout: fixed">
                             <thead>
                             <tr>
                                 <th>USER</th>
@@ -144,6 +145,6 @@
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.html5.min.js') }}"></script>
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.print.min.js') }}"></script>
         <script src="{{ asset('assets/backend/js/global-datatable-extension.js') }}"></script>
-        <script src="{{ asset('assets/backend/js/admin/ranks/ranks.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/user/ranks/team-rankers.js') }}"></script>
     @endpush
 </x-backend.layouts.app>

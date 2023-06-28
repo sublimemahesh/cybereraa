@@ -27,23 +27,23 @@ class Rank extends Model
         'total_rankers'
     ];
 
-    protected $appends = [
+    /*protected $appends = [
         'is_active'
-    ];
+    ];*/
 
     protected static function booted()
     {
-        static::created(function (self $rank) {
-            if ($rank->activated_at !== null) {
-                self::initiateGift($rank);
-            }
-        });
-
-        static::updated(function (self $rank) {
-            if ($rank->activated_at !== null) {
-                self::initiateGift($rank);
-            }
-        });
+        //        static::created(function (self $rank) {
+        //            if ($rank->activated_at !== null) {
+        //                self::initiateGift($rank);
+        //            }
+        //        });
+        //
+        //        static::updated(function (self $rank) {
+        //            if ($rank->activated_at !== null) {
+        //                self::initiateGift($rank);
+        //            }
+        //        });
     }
 
     /**
@@ -61,7 +61,7 @@ class Rank extends Model
         });
     }
 
-    public function getEligibilityPercentageAttribute()
+    public function getEligibilityPercentageAttribute(): float|int
     {
         if ($this->eligibility < config('rank-system.rank_eligibility_activate_at', 3)) {
             return round(($this->eligibility * 100 / config('rank-system.rank_eligibility_activate_at', 3)));

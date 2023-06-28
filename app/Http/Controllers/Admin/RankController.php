@@ -30,7 +30,7 @@ class RankController extends Controller
                         USERNAME: <code class='text-uppercase'>{$rank->user->username}</code>";
                 })
                 ->addColumn('eligibility', function ($rank) {
-                    return ($rank->eligibility * 100 / 5) . '%';
+                    return $rank->eligibility_percentage . '%';
                 })
                 ->addColumn('status', fn($rank) => $rank->is_active ? "ACTIVE" : "INACTIVE")
                 ->addColumn('activated', fn($rank) => $rank->activated_at ? Carbon::parse($rank->activated_at)->format('Y-m-d H:i:s') : '-')
