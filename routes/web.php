@@ -301,7 +301,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         // Route::match(['get', 'post'], 'staking/purchased-plans/{purchase}/cancellations/request', 'User\Staking\StakingCancelRequestController@request')->name('staking-cancel-request.request');
         // Route::match(['get', 'post'], 'staking/purchased-plans/cancellations/{cancelRequest}/reverse', 'User\Staking\StakingCancelRequestController@reverse')->name('staking-cancel-request.reverse');
 
-        // STAKING PLANS END
+        // STAKING PLANS END 
 
 
         // RANK GIFtS

@@ -169,7 +169,7 @@
             <li>
                 <a href="{{ route('user.wallet.index') }}" class="" aria-expanded="false">
                     <i class="bi bi-wallet2"></i>
-                    <span class="nav-text"> My Wallet </span>
+                    <span class="nav-text"> My Wallet  </span>
                 </a>
             </li>
             {{--<li>
