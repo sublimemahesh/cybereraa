@@ -25,25 +25,7 @@
                         swipe_direction: "horizontal",
                         drag_block_vertical: false
                     },
-				   arrows: {
-						style:"gyges",
-						enable:true,
-						hide_onmobile:false,
-						hide_onleave:false,
-						tmp:'',
-						left: {
-							h_align:"left",
-							v_align:"center",
-							h_offset:20,
-							v_offset:0
-						},
-						right: {
-							h_align:"right",
-							v_align:"center",
-							h_offset:20,
-							v_offset:0
-						}
-					}
+				   
                    
                 },
                 viewPort: {
