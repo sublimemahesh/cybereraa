@@ -15,15 +15,26 @@
                     </div>
                 </div>
 
-                <div class="col-md-6 col-sm-6">
+                <div class="col-md-3 col-sm-3">
                     <div class="widget widget_services">
                         <h4 class="widget-title text-white">Useful links</h4>
                         <ul>
-                            <li><a href="{{ route('about') }}">About</a></li>
+                            <li><a href="{{ route('about') }}">ABOUT</a></li>
                             <li><a href="{{ route('faq') }}">FAQ</a></li>
                             <li><a href="{{ route('pricing') }}">PACKAGES</a></li>
                             <li><a href="{{ route('news') }}">NEWS</a></li>
-                            <li><a href="{{ route('contact') }}">Contact Us</a></li>
+                            <li><a href="{{ route('contact') }}">CONTACT US </a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <div class="widget widget_services">
+                        <h4 class="widget-title text-white">Useful links</h4>
+                        <ul>
+                            <li><a href="{{ route('disclaimer') }}"> DISCLAIMER </a></li>
+                            <li><a href="{{ route('disclaimer') }}"> TERM AND CONDITONS </a></li>
+                            <li><a href="{{ route('disclaimer') }}"> PRIVACY AND POLICY </a></li>
                         </ul>
                     </div>
                 </div>

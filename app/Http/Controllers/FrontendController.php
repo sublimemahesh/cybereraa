@@ -117,10 +117,13 @@ class FrontendController extends Controller
 
     public function disclaimer()
     {
-        $disclaimers = $this->getDatePage('disclaimer');
-        $disclaimers_content = page::where(['id' => 80])->get();
+        //$disclaimers = $this->getDatePage('disclaimer');
+        //$disclaimers_content = page::where(['id' => 80])->get();
+       // $abouts = Page::where(['slug' => 'about-us-page'])->firstOrNew();
 
-        return view('frontend.disclaimer', compact('disclaimers', 'disclaimers_content'));
+       $disclaimer = Page::where(['slug' => 'disclaimer'])->firstOrNew();
+        
+        return view('frontend.disclaimer', compact('disclaimer'));
 
     }
 
