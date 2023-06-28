@@ -11,27 +11,9 @@
         <li class="breadcrumb-item">Buy Package</li>
     @endsection
 
-    {{-- <section>
-        <div>
-            <div class="owl-carousel owl-theme gift-slider">
-
-                <div class="item"><img src="{{ asset('assets/backend/images/gift/gift1.jpg') }}" alt="">
-                </div>
-                <div class="item"><img src="{{ asset('assets/backend/images/gift/gift2.jpg') }}" alt="">
-                </div>
-                <div class="item"><img src="{{ asset('assets/backend/images/gift/gift3.jpg') }}" alt="">
-                </div>
-                <div class="item"><img src="{{ asset('assets/backend/images/gift/gift4.jpg') }}"alt=""></div>
-                <div class="item"><img src="{{ asset('assets/backend/images/gift/gift5.jpg') }}" alt="">
-                </div>
-
-            </div>
-        </div>
-    </section> --}}
-<br>
-
 
     <div class="row">
+        @include('backend.user.transactions.top-nav')
         @foreach($packages as $package)
             {{--@php
                 $gas_fee = $is_gas_fee_added ? $package->gas_fee : 0;
@@ -59,7 +41,7 @@
                                 </li>
                                 <li class="list-group-item"><b>Package </b>{{ $package->name }}</li>
                                 <li class="list-group-item">
-                                     Within Investment Period
+                                    Within Investment Period
                                 </li>
                                 <li class="list-group-item">
                                     <b> {{ $package->daily_leverage }} % </b> Daily Profit

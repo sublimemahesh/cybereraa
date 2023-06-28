@@ -21,7 +21,7 @@
                         </div>
                     </div>
                     @include('backend.user.tickets.components.filters', compact('filter_category', 'filter_priority', 'filter_status'))
-                    <table id="tickets" class="display mb-1 nowrap table-responsive-my ">
+                    <table id="tickets" class="display mb-1 nowrap table-responsive-my " style="table-layout: fixed">
                         <thead>
                         <tr>
                             <th>ACTIONS</th>

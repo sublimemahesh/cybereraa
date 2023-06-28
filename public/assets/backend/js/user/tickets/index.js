@@ -11,30 +11,33 @@
             },
         });
         let ticket_table = $("#tickets").DataTable({
-            language: {
-                paginate: {
-                    next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
-                    previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
-                }
-            },
-            lengthMenu: [10, 25, 50, 100, 250, 500, "All"],
-            scrollX: true,
-            destroy: true,
-            processing: true,
-            serverSide: true,
-            stateSave: true,
-            ajax: location.href,
-            columns: [
-                {data: "actions", name: "actions", searchable: false},
-                {data: "id", name: "id", searchable: false},
-                {data: "category", name: "ticket_category_id", searchable: false},
-                {data: "priority", name: "ticket_priority_id", searchable: false},
-                {data: "status", name: "ticket_status_id", searchable: false},
-                {data: "subject", name: "subject", searchable: true},
-                {data: "attachment", name: "attachment", searchable: false},
-                {data: "created_at", name: "created_at", searchable: false},
-            ],
-        });
+                scrollX: true,
+                destroy: true,
+                processing: true,
+                serverSide: true,
+                //stateSave: true,
+                ajax: location.href,
+                order: [[7, 'desc']],
+                columns: [
+                    {data: "actions", name: "actions", searchable: false, orderable: false},
+                    {data: "id", name: "id", searchable: false, orderable: false},
+                    {data: "category", name: "ticket_category_id", searchable: false, orderable: false},
+                    {data: "priority", name: "ticket_priority_id", searchable: false, orderable: false},
+                    {data: "status", name: "ticket_status_id", searchable: false, orderable: false},
+                    {data: "subject", name: "subject", searchable: true, orderable: false},
+                    {data: "attachment", name: "attachment", searchable: false, orderable: false},
+                    {data: "date", name: "created_at", searchable: false, orderable: true},
+                ],
+                columnDefs: [
+                    {
+                        render: function (date, type, full, meta) {
+                            return `<div style="font-size: 0.76rem !important;"> ${date} </div>`;
+                        },
+                        targets: [1, 2, 3, 4, 5, 6, 7],
+                    }
+                ],
+            })
+        ;
 
         //   Search
         $(document).on("click", "#search", function (e) {

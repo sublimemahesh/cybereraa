@@ -1,7 +1,7 @@
 <li>
-    <a href="{{ route('profile.show') }}" class="" aria-expanded="false">
-        <i class="material-icons">person</i>
-        <span class="nav-text">My Profile</span>
+    <a href="{{ route('profile.show') }}" class="rounded-1" aria-expanded="false">
+        <i class="bi bi-gear"></i>
+        <span class="nav-text">Settings</span>
     </a>
 </li>
 {{--<li class="{{ Str::contains(Route::currentRouteName(), 'profile') ? 'mm-active' : '' }}">
@@ -23,7 +23,7 @@
     </ul>
 </li>--}}
 
-@if (Laravel\Jetstream\Jetstream::hasTeamFeatures() && !empty(@Auth::user()->currentTeam))
+{{--@if (Laravel\Jetstream\Jetstream::hasTeamFeatures() && !empty(@Auth::user()->currentTeam))
     <li class="{{ Str::contains(Route::currentRouteName(), 'teams') ? 'mm-active' : '' }}">
         <a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
             <i class="material-icons">group</i>
@@ -82,4 +82,4 @@
             <span class="nav-text"> {{ __('API Tokens') }} </span>
         </a>
     </li>
-@endif
+@endif--}}
