@@ -71,7 +71,7 @@ class Rank extends Model
 
     public function getIsActiveAttribute(): bool
     {
-        return $this->is_active = $this->activated_at !== null;
+        return $this->activated_at !== null;
     }
 
     public function user(): BelongsTo
