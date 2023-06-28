@@ -74,6 +74,7 @@ class KycController extends Controller
 
     public function update(Request $request, Kyc $kyc)
     {
+        $kyc->load('profile');
         $pending_count = $kyc->documents()
             ->where(function (Builder $q) {
                 $q->whereNull('document_name')
@@ -81,9 +82,24 @@ class KycController extends Controller
             })
             ->count();
         $validated = Validator::make($request->all(), [
-            'nic' => [Rule::requiredIf($kyc->type === 'nic'), 'max:250'],
-            'driving_lc' => [Rule::requiredIf($kyc->type === 'driving_lc'), 'max:250'],
-            'passport' => [Rule::requiredIf($kyc->type === 'passport'), 'max:250'],
+            'nic' => [
+                Rule::requiredIf($kyc->type === 'nic'),
+                'nullable',
+                Rule::unique('profiles', 'nic')->ignoreModel($kyc->profile),
+                'max:250'
+            ],
+            'driving_lc' => [
+                Rule::requiredIf($kyc->type === 'driving_lc'),
+                'nullable',
+                Rule::unique('profiles', 'driving_lc_number')->ignoreModel($kyc->profile),
+                'max:250'
+            ],
+            'passport' => [
+                Rule::requiredIf($kyc->type === 'passport'),
+                'nullable',
+                Rule::unique('profiles', 'passport_number')->ignoreModel($kyc->profile),
+                'max:250'
+            ],
             'documents' => [Rule::requiredIf($pending_count > 0), 'nullable', 'array'],
             'documents.*.document_file' => 'nullable', 'base64image', 'base64max:1024',
             'documents.*.id' => 'required|exists:kyc_documents,id',
