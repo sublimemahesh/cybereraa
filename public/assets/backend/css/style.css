@@ -39963,18 +39963,18 @@ table.dataTable thead .sorting_asc {
 
 .dz-side-menu {
     position: fixed;
-    background: white;
+    /* background: white; */
     text-align: center;
-    height: auto;
+    /* height: auto; */
     bottom: 1.25rem;
     top: 0rem;
     right: 0;
     border-radius: 0 0 0 0;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-direction: column-reverse;
     padding: 1.5625rem 0.75rem;
-    height: 75px;
+    height: 80px;
     width: 5.313rem;
     box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.1);
 }
