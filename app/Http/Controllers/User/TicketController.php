@@ -8,6 +8,7 @@ use App\Models\SupportTicketCategory;
 use App\Models\SupportTicketPriority;
 use App\Models\SupportTicketStatus;
 use Auth;
+use Carbon;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
@@ -27,8 +28,7 @@ class TicketController extends Controller
 
             $tickets = SupportTicket::with(['category', 'priority', 'status'])
                 ->where('user_id', $user->id)
-                ->filterTickets()
-                ->latest();
+                ->filterTickets();
 
             return DataTables::of($tickets)
                 ->addColumn('id', function ($ticket) {
@@ -45,7 +45,7 @@ class TicketController extends Controller
                 })
                 ->addColumn('attachment', function ($ticket) {
                     if (!empty($ticket->attachment)) {
-                        return '<img src="https://img.icons8.com/fluency/48/000000/pdf-mail.png"  alt=""/> 
+                        return '<img src="https://img.icons8.com/fluency/48/000000/pdf-mail.png"  alt=""/>
                             <a href="' . storage("supports/tickets/" . $ticket->attachment) . '" target="blank">
                                 View File
                             </a>';
@@ -54,6 +54,9 @@ class TicketController extends Controller
                 })
                 ->addColumn('actions', function (SupportTicket $ticket) {
                     return view('backend.user.tickets.components.actions', compact('ticket'));
+                })
+                ->addColumn('date', function ($ticket) {
+                    return Carbon::parse($ticket->created_at)->format('Y-m-d H:i:s');
                 })
                 ->rawColumns(['actions', 'attachment', 'category', 'priority', 'status'])
                 ->make(true);

@@ -13,7 +13,13 @@
     @section('breadcrumb-items')
         <li class="breadcrumb-item">Genealogy</li>
     @endsection
-
+    <div class="row">
+        <div class="col-xl-12 col-sm-12 ">
+            <div class="bg-secondary card d-flex email-susb justify-content-center m-auto w-75">
+                @include('backend.user.teams.top-nav')
+            </div>
+        </div>
+    </div>
     @if (Auth::user()->id === config('fortify.super_parent_id') ||
             (Auth::user()->parent_id !== null && Auth::user()->position !== null))
         <div class="row">
@@ -35,11 +41,6 @@
                                 Copy Link
                             </span>
                         </div>
-                        <div class="toatal-email">
-                            <p>Via Register a new user now </p>
-                        </div>
-                        <a href="{{ route('user.genealogy.position.register') }}"
-                           class="btn btn-sm btn-primary email-btn">Register now</a>
                     </div>
                 </div>
             </div>
