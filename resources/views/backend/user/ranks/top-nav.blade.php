@@ -10,7 +10,7 @@
                     @can('viewSummery', \App\Models\RankBonusSummery::class)
                         <a class="nav-link {{ request()->routeIs('user.ranks.benefits.summery') ? 'active' : '' }}" href="{{ !request()->routeIs('user.ranks.benefits.summery') ? route('user.ranks.benefits.summery') : 'javascript:void(0)' }}">Bonus Summery</a>
                     @endcan
-                    <a class="nav-link {{ request()->routeIs('user.ranks.gifts') ? 'active' : '' }}" href="{{ !request()->routeIs('user.ranks.gifts') ? route('user.ranks.gifts') : 'javascript:void(0)' }}">Rank Gifts</a>
+                    {{--<a class="nav-link {{ request()->routeIs('user.ranks.gifts') ? 'active' : '' }}" href="{{ !request()->routeIs('user.ranks.gifts') ? route('user.ranks.gifts') : 'javascript:void(0)' }}">Rank Gifts</a>--}}
                 </div>
             </nav>
         </div>
