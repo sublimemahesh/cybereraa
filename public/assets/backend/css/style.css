@@ -39974,7 +39974,7 @@ table.dataTable thead .sorting_asc {
     justify-content: space-between;
     flex-direction: column-reverse;
     padding: 1.5625rem 0.75rem;
-    height: 12vh;
+    height: 75px;
     width: 5.313rem;
     box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.1);
 }
