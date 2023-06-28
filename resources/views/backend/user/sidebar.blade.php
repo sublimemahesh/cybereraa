@@ -119,7 +119,7 @@
                 </ul>
             </li>--}}
             <li>
-                <a href="{{ route('user.ranks.team-rankers') }}" class="" aria-expanded="false">
+                <a href="{{ route('user.ranks.summery') }}" class="" aria-expanded="false">
                     <i class="bi bi-trophy-fill"></i>
                     <span class="nav-text"> Recognition </span>
                 </a>
@@ -132,7 +132,7 @@
                     </a>
                     <ul aria-expanded="false">
                         <li>
-                            <a href="{{ route('user.ranks.team-rankers') }}" class="" aria-expanded="false">
+                            <a href="{{ route('user.ranks.summery') }}" class="" aria-expanded="false">
                                 <span class="nav-text">Team Rankers</span>
                             </a>
                         </li>

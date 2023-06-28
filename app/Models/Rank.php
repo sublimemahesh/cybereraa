@@ -27,9 +27,9 @@ class Rank extends Model
         'total_rankers'
     ];
 
-    protected $appends = [
+    /*protected $appends = [
         'is_active'
-    ];
+    ];*/
 
     protected static function booted()
     {
