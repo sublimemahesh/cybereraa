@@ -12,19 +12,19 @@
             <div class="row text-nowrap g-icon">
                 <div class="col-sm-4 col-4" title="ST No">
                     <div style="text-align: center;">
-                        <i class="fa fa-id-card" aria-hidden="true" style="font-size: 15px"></i>
+                        <i class="fa fa-flag" aria-hidden="true" style="font-size: 15px"></i>
                     </div>
                     <span style="font-size: 15px">#{{ $user->id }}</span>
                 </div>
                 <div class="col-sm-4 col-4" title="Rank">
                     <div style="text-align: center;">
-                        <i class="fa fa-star" aria-hidden="true" style="font-size: 15px"></i>
+                        <i class="fa fa-certificate" aria-hidden="true" style="font-size: 15px"></i>
                     </div>
                     <span style="font-size: 15px">{{ $user->currentRank->rank }}</span>
                 </div>
                 <div class="col-sm-4 col-4" title="Members">
                     <div style="text-align: center;">
-                        <i class="fa fa-users" aria-hidden="true" style="font-size: 15px"></i>
+                        <i class="fa fa-street-view" aria-hidden="true" style="font-size: 15px"></i>
                     </div>
                     <span style="font-size: 15px">{{ $user->descendants->count() }}</span>
                 </div>
