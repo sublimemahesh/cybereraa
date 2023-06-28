@@ -44,6 +44,7 @@
 
     @push('scripts')
         <script src="{{ asset('assets/backend/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/global-datatable-extension.js') }}"></script>
         <script src="{{ asset('assets/backend/js/user/tickets/index.js') }}"></script>
     @endpush
 </x-backend.layouts.app>

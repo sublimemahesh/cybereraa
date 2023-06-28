@@ -267,7 +267,7 @@
                                                     <p class="mb-1">TOTAL EARNED</p>
                                                     <h4 class="text-white user-dashboard-card-font-size-change"> USDT {{ $income }}</h4>
                                                     <br>
-                                                    <small> Total Earnings</small>
+                                                    <small> </small>
                                                 </div>
                                             </div>
                                         </div>
@@ -282,7 +282,7 @@
                                                     <p class="mb-1">TODAY INCOME</p>
                                                     <h4 class="text-white user-dashboard-card-font-size-change"> USDT {{ $today_income }}</h4>
                                                     <br>
-                                                    <small> Total Earnings</small>
+                                                    <small> </small>
                                                 </div>
                                             </div>
                                         </div>
