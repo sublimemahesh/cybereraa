@@ -33,7 +33,7 @@
                         <h4 class="widget-title text-white">Useful links</h4>
                         <ul>
                             <li><a href="{{ route('disclaimer') }}"> DISCLAIMER </a></li>
-                            <li><a href="{{ route('disclaimer') }}"> TERM AND CONDITONS </a></li>
+                            <li><a href="{{ route('terms&Conditions') }}"> TERM AND CONDITONS </a></li>
                             <li><a href="{{ route('disclaimer') }}"> PRIVACY AND POLICY </a></li>
                         </ul>
                     </div>
