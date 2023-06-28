@@ -17,7 +17,7 @@
 
         <!-- INNER PAGE BANNER -->
         <div class="wt-bnr-inr overlay-wraper"
-            style="background-image:url({{asset('assets/frontend/images/banner/about-banner.jpg') }});">
+            style="background-image:url({{asset('assets/frontend/images/banner/banner.png') }});">
             <div class="overlay-main themecolor-1 opacity-07"></div>
             <div class="container">
                 <div class="wt-bnr-inr-entry">
