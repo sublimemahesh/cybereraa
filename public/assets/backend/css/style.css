@@ -8049,7 +8049,7 @@ fieldset:disabled .btn {
 }
 
 .bg-info {
-    background-color: #58bad7 !important;
+    background-color: #1fa6ff !important;
 }
 
 .bg-warning {
@@ -22891,7 +22891,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
 [data-sidebarbg="color_4"][data-theme-version="dark"] .deznav .metismenu > li:hover > a,
 [data-sidebarbg="color_4"] .deznav .metismenu > li:hover > a {
-     background: #707070 !important; 
+     background: #707070 !important;
 }
 
 [data-sidebarbg="color_4"][data-theme-version="dark"] .deznav .metismenu > li > a,
@@ -47552,7 +47552,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 }
 
 [data-theme-version="dark"] .widget-stat .media > span {
-    background: #313f56;
+    background: #1543f3;
     border-color: #9568FF;
     color: #fff;
 }

@@ -86,7 +86,7 @@ class DashboardController extends Controller
         $descendants = Auth::user()->descendants()->pluck('id')->toArray();
         $descendants_count = count($descendants);
         $descendants[] = Auth::user()->id;
-        
+
         $top_rankers = Rank::with('user')
             ->whereNotNull('activated_at')
             ->whereIn('user_id', $descendants)
