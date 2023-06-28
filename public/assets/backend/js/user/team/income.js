@@ -11,8 +11,9 @@ $(function () {
         serverSide: true,
         //stateSave: false,
         ajax: location.href,
-        order: [[4, 'desc']],
+        order: [[5, 'desc']],
         columns: [
+            {data: "user", searchable: false, orderable: false},
             {data: "type", searchable: false, orderable: false},
             {data: "status", name: 'status', searchable: false, orderable: false},
             {data: "package", searchable: false, orderable: false},
@@ -39,24 +40,24 @@ $(function () {
                     }, 0);
             }
 
-            let amountTotal = new Intl.NumberFormat().format(sumVal(6));
-            $(api.column(7).footer()).html(`Current Page Amount Total: USDT ${amountTotal}`);
+            let amountTotal = new Intl.NumberFormat().format(sumVal(7));
+            $(api.column(8).footer()).html(`Current Page Amount Total: USDT ${amountTotal}`);
 
-            let paidTotal8 = new Intl.NumberFormat().format(sumVal(7));
-            $(api.column(7).footer()).append(`<br><br>Current Paid Total: USDT ${paidTotal8}`);
+            let paidTotal8 = new Intl.NumberFormat().format(sumVal(8));
+            $(api.column(8).footer()).append(`<br><br>Current Paid Total: USDT ${paidTotal8}`);
         },
         columnDefs: [
             {
                 render: function (date, type, full, meta) {
                     return `<div style="font-size: 0.76rem !important;"> ${date} </div>`;
                 },
-                targets: [3, 4, 5],
+                targets: [0, 4, 5, 6],
             },
             {
                 render: function (amount, type, full, meta) {
                     return `<div style="min-width:100px" class="text-right"> ${amount} </div>`;
                 },
-                targets: [6, 7],
+                targets: [7, 8],
             },
         ],
     })

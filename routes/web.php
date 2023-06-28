@@ -332,7 +332,9 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::get('incomes/commission', 'User\EarningController@commission')->name('incomes.commission');
         Route::get('incomes/rewards', 'User\EarningController@rewards')->name('incomes.rewards');
         Route::get('earnings', 'User\EarningController@index')->name('earnings.index');
-        Route::get('earnings/team-income', 'User\EarningController@teamHighestEarnings')->name('earnings.team-income');
+
+        Route::get('team/incomes/commission', 'User\EarningController@teamCommissions')->name('team.incomes.commission');
+        Route::get('team/incomes/earnings', 'User\EarningController@teamHighestEarnings')->name('earnings.team-income');
         Route::match(['get', 'post'], 'earnings/summarize-yearly-income', 'User\EarningController@incomeChart')->name('earnings.yearly-income-chart');
 
         Route::post('wallet/transfer/filter/users/{user:username}', 'User\WithdrawController@findUser');

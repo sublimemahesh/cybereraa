@@ -9,7 +9,6 @@ use App\Models\Currency;
 use App\Models\Earning;
 use App\Models\Rank;
 use App\Models\Transaction;
-use App\Models\Withdraw;
 use Auth;
 use DB;
 
@@ -27,24 +26,46 @@ class DashboardController extends Controller
 
         $income = number_format(Earning::where('user_id', Auth::user()->id)
             ->where('status', 'RECEIVED')
+            ->where('type', '<>', 'P2P')->sum('amount'), 2);
+
+        $today_income = number_format(Earning::where('user_id', Auth::user()->id)
+            ->where('status', 'RECEIVED')
             ->where('type', '<>', 'P2P')
+            ->whereDate('created_at', \Carbon::today()->format('Y-m-d'))
             ->sum('amount'), 2);
 
-        $invest_income = number_format(Earning::where('user_id', Auth::user()->id)
-            ->where('type', 'PACKAGE')
-            ->where('status', 'RECEIVED')->sum('amount'), 2);
+        $invest_income = Earning::where('user_id', Auth::user()->id)
+            ->where('status', 'RECEIVED')
+            ->where('type', 'PACKAGE')->sum('amount');
+        $direct_comm_income = Earning::where('user_id', Auth::user()->id)
+            ->where('status', 'RECEIVED')
+            ->where('type', 'DIRECT')->sum('amount');
+        $indirect_comm_income = Earning::where('user_id', Auth::user()->id)
+            ->where('status', 'RECEIVED')
+            ->where('type', 'INDIRECT')->sum('amount');
+        $rank_bonus_income = Earning::where('user_id', Auth::user()->id)
+            ->where('status', 'RECEIVED')
+            ->where('type', 'RANK_BONUS')->sum('amount');
 
-        $withdraw = number_format(Withdraw::where('user_id', Auth::user()->id)
-            ->where('status', 'SUCCESS')
-            ->sum(DB::raw('amount + transaction_fee')), 2);
+        //        $withdraw = number_format(Withdraw::where('user_id', Auth::user()->id)
+        //            ->where('status', 'SUCCESS')
+        //            ->sum(DB::raw('amount + transaction_fee')), 2);
 
-        $qualified_commissions = number_format(Commission::where('user_id', Auth::user()->id)
+        $qualified_commissions = Commission::where('user_id', Auth::user()->id)
             ->where('status', 'QUALIFIED')
-            ->sum('amount'), 2);
+            ->sum('amount');
 
-        $lost_commissions = number_format(Commission::where('user_id', Auth::user()->id)
-            ->whereStatus('DISQUALIFIED')
-            ->sum('amount'), 2);
+        $paid_commissions = Commission::where('user_id', Auth::user()->id)
+            ->where('status', 'QUALIFIED')
+            ->sum('paid');
+
+        $pending_commissions = number_format($qualified_commissions - $paid_commissions, 2);
+        $qualified_commissions = number_format($qualified_commissions, 2);
+        $paid_commissions = number_format($paid_commissions, 2);
+
+        //        $lost_commissions = number_format(Commission::where('user_id', Auth::user()->id)
+        //            ->whereStatus('DISQUALIFIED')
+        //            ->sum('amount'), 2);
 
         Auth::user()->loadCount(['directSales as pending_direct_sales_count' => fn($query) => $query->whereNull('parent_id')->whereHas('activePackages')]);
         $wallet = Auth::user()->wallet;
@@ -62,9 +83,13 @@ class DashboardController extends Controller
 
         $currency_carousel = Currency::all();
 
+        $descendants = Auth::user()->descendants()->pluck('id')->toArray();
+        $descendants_count = count($descendants);
+        $descendants[] = Auth::user()->id;
+
         $top_rankers = Rank::with('user')
             ->whereNotNull('activated_at')
-            ->whereIn('user_id', Auth::user()->descendantsAndSelf()->pluck('id')->toArray())
+            ->whereIn('user_id', $descendants)
             ->orderBy('rank', 'desc')
             ->orderBy('total_rankers', 'desc')
             ->limit(10)
@@ -89,13 +114,21 @@ class DashboardController extends Controller
                 'direct',
                 'indirect',
                 'wallet',
-                'income',
-                'invest_income',
-                'withdraw',
-                'qualified_commissions',
-                'lost_commissions',
-                'currency_carousel',
 
+                'income',
+                'today_income',
+                'direct_comm_income',
+                'indirect_comm_income',
+                'rank_bonus_income',
+                'invest_income',
+
+//                'withdraw',
+                'qualified_commissions',
+                'paid_commissions',
+                'pending_commissions',
+//                'lost_commissions',
+                'currency_carousel',
+                'descendants_count',
                 'top_rankers',
                 'yearlyIncomeChartData',
             )

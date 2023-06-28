@@ -105,7 +105,7 @@
                         </div>
                     </div>
                     <div class="table-responsive d-block">
-                        <table id="transactions" class="display table-responsive-my">
+                        <table id="transactions" class="display table-responsive-my" style="table-layout: fixed">
                             <thead>
                             <tr>
                                 <th>TYPE</th>

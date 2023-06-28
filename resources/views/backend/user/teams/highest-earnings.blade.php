@@ -41,10 +41,10 @@
                                                             <option value="package">PACKAGE</option>
                                                             <option value="direct">DIRECT SALE</option>
                                                             <option value="indirect">INDIRECT SALE</option>
-                                                            <option value="rank_bonus">RANK BONUS</option>
+                                                            {{--<option value="rank_bonus">RANK BONUS</option>
                                                             <option value="rank_gift">RANK GIFT</option>
                                                             <option value="p2p">P2P</option>
-                                                            <option value="staking">STAKING</option>
+                                                            <option value="staking">STAKING</option>--}}
                                                         </select>
                                                         <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
                                                             <svg class="pointer-events-none w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -148,6 +148,6 @@
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.html5.min.js') }}"></script>
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.print.min.js') }}"></script>
         <script src="{{ asset('assets/backend/js/global-datatable-extension.js') }}"></script>
-        <script src="{{ asset('assets/backend/js/user/team/highest-income.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/user/team/highest-earning.js') }}"></script>
     @endpush
 </x-backend.layouts.app>

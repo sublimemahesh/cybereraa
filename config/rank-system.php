@@ -11,7 +11,7 @@ return [
     |
     |
     */
-    'rank_level_count' => 10,
+    'rank_level_count' => 7,
 
     /*
     |--------------------------------------------------------------------------
@@ -20,10 +20,10 @@ return [
     |
     | How many children needed to activate 1st rank and also
     | how many 1st rankers need to level up for 2nd rank, and
-    | so on up to max rank_level_count
-    | DON'T EXCEED VALUE OVER rank_level_count
+    | so on up to 5
+    | DON'T EXCEED VALUE OVER 5
     |
-    | Example: rank_eligibility_activate_at <= rank_level_count
+    | Example: rank_eligibility_activate_at <= 5
     |
     */
     'rank_eligibility_activate_at' => 3,

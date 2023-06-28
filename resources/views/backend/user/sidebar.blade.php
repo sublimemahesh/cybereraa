@@ -64,7 +64,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('user.earnings.team-income') }}" class="" aria-expanded="false">
+                <a href="{{ route('user.team.incomes.commission') }}" class="" aria-expanded="false">
                     <i class="bi bi-person-hearts"></i>
                     <span class="nav-text">My Team</span>
                 </a>
