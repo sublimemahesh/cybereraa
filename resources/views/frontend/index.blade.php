@@ -172,7 +172,7 @@
                         <div class="wt-right-part p-b80">
                             <!-- TITLE START -->
                             <div class="section-head text-left">
-                                <span class="wt-title-subline font-16 text-gray-dark m-b15">What is Owara3m</span>
+                                <span class="wt-title-subline font-16 text-gray-dark m-b15">Trusted  Investment Project</span>
                                 <h2 class="text-uppercase">{{ $welcome->title }}</h2>
                                 <div class="wt-separator-outer">
                                     <div class="wt-separator bg-primary"></div>
