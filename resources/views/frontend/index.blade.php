@@ -136,15 +136,15 @@
                             <div class="row">
                                 <div class="col-md-9 col-sm-9">
                                     <div class="call-to-action-left p-tb20 ">
-                                        <h4 class="text-uppercase m-b10 font-weight-600">Invest in Cryptocurrency Bitcoin Mining & Easy Way to Trade Bitcoin.</h4>
-                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore edolore magna aliquyam erat.</p>
+                                        <h5 class="text-uppercase m-b10 font-weight-600">We strive to make the investment process seamless and accessible to all.
+                                        <br>At SECURE INVEST, we firmly believe that everyone has the potential to become an investor.</h5>
                                     </div>
                                 </div>
 
                                 <div class="col-md-3">
                                     <div class="call-to-action-right p-tb30">
-                                        <a href="contact-1.html" class="site-button-secondry text-uppercase font-weight-600">
-                                            Read More
+                                        <a href="{{ route('login') }}" class="site-button-secondry text-uppercase font-weight-600">
+                                            JOIN US
                                         </a>
                                     </div>
                                 </div>
