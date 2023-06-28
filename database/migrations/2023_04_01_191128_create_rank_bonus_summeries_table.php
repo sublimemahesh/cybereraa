@@ -16,9 +16,9 @@ return new class extends Migration {
             $table->id();
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
-            $table->json('eligible_rank_levels')->nullable()->default('[]');
-            $table->json('rank_package_requirements')->nullable()->default('[]');
-            $table->json('eligible_rankers')->nullable()->default('[]');
+            $table->json('eligible_rank_levels')->nullable()/*->default('[]')*/;
+            $table->json('rank_package_requirements')->nullable()/*->default('[]')*/;
+            $table->json('eligible_rankers')->nullable()/*->default('[]')*/;
             $table->integer('eligible_rank_level_count')->nullable();
             $table->integer('total_rank_bonus_percentage')->nullable()->default(10);
             $table->integer('one_rank_bonus_percentage')->nullable()->default(2);
