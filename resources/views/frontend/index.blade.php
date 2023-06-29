@@ -226,7 +226,7 @@
                         <div class="wt-separator-outer">
                             <div class="wt-separator bg-primary"></div>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga eos optio ducimus odit, labore hic fugiat iusto veniam necessitatibus quas doloremque sapiente maiores.</p>
+                        <p>Owara3m.com is a forex and cryptocurrency trading investment site that offers an opportunity for investors to participate in trading activities and potentially earn a profit share. Here's how it works:</p>
                     </div>
                     <!-- TITLE END-->
                     <div class="section-content no-col-gap">
