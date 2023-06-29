@@ -52,7 +52,7 @@ return [
 
     'super_parent_id' => 4,
 
-    'super_parent_username' => 'owara3m',
+    'super_parent_username' => 'owara1',
 
     /*
     |--------------------------------------------------------------------------
