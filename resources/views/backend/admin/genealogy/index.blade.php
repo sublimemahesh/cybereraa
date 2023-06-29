@@ -61,6 +61,45 @@
                 })
             }
 
+
+
+
+            window.addEventListener('DOMContentLoaded', () => {
+                const divs = document.getElementsByClassName('myDiv');
+                const fontSize = 20; // Initial font size
+
+                const resizeText = () => {
+
+                    for (let i = 0; i < divs.length; i++) {
+                        const div = divs[i];
+                        const divWidth = div.offsetWidth;
+                        const textWidth = div.scrollWidth;
+
+                        if (textWidth > divWidth) {
+                            const newFontSize = (divWidth / textWidth) * fontSize;
+
+                            //div.style.fontSize = newFontSize + 'px';
+                            $(".c-font").css({
+                                fontSize: newFontSize -6 + 'px'
+                            });
+                            //alert('qq');
+                        } else {
+                            $(".c-font").css({
+                                fontSize: 13 + 'px'
+                            });
+                        }
+                    }
+                };
+
+                resizeText();
+
+                window.addEventListener('resize', resizeText);
+            });
+
+
+
+
+
         </script>
     @endpush
 </x-backend.layouts.app>
