@@ -2,7 +2,7 @@
     @section('title', $user->username . ' | My Genealogy')
     @section('header-title', 'My Genealogy')
     @section('plugin-styles')
-        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
     @endsection
     @section('styles')
@@ -34,9 +34,9 @@
                         </div>
                         <div class="input-group mb-3 input-primary">
                             <input type="text" readonly class="form-control" id="clipboard-input"
-                                   value="{{ Auth::user()->referral_link }}">
+                                value="{{ Auth::user()->referral_link }}">
                             <span class="input-group-text border-0 clipboard-tooltip" onclick="copyToClipBoard()"
-                                  onmouseout="outFunc()">
+                                onmouseout="outFunc()">
                                 <span class="tooltip-text" id="clipboard-tooltip">Copy to clipboard</span>
                                 Copy Link
                             </span>
@@ -60,7 +60,6 @@
     </div>
 
     @push('scripts')
-
         <script>
             const x = window.matchMedia("(max-width: 700px)");
             const queryString = window.location.search;
@@ -81,7 +80,7 @@
                 tooltip.innerHTML = "Copy to clipboard";
             }
 
-            $(document).on('click', '.next-genealogy', function (e) {
+            $(document).on('click', '.next-genealogy', function(e) {
                 e.preventDefault();
                 let url = $(this).attr('href');
                 loadGenealogy(url)
@@ -89,14 +88,14 @@
 
             function loadGenealogy(url) {
                 loader('');
-                axios.post(url).then(function (response) {
+                axios.post(url).then(function(response) {
                     if (response.data.status) {
                         $('#genealogy').html(response.data.genealogy)
                         history.replaceState({}, "", url);
                         document.title = response.data.username + " | My Genealogy"
                     }
                     Swal.close()
-                }).catch(function (error) {
+                }).catch(function(error) {
                     Toast.fire({
                         icon: 'error',
                         title: error.response.data.message || "Something went wrong!",
@@ -104,6 +103,39 @@
                 })
             }
 
+
+
+            window.addEventListener('DOMContentLoaded', () => {
+                const divs = document.getElementsByClassName('myDiv');
+                const fontSize = 20; // Initial font size
+
+                const resizeText = () => {
+
+                    for (let i = 0; i < divs.length; i++) {
+                        const div = divs[i];
+                        const divWidth = div.offsetWidth;
+                        const textWidth = div.scrollWidth;
+
+                        if (textWidth > divWidth) {
+                            const newFontSize = (divWidth / textWidth) * fontSize;
+
+                            //div.style.fontSize = newFontSize + 'px';
+                            $(".c-font").css({
+                                fontSize: newFontSize - 8 + 'px'
+                            });
+                            //alert('qq');
+                        } else {
+                            $(".c-font").css({
+                                fontSize: 13 + 'px'
+                            });
+                        }
+                    }
+                };
+
+                resizeText();
+
+                window.addEventListener('resize', resizeText);
+            });
         </script>
     @endpush
 </x-backend.layouts.app>
