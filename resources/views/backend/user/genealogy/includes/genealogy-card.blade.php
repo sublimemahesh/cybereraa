@@ -12,9 +12,9 @@
             <div class="row text-nowrap g-icon mbo-g-icon" >
                 <div class="col-sm-4 col-4" title="ST No">
                     <label style="background: #1fa6ff;width: 48px">
-                    <div style="text-align: center;padding: 4px 8px 4px 10px;">
-                        <i class="fa fa-flag" aria-hidden="true" style="font-size: 15px"></i>
-                        <span style="font-size: 15px">#{{ $user->id }}</span>
+                    <div style="text-align: center;padding: 4px 8px 4px 10px;" class="myDiv">
+                        <i class="fa fa-flag c-font" aria-hidden="true"  style="font-size: 15px"></i>
+                        <span class='c-font' style="font-size: 15px" >#{{ $user->id }}</span>
                     </div>
                 </label>
                 </div>
@@ -22,8 +22,8 @@
                 <div class="col-sm-4 col-4" title="Rank">
                     <label style="background: #1fa6ff;width: 48px">
                     <div style="text-align: center; padding: 4px 8px 4px 10px;">
-                        <i class="fa fa-certificate" aria-hidden="true" style="font-size: 15px"></i>
-                        <span style="font-size: 15px">{{ $user->currentRank->rank }}</span>
+                        <i class="fa fa-certificate c-font" aria-hidden="true" style="font-size: 15px"></i>
+                        <span class='c-font' style="font-size: 15px">{{ $user->currentRank->rank }}</span>
                     </div>
                 </label>
                 </div>
@@ -32,8 +32,8 @@
                 <div class="col-sm-4 col-4" title="Members">
                     <label style="background: #1fa6ff;width: 48px">
                     <div style="text-align: center; padding: 4px 8px 4px 8px;">
-                        <i class="fa fa-street-view" aria-hidden="true" style="font-size: 15px"></i>
-                        <span style="font-size: 15px">{{ $user->descendants->count() }}</span>
+                        <i class="fa fa-street-view c-font" aria-hidden="true" style="font-size: 15px"></i>
+                        <span class='c-font' style="font-size: 15px">1{{ $user->descendants->count() }}</span>
                     </div>
                 </label>
                 </div>
