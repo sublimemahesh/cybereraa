@@ -3371,14 +3371,14 @@ fieldset:disabled .btn {
 
 .btn-info {
     color: #111111;
-    background-color: #58bad7;
-    border-color: #58bad7;
+    background-color: #085ced;
+    border-color: #085ced;
 }
 
 .btn-info:hover {
     color: #111111;
-    background-color: #71c4dd;
-    border-color: #69c1db;
+    background-color: #085cedc2;
+    border-color: #085cedc2;
 }
 
 .btn-check:focus + .btn-info, .btn-info:focus {

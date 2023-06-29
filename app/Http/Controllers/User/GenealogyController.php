@@ -6,11 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Jobs\SaleLevelCommissionJob;
 use App\Models\User;
 use Auth;
+use Carbon\Carbon;
 use DB;
+use Exception;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Symfony\Component\HttpFoundation\Response;
 use Validator;
+use Yajra\DataTables\Facades\DataTables;
 
 class GenealogyController extends Controller
 {
@@ -39,6 +43,67 @@ class GenealogyController extends Controller
             return response()->json($json);
         }
         return view('backend.user.genealogy.index', compact('user', 'descendants'));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function teamList(Request $request)
+    {
+
+        if ($request->wantsJson()) {
+            $users = User::with('sponsor', 'parent')
+                //                ->find(Auth::user()->id)
+                //                ->descendants()
+                ->when($request->get('status') === 'suspend', function (Builder $q) {
+                    $q->whereNotNull('suspended_at');
+                })
+                ->whereIn('id', Auth::user()->descendants()->pluck('id')->toArray())
+                ->when($request->get('status') === 'active', function (Builder $q) {
+                    $q->whereNull('suspended_at');
+                })
+                ->when($request->get('date-range'), function (Builder $q) {
+                    $period = explode(' to ', request()->input('date-range'));
+                    try {
+                        $date1 = Carbon::createFromFormat('Y-m-d', $period[0]);
+                        $date2 = Carbon::createFromFormat('Y-m-d', $period[1]);
+                        $q->when($date1 && $date2, fn($q) => $q->whereDate('created_at', '>=', $period[0])->whereDate('created_at', '<=', $period[1]));
+                    } finally {
+                        return;
+                    }
+                });
+            //dd($users);
+            return DataTables::eloquent($users)
+                ->addColumn('profile_photo', function ($user) {
+                    return "<img class='rounded-circle' width='35' src='" . $user->profile_photo_url . "' alt='' />";
+                })
+                ->addColumn('user_details', function ($user) {
+                    return "<i class='fa fa-user-circle'></i> $user->id <br>
+                            <i class='fa fa-user'></i> $user->username<br>
+                            <i class='fa fa-user'></i> $user->name<br>";
+                })
+                ->addColumn('contact_details', function ($user) {
+                    return "<i class='fa fa-phone'></i> $user->phone <br>
+                            <i class='fa fa-envelope'></i> $user->email<br>";
+                })
+                ->addColumn('sponsor', function ($user) {
+                    return "{$user->super_parent_id} - <code>{$user?->sponsor?->username} </code>";
+                })
+                ->addColumn('parent', function ($user) {
+                    return "{$user->parent_id} - <code>{$user?->parent?->username} </code><br>Position: {$user->position}";
+                })
+                ->addColumn('joined', fn($user) => $user->created_at->format('Y-m-d h:i A'))
+                ->addColumn('suspended', function ($user) {
+                    if ($user->is_suspended) {
+                        return Carbon::parse($user->suspended_at)->format('Y-m-d h:i A');
+                    }
+                    return '-';
+                })
+                ->rawColumns(['profile_photo', 'user_details', 'contact_details', 'sponsor', 'parent'])
+                ->make();
+        }
+
+        return view('backend.user.teams.users-list');
     }
 
     public function managePosition(Request $request, User $parent, $position)

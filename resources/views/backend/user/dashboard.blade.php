@@ -84,13 +84,12 @@
                             <div class="card bubles rounded-3">
                                 <div class="card-body ref-card-body">
                                     <div class="bubles-down buy-coin d-flex justify-content-between mb-0 mx-0">
-                                        <div>
-                                            <h1 class="mb-0 text-uppercase">{{ Auth::user()->username }}</h1>
-                                            <p class="fs-26 m-0 text-muted w-100">{{ Auth::user()->name }}</p>
-                                            <p class="fs-16 fw-bold mb-1 text-warning">0{{ Auth::user()->currentRank->rank ?? 'NO' }} STAR </p>
-
+                                        <div class="w-100">
+                                            <h1 class="mb-0 lh-1 text-uppercase">{{ Auth::user()->username }}</h1>
+                                            <p class="fs-26 mb-1 mx-0 text-muted w-100 text-uppercase">{{ Auth::user()->name }}</p>
+                                            <p class="fs-16 fw-bold text-warning">{{ Auth::user()->currentRank->rank ?? 'NO' }} STAR </p>
                                             @if (Auth::user()->id === config('fortify.super_parent_id') || (Auth::user()->parent_id !== null && Auth::user()->position !== null))
-                                                <a href="{{ route('user.genealogy.position.register') }}" class="btn btn-primary rounded-3">
+                                                <a href="{{ route('user.genealogy.position.register') }}" class="btn btn-info rounded-3">
                                                     Registration
                                                 </a>
                                             @endif

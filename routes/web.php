@@ -301,7 +301,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         // Route::match(['get', 'post'], 'staking/purchased-plans/{purchase}/cancellations/request', 'User\Staking\StakingCancelRequestController@request')->name('staking-cancel-request.request');
         // Route::match(['get', 'post'], 'staking/purchased-plans/cancellations/{cancelRequest}/reverse', 'User\Staking\StakingCancelRequestController@reverse')->name('staking-cancel-request.reverse');
 
-        // STAKING PLANS END 
+        // STAKING PLANS END
 
 
         // RANK GIFtS
@@ -333,6 +333,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::get('incomes/rewards', 'User\EarningController@rewards')->name('incomes.rewards');
         Route::get('earnings', 'User\EarningController@index')->name('earnings.index');
 
+        Route::get('team/users-list', 'User\GenealogyController@teamList')->name('team.users-list');
         Route::get('team/incomes/commission', 'User\EarningController@teamCommissions')->name('team.incomes.commission');
         Route::get('team/incomes/earnings', 'User\EarningController@teamHighestEarnings')->name('earnings.team-income');
         Route::match(['get', 'post'], 'earnings/summarize-yearly-income', 'User\EarningController@incomeChart')->name('earnings.yearly-income-chart');
