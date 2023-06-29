@@ -58,12 +58,12 @@ class SaleLevelCommissionJob implements ShouldQueue
             $package = $this->package;
             $strategies = $this->strategies;
 
-            $commissions = $strategies->where('name', 'commissions')->first(null, new Strategy(['value' => '{"1":25,"2":20,"3":15,"4":10,"5":5,"6":5,"7":5}']));
+            $commissions = $strategies->where('name', 'commissions')->first(null, fn() => new Strategy(['value' => '{"1":25,"2":20,"3":15,"4":10,"5":5,"6":5,"7":5}']));
             $commissions = json_decode($commissions->value, true, 512, JSON_THROW_ON_ERROR);
 
             $commission_start_at = 1;
 
-            $less_level_commissions = $package->invested_amount;
+            $less_level_commissions = ($package->invested_amount * array_sum($commissions)) / 100;
             if ($purchasedUser->super_parent_id !== null) {
                 $commission = Commission::forceCreate([
                     'user_id' => $purchasedUser->super_parent_id,
