@@ -272,7 +272,7 @@ class StrategyController extends Controller
         $this->authorize('update', Strategy::class);
 
         $validated = Validator::make($request->all(), [
-            'commission_level_count' => ['required', 'integer', 'gte:2', 'lte:10'],
+            'commission_level_count' => ['required', 'integer', 'gte:2'],
             'commissions' => ['required', 'array', 'size:' . $request->get('commission_level_count')],
             'commissions.*' => ['required', 'integer'],
             'rank_gift' => ['required', 'integer'],
