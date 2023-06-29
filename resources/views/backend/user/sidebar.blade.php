@@ -4,19 +4,19 @@
         <ul class="metismenu" id="menu">
             <li>
                 <a href="{{ route('user.dashboard') }}" class="rounded-1" aria-expanded="false">
-                    <i class="bi bi-grid"></i>
+                    <i class="bi bi-house-heart"></i>
                     <span class="nav-text">Dashboard</span>
                 </a>
             </li>
             <li>
                 <a href="{{ route('user.kyc.index') }}" class="rounded-1" aria-expanded="false">
-                    <i class="bi bi-file-earmark-check"></i>
+                    <i class="bi bi-shield-check"></i>
                     <span class="nav-text">KYC Verification</span>
                 </a>
             </li>
             <li>
                 <a href="{{ route('user.packages.index') }}" class="rounded-1" aria-expanded="false">
-                    <i class="bi bi-stack"></i>
+                    <i class="bi bi-rocket-takeoff"></i>
                     <span class="nav-text">Plan Details</span>
                 </a>
             </li>
@@ -220,7 +220,7 @@
             </li>--}}
             <li>
                 <a href="{{ route('user.support.tickets.index') }}" class="rounded-1" aria-expanded="false">
-                    <i class="bi bi-question-circle"></i>
+                    <i class="bi bi-telephone-forward"></i>
                     <span class="nav-text">Customer Support</span>
                 </a>
             </li>

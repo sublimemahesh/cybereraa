@@ -87,11 +87,13 @@
                                         <div>
                                             <h1 class="mb-0 text-uppercase">{{ Auth::user()->username }}</h1>
                                             <p class="fs-26 m-0 text-muted w-100">{{ Auth::user()->name }}</p>
-                                            <p class="fs-16 fw-bold mb-1 text-warning">{{ Auth::user()->currentRank->rank ?? 'NO' }} Star </p>
+                                            <p class="fs-16 fw-bold mb-1 text-warning">0{{ Auth::user()->currentRank->rank ?? 'NO' }} STAR </p>
 
-                                            <a href="{{ route('user.genealogy.position.register') }}" class="btn btn-primary rounded-3">
-                                                Registration
-                                            </a>
+                                            @if (Auth::user()->id === config('fortify.super_parent_id') || (Auth::user()->parent_id !== null && Auth::user()->position !== null))
+                                                <a href="{{ route('user.genealogy.position.register') }}" class="btn btn-primary rounded-3">
+                                                    Registration
+                                                </a>
+                                            @endif
                                         </div>
                                         <div class="float-left width-175">
                                             <img src="{{ Auth::user()->profile_photo_url }}" class="img-fluid w-100 img-thumbnail" alt="">
@@ -199,7 +201,7 @@
                                         <div class="card-body  p-4">
                                             <div class="media">
                                         <span class="me-3">
-                                            <i class="la la-close"></i>
+                                            <i class="la la-diamond"></i>
                                         </span>
                                                 <div class="media-body text-white">
                                                     <p class="mb-1">EXPIRED PLAN</p>
@@ -247,7 +249,7 @@
                                     <div class="widget-stat card rounded-3">
                                         <div class="card-body  p-4">
                                             <div class="media">
-                                                <span class="me-3"><i class="la la-money-bill"></i></span>
+                                                <span class="me-3"><i class="la bi-hourglass-split"></i></span>
                                                 <div class="media-body text-white">
                                                     <p class="mb-1">PENDING COMMISSIONS</p>
                                                     <h4 class="text-white user-dashboard-card-font-size-change"> USDT {{$pending_commissions }}</h4>

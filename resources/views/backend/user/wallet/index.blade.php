@@ -14,7 +14,7 @@
     <div class="row">
         @include('backend.user.wallet.top-nav')
         <div class="col-xl-4 col-lg-4">
-            <div class="card prim-card">
+            <div class="rounded-1 card prim-card">
                 <div class="card-body py-3">
                     <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M45.333 9.3335H18.6663C16.191 9.3335 13.817 10.3168 12.0667 12.0672C10.3163 13.8175 9.33301 16.1915 9.33301 18.6668V45.3335C9.33301 47.8088 10.3163 50.1828 12.0667 51.9332C13.817 53.6835 16.191 54.6668 18.6663 54.6668H45.333C47.8084 54.6668 50.1823 53.6835 51.9327 51.9332C53.683 50.1828 54.6663 47.8088 54.6663 45.3335V18.6668C54.6663 16.1915 53.683 13.8175 51.9327 12.0672C50.1823 10.3168 47.8084 9.3335 45.333 9.3335ZM27.9997 14.6668H35.9997V22.6668H27.9997V14.6668ZM22.6663 49.3335H18.6663C17.6055 49.3335 16.5881 48.9121 15.8379 48.1619C15.0878 47.4118 14.6663 46.3944 14.6663 45.3335V41.3335H22.6663V49.3335ZM35.9997 49.3335H27.9997V41.3335H35.9997V49.3335ZM49.333 45.3335C49.333 46.3944 48.9116 47.4118 48.1614 48.1619C47.4113 48.9121 46.3939 49.3335 45.333 49.3335H41.333V41.3335H49.333V45.3335ZM49.333 36.0002H14.6663V18.6668C14.6663 17.606 15.0878 16.5885 15.8379 15.8384C16.5881 15.0883 17.6055 14.6668 18.6663 14.6668H22.6663V25.3335C22.6663 26.0407 22.9473 26.719 23.4474 27.2191C23.9475 27.7192 24.6258 28.0002 25.333 28.0002H49.333V36.0002ZM49.333 22.6668H41.333V14.6668H45.333C46.3939 14.6668 47.4113 15.0883 48.1614 15.8384C48.9116 16.5885 49.333 17.606 49.333 18.6668V22.6668Z" fill="white"/>
@@ -46,7 +46,7 @@
             </div>
         </div>
         <div class="col-xl-4 col-lg-4">
-            <div class="card prim-card">
+            <div class="rounded-1 card prim-card">
                 <div class="card-body py-3">
                     <i class="material-icons text-white" style="font-size: 60px;">trending_up</i>
                     <div class="d-flex">
@@ -72,7 +72,7 @@
             </div>
         </div>
         <div class="col-xxl-2 col-xl-2">
-            <div class="card">
+            <div class="rounded-1 card">
                 <div class="card-header border-0 pb-0">
                     <h5 class="fs-18 heading mb-0 m-auto">Income <code class="fs-12">USDT</code></h5>
                 </div>
@@ -89,7 +89,7 @@
             </div>
         </div>
         <div class="col-xxl-2 col-xl-2">
-            <div class="card">
+            <div class="rounded-1 card">
                 <div class="card-header border-0 pb-0">
                     <h5 class="fs-18 heading mb-0 m-auto">Withdraw <code class="fs-12">USDT</code></h5>
                 </div>
@@ -106,7 +106,7 @@
             </div>
         </div>
         <div class="col-xxl-2 col-xl-2">
-            <div class="card">
+            <div class="rounded-1 card">
                 <div class="card-header border-0 pb-0">
                     <h5 class="fs-16 heading mb-0 m-auto  text-responsiv">Commissions <code class="fs-12">USDT</code></h5>
                 </div>
@@ -123,7 +123,7 @@
             </div>
         </div>
         <div class="col-xxl-2 col-xl-2">
-            <div class="card">
+            <div class="rounded-1 card">
                 <div class="card-header border-0 pb-0">
                     <h5 class="fs-18 heading mb-0 m-auto">Losts <code class="fs-12">USDT</code></h5>
                 </div>
