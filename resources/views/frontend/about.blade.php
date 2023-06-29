@@ -48,7 +48,7 @@
                     </div>
                     <div class="col-md-6 col-sm-6">
                         <div class="wt-media">
-                            <img src="{{ storage('pages/' . $abouts->image) }} " alt="" class="img-responsive" />
+                            <img src="{{ storage('pages/' . $abouts->image) }} " alt="" class="img-responsive about-pt" />
                         </div>
                     </div>
                 </div>

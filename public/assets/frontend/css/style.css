@@ -12876,3 +12876,7 @@ ol.commentlist li::after {
 	display:none;
 }
 
+.about-pt {
+    padding-top: 125px;
+}
+
