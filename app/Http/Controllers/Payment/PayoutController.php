@@ -282,7 +282,7 @@ class PayoutController extends Controller
 
         $validated = Validator::make($request->all(), [
             'amount' => ['required', 'numeric', 'min:' . $minimum_payout_limit->value],
-            'wallet_type' => ['required', 'in:main,topup,staking'],
+            'wallet_type' => ['required', 'in:main,topup'], //,staking
             'password' => 'required',
             'otp' => 'required|digits:6',
             'code' => 'nullable',

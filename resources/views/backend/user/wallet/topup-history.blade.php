@@ -1,6 +1,6 @@
 <x-backend.layouts.app>
-    @section('title', 'Withdrawals Transactions | Reports')
-    @section('header-title', 'Withdrawals | Reports' )
+    @section('title', 'Topup History | Reports')
+    @section('header-title', 'Topup History | Reports' )
     @section('plugin-styles')
         <!-- Datatable -->
         <link href="{{ asset('assets/backend/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
@@ -11,7 +11,7 @@
     @endsection
 
     @section('breadcrumb-items')
-        <li class="breadcrumb-item">Withdrawals Transfers</li>
+        <li class="breadcrumb-item">Topup History</li>
     @endsection
 
     <div class="row dark"> {{--! Tailwind css used. if using tailwind plz run npm run dev and add tailwind classes--}}
@@ -35,7 +35,7 @@
                                                     <label for="date-range" class="text-gray-700 dark:text-gray-300">PERIOD</label>
                                                     <div class="relative">
                                                         <form autocomplete="off">
-                                                            <input id="date-range" class="flatpickr block my-1 bg-gray-50 text-gray-700 py-2 px-3 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500 flatpickr-input" type="text" placeholder="Select a period" readonly="readonly">
+                                                            <input id="topup-history-date-range" class="flatpickr block my-1 bg-gray-50 text-gray-700 py-2 px-3 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500 flatpickr-input" type="text" placeholder="Select a period" readonly="readonly">
                                                         </form>
                                                         <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
                                                             <svg class="pointer-events-none w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -54,11 +54,8 @@
                                                         <select id="status" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
                                                             <option value="">ALL</option>
                                                             <option value="pending" {{ request()->input('status') === 'pending' ? 'selected' : '' }}>PENDING</option>
-                                                            <option value="processing" {{ request()->input('status') === 'processing' ? 'selected' : '' }}>PROCESSING</option>
                                                             <option value="success" {{ request()->input('status') === 'success' ? 'selected' : '' }}>SUCCESS</option>
-                                                            <option value="cancelled" {{ request()->input('status') === 'cancelled' ? 'selected' : '' }}>CANCELLED</option>
-                                                            <option value="fail" {{ request()->input('status') === 'fail' ? 'selected' : '' }}>FAIL</option>
-                                                            <option value="reject" {{ request()->input('status') === 'reject' ? 'selected' : '' }}>REJECT</option>
+                                                            <option value="rejected" {{ request()->input('status') === 'rejected' ? 'selected' : '' }}>REJECTED</option>
                                                         </select>
                                                         <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
                                                             <svg class="pointer-events-none w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -72,11 +69,13 @@
                                         <div class="flex flex-col mb-2">
                                             <div>
                                                 <div class=" pt-2 p-2 ">
-                                                    <label for="" class="dark:text-gray-300 opacity-0 text-gray-700">search</label>
                                                     <div class="relative">
-                                                        <button id="search" class="mt-1 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
-                                                            Search
-                                                        </button>
+                                                        <label for="topup-history-search" class="dark:text-gray-300 opacity-0 text-gray-700">search</label>
+                                                        <div class="relative">
+                                                            <button id="topup-history-search" class="mt-1 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
+                                                                Search
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -87,22 +86,19 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table id="binance-trx" class="display table-responsive-my" style="width:100%;table-layout: fixed">
+                        <table id="topup-history" class="display mb-1 nowrap table-responsive-my" style="table-layout: fixed">
                             <thead>
                             <tr>
-                                <th>ACTIONS</th>
-                                <th>TRX ID</th>
-                                <th>TYPE</th>
+                                <th>PROOF</th>
+                                <th>REMARK</th>
                                 <th>STATUS</th>
                                 <th>CREATED AT</th>
                                 <th class="text-right">AMOUNT</th>
-                                <th class="text-right">FEE</th>
-                                <th class="text-right">TOTAL</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
-                                <th colspan="8" style="text-align:right"></th>
+                                <th colspan="5" style="text-align:right"></th>
                             </tr>
                             </tfoot>
                         </table>
@@ -123,6 +119,6 @@
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.html5.min.js') }}"></script>
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.print.min.js') }}"></script>
         <script src="{{ asset('assets/backend/js/global-datatable-extension.js') }}"></script>
-        <script src="{{ asset('assets/backend/js/user/wallet/withdraw-history.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/user/wallet/topup-history.js') }}"></script>
     @endpush
 </x-backend.layouts.app>
