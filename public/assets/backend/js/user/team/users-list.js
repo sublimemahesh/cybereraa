@@ -10,7 +10,7 @@ $(function () {
         serverSide: true,
         //fixedHeader: true,
         responsive: true,
-        order: [[5, 'desc']],
+        order: [[4, 'asc']],
         //stateSave: true,
         ajax: location.href,
         columns: [

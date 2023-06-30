@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use JsonException;
+use Str;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 use URL;
@@ -54,16 +55,23 @@ class WithdrawController extends Controller
 
                 })
                 ->addColumn('actions', function ($withdraw) {
-                    return '<div class="dropdown">
-                                    <button class="btn btn-primary tp-btn-light sharp" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <span class="fs--1"><svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg></span>
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-end border py-0" style="">
-                                        <div class="py-2">
-                                            <a class="dropdown-item" href="' . URL::signedRoute('user.wallet.transfer.invoice', $withdraw) . '">Invoice</a>
-                                        </div>
-                                    </div>
-                                </div>';
+                    $actions = '<div class="d-flex">';
+                    $actions .= '<a href="' . URL::signedRoute('user.wallet.transfer.invoice', $withdraw) . '" class="btn btn-xs btn-info sharp my-1 mr-1 shadow">
+                                    <i class="fa fa-receipt"></i>
+                                </a>';
+                    if (Gate::allows('p2pConfirm', $withdraw)) {
+                        $actions .= '<a href="' . route('user.withdraw.confirm-p2p', $withdraw) . '" class="btn btn-xs btn-success sharp my-1 mr-1 shadow">
+                                    <i class="fa fa-check-double"></i>
+                                </a>';
+                    }
+
+                    if ($withdraw->proof_document !== null) {
+                        $actions .= '<a href="' . asset('storage/payouts/p2p/' . $withdraw->proof_document) . '" target="_blank" class="btn btn-xs btn-outline-warning sharp my-1 mr-1 shadow">
+                                    <i class="fa fa-images"></i>
+                                </a>';
+                    }
+                    $actions .= '</div>';
+                    return $actions;
                 })
                 ->rawColumns(['type', 'receiver', 'actions'])
                 ->make();
@@ -167,6 +175,38 @@ class WithdrawController extends Controller
         $skel = '{"email":"","id":"","address":"","phone":""}';
         $payout_info = json_decode($withdraw?->payout_details ?? $skel, false, 512, JSON_THROW_ON_ERROR);
         return view('backend.admin.users.transfers.withdraw-summery', compact('withdraw', 'payout_info'));
+    }
+
+    public function p2pConfirm(Request $request, Withdraw $p2p)
+    {
+        $this->authorize('p2pConfirm', $p2p);
+
+        if ($request->wantsJson() && $request->isMethod('post')) {
+
+            $validated = Validator::make($request->all(), [
+                'proof_document' => 'required|file:pdf,jpg,jpeg,png',
+            ])->validate();
+
+            \DB::transaction(function () use ($validated, $p2p) {
+                $file = $validated['proof_document'];
+                $proof_documentation = Str::limit(Str::slug($file->getClientOriginalName()), 50) . "-" . $file->hashName();
+                $file->storeAs('payouts/p2p', $proof_documentation);
+
+                $p2p->update([
+                    'proof_document' => $proof_documentation,
+                    'approved_at' => \Carbon::now(),
+                ]);
+            });
+
+            $json['status'] = true;
+            $json['message'] = 'P2P Confirmation successful';
+            $json['icon'] = 'success'; // warning | info | question | success | error
+            $json['redirectUrl'] = route('user.transfers.p2p', ['status' => 'success', 'filter' => 'received']);
+            $json['data'] = $validated;
+
+            return response()->json($json);
+        }
+        return view('backend.user.withdrawals.p2p-confirm', compact('p2p'));
     }
 
     /**

@@ -59,6 +59,11 @@ class WithdrawPolicy
         }
     }
 
+    public function p2pConfirm(User $user, Withdraw $withdraw)
+    {
+        return $user->hasRole('user') && $withdraw->receiver_id === $user->id && $withdraw->type === 'P2P' && $withdraw->proof_document === null;
+    }
+
     public function create(User $user)
     {
         return $user->hasRole('user');
