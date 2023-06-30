@@ -16,7 +16,7 @@
 
     <div class="row dark"> {{--! Tailwind css used. if using tailwind plz run npm run dev and add tailwind classes--}}
         @include('backend.user.wallet.top-nav')
-        <div class="flex mb-2">
+        {{--<div class="flex mb-2">
             <div>
                 <div class=" pt-2 p-2 ">
                     <div class="relative">
@@ -26,7 +26,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>--}}
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
