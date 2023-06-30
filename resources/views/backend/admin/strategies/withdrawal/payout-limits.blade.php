@@ -31,6 +31,29 @@
                             <input class="form-control" value="{{ $minimum_payout_limit->value }}" id="minimum_payout_limit" name="minimum_payout_limit" placeholder="Minimum withdraw amount Ex: USD 10" type="number">
                         </div>
                     </div>
+                    <hr>
+                    <div class="form-group row mb-2">
+                        <label class="col-sm-3 col-form-label" for="daily_max_withdrawal_limits">Daily Max withdraw (USD)</label>
+                        <div class="col-sm-9">
+                            <input class="form-control" value="{{ $daily_max_withdrawal_limits->value }}" id="daily_max_withdrawal_limits" name="daily_max_withdrawal_limits" placeholder="Maximum withdraw limit for the one day. Ex: USD 100" type="number">
+                        </div>
+                    </div>
+                    <div class="form-group row mb-2">
+                        <label class="col-sm-3 col-form-label" for="withdrawal_days_of_week">Allowed Withdrawal days</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" multiple name="withdrawal_days_of_week[]" id="withdrawal_days_of_week">
+                                <option disabled>Select Week days</option>
+                                <option value="Monday" {{ in_array("Monday", $withdrawal_days_of_week, true) ? 'selected' : '' }}>Monday</option>
+                                <option value="Tuesday" {{ in_array("Tuesday", $withdrawal_days_of_week, true) ? 'selected' : '' }}>Tuesday</option>
+                                <option value="Wednesday" {{ in_array("Wednesday", $withdrawal_days_of_week, true) ? 'selected' : '' }}>Wednesday</option>
+                                <option value="Thursday" {{ in_array("Thursday", $withdrawal_days_of_week, true) ? 'selected' : '' }}>Thursday</option>
+                                <option value="Friday" {{ in_array("Friday", $withdrawal_days_of_week, true) ? 'selected' : '' }}>Friday</option>
+                                <option value="Saturday" {{ in_array("Saturday", $withdrawal_days_of_week, true) ? 'selected' : '' }}>Saturday</option>
+                                <option value="Sunday" {{ in_array("Sunday", $withdrawal_days_of_week, true) ? 'selected' : '' }}>Sunday</option>
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="form-group row">
                         <div class="col-sm-12">
                             <button type="submit" id="save-withdraw-strategies" class="btn btn-primary">Save</button>

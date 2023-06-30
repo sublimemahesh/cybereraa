@@ -50,8 +50,8 @@ class DispatchMonthlyRankBonusJobs extends Command
                             'value' => '{"3":{"active_investment":1000,"total_team_investment":5000},"4":{"active_investment":2500,"total_team_investment":10000},"5":{"active_investment":5000,"total_team_investment":25000},"6":{"active_investment":10000,"total_team_investment":50000},"7":{"active_investment":25000,"total_team_investment":100000}}'
                         ])
                     );
-                $rank_bonus_percentage = $strategies->where('name', 'rank_bonus')->first(null, new Strategy(['value' => '10']));
-                $rank_bonus_levels = $strategies->where('name', 'rank_bonus_levels')->first(null, new Strategy(['value' => '3,4,5,6,7']));
+                $rank_bonus_percentage = $strategies->where('name', 'rank_bonus')->first(null, fn() => new Strategy(['value' => '10']));
+                $rank_bonus_levels = $strategies->where('name', 'rank_bonus_levels')->first(null, fn() => new Strategy(['value' => '3,4,5,6,7']));
 
                 $rank_bonus_percentage = $rank_bonus_percentage->value;
                 $rank_bonus_levels = explode(',', $rank_bonus_levels->value);

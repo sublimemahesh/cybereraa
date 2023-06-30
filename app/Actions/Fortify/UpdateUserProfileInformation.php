@@ -24,9 +24,9 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         if (MaskCredentials::maskedEmailAddress(auth()->user()->email) === $input['email']) {
             $input['email'] = auth()->user()->email;
         }
-        if (MaskCredentials::maskedPhone(auth()->user()->phone) === $input['phone']) {
-            $input['phone'] = auth()->user()->phone;
-        }
+        //        if (MaskCredentials::maskedPhone(auth()->user()->phone) === $input['phone']) {
+        //            $input['phone'] = auth()->user()->phone;
+        //        }
 
 
         Validator::make($input, [

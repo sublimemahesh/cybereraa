@@ -35,7 +35,7 @@ class UpdateProfileInformation extends Component
     {
         $this->state = Auth::user()->withoutRelations()->toArray();
         $this->state['email'] = MaskCredentials::maskedEmailAddress(auth()->user()->email);
-        $this->state['phone'] = MaskCredentials::maskedPhone(auth()->user()->phone);
+        //$this->state['phone'] = MaskCredentials::maskedPhone(auth()->user()->phone);
     }
 
     /**
@@ -73,9 +73,6 @@ class UpdateProfileInformation extends Component
             $this->addError('otp', 'Entered OTP code is invalid!');
             return null;
         }
-        session()->forget($hashed_username);
-        $this->otpSent = false;
-        $this->otp = null;
 
         $old_data = [
             'email' => auth()->user()->email,
@@ -87,6 +84,10 @@ class UpdateProfileInformation extends Component
                 ? [...$this->state, 'photo' => $this->photo]
                 : $this->state
         );
+
+        session()->forget($hashed_username);
+        $this->otpSent = false;
+        $this->otp = null;
 
         if (auth()->user()->email !== $old_data['email'] || auth()->user()->phone !== $old_data['phone']) {
             Mail::to($old_data['email'])

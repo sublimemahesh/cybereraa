@@ -94,7 +94,7 @@ class SaleLevelCommissionJob implements ShouldQueue
             }
 
             if ($purchasedUser->parent_id !== null) {
-                $commission_level_strategy = $strategies->where('name', 'commission_level_count')->first(null, new Strategy(['value' => 7]));
+                $commission_level_strategy = $strategies->where('name', 'commission_level_count')->first(null, fn() => new Strategy(['value' => 7]));
                 $commission_level = (int)$commission_level_strategy->value;
                 $commission_start_at = 2;
 
@@ -148,7 +148,7 @@ class SaleLevelCommissionJob implements ShouldQueue
                 $admin_wallet->increment('balance', $less_level_commissions);
             }
 
-            $rank_gift_percentage = $strategies->where('name', 'rank_gift')->first(null, new Strategy(['value' => '5']));
+            $rank_gift_percentage = $strategies->where('name', 'rank_gift')->first(null, fn() => new Strategy(['value' => '5']));
             $allocated_for_gift = ($package->invested_amount * $rank_gift_percentage->value) / 100;
             AdminWalletTransaction::create([
                 'user_id' => $purchasedUser->id, // sale purchase user

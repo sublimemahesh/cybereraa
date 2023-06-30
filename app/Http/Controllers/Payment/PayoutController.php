@@ -13,9 +13,11 @@ use App\Models\Withdraw;
 use App\Services\OTPService;
 use App\Services\TwoFactorAuthenticateService;
 use Auth;
+use Carbon;
 use DB;
 use Exception;
 use Illuminate\Http\Request;
+use JsonException;
 use Log as Logger;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
@@ -69,7 +71,7 @@ class PayoutController extends Controller
         $sender_wallet = $sender?->wallet;
 
         $max_withdraw_limit = $sender_wallet->withdraw_limit;
-        $minimum_payout_limit = $strategies->where('name', 'minimum_payout_limit')->first(null, new Strategy(['value' => 10]));
+        $minimum_payout_limit = $strategies->where('name', 'minimum_payout_limit')->first(null, fn() => new Strategy(['value' => 10]));
 
         $validated = Validator::make($request->all(), [
             'receiver' => 'required|exists:users,id',
@@ -146,7 +148,7 @@ class PayoutController extends Controller
             }
         }
 
-        $p2p_transfer_fee = $strategies->where('name', 'p2p_transfer_fee')->first(null, new Strategy(['value' => 2.5]));
+        $p2p_transfer_fee = $strategies->where('name', 'p2p_transfer_fee')->first(null, fn() => new Strategy(['value' => 2.5]));
         $total_amount = $validated['amount'] + $p2p_transfer_fee->value;
 
         if ($validated['wallet_type'] === 'main') {
@@ -240,8 +242,20 @@ class PayoutController extends Controller
 
     }
 
+    /**
+     * @throws JsonException
+     */
     public function twoftVerifyWithdraw(Request $request, OTPService $otpService, TwoFactorAuthenticateService $authenticateService)
     {
+        $strategies = Strategy::whereIn('name', ['payout_transfer_fee', 'daily_max_withdrawal_limits', 'withdrawal_days_of_week'])->get();
+
+        if (!$this->checkTodayWithdrawalEligibility($strategies, $request->input('amount', 0))) {
+            $json['status'] = false;
+            $json['message'] = "Sorry, you are not eligible to make a withdrawal at this time. Please ensure that you have remaining withdrawal amount for the day and that today is one of the designated withdrawal days.!";
+            $json['icon'] = 'error'; // warning | info | question | success | error
+            return response()->json($json, Response::HTTP_UNAUTHORIZED);
+        }
+
         $validated = Validator::make($request->all(), [
             'minimum_payout_limit' => 'required',
             'amount' => ['required', 'numeric', 'min:' . $request->minimum_payout_limit],
@@ -276,9 +290,16 @@ class PayoutController extends Controller
         $user = Auth::user();
         $user_wallet = $user?->wallet;
 
-        $strategies = Strategy::whereIn('name', ['payout_transfer_fee', 'minimum_payout_limit', 'staking_withdrawal_fee'])->get();
-        $minimum_payout_limit = $strategies->where('name', 'minimum_payout_limit')->first(null, new Strategy(['value' => 10]));
+        $strategies = Strategy::whereIn('name', ['payout_transfer_fee', 'minimum_payout_limit', 'staking_withdrawal_fee', 'daily_max_withdrawal_limits', 'withdrawal_days_of_week'])->get();
+        $minimum_payout_limit = $strategies->where('name', 'minimum_payout_limit')->first(null, fn() => new Strategy(['value' => 10]));
         $max_withdraw_limit = $user_wallet->withdraw_limit;
+
+        if (!$this->checkTodayWithdrawalEligibility($strategies, $request->input('amount', 0))) {
+            $json['status'] = false;
+            $json['message'] = "Sorry, you are not eligible to make a withdrawal at this time. Please ensure that you have remaining withdrawal amount for the day and that today is one of the designated withdrawal days.!";
+            $json['icon'] = 'error'; // warning | info | question | success | error
+            return response()->json($json, Response::HTTP_UNAUTHORIZED);
+        }
 
         $validated = Validator::make($request->all(), [
             'amount' => ['required', 'numeric', 'min:' . $minimum_payout_limit->value],
@@ -328,8 +349,8 @@ class PayoutController extends Controller
                 return response()->json($json, Response::HTTP_UNAUTHORIZED);
             }
         }
-        $payout_transfer_fee = $strategies->where('name', 'payout_transfer_fee')->first(null, new Strategy(['value' => 5]));
-        $staking_withdrawal_fee = $strategies->where('name', 'staking_withdrawal_fee')->first(null, new Strategy(['value' => 5]));
+        $payout_transfer_fee = $strategies->where('name', 'payout_transfer_fee')->first(null, fn() => new Strategy(['value' => 5]));
+        $staking_withdrawal_fee = $strategies->where('name', 'staking_withdrawal_fee')->first(null, fn() => new Strategy(['value' => 5]));
 
         if ($validated['wallet_type'] === 'staking') {
             $total_amount = $validated['amount'] + $staking_withdrawal_fee->value;
@@ -423,5 +444,27 @@ class PayoutController extends Controller
         $json['icon'] = 'success'; // warning | info | question | success | error
         $json['redirectUrl'] = URL::signedRoute('user.wallet.transfer.invoice', $withdraw); // warning | info | question | success | error
         return response()->json($json, Response::HTTP_OK);
+    }
+
+    /**
+     * @throws JsonException
+     */
+    public function checkTodayWithdrawalEligibility($strategies, float $amount): bool
+    {
+        $daily_max_withdrawal_limits = $strategies->where('name', 'daily_max_withdrawal_limits')->first(null, fn() => new Strategy(['value' => 100]));
+        $withdrawal_days_of_week = $strategies->where('name', 'withdrawal_days_of_week')->first(null, fn() => new Strategy(['value' => '["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]']));
+        $withdrawal_days_of_week = json_decode($withdrawal_days_of_week->value, true, 512, JSON_THROW_ON_ERROR);
+        //$payout_transfer_fee = $strategies->where('name', 'payout_transfer_fee')->first(null, fn() => new Strategy(['value' => 5]));
+
+        $total_amount = $amount;
+
+        $used_withdraw_amount_for_day = Withdraw::where('type', 'MANUAL')
+            ->where('user_id', Auth::user()->id)
+            ->whereDate('created_at', Carbon::today())
+            ->sum('amount');
+
+        $remaining_withdraw_amount_for_day = $daily_max_withdrawal_limits->value - $used_withdraw_amount_for_day;
+
+        return !($remaining_withdraw_amount_for_day < $total_amount || !in_array(Carbon::today()->englishDayOfWeek, $withdrawal_days_of_week, true));
     }
 }
