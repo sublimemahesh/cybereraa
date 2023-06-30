@@ -26,7 +26,7 @@
                         drag_block_vertical: false
                     },
 				   
-                   
+                    
                 },
                 viewPort: {
                     enable: true,
