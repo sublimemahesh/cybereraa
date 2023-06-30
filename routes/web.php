@@ -38,8 +38,6 @@ Route::get('contact', 'ContactController@index')->name('contact');
 Route::post('contact-us/send-mail', 'ContactController@sendMail')->name('send.mail');
 
 
-
-
 // Register custom routes
 Route::group(['prefix' => 'register', 'middleware' => 'guest:' . config('fortify.guard')], function () {
     Route::get('/', 'RegisteredUserController@create')->name('register');
@@ -169,6 +167,10 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
 
         // Blog
         Route::resource('blogs', 'Admin\BlogController')->only('index', 'edit', 'destroy');
+
+        // PopupNotices
+        Route::resource('popup-notices', 'Admin\PopupNoticeController')->only('index', 'edit', 'destroy')
+            ->parameter('popup-notices', 'popup');
 
         //Currency
         Route::resource('currencies', 'Admin\CurrencyController')->except('create', 'show');

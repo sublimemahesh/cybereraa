@@ -458,6 +458,45 @@
                 </div>
             </div>
         </div>
+
+        {{--    popups--}}
+        <div class="modal fade" id="popup-modal">
+            <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center w-100"> {{ $popup->title }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card rounded-3 bg-secondary cursor-pointer">
+                                    <div class="text-center">
+                                        <div class="my-4" id="show-note">
+                                            {!! $popup->content !!}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {{--    popups--}}
+        <div class="modal fade" id="birthday-modal">
+            <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body p-0">
+                        <img src="{{ asset('assets/backend/images/bday-wish.jpeg') }}" alt="Happy Birthday" class="rounded-2 w-100">
+                    </div>
+                </div>
+            </div>
+        </div>
     @endpush
 
     @push('scripts')
@@ -473,6 +512,23 @@
                     backdrop: 'static',
                 })
                 notificationNoteModal.show()
+            }
+            const popup_exists = !!parseInt('{{ $popup->exists }}');
+            if (popup_exists > 0) {
+                const popupModal = new bootstrap.Modal('#popup-modal', {
+                    backdrop: 'static',
+                })
+                popupModal.show()
+            }
+
+            @php
+                $birthday = auth()->user()->profile?->dob ? auth()->user()->profile->dob : null;
+            @endphp
+
+            const is_birthday = !!parseInt('{{ !empty($birthday) && Carbon::parse($birthday)->isBirthday() }}');
+            if (is_birthday > 0) {
+                const birthdayModal = new bootstrap.Modal('#birthday-modal')
+                birthdayModal.show()
             }
 
 

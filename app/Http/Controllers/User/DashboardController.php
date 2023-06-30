@@ -7,6 +7,7 @@ use App\Http\Resources\YealyIncomeBarChartResource;
 use App\Models\Commission;
 use App\Models\Currency;
 use App\Models\Earning;
+use App\Models\PopupNotice;
 use App\Models\Rank;
 use App\Models\Transaction;
 use Auth;
@@ -106,6 +107,12 @@ class DashboardController extends Controller
             ->get();
         $yearlyIncomeChartData = new YealyIncomeBarChartResource($yearlyIncome);
 
+        $popup = PopupNotice::whereDate('start_date', '<=', \Carbon::today()->format('Y-m-d'))
+            ->whereDate('end_date', '>=', \Carbon::today()->format('Y-m-d'))
+            ->whereIsActive(true)
+            ->inRandomOrder()
+            ->firstOrNew();
+
         return view('backend.user.dashboard',
             compact(
                 'total_investment',
@@ -131,6 +138,7 @@ class DashboardController extends Controller
                 'descendants_count',
                 'top_rankers',
                 'yearlyIncomeChartData',
+                'popup',
             )
         );
     }
