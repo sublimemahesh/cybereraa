@@ -23,15 +23,18 @@ class StrategyController extends Controller
     public function withdrawal()
     {
         $this->authorize('viewAny', Strategy::class);
-
+        //dd(\Carbon::now()->englishDayOfWeek);
         $strategies = Strategy::whereIn('name', [
             'withdrawal_limits',
+            'daily_max_withdrawal_limits',
+            'withdrawal_days_of_week',
             'max_withdraw_limit',
             'minimum_payout_limit',
             'payout_transfer_fee',
             'staking_withdrawal_fee',
             'p2p_transfer_fee'
         ])->get();
+
         $withdrawal_limits = $strategies->where('name', 'withdrawal_limits')->first(null, fn() => new Strategy(['value' => '{"package": 300, "commission": 100}']));
         $max_withdraw_limit = $strategies->where('name', 'max_withdraw_limit')->first(null, fn() => new Strategy(['value' => 400]));
         $minimum_payout_limit = $strategies->where('name', 'minimum_payout_limit')->first(null, fn() => new Strategy(['value' => 10]));
@@ -39,9 +42,24 @@ class StrategyController extends Controller
         $staking_withdrawal_fee = $strategies->where('name', 'staking_withdrawal_fee')->first(null, fn() => new Strategy(['value' => 5]));
         $p2p_transfer_fee = $strategies->where('name', 'p2p_transfer_fee')->first(null, fn() => new Strategy(['value' => 2.5]));
 
-        $withdrawal_limits = json_decode($withdrawal_limits->value, false, 512, JSON_THROW_ON_ERROR);
+        $daily_max_withdrawal_limits = $strategies->where('name', 'daily_max_withdrawal_limits')->first(null, fn() => new Strategy(['value' => 100]));
+        $withdrawal_days_of_week = $strategies->where('name', 'withdrawal_days_of_week')->first(null, fn() => new Strategy(['value' => '["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]']));
 
-        return view('backend.admin.strategies.withdrawal.index', compact('withdrawal_limits', 'staking_withdrawal_fee', 'max_withdraw_limit', 'minimum_payout_limit', 'payout_transfer_fee', 'p2p_transfer_fee'));
+        $withdrawal_limits = json_decode($withdrawal_limits->value, false, 512, JSON_THROW_ON_ERROR);
+        $withdrawal_days_of_week = json_decode($withdrawal_days_of_week->value, true, 512, JSON_THROW_ON_ERROR);
+
+        return view('backend.admin.strategies.withdrawal.index',
+            compact(
+                'withdrawal_limits',
+                'staking_withdrawal_fee',
+                'max_withdraw_limit',
+                'minimum_payout_limit',
+                'payout_transfer_fee',
+                'p2p_transfer_fee',
+                'daily_max_withdrawal_limits',
+                'withdrawal_days_of_week',
+            )
+        );
     }
 
     /**
@@ -135,6 +153,8 @@ class StrategyController extends Controller
             'withdrawal_limits_commission' => 'required|integer',
             'max_withdraw_limit' => 'required|integer',
             'minimum_payout_limit' => 'required|integer',
+            'daily_max_withdrawal_limits' => 'required|integer',
+            'withdrawal_days_of_week' => 'required|array|in:Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday',
         ])->validate();
 
         DB::transaction(function () use ($validated) {
@@ -152,6 +172,24 @@ class StrategyController extends Controller
             Strategy::updateOrCreate(
                 ['name' => 'max_withdraw_limit'],
                 ['value' => $max_withdraw_limit]
+            );
+
+            Strategy::updateOrCreate(
+                ['name' => 'daily_max_withdrawal_limits'],
+                [
+                    'value' => $validated['daily_max_withdrawal_limits'],
+                    'data_type' => 'double',
+                    'comment' => 'Maximum usdt amount that allowed to withdraw for one day per user'
+                ]
+            );
+
+            Strategy::updateOrCreate(
+                ['name' => 'withdrawal_days_of_week'],
+                [
+                    'value' => json_encode($validated['withdrawal_days_of_week'], JSON_THROW_ON_ERROR),
+                    'data_type' => 'double',
+                    'comment' => 'Week days of that users can make withdraw requests'
+                ]
             );
         });
 

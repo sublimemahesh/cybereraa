@@ -59,18 +59,19 @@
                         @if(auth()->user()->profile->is_kyc_verified)
                             <div class="form-control">{{ $state['name'] }}</div>
                         @else
-                            <input type="text" id="name" class="form-control" wire:model.defer="state.name" autocomplete="name">
+                            <input type="text" id="name" class="form-control" wire:model.defer="state.name" autocomplete="name" required>
                         @endif
                         <x-jet-input-error for="name" class="mt-2"/>
                     </div>
-                    <div class="col-sm-6 m-b30">
+                    <div class="col-sm-6 m-b30" wire:ignore>
                         <label class="form-label" for="phone">{{ __('Phone') }}</label>
-                        <div class="form-control">{{ $state['phone'] }}</div>
+                        <input type="text" id="phone" class="form-control" wire:model.defer="state.phone" required>
+                        {{--<div class="form-control">{{ $state['phone'] }}</div>--}}
                         <x-jet-input-error for="phone" class="mt-2"/>
                     </div>
                     <div class="col-sm-6 m-b30">
                         <label class="form-label" for="email">{{ __('Email') }}</label>
-                        <input type="text" id="email" class="form-control" wire:model.defer="state.email">
+                        <input type="text" id="email" class="form-control" wire:model.defer="state.email" required>
                         <x-jet-input-error for="email" class="mt-2"/>
                         @if (!$this->user->hasVerifiedEmail() && Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::emailVerification()))
                             <p class="text-sm mt-2">
@@ -92,14 +93,14 @@
                     <div class="col-lg-6 m-b30">
                         <div>
                             <label class="form-label" for="dob">{{ __('Birth Day') }}</label>
-                            <x-jet-input wire:ignore id="dob" wire:model.defer="state.profile_info.dob" class="bday-mask block mt-1 w-full form-control" type="text" name="dob" autofocus autocomplete="dob"/>
+                            <x-jet-input wire:ignore id="dob" wire:model.defer="state.profile_info.dob" required class="bday-mask block mt-1 w-full form-control" type="text" name="dob" autofocus autocomplete="dob"/>
                             <x-jet-input-error for="profile_info.dob" class="mt-2"/>
                         </div>
                     </div>
 
                     <div class="col-lg-6 m-b30">
                         <label class="form-label" for="gender">{{ __('Gender') }}</label>
-                        <select id="gender" wire:model.defer="state.profile_info.gender" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm  form-control">
+                        <select id="gender" wire:model.defer="state.profile_info.gender" required class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm  form-control">
                             <option value="">Select Gender</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
@@ -109,34 +110,34 @@
 
                     <div class="col-lg-6 m-b30">
                         <label class="form-label" for="street">{{ __('Address Line 01') }}</label>
-                        <x-jet-input id="street" wire:model.defer="state.profile_info.street" class="block mt-1 w-full form-control" type="text" name="street" autofocus autocomplete="street"/>
+                        <x-jet-input id="street" wire:model.defer="state.profile_info.street" required class="block mt-1 w-full form-control" type="text" name="street" autofocus autocomplete="street"/>
                         <x-jet-input-error for="profile_info.street" class="mt-2"/>
                     </div>
                     <div class="col-lg-6 m-b30">
                         <label class="form-label" for="state">{{ __('City') }}</label>
-                        <x-jet-input id="state" wire:model.defer="state.profile_info.state" class="block mt-1 w-full form-control" type="text" name="state" autofocus autocomplete="state"/>
+                        <x-jet-input id="state" wire:model.defer="state.profile_info.state" required class="block mt-1 w-full form-control" type="text" name="state" autofocus autocomplete="state"/>
                         <x-jet-input-error for="profile_info.state" class="mt-2"/>
                     </div>
                     <div class="col-lg-6 m-b30">
                         <label class="form-label" for="address">{{ __('State') }}</label>
-                        <x-jet-input id="address" wire:model.defer="state.profile_info.address" class="block mt-1 w-full form-control" type="text" name="address" autofocus autocomplete="address"/>
+                        <x-jet-input id="address" wire:model.defer="state.profile_info.address" required class="block mt-1 w-full form-control" type="text" name="address" autofocus autocomplete="address"/>
                         <x-jet-input-error for="profile_info.address" class="mt-2"/>
                     </div>
                     <div class="col-lg-6 m-b30">
                         <label class="form-label" for="zip_code">{{ __('Zip Code') }}</label>
-                        <x-jet-input id="zip_code" wire:model.defer="state.profile_info.zip_code" class="block mt-1 w-full form-control" type="number" name="zip_code" autofocus autocomplete="zip_code"/>
+                        <x-jet-input id="zip_code" wire:model.defer="state.profile_info.zip_code" required class="block mt-1 w-full form-control" type="number" name="zip_code" autofocus autocomplete="zip_code"/>
                         <x-jet-input-error for="profile_info.zip_code" class="mt-2"/>
                     </div>
 
                     <div class="col-lg-6 m-b30">
                         <label class="form-label" for="recover_email"> {{ __('Recover Email') }} </label>
-                        <x-jet-input id="recover_email" wire:model.defer="state.profile_info.recover_email" class="block mt-1 w-full form-control" type="email" name="recover_email"/>
+                        <x-jet-input id="recover_email" wire:model.defer="state.profile_info.recover_email" required class="block mt-1 w-full form-control" type="email" name="recover_email"/>
                         <x-jet-input-error for="profile_info.recover_email" class="mt-2"/>
                     </div>
 
                     <div class="col-lg-6 m-b30">
                         <label class="form-label" for="home_phone"> {{ __('Recover Phone') }} </label>
-                        <x-jet-input id="home_phone" wire:model.defer="state.profile_info.home_phone" class="block mt-1 w-full form-control" type="text" name="home_phone"/>
+                        <x-jet-input id="home_phone" wire:model.defer="state.profile_info.home_phone" required class="block mt-1 w-full form-control" type="text" name="home_phone"/>
                         <x-jet-input-error for="profile_info.home_phone" class="mt-2"/>
                     </div>
                     <div class="col-lg-6 m-b30">
@@ -163,36 +164,41 @@
             </div>
 
             <div class="card-footer">
-                <div name="actions" class="col-lg-6 m-b30">
-                    <x-jet-action-message class="mr-3" on="saved">
-                        {{ __('Saved.') }}
-                    </x-jet-action-message>
-                    @if(!$otpSent)
-                        <p>
-                            OTP code will be sent to Email: {{ $state['email'] }}
-                            @if(str_starts_with(auth()->user()?->phone, '+94'))
-                                and Phone: {{ $state['phone'] }}
-                            @endif
-                        </p>
-                        <br>
-                        <div id="2ft-section">
-                            <button type="submit" wire:click="sendOTP" id="send-2ft-code" class="btn btn-sm btn-google mb-2">
-                                Send Verification Code
+                <div class="row">
+                    <div name="actions" class="col-lg-12 m-b30">
+                        <x-jet-action-message class="mr-3" on="saved">
+                            {{ __('Saved.') }}
+                        </x-jet-action-message>
+                        @if(!$otpSent)
+                            <p>
+                                OTP code will be sent to Email: {{ $state['email'] }}
+                                @if(str_starts_with(auth()->user()?->phone, '+94'))
+                                    and Phone: {{ $state['phone'] }}
+                                @endif
+                            </p>
+                            <br>
+                            <div id="2ft-section">
+                                <button type="submit" wire:click="sendOTP" class="btn btn-sm btn-google mb-2">
+                                    Send Verification Code
+                                </button>
+                            </div>
+                        @else
+                            <div class="mb-3 mt-2">
+                                <label for="otp">OTP Code</label>
+                                <input id="otp" type="text" wire:model.lazy="otp" class="block mt-1 w-full form-control" autocomplete="one-time-password" placeholder="OTP code">
+                                <div class="text-info cursor-pointer" wire:click="sendOTP">Resend OTP</div>
+                                @error('otp')
+                                <div class="mr-3 text-sm text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <button class="btn btn-primary" wire:loading.attr="disabled" wire:target="photo">
+                                {{ __('Save') }}
                             </button>
-                        </div>
-                    @else
-                        <div class="mb-3 mt-2">
-                            <label for="otp">OTP Code</label>
-                            <input id="otp" type="text" wire:model.lazy="otp" class="block mt-1 w-full form-control" autocomplete="one-time-password" placeholder="OTP code">
-                            <div class="text-info cursor-pointer" wire:click="sendOTP" id="send-2ft-code">Resend OTP</div>
-                            @error('otp')
-                            <div class="mr-3 text-sm text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <button class="btn btn-primary" wire:loading.attr="disabled" wire:target="photo">
-                            {{ __('Save') }}
-                        </button>
-                    @endif
+                        @endif
+                    </div>
+                    <div class="col-lg-12 m-b30">
+                        <x-jet-validation-errors/>
+                    </div>
                 </div>
             </div>
         </form>
@@ -208,6 +214,52 @@
                     },
                     placeholder: "YYYY-MM-DD",
                     selectOnFocus: true
+                });
+
+                const __REG_STEP = @this;
+                let itl_phone
+
+                function init(phone_iso = 'lk') {
+                    itl_phone && itl_phone.destroy();
+
+                    try {
+                        return intlTelInput.intlTelInput(document.querySelector("#phone"), {
+                            initialCountry: phone_iso,
+                            formatOnDisplay: false,
+                            //allowDropdown: false,
+                            autoPlaceholder: 'aggressive'
+                        })
+                    } catch (e) {
+                        console.log(e.message)
+                        return init('lk')
+                    }
+                }
+
+                itl_phone = init()
+
+                document.querySelector("#phone").addEventListener('change', function (e) {
+                    let countryData = itl_phone.getSelectedCountryData();
+                    let phone = itl_phone.getNumber(intlTelInputUtils.numberFormat.E164);
+                    if (itl_phone.isValidNumber()) {
+                        __REG_STEP.set('state.phone', phone);
+                    } else {
+                        //__REG_STEP.set('state.phone', null);
+                        Toast.fire({
+                            icon: 'error', title: "Invalid number!",
+                        })
+                    }
+                    console.log('phone: change: ', countryData)
+                })
+                document.getElementById("phone").addEventListener("close:countrydropdown", function () {
+                    let countryData = itl_phone.getSelectedCountryData();
+                    let phone = itl_phone.getNumber(intlTelInputUtils.numberFormat.E164);
+                    __REG_STEP.set('state.phone', null);
+                    console.log('countryChange: phone_iso: ', countryData)
+                });
+
+                Livewire.hook('element.updated', (message, component) => {
+                    //console.log(component.serverMemo.data)
+                    document.querySelector("#phone").value = component.serverMemo.data.state.phone;
                 });
             });
         </script>

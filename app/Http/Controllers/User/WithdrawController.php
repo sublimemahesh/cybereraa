@@ -100,7 +100,7 @@ class WithdrawController extends Controller
 
             return DataTables::of($withdrawals)
                 ->addColumn('withdraw_id', function ($withdraw) {
-                    return "#". str_pad($withdraw->id, 4, 0, STR_PAD_LEFT);
+                    return "#" . str_pad($withdraw->id, 4, 0, STR_PAD_LEFT);
                 })
                 ->addColumn('amount', fn($withdraw) => number_format($withdraw->amount, 2))
                 ->addColumn('fee', fn($withdraw) => number_format($withdraw->transaction_fee, 2))
@@ -141,8 +141,8 @@ class WithdrawController extends Controller
         $strategies = Strategy::whereIn('name', ['p2p_transfer_fee', 'minimum_payout_limit'])->get();
         $wallet = Auth::user()->wallet;
 
-        $p2p_transfer_fee = $strategies->where('name', 'p2p_transfer_fee')->first(null, new Strategy(['value' => 2.5]));
-        $minimum_payout_limit = $strategies->where('name', 'minimum_payout_limit')->first(null, new Strategy(['value' => 10]));
+        $p2p_transfer_fee = $strategies->where('name', 'p2p_transfer_fee')->first(null, fn() => new Strategy(['value' => 2.5]));
+        $minimum_payout_limit = $strategies->where('name', 'minimum_payout_limit')->first(null, fn() => new Strategy(['value' => 10]));
         $max_withdraw_limit = $wallet->withdraw_limit;
 
         return view('backend.user.withdrawals.p2p-transfer', compact('p2p_transfer_fee', 'max_withdraw_limit', 'minimum_payout_limit', 'wallet'));
@@ -156,15 +156,38 @@ class WithdrawController extends Controller
             return redirect()->route('profile.show')->with('warning', 'Please Fill your Binance Account details, before continuing.!');
         }
 
-        $strategies = Strategy::whereIn('name', ['payout_transfer_fee', 'minimum_payout_limit', 'staking_withdrawal_fee'])->get();
+        $strategies = Strategy::whereIn('name', ['payout_transfer_fee', 'minimum_payout_limit', 'staking_withdrawal_fee', 'daily_max_withdrawal_limits', 'withdrawal_days_of_week'])->get();
         $wallet = Auth::user()->wallet;
 
-        $payout_transfer_fee = $strategies->where('name', 'payout_transfer_fee')->first(null, new Strategy(['value' => 5]));
-        $staking_withdrawal_fee = $strategies->where('name', 'staking_withdrawal_fee')->first(null, new Strategy(['value' => 5]));
-        $minimum_payout_limit = $strategies->where('name', 'minimum_payout_limit')->first(null, new Strategy(['value' => 10]));
+        $payout_transfer_fee = $strategies->where('name', 'payout_transfer_fee')->first(null, fn() => new Strategy(['value' => 5]));
+        $staking_withdrawal_fee = $strategies->where('name', 'staking_withdrawal_fee')->first(null, fn() => new Strategy(['value' => 5]));
+        $minimum_payout_limit = $strategies->where('name', 'minimum_payout_limit')->first(null, fn() => new Strategy(['value' => 10]));
         $max_withdraw_limit = $wallet->withdraw_limit;
 
-        return view('backend.user.withdrawals.binance-payouts', compact('profile', 'payout_transfer_fee', 'staking_withdrawal_fee', 'max_withdraw_limit', 'minimum_payout_limit', 'wallet'));
+        $daily_max_withdrawal_limits = $strategies->where('name', 'daily_max_withdrawal_limits')->first(null, fn() => new Strategy(['value' => 100]));
+        $withdrawal_days_of_week = $strategies->where('name', 'withdrawal_days_of_week')->first(null, fn() => new Strategy(['value' => '["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]']));
+        $withdrawal_days_of_week = json_decode($withdrawal_days_of_week->value, true, 512, JSON_THROW_ON_ERROR);
+
+        $used_withdraw_amount_for_day = Withdraw::where('type', 'MANUAL')
+            ->where('user_id', Auth::user()->id)
+            ->whereDate('created_at', Carbon::today())
+            ->sum('amount');
+
+        $remaining_withdraw_amount_for_day = $daily_max_withdrawal_limits->value - $used_withdraw_amount_for_day;
+
+        return view('backend.user.withdrawals.binance-payouts',
+            compact(
+                'profile',
+                'payout_transfer_fee',
+                'staking_withdrawal_fee',
+                'max_withdraw_limit',
+                'minimum_payout_limit',
+                'wallet',
+                'daily_max_withdrawal_limits',
+                'withdrawal_days_of_week',
+                'remaining_withdraw_amount_for_day',
+            )
+        );
     }
 
     /**

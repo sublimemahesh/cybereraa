@@ -30,7 +30,7 @@ $(document).ready(function () {
                 icon: 'error', title: error.response.data.message || "Something went wrong!",
             })
             console.error(error.response.data)
-            let errorMap = ['withdrawal_limits_package', 'withdrawal_limits_commission', 'max_withdraw_limit', 'minimum_payout_limit']
+            let errorMap = ['withdrawal_limits_package', 'withdrawal_limits_commission', 'max_withdraw_limit', 'minimum_payout_limit', 'daily_max_withdrawal_limits', 'withdrawal_days_of_week']
             errorMap.map(id => {
                 error.response.data.errors[id] && appendError(id, `<span class="text-danger">${error.response.data.errors[id]}</span>`)
             })

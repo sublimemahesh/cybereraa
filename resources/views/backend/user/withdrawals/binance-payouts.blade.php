@@ -10,6 +10,13 @@
     <div class="row">
         @include('backend.user.wallet.top-nav')
         <div class="col-xl-8 col-sm-6">
+            @if($remaining_withdraw_amount_for_day <= 0 || !in_array(Carbon::today()->englishDayOfWeek,$withdrawal_days_of_week,true))
+                <div class="alert alert-warning">
+                    Please be informed that withdrawals are currently unavailable today.
+                    We kindly request you to revisit our platform on the designated days of the week mentioned below for further processing of your withdrawals.
+                    And also, Please ensure that you have remaining withdrawal amount for the day
+                </div>
+            @endif
             <div class="card">
                 <div class="card-body">
                     <div class="mb-4">
@@ -26,7 +33,7 @@
                         </p>
                         <p>When payout limit is reached 0, All the active packages will be expired. <br>
                             (The withdrawal limit is reduced only when withdrawing money using the main wallet)</p>
-
+                        <hr>
                         <p>
                             MAIN WALLET <br>
                             &emsp; Balance: <code>USDT {{ $wallet->balance }}</code> <br>
@@ -36,6 +43,19 @@
                         <p>
                             TOPUP WALLET <br>
                             &emsp; Balance: <code>USDT {{ $wallet->topup_balance }}</code>
+                        </p>
+                        <hr>
+                        <p>
+                            MAX AMOUNT THAT CAN WITHDRAW TODAY <br>
+                            &emsp; Balance: <code>USDT {{ $daily_max_withdrawal_limits->value }}</code>
+                        </p>
+                        <p>
+                            REMAINING AMOUNT FOR TODAY FOR WITHDRAW <br>
+                            &emsp; Balance: <code>USDT {{ $remaining_withdraw_amount_for_day }}</code>
+                        </p>
+                        <p>
+                            ALLOWED DAYS FOR THE WITHDRAWAL <br>
+                            &emsp; <code class="text-uppercase"> {{ implode(", ",$withdrawal_days_of_week) }}</code>
                         </p>
                         {{--<p>
                             STAKING WALLET <br>

@@ -51,7 +51,7 @@ class ActivateTransaction
 
             $strategies = Strategy::whereIn('name', ['commissions', 'rank_gift', 'commission_level_count', 'max_withdraw_limit'])->get();
 
-            $max_withdraw_limit = $strategies->where('name', 'max_withdraw_limit')->first(null, new Strategy(['value' => 400]));
+            $max_withdraw_limit = $strategies->where('name', 'max_withdraw_limit')->first(null, fn() => new Strategy(['value' => 400]));
             $wallet = Wallet::firstOrCreate(
                 ['user_id' => $purchasedUser->id],
                 ['balance' => 0, 'withdraw_limit' => 0]
