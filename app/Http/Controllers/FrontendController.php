@@ -20,7 +20,7 @@ class FrontendController extends Controller
         $welcome = Page::where(['slug' => 'welcome'])->firstOrNew();
 
         $benefits = Page::where(['slug' => 'benefit'])->firstOrNew();
-        $benefits = $benefits?->children;
+        $benefits = $benefits?->children; 
 
         return view('frontend.index', compact('benefits', 'welcome', 'how_it_work', 'awesome_facts'));
 
@@ -29,7 +29,12 @@ class FrontendController extends Controller
     public function about()
     {
         $abouts = Page::where(['slug' => 'about-us-page'])->firstOrNew();
-        return view('frontend.about', compact('abouts'));
+        $benefits = Page::where(['slug' => 'benefit'])->firstOrNew();
+        $benefits = $benefits?->children; 
+
+        return view('frontend.about', compact('abouts','benefits'));
+        
+        
     }
 
     public function project()

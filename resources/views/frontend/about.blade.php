@@ -62,7 +62,7 @@
             <div class="container">
                 <!-- TITLE START-->
                 <div class="section-head text-center">
-                    <h2 class="text-uppercase">Why Choose Bitcoin</h2>
+                    <h2 class="text-uppercase">Why Choose Owara3m</h2>
                     <div class="wt-separator-outer">
                         <div class="wt-separator bg-primary"></div>
                     </div>
@@ -71,82 +71,22 @@
                 <div class="section-content no-col-gap">
                     <div class="row">
 
-                        <!-- COLUMNS 1 -->
+                        <!-- COLUMNS  -->
+                        @foreach ($benefits as $key => $section)
                         <div class="col-md-4 col-sm-6 animate_line">
                             <div class="wt-icon-box-wraper  p-a30 center themecolor-2 m-a5">
                                 <div class="icon-lg text-primary m-b20">
-                                    <a href="#" class="icon-cell"><img src="{{asset('assets/frontend/images/icon/pick-29.png') }}" alt=""></a>
+                                    <a href="" class="icon-cell"><img src="{{ storage('pages/' . $section->image) }}" alt=""></a>
                                 </div>
                                 <div class="icon-content">
-                                    <h4 class="wt-tilte text-uppercase font-weight-500">Instant Trading</h4>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesg indtrysum has been the Ipsum dummy of the printing indus .</p>
+                                    <h4 class="wt-tilte text-uppercase font-weight-500">{{ $section->title }}</h4>
+                                    <p>{!! $section->content !!}</p>
                                 </div>
                             </div>
                         </div>
-                        <!-- COLUMNS 2 -->
-                        <div class="col-md-4 col-sm-6 animate_line">
-                            <div class="wt-icon-box-wraper  p-a30 center themecolor-2 m-a5">
-                                <div class="icon-lg text-primary m-b20">
-                                    <a href="#" class="icon-cell"><img src="{{ asset('assets/frontend/images/icon/pick-28.png') }}" alt=""></a>
-                                </div>
-                                <div class="icon-content ">
-                                    <h4 class="wt-tilte text-uppercase font-weight-500">Recurring Buying</h4>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesg indtrysum has been the Ipsum dummy of the printing indus .</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- COLUMNS 3 -->
-                        <div class="col-md-4 col-sm-6 animate_line">
-                            <div class="wt-icon-box-wraper  p-a30 center themecolor-2 m-a5">
-                                <div class="icon-lg text-primary m-b20">
-                                    <a href="#" class="icon-cell"><img src="{{ asset('assets/frontend/images/icon/pick-17.png') }}" alt=""></a>
-                                </div>
-                                <div class="icon-content">
-                                    <h4 class="wt-tilte text-uppercase font-weight-500">Safe and Secure</h4>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesg indtrysum has been the Ipsum dummy of the printing indus .</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- COLUMNS 4 -->
-                        <div class="col-md-4 col-sm-6 animate_line">
-                            <div class="wt-icon-box-wraper  p-a30 center themecolor-2 m-a5">
-                                <div class="icon-lg text-primary m-b20">
-                                    <a href="#" class="icon-cell"><img src="{{ asset('assets/frontend/images/icon/pick-19.png') }}" alt=""></a>
-                                </div>
-                                <div class="icon-content">
-                                    <h4 class="wt-tilte text-uppercase font-weight-500">Investment Planning</h4>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesg indtrysum has been the Ipsum dummy of the printing indus .</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- COLUMNS 5 -->
-                        <div class="col-md-4 col-sm-6 animate_line">
-                            <div class="wt-icon-box-wraper  p-a30 center themecolor-2 m-a5">
-                                <div class="icon-lg text-primary m-b20">
-                                    <a href="#" class="icon-cell"><img src="{{ asset('assets/frontend/images/icon/pick-12.png') }}" alt=""></a>
-                                </div>
-                                <div class="icon-content">
-                                    <h4 class="wt-tilte text-uppercase font-weight-500">Covered By Insurance</h4>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesg indtrysum has been the Ipsum dummy of the printing indus .</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- COLUMNS 6 -->
-                        <div class="col-md-4 col-sm-6 animate_line">
-                            <div class="wt-icon-box-wraper  p-a30 center themecolor-2 m-a5">
-                                <div class="icon-lg text-primary m-b20">
-                                    <a href="#" class="icon-cell"><img src="{{ asset('assets/frontend/images/icon/pick-38.png') }}" alt=""></a>
-                                </div>
-                                <div class="icon-content">
-                                    <h4 class="wt-tilte text-uppercase font-weight-500">Bitcoin Transaction</h4>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesg indtrysum has been the Ipsum dummy of the printing indus .</p>
-                                </div>
-                            </div>
-                        </div>
-
+                        @endforeach
                     </div>
                 </div>
-
             </div>
         </div>
         <!-- WHY CHOOSE US SECTION END -->
