@@ -143,6 +143,11 @@ class PermissionSeeder extends Seeder
             ['name' => 'stakingCancel.approve', 'guard_name' => 'web'],
             ['name' => 'stakingCancel.reject', 'guard_name' => 'web'],
 
+            ['name' => 'popup-notice.viewAny', 'guard_name' => 'web'],
+            ['name' => 'popup-notice.create', 'guard_name' => 'web'],
+            ['name' => 'popup-notice.update', 'guard_name' => 'web'],
+            ['name' => 'popup-notice.delete', 'guard_name' => 'web'],
+
         ];
 
         Permission::upsert($permissions, 'name');

@@ -287,6 +287,11 @@
                     <a href="{{ route('admin.blogs.index') }}">Blog</a>
                 </li>
             @endcan
+            @can('popup-notice.viewAny')
+                <li>
+                    <a href="{{ route('admin.popup-notices.index') }}">Popup Notices</a>
+                </li>
+            @endcan
             @can('page.viewAny')
                 <li>
                     <a href="{{ route('admin.pages.index') }}">Pages</a>
