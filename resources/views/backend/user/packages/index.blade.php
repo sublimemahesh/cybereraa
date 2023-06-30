@@ -165,7 +165,7 @@
                                             {{--<div class="mb-3"></div>--}}
                                             {{--<img class="w-100" src="{{ asset('assets/backend/images/wallets/safe.png') }}" alt="wallet-address">--}}
                                             <div class="my-2">
-                                                <span class="fs-17">TMovRiofAPRMr4uZHXS9gJuwMxbWvHW9Sq</span>
+                                                <span class="fs-17">Binance_Account</span>
                                             </div>
                                         </div>
                                     </a>
