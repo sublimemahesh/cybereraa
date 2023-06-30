@@ -260,9 +260,10 @@
                      data-paddingright="[0,0,0,0]"
                      data-paddingbottom="[0,0,0,0]"
                      data-paddingleft="[0,0,0,0]"
+                    
 
                      style="z-index: 13;">
-                     <img src="{{ asset('assets/frontend/images/main-slider/slider2/bitcoin.png') }}" alt="">
+                     <img src="{{ asset('assets/frontend/images/main-slider/slider2/tether.png') }}" alt="">
                      </div>
                    </li>
                  </ul>
