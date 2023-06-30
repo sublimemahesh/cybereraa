@@ -30,7 +30,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>  
+                    </div>
                     <div class="card-footer">
                         <button type="button" class="btn btn-primary mb-2" id="{{ $package->slug }}-choose">Choose</button>
                     </div>
@@ -120,7 +120,7 @@
                                             {{--<div class="mb-3"></div>--}}
                                             {{--<img class="w-100" src="{{ asset('assets/backend/images/wallets/safe.png') }}" alt="wallet-address">--}}
                                             <div class="my-2">
-                                                <span class="fs-17">TMovRiofAPRMr4uZHXS9gJuwMxbWvHW9Sq</span>
+                                                <span class="fs-17">Binance_Account</span>
                                             </div>
                                         </div>
                                     </a>
