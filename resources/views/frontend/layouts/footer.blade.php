@@ -20,6 +20,7 @@
                         <h4 class="widget-title text-white">Useful links</h4>
                         <ul>
                             <li><a href="{{ route('about') }}">ABOUT</a></li>
+                            <li><a href="{{ route('how-it-work') }}">HOW IT WORK</a></li>
                             <li><a href="{{ route('faq') }}">FAQ</a></li>
                             <li><a href="{{ route('pricing') }}">PACKAGES</a></li>
                             <li><a href="{{ route('news') }}">NEWS</a></li>

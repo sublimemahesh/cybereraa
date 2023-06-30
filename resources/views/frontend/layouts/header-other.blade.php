@@ -137,12 +137,14 @@
                                     <a href="{{ route('Upcoming-project') }}">UPCOMING PROJECTS</a>
                                 </li>
                             </ul>
-                        </li>
-
+                        </li>                       
                         <li>
                             <a href="{{ route('pricing') }}">PACKAGES</i></a>
                         </li>
-
+                        <li>
+                            <a href="{{ route('how-it-work') }}">HOW IT WORK</a>
+                        </li>
+                        
                         <li>
                             <a href="{{ route('faq') }}">FAQ</i></a>
                         </li>
