@@ -91,18 +91,16 @@
         <!-- OUR VALUE SECTION  END -->
 
         <!-- WELCOME SECTION START -->
-
-
         <div class="section-full home-about-section p-t80 bg-no-repeat bg-bottom-right themecolor-2" style="background-image:url(images/background/bg-coin.png)">
             <div class="container-fluid ">
                 <div class="row">
-                    <div class="col-md-6">
-                        <div class="wt-box text-right">
+                    <div class="col-md-6"> 
+                        <div class="wt-box text-center">
                             <img src="{{ storage('pages/' . $welcome->image) }}" alt="">
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="wt-right-part p-b80">
+                        <div class="wt-right-part p-b80 text-left">
                             <!-- TITLE START -->
                             <div class="section-head text-left">
                                 <span class="wt-title-subline font-16 text-gray-dark m-b15">Trusted  Investment Project</span>
