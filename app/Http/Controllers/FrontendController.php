@@ -137,4 +137,14 @@ class FrontendController extends Controller
 
     }
 
+
+    public function howItWorkPage()
+    {
+        $how_it_work = Page::where(['slug' => 'how-to-it-works'])->firstOrNew();
+        $how_it_work = $how_it_work->children;
+        return view('frontend.how-it-work',compact('how_it_work'));
+        
+    }
+
+
 }

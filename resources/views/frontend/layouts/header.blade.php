@@ -107,6 +107,9 @@
                         <li>
                             <a href="{{ route('pricing') }}">PACKAGES</a>
                         </li>
+                        <li>
+                            <a href="{{ route('how-it-work') }}">HOW IT WORK</a>
+                        </li>
 
                         <li>
                             <a href="{{ route('faq') }}">FAQ</a>
