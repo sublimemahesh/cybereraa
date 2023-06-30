@@ -17,7 +17,7 @@
                         <p>
                             Please note that transaction fees will be added to every withdrawal request based on your wallet type. <br>
                             For wallets with type <code>"MAIN" & "TOPUP"</code>, the transaction fee is <code>USDT {{ $payout_transfer_fee->value }}</code>.<br>
-                            For wallets with type <code>"STAKING"</code>, the transaction fee is <code>USDT {{ $staking_withdrawal_fee->value }}</code>.
+                            {{--For wallets with type <code>"STAKING"</code>, the transaction fee is <code>USDT {{ $staking_withdrawal_fee->value }}</code>.--}}
                         </p>
                         <p>
                             Your Wallet Balance: <code>USDT {{ $wallet->balance }}</code>.
@@ -37,10 +37,10 @@
                             TOPUP WALLET <br>
                             &emsp; Balance: <code>USDT {{ $wallet->topup_balance }}</code>
                         </p>
-                        <p>
+                        {{--<p>
                             STAKING WALLET <br>
                             &emsp; Balance: <code>USDT {{ $wallet->staking_balance }}</code>
-                        </p>
+                        </p>--}}
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
@@ -95,7 +95,7 @@
                                             </div>
                                         </label>
 
-                                        <label class="plan complete-plan col-sm-4" for="staking">
+                                        {{--<label class="plan complete-plan col-sm-4" for="staking">
                                             <input type="radio" id="staking" name="wallet_type" value="staking"/>
                                             <div class="plan-content">
                                                 <img loading="lazy" src="https://raw.githubusercontent.com/ismailvtl/ismailvtl.github.io/master/images/potted-plant-img.svg" alt=""/>
@@ -103,11 +103,11 @@
                                                     <span>Staking Wallet</span>
                                                 </div>
                                             </div>
-                                        </label>
+                                        </label>--}}
                                     </div>
                                 </div>
                                 <hr>
-                                <div class="coin-warpper d-flex align-items-center justify-content-between flex-wrap">
+                                {{--<div class="coin-warpper d-flex align-items-center justify-content-between flex-wrap">
                                     <div>
                                         <ul class="nav nav-pills">
                                             <li class="nav-item wow fadeInUp">
@@ -131,7 +131,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <hr>
+                                <hr>--}}
                                 <p>
                                     Please confirm access to your account by entering the <code>password</code> and
                                     <code>authentication code</code> provided by your authenticator application

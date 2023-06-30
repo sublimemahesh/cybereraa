@@ -99,7 +99,9 @@ class WithdrawController extends Controller
                 ->where('type', 'MANUAL');
 
             return DataTables::of($withdrawals)
-                ->addColumn('withdraw_id', fn($withdraw) => str_pad($withdraw->id, 4, 0, STR_PAD_LEFT))
+                ->addColumn('withdraw_id', function ($withdraw) {
+                    return "#". str_pad($withdraw->id, 4, 0, STR_PAD_LEFT);
+                })
                 ->addColumn('amount', fn($withdraw) => number_format($withdraw->amount, 2))
                 ->addColumn('fee', fn($withdraw) => number_format($withdraw->transaction_fee, 2))
                 ->addColumn('total', fn($withdraw) => number_format($withdraw->amount + $withdraw->transaction_fee, 2))

@@ -52,11 +52,11 @@ $(function () {
         },
         columnDefs: [{
             render: function (date, type, full, meta) {
-                return `<div style='font-size: 0.76rem !important;'> ${date} </div>`;
-            }, targets: 4,
+                return `<div style="font-size: 0.76rem !important;"> ${date} </div>`;
+            }, targets: [1, 2, 3, 4],
         }, {
             render: function (amount, type, full, meta) {
-                return `<div style='min-width:100px' class="text-right"> ${amount} </div>`;
+                return `<div style="min-width:100px" class="text-right"> ${amount} </div>`;
             }, targets: [5, 6, 7],
         },],
     });

@@ -155,6 +155,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::get('wallet/topup', 'Admin\WalletTopupHistoryController@index')->name('wallet.topup');
         Route::get('wallet/topup/history', 'Admin\WalletTopupHistoryController@history')->name('wallet.topup.history');
         Route::post('topup/wallet', 'Admin\WalletTopupHistoryController@topup');
+        Route::match(['get', 'post'], 'wallet/topup/{topupHistory}/confirm-requests', 'Admin\WalletTopupHistoryController@confirmTopupRequest')->name('wallet.topup.confirm-requests');
         Route::post('filter/users/{search_text}', 'Admin\WalletTopupHistoryController@findUsers');
 
         //Route::get('packages/buy-package', 'Admin\PackageController@buypackage')->name('packages.buyBackage');
@@ -365,6 +366,10 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
 
         Route::get('wallet/transfer/invoice/{withdraw}', 'Payment\InvoiceController@showPayoutInvoice')->name('wallet.transfer.invoice')->middleware('signed');
         Route::get('wallet/transfer/invoice/steam/{withdraw}', 'Payment\InvoiceController@streamPayoutInvoice')->name('wallet.transfer.invoice.stream')->middleware('signed');
+
+        // Topup Request
+        Route::match(['get', 'post'], 'wallet/request-topup-balance', 'User\WalletTopupHistoryController@index')->name('wallet.request-topup-balance');
+        Route::get('wallet/topup-requests/history', 'User\WalletTopupHistoryController@history')->name('wallet.topup-request.history');
 
 
         // support tickets

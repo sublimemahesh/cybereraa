@@ -40,7 +40,19 @@ class WalletTopupHistoryService
             })->addColumn('remark', static function ($topup) {
                 return "<span title='{$topup->remark}'>" . Str::limit($topup->remark, 15) . "</span>";
             })
-            ->addColumn('created_at', fn($topup) => $topup->created_at->format('Y-m-d H:i:s'))
+            ->addColumn('created', fn($topup) => $topup->created_at->format('Y-m-d h:i A'))
+            ->addColumn('accepted', function ($topup) {
+                if ($topup->accepted_at) {
+                    return \Carbon::parse($topup->accepted_at)->format('Y-m-d h:i A');
+                }
+                return '-';
+            })
+            ->addColumn('rejected', function ($topup) {
+                if ($topup->rejected_at) {
+                    return \Carbon::parse($topup->rejected_at)->format('Y-m-d h:i A');
+                }
+                return '-';
+            })
             ->addColumn('amount', fn($topup) => number_format($topup->amount, 2));
     }
 }

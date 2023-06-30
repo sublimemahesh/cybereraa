@@ -10,14 +10,11 @@ $(function () {
         serverSide: true,
         fixedHeader: true,
         responsive: true,
-        order: [[5, 'desc']],
+        order: [[3, 'desc']],
         //stateSave: true,
-        ajax: TOPUP_HISTORY_URL,
+        ajax: location.href,
         columns: [
-            {data: "actions", searchable: false, orderable: false},
-            {data: "sender", name: 'user.username', searchable: true, orderable: false},
-            {data: "receiver", name: 'receiver.username', searchable: true, orderable: false},
-            // {data: "proof", searchable: false, orderable: false},
+            {data: "proof", searchable: false, orderable: false},
             {data: "remark", searchable: false, orderable: false},
             {data: "status", searchable: false, orderable: false},
             {data: "created", name: 'created_at', searchable: false},
@@ -40,18 +37,18 @@ $(function () {
                     }, 0);
             }
 
-            let amount = new Intl.NumberFormat().format(sumVal(6));
-            $(api.column(6).footer()).html(`Current page total amount: USDT ${amount}`);
+            let amount = new Intl.NumberFormat().format(sumVal(4));
+            $(api.column(4).footer()).html(`Current page total amount: USDT ${amount}`);
 
         },
         columnDefs: [{
             render: function (date, type, full, meta) {
                 return `<div style="font-size: 0.76rem !important;"> ${date} </div>`;
-            }, targets: [1, 2, 3, 4, 5],
+            }, targets: [1, 2, 3],
         }, {
             render: function (amount, type, full, meta) {
                 return `<div style="min-width:100px" class="text-right"> ${amount} </div>`;
-            }, targets: [6],
+            }, targets: [4],
         },],
     });
 
@@ -61,12 +58,10 @@ $(function () {
 
     $(document).on("click", "#topup-history-search", function (e) {
         e.preventDefault();
-        urlParams.set("sender_id", $("#sender_id").val());
-        urlParams.set("user_id", $("#user_id").val());
         urlParams.set("status", $("#status").val());
         urlParams.set("date-range", $("#topup-history-date-range").val());
-        let url = TOPUP_HISTORY_URL.split(/\?|\#/)[0] + "?" + urlParams.toString();
-        HISTORY_STATE && history.replaceState({}, "", url);
+        let url = location.href.split(/\?|\#/)[0] + "?" + urlParams.toString();
+        history.replaceState({}, "", url);
         table.ajax.url(url).load();
     });
 

@@ -14,11 +14,8 @@ use Auth;
 use DB;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Gate;
-use Laravel\Fortify\Events\RecoveryCodeReplaced;
-use Laravel\Fortify\TwoFactorAuthenticatable;
-use Laravel\Fortify\TwoFactorAuthenticationProvider;
-use PragmaRX\Google2FA\Google2FA;
 use Str;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
@@ -41,7 +38,19 @@ class WalletTopupHistoryController extends Controller
         abort_if(Gate::denies('wallet.topup-history.viewAny'), Response::HTTP_FORBIDDEN);
         if ($request->wantsJson()) {
             return $topupHistoryService->datatable($request->get('sender_id'), $request->get('user_id'))
-                ->rawColumns(['sender', 'receiver', 'proof', 'remark'])
+                ->addColumn('actions', function ($topup) {
+                    $actions = "<a href='" . storage('wallets/topup/' . $topup->proof_documentation) . "' target='_blank' title='View proof' class='btn btn-info shadow btn-xs my-1 sharp me-1'>
+                                <i class='fas fa-check-to-slot'></i>
+                            </a>";
+                    if (Gate::allows('confirmRequest', $topup)) {
+                        $actions .= "<a href='" . route('admin.wallet.topup.confirm-requests', $topup) . "'  title='Confirm the request' class='btn btn-success shadow btn-xs my-1 sharp me-1'>
+                                <i class='fas fa-check-double'></i>
+                            </a>";
+                    }
+
+                    return $actions;
+                })
+                ->rawColumns(['actions', 'sender', 'receiver', 'proof', 'remark'])
                 ->make();
         }
         return view('backend.admin.users.wallets.history');
@@ -128,7 +137,82 @@ class WalletTopupHistoryController extends Controller
         return response()->json($json, Response::HTTP_OK);
     }
 
-    public function findUsers($search_text): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+    /**
+     * @throws Throwable
+     */
+    public function confirmTopupRequest(Request $request, WalletTopupHistory $topupHistory, TwoFactorAuthenticateService $authenticateService)
+    {
+        abort_if(Gate::denies('confirmRequest', $topupHistory), Response::HTTP_FORBIDDEN);
+
+        if ($request->isMethod('post')) {
+
+            $sender = Auth::user();
+            $validated = Validator::make($request->all(), [
+                //            'status' => ['required', 'in:success,rejected'],
+                'password' => 'required',
+                'code' => 'nullable',
+            ])->validate();
+
+            if (!$authenticateService->checkPassword($sender, $validated['password'] ?? null)) {
+                $json['status'] = false;
+                $json['message'] = 'Password is incorrect';
+                $json['icon'] = 'error'; // warning | info | question | success | error
+                return response()->json($json, Response::HTTP_UNAUTHORIZED);
+            }
+
+            if ($authenticateService->isTwoFactorEnabled($sender)) {
+
+                if ($validated['code'] === null) {
+                    $json['status'] = false;
+                    $json['message'] = 'The two factor authentication code is required.';
+                    $json['icon'] = 'error'; // warning | info | question | success | error
+                    return response()->json($json, Response::HTTP_UNAUTHORIZED);
+                }
+
+                if (!$authenticateService->checkTwoFactor($sender, $validated['code'])) {
+                    $json['status'] = false;
+                    $json['message'] = 'The provided two factor authentication code was invalid.';
+                    $json['icon'] = 'error'; // warning | info | question | success | error
+                    return response()->json($json, Response::HTTP_UNAUTHORIZED);
+                }
+            }
+
+            DB::transaction(static function () use ($topupHistory, $sender) {
+
+                $topupHistory->update([
+                    'user_id' => $sender->id,
+                    'status' => 'SUCCESS',
+                ]);
+
+                $topupHistory->earnings()->save(Earning::forceCreate([
+                    'user_id' => $topupHistory->receiver_id,
+                    'currency' => 'USDT',
+                    'amount' => $topupHistory->amount,
+                    'type' => 'P2P',
+                    'status' => 'RECEIVED'
+                ]));
+
+                $receiver_wallet = Wallet::firstOrCreate(
+                    ['user_id' => $topupHistory->receiver->id],
+                    ['topup_balance' => 0, 'withdraw_limit' => 0]
+                );
+
+                $receiver_wallet->increment('topup_balance', $topupHistory->amount);
+
+                return $topupHistory;
+            });
+
+            $json['status'] = true;
+            $json['message'] = "Topup request confirm is successful!";
+            $json['icon'] = 'success'; // warning | info | question | success | error
+            $json['redirectUrl'] = route('admin.wallet.topup.history');
+            return response()->json($json, Response::HTTP_OK);
+        }
+
+        return view('backend.admin.users.wallets.confirm-topup-request', compact('topupHistory'));
+    }
+
+    public function findUsers($search_text): AnonymousResourceCollection
     {
         abort_if(Gate::denies('wallet.topup'), Response::HTTP_FORBIDDEN);
         $users = User::where('username', 'LIKE', "%{$search_text}%")

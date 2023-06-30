@@ -18,11 +18,44 @@ class WalletTopupHistory extends Model
     use SoftDeletes;
     use Loggable;
 
-    protected $fillable = ['user_id', 'receiver_id', 'amount', 'proof_documentation', 'remark'];
+    protected $fillable = [
+        'user_id',
+        'receiver_id',
+        'amount',
+        'proof_documentation',
+        'remark',
+        'status',
+    ];
 
     protected $appends = [
         'package_info_json'
     ];
+
+    protected static function booted()
+    {
+        static::created(function (self $topupHistory) {
+            if ($topupHistory->status === 'SUCCESS') {
+                $topupHistory->accepted_at = Carbon::now();
+                $topupHistory->saveQuietly();
+            }
+            if ($topupHistory->status === 'REJECTED') {
+                $topupHistory->rejected_at = Carbon::now();
+                $topupHistory->saveQuietly();
+            }
+        });
+
+        static::updated(function (self $topupHistory) {
+
+            if ($topupHistory->status === 'SUCCESS') {
+                $topupHistory->accepted_at = Carbon::now()->format('Y-m-d H:i:s');
+                $topupHistory->saveQuietly();
+            }
+            if ($topupHistory->status === 'REJECTED') {
+                $topupHistory->rejected_at = Carbon::now()->format('Y-m-d H:i:s');
+                $topupHistory->saveQuietly();
+            }
+        });
+    }
 
     public function getPackageInfoJsonAttribute(): stdClass
     {
@@ -30,7 +63,7 @@ class WalletTopupHistory extends Model
         $obj->name = "Topup balance";
         $obj->amount = $this->amount;
         $obj->currency = "USDT";
-        return $this->package_info_json = $obj;
+        return $obj;
     }
 
     public function earnings(): morphMany
@@ -59,8 +92,8 @@ class WalletTopupHistory extends Model
      */
     public function scopeFilter(Builder $query): Builder
     {
-        return $query->when(!empty(request()->input('date-range')),
-            static function ($query) {
+        return $query
+            ->when(!empty(request()->input('date-range')), static function ($query) {
                 $period = explode(' to ', request()->input('date-range'));
                 try {
                     $date1 = Carbon::createFromFormat('Y-m-d', $period[0]);
@@ -69,6 +102,10 @@ class WalletTopupHistory extends Model
                 } finally {
                     return;
                 }
+            })
+            ->when(!empty(request()->input('status')) && in_array(request()->input('status'),
+                    ['pending', 'success', 'rejected']), function ($query) {
+                $query->where('status', request()->input('status'));
             });
     }
 }
