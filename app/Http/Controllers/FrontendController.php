@@ -14,13 +14,13 @@ class FrontendController extends Controller
     public function index()
     {
 
-        $how_it_work = Page::where(['slug' => 'how-to-it-works'])->firstOrNew();
-        $how_it_work = $how_it_work->children;
+        $how_it_work = Page::where(['slug' => 'how-to-it-works-home-page'])->firstOrNew();
+       // $how_it_work = $how_it_work->children;
         $awesome_facts = Page::where(['slug' => 'company-detail'])->firstOrNew();
         $welcome = Page::where(['slug' => 'welcome'])->firstOrNew();
 
         $benefits = Page::where(['slug' => 'benefit'])->firstOrNew();
-        $benefits = $benefits?->children; 
+        $benefits = $benefits?->children;
 
         return view('frontend.index', compact('benefits', 'welcome', 'how_it_work', 'awesome_facts'));
 
@@ -30,11 +30,11 @@ class FrontendController extends Controller
     {
         $abouts = Page::where(['slug' => 'about-us-page'])->firstOrNew();
         $benefits = Page::where(['slug' => 'benefit'])->firstOrNew();
-        $benefits = $benefits?->children; 
+        $benefits = $benefits?->children;
 
         return view('frontend.about', compact('abouts','benefits'));
-        
-        
+
+
     }
 
     public function project()
@@ -143,7 +143,7 @@ class FrontendController extends Controller
         $how_it_work = Page::where(['slug' => 'how-to-it-works'])->firstOrNew();
         $how_it_work = $how_it_work->children;
         return view('frontend.how-it-work',compact('how_it_work'));
-        
+
     }
 
 
