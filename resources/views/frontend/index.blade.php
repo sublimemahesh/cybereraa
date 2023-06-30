@@ -94,7 +94,7 @@
         <div class="section-full home-about-section p-t80 bg-no-repeat bg-bottom-right themecolor-2" style="background-image:url(images/background/bg-coin.png)">
             <div class="container-fluid ">
                 <div class="row">
-                    <div class="col-md-6"> 
+                    <div class="col-md-6">
                         <div class="wt-box text-center">
                             <img src="{{ storage('pages/' . $welcome->image) }}" alt="">
                         </div>
@@ -224,13 +224,13 @@
                         <div class="wt-separator-outer">
                             <div class="wt-separator bg-primary"></div>
                         </div>
-                        <p>Owara3m.com is a forex and cryptocurrency trading investment site that offers an opportunity for investors to participate in trading activities and potentially earn a profit share. Here's how it works:</p>
+                        {!! html_entity_decode($how_it_work->content) !!}
                     </div>
                     <!-- TITLE END-->
                     <div class="section-content no-col-gap">
                         <div class="row">
 
-                            @foreach ($how_it_work as $key => $section)
+                            @foreach ($how_it_work->children as $key => $section)
                             @if ($key%2 == 0)
                             <!-- COLUMNS 1 -->
 
