@@ -8085,13 +8085,26 @@ fieldset:disabled .btn {
     background-color: #1fcde8 !important;
 }
 
+.bg-info-dark {
+    background-color: #6397c6 !important;
+}
+
 .bg-warning {
     background-color: #f0a901 !important;
+}
+
+.bg-warning-dark  {
+    background-color: #d8ae2d !important;
 }
 
 .bg-danger {
     background-color: #c11515 !important;
 }
+
+.bg-danger-dark {
+    background-color: #aa2e25 !important;
+}
+
 
 .bg-light {
     background-color: #c8c8c8 !important;
@@ -11998,6 +12011,9 @@ h1, .h1, .h1, h2, .h2, .h2, h3, .h3, .h3, h4, .h4, .h4, h5, .h5, .h5, h6, .h6, .
     background: #088d26 !important;
 }
 
+.bg-green-dark {
+    background: #1c3e28 !important;
+}
 .bg-purpel {
     background: #9517c1 !important;
 }
