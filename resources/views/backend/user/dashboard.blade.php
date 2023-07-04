@@ -119,43 +119,41 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xl-3 col-lg-6 col-sm-12">
-                            <div class="row">
-                                <div class="col-xl-12">
-                                    <div class="widget-stat card rounded-3 bg-info">
-                                        <div class="card-body  p-4">
-                                            <div class="media">
-                                                <span class="me-3"><i class="la la-wallet"></i></span>
-                                                <div class="media-body text-white">
-                                                    <p class="mb-1">INCOME BALANCE</p>
-                                                    <h4 class="text-white user-dashboard-card-font-size-change">
-                                                        USDT {{number_format($wallet->balance,2) }}
-                                                    </h4>
-                                                    <small> </small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-12">
-                                    <div class="widget-stat card rounded-3 bg-warning">
-                                        <div class="card-body  p-4">
-                                            <div class="media">
-                                                <span class="me-3"><i class="la la-wallet"></i></span>
-                                                <div class="media-body text-white">
-                                                    <p class="mb-1">PAYOUT BALANCE</p>
-                                                    <h4 class="text-white user-dashboard-card-font-size-change">
-                                                        USDT {{number_format($wallet->withdraw_limit,2) }}
-                                                    </h4>
-                                                    <small> </small>
-                                                </div>
-                                            </div>
+                        <div class="col-xl-6 col-lg-6 col-sm-12">
+                            <div class="widget-stat card rounded-3 bg-info">
+                                <div class="card-body  p-4">
+                                    <div class="media">
+                                        <span class="me-3"><i class="la la-wallet"></i></span>
+                                        <div class="media-body text-white">
+                                            <p class="mb-1">INCOME BALANCE</p>
+                                            <h4 class="text-white user-dashboard-card-font-size-change">
+                                                USDT {{number_format($wallet->balance,2) }}
+                                            </h4>
+                                            <small> </small>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-9 col-lg-6 col-sm-12">
+                        <div class="col-xl-6 col-lg-6 col-sm-12">
+                            <div class="widget-stat card rounded-3 bg-warning">
+                                <div class="card-body  p-4">
+                                    <div class="media">
+                                        <span class="me-3"><i class="la la-wallet"></i></span>
+                                        <div class="media-body text-white">
+                                            <p class="mb-1">PAYOUT BALANCE</p>
+                                            <h4 class="text-white user-dashboard-card-font-size-change">
+                                                USDT {{number_format($wallet->withdraw_limit,2) }}
+                                            </h4>
+                                            <small> </small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-6 col-sm-12">
                             <div class="row">
                                 <div class="col-xl-4 col-lg-6 col-sm-6">
                                     <div class="widget-stat card rounded-3">
