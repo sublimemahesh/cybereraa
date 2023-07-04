@@ -8082,7 +8082,7 @@ fieldset:disabled .btn {
 }
 
 .bg-info {
-    background-color: #1fa6ff !important;
+    background-color: #1fcde8 !important;
 }
 
 .bg-warning {
@@ -22940,7 +22940,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
 [data-sidebarbg="color_4"][data-theme-version="dark"] .deznav .metismenu > li.mm-active > a,
 [data-sidebarbg="color_4"] .deznav .metismenu > li.mm-active > a {
-    background: #1fa6ff !important;
+    background: #1fcde8 !important;
     color: #fff !important;
 }
 
@@ -29130,7 +29130,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 [data-theme-version="dark"] .deznav .metismenu > li:hover > a i, [data-theme-version="dark"] .deznav .metismenu > li:focus > a i, [data-theme-version="dark"] .deznav .metismenu > li.mm-active > a i {
-    color: #1fa6ff  !important;
+    color:#1fcde8 !important;
 }
 
 [data-theme-version="dark"] .deznav .metismenu > li.mm-active ul ul {
@@ -41360,7 +41360,7 @@ table.dataTable thead .sorting_asc {
 .order.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
     background: var(--primary);
     color: #1ea6fe !important;
-    border-top-color: #1fa6ff;
+    border-top-color: #1fcde8;
     border-top-width: 4px;
 }
 
@@ -48758,7 +48758,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 }
 
 [data-theme-version="dark"] .deznav .metismenu > li:hover > a, [data-theme-version="dark"] .deznav .metismenu > li:focus > a, [data-theme-version="dark"] .deznav .metismenu > li.mm-active > a {
-    color: #1fa6ff !important;
+    color: #1fcde8 !important;
     /* background:var(--rgba-primary-1); */
 }
 
