@@ -70,7 +70,7 @@
 
 </head>
 
-<body class="font-sans antialiased dark" style="background:#020202">
+<body class="font-sans antialiased dark" style="background:var(--bg-color)">
 <!--******************* Preloader start ********************-->
 
 <!--******************* Preloader end ********************-->
