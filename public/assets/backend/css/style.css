@@ -110,6 +110,7 @@
     --title: #374557;
 
     --border-radius:6px ;
+    --br-nav-tab:10px;
     --br-input:10px ;
     --bg-color:#171b26 ;
 
@@ -41325,7 +41326,7 @@ table.dataTable thead .sorting_asc {
     padding: 6px;
     border: 1px solid 020202;
     border-radius: var(--border-radius);
-    background-color: #020202;
+    background-color: var(--bg-color);
 }
 
 @media only screen and (max-width: 35.9375rem) {
@@ -41338,11 +41339,11 @@ table.dataTable thead .sorting_asc {
     /* border: 3px solid #020202;; */
     padding: 0.5rem 0.9rem;
     background-color: #707070;
-    border-radius:var(--border-radius);
+    border-radius:var(--br-nav-tab);
     margin-right: 5px;
     padding-left: 20px;
     padding-right: 20px;
-    margin: 5px;
+    margin: 0px 2px 6px 2px;
 }
 
 .order.nav-tabs .nav-link:active {
