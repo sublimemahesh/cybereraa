@@ -8174,11 +8174,11 @@ fieldset:disabled .btn {
 }
 
 .rounded-0 {
-    border-radius: 0 !important;
+    border-radius:  0.2rem  !important;
 }
 
 .rounded-1 {
-    border-radius: 0.2rem !important;
+    border-radius: 1rem !important;
 }
 
 .rounded-2 {
