@@ -1,5 +1,5 @@
 <div>
-    <div class="card">
+    <div>
         <div class="card-body">
             <form class="theme-form" enctype="multipart/form-data" wire:submit.prevent="save">
                 @if(!empty($parent->id))
