@@ -120,7 +120,7 @@
                     </div>
                     <div class="row">
                         <div class="col-xl-6 col-lg-6 col-sm-12">
-                            <div class="widget-stat card rounded-3 bg-info">
+                            <div class="widget-stat card rounded-3 bg-info-dark">
                                 <div class="card-body  p-4">
                                     <div class="media">
                                         <span class="me-3"><i class="la la-wallet"></i></span>
@@ -136,7 +136,7 @@
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-sm-12">
-                            <div class="widget-stat card rounded-3 bg-warning">
+                            <div class="widget-stat card rounded-3 bg-warning-dark ">
                                 <div class="card-body  p-4">
                                     <div class="media">
                                         <span class="me-3"><i class="la la-wallet"></i></span>
@@ -176,7 +176,7 @@
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-lg-6 col-sm-6">
-                                    <div class="widget-stat card rounded-3 bg-green">
+                                    <div class="widget-stat card rounded-3 bg-green-dark">
                                         <div class="card-body  p-4">
                                             <div class="media">
                                                 <span class="me-3"><i class="la la-upload"></i></span>
@@ -194,7 +194,7 @@
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-lg-6 col-sm-6">
-                                    <div class="widget-stat card rounded-3 bg-danger">
+                                    <div class="widget-stat card rounded-3  bg-danger-dark">
                                         <div class="card-body  p-4">
                                             <div class="media">
                                         <span class="me-3">
