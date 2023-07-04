@@ -48979,3 +48979,7 @@ button.dt-button, div.dt-button, a.dt-button {
 input {
     border-radius: var(--border-radius);
   }
+
+  .nav-tabs .nav-link:hover{
+    color: #1fcde8 !important;
+}
