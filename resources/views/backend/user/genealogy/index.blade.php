@@ -15,7 +15,7 @@
     @endsection
     <div class="row">
         <div class="col-xl-12 col-sm-12 ">
-            <div class="bg-secondary card d-flex email-susb justify-content-center m-auto w-75">
+            <div class="bg-secondary card d-flex email-susb  m-auto ">
                 @include('backend.user.teams.top-nav')
             </div>
         </div>
