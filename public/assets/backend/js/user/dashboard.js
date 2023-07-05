@@ -44,3 +44,16 @@ jQuery(window).on('resize', function () {
     'use strict';
     userDash.resize();
 });
+
+
+
+
+var owl = $('.owl-banner');
+owl.owlCarousel({
+    items:1,
+    loop:true,
+    margin:10,
+    autoplay:true,
+    autoplayTimeout:1000,
+    autoplayHoverPause:true
+});

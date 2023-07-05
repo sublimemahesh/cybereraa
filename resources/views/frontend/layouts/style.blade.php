@@ -6,7 +6,7 @@
  <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend/css/flaticon.min.css') }}">
  <!-- ANIMATE STYLE SHEET -->
  <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend/css/animate.min.css') }}">
- <!-- OWL CAROUSEL STYLE SHEET -->
+ <!-- OWL CAROUSEL STYLE SHEET --> 
  <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend/css/owl.carousel.min.css') }}">
  <!-- BOOTSTRAP SELECT BOX STYLE SHEET -->
  <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend/css/bootstrap-select.min.css')}}">

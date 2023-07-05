@@ -10,6 +10,8 @@ use App\Models\Earning;
 use App\Models\PopupNotice;
 use App\Models\Rank;
 use App\Models\Transaction;
+use App\Models\Page;
+
 use Auth;
 use DB;
 
@@ -113,8 +115,15 @@ class DashboardController extends Controller
             ->inRandomOrder()
             ->firstOrNew();
 
+
+            $banners = Page::where(['slug' => 'banner'])->firstOrNew();
+            $banners = $banners?->children;
+
+
+
         return view('backend.user.dashboard',
             compact(
+                'banners',
                 'total_investment',
                 'active_investment',
                 'expired_investment',
@@ -141,5 +150,8 @@ class DashboardController extends Controller
                 'popup',
             )
         );
+
+
+
     }
 }

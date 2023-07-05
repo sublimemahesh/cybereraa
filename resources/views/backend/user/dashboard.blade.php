@@ -381,6 +381,21 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-lg-12">
+                    <div class="owl-carousel owl-banner">
+                        @foreach ($banners as $section)
+                            <div class="item">
+
+                                    <img src="{{ storage('pages/' . $section->image) }}" alt="safest trades">
+                               
+                            </div>
+                        @endforeach
+                    </div>
+                    <br>
+                    <br>
+                </div>
+
                 <div class="col-lg-12">
                     <div class="card rounded-3">
                         <div class="card-header">
@@ -577,6 +592,7 @@
                     }
                 },
             })
+
         </script>
     @endpush
 </x-backend.layouts.app>
