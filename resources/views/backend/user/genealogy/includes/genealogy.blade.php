@@ -37,8 +37,8 @@
                                                 <a href="{{ URL::signedRoute('user.genealogy.position.manage', ['parent' => $user, 'position' => $i]) }}">
                                                     <div class="genealogy item">
                                                         <div class="card">
-                                                            <div class="card-img"><img class="card-img2  card-img2-mob" src="{{ asset('assets/backend/images/user-icon.jpg') }}"  alt=""></div>
-                                                            <div class="card-info">
+                                                            <div class="card-img-empty"><img class="card-img2  card-img2-mob" src="{{ asset('assets/backend/images/user-icon.jpg') }}"  alt=""></div>
+                                                            <div class="card-info info-empty">
                                                                 <h5 class="text-title">Empty    </h5><br>
                                                                 <p class="text-body-name">Add your new member</p>
                                                             </div>
