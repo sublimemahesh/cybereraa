@@ -64,7 +64,8 @@
     align-items: center;
     gap: 0em;
     padding: 0 1rem;
-    margin-top: -17px
+    margin-top: 6px;
+    margin-bottom: -6px;
 }
 
 .genealogy .card-img {
@@ -224,15 +225,28 @@
 
 .genealogy .card-img2 {
     --size: 100px;
-    width: 73px;
-    height: 73px;
-    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    border-radius: 5%;
     transform: translateY(-50%);
     background: #42caff;
     background: linear-gradient(to bottom, #42caff 0%, #e81aff 100%);
     position: relative;
     transition: all .3s ease-in-out;
-    margin-top: 50px;
+    margin-top: 49px;
     object-fit: cover;
+    margin-left: -60px;
+  }
 
+.new-stl {
+    margin-top: -150px;
+    margin-right: -125px;
+  }
+
+.card-img-empty{
+    margin-top: 12px;
+    margin-right: -55px;
+}
+.info-empty{
+    margin-top: -24px !important;
 }
