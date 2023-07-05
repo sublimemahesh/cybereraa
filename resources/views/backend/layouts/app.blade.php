@@ -39,6 +39,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
+    <!-- OWL CAROUSEL STYLE SHEET -->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend/css/owl.carousel.min.css') }}">
+
     <style>
         img:not(.nav-header .brand-logo, .nav-header .logo-color, .color-title, .swal2-image),
         svg,
@@ -160,6 +163,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/plugins/confirmDate/confirmDate.min.js" integrity="sha512-4WKKGGTnWlxFaoURIEl1as1Jv26hz56uc3WZMusBlx7JBO9NjYv7Cq1ThArvJ0fMSEY72YYr0AK0GyJHUC3mvw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/plugins/monthSelect/index.js"></script>
 {{--    <script src="{{ asset('assets/backend/js/dashboard/tradingview-2.js') }}"></script> --}}
+
+<script src="{{ asset('assets/frontend/js/owl.carousel.min.js') }}"></script><!-- OWL  SLIDER  -->
 
 @yield('scripts')
 @stack('scripts')
