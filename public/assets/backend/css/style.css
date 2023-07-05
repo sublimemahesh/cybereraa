@@ -36564,11 +36564,11 @@ code {
     padding: 0.125rem 0.3125rem;
     border-radius: 0.1875rem;
     background: #fdeded;
-    color: #EB5757;
+    color: #1fcde8;
 }
 
 [data-theme-version="dark"] code {
-    background: rgba(235, 87, 87, 0.1);
+    background: rgba(8, 121, 242, 0.1);
 }
 
 .heading-labels {
@@ -41375,7 +41375,7 @@ table.dataTable thead .sorting_asc {
 
 .order.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
     background: var(--primary);
-    color: #1ea6fe !important;
+    color: #1fcde8 !important;
     border-top-color: #1fcde8;
     border-top-width: 4px;
 }
