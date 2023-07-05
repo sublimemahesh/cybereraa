@@ -137,6 +137,7 @@
     border: 2px solid white;
     height: max-content;
     border-radius: 0px;
+    box-shadow: var(--box-shadow-card); 
 }
 
 .swiper {
