@@ -17,6 +17,8 @@
                     And also, Please ensure that you have remaining withdrawal amount for the day
                 </div>
             @endif
+        </div>
+        <div class="col-xl-8 col-sm-6">
             <div class="card">
                 <div class="card-body">
                     <div class="mb-4">
