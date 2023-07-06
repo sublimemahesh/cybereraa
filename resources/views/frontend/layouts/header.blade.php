@@ -28,33 +28,18 @@
                     </div>
 
                     <div class="wt-topbar-right">
-                        <div class=" language-select pull-right">
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Language
-                                    <span class="caret"></span></button>
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li>
-                                        <a href="#">
-                                            <img src="{{ asset('assets/frontend/images/united-states.png') }}" alt="">
-                                            English
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
                         <ul class="list-unstyled e-p-bx pull-right">
                             @auth()
                                 <li>
-                                    <a href="{{ route(authUserFolder() .'.dashboard') }}"><i class="fa fa-dashboard"></i>Dashboard</a>
+                                    <a class="site-button header-btn" href="{{ route(authUserFolder() .'.dashboard') }}"><i class="fa fa-dashboard"></i>Dashboard</a>
                                 </li>
                             @endauth
                             @guest()
                                 <li>
-                                    <a href="{{ route('login') }}"><i class="fa fa-user"></i>Login</a>
+                                    <a class="site-button header-btn" href="{{ route('login') }}"><i class="fa fa-user"></i>Login</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('register')}}"><i class="fa fa-sign-in"></i>Register</a>
+                                    <a class="site-button header-btn" href="{{ route('register')}}"><i class="fa fa-sign-in"></i>Register</a>
                                 </li>
                             @endguest
                         </ul>

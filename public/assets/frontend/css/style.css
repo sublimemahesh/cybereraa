@@ -2698,23 +2698,33 @@ ol.list-num-count.list-outline-none > li:before {
 .site-button {
 	background-color:#ec5598;
 }
-.site-button:active,
-.site-button:hover,
-.site-button:focus,
+.site-button, .header-btn:active,
+.site-button, .header-btn:hover,
+.site-button, .header-btn:focus,
 .active > .site-button {
 	background-color:#e4a101;
-	color: #fff;
+	color: #fff ;
 }
 
 .site-button-secondry {
 	background-color:#171f2c;
 }
-.site-button-secondry:active,
+.site-button-secondry,:active,
 .site-button-secondry:hover,
 .site-button-secondry:focus,
 .active > .site-button-secondry {
 	background-color:#192639;
 	color: #fff;
+}
+
+.header-btn {
+	color: #0a0a0a !important;
+	background-color:#1fcde8 !important;
+}
+
+.header-btn:hover{
+    background-color:#e4a101 !important;
+	color: #fff !important;
 }
 
 a:focus.video-play-btn{
@@ -4973,6 +4983,7 @@ a:focus.video-play-btn{
 	margin-left:-3px;
 	margin-right:-3px;
 	font-size:12px;
+    padding-top: 10px;
 }
 .social-icons li {
 	display:inline-block;
