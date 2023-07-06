@@ -221,7 +221,7 @@
                      text-transform:uppercase;
                      font-weight:500;
                      ">
-                     <a href="{{ route('login') }}" class=" site-button white slider-btn-right">Join Us</a>
+                     <a href="{{ route('register') }}" class=" site-button white slider-btn-right">Join Us</a>
                      </div>
 
                      <!-- LAYER NR. 8 [ for more detail botton ] -->
@@ -260,7 +260,7 @@
                      data-paddingright="[0,0,0,0]"
                      data-paddingbottom="[0,0,0,0]"
                      data-paddingleft="[0,0,0,0]"
-                    
+
 
                      style="z-index: 13;">
                      <img src="{{ asset('assets/frontend/images/main-slider/slider2/tether.png') }}" alt="">
