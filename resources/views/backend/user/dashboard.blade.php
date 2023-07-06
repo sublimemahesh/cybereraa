@@ -318,11 +318,11 @@
                                 <div class="card-body pt-0 pb-3 px-2">
                                     <nav class="buy-sell style-1">
                                         <div class="nav nav-tabs" id="nav-tab1" role="tablist">
-                                            <button class="nav-link active" id="nav-openorder-tab" data-bs-toggle="tab"
+                                            <button class="nav-link border active border-right rounder-0" id="nav-openorder-tab" data-bs-toggle="tab"
                                                     data-bs-target="#nav-openorder" type="button" role="tab"
                                                     aria-controls="nav-openorder" aria-selected="true">Direct Sales
                                             </button>
-                                            <button class="nav-link" id="nav-orderhistory-tab" data-bs-toggle="tab"
+                                            <button class="nav-link border border-left rounder-0" id="nav-orderhistory-tab" data-bs-toggle="tab"
                                                     data-bs-target="#nav-orderhistory" type="button" role="tab"
                                                     aria-controls="nav-orderhistory" aria-selected="false">In-Direct Sales
                                             </button>
@@ -387,8 +387,8 @@
                         @foreach ($banners as $section)
                             <div class="item">
 
-                                    <img src="{{ storage('pages/' . $section->image) }}" alt="safest trades">
-                               
+                                <img src="{{ storage('pages/' . $section->image) }}" alt="safest trades">
+
                             </div>
                         @endforeach
                     </div>
@@ -401,28 +401,34 @@
                         <div class="card-header">
                             <h4 class="card-title">Top 10 Rankers</h4>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body py-1">
                             <div class="table-responsive">
                                 <table class="table table-responsive-md">
                                     <thead>
                                     <tr>
                                         <th><strong>User ID.</strong></th>
                                         <th><strong>NAME</strong></th>
-                                        <th><strong>Email</strong></th>
+                                        <th><strong>SPONSOR</strong></th>
                                         <th><strong>ACTIVATED</strong></th>
                                         <th><strong>Rank</strong></th>
-                                        <th><strong>TOTAL RANKERS</strong></th>
+                                        <th class="text-center"><strong>TOTAL RANKERS</strong></th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @forelse($top_rankers as $ranker)
                                         <tr>
-                                            <td>{{ $ranker->user_id }}</td>
-                                            <td class="text-success">{{ $ranker->user->username }}</td>
-                                            <td>{{ $ranker->user->email }}</td>
-                                            <td>{{ Carbon::parse($ranker->activated_at)->format('Y-m-d H:i:s') }}</td>
-                                            <td class="text-success">Rank 0{{ $ranker->rank }}</td>
-                                            <td class="text-center">{{ $ranker->total_rankers }}</td>
+                                            <td class="py-1">{{ $ranker->user_id }}</td>
+                                            <td class="py-1 text-info text-truncate" style="max-width:130px">
+                                                {{--{{ $ranker->user->name }}<br>--}}
+                                                {{ $ranker->user->username }}
+                                            </td>
+                                            <td class="py-1 text-truncate" style="max-width:130px">
+                                                {{--{{ $ranker->user->sponsor->name }}<br>--}}
+                                                {{ $ranker->user->sponsor->username }}
+                                            </td>
+                                            <td class="py-1">{{ Carbon::parse($ranker->activated_at)->format('Y-m-d h:i A') }}</td>
+                                            <td class="py-1 text-info">Rank 0{{ $ranker->rank }}</td>
+                                            <td class="py-1 text-center">{{ $ranker->total_rankers }}</td>
                                         </tr>
                                     @empty
                                         <tr>
@@ -575,7 +581,9 @@
                         {
                             label: 'Total Earnings',
                             data: {!! json_encode($pii_chart_data, JSON_THROW_ON_ERROR) !!},
-                            backgroundColor: ['rgb(0,211,18)', 'rgb(0,52,255)', 'rgb(248,193,0)', 'rgb(192,6,6)',],
+                            borderWidth: 0.5,
+                            borderColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(75, 192, 192)', 'rgb(255, 205, 86 )',],
+                            backgroundColor: ['rgb(255, 99, 132,0.5)', 'rgb(54, 162, 235,0.5)', 'rgb(75, 192, 192,0.5)', 'rgb(255, 205, 86,0.5)',],
                         }
                     ]
                 },

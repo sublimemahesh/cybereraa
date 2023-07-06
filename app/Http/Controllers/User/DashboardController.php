@@ -90,7 +90,7 @@ class DashboardController extends Controller
         $descendants_count = count($descendants);
         $descendants[] = Auth::user()->id;
 
-        $top_rankers = Rank::with('user')
+        $top_rankers = Rank::with('user.sponsor')
             ->whereNotNull('activated_at')
             ->whereIn('user_id', $descendants)
             ->orderBy('rank', 'desc')

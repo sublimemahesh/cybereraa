@@ -8010,7 +8010,7 @@ fieldset:disabled .btn {
 }
 
 .text-info {
-    color: #58bad7 !important;
+    color: #29c0fb !important;
 }
 
 .text-warning {
@@ -36568,7 +36568,7 @@ code {
 }
 
 [data-theme-version="dark"] code {
-    background: rgba(8, 121, 242, 0.1);
+    background: #33AFE044;
 }
 
 .heading-labels {
@@ -40722,6 +40722,7 @@ table.dataTable thead .sorting_asc {
 .buy-sell .nav-tabs {
     justify-content: space-around;
     border-color: var(--rgba-secondary-1);
+    margin-left: 0!important;
 }
 
 .buy-sell .nav-tabs .nav-link {
@@ -40734,6 +40735,7 @@ table.dataTable thead .sorting_asc {
     width: 50%;
     position: relative;
     padding-bottom: 13px;
+    border-radius: 0!important;
 }
 
 .buy-sell .nav-tabs .nav-link:after {
@@ -40744,7 +40746,7 @@ table.dataTable thead .sorting_asc {
     width: 0;
     left: 50%;
     transform: translateX(-50%);
-    background-color: var(--primary);
+    background-color: #3ab5de;
     transition: all 0.2s;
 }
 
@@ -40774,7 +40776,8 @@ table.dataTable thead .sorting_asc {
 }
 
 .buy-sell.style-1 .nav-tabs .nav-link.active {
-    color: var(--primary);
+    color: #3ab5de;
+
 }
 
 .limit-sell {
@@ -41096,7 +41099,7 @@ table.dataTable thead .sorting_asc {
 }
 
 [data-theme-version="dark"] .list-table .list-row span {
-    color: #00A389;
+    color: #33AFE0;
 }
 
 .list-table .list-row span:first-child {
@@ -42871,7 +42874,7 @@ div#mCSB_1 {
 
 .prim-card::before {
     content: '';
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: #3CB7DD7F;
     position: absolute;
     top: 58%;
     left: 50%;
@@ -42972,7 +42975,7 @@ div#mCSB_1 {
 }
 
 .rec-design1 {
-    border: 2px solid rgba(252, 252, 252, 0.5);
+    border: 2px solid #3CB7DD7F;
     height: 114px;
     width: 173px;
     border-radius: 20px;
@@ -42982,7 +42985,7 @@ div#mCSB_1 {
 }
 
 .rec-design2 {
-    border: 2px solid rgba(252, 252, 252, 0.5);
+    border: 2px solid #3CB7DD7F;
     height: 114px;
     width: 173px;
     border-radius: 20px;
