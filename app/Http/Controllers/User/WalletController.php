@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\WeeklyEarningLineChart;
 use App\Models\Commission;
 use App\Models\Earning;
 use App\Models\Withdraw;
 use Auth;
 use Carbon\Carbon;
+use Carbon\CarbonInterface;
 use DB;
 
 class WalletController extends Controller
@@ -16,6 +18,23 @@ class WalletController extends Controller
     {
         $firstDayOfMonth = Carbon::now()->startOfMonth()->format('Y-m-d');
         $lastDayOfMonth = Carbon::now()->endOfMonth()->format('Y-m-d');
+
+        $startDate = Carbon::now()->startOfWeek(CarbonInterface::SUNDAY);
+        $endDate = Carbon::now()->endOfWeek(CarbonInterface::SATURDAY);
+
+        $earnings = Earning::selectRaw('DAYOFWEEK(created_at) AS day, type, SUM(amount) AS earnings')
+            ->where('user_id', Auth::user()->id)
+            ->whereBetween('created_at', [$startDate, $endDate])
+            ->groupBy('day', 'type')
+            ->get();
+
+        $line_chart_data = new WeeklyEarningLineChart($earnings);
+
+        $commission_categories = Commission::without('purchasedPackage')
+            ->selectRaw('type, SUM(amount) AS total_amount, SUM(paid) AS total_paid')
+            ->where('user_id', Auth::user()->id)
+            ->groupBy('type')
+            ->get();
 
         $latest_transactions = Withdraw::with('receiver')
             ->where('user_id', Auth::user()->id)
@@ -36,6 +55,6 @@ class WalletController extends Controller
 
         $wallet = Auth::user()->wallet;
 
-        return view('backend.user.wallet.index', compact('wallet', 'latest_transactions', 'income', 'withdraw', 'qualified_commissions', 'lost_commissions'));
+        return view('backend.user.wallet.index', compact('commission_categories', 'line_chart_data', 'wallet', 'latest_transactions', 'income', 'withdraw', 'qualified_commissions', 'lost_commissions'));
     }
 }
