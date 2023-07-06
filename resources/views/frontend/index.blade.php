@@ -14,7 +14,7 @@
         <!-- SLIDER END -->
 
         <!-- MARQUEE SCROLL -->
-        <div class="themecolor-1 marquee">
+        <div class="marquee-bg marquee">
             <div class="TickerNews" id="T1">
                 <div class="ti_wrapper">
                     <div class="ti_slide">

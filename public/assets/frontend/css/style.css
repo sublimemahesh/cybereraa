@@ -12948,3 +12948,6 @@ ol.commentlist li::after {
 	margin-bottom: 10px;
 }
 
+.marquee-bg{
+    background-color: #050505;
+}
