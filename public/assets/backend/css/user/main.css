@@ -226,15 +226,15 @@
 
 .genealogy .card-img2 {
     --size: 100px;
-    width: 100px;
-    height: 100px;
+    width: 96px;
+    height: 96px;
     border-radius: 5%;
     transform: translateY(-50%);
     background: #42caff;
     background: linear-gradient(to bottom, #42caff 0%, #e81aff 100%);
     position: relative;
     transition: all .3s ease-in-out;
-    margin-top: 49px;
+    margin-top: 46px;
     object-fit: cover;
     margin-left: -60px;
   }
