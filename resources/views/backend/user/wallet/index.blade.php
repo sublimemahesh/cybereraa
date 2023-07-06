@@ -14,13 +14,6 @@
     <div class="row">
         @include('backend.user.wallet.top-nav')
         <div class="col-xl-4 col-lg-4">
-            <div class="card">
-                <div class="card-body p-1">
-                    <canvas id="lineChart_1"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-4 col-lg-4">
             <div class="rounded-1 card prim-card">
                 <div class="card-body py-3 d-flex flex-column justify-content-evenly">
                     <img src="{{ asset('assets/images/main-wallet.png') }}" alt="logo" width="64"/>
@@ -78,6 +71,13 @@
                             <span class="text-white d-block mt-1">owara3m</span>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-4">
+            <div class="card">
+                <div class="card-body p-1">
+                    <canvas id="lineChart_1"></canvas>
                 </div>
             </div>
         </div>
