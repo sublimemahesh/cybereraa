@@ -39814,8 +39814,9 @@ table.dataTable thead .sorting_asc {
 }
 
 [data-theme-version="dark"] .authincation-content {
-    background: #232323;
-    box-shadow: none;
+    background: #252a3d;
+    box-shadow:  var(--box-shadow-card);
+    border-radius: var(--border-radius);
 }
 
 .authincation-content.style-1 {
@@ -47467,7 +47468,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 }
 
 [data-theme-version="dark"] {
-    background: #121111;
+    background: #171b26;
     color: #828690;
     --nav-headbg: #25164F;
     --sidebar-bg: #25164F;
