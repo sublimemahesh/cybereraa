@@ -48915,6 +48915,8 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
         margin-top: 172px !important;
     }
 
+
+
 }
 
 
@@ -49017,3 +49019,19 @@ input {
     margin-left: 5px;
     border-radius: 6px 6px 6px 6px !important;
   }
+
+
+
+
+  @media only screen and (max-width: 900px) {
+    .btn-m2{
+        margin-left: 88px !important;
+        margin-top: -8px !important;
+        }
+  }
+
+
+  .btn-m{
+    margin-left: 10px !important;
+ }
+

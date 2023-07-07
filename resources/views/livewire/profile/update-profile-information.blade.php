@@ -1,5 +1,3 @@
-
-
 <div class="col-xl-12 col-lg-12">
     <form class="profile-form" wire:submit.prevent="{{ 'updateProfileInformation' }}">
         <div class="card profile-card card-bx m-b30">
@@ -26,6 +24,19 @@
                             <div class="mt-2" x-show="! photoPreview">
                                 <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}"
                                     class="rounded-full h-20 w-20 object-cover">
+
+
+                                <x-jet-secondary-button class="mt-2 mr-2 btn-m" type="button"
+                                    x-on:click.prevent="$refs.photo.click()">
+                                    {{ __('Select A New Photo') }}
+                                </x-jet-secondary-button>
+
+                                @if ($this->user->profile_photo_path)
+                                <x-jet-secondary-button type="button" class="mt-2 btn-m2" wire:click="deleteProfilePhoto">
+                                    {{ __('Remove Photo') }}
+                                </x-jet-secondary-button>
+                                @endif
+
                             </div>
 
                             <!-- New Profile Photo Preview -->
@@ -34,17 +45,6 @@
                                     x-bind:style="'background-image: url(\'' + photoPreview + '\');'">
                                 </span>
                             </div>
-
-                            <x-jet-secondary-button class="mt-2 mr-2" type="button"
-                                x-on:click.prevent="$refs.photo.click()">
-                                {{ __('Select A New Photo') }}
-                            </x-jet-secondary-button>
-
-                            @if ($this->user->profile_photo_path)
-                            <x-jet-secondary-button type="button" class="mt-2" wire:click="deleteProfilePhoto">
-                                {{ __('Remove Photo') }}
-                            </x-jet-secondary-button>
-                            @endif
 
                             <x-jet-input-error for="photo" class="mt-2" />
                         </div>
