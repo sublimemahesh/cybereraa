@@ -1,4 +1,4 @@
-<div class="col-xl-12 col-lg-12">
+<div class="col-xl-9 col-lg-9">
     <div class="card profile-card card-bx m-b30">
         <div class="card-header">
             <h6 class="title"> {{ __('Browser Sessions') }}</h6>
