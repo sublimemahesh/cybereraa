@@ -22,7 +22,10 @@ class FrontendController extends Controller
         $benefits = Page::where(['slug' => 'benefit'])->firstOrNew();
         $benefits = $benefits?->children;
 
-        return view('frontend.index', compact('benefits', 'welcome', 'how_it_work', 'awesome_facts'));
+
+
+
+        return view('frontend.index', compact('benefits', 'welcome', 'how_it_work','awesome_facts'));
 
     }
 

@@ -11,7 +11,10 @@
                         <div class="logo-footer clearfix p-b15">
                             <a href="{{ route('/') }}"><img src="{{ asset('assets/frontend/images/footer-logo.png') }}" width="230" height="67" alt=""/></a>
                         </div>
-
+                        {!! $footer_about !!}
+                        @if (strlen($footer_about) > 300)
+                        <a href="{{ route('about') }}">Read More</a>
+                    @endif
                     </div>
                 </div>
 
