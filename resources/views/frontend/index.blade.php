@@ -71,6 +71,7 @@
                                     <div class="call-to-action-left p-tb20 ">
                                         <h5 class="text-uppercase m-b10 font-weight-600">We strive to make the investment process seamless and accessible to all.
                                             <br>At SECURE INVEST, we firmly believe that everyone has the potential to become an investor.</h5>
+                                            
                                     </div>
                                 </div>
 

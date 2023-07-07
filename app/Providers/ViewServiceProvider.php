@@ -10,6 +10,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
+
 
 
 class ViewServiceProvider extends ServiceProvider
@@ -55,6 +57,12 @@ class ViewServiceProvider extends ServiceProvider
             $daily_transactions = PurchasedPackage::activePackages()->whereDate('created_at', date('Y-m-d'))->count();
             $support_countries = Country::count();
             $view->with('footer_numbers', compact('social_media_links', 'today_registrations', 'daily_transactions', 'active_accounts', 'support_countries'));
+        });
+
+        View::composer('frontend.layouts.footer', function ($view) {
+            $abouts = $abouts = Page::where(['slug' => 'about-us-page'])->firstOrNew();
+            $abouts_content = Str::limit($abouts->content, 300);
+            $view->with('footer_about', $abouts_content);
         });
 
 
