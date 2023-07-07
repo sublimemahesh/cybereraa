@@ -20,12 +20,16 @@ class FrontendController extends Controller
         $welcome = Page::where(['slug' => 'welcome'])->firstOrNew();
 
         $benefits = Page::where(['slug' => 'benefit'])->firstOrNew();
-        $benefits = $benefits?->children;
+        //$benefits = $benefits?->children;
+
+        $any_query = Page::where(['slug' => 'any-query'])->firstOrNew();
+        $contact_us = Page::where(['slug' => 'contact-us-in-home-page'])->firstOrNew();
 
 
 
 
-        return view('frontend.index', compact('benefits', 'welcome', 'how_it_work','awesome_facts'));
+
+        return view('frontend.index', compact('benefits', 'welcome', 'how_it_work','awesome_facts','any_query','contact_us'));
 
     }
 
