@@ -8082,7 +8082,7 @@ fieldset:disabled .btn {
 }
 
 .bg-info {
-    background-color: #1fcde8 !important;
+    background-color: #1fcee9  !important;
 }
 
 .bg-info-dark {
@@ -22956,7 +22956,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
 [data-sidebarbg="color_4"][data-theme-version="dark"] .deznav .metismenu > li.mm-active > a,
 [data-sidebarbg="color_4"] .deznav .metismenu > li.mm-active > a {
-    background: #1fcde8 !important;
+    background: #1fcee9  !important;
     color: #fff !important;
 }
 
@@ -29146,7 +29146,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 [data-theme-version="dark"] .deznav .metismenu > li:hover > a i, [data-theme-version="dark"] .deznav .metismenu > li:focus > a i, [data-theme-version="dark"] .deznav .metismenu > li.mm-active > a i {
-    color:#1fcde8 !important;
+    color:#1fcee9  !important;
 }
 
 [data-theme-version="dark"] .deznav .metismenu > li.mm-active ul ul {
@@ -36564,7 +36564,7 @@ code {
     padding: 0.125rem 0.3125rem;
     border-radius: 0.1875rem;
     background: #fdeded;
-    color: #1fcde8;
+    color: #1fcee9 ;
 }
 
 [data-theme-version="dark"] code {
@@ -41381,8 +41381,8 @@ table.dataTable thead .sorting_asc {
 
 .order.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
     background: var(--primary);
-    color: #1fcde8 !important;
-    border-top-color: #1fcde8;
+    color: #1fcee9  !important;
+    border-top-color: #1fcee9 ;
     border-top-width: 4px;
 }
 
@@ -48782,7 +48782,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 }
 
 [data-theme-version="dark"] .deznav .metismenu > li:hover > a, [data-theme-version="dark"] .deznav .metismenu > li:focus > a, [data-theme-version="dark"] .deznav .metismenu > li.mm-active > a {
-    color: #1fcde8 !important;
+    color: #1fcee9  !important;
     /* background:var(--rgba-primary-1); */
 }
 
@@ -49008,7 +49008,7 @@ input {
   }
 
   .nav-tabs .nav-link:hover{
-    color: #1fcde8 !important;
+    color: #1fcee9  !important;
 }
 
 .dt-btn-split-wrapper button.dt-button:not(.dt-button.dt-btn-split-drop) {
