@@ -95,7 +95,7 @@
                                             @endif
                                         </div>
                                         <div class="float-left width-175">
-                                            <img src="{{ Auth::user()->profile_photo_url }}" class="img-fluid w-100 img-thumbnail" alt="">
+                                            <img src="{{ Auth::user()->profile_photo_url }}" class="img-fluid w-100 img-thumbnail img-rou-pt" alt="">
                                         </div>
                                     </div>
                                 </div>

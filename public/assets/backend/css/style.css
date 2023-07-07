@@ -40622,16 +40622,18 @@ table.dataTable thead .sorting_asc {
 }
 
 .bubles-down:after {
-    content: "";
+    content: "★";
     position: absolute;
-    height: 343px;
-    width: 325px;
+    height: 367px;
+    width: 306px;
     background: #FCDDE8;
     border-radius: 50%;
     z-index: -1;
     bottom: -6.5rem;
-    right: -43px;
+    right: 708px;
 }
+
+
 
 [data-theme-version="dark"] .bubles-down:after {
     background: var(--rgba-primary-1);
@@ -49035,3 +49037,9 @@ input {
     margin-left: 10px !important;
  }
 
+ .img-rou-pt{
+    border-radius: 50%;
+    margin-top: -14px;
+    margin-bottom: 8px;
+    box-shadow: 15px 34px 33px rgba(0, 0, 0, 0.5);
+ }
