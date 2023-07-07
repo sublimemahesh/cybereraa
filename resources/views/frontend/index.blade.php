@@ -71,13 +71,13 @@
                                     <div class="call-to-action-left p-tb20 ">
                                         <h5 class="text-uppercase m-b10 font-weight-600">We strive to make the investment process seamless and accessible to all.
                                             <br>At SECURE INVEST, we firmly believe that everyone has the potential to become an investor.</h5>
-                                            
+
                                     </div>
                                 </div>
 
                                 <div class="col-md-3">
                                     <div class="call-to-action-right p-tb30">
-                                        <a href="{{ route('login') }}" class="site-button-secondry text-uppercase font-weight-600">
+                                        <a href="{{ route('register') }}" class="site-button-secondry text-uppercase font-weight-600">
                                             JOIN US
                                         </a>
                                     </div>
@@ -143,7 +143,7 @@
                     <div class="wt-separator-outer">
                         <div class="wt-separator bg-primary"></div>
                     </div>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                    {!! $benefits->content !!}
                 </div>
                 <!-- TITLE END-->
                 <div class="section-content hover-block-outer" data-toggle="tab-hover">
@@ -151,8 +151,8 @@
 
                         <div class="col-md-4 col-sm-12 m-b30  p-t30">
 
-                            @if ($benefits !== null && count($benefits) > 0)
-                            @foreach ($benefits as $key => $section)
+
+                            @foreach ($benefits?->children as $key => $section)
                             @if ($key % 2 == 0)
 
                             <div class="wt-icon-box-wraper  right p-a20" data-target="#tab1" data-toggle="tab">
@@ -166,7 +166,7 @@
                             </div>
                             @endif
                             @endforeach
-                            @endif
+
 
                         </div>
 
@@ -185,8 +185,8 @@
                         </div>
 
                         <div class="col-md-4 col-sm-12 m-b30  p-t30 mob-m">
-                            @if ($benefits !== null && count($benefits) > 0)
-                            @foreach ($benefits as $key => $section)
+
+                            @foreach ($benefits?->children as $key => $section)
                             @if ($key % 2 != 0)
 
                             <div class="wt-icon-box-wraper left p-a20 ">
@@ -200,7 +200,7 @@
                             </div>
                             @endif
                             @endforeach
-                            @endif
+
 
                         </div>
                     </div>
@@ -293,7 +293,7 @@
                                 <img src="{{asset('assets/frontend/images/any-query.png')}}" alt="">
                                 <div class="text-center p-t60">
                                     <h3 class="text-uppercase font-weight-500 text-white">Any Query?</h3>
-                                    <p class="text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the.</p>
+                                    <div class="text-white">{!! $any_query->content !!}</div>
                                     <h4 class="text-primary">0 321 576 444</h4>
                                 </div>
                             </div>
@@ -305,7 +305,7 @@
                                 <img src="{{asset('assets/frontend/images/any-query-contact.png')}}" alt="">
                                 <div class="text-center p-t60">
                                     <h3 class="text-uppercase font-weight-500 text-white">Contact Us</h3>
-                                    <p class="text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the.</p>
+                                    <p class="text-white"><div class="text-white">{!! $contact_us->content !!}</div></p>
                                     <h4 class="text-secondry">support@bitinvest.com</h4>
                                 </div>
                             </div>
