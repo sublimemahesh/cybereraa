@@ -93,14 +93,14 @@
 
         <!-- WELCOME SECTION START -->
         <div class="section-full home-about-section p-t80 bg-no-repeat bg-bottom-right themecolor-2" style="background-image:url(images/background/bg-coin.png)">
-            <div class="container-fluid ">
+            <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
-                        <div class="wt-box text-center">
+                    <div class="col-md-5">
+                        <div class="wt-box text-left">
                             <img src="{{ storage('pages/' . $welcome->image) }}" alt="">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-7">
                         <div class="wt-right-part p-b80 text-left">
                             <!-- TITLE START -->
                             <div class="section-head text-left">
