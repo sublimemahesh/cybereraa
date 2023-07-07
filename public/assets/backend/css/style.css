@@ -110,7 +110,7 @@
     --title: #374557;
 
     --border-radius:6px ;
-    --br-nav-tab:10px;
+    --br-nav-tab:6px;
     --br-input:10px ;
     --bg-color:#171b26 ;
 
@@ -41360,16 +41360,17 @@ table.dataTable thead .sorting_asc {
 .order.nav-tabs .nav-link {
     /* border: 3px solid #020202;; */
     padding: 0.5rem 0.9rem;
-    background-color: #707070;
-    border-radius:var(--br-nav-tab);
+    background-color: #252a3d;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
     margin-right: 5px;
     padding-left: 20px;
     padding-right: 20px;
-    margin: 0px 2px 6px 2px;
+    margin: 0px 1px 6px 2px;
 }
 
 .order.nav-tabs .nav-link:active {
-    background-color: var(--primary);
+    background-color: #252a3d;;
 }
 
 @media only screen and (max-width: 47.9375rem) {
@@ -41380,7 +41381,7 @@ table.dataTable thead .sorting_asc {
 }
 
 .order.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-    background: var(--primary);
+    background: #252a3d;;
     color: #1fcee9  !important;
     border-top-color: #1fcee9 ;
     border-top-width: 4px;
