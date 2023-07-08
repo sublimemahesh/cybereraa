@@ -41,7 +41,7 @@
             <li>
                 <a href="{{ route('user.earnings.yearly-income-chart') }}" class="rounded-1" aria-expanded="false">
                     <i class="bi bi-bar-chart-fill"></i>
-                    <span class="nav-text">Chart & Summery</span>
+                    <span class="nav-text">Chart & Summery</span> 
                 </a>
             </li>
             <li>

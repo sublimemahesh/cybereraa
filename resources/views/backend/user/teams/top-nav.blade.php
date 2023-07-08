@@ -7,3 +7,4 @@
         <a class="nav-link {{ request()->routeIs('user.earnings.yearly-income-chart') ? 'active' : '' }}" href="{{ !request()->routeIs('user.earnings.yearly-income-chart') ? route('user.earnings.yearly-income-chart', ['team' => true]).'#team-income-chart' : 'javascript:void(0)' }}">Income Chart</a>
     </div>
 </div>
+ 
