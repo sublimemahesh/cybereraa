@@ -299,7 +299,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-sm-6 bg-primary ">
+                    <div class="col-md-6 col-sm-6 bg-primary h-410">
                         <div class="section-content p-tb60 p-l30 clearfix">
                             <div class="wt-right-part any-query-contact">
                                 <img src="{{asset('assets/frontend/images/any-query-contact.png')}}" alt="">
