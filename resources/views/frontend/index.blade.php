@@ -287,7 +287,7 @@
             <div class="container-fluid">
 
                 <div class="row">
-                    <div class="col-md-6 col-sm-6 themecolor-3">
+                    <div class="col-md-6 col-sm-6 themecolor-3 h-410">
                         <div class="section-content p-tb60 p-r30 clearfix">
                             <div class="wt-left-part any-query">
                                 <img src="{{asset('assets/frontend/images/any-query.png')}}" alt="">
@@ -299,7 +299,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-sm-6 bg-primary">
+                    <div class="col-md-6 col-sm-6 bg-primary ">
                         <div class="section-content p-tb60 p-l30 clearfix">
                             <div class="wt-right-part any-query-contact">
                                 <img src="{{asset('assets/frontend/images/any-query-contact.png')}}" alt="">
