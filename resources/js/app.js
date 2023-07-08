@@ -33,6 +33,7 @@ window.loader = function (text = "It may take some time...!") {
         imageUrl: APP_URL + "/assets/images/loader.svg",
         showConfirmButton: false,
         allowOutsideClick: false,
+        background: '#252a3d',
     });
 }
 
