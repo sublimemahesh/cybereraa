@@ -10,7 +10,7 @@
             </li>
             @include('backend.layouts.sidebar')
 
-            @include('navigation-menu')
+            @include('navigation-menu') 
         </ul>
 
     </div>

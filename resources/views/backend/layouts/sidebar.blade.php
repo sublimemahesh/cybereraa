@@ -54,7 +54,7 @@
                 <li>
                     <a href="{{ route('admin.admin-wallet-transaction.index') }}">History</a>
                 </li>
-            @endcan
+            @endcan 
             @can('admin_wallet_withdrawal.viewAny')
                 <li>
                     <a href="{{ route('admin.admin-wallet-withdrawal.index') }}">Withdrawal</a>
