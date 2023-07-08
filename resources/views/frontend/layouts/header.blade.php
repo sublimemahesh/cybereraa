@@ -31,15 +31,15 @@
                         <ul class="list-unstyled e-p-bx pull-right">
                             @auth()
                                 <li>
-                                    <a class="site-button header-btn" href="{{ route(authUserFolder() .'.dashboard') }}"><i class="fa fa-dashboard"></i>Dashboard</a>
+                                    <a class="header-btn" href="{{ route(authUserFolder() .'.dashboard') }}"><i class="fa fa-dashboard"></i>Dashboard</a>
                                 </li>
                             @endauth
                             @guest()
                                 <li>
-                                    <a class="site-button header-btn" href="{{ route('login') }}"><i class="fa fa-user"></i>Login</a>
+                                    <a class="header-btn" href="{{ route('login') }}"><i class="fa fa-user"></i>Login</a>
                                 </li>
                                 <li>
-                                    <a class="site-button header-btn" href="{{ route('register')}}"><i class="fa fa-sign-in"></i>Register</a>
+                                    <a class="header-btn" href="{{ route('register')}}"><i class="fa fa-sign-in"></i>Register</a>
                                 </li>
                             @endguest
                         </ul>

@@ -2698,9 +2698,9 @@ ol.list-num-count.list-outline-none > li:before {
 .site-button {
 	background-color:#ec5598;
 }
-.site-button, .header-btn:active,
-.site-button, .header-btn:hover,
-.site-button, .header-btn:focus,
+.site-button:active,
+.site-button:hover,
+.site-button:focus,
 .active > .site-button {
 	background-color:#e4a101;
 	color: #fff ;
@@ -2713,19 +2713,28 @@ ol.list-num-count.list-outline-none > li:before {
 .site-button-secondry:hover,
 .site-button-secondry:focus,
 .active > .site-button-secondry {
-	background-color:#192639;
+	/* background-color:#192639; */
 	color: #fff;
 }
 
 .header-btn {
 	color: #0a0a0a !important;
 	background-color:#1fcde8 !important;
+	padding: 10px 20px;
+	display: inline-block;
+	font-size: 14px;
+	outline: none;
+	cursor: pointer;
+	outline: none;
+	border-width:0;
+	border-style:solid;
+	border-color:transparent;
+	line-height:1.42857;
+	margin-left:-1px;
+	text-decoration: none !important;
 }
 
-.header-btn:hover{
-    background-color:#e4a101 !important;
-	color: #fff !important;
-}
+
 
 a:focus.video-play-btn{
 	color:#fff;
