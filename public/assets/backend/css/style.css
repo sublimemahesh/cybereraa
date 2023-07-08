@@ -48980,6 +48980,11 @@ button.dt-button, div.dt-button, a.dt-button {
     background-color: var(--bg-color-tbl-filter);
     border-radius: 10px;
   }
+  :is(.dark .dark\:bg-gray-700) {
+    --tw-bg-opacity: 1;
+    background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+    border-radius: 10px;
+  }
 /*
 .h3-txt{
     font-family: 'good-times-regular';
