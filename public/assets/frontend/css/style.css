@@ -12951,3 +12951,7 @@ ol.commentlist li::after {
 .marquee-bg{
     background-color: #050505;
 }
+
+.h-410{
+    height: 405px !important;
+}
