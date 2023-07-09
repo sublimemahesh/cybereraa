@@ -25,16 +25,17 @@ $(document).ready(function () {
                         location.reload();
                     }
                 })
-            }).catch((error) => {
-            Toast.fire({
-                icon: 'error', title: error.response.data.message || "Something went wrong!",
             })
-            console.error(error.response.data)
-            let errorMap = ['withdrawal_limits_package', 'withdrawal_limits_commission', 'max_withdraw_limit', 'minimum_payout_limit', 'daily_max_withdrawal_limits', 'withdrawal_days_of_week']
-            errorMap.map(id => {
-                error.response.data.errors[id] && appendError(id, `<span class="text-danger">${error.response.data.errors[id]}</span>`)
+            .catch((error) => {
+                Toast.fire({
+                    icon: 'error', title: error.response.data.message || "Something went wrong!",
+                })
+                let errorMap = ['withdrawal_limits_package', 'withdrawal_limits_commission', 'max_withdraw_limit', 'minimum_payout_limit', 'minimum_p2p_transfer_limit', 'daily_max_withdrawal_limits', 'withdrawal_days_of_week']
+                errorMap.map(id => {
+                    console.error(error.response.data.errors[id])
+                    error.response.data.errors[id] && appendError(id, `<span class="text-danger">${error.response.data.errors[id]}</span>`)
+                })
             })
-        })
     })
 
     function appendError(id, html) {

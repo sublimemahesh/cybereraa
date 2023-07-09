@@ -43,11 +43,10 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <form x-data="{transfer_amount: '{{$minimum_payout_limit->value}}' }">
+                            <form x-data="{transfer_amount: '{{$minimum_p2p_transfer_limit->value}}' }">
                                 <div class="mb-3 mt-2">
                                     <label for="p2p-transfer">Select User</label>
-                                    <select class="single-select-placeholder js-states select2-hidden-accessible"
-                                            id="p2p-transfer">
+                                    <select class="single-select-placeholder js-states select2-hidden-accessible" id="p2p-transfer">
                                         <option disabled>Start typing username</option>
                                     </select>
                                 </div>
@@ -56,11 +55,9 @@
                                         <code>USDT {{ $wallet->balance }}</code> / Payout limit:
                                         <code>USDT {{ $wallet->withdraw_limit }}</code>)
                                     </label>
-                                    <input min="{{ $minimum_payout_limit->value }}" x-model="transfer_amount"
-                                           id="transfer-amount" type="number" class="form-control">
+                                    <input min="{{ $minimum_p2p_transfer_limit->value }}" x-model="transfer_amount" id="transfer-amount" type="number" class="form-control">
                                     <div class="text-info">Total Amount:
-                                        <code id="show-receiving-amount"
-                                              x-html=" 'USDT ' + (parseFloat(transfer_amount) + {{ (float) $p2p_transfer_fee->value }})"></code>
+                                        <code id="show-receiving-amount" x-html=" 'USDT ' + (parseFloat(transfer_amount) + {{ (float) $p2p_transfer_fee->value }})"></code>
                                     </div>
                                 </div>
                                 <hr>
@@ -140,9 +137,9 @@
 
     @push('scripts')
         <script>
-            const MINIMUM_PAYOUT_LIMIT = "{{ $minimum_payout_limit->value }}";
-            const P2P_TRANSFER_FEE = "{{ $p2p_transfer_fee->value }}";
-            const MAX_WITHDRAW_LIMIT = "{{ $max_withdraw_limit }}";
+            const MINIMUM_PAYOUT_LIMIT = parseFloat("{{ $minimum_p2p_transfer_limit->value }}");
+            const P2P_TRANSFER_FEE = parseFloat("{{ $p2p_transfer_fee->value }}");
+            const MAX_WITHDRAW_LIMIT = parseFloat("{{ $max_withdraw_limit }}");
         </script>
         <script src="{{ asset('assets/backend/vendor/select2/js/select2.full.min.js') }}"></script>
         <script src="{{ asset('assets/backend/js/user/wallet/p2p-transfer.js') }}"></script>

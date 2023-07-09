@@ -24,7 +24,7 @@ $(function () {
         let amount = parseFloat($('#transfer-amount').val()) || 0;
         if (amount < MINIMUM_PAYOUT_LIMIT) {
             $('#transfer-amount').val(MINIMUM_PAYOUT_LIMIT).change();
-            $('#show-receiving-amount').html('USDT ' + (MINIMUM_PAYOUT_LIMIT - P2P_TRANSFER_FEE))
+            $('#show-receiving-amount').html('USDT ' + (MINIMUM_PAYOUT_LIMIT + P2P_TRANSFER_FEE))
             return false
         }
     })
@@ -45,7 +45,7 @@ $(function () {
             password,
             wallet_type,
             code,
-            minimum_payout_limit: MINIMUM_PAYOUT_LIMIT
+            minimum_p2p_transfer_limit: MINIMUM_PAYOUT_LIMIT
         }).then(response => {
             Toast.fire({
                 icon: response.data.icon, title: response.data.message,

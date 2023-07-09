@@ -36,7 +36,7 @@ class PayoutController extends Controller
         $validated = Validator::make($request->all(), [
             'receiver' => 'required|exists:users,id',
             'minimum_payout_limit' => 'required',
-            'amount' => ['required', 'numeric', 'min:' . $request->minimum_payout_limit],
+            'amount' => ['required', 'numeric', 'min:' . $request->minimum_p2p_transfer_limit],
             'password' => 'required',
             'code' => 'nullable',
             'wallet_type' => 'required|in:main,topup',
@@ -66,16 +66,16 @@ class PayoutController extends Controller
     public function p2pTransfer(Request $request, TwoFactorAuthenticateService $authenticateService)
     {
 
-        $strategies = Strategy::whereIn('name', ['p2p_transfer_fee', 'minimum_payout_limit'])->get();
+        $strategies = Strategy::whereIn('name', ['p2p_transfer_fee', 'minimum_p2p_transfer_limit'])->get();
         $sender = Auth::user();
         $sender_wallet = $sender?->wallet;
 
         $max_withdraw_limit = $sender_wallet->withdraw_limit;
-        $minimum_payout_limit = $strategies->where('name', 'minimum_payout_limit')->first(null, fn() => new Strategy(['value' => 10]));
+        $minimum_p2p_transfer_limit = $strategies->where('name', 'minimum_p2p_transfer_limit')->first(null, fn() => new Strategy(['value' => 10]));
 
         $validated = Validator::make($request->all(), [
             'receiver' => 'required|exists:users,id',
-            'amount' => ['required', 'numeric', 'min:' . $minimum_payout_limit->value],
+            'amount' => ['required', 'numeric', 'min:' . $minimum_p2p_transfer_limit->value],
             'password' => 'required',
             'otp' => 'required|digits:6',
             'code' => 'nullable',

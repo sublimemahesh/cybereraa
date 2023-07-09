@@ -40,6 +40,14 @@ class StrategySeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'name' => 'minimum_p2p_transfer_limit',
+                'data_type' => 'double',
+                'value' => 5,
+                'comment' => 'Minimum amount needed for transfer p2p',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
                 'name' => 'max_withdraw_limit',
                 'data_type' => 'int',
                 'value' => 400,
