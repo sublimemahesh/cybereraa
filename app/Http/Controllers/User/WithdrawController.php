@@ -142,7 +142,7 @@ class WithdrawController extends Controller
         $wallet = Auth::user()->wallet;
 
         $p2p_transfer_fee = $strategies->where('name', 'p2p_transfer_fee')->first(null, fn() => new Strategy(['value' => 2.5]));
-        $minimum_p2p_transfer_limit = $strategies->where('name', 'minimum_p2p_transfer_limit')->first(null, fn() => new Strategy(['value' => 10]));
+        $minimum_p2p_transfer_limit = $strategies->where('name', 'minimum_p2p_transfer_limit')->first(null, fn() => new Strategy(['value' => 5]));
         $max_withdraw_limit = $wallet->withdraw_limit;
 
         return view('backend.user.withdrawals.p2p-transfer', compact('p2p_transfer_fee', 'max_withdraw_limit', 'minimum_p2p_transfer_limit', 'wallet'));

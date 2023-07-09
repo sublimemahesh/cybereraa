@@ -14,7 +14,7 @@ $(function () {
         columns: [
             {data: "earnable_type", searchable: false, orderable: false},
             {data: "status", searchable: false, orderable: false},
-            {data: "date", name: "created_at", searchable: false},
+            {data: "date", name: "group_period", searchable: false},
             {data: "amount", searchable: false, orderable: false},
         ],
         footerCallback: function (row, data, start, end, display) {

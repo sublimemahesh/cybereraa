@@ -71,7 +71,7 @@ class PayoutController extends Controller
         $sender_wallet = $sender?->wallet;
 
         $max_withdraw_limit = $sender_wallet->withdraw_limit;
-        $minimum_p2p_transfer_limit = $strategies->where('name', 'minimum_p2p_transfer_limit')->first(null, fn() => new Strategy(['value' => 10]));
+        $minimum_p2p_transfer_limit = $strategies->where('name', 'minimum_p2p_transfer_limit')->first(null, fn() => new Strategy(['value' => 5]));
 
         $validated = Validator::make($request->all(), [
             'receiver' => 'required|exists:users,id',

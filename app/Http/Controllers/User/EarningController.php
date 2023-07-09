@@ -52,11 +52,11 @@ class EarningController extends Controller
             if (in_array($request->get('group-by'), ['DATE', 'YEARWEEK', 'MONTHNAME', 'YEAR'])) {
                 $group_condition = ($request->get('group-by', 'DATE')) . '(created_at)';
             }
-            $earnings = Earning::filter()
-                ->selectRaw($group_condition . ' AS date, type,status, SUM(amount) AS earnings')
+            $earnings = Earning::selectRaw($group_condition . ' AS group_period, type, status, SUM(amount) AS earnings')
+                ->filter()
                 ->with('earnable')
                 ->where('user_id', Auth::user()->id)
-                ->groupBy('date', 'type', 'status');
+                ->groupBy('group_period', 'type', 'status');
 
             return DataTables::of($earnings)
                 ->addColumn('earnable_type', function ($earn) {
@@ -65,9 +65,9 @@ class EarningController extends Controller
                 ->addColumn('amount', fn($commission) => number_format($commission->earnings, 2))
                 ->addColumn('date', function ($earn) use ($request) {
                     if ($request->get('group-by') === 'YEARWEEK') {
-                        return substr($earn->date, 0, 4) . ' - ' . substr($earn->date, 4) . ' Week';
+                        return substr($earn->group_period, 0, 4) . ' - ' . substr($earn->group_period, 4) . ' Week';
                     }
-                    return $earn->date;
+                    return $earn->group_period;
                 })
                 ->addColumn('status', fn($earn) => $earn->status)
                 ->rawColumns(['earnable_type'])
