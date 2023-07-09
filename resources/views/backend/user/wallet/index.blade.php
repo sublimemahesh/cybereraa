@@ -322,6 +322,11 @@
                         type: 'line',
                         data: {!! json_encode($line_chart_data,JSON_THROW_ON_ERROR) !!},
                         options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            },
                             responsive: true,
                             plugins: {
                                 legend: {
