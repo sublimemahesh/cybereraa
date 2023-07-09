@@ -50,7 +50,7 @@ class Earning extends Model
                 static function ($query) {
                     $query->where('type', request()->input('earning-type'));
                 })
-            ->when(!empty(request()->input('status')) && in_array(request()->input('status'), ['received', 'hold', 'cancelled']),
+            ->when(!empty(request()->input('status')) && in_array(request()->input('status'), ['received', 'hold', 'canceled']),
                 static function ($query) {
                     $query->where('status', request()->input('status'));
                 });

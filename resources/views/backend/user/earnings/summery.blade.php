@@ -37,7 +37,7 @@
                                                             <option value="direct">DIRECT SALE</option>
                                                             <option value="indirect">INDIRECT SALE</option>
                                                             <option value="rank_bonus">RANK BONUS</option>
-                                                            {{--<option value="rank_gift">RANK GIFT</option>--}}
+                                                            {{-- <option value="rank_gift">RANK GIFT</option>--}}
                                                             <option value="p2p">P2P</option>
                                                             {{--<option value="staking">STAKING</option>--}}
                                                         </select>
@@ -53,13 +53,31 @@
                                         <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
                                             <div>
                                                 <div class=" pt-2 p-2 ">
-                                                    <label for="input_period_status" class="text-gray-700 dark:text-gray-300">PERIOD</label>
+                                                    <label for="date-range" class="text-gray-700 dark:text-gray-300">PERIOD</label>
                                                     <div class="relative">
                                                         <form autocomplete="off">
-                                                            <input id="date-range"
-                                                                   class="flatpickr block my-1 bg-gray-50 text-gray-700 py-2 px-3 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500 flatpickr-input"
-                                                                   type="text" placeholder="Select a period" readonly="readonly">
+                                                            <input id="date-range" class="flatpickr block my-1 bg-gray-50 text-gray-700 py-2 px-3 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500 flatpickr-input" type="text" placeholder="Select a period" readonly="readonly">
                                                         </form>
+                                                        <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
+                                                            <svg class="pointer-events-none w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
+                                            <div>
+                                                <div class=" pt-2 p-2 ">
+                                                    <label for="group-by" class="text-gray-700 dark:text-gray-300">GROUP BY</label>
+                                                    <div class="relative">
+                                                        <select id="group-by" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
+                                                            <option value="DATE">DATE</option>
+                                                            <option value="YEARWEEK">YEAR & WEEK</option>
+                                                            <option value="MONTHNAME">MONTH</option>
+                                                            <option value="YEAR">YEAR</option>
+                                                        </select>
                                                         <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
                                                             <svg class="pointer-events-none w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -92,7 +110,7 @@
                                         <div class="flex flex-col mb-2">
                                             <div>
                                                 <div class=" pt-2 p-2 ">
-                                                    <label for="" class="dark:text-gray-300 opacity-0 text-gray-700">Search</label>
+                                                    <label for="" class="dark:text-gray-300 opacity-0 text-gray-700 d-none">Search</label>
                                                     <div class="relative">
                                                         <button id="search"
                                                                 class="mt-1 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
@@ -112,15 +130,14 @@
                             <thead>
                             <tr>
                                 <th>EARNING TYPE</th>
-                                <th>PACKAGE</th>
                                 <th>STATUS</th>
-                                <th>PAYMENT DATE</th>
+                                <th>GROUP BY</th>
                                 <th class="text-right">AMOUNT</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
-                                <th colspan="5" style="text-align:right"></th>
+                                <th colspan="4" style="text-align:right"></th>
                             </tr>
                             </tfoot>
                         </table>
@@ -141,6 +158,6 @@
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.html5.min.js') }}"></script>
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.print.min.js') }}"></script>
         <script src="{{ asset('assets/backend/js/global-datatable-extension.js') }}"></script>
-        <script src="{{ asset('assets/backend/js/user/earnings/earnings.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/user/earnings/summary.js') }}"></script>
     @endpush
 </x-backend.layouts.app>
