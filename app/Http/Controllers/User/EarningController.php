@@ -45,6 +45,40 @@ class EarningController extends Controller
     /**
      * @throws Exception
      */
+    public function earningSummary(Request $request)
+    {
+        if ($request->wantsJson()) {
+            $group_condition = 'DATE(created_at)';
+            if (in_array($request->get('group-by'), ['DATE', 'YEARWEEK', 'MONTHNAME', 'YEAR'])) {
+                $group_condition = ($request->get('group-by', 'DATE')) . '(created_at)';
+            }
+            $earnings = Earning::filter()
+                ->selectRaw($group_condition . ' AS date, type,status, SUM(amount) AS earnings')
+                ->with('earnable')
+                ->where('user_id', Auth::user()->id)
+                ->groupBy('date', 'type', 'status');
+
+            return DataTables::of($earnings)
+                ->addColumn('earnable_type', function ($earn) {
+                    return $earn->type;
+                })
+                ->addColumn('amount', fn($commission) => number_format($commission->earnings, 2))
+                ->addColumn('date', function ($earn) use ($request) {
+                    if ($request->get('group-by') === 'YEARWEEK') {
+                        return substr($earn->date, 0, 4) . ' - ' . substr($earn->date, 4) . ' Week';
+                    }
+                    return $earn->date;
+                })
+                ->addColumn('status', fn($earn) => $earn->status)
+                ->rawColumns(['earnable_type'])
+                ->make();
+        }
+        return view('backend.user.earnings.summery');
+    }
+
+    /**
+     * @throws Exception
+     */
     public function teamHighestEarnings(Request $request)
     {
         if ($request->wantsJson()) {
