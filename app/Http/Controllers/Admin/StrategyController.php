@@ -30,6 +30,7 @@ class StrategyController extends Controller
             'withdrawal_days_of_week',
             'max_withdraw_limit',
             'minimum_payout_limit',
+            'minimum_p2p_transfer_limit',
             'payout_transfer_fee',
             'staking_withdrawal_fee',
             'p2p_transfer_fee'
@@ -38,6 +39,7 @@ class StrategyController extends Controller
         $withdrawal_limits = $strategies->where('name', 'withdrawal_limits')->first(null, fn() => new Strategy(['value' => '{"package": 300, "commission": 100}']));
         $max_withdraw_limit = $strategies->where('name', 'max_withdraw_limit')->first(null, fn() => new Strategy(['value' => 400]));
         $minimum_payout_limit = $strategies->where('name', 'minimum_payout_limit')->first(null, fn() => new Strategy(['value' => 10]));
+        $minimum_p2p_transfer_limit = $strategies->where('name', 'minimum_p2p_transfer_limit')->first(null, fn() => new Strategy(['value' => 5]));
         $payout_transfer_fee = $strategies->where('name', 'payout_transfer_fee')->first(null, fn() => new Strategy(['value' => 5]));
         $staking_withdrawal_fee = $strategies->where('name', 'staking_withdrawal_fee')->first(null, fn() => new Strategy(['value' => 5]));
         $p2p_transfer_fee = $strategies->where('name', 'p2p_transfer_fee')->first(null, fn() => new Strategy(['value' => 2.5]));
@@ -54,6 +56,7 @@ class StrategyController extends Controller
                 'staking_withdrawal_fee',
                 'max_withdraw_limit',
                 'minimum_payout_limit',
+                'minimum_p2p_transfer_limit',
                 'payout_transfer_fee',
                 'p2p_transfer_fee',
                 'daily_max_withdrawal_limits',
@@ -153,6 +156,7 @@ class StrategyController extends Controller
             'withdrawal_limits_commission' => 'required|integer',
             'max_withdraw_limit' => 'required|integer',
             'minimum_payout_limit' => 'required|integer',
+            'minimum_p2p_transfer_limit' => 'required|integer',
             'daily_max_withdrawal_limits' => 'required|integer',
             'withdrawal_days_of_week' => 'required|array|in:Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday',
         ])->validate();
@@ -197,6 +201,14 @@ class StrategyController extends Controller
             Strategy::updateOrCreate(
                 ['name' => 'minimum_payout_limit'],
                 ['value' => $validated['minimum_payout_limit']]
+            );
+            Strategy::updateOrCreate(
+                ['name' => 'minimum_p2p_transfer_limit'],
+                [
+                    'value' => $validated['minimum_p2p_transfer_limit'],
+                    'data_type' => 'double',
+                    'comment' => 'Minimum amount needed for request payout',
+                ]
             );
         });
 

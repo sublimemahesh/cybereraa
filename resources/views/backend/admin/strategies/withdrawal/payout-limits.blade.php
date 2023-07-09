@@ -25,6 +25,13 @@
                             <input class="form-control" readonly value="{{ $max_withdraw_limit->value }}" id="max_withdraw_limit" name="max_withdraw_limit" placeholder="Max payout package & commission %" type="number">
                         </div>
                     </div>
+                    <hr>
+                    <div class="form-group row mb-2">
+                        <label class="col-sm-3 col-form-label" for="minimum_p2p_transfer_limit">Minimum P2P Transfer Amount (USD)</label>
+                        <div class="col-sm-9">
+                            <input class="form-control" value="{{ $minimum_p2p_transfer_limit->value }}" id="minimum_p2p_transfer_limit" name="minimum_p2p_transfer_limit" placeholder="Minimum withdraw amount Ex: USD 10" type="number">
+                        </div>
+                    </div>
                     <div class="form-group row mb-2">
                         <label class="col-sm-3 col-form-label" for="minimum_payout_limit">Minimum withdraw (USD)</label>
                         <div class="col-sm-9">
