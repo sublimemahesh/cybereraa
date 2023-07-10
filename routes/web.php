@@ -343,6 +343,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::get('earnings/summary-report', 'User\EarningController@earningSummary')->name('earnings.summary-report');
 
         Route::get('team/users-list', 'User\GenealogyController@teamList')->name('team.users-list');
+        Route::get('team/income-levels', 'User\GenealogyController@IncomeLevels')->name('team.income-levels');
         Route::get('team/incomes/commission', 'User\EarningController@teamCommissions')->name('team.incomes.commission');
         Route::get('team/incomes/earnings', 'User\EarningController@teamHighestEarnings')->name('earnings.team-income');
         Route::match(['get', 'post'], 'earnings/summarize-yearly-income', 'User\EarningController@incomeChart')->name('earnings.yearly-income-chart');
