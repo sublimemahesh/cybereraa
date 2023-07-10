@@ -49049,3 +49049,15 @@ input {
     margin-bottom: 8px;
     box-shadow: 15px 34px 33px rgba(0, 0, 0, 0.5);
  }
+
+ .profile-card-bg-image {
+    background-image: url("../images/user-profile-bg-image.jpg");
+    /* Additional styles */
+}
+
+.profile-card-btn{
+    margin: 2px;
+}
+.profile-img-border{
+border: 6px solid #707070;
+}

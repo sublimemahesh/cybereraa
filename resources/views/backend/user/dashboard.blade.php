@@ -81,7 +81,7 @@
                 <div class="col-xl-12">
                     <div class="row">
                         <div class="col-xl-12">
-                            <div class="card bubles rounded-3">
+                            <div class="card bubles rounded-3 profile-card-bg-image">
                                 <div class="card-body ref-card-body">
                                     <div class="bubles-down buy-coin d-flex justify-content-between mb-0 mx-0">
                                         <div class="w-100">
@@ -89,13 +89,19 @@
                                             <p class="fs-26 mb-1 mx-0 text-muted w-100 text-uppercase">{{ Auth::user()->name }}</p>
                                             <p class="fs-16 fw-bold text-warning">{{ Auth::user()->currentRank->rank ?? 'NO' }} STAR </p>
                                             @if (Auth::user()->id === config('fortify.super_parent_id') || (Auth::user()->parent_id !== null && Auth::user()->position !== null))
-                                                <a href="{{ route('user.genealogy.position.register') }}" class="btn btn-info rounded-3">
-                                                    Registration
+                                                <a href="{{ route('user.genealogy.position.register') }}" class="btn btn-info rounded-3 profile-card-btn">
+                                                    <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                                    Registration new user
+                                                </a>
+
+                                                <a href="{{ route('user.genealogy') }}" class="btn btn-info rounded-3 profile-card-btn">
+                                                    <i class="fa fa-sitemap" aria-hidden="true"></i>
+                                                    My genealogy
                                                 </a>
                                             @endif
                                         </div>
                                         <div class="float-left width-175">
-                                            <img src="{{ Auth::user()->profile_photo_url }}" class="img-fluid w-100 img-thumbnail img-rou-pt" alt="">
+                                            <img src="{{ Auth::user()->profile_photo_url }}" class="img-fluid w-100 img-thumbnail img-rou-pt profile-img-border" alt="">
                                         </div>
                                     </div>
                                 </div>
