@@ -6,14 +6,14 @@
     @include('frontend.layouts.header-other')
 
     <!-- CONTENT START -->
-    <div class="page-content">
+    <div class="page-content"> 
 
         <!-- INNER PAGE BANNER -->
         <div class="wt-bnr-inr overlay-wraper" style="background-image:url({{ asset('assets/frontend/images/banner/banner.png') }});">
             <div class="overlay-main themecolor-1 opacity-07"></div>
             <div class="container">
                 <div class="wt-bnr-inr-entry">
-                    <h1 class="text-white">About Us</h1>
+                    <h1 class="text-white banner-txt">About Us</h1>
                 </div>
             </div>
         </div>
