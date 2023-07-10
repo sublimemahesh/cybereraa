@@ -294,7 +294,7 @@
                                 <div class="text-center p-t60">
                                     <h3 class="text-uppercase font-weight-500 text-white">Any Query?</h3>
                                     <div class="text-white">{!! $any_query->content !!}</div>
-                                    <h4 class="text-primary">0 321 576 444</h4>
+                                    <h4 class="text-primary">support@owara3m.com</h4>
                                 </div>
                             </div>
                         </div>
@@ -306,7 +306,7 @@
                                 <div class="text-center p-t60">
                                     <h3 class="text-uppercase font-weight-500 text-white">Contact Us</h3>
                                     <p class="text-white"><div class="text-white">{!! $contact_us->content !!}</div></p>
-                                    <h4 class="text-secondry">support@bitinvest.com</h4>
+                                    <h4 class="text-secondry">support@owara3m.com</h4>
                                 </div>
                             </div>
                         </div>

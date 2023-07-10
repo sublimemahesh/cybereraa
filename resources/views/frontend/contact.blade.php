@@ -26,7 +26,7 @@
             <div class="container">
                 <ul class="wt-breadcrumb breadcrumb-style-2">
                     <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home</a></li>
-                    <li>Contact 2</li>
+                    <li>Contact</li>
                 </ul>
             </div>
         </div>
@@ -43,7 +43,7 @@
                         <div class="wt-separator bg-primary"></div>
                     </div>
 
-                    <div class="m-b30">
+                    {{-- <div class="m-b30">
                         <div class="wt-icon-box-wraper bx-style-1 p-a15 left clearfix themecolor-1">
                             <div class="icon-sm">
                                 <span class="icon-cell text-primary">
@@ -55,7 +55,7 @@
                                 <p>+91 564 548 4854</p>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="m-b30">
                         <div class="wt-icon-box-wraper bx-style-1 p-a15 left clearfix themecolor-1">
@@ -66,12 +66,12 @@
                             </div>
                             <div class="icon-content text-black">
                                 <h5 class="wt-tilte text-uppercase">Email</h5>
-                                <p>demo@gmail.com</p>
+                                <p>support@owara3m.com</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="m-b30">
+                    {{-- <div class="m-b30">
                         <div class="wt-icon-box-wraper bx-style-1 p-a15 left clearfix themecolor-1">
                             <div class="icon-sm">
                                 <span class="icon-cell text-primary">
@@ -83,8 +83,8 @@
                                 <p>+91 564 548 4854</p>
                             </div>
                         </div>
-                    </div>
-
+                    </div> --}}
+{{-- 
                     <div class="m-b30">
                         <div class="wt-icon-box-wraper bx-style-1 p-a15 left clearfix themecolor-1">
                             <div class="icon-sm">
@@ -97,7 +97,7 @@
                                 <p>252 W 43rd St New York, NY</p>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                 </div>
                 <div class="wt-box col-md-6">
