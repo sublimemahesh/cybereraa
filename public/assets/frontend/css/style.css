@@ -12971,4 +12971,22 @@ ol.commentlist li::after {
     .mob-slider-btn{
         margin-top: 25px !important;
     }
+
+	.banner-txt{
+		margin-top:0px !important;
+	
+	}
   }
+
+
+.banner-txt{
+	margin-top: 130px;
+
+}
+
+.other-header-logo{
+    margin-top: 15px;
+}
+.other-header-menu{
+    margin-top: 10px;
+}

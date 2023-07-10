@@ -12,7 +12,7 @@
             <div class="overlay-main themecolor-1 opacity-07"></div>
             <div class="container">
                 <div class="wt-bnr-inr-entry">
-                    <h1 class="text-white">Privacy & Policy</h1>
+                    <h1 class="text-white  banner-txt">Privacy & Policy</h1>
                 </div>
             </div>
         </div>

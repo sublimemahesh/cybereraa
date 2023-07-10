@@ -13,7 +13,7 @@
             <div class="overlay-main themecolor-1 opacity-07"></div>
             <div class="container">
                 <div class="wt-bnr-inr-entry">
-                    <h1 class="text-white">Existing projects</h1>
+                    <h1 class="text-white  banner-txt">Existing projects</h1>
                 </div>
             </div>
         </div>

@@ -12,7 +12,7 @@
             <div class="overlay-main themecolor-1 opacity-07"></div>
             <div class="container">
                 <div class="wt-bnr-inr-entry">
-                    <h1 class="text-white">Terms and Conditions</h1>
+                    <h1 class="text-white  banner-txt">Terms and Conditions</h1>
                 </div>
             </div>
         </div>

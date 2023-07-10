@@ -14,7 +14,7 @@
             <div class="overlay-main themecolor-1 opacity-07"></div>
             <div class="container">
                 <div class="wt-bnr-inr-entry">
-                    <h1 class="text-white">Contact</h1>
+                    <h1 class="text-white  banner-txt">Contact</h1>
                 </div>
             </div>
         </div>
