@@ -12964,3 +12964,11 @@ ol.commentlist li::after {
 .h-410{
     height: 405px !important;
 }
+
+
+
+@media only screen and (max-width: 991px) {
+    .mob-slider-btn{
+        margin-top: 25px !important;
+    }
+  }

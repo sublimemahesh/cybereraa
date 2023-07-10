@@ -173,7 +173,7 @@
                      id="slide-100-layer-6"
                      data-x="['left','left','left','left']" data-hoffset="['30','30','30','100']"
 
-                     data-y="['top','top','top','top']" data-voffset="['570','570','570','600']"
+                     data-y="['top','top','top','top']" data-voffset="['570','570','570','570']"
                      data-lineheight="['none','none','none','none']"
                      data-width="['300','300','300','300']"
                      data-height="['none','none','none','none']"
@@ -192,14 +192,14 @@
                      data-paddingleft="[0,0,0,0]"
 
                      style="z-index:13; text-transform:uppercase;">
-                     <a href="{{ route('contact') }}" class="site-button slider-btn-left" >Contact Us</a>
+                     <a href="{{ route('contact') }}" class="site-button slider-btn-left mob-slider-btn" >Contact Us</a>
                      </div>
 
                      <!-- LAYER NR. 7 [ for more detail botton ] -->
                      <div class="tp-caption tp-resizeme"
                      id="slide-100-layer-7"
                      data-x="['left','left','left','left']" data-hoffset="['220','220','220','320']"
-                     data-y="['top','top','top','top']" data-voffset="['570','570','570','600']"
+                     data-y="['top','top','top','top']" data-voffset="['570','570','570','570']"
                      data-lineheight="['none','none','none','none']"
                      data-width="['300','300','300','300']"
                      data-height="['none','none','none','none']"
@@ -221,7 +221,7 @@
                      text-transform:uppercase;
                      font-weight:500;
                      ">
-                     <a href="{{ route('register') }}" class=" site-button white slider-btn-right">Join Us</a>
+                     <a href="{{ route('register') }}" class=" site-button white slider-btn-right mob-slider-btn">Join Us</a>
                      </div>
 
                      <!-- LAYER NR. 8 [ for more detail botton ] -->
