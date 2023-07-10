@@ -41,7 +41,7 @@
             <li>
                 <a href="{{ route('user.earnings.yearly-income-chart') }}" class="rounded-1" aria-expanded="false">
                     <i class="bi bi-bar-chart-fill"></i>
-                    <span class="nav-text">Chart & Summery</span> 
+                    <span class="nav-text">Reports</span>
                 </a>
             </li>
             <li>
@@ -221,7 +221,7 @@
             <li>
                 <a href="{{ route('user.support.tickets.index') }}" class="rounded-1" aria-expanded="false">
                     <i class="bi bi-telephone-forward"></i>
-                    <span class="nav-text">Customer Support</span>
+                    <span class="nav-text">Support Tickets</span>
                 </a>
             </li>
             @include('navigation-menu')
