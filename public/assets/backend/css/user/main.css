@@ -137,7 +137,7 @@
     border: 2px solid white;
     height: max-content;
     border-radius: 0px;
-    box-shadow: var(--box-shadow-card); 
+    box-shadow: var(--box-shadow-card);
 }
 
 .swiper {
@@ -250,4 +250,13 @@
 }
 .info-empty{
     margin-top: -24px !important;
+}
+
+.text-id{
+    margin-top: -22px;
+    color: #A098AE;
+}
+
+.text-status-active{
+    color:green !important;
 }
