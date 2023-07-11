@@ -6,7 +6,6 @@
 
     <div class="row">
         <div class="col-xl-12">
-
             <div class="row">
                 <div class="col-xl-12">
                     <div class="row">
@@ -248,10 +247,10 @@
                     <div class="row">
                         <div class="col-xl-12 col-sm-6">
                             <div class="card rounded-3">
-                                <div class="card-header py-2">
-                                    <h2 class="heading">Income Book <span>(USDT)</span></h2>
+                                <div class="border-0 card-header pb-2 pt-3">
+                                    <h2 class="heading mb-0">Income Book <span>(USDT)</span></h2>
                                 </div>
-                                <div class="card-body pt-0 pb-3 px-2">
+                                <div class="card-body pt-0 pb-3 mt-2">
                                     <nav class="buy-sell style-1">
                                         <div class="nav nav-tabs" id="nav-tab1" role="tablist">
                                             <button class="nav-link border border-right rounder-0 active" id="nav-package-earning-tab" data-bs-toggle="tab"
