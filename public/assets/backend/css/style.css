@@ -40748,7 +40748,7 @@ table.dataTable thead .sorting_asc {
     width: 0;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #3ab5de;
+    background-color: #1fcee9;
     transition: all 0.2s;
 }
 
@@ -40778,7 +40778,7 @@ table.dataTable thead .sorting_asc {
 }
 
 .buy-sell.style-1 .nav-tabs .nav-link.active {
-    color: #3ab5de;
+    color: #1fcee9;
 
 }
 
