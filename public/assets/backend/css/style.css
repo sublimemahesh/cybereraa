@@ -47614,9 +47614,9 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 }
 
 [data-theme-version="dark"] .widget-stat .media > span {
-    background: #1543f3;
+    background: #fff;
     border-color: #9568FF;
-    color: #fff;
+    color: #000;
 }
 
 [data-theme-version="dark"] .plus-minus-input .custom-btn {
