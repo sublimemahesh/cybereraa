@@ -7,11 +7,10 @@ use App\Http\Resources\YealyIncomeBarChartResource;
 use App\Models\Commission;
 use App\Models\Currency;
 use App\Models\Earning;
+use App\Models\Page;
 use App\Models\PopupNotice;
 use App\Models\Rank;
 use App\Models\Transaction;
-use App\Models\Page;
-
 use Auth;
 use DB;
 
@@ -74,15 +73,28 @@ class DashboardController extends Controller
         $wallet = Auth::user()->wallet;
 
         // records
-        $commissions = Commission::with('purchasedPackage.user')
+        $direct = Commission::with('purchasedPackage.user')
             ->where('user_id', Auth::user()->id)
             //->where('created_at', '<=', date('Y-m-d H:i:s'))
-            ->limit(25)
+            ->where('type', 'DIRECT')
+            ->limit(20)
             ->latest()
             ->get();
 
-        $direct = $commissions->where('type', 'DIRECT');
-        $indirect = $commissions->where('type', 'INDIRECT');
+        $indirect = Commission::with('purchasedPackage.user')
+            ->where('user_id', Auth::user()->id)
+            //->where('created_at', '<=', date('Y-m-d H:i:s'))
+            ->where('type', 'INDIRECT')
+            ->limit(20)
+            ->latest()
+            ->get();
+
+        $package_latest = Earning::where('user_id', Auth::user()->id)
+            ->where('status', 'RECEIVED')
+            ->where('type', 'PACKAGE')
+            ->limit(20)
+            ->latest()
+            ->get();
 
         $currency_carousel = Currency::all();
 
@@ -95,7 +107,7 @@ class DashboardController extends Controller
             ->whereIn('user_id', $descendants)
             ->orderBy('rank', 'desc')
             ->orderBy('total_rankers', 'desc')
-            ->limit(10)
+            ->limit(20)
             ->get();
 
         $yearlyIncome = DB::table('earnings')
@@ -116,9 +128,8 @@ class DashboardController extends Controller
             ->firstOrNew();
 
 
-            $banners = Page::where(['slug' => 'banner'])->firstOrNew();
-            $banners = $banners?->children;
-
+        $banners = Page::where(['slug' => 'banner'])->firstOrNew();
+        $banners = $banners?->children;
 
 
         return view('backend.user.dashboard',
@@ -127,6 +138,7 @@ class DashboardController extends Controller
                 'total_investment',
                 'active_investment',
                 'expired_investment',
+                'package_latest',
                 'direct',
                 'indirect',
                 'wallet',
@@ -150,7 +162,6 @@ class DashboardController extends Controller
                 'popup',
             )
         );
-
 
 
     }

@@ -153,6 +153,7 @@
 @powerGridScripts
 
 <script src="{{ asset('assets/backend/vendor/chart.js/chart.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.min.js"></script>
 <script src="{{ asset('assets/backend/vendor/apexchart/apexchart.js') }}"></script>
 <script src="{{ asset('assets/backend/vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
 <script src="{{ asset('assets/backend/vendor/swiper/js/swiper-bundle.min.js') }}"></script>
@@ -171,6 +172,7 @@
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XNCT9N2XLP"></script>
 <script>
+
     window.dataLayer = window.dataLayer || [];
 
     function gtag() {
