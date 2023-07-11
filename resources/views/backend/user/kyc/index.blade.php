@@ -2,20 +2,12 @@
     @section('title', 'My KYC')
     @section('header-title', 'My KYC' )
     @section('styles')
-        @vite(['resources/css/app-jetstream.css'])
     @endsection
     @section('breadcrumb-items')
         <li class="breadcrumb-item">KYC</li>
     @endsection
 
     <div class="row kyc-details-page">
-        @if(!Auth::user()->profile_is_complete)
-            <div class="col-xl-12 col-lg-12">
-                @if (Laravel\Fortify\Features::canUpdateProfileInformation())
-                    @livewire('profile.update-profile-information-form')
-                @endif
-            </div>
-        @endif
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">

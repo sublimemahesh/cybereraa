@@ -3,6 +3,7 @@
     @section('header-title', 'Kyc Entry' )
     @section('styles')
         <link rel="stylesheet" href="{{ asset('assets/backend/css/user/kyc.css') }}">
+        @vite(['resources/css/app-jetstream.css'])
     @endsection
     @section('breadcrumb-items')
         <li class="breadcrumb-item">
@@ -12,6 +13,13 @@
     @endsection
 
     <div class="row">
+        @if(!Auth::user()->profile_is_complete)
+            <div class="col-xl-12 col-lg-12">
+                @if (Laravel\Fortify\Features::canUpdateProfileInformation())
+                    @livewire('profile.update-profile-information-form')
+                @endif
+            </div>
+        @endif
         <div class="col-lg-12">
             <div class="card text-white bg-secondary">
                 <div class="card-body">
