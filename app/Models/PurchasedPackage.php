@@ -57,7 +57,7 @@ class PurchasedPackage extends Pivot
      */
     public function getPackageInfoJsonAttribute()
     {
-        return $this->package_info_json = json_decode($this->package_info, false, 512, JSON_THROW_ON_ERROR);
+        return $this->package_info_json = json_decode($this->package_info ?? '[]', false, 512, JSON_THROW_ON_ERROR);
     }
 
     public function getExpiryStatusChangedAtAttribute($date)

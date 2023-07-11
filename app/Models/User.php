@@ -19,6 +19,7 @@ use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
+use Staudenmeir\LaravelCte\Eloquent\QueriesExpressions;
 use Throwable;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -138,7 +139,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function sponsor(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(self::class, 'super_parent_id', 'id')->withDefault(new self);
+        return $this->belongsTo(self::class, 'super_parent_id', 'id')->withDefault();
     }
 
     public function directSales(): \Illuminate\Database\Eloquent\Relations\HasMany

@@ -82,30 +82,46 @@ class EarningController extends Controller
     public function teamHighestEarnings(Request $request)
     {
         if ($request->wantsJson()) {
-            $descendants = Auth::user()->descendants()->pluck('id')->toArray();
-            $earnings = Earning::filter()
-                ->with(['earnable', 'user'])
+            $descendants = Auth::user()->descendants()->select('id')->pluck('id')->toArray();
+            $earnings = Earning::selectRaw('user_id, SUM(amount) AS earnings')
+                ->filter()
+                ->with(['user.sponsor', 'earnable'])
                 ->whereIn('user_id', $descendants)
                 ->whereNotIn('type', ['RANK_BONUS', 'RANK_GIFT', 'P2P', 'STAKING'])
-                ->orderBy('amount', 'desc');
+                ->where('status', 'RECEIVED')
+                ->groupBy('user_id');
+            //->orderBy('earnings', 'desc');
 
             return DataTables::of($earnings)
-                ->addColumn('earnable_type', function ($earn) {
-                    return
-                        "<code class='text-uppercase'>{$earn->type}</code> - #" .
-                        str_pad($earn->earnable_id, '4', '0', STR_PAD_LEFT);
-                })
+                //                ->addColumn('earnable_type', function ($earn) {
+                //                    return $earn->type;
+                //                })
                 ->addColumn('user', static function ($trx) {
-                    return "User: " . str_pad($trx->user_id, '4', '0', STR_PAD_LEFT) .
-                        " - <code class='text-uppercase'>{$trx->user->username}</code>";
+                    return "#" . str_pad($trx->user_id, '4', '0', STR_PAD_LEFT);
                 })
-                ->addColumn('amount', fn($commission) => number_format($commission->amount, 2))
-                ->addColumn('package', fn($earn) => $earn->earnable->package_info_json->name)
-                ->addColumn('date', fn($earn) => $earn->created_at->format('Y-m-d H:i:s'))
-                ->rawColumns(['user', 'earnable_type'])
+                ->addColumn('username', static function ($trx) {
+                    return $trx->user->username;
+                })
+                ->addColumn('name', static function ($trx) {
+                    return $trx->user->name;
+                })
+                ->addColumn('sponsor', static function ($trx) {
+                    return $trx->user->sponsor->username;
+                })
+                ->addColumn('amount', fn($commission) => number_format($commission->earnings, 2))
+                /*->addColumn('package', fn($earn) => $earn->earnable->package_info_json->name)*/
+                /*->addColumn('date', fn($earn) => $earn->created_at->format('Y-m-d H:i:s'))*/
+                // ->rawColumns(['user', 'earnable_type'])
                 ->make();
         }
-        return view('backend.user.teams.highest-earnings');
+
+
+        $types = [
+            'package' => 'PACKAGE',
+            'direct' => 'DIRECT',
+            'indirect' => 'INDIRECT',
+        ];
+        return view('backend.user.teams.highest-earnings', compact('types'));
     }
 
 
@@ -199,28 +215,41 @@ class EarningController extends Controller
     /**
      * @throws Exception
      */
-    public function teamCommissions(Request $request)
+    public function teamCommissionsIncome(Request $request)
     {
         if ($request->wantsJson()) {
-            $earnings = Commission::filter()
-                ->with(['user', 'purchasedPackage.user'])
-                ->whereIn('user_id', Auth::user()->descendants()->pluck('id')->toArray());
+            $descendants = Auth::user()->descendants()->pluck('id')->toArray();
+            $incomes = Commission::selectRaw('user_id, SUM(amount) AS total_amount, SUM(paid) AS total_paid')
+                ->filter()
+                ->with(['user.sponsor', 'user.currentRank'])
+                ->whereIn('user_id', $descendants)
+                ->whereIn('status', ['QUALIFIED', 'COMPLETED'])
+                ->groupBy('user_id');
 
-
-            return DataTables::eloquent($earnings)
-                ->addColumn('user', function ($commission) {
-                    return str_pad($commission->user_id, '4', '0', STR_PAD_LEFT) .
-                        " - <code class='text-uppercase'>{$commission->user->username}</code>";
-                })->addColumn('referer', function ($commission) {
-                    return str_pad($commission->purchasedPackage->user_id, '4', '0', STR_PAD_LEFT) .
-                        " - <code class='text-uppercase'>{$commission->purchasedPackage->user->username}</code>";
+            return DataTables::of($incomes)
+                ->addColumn('user', static function ($commission) {
+//                    dd($commission);
+                    return "#" . str_pad($commission->user_id, '4', '0', STR_PAD_LEFT);
                 })
-                ->addColumn('package', fn($commission) => $commission->package_info_json->name)
-                ->addColumn('amount', fn($commission) => number_format($commission->amount, 2))
-                ->addColumn('paid', fn($commission) => number_format($commission->paid, 2))
-                ->addColumn('created_date', fn($commission) => $commission->created_at->format('Y-m-d H:i:s'))
-                ->rawColumns(['user', 'referer'])
+                ->addColumn('username', static function ($commission) {
+                    return $commission->user->username;
+                })
+                ->addColumn('name', static function ($commission) {
+                    return $commission->user->name;
+                })
+                ->addColumn('sponsor', static function ($commission) {
+                    return $commission->user->sponsor->username;
+                })
+                ->addColumn('rank', static function ($commission) {
+                    if ($commission->user?->currentRank?->rank !== null) {
+                        return "Rank 0" . $commission->user->currentRank->rank;
+                    }
+                    return "-";
+                })
+                ->addColumn('total_amount_format', fn($commission) => number_format($commission->total_amount, 2))
+                ->addColumn('total_paid_format', fn($commission) => number_format($commission->total_paid, 2))
                 ->make();
+
         }
 
         $types = [
