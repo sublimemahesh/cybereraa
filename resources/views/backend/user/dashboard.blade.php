@@ -6,77 +6,7 @@
 
     <div class="row">
         <div class="col-xl-12">
-            {{--<div class="row main-card">
-                <div class="col-xl-12">
-                    <div class="overflow-hidden dz-crypto-scroll shadow-none">
-                        <div class="js-conveyor-example">
-                            <ul class="crypto-list" id="crypto-webticker">
 
-
-                                <li>
-                                    <div class="card overflow-hidden">
-                                        <div class="card-body d-flex align-items-center">
-                                            <div class="me-4">
-                                                <p class="mb-2 fs-13">
-                                                    <span class="bitcoin-change"></span>
-                                                </p>
-                                                <h4 class="bitcoin"></h4>
-                                            </div>
-                                            <img src="{{asset('assets/frontend/images/coins/bitcoin.png') }}" width="42"
-                                                 height="42" viewBox="0 0 42 42" fill="none">
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <div class="card overflow-hidden">
-                                        <div class="card-body d-flex align-items-center">
-                                            <div class="me-4">
-                                                <p class="mb-2 fs-13">
-                                                    <span class="litecoin-change"></span>
-                                                </p>
-                                                <h4 class="litecoin"></h4>
-                                            </div>
-                                            <img src="{{asset('assets/frontend/images/coins/litecoin.png') }}"
-                                                 width="42" height="42" viewBox="0 0 42 42" fill="none">
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <div class="card overflow-hidden">
-                                        <div class="card-body d-flex align-items-center">
-                                            <div class="me-4">
-                                                <p class="mb-2 fs-13">
-                                                    <span class="ethereum-change"></span>
-                                                </p>
-                                                <h4 class="ethereum"></h4>
-                                            </div>
-                                            <img src="{{ asset('assets/frontend/images/coins/ethereum.png') }}"
-                                                 width="42" height="42" viewBox="0 0 42 42" fill="none">
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <div class="card overflow-hidden">
-                                        <div class="card-body d-flex align-items-center">
-                                            <div class="me-4">
-                                                <p class="mb-2 fs-13">
-                                                    <span class="tether-change"></span>
-                                                </p>
-                                                <h4 class="tether"></h4>
-                                            </div>
-                                            <img src="{{ asset('assets/frontend/images/coins/tether.png') }}" width="42"
-                                                 height="42" viewBox="0 0 42 42" fill="none">
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>--}}
             <div class="row">
                 <div class="col-xl-12">
                     <div class="row">
@@ -118,7 +48,7 @@
                         </div>
                         <div class="col-xl-4">
                             <div class="card rounded-3">
-                                <div class="card-body">
+                                <div class="card-body d-flex flex-column justify-content-center px-2">
                                     <canvas id="earnings-pie-chart"></canvas>
                                 </div>
                             </div>
@@ -324,58 +254,73 @@
                                 <div class="card-body pt-0 pb-3 px-2">
                                     <nav class="buy-sell style-1">
                                         <div class="nav nav-tabs" id="nav-tab1" role="tablist">
-                                            <button class="nav-link border active border-right rounder-0" id="nav-openorder-tab" data-bs-toggle="tab"
-                                                    data-bs-target="#nav-openorder" type="button" role="tab"
-                                                    aria-controls="nav-openorder" aria-selected="true">Direct Sales
+                                            <button class="nav-link border border-right rounder-0 active" id="nav-package-earning-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#nav-package-earning" type="button" role="tab"
+                                                    aria-controls="nav-package-earning" aria-selected="true">Latest Package Earnings
                                             </button>
-                                            <button class="nav-link border border-left rounder-0" id="nav-orderhistory-tab" data-bs-toggle="tab"
-                                                    data-bs-target="#nav-orderhistory" type="button" role="tab"
-                                                    aria-controls="nav-orderhistory" aria-selected="false">In-Direct Sales
+                                            <button class="nav-link border border-left rounder-0" id="nav-direct-sale-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#nav-direct-sale" type="button" role="tab"
+                                                    aria-controls="nav-direct-sale" aria-selected="false">Direct Sales
+                                            </button>
+                                            <button class="nav-link border border-left rounder-0" id="nav-indirect-sale-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#nav-indirect-sale" type="button" role="tab"
+                                                    aria-controls="nav-indirect-sale" aria-selected="false">In-Direct Sales
                                             </button>
                                         </div>
                                     </nav>
                                     <div class="tab-content" id="nav-tabContent3">
-                                        <div class="tab-pane fade show active" id="nav-openorder" role="tabpanel"
-                                             aria-labelledby="nav-openorder-tab">
+                                        <div class="tab-pane fade show active" id="nav-package-earning" role="tabpanel" aria-labelledby="package-earning-tab">
                                             <div class="list-row-head text-nowrap text-left px-3">
                                                 <span class="px-0">Received</span>
-                                                <span class="px-0">Paid</span>
+                                                <span class="px-0">Package</span>
+                                                <span class="px-0">Paid Percentage</span>
+                                                <span class="px-0">Date</span>
+                                            </div>
+                                            <div class="list-table success">
+                                                @foreach ($package_latest as $day_earn)
+                                                    <div class="list-row px-3">
+                                                        <span class="p-0">$ {{ number_format($day_earn->amount,2) }}</span>
+                                                        <span class="p-0">{{ $day_earn->earnable->package_info_json->name }}</span>
+                                                        <span class="p-0">{{ $day_earn->payed_percentage ?? $day_earn->earnable->payable_percentage }}%</span>
+                                                        <span class="p-0">{{ $day_earn->created_at->format('Y-m-d') }}</span>
+                                                        <div class="bg-layer"></div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-direct-sale" role="tabpanel" aria-labelledby="nav-direct-sale-tab">
+                                            <div class="list-row-head text-nowrap text-left px-3">
+                                                <span class="px-0">Received</span>
+                                                <span class="px-0">Already Paid</span>
                                                 <span class="px-0">User</span>
                                                 <span class="px-0">Next Pay</span>
                                             </div>
                                             <div class="list-table success">
                                                 @foreach ($direct as $sale)
                                                     <div class="list-row px-3">
-                                                        <span class="p-0">{{ $sale->amount }}</span>
-                                                        <span class="p-0">{{ $sale->paid }}</span>
-                                                        <span class="p-0">{{ $sale->purchasedPackage->user->username
-                                                        }}</span>
-                                                        <span class="p-0">{{
-                                                        Carbon::parse($sale->next_payment_date)->format('Y-m-d')
-                                                        }}</span>
+                                                        <span class="p-0">$ {{ number_format($sale->amount,2) }}</span>
+                                                        <span class="p-0">$ {{ number_format($sale->paid,2) }}</span>
+                                                        <span class="p-0">{{ $sale->purchasedPackage->user->username }}</span>
+                                                        <span class="p-0">{{ Carbon::parse($sale->next_payment_date)->format('Y-m-d') }}</span>
                                                         <div class="bg-layer"></div>
                                                     </div>
                                                 @endforeach
                                             </div>
                                         </div>
-                                        <div class="tab-pane fade" id="nav-orderhistory" role="tabpanel"
-                                             aria-labelledby="nav-orderhistory-tab">
+                                        <div class="tab-pane fade" id="nav-indirect-sale" role="tabpanel" aria-labelledby="nav-indirect-sale-tab">
                                             <div class="list-row-head text-nowrap text-left px-3">
                                                 <span class="px-0">Received</span>
-                                                <span class="px-0">Paid</span>
+                                                <span class="px-0">Already Paid</span>
                                                 <span class="px-0">User</span>
                                                 <span class="px-0">Next Pay</span>
                                             </div>
                                             <div class="list-table success">
                                                 @foreach ($indirect as $sale)
                                                     <div class="list-row px-3">
-                                                        <span class="p-0">{{ $sale->amount }}</span>
-                                                        <span class="p-0">{{ $sale->paid }}</span>
-                                                        <span class="p-0">{{ $sale->purchasedPackage->user->username
-                                                        }}</span>
-                                                        <span class="p-0">{{
-                                                        Carbon::parse($sale->next_payment_date)->format('Y-m-d')
-                                                        }}</span>
+                                                        <span class="p-0">$ {{ number_format($sale->amount,2) }}</span>
+                                                        <span class="p-0">$ {{ number_format($sale->paid,2) }}</span>
+                                                        <span class="p-0">{{ $sale->purchasedPackage->user->username }}</span>
+                                                        <span class="p-0">{{ Carbon::parse($sale->next_payment_date)->format('Y-m-d') }}</span>
                                                         <div class="bg-layer"></div>
                                                     </div>
                                                 @endforeach
@@ -392,9 +337,7 @@
                     <div class="owl-carousel owl-banner">
                         @foreach ($banners as $section)
                             <div class="item">
-
                                 <img src="{{ storage('pages/' . $section->image) }}" alt="safest trades">
-
                             </div>
                         @endforeach
                     </div>
@@ -405,7 +348,7 @@
                 <div class="col-lg-12">
                     <div class="card rounded-3">
                         <div class="card-header">
-                            <h4 class="card-title">Top 10 Rankers</h4>
+                            <h4 class="card-title">Top {{ count($top_rankers) }} Rankers</h4>
                         </div>
                         <div class="card-body py-1">
                             <div class="table-responsive">
@@ -593,16 +536,38 @@
                         }
                     ]
                 },
+                plugins: [ChartDataLabels],
                 options: {
+                    tooltips: {
+                        enabled: true
+                    },
                     responsive: true,
                     plugins: {
+                        datalabels: {
+                            formatter: (value, ctx) => {
+                                let sum = 0;
+                                let dataArr = ctx.chart.data.datasets[0].data;
+                                dataArr.map(data => {
+                                    sum += data;
+                                });
+                                return (value * 100 / sum).toFixed(2) <= 0 ? null : (value * 100 / sum).toFixed(2) + "%";
+                            },
+                            color: '#fff',
+                        },
                         legend: {
+                            labels: {
+                                font: {
+                                    size: 10
+                                },
+                                usePointStyle: true,
+                                boxWidth: 15,
+                            },
                             position: 'top',
                         },
                         title: {
                             display: true,
-                            text: 'My Earnings Summary'
-                        }
+                            text: 'My Earnings Summary',
+                        },
                     }
                 },
             })

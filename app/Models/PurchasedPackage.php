@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use JsonException;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
-use function Illuminate\Events\queueable;
 
 class PurchasedPackage extends Pivot
 {
@@ -57,7 +56,7 @@ class PurchasedPackage extends Pivot
      */
     public function getPackageInfoJsonAttribute()
     {
-        return $this->package_info_json = json_decode($this->package_info ?? '[]', false, 512, JSON_THROW_ON_ERROR);
+        return json_decode($this->package_info ?? '[]', false, 512, JSON_THROW_ON_ERROR);
     }
 
     public function getExpiryStatusChangedAtAttribute($date)
@@ -67,7 +66,7 @@ class PurchasedPackage extends Pivot
 
     public function getIsCommissionIssuedAttribute(): bool
     {
-        return $this->is_commission_issued = $this->commission_issued_at !== null;
+        return $this->commission_issued_at !== null;
     }
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
