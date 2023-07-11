@@ -224,6 +224,12 @@
                     <span class="nav-text">Support Tickets</span>
                 </a>
             </li>
+            <li>
+                <a href="{{ route('user.tutorials.index') }}" class="rounded-1" aria-expanded="false">
+                    <i class="bi bi-book"></i>
+                    <span class="nav-text">Tutorials</span>
+                </a>
+            </li>
             @include('navigation-menu')
         </ul>
 
