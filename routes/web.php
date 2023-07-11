@@ -376,6 +376,11 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::get('wallet/topup-requests/history', 'User\WalletTopupHistoryController@history')->name('wallet.topup-request.history');
 
 
+        // Tutorial Request
+        Route::get('tutorials', 'User\TutorialController@index')->name('tutorials.index');
+
+
+
         // support tickets
         Route::group(['prefix' => 'support/tickets', 'controller' => 'User\TicketController', 'as' => 'support.tickets.'], static function () {
             Route::get('', 'index')->name('index');
