@@ -13,14 +13,17 @@ $(function () {
         // scrollY: 200,
         // deferRender: true,
         // scroller: true,
-        order: [[5, 'desc']],
+        order: [[4, 'desc']],
         columns: [
             {data: "user", searchable: false, orderable: false},
-            {data: "earnable_type", searchable: false, orderable: false},
-            {data: "package", searchable: false, orderable: false},
-            {data: "status", searchable: false, orderable: false},
-            {data: "date", name: "created_at", searchable: false, orderable: false},
-            {data: "amount", searchable: false, orderable: false},
+            {data: "username", searchable: false, orderable: false},
+            {data: "name", searchable: false, orderable: false},
+            {data: "sponsor", searchable: false, orderable: false},
+            //{data: "earnable_type", searchable: false, orderable: false},
+            //{data: "package", searchable: false, orderable: false},
+            // {data: "status", searchable: false, orderable: false},
+            //{data: "date", name: "created_at", searchable: false, orderable: false},
+            {data: "amount", name: 'earnings', searchable: false, orderable: true},
         ],
         footerCallback: function (row, data, start, end, display) {
             let api = this.api();
@@ -39,19 +42,19 @@ $(function () {
                     }, 0);
             }
 
-            let total = new Intl.NumberFormat().format(sumVal(5));
-            $(api.column(5).footer()).html(`<br><br>Current Page Total: USDT ${total}`);
+            let total = new Intl.NumberFormat().format(sumVal(4));
+            $(api.column(4).footer()).html(`<br><br>Current Page Total: USDT ${total}`);
         },
         columnDefs: [
             {
                 render: function (date, type, full, meta) {
                     return `<div style="font-size: 0.76rem !important;"> ${date} </div>`;
-                }, targets: [0, 1, 4],
+                }, targets: [0, 1, 2, 3],
             },
             {
                 render: function (amount, type, full, meta) {
                     return `<div style="min-width:100px" class="text-right"> ${amount} </div>`;
-                }, targets: [5],
+                }, targets: [4],
             }
         ]
     });
@@ -64,7 +67,7 @@ $(function () {
         e.preventDefault();
 
         urlParams.set("date-range", $("#date-range").val());
-        urlParams.set("status", $("#status").val());
+        // urlParams.set("status", $("#status").val());
         urlParams.set("earning-type", $("#earning-type").val());
 
         let url = location.href.split(/\?|\#/)[0] + "?" + urlParams.toString();

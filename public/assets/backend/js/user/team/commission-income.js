@@ -3,7 +3,7 @@ $(function () {
     const urlParams = new URLSearchParams(queryString);
     const date_range = urlParams.get("date-range");
 
-    let table = $('#transactions').DataTable({
+    let table = $('#team-commisions').DataTable({
         responsive: true,
         scrollX: true,
         destroy: true,
@@ -11,17 +11,15 @@ $(function () {
         serverSide: true,
         //stateSave: false,
         ajax: location.href,
-        order: [[5, 'desc']],
+        order: [[6, 'desc']],
         columns: [
             {data: "user", searchable: false, orderable: false},
-            {data: "type", searchable: false, orderable: false},
-            {data: "status", name: 'status', searchable: false, orderable: false},
-            {data: "package", searchable: false, orderable: false},
-            {data: "referer", searchable: true, name: 'purchasedPackage.user.username', orderable: false},
-            {data: "created_date", name: 'created_at', searchable: false},
-            {data: "next_payment_date", searchable: false, orderable: false},
-            {data: "amount", name: 'amount', searchable: false, orderable: false},
-            {data: "paid", name: 'paid', searchable: false, orderable: false},
+            {data: "username", searchable: false, orderable: false},
+            {data: "name", searchable: false, orderable: false},
+            {data: "sponsor", searchable: false, orderable: false},
+            {data: "rank", searchable: false, orderable: false},
+            {data: "total_amount_format", name: 'total_amount', searchable: false, orderable: false},
+            {data: "total_paid_format", name: 'total_paid', searchable: false, orderable: true},
         ],
         footerCallback: function (row, data, start, end, display) {
             let api = this.api();
@@ -40,24 +38,24 @@ $(function () {
                     }, 0);
             }
 
-            let amountTotal = new Intl.NumberFormat().format(sumVal(7));
-            $(api.column(8).footer()).html(`Current Page Amount Total: USDT ${amountTotal}`);
+            let amountTotal = new Intl.NumberFormat().format(sumVal(5));
+            $(api.column(6).footer()).html(`Current Page Amount Total: USDT ${amountTotal}`);
 
-            let paidTotal8 = new Intl.NumberFormat().format(sumVal(8));
-            $(api.column(8).footer()).append(`<br><br>Current Paid Total: USDT ${paidTotal8}`);
+            let paidTotal8 = new Intl.NumberFormat().format(sumVal(6));
+            $(api.column(6).footer()).append(`<br><br>Current Paid Total: USDT ${paidTotal8}`);
         },
         columnDefs: [
             {
                 render: function (date, type, full, meta) {
                     return `<div style="font-size: 0.76rem !important;"> ${date} </div>`;
                 },
-                targets: [0, 4, 5, 6],
+                targets: [0, 1, 2, 3, 4],
             },
             {
                 render: function (amount, type, full, meta) {
                     return `<div style="min-width:100px" class="text-right"> ${amount} </div>`;
                 },
-                targets: [7, 8],
+                targets: [5, 6],
             },
         ],
     })
@@ -70,7 +68,7 @@ $(function () {
         e.preventDefault();
 
         urlParams.set("date-range", $("#date-range").val());
-        urlParams.set("status", $("#status").val());
+        //urlParams.set("status", $("#status").val());
         urlParams.set("type", $("#type").val());
 
         let url = location.href.split(/\?|\#/)[0] + "?" + urlParams.toString();

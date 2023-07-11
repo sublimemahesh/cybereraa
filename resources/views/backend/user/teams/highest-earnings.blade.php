@@ -11,7 +11,7 @@
         @vite(['resources/css/app-jetstream.css'])
     @endsection
 
-     @section('breadcrumb-items')
+    @section('breadcrumb-items')
         <li class="breadcrumb-item">Team Earnings</li>
     @endsection
 
@@ -33,13 +33,9 @@
                                                     <div class="relative">
                                                         <select id="earning-type" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
                                                             <option value="">ALL</option>
-                                                            <option value="package">PACKAGE</option>
-                                                            <option value="direct">DIRECT SALE</option>
-                                                            <option value="indirect">INDIRECT SALE</option>
-                                                            {{--<option value="rank_bonus">RANK BONUS</option>
-                                                            <option value="rank_gift">RANK GIFT</option>
-                                                            <option value="p2p">P2P</option>
-                                                            <option value="staking">STAKING</option>--}}
+                                                            @foreach($types as $type_val => $type)
+                                                                <option value="{{ $type_val }}" {{ request()->input('earning-type') === $type_val ? 'selected' : '' }}>{{ $type }}</option>
+                                                            @endforeach
                                                         </select>
                                                         <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
                                                             <svg class="pointer-events-none w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -60,26 +56,6 @@
                                                                    class="flatpickr block my-1 bg-gray-50 text-gray-700 py-2 px-3 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500 flatpickr-input"
                                                                    type="text" placeholder="Select a period" readonly="readonly">
                                                         </form>
-                                                        <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
-                                                            <svg class="pointer-events-none w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                                            </svg>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
-                                            <div>
-                                                <div class=" pt-2 p-2 ">
-                                                    <label for="status" class="text-gray-700 dark:text-gray-300">STATUS</label>
-                                                    <div class="relative">
-                                                        <select id="status" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
-                                                            <option value="">ALL</option>
-                                                            <option value="received">RECEIVED</option>
-                                                            <option value="hold">HOLD</option>
-                                                            <option value="canceled">CANCELED</option>
-                                                        </select>
                                                         <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
                                                             <svg class="pointer-events-none w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -111,17 +87,16 @@
                         <table id="earnings" class="display table-responsive-my " style="table-layout: fixed">
                             <thead>
                             <tr>
-                                <th>USER</th>
-                                <th>EARNING TYPE</th>
-                                <th>PACKAGE</th>
-                                <th>STATUS</th>
-                                <th>PAYMENT DATE</th>
+                                <th>USER ID</th>
+                                <th>USERNAME</th>
+                                <th>NAME</th>
+                                <th>SPONSOR</th>
                                 <th class="text-right">AMOUNT</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
-                                <th colspan="6" style="text-align:right"></th>
+                                <th colspan="5" style="text-align:right"></th>
                             </tr>
                             </tfoot>
                         </table>

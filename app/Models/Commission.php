@@ -63,16 +63,17 @@ class Commission extends Model
      */
     public function scopeFilter(Builder $query): Builder
     {
-        return $query->when(!empty(request()->input('date-range')), static function ($query) {
-            $period = explode(' to ', request()->input('date-range'));
-            try {
-                $date1 = Carbon::createFromFormat('Y-m-d', $period[0]);
-                $date2 = Carbon::createFromFormat('Y-m-d', $period[1]);
-                $query->when($date1 && $date2, fn($q) => $q->whereDate('created_at', '>=', $period[0])->whereDate('created_at', '<=', $period[1]));
-            } finally {
-                return;
-            }
-        })
+        return $query->when(!empty(request()->input('date-range')),
+            static function ($query) {
+                $period = explode(' to ', request()->input('date-range'));
+                try {
+                    $date1 = Carbon::createFromFormat('Y-m-d', $period[0]);
+                    $date2 = Carbon::createFromFormat('Y-m-d', $period[1]);
+                    $query->when($date1 && $date2, fn($q) => $q->whereDate('created_at', '>=', $period[0])->whereDate('created_at', '<=', $period[1]));
+                } finally {
+                    return;
+                }
+            })
             ->when(!empty(request()->input('type')) && in_array(request()->input('type'), ['direct', 'indirect']), function ($query) {
                 $query->where('type', request()->input('type'));
             })
@@ -103,6 +104,9 @@ class Commission extends Model
 
     public function getNextPaymentDateAttribute(): string
     {
+        if ($this->created_at === null){
+            return '-';
+        }
         $today = Carbon::parse(date('Y-m-d') . ' ' . $this->created_at->format('H:i:s'));
 
         $nextPayDay = $today;
