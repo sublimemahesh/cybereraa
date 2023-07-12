@@ -1,3 +1,20 @@
+
+
+    <!-- LOADING AREA START ===== -->
+    <div class="loading-area">
+        <div class="loading-box"></div>
+        <div class="loading-pic">
+            <div class="cssload-container">
+                <div class="cssload-dot bg-primary"><i class="fa fa-bitcoin"></i></div>
+                <div class="step" id="cssload-s1"></div>
+                <div class="step" id="cssload-s2"></div>
+                <div class="step" id="cssload-s3"></div>
+            </div>
+        </div>
+    </div>
+    <!-- LOADING AREA  END ====== -->
+
+
 <footer class="site-footer footer-dark bg-no-repeat bg-full-height bg-center " id='footer'  style="background-image:url({{ asset('assets/frontend/images/background/footer-bg.jpg') }});">
     <!-- FOOTER BLOCKES START -->
     <div class="footer-top overlay-wraper">
