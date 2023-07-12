@@ -20,16 +20,13 @@
             @endphp--}}
             <div class="col-xl-3 col-md-6 col-sm-12 col-lg-3">
                 <div class="card text-center">
-                    <div class="card-header">
+                    <div class="card-header bp-header-txt">
                         <h5 class="card-title">{{ $package->name }}</h5>
                     </div>
                     <div class="card-body">
                         <div class="basic-list-group">
                             <ul class="list-group">
-                                <li class="list-group-item active">
-                                    {{ $package->currency }}
-                                    <b> {{ $package->amount + $package->gas_fee }} </b>
-                                </li>
+
                                 <li class="list-group-item"><b>Price </b>USDT {{ $package->amount }}</li>
                                 <li class="list-group-item">
                                     {{--@if(!$is_gas_fee_added)
@@ -48,6 +45,9 @@
                                 </li>
                             </ul>
                         </div>
+
+                        <button type="button" class="btn btn-primary bp-price-btn no-hover-style"> {{ $package->currency }} {{ $package->amount + $package->gas_fee }}</button>
+
                     </div>
                     <div class="card-footer">
                         <button type="button" class="btn btn-primary mb-2" id="{{ $package->slug }}-choose">Choose</button>

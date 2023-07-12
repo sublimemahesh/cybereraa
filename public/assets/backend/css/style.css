@@ -36106,7 +36106,7 @@ button:focus {
 }
 
 [data-theme-version="dark"] .card-footer {
-    border-color: #9568FF;
+    border-color: #707070;
 }
 
 @media only screen and (max-width: 35.9375rem) {
@@ -49034,6 +49034,11 @@ div.dt-buttons .dt-button.buttons-collection {
         margin-left: 88px !important;
         margin-top: -8px !important;
     }
+
+
+.bp-price-btn{
+    margin-top: 5% !important;
+}
 }
 
 
@@ -49060,3 +49065,25 @@ div.dt-buttons .dt-button.buttons-collection {
 .profile-img-border {
     border: 6px solid #707070;
 }
+
+.bp-header-txt{
+    display: flex;
+    justify-content: center;
+}
+
+.bp-price-btn{
+    margin-top: 15%;
+    border-radius: 20px;
+    background-color: #171b26;
+    font-size: 15px;
+
+}
+
+.no-hover-style:hover {
+    /* Add any specific styles to override the default hover behavior */
+    /* For example, to remove the hover effect completely, you can use: */
+    cursor: default;
+    /* or */
+    pointer-events: none;
+}
+
