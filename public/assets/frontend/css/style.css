@@ -2719,7 +2719,7 @@ ol.list-num-count.list-outline-none > li:before {
 
 .header-btn {
 	color: #0a0a0a !important;
-	background-color:#1fcde8 !important;
+	background-color:#ff9800 !important;
 	padding: 10px 20px;
 	display: inline-block;
 	font-size: 14px;
@@ -2732,6 +2732,7 @@ ol.list-num-count.list-outline-none > li:before {
 	line-height:1.42857;
 	margin-left:-1px;
 	text-decoration: none !important;
+    border-radius: 25px;
 }
 
 
@@ -12974,7 +12975,7 @@ ol.commentlist li::after {
 
 	.banner-txt{
 		margin-top:0px !important;
-	
+
 	}
   }
 
