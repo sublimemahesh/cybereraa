@@ -20,16 +20,16 @@
             </div>
         </div>
     </div>
-    @if (Auth::user()->id === config('fortify.super_parent_id') ||
-            (Auth::user()->parent_id !== null && Auth::user()->position !== null))
+    {{-- @if (Auth::user()->id === config('fortify.super_parent_id') || --}}
+            {{-- (Auth::user()->parent_id !== null && Auth::user()->position !== null)) --}}
         <div class="row">
             <div class="col-xl-12 col-sm-12 ">
                 <div class="bg-secondary card d-flex email-susb justify-content-center m-auto w-75">
                     <div class="card-body text-center">
-                        <div class="">
-                            <img src="{{ asset('assets/backend/images/metaverse.png') }}" alt="">
+                        <div class="referral-img">
+                            <img  src="{{ asset('assets/backend/images/coordination.png') }}" alt="" >
                         </div>
-                        <div class="toatal-email">
+                        <div class="toatal-email referral-txt">
                             <p> Via Referral Link </p>
                         </div>
                         <div class="input-group mb-3 input-primary">
@@ -45,14 +45,14 @@
                 </div>
             </div>
         </div>
-    @else
+    {{-- @else --}}
         <div class="alert alert-warning">
             Your genealogy position is still not available. Please contact your up link user,
             or you will automatically place after 1 day. Please note that genealogy placement required to have an active
             package.
             when you have purchased a package only you will be able to get position in genealogy.
         </div>
-    @endif
+    {{-- @endif --}}
 
 
     <div id="genealogy" class="genealogy-scrooling">
