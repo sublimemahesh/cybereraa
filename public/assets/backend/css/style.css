@@ -49096,3 +49096,12 @@ margin-top: 10px;
 margin-top: 10px;
 
 }
+
+.span-wallet{
+    padding-left: 3px;
+    color: #1fcee9;
+    margin-top: 0px;
+    font-family: var(--bs-font-monospace);
+    text-align: center;
+    
+  }

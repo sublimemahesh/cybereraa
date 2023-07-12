@@ -21,12 +21,7 @@
                         <div class="prim-info">
                             <h4>MAIN WALLET</h4>
                         </div>
-                        <div class="rec-design">
-                            <div class="rec-design1">
-                            </div>
-                            <div class="rec-design2">
-                            </div>
-                        </div>
+
                     </div>
                     <div class="d-flex align-items-center justify-content-between">
                         <div>
@@ -54,12 +49,7 @@
                         <div class="prim-info">
                             <h4>TOPUP WALLET</h4>
                         </div>
-                        <div class="rec-design">
-                            <div class="rec-design1">
-                            </div>
-                            <div class="rec-design2">
-                            </div>
-                        </div>
+
                     </div>
                     <div class="d-flex align-items-center justify-content-between">
                         <div>
@@ -112,8 +102,8 @@
             <div class="rounded-1 card">
                 <div class="card-header border-0 pb-0">
                     <h5 class="fs-18 heading mb-0 m-auto">Income</h5>
-                    <code class="fs-12">USDT</code>
                 </div>
+                <span class='span-wallet'>USDT</span>
                 <div class="card-body text-center pt-3">
                     <div class="icon-box bg-primary">
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -130,8 +120,8 @@
             <div class="rounded-1 card">
                 <div class="card-header border-0 pb-0">
                     <h5 class="fs-18 heading mb-0 m-auto">Withdraw </h5>
-                    <code class="fs-12">USDT</code>
                 </div>
+                <span class='span-wallet'>USDT</span>
                 <div class="card-body text-center pt-3">
                     <div class="icon-box bg-primary">
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -148,8 +138,8 @@
             <div class="rounded-1 card">
                 <div class="card-header border-0 pb-0">
                     <h5 class="fs-16 heading mb-0 m-auto  text-responsiv">Commissions </h5>
-                    <code class="fs-12">USDT</code>
                 </div>
+                <span class='span-wallet'>USDT</span>
                 <div class="card-body text-center pt-3">
                     <div class="icon-box bg-primary">
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -166,9 +156,10 @@
             <div class="rounded-1 card">
                 <div class="card-header border-0 pb-0">
                     <h5 class="fs-18 heading mb-0 m-auto">Disqualified </h5>
-                    <code class="fs-12">USDT</code>
                 </div>
+                <span class='span-wallet'>USDT</span>
                 <div class="card-body text-center pt-3">
+
                     <div class="icon-box bg-primary">
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M4 19V25C4 26.3261 4.52678 27.5979 5.46447 28.5355C6.40215 29.4732 7.67392 30 9 30H23C24.3261 30 25.5979 29.4732 26.5355 28.5355C27.4732 27.5979 28 26.3261 28 25V19C28 17.6739 27.4732 16.4021 26.5355 15.4645C25.5979 14.5268 24.3261 14 23 14H9C7.67392 14 6.40215 14.5268 5.46447 15.4645C4.52678 16.4021 4 17.6739 4 19ZM26 19V25C26 25.7956 25.6839 26.5587 25.1213 27.1213C24.5587 27.6839 23.7956 28 23 28H9C8.20435 28 7.44129 27.6839 6.87868 27.1213C6.31607 26.5587 6 25.7956 6 25V19C6 18.2044 6.31607 17.4413 6.87868 16.8787C7.44129 16.3161 8.20435 16 9 16H23C23.7956 16 24.5587 16.3161 25.1213 16.8787C25.6839 17.4413 26 18.2044 26 19Z" fill="white"/>
