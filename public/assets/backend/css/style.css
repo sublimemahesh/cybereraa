@@ -49103,5 +49103,32 @@ margin-top: 10px;
     margin-top: 0px;
     font-family: var(--bs-font-monospace);
     text-align: center;
-    
+
+  }
+.active-card-bp{
+    background-color: #1fa7ff !important;
+    border-color: #1fa7ff !important;
+}
+
+.active-card-bp .card-header {
+    border-color: #1fa7ff !important;
+  }
+  .active-card-bp .card-footer {
+    border-color: #1fa7ff !important;
+  }
+  .active-card-bp .card-header h5 {
+    background: #707173;
+    color:#fff;
+    padding: 5px 10px 5px 10px;
+  }
+  .active-card-bp .card-footer-link{
+    float: right;
+  }
+
+  .active-card-bp .card-text{
+    color: #000;
+  }
+
+  .active-card-bp b{
+    color: #FFF;
   }
