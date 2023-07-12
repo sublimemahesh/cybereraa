@@ -41582,7 +41582,7 @@ table.dataTable thead .sorting_asc {
 }
 
 .email-susb {
-    background: var(--secondary) !important;
+    background: var(--bg-color-card) !important;
 }
 
 .students h4, .students .h4, .students h5, .students .h5, .students span {
@@ -49087,3 +49087,12 @@ div.dt-buttons .dt-button.buttons-collection {
     pointer-events: none;
 }
 
+.referral-txt
+{
+margin-top: 10px;
+}
+
+.referral-img{
+margin-top: 10px;
+
+}

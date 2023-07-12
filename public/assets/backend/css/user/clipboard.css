@@ -37,7 +37,7 @@
 
 [data-theme-version="dark"] .form-control:disabled,
 [data-theme-version="dark"] .form-control[readonly] {
-    background-color: #15073A !important;
-    border-color: #3A2D60;
+    background-color: #171b26 !important;
+    border-color: #171b26;
     color: #fff;
 }
