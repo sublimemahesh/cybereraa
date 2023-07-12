@@ -37545,7 +37545,7 @@ code {
 
 [data-theme-version="dark"] .default-tab .nav-link:focus, [data-theme-version="dark"] .default-tab .nav-link:hover, [data-theme-version="dark"] .default-tab .nav-link.active {
     background-color: var(--rgba-primary-1);
-    border-color: transparent transparent #9568FF transparent;
+    border-color: transparent transparent #707070 transparent;
 }
 
 .custom-tab-1 .nav-link {

@@ -1,7 +1,7 @@
 <div class="col-xl-12 col-lg-12">
     <div class="card profile-card card-bx m-b30">
         <div class="card-header">
-            <h6 class="title"> {{ __('Profile Information') }}</h6>
+            <h6 class="title"> {{ __('Profile Information111') }}</h6>
         </div>
         <form class="profile-form" wire:submit.prevent="{{ 'updateProfileInformation' }}">
             <div class="card-body">
@@ -56,7 +56,7 @@
                         </div>
                     @endif
                     <div class="col-sm-6 m-b30">
-                        <label class="form-label" for="name">{{ __('Name') }}</label>
+                        <label class="form-label" for="name">{{ __('Name111') }}</label>
                         <input type="text" id="name" class="form-control" wire:model.defer="state.name" autocomplete="name">
                         <x-jet-input-error for="name" class="mt-2"/>
                     </div>
