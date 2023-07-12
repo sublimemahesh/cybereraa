@@ -1,4 +1,4 @@
-<div class="main-slider style-two default-banner">
+<div class="main-slider style-two default-banner slider-bg-color">
     <div class="tp-banner-container">
      <div class="tp-banner" >
          <!-- START REVOLUTION SLIDER 5.4.1 -->
