@@ -1,11 +1,11 @@
 <x-backend.layouts.app>
-    @section('title', 'Tutorials')
-    @section('header-title', 'Tutorials' )
+    @section('title', 'Tutorial')
+    @section('header-title', 'Tutorial' )
     @section('styles')
         @vite(['resources/css/app-jetstream.css'])
     @endsection
     @section('breadcrumb-items')
-        <li class="breadcrumb-item">Tutorials</li>
+        <li class="breadcrumb-item">Tutorial</li>
     @endsection
 
 
@@ -14,7 +14,7 @@
         ***********************************-->
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">Video Tutorials</h4>
+            <h4 class="card-title">Video Tutorial</h4>
         </div>
         <div class="card-body">
             <!-- Nav tabs -->

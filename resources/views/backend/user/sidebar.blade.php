@@ -5,7 +5,7 @@
             <li>
                 <a href="{{ route('user.dashboard') }}" class="rounded-1" aria-expanded="false">
                     <i class="bi bi-house-heart"></i>
-                    <span class="nav-text">Dashboard</span>
+                    <span class="nav-text">Dashbord</span>
                 </a>
             </li>
             <li>
@@ -18,6 +18,12 @@
                 <a href="{{ route('user.packages.index') }}" class="rounded-1" aria-expanded="false">
                     <i class="bi bi-rocket-takeoff"></i>
                     <span class="nav-text">Plan Details</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('user.tutorials.index') }}" class="rounded-1" aria-expanded="false">
+                    <i class="bi bi-book"></i>
+                    <span class="nav-text">Tutorial</span>
                 </a>
             </li>
             <li>
@@ -41,7 +47,7 @@
             <li>
                 <a href="{{ route('user.earnings.yearly-income-chart') }}" class="rounded-1" aria-expanded="false">
                     <i class="bi bi-bar-chart-fill"></i>
-                    <span class="nav-text">Reports</span>
+                    <span class="nav-text">Chart & Summery</span>
                 </a>
             </li>
             <li>
@@ -218,18 +224,13 @@
                     <span class="nav-text"> Withdrawal History</span>
                 </a>
             </li>--}}
-            <li>
-                <a href="{{ route('user.support.tickets.index') }}" class="rounded-1" aria-expanded="false">
-                    <i class="bi bi-telephone-forward"></i>
-                    <span class="nav-text">Support Tickets</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('user.tutorials.index') }}" class="rounded-1" aria-expanded="false">
-                    <i class="bi bi-book"></i>
-                    <span class="nav-text">Tutorials</span>
-                </a>
-            </li>
+                <li>
+                    <a href="{{ route('user.support.tickets.index') }}" class="rounded-1" aria-expanded="false">
+                        <i class="bi bi-telephone-forward"></i>
+                        <span class="nav-text">Customer Support</span>
+                    </a>
+                </li>
+
             @include('navigation-menu')
         </ul>
 
