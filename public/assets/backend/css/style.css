@@ -49123,6 +49123,13 @@ margin-top: 10px;
   }
   .active-card-bp .card-footer-link{
     float: right;
+    margin-top: -50px;
+    
+  }
+
+  .active-card-bp .card-footer-link a{
+
+    padding: 10px 40px 10px 40px;
   }
 
   .active-card-bp .card-text{

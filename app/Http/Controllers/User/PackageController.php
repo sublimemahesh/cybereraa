@@ -24,6 +24,7 @@ class PackageController extends Controller
     {
         $activePackages = Auth::user()->activePackages;
         $activePackages->load('transaction');
+      
         return view('backend.user.packages.active', compact('activePackages'));
     }
 

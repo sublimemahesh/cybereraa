@@ -23,6 +23,7 @@
             <div class="card1">
                 <div class="card text-white  card2 active-card-bp">
                     <div class="card-header">
+                       
 
                         <h5 class="card-title text-white">
                             {{ $subscription->transaction->create_order_request_info->goods->goodsName }} | <span
@@ -31,23 +32,15 @@
                                 }}</span>
                         </h5>
                     </div>
+
                     <div class="card-body mb-0 package-body">
-                        <p class="card-text"><i class="fa fa-angle-double-right" aria-hidden="true"></i> . Buy
-                            Date : <b> {{ $subscription->created_at }}</b></p>
-                        <p class="card-text"><i class="fa fa-angle-double-right" aria-hidden="true"></i> . Active Date
-                            : <b> {{ $subscription->expired_at }}</b></p>
-                        <p class="card-text"><i class="fa fa-angle-double-right" aria-hidden="true"></i> . Next
-                            Payment Date :<b> {{ $subscription->next_payment_date }} </b></p>
-                        <p class="card-text"><i class="fa fa-angle-double-right" aria-hidden="true"></i> . Plan
-                            Expire Return :<b> {{ $subscription->next_payment_date }} </b></p>
-                        <p class="card-text"><i class="fa fa-angle-double-right" aria-hidden="true"></i> . Completed
-                            Return
-                            :<b> {{ $subscription->next_payment_date }} </b></p>
-                        <p class="card-text"><i class="fa fa-angle-double-right" aria-hidden="true"></i> . Pending
-                            Return
-                            :<b> {{ $subscription->next_payment_date }} </b></p>
-                        <p class="card-text"><i class="fa fa-angle-double-right" aria-hidden="true"></i> . Purchased by
-                            : <b> {{ $subscription->payable_percentage }}</b></p>
+                        <p class="card-text">Buy Date : <b> {{ $subscription->created_at }}</b></p>
+                        <p class="card-text">Active Date : <b> {{ $subscription->expired_at }}</b></p>
+                        <p class="card-text">Next Payment Date :<b> {{ $subscription->next_payment_date }} </b></p>
+                        <p class="card-text">Plan Expire Return :<b> {{ $subscription->next_payment_date }} </b></p>
+                        <p class="card-text">Completed Return :<b> {{ $subscription->next_payment_date }} </b></p>
+                        <p class="card-text">Pending Return : <b> {{ $subscription->next_payment_date }} </b></p>
+                        <p class="card-text">Purchased by : <b> {{ str_pad($subscription->user_id, 4, '0', STR_PAD_LEFT);}}</b></p>
                     </div>
                     <div class="card-footer">
                         <div class="card-footer-link">
