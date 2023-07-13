@@ -5,7 +5,7 @@
         <div class="loading-box"></div>
         <div class="loading-pic">
             <div class="cssload-container">
-                <div class="cssload-dot bg-primary"><i class="fa fa-bitcoin"></i></div>
+                <div class="cssload-dot" style="background-color:var(--theme-color1)"><img src='{{asset('assets/frontend/images/perloader.png')}}'></div>
                 <div class="step" id="cssload-s1"></div>
                 <div class="step" id="cssload-s2"></div>
                 <div class="step" id="cssload-s3"></div>
