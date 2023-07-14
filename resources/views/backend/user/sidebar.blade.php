@@ -39,21 +39,15 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('user.incomes.commission') }}" class="rounded-1" aria-expanded="false">
+                <a href="{{ route('user.earnings.summary-report') }}" class="rounded-1" aria-expanded="false">
                     <i class="bi bi-currency-exchange"></i>
                     <span class="nav-text">Income Details</span>
                 </a>
             </li>
             <li>
-                <a href="{{ route('user.earnings.yearly-income-chart') }}" class="rounded-1" aria-expanded="false">
-                    <i class="bi bi-bar-chart-fill"></i>
-                    <span class="nav-text">Chart & Summery</span>
-                </a>
-            </li>
-            <li>
                 <a href="{{ route('user.ranks.summery') }}" class="rounded-1" aria-expanded="false">
                     <i class="bi bi-trophy-fill"></i>
-                    <span class="nav-text"> Recognition </span>
+                    <span class="nav-text"> Chart & Summery </span>
                 </a>
             </li>
             {{-- <li>
@@ -224,12 +218,12 @@
                     <span class="nav-text"> Withdrawal History</span>
                 </a>
             </li>--}}
-                <li>
-                    <a href="{{ route('user.support.tickets.index') }}" class="rounded-1" aria-expanded="false">
-                        <i class="bi bi-telephone-forward"></i>
-                        <span class="nav-text">Customer Support</span>
-                    </a>
-                </li>
+            <li>
+                <a href="{{ route('user.support.tickets.index') }}" class="rounded-1" aria-expanded="false">
+                    <i class="bi bi-telephone-forward"></i>
+                    <span class="nav-text">Customer Support</span>
+                </a>
+            </li>
 
             @include('navigation-menu')
         </ul>

@@ -13,7 +13,7 @@
     <div class="row dark"> {{--! Tailwind css used. if using tailwind plz run npm run dev and add tailwind classes--}}
 
         <div class="col-12">
-            @include('backend.user.teams.top-nav')
+            @include('backend.user.ranks.top-nav')
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">

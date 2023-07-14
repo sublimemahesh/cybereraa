@@ -19,7 +19,7 @@
                     <img src="{{ asset('assets/images/main-wallet.png') }}" alt="logo" width="64"/>
                     <div class="d-flex">
                         <div class="prim-info">
-                            <h4>MAIN WALLET</h4>
+                            <h4>INTERNAL WALLET</h4> {{--MAIN--}}
                         </div>
 
                     </div>
@@ -47,7 +47,7 @@
                     <img src="{{ asset('assets/images/topup-wallet.png') }}" alt="logo" width="64"/>
                     <div class="d-flex">
                         <div class="prim-info">
-                            <h4>TOPUP WALLET</h4>
+                            <h4>EXTERNAL WALLET</h4> {{--TOPUP--}}
                         </div>
 
                     </div>

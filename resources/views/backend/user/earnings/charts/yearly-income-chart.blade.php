@@ -16,11 +16,7 @@
     @endsection
 
     <div class="row dark"> {{--! Tailwind css used. if using tailwind plz run npm run dev and add tailwind classes--}}
-        @if(request()->has('team'))
-            @include('backend.user.teams.top-nav')
-        @else
-            @include('backend.user.incomes.top-nav')
-        @endif
+        @include('backend.user.ranks.top-nav')
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
