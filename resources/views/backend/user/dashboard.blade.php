@@ -248,7 +248,7 @@
                         <div class="col-xl-12 col-sm-6">
                             <div class="card rounded-3">
                                 <div class="border-0 card-header pb-2 pt-3">
-                                    <h2 class="heading mb-0">Income Book <span>(USDT)</span></h2>
+                                    <h2 class="heading mb-0">Latest Incomes <span>(USDT)</span></h2>
                                 </div>
                                 <div class="card-body pt-0 pb-3 mt-2">
                                     <nav class="buy-sell style-1">
@@ -347,7 +347,7 @@
                 <div class="col-lg-12">
                     <div class="card rounded-3">
                         <div class="card-header">
-                            <h4 class="card-title">Top {{ count($top_rankers) }} Rankers</h4>
+                            <h4 class="card-title">Latest {{ count($top_rankers) }} Rankers</h4>
                         </div>
                         <div class="card-body py-1">
                             <div class="table-responsive">

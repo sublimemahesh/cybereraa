@@ -105,8 +105,9 @@ class DashboardController extends Controller
         $top_rankers = Rank::with('user.sponsor')
             ->whereNotNull('activated_at')
             ->whereIn('user_id', $descendants)
-            ->orderBy('rank', 'desc')
-            ->orderBy('total_rankers', 'desc')
+            //->orderBy('rank', 'desc')
+            //->orderBy('total_rankers', 'desc')
+            ->latest('activated_at')
             ->limit(20)
             ->get();
 

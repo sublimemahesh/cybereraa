@@ -85,19 +85,19 @@ class KycController extends Controller
             'nic' => [
                 Rule::requiredIf($kyc->type === 'nic'),
                 'nullable',
-                Rule::unique('profiles', 'nic')->ignoreModel($kyc->profile),
+                //Rule::unique('profiles', 'nic')->ignoreModel($kyc->profile),
                 'max:250'
             ],
             'driving_lc' => [
                 Rule::requiredIf($kyc->type === 'driving_lc'),
                 'nullable',
-                Rule::unique('profiles', 'driving_lc_number')->ignoreModel($kyc->profile),
+                //Rule::unique('profiles', 'driving_lc_number')->ignoreModel($kyc->profile),
                 'max:250'
             ],
             'passport' => [
                 Rule::requiredIf($kyc->type === 'passport'),
                 'nullable',
-                Rule::unique('profiles', 'passport_number')->ignoreModel($kyc->profile),
+                //Rule::unique('profiles', 'passport_number')->ignoreModel($kyc->profile),
                 'max:250'
             ],
             'documents' => [Rule::requiredIf($pending_count > 0), 'nullable', 'array'],
