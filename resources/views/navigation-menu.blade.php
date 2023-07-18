@@ -4,6 +4,23 @@
         <span class="nav-text">Settings</span>
     </a>
 </li>
+
+<li>
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();" class="rounded-1" aria-expanded="false">
+            <i class="bi bi-box-arrow-left"></span></i>
+            <span class="nav-text">{{ __('Logout') }} </span>
+        </a>
+    </form>
+</li>
+
+
+
+
+
+
+
 {{--<li class="{{ Str::contains(Route::currentRouteName(), 'profile') ? 'mm-active' : '' }}">
     <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
         <i class="material-icons">person</i>
