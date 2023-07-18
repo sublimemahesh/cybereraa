@@ -336,7 +336,7 @@
                     <div class="owl-carousel owl-banner">
                         @foreach ($banners as $section)
                             <div class="item">
-                                <img src="{{ storage('pages/' . $section->image) }}" alt="safest trades">
+                                <img class="img-round" src="{{ storage('pages/' . $section->image) }}" alt="safest trades">
                             </div>
                         @endforeach
                     </div>
