@@ -94,6 +94,11 @@ class PurchasedPackage extends Pivot
         return $this->belongsTo(Transaction::class, 'transaction_id', 'id');
     }
 
+    public function adminEarnings(): morphMany
+    {
+        return $this->morphMany(AdminWalletTransaction::class, 'earnable');
+    }
+
     /*public function earnings(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Earning::class, 'purchased_package_id', 'id');

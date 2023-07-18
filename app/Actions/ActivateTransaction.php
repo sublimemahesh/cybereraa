@@ -73,7 +73,7 @@ class ActivateTransaction
 
                     $rank_gift_percentage = $strategies->where('name', 'rank_gift')->first(null, fn() => new Strategy(['value' => '5']));
                     $allocated_for_gift = ($package->invested_amount * $rank_gift_percentage->value) / 100;
-                    AdminWalletTransaction::create([
+                    $package->adminEarnings()->create([
                         'user_id' => $purchasedUser->id, // sale purchase user
                         'type' => 'GIFT',
                         'amount' => $allocated_for_gift,
@@ -86,7 +86,7 @@ class ActivateTransaction
 
                     $rank_bonus_percentage = $strategies->where('name', 'rank_bonus')->first(null, fn() => new Strategy(['value' => '10']));
                     $rank_bonus_percentage = ($package->invested_amount * $rank_bonus_percentage->value) / 100;
-                    AdminWalletTransaction::create([
+                    $package->adminEarnings()->create([
                         'user_id' => $purchasedUser->id, // sale purchase user
                         'type' => 'BONUS_PENDING',
                         'amount' => $rank_bonus_percentage,
