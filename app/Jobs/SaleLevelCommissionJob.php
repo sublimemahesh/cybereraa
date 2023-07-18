@@ -36,7 +36,7 @@ class SaleLevelCommissionJob implements ShouldQueue
     {
         $this->purchasedUser = $purchasedUser;
         $this->package = $package;
-        $this->strategies = Strategy::whereIn('name', ['rank_gift', 'commissions', 'commission_level_count', 'max_withdraw_limit'])->get();
+        $this->strategies = Strategy::whereIn('name', ['rank_gift', 'rank_bonus', 'commissions', 'commission_level_count', 'max_withdraw_limit'])->get();
     }
 
     public function middleware()
@@ -57,6 +57,11 @@ class SaleLevelCommissionJob implements ShouldQueue
             $purchasedUser = $this->purchasedUser;
             $package = $this->package;
             $strategies = $this->strategies;
+
+            if ($package->invested_amount <= 0) {
+                $package->update(['commission_issued_at' => now()]);
+                return true;
+            }
 
             $commissions = $strategies->where('name', 'commissions')->first(null, fn() => new Strategy(['value' => '{"1":25,"2":20,"3":15,"4":10,"5":5,"6":5,"7":5}']));
             $commissions = json_decode($commissions->value, true, 512, JSON_THROW_ON_ERROR);
@@ -155,13 +160,25 @@ class SaleLevelCommissionJob implements ShouldQueue
                 'type' => 'GIFT',
                 'amount' => $allocated_for_gift,
             ]);
-
             $admin_wallet = AdminWallet::firstOrCreate(
                 ['wallet_type' => 'GIFT'],
                 ['balance' => 0]
             );
-
             $admin_wallet->increment('balance', $allocated_for_gift);
+
+
+            $rank_bonus_percentage = $strategies->where('name', 'rank_bonus')->first(null, fn() => new Strategy(['value' => '10']));
+            $rank_bonus_percentage = ($package->invested_amount * $rank_bonus_percentage->value) / 100;
+            AdminWalletTransaction::create([
+                'user_id' => $purchasedUser->id, // sale purchase user
+                'type' => 'BONUS_PENDING',
+                'amount' => $rank_bonus_percentage,
+            ]);
+            $admin_wallet = AdminWallet::firstOrCreate(
+                ['wallet_type' => 'BONUS_PENDING'],
+                ['balance' => 0]
+            );
+            $admin_wallet->increment('balance', $rank_bonus_percentage);
 
             $package->update(['commission_issued_at' => now()]);
         });

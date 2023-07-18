@@ -63,7 +63,7 @@ class AdminWalletWithdrawalController extends Controller
      */
     public function withdraw(Request $request, AdminWallet $wallet, TwoFactorAuthenticateService $authenticateService)
     {
-        abort_if(Gate::denies('admin_wallet_withdrawal.create'), Response::HTTP_FORBIDDEN);
+        abort_if(Gate::denies('withdraw', $wallet), Response::HTTP_FORBIDDEN);
         if ($request->wantsJson() && $request->isMethod('post')) {
             return $this->confirmWithdraw($request, $wallet, $authenticateService);
         }
