@@ -24,11 +24,18 @@ class TicketController extends Controller
     {
         $user = Auth::user();
 
+        $tickets = SupportTicket::with(['category', 'priority', 'status'])
+        ->where('user_id', $user->id)
+        ->filterTickets()
+        ->get();
+
         if ($request->wantsJson()) {
 
             $tickets = SupportTicket::with(['category', 'priority', 'status'])
                 ->where('user_id', $user->id)
                 ->filterTickets();
+
+
 
             return DataTables::of($tickets)
                 ->addColumn('id', function ($ticket) {
@@ -65,7 +72,7 @@ class TicketController extends Controller
         $filter_category = SupportTicketCategory::all();
         $filter_priority = SupportTicketPriority::all();
         $filter_status = SupportTicketStatus::all();
-        return view('backend.user.tickets.index', compact('filter_category', 'filter_priority', 'filter_status'));
+        return view('backend.user.tickets.index', compact('filter_category', 'filter_priority', 'filter_status','tickets'));
     }
 
     /**
