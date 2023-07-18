@@ -251,17 +251,17 @@
                                     <h2 class="heading mb-0">Latest Incomes <span>(USDT)</span></h2>
                                 </div>
                                 <div class="card-body pt-0 pb-3 mt-2">
-                                    <nav class="buy-sell style-1">
+                                    <nav class="buy-sell style-1 ">
                                         <div class="nav nav-tabs" id="nav-tab1" role="tablist">
-                                            <button class="nav-link border border-right rounder-0 active" id="nav-package-earning-tab" data-bs-toggle="tab"
+                                            <button class="last-income-round nav-link border border-right  active" id="nav-package-earning-tab last-income-round" data-bs-toggle="tab"
                                                     data-bs-target="#nav-package-earning" type="button" role="tab"
                                                     aria-controls="nav-package-earning" aria-selected="true">Latest Package Earnings
                                             </button>
-                                            <button class="nav-link border border-left rounder-0" id="nav-direct-sale-tab" data-bs-toggle="tab"
+                                            <button class="nav-link border border-left" id="nav-direct-sale-tab" data-bs-toggle="tab"
                                                     data-bs-target="#nav-direct-sale" type="button" role="tab"
                                                     aria-controls="nav-direct-sale" aria-selected="false">Direct Sales
                                             </button>
-                                            <button class="nav-link border border-left rounder-0" id="nav-indirect-sale-tab" data-bs-toggle="tab"
+                                            <button class="nav-link border border-left " id="nav-indirect-sale-tab" data-bs-toggle="tab"
                                                     data-bs-target="#nav-indirect-sale" type="button" role="tab"
                                                     aria-controls="nav-indirect-sale" aria-selected="false">In-Direct Sales
                                             </button>

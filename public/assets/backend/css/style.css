@@ -40737,7 +40737,8 @@ table.dataTable thead .sorting_asc {
     width: calc(100% / 3);
     position: relative;
     padding-bottom: 13px;
-    border-radius: 0 !important;
+    border-radius: 0 ;
+    border-radius: 10px 10px 0 0 !important;
 }
 
 .buy-sell .nav-tabs .nav-link:after {
@@ -49124,7 +49125,7 @@ margin-top: 10px;
   .active-card-bp .card-footer-link{
     float: right;
     margin-top: -50px;
-    
+
   }
 
   .active-card-bp .card-footer-link a{
@@ -49139,3 +49140,5 @@ margin-top: 10px;
   .active-card-bp b{
     color: #FFF;
   }
+
+
