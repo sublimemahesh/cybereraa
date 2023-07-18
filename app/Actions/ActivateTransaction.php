@@ -49,7 +49,7 @@ class ActivateTransaction
             $package = $transaction->purchasedPackage;
             $purchasedUser = $package->user;
 
-            $strategies = Strategy::whereIn('name', ['commissions', 'rank_gift', 'commission_level_count', 'max_withdraw_limit'])->get();
+            $strategies = Strategy::whereIn('name', ['commissions', 'rank_gift', 'rank_bonus', 'commission_level_count', 'max_withdraw_limit'])->get();
 
             $max_withdraw_limit = $strategies->where('name', 'max_withdraw_limit')->first(null, fn() => new Strategy(['value' => 400]));
             $wallet = Wallet::firstOrCreate(
@@ -66,6 +66,10 @@ class ActivateTransaction
                     NewUserGenealogyAutoPlacement::dispatch($purchasedUser)->onConnection('sync');
                 }
                 if ($purchasedUser->id === config('fortify.super_parent_id')) {
+                    if ($package->invested_amount <= 0) {
+                        $package->update(['commission_issued_at' => now()]);
+                        return true;
+                    }
 
                     $rank_gift_percentage = $strategies->where('name', 'rank_gift')->first(null, fn() => new Strategy(['value' => '5']));
                     $allocated_for_gift = ($package->invested_amount * $rank_gift_percentage->value) / 100;
@@ -74,13 +78,24 @@ class ActivateTransaction
                         'type' => 'GIFT',
                         'amount' => $allocated_for_gift,
                     ]);
-
                     $admin_wallet = AdminWallet::firstOrCreate(
                         ['wallet_type' => 'GIFT'],
                         ['balance' => 0]
                     );
-
                     $admin_wallet->increment('balance', $allocated_for_gift);
+
+                    $rank_bonus_percentage = $strategies->where('name', 'rank_bonus')->first(null, fn() => new Strategy(['value' => '10']));
+                    $rank_bonus_percentage = ($package->invested_amount * $rank_bonus_percentage->value) / 100;
+                    AdminWalletTransaction::create([
+                        'user_id' => $purchasedUser->id, // sale purchase user
+                        'type' => 'BONUS_PENDING',
+                        'amount' => $rank_bonus_percentage,
+                    ]);
+                    $admin_wallet = AdminWallet::firstOrCreate(
+                        ['wallet_type' => 'BONUS_PENDING'],
+                        ['balance' => 0]
+                    );
+                    $admin_wallet->increment('balance', $rank_bonus_percentage);
 
                     $commissions = $strategies->where('name', 'commissions')->first(null, fn() => new Strategy(['value' => '{"1":"20","2":"10","3":"10","4":"10","5":"10","6":"10","7":"10","8":"10"}']));
                     $commissions = json_decode($commissions->value, true, 512, JSON_THROW_ON_ERROR);

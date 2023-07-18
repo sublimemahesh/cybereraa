@@ -31,9 +31,11 @@
                                     <td>USDT {{ number_format($wallet->balance,2) }}</td>
                                     <td>{{ $wallet->updated_at->format('Y-m-d H:i:s') }}</td>
                                     <td>
-                                        <a href="{{ route('admin.admin-wallet-withdraw',$wallet) }}" class="btn btn-xs btn-success sharp my-1 mr-1 shadow">
-                                            <i class="fa fa-arrow-right-to-file"></i>
-                                        </a>
+                                        @can('withdraw', $wallet)
+                                            <a href="{{ route('admin.admin-wallet-withdraw',$wallet) }}" class="btn btn-xs btn-success sharp my-1 mr-1 shadow">
+                                                <i class="fa fa-arrow-right-to-file"></i>
+                                            </a>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

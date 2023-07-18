@@ -45,7 +45,7 @@
                                 <div class="mb-3 mt-2">
                                     <label for="payout_info">Binance Wallet</label>
                                     <div id="payout_info" disabled rows="3" placeholder="Remark" class="form-control h-auto my-2">
-                                        <span class="fs-17">Binance_Account</span>
+                                        <span class="fs-17">TLbnK7HxaasQKN67RqtAZ7t59NJ3JupmQh</span>
                                     </div>
                                 </div>
                                 <hr>
