@@ -23,7 +23,7 @@
             <div class="card1">
                 <div class="card text-white  card2 active-card-bp">
                     <div class="card-header">
-                       
+
 
                         <h5 class="card-title text-white">
                             {{ $subscription->transaction->create_order_request_info->goods->goodsName }} | <span
@@ -40,7 +40,7 @@
                         <p class="card-text">Plan Expire Return :<b> {{ $subscription->next_payment_date }} </b></p>
                         <p class="card-text">Completed Return :<b> {{ $subscription->next_payment_date }} </b></p>
                         <p class="card-text">Pending Return : <b> {{ $subscription->next_payment_date }} </b></p>
-                        <p class="card-text">Purchased by : <b> {{ str_pad($subscription->user_id, 4, '0', STR_PAD_LEFT);}}</b></p>
+                        <p class="card-text">Purchased by : <b> {{ str_pad($subscription->user_id, 4, '0', STR_PAD_LEFT)}}</b></p>
                     </div>
                     <div class="card-footer">
                         <div class="card-footer-link">

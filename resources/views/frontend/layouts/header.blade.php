@@ -36,10 +36,10 @@
                             @endauth
                             @guest()
                                 <li>
-                                    <a class="header-btn" href="{{ route('login') }}"><i class="fa fa-user"></i>Login</a>
+                                    <a class="header-btn login-btn" href="{{ route('login') }}"><i class="fa fa-user"></i><b>Login</b></a>
                                 </li>
                                 <li>
-                                    <a class="header-btn" href="{{ route('register')}}"><i class="fa fa-sign-in"></i>Register</a>
+                                    <a class="header-btn" href="{{ route('register')}}"><i class="fa fa-sign-in"></i><b>Register</b></a>
                                 </li>
                             @endguest
                         </ul>
