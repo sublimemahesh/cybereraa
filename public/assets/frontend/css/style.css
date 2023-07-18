@@ -2735,6 +2735,9 @@ ol.list-num-count.list-outline-none > li:before {
     border-radius: 25px;
 }
 
+.login-btn{
+    background-color: #1fa7ff !important;
+}
 
 
 a:focus.video-play-btn{
