@@ -17940,10 +17940,20 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
     text-decoration: none;
 }
 
+.deznav .metismenu form a {
+    position: relative;
+    display: block;
+    padding: 0.625rem 1.875rem;
+    outline-width: 0;
+    color: #737B8B;
+    text-decoration: none;
+}
+
 @media only screen and (max-width: 47.9375rem) {
     .deznav .metismenu a {
         padding: 0.625rem 1.25rem;
     }
+    
 }
 
 .deznav .metismenu .has-arrow:after {
@@ -18439,6 +18449,29 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 					} */
 }
 
+
+[data-sidebar-style="full"][data-layout="vertical"] .deznav .metismenu > li > form a {
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    margin: 5px 0;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    transition: all 0.5s;
+    border-radius: var(--br-menu-a);
+    /* &:before{
+						position:absolute;
+						content:"";
+						background:var(--primary);
+						width:0;
+						height:100%;
+						top:0;
+						right:0rem;
+						@include transitionMedium;
+						border-radius:1.25rem;
+
+					} */
+}
+
 [data-sidebar-style="full"][data-layout="vertical"] .deznav .metismenu > li.mm-active > a {
     /* &:before{
 							width:0.563rem;
@@ -18462,7 +18495,13 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
         padding: 0 0.9rem;
     }
 
+
+
     [data-sidebar-style="full"][data-layout="vertical"] .deznav .metismenu > li > a {
+        font-size: 1rem;
+    }
+
+    [data-sidebar-style="full"][data-layout="vertical"] .deznav .metismenu > li > form a {
         font-size: 1rem;
     }
 }
@@ -20502,7 +20541,27 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
     [data-sidebar-style="overlay"] .deznav .metismenu ul li a {
         padding-left: 42px;
+
     }
+
+
+
+
+
+    [data-sidebar-style="overlay"] .deznav .metismenu > li > form a {
+        font-size: 0.875rem;
+        padding: 0.75rem 0.875rem;
+    }
+
+    [data-sidebar-style="overlay"] .deznav .metismenu > li > form  a i {
+        font-size: 1.125rem;
+    }
+
+    [data-sidebar-style="overlay"] .deznav .metismenu ul li form a {
+        padding-left: 42px;
+    }
+
+
 }
 
 [data-sidebar-style="overlay"] .content-body {
@@ -22941,6 +23000,10 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
 [data-sidebarbg="color_4"][data-theme-version="dark"] .deznav .metismenu > li:hover > a,
 [data-sidebarbg="color_4"] .deznav .metismenu > li:hover > a {
+    background: #707070 !important;
+}
+
+[data-sidebarbg="color_4"] .deznav .metismenu > li:hover > form a {
     background: #707070 !important;
 }
 
@@ -29134,6 +29197,11 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 [data-theme-version="dark"] .deznav .metismenu > li:hover > a, [data-theme-version="dark"] .deznav .metismenu > li:focus > a, [data-theme-version="dark"] .deznav .metismenu > li.mm-active > a {
+    color: #fff !important;
+    /* background:var(--rgba-primary-1); */
+}
+
+[data-theme-version="dark"] .deznav .metismenu > li:hover > form a, [data-theme-version="dark"] .deznav .metismenu > li:focus > a, [data-theme-version="dark"] .deznav .metismenu > li.mm-active > a {
     color: #fff !important;
     /* background:var(--rgba-primary-1); */
 }
@@ -40028,7 +40096,7 @@ table.dataTable thead .sorting_asc {
     justify-content: center;
     flex-direction: column-reverse;
     padding: 1.5625rem 0.75rem;
-    height: 80px;
+    height: 75px;
     width: 5.313rem;
     box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.1);
 }
@@ -48787,6 +48855,13 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
     color: #1fcee9 !important;
     /* background:var(--rgba-primary-1); */
 }
+
+[data-theme-version="dark"] .deznav .metismenu > li:hover > form a, [data-theme-version="dark"] .deznav .metismenu > li:focus > a, [data-theme-version="dark"] .deznav .metismenu > li.mm-active > a {
+    color: #1fcee9 !important;
+    /* background:var(--rgba-primary-1); */
+}
+
+
 
 [data-theme-version="dark"] .deznav .metismenu > li:hover > a::after, [data-theme-version="dark"] .deznav .metismenu > li:focus > a::after, [data-theme-version="dark"] .deznav .metismenu > li.mm-active > a::after {
     border-top: 0.3125rem solid #fff;
