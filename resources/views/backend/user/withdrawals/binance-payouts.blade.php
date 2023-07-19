@@ -37,13 +37,16 @@
                             (The withdrawal limit is reduced only when withdrawing money using the main wallet)</p>
                         <hr>
                         <p>
-                            MAIN WALLET <br>
+                            {{-- MAIN WALLET  --}}
+                            INTERNAL WALLET
+                            <br>
                             &emsp; Balance: <code>USDT {{ $wallet->balance }}</code> <br>
                             &emsp; Payout limit: <code>USDT {{ $wallet->withdraw_limit }}</code>
                         </p>
 
                         <p>
-                            TOPUP WALLET <br>
+                            EXTERNAL WALLET <br>
+                            {{-- TOPUP WALLET <br> --}}
                             &emsp; Balance: <code>USDT {{ $wallet->topup_balance }}</code>
                         </p>
                         <hr>
@@ -102,7 +105,8 @@
                                             <div class="plan-content">
                                                 <img loading="lazy" src="https://raw.githubusercontent.com/ismailvtl/ismailvtl.github.io/master/images/life-saver-img.svg" alt=""/>
                                                 <div class="plan-details">
-                                                    <span>Main Wallet</span>
+                                                    <span>  Internal Wallet</span>
+                                                    {{-- <span>Main Wallet</span> --}}
                                                 </div>
                                             </div>
                                         </label>
@@ -112,7 +116,8 @@
                                             <div class="plan-content">
                                                 <img loading="lazy" src="https://raw.githubusercontent.com/ismailvtl/ismailvtl.github.io/master/images/potted-plant-img.svg" alt=""/>
                                                 <div class="plan-details">
-                                                    <span>Topup Wallet</span>
+                                                    <span>External Wallet</span>
+                                                    {{-- <span>Topup Wallet</span> --}}
                                                 </div>
                                             </div>
                                         </label>

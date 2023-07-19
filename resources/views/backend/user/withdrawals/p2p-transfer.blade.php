@@ -28,16 +28,20 @@
                         </p>
 
                         <p>When payout limit is reached 0, All the active packages will be expired. <br>
-                            (The withdrawal limit is reduced only when withdrawing money using the main wallet)
+                            (The withdrawal limit is reduced only when withdrawing money using the  internal wallet {{--main wallet--}})
                         </p>
                         <p>
-                            MAIN WALLET <br>
+                            INTERNAL WALLET
+                            {{-- MAIN WALLET  --}}
+                            
+                            <br>
                             &emsp; Balance: <code>USDT {{ $wallet->balance }}</code> <br>
                             &emsp; Payout limit: <code>USDT {{ $wallet->withdraw_limit }}</code>
                         </p>
 
                         <p>
-                            TOPUP WALLET <br>
+                            EXTERNAL WALLET <br>
+                            {{-- TOPUP WALLET <br> --}}
                             &emsp; Balance: <code>USDT {{ $wallet->topup_balance }}</code>
                         </p>
                     </div>
@@ -71,7 +75,8 @@
                                                      src="https://raw.githubusercontent.com/ismailvtl/ismailvtl.github.io/master/images/life-saver-img.svg"
                                                      alt=""/>
                                                 <div class="plan-details">
-                                                    <span>Main Wallet</span>
+                                                    <span> Internal Wallet</span>
+                                                    {{-- <span>Main Wallet</span> --}}
                                                 </div>
                                             </div>
                                         </label>
@@ -83,7 +88,8 @@
                                                      src="https://raw.githubusercontent.com/ismailvtl/ismailvtl.github.io/master/images/potted-plant-img.svg"
                                                      alt=""/>
                                                 <div class="plan-details">
-                                                    <span>Topup Wallet</span>
+                                                    <span>External Wallet</span>
+                                                    {{-- <span>Topup Wallet</span> --}}
                                                 </div>
                                             </div>
                                         </label>

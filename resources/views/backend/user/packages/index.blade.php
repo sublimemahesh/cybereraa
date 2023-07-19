@@ -99,9 +99,9 @@
                             <div class="col-sm-6">
                                 <div class="card bg-secondary pay-method-wallet cursor-pointer" id="wallet">
                                     <a class="card-body card-link">
-                                        <div class="text-center"><span><i class="fa fa-wallet fa-4x"></i></span>
+                                        <div class="text-center"><span><i class="fa fa-archive fa-4x"></i></span>
                                             <div class="mb-3"></div>
-                                            <h6>MAIN WALLET</h6>
+                                            <h6> INTERNAL WALLET</h6>
                                         </div>
                                     </a>
                                 </div>
@@ -109,9 +109,10 @@
                             <div class="col-sm-6">
                                 <div class="card bg-secondary pay-method-topup-wallet cursor-pointer" id="topup-wallet">
                                     <a class="card-body card-link">
-                                        <div class="text-center"><span><i class="fa fa-chart-line fa-4x"></i></span>
+                                        <div class="text-center"><span><i class="fa fa-cube fa-4x"></i></span>
                                             <div class="mb-3"></div>
-                                            <h6>TOPUP WALLET</h6>
+                                            {{-- <h6>TOPUP WALLET</h6> --}}
+                                            <h6> EXTERNAL WALLET</h6>
                                         </div>
                                     </a>
                                 </div>

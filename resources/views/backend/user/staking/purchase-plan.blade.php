@@ -97,7 +97,8 @@
                                     <a class="card-body card-link">
                                         <div class="text-center"><span><i class="fa fa-wallet fa-4x"></i></span>
                                             <div class="mb-3"></div>
-                                            <h6>MAIN WALLET</h6>
+                                            <h6>INTERNAL WALLET</h6>
+                                            {{-- <h6>MAIN WALLET</h6> --}}
                                         </div>
                                     </a>
                                 </div>
@@ -107,7 +108,8 @@
                                     <a class="card-body card-link">
                                         <div class="text-center"><span><i class="fa fa-chart-line fa-4x"></i></span>
                                             <div class="mb-3"></div>
-                                            <h6>TOPUP WALLET</h6>
+                                            <h6> EXTERNAL WALLET</h6>
+                                            {{-- <h6>TOPUP WALLET</h6> --}}
                                         </div>
                                     </a>
                                 </div>
