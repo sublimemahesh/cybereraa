@@ -38,8 +38,8 @@
                         </span>
                     </div>
                 </div>
-                <div class="navbar-nav header-right">
-
+                
+                {{-- <div class="navbar-nav header-right">
                     <div class="dz-side-menu">
                         <ul>
                             <li class="nav-item dropdown header-profile">
@@ -50,7 +50,7 @@
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </nav>
     </div>
