@@ -464,7 +464,7 @@
         }
 
         .letter_a {
-            background: #FFC107;
+            background: #1fcee9;
             border-radius: 4px;
             color: #333;
             padding: 0px 3px;
@@ -1057,8 +1057,8 @@
 <body ng-controller="LogCtrl">
     <header>
         <div class="name">
-            <span>Safest</span>
-            <span class="letter_a">T</span> <span>rades</span>
+            <span>wara</span>
+            <span class="letter_a">O</span> <span>3m</span>
         </div>
         <div class="actions">
             <a class="btn" href="{{url(config('user-activity.admin_panel_path'))}}">Goto Admin Panel</a>

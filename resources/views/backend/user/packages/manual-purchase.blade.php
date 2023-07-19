@@ -44,6 +44,9 @@
                             <div class="col-sm-12">
                                 <div class="mb-3 mt-2">
                                     <label for="payout_info">Binance Wallet</label>
+                                    <div class="my-2">
+                                        <img class="w-25 img-thumbnail" src="{{ asset('assets/images/binance-qr.jpg') }}" alt="wallet-address">
+                                    </div>
                                     <div id="payout_info" disabled rows="3" placeholder="Remark" class="form-control h-auto my-2">
                                         <span class="fs-17">TLbnK7HxaasQKN67RqtAZ7t59NJ3JupmQh</span>
                                     </div>

@@ -8,9 +8,9 @@
     <meta name="author" content="owara3m">
     <meta name="robots" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="At SAFEST TRADING, we see the concept of “investments” in a pretty different way.">
-    <meta property="og:title" content="SAFEST TRADING EVERYONE CAN MAKE INVESTMENTS!">
-    <meta property="og:description" content="At SAFEST TRADING, we see the concept of “investments” in a pretty different way.">
+    <meta name="description" content="The reliable crypto currency trading platform for every kind of investors in the world">
+    <meta property="og:title" content="The reliable crypto currency trading platform for every kind of investors in the world">
+    <meta property="og:description" content="The reliable crypto currency trading platform for every kind of investors in the world">
     <meta property="og:image" content="">
     <meta name="format-detection" content="telephone=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
