@@ -30,7 +30,7 @@
                                             @endif
                                         </div>
                                         <div class="float-left width-175">
-                                            <img src="{{ Auth::user()->profile_photo_url }}" class="img-fluid w-100 img-thumbnail img-rou-pt profile-img-border" alt="">
+                                            <img src="{{ Auth::user()->profile_photo_url }}" class="img-fluid w-100 img-thumbnail img-pt profile-img-border" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -336,7 +336,7 @@
                     <div class="owl-carousel owl-banner">
                         @foreach ($banners as $section)
                             <div class="item">
-                                <img class="img-round" src="{{ storage('pages/' . $section->image) }}" alt="safest trades">
+                                <img class="img-round" src="{{ storage('pages/' . $section->image) }}" >
                             </div>
                         @endforeach
                     </div>
