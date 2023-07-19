@@ -22,13 +22,15 @@
                             Purchase a new package to increase your payout limit
                         </p>
                         <p>
-                            MAIN WALLET <br>
+                            INTERNAL WALLET <br>
+                            {{-- MAIN WALLET <br> --}}
                             &emsp; Balance: <code>USDT {{ $wallet->balance }}</code> <br>
                             &emsp; Payout limit: <code>USDT {{ $wallet->withdraw_limit }}</code>
                         </p>
 
                         <p>
-                            TOPUP WALLET <br>
+                            EXTERNAL WALLET <br>
+                            {{-- TOPUP WALLET <br> --}}
                             &emsp; Balance: <code>USDT {{ $wallet->topup_balance }}</code>
                         </p>
                     </div>
@@ -38,13 +40,15 @@
                                 <div class="mb-3 mt-2">
                                     <label>From</label>
                                     <div class="form-control">
-                                        Main Wallet
+                                        {{-- Main Wallet --}}
+                                        Internal Wallet
                                     </div>
                                 </div>
                                 <div class="mb-3 mt-2">
                                     <label for="to-wallet">Send To</label>
                                     <select class="single-select-placeholder js-states select2-hidden-accessible" id="to-wallet">
-                                        <option value="topup">Topup Wallet</option>
+                                        <option value="topup">External Wallet</option>
+                                        {{-- <option value="topup">Topup Wallet</option> --}}
                                     </select>
                                 </div>
                                 <div class="mb-3 mt-2">

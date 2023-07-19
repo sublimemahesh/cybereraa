@@ -12,9 +12,9 @@
             <div class="card">
                 <div class="card-body">
                     <div class="mb-4">
-                        <h4 class="card-title">Topup Request</h4>
+                         <h4 class="card-title">Topup Request</h4> 
                         <p>
-                            Request <code>USDT</code> directly to your topup wallet. Make deposit to our binance account and send us a receipt.
+                            Request <code>USDT</code> directly to your {{--topup wallet--}} external wallet. Make deposit to our binance account and send us a receipt.
                         </p>
                     </div>
                     <div class="row">
