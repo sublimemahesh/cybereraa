@@ -73,7 +73,7 @@
                                             <div class="badge badge-dark light">REQUIRED</div>
                                         </td>
                                         <td>
-                                            <a href="#" class="btn btn-xxs btn-primary shadow create-kyc-entry" data-kyc-type="{{ $kyc_type }}"> Create Entry</a>
+                                            <a href="#" class="btn btn-xxs btn-primary shadow create-kyc-entry" data-kyc-type="{{ $kyc_type }}">Select</a>
                                         </td>
                                     </tr>
                                 @endcan
