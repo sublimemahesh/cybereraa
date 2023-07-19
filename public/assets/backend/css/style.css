@@ -1,10 +1,6 @@
 /*
     Table of Contents
 
-    Name                 : CryptoZone
-    Author               : Dexignzone
-    Author Portfolio     : https://themeforest.net/user/dexignzone/portfolio
-
 
 
     Table of Sass Contents
@@ -49122,9 +49118,8 @@ div.dt-buttons .dt-button.buttons-collection {
     margin-left: 10px !important;
 }
 
-.img-rou-pt {
-    border-radius: 50%;
-    margin-top: -14px;
+.img-pt {
+
     margin-bottom: 8px;
     box-shadow: 15px 34px 33px rgba(0, 0, 0, 0.5);
 }
