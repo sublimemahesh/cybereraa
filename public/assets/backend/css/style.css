@@ -28252,7 +28252,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
 [data-theme-version="dark"] .swal2-popup .swal2-styled:focus {
     outline: 0;
-    box-shadow: 0 0 0 0.125rem #9568FF, 0 0 0 0.25rem var(--rgba-primary-1);
+    /* box-shadow: 0 0 0 0.125rem #9568FF, 0 0 0 0.25rem var(--rgba-primary-1); */
 }
 
 [data-theme-version="dark"] .dd-handle {
@@ -47793,7 +47793,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 }
 
 [data-theme-version="dark"] .swal2-popup {
-    background: #25164F;
+    background: var(--bg-color-card);
 }
 
 [data-theme-version="dark"] .form-head .btn-outline-primary {
@@ -47907,7 +47907,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 
 [data-theme-version="dark"] .swal2-popup .swal2-styled:focus {
     outline: 0;
-    box-shadow: 0 0 0 0.125rem #9568FF, 0 0 0 0.25rem var(--rgba-primary-1);
+    /* box-shadow: 0 0 0 0.125rem #9568FF, 0 0 0 0.25rem var(--rgba-primary-1); */
 }
 
 [data-theme-version="dark"] .dd-handle {
@@ -49235,3 +49235,20 @@ margin-top: 10px;
   background-image: url('../images/plus.png'); /* Replace with the path to your cross icon image */
   background-size: cover;
 }
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm{
+    background-color: #111111 !important;
+
+}
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:focus{
+    box-shadow: 0 0 0 0 !important;
+}
+
+.img-round{
+    border-radius: 10px !important;
+}
+.profile-pic-m{
+    margin-top: -11px;
+    margin-bottom: 10px;
+  }

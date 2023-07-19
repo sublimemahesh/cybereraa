@@ -29,8 +29,8 @@
                                                 </a>
                                             @endif
                                         </div>
-                                        <div class="float-left width-175">
-                                            <img src="{{ Auth::user()->profile_photo_url }}" class="img-fluid w-100 img-thumbnail img-pt profile-img-border" alt="">
+                                        <div class="float-left width-175  rounded-3">
+                                            <img src="{{ Auth::user()->profile_photo_url }}" class=" w-100 profile-img-border img-round profile-pic-m" alt="">
                                         </div>
                                     </div>
                                 </div>
