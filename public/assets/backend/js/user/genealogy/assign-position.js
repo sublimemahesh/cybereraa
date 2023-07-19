@@ -1,4 +1,6 @@
 $(function () {
+
+
     $("#assign-position").select2({
         placeholder: 'Select an User', allowClear: true
     });
@@ -8,7 +10,7 @@ $(function () {
         let pending_user = $('#assign-position').val();
         if (pending_user === null || pending_user.length <= 0) {
             Toast.fire({
-                icon: 'error', title: "Choose an user from the list!",
+                icon: 'error',background: '#252a3d', title: "Choose an user from the list!",
             })
             return false
         } else {
@@ -16,6 +18,8 @@ $(function () {
                 title: "Are You Sure?",
                 text: "Assign user to selected position? This will cannot be undone. Please make sure you have double check your selections!",
                 icon: "info",
+                background: '#252a3d',
+                confirmButtonColor: '#111111',
                 showCancelButton: true,
             }).then((create) => {
                 if (create.isConfirmed) {
