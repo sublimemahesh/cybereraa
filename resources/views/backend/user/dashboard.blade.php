@@ -29,7 +29,7 @@
                                             </label>
 
 
-                                            @if (Auth::user()->id === config('fortify.super_parent_id') || (Auth::user()->parent_id !== null && Auth::user()->position !== null))
+                                           
                                                 <a href="{{ route('user.genealogy.position.register') }}" class="btn btn-info rounded-3 profile-card-btn">
                                                     <i class="fa fa-user-plus" aria-hidden="true"></i>
                                                     Registration new user
@@ -39,7 +39,7 @@
                                                     <i class="fa fa-sitemap" aria-hidden="true"></i>
                                                     My genealogy
                                                 </a>
-                                            @endif
+                                            
                                         </div>
                                         <div class="float-left width-175  rounded-3">
                                             <img src="{{ Auth::user()->profile_photo_url }}" class=" w-100 profile-img-border img-round profile-pic-m" alt="">
