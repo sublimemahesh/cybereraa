@@ -44,7 +44,7 @@
                         </div>
                         <div class="card-footer">
                             <div class="card-footer-link">
-                                <a href="{{ route('user.packages.index') }}"
+                                <a href="{{ URL::signedRoute('user.transactions.invoice', $subscription->transaction_id) }}"
                                    class="btn bg-white text-primary btn-card">Invoice
                                 </a>
                             </div>
