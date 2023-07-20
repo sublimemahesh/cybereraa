@@ -12846,6 +12846,13 @@ label {
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     opacity: 0;
+   
+    
+}
+
+.hamburger .is-active {
+
+    margin-top: -5px;
 }
 
 .hamburger svg {
@@ -12897,13 +12904,13 @@ label {
 }
 
 .hamburger.is-active .line:nth-child(1) {
-    -webkit-transform: translateY(4px) translateX(12px) rotate(45deg);
-    transform: translateY(4px) translateX(12px) rotate(45deg);
+    /* -webkit-transform: translateY(4px) translateX(12px) rotate(45deg);
+    transform: translateY(4px) translateX(12px) rotate(45deg); */
 }
 
 .hamburger.is-active .line:nth-child(3) {
-    -webkit-transform: translateY(-4px) translateX(12px) rotate(-45deg);
-    transform: translateY(-4px) translateX(12px) rotate(-45deg);
+    /* -webkit-transform: translateY(-4px) translateX(12px) rotate(-45deg);
+    transform: translateY(-4px) translateX(12px) rotate(-45deg); */
 }
 
 @media (min-width: 47.9375rem) {
@@ -49269,3 +49276,10 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
     border: 1px solid #1fcee9;
     margin-bottom: 5%;
 }
+
+.hamburger .is-active .cc{
+display: block;
+}
+.hamburger .cc{
+    display: none;
+    }

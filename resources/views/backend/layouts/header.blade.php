@@ -10,15 +10,15 @@
         <div class="hamburger">
             <span class="line"></span><span class="line"></span><span class="line"></span>
             <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="22" y="11" width="4" height="4" rx="2" fill="#2A353A" />
-                <rect x="11" width="4" height="4" rx="2" fill="#2A353A" />
-                <rect x="22" width="4" height="4" rx="2" fill="#2A353A" />
-                <rect x="11" y="11" width="4" height="4" rx="2" fill="#2A353A" />
-                <rect x="11" y="22" width="4" height="4" rx="2" fill="#2A353A" />
-                <rect width="4" height="4" rx="2" fill="#2A353A" />
-                <rect y="11" width="4" height="4" rx="2" fill="#2A353A" />
-                <rect x="22" y="22" width="4" height="4" rx="2" fill="#2A353A" />
-                <rect y="22" width="4" height="4" rx="2" fill="#2A353A" />
+                <rect x="22" y="11" width="4" height="4" rx="2" fill="#2A353A"></rect>
+                <rect x="11" width="4" height="4" rx="2" fill="#2A353A"></rect>
+                <rect x="22" width="4" height="4" rx="2" fill="#2A353A"></rect>
+                <rect x="11" y="11" width="4" height="4" rx="2" fill="#2A353A"></rect>
+                <rect x="11" y="22" width="4" height="4" rx="2" fill="#2A353A"></rect>
+                <rect height="4" rx="2" fill="#2A353A" width="400"></rect>
+                <rect y="11" height="4" rx="2" fill="#2A353A" width="400"></rect>
+                <rect x="22" y="22" width="4" height="4" rx="2" fill="#2A353A"></rect>
+                <rect y="22" height="4" rx="2" fill="#2A353A" width="400"></rect>
             </svg>
         </div>
     </div>
@@ -38,7 +38,7 @@
                         </span>
                     </div>
                 </div>
-                
+
                 {{-- <div class="navbar-nav header-right">
                     <div class="dz-side-menu">
                         <ul>
