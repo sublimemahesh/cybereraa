@@ -18,35 +18,32 @@
                                             <p class="fs-26 mb-1 mx-0 text-muted w-100 text-uppercase">{{ Auth::user()->name }}</p>
                                             <p class="fs-16 fw-bold text-warning">{{ Auth::user()->currentRank->rank ?? 'NO' }} STAR </p>
 
-                                        <div>
-                                            <label href="#" class="btn btn btn-user  profile-card-btn">
-                                                <i class="fa fa-user" aria-hidden="true"></i>
-                                                Pending User Count: 10
-                                            </label>
+                                            <div>
+                                                <label href="#" class="btn btn btn-user  profile-card-btn">
+                                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                                    Pending User Count: {{ auth()->user()->pending_direct_sales_count }}
+                                                </label>
 
-                                            <label href="#" class="btn btn btn-user profile-card-btn">
-                                                <i class="fa fa-balance-scale" aria-hidden="true"></i>
-                                                Loss sale count: 20
-                                            </label>
-                                        </div>
-                                        @if (Auth::user()->id === config('fortify.super_parent_id') || (Auth::user()->parent_id !== null && Auth::user()->position !== null))
-                                            <div class="btn-genealogy">
-                                                <a href="{{ route('user.genealogy.position.register') }}" class="btn btn-info rounded-3 profile-card-btn">
-                                                    <i class="fa fa-user-plus" aria-hidden="true"></i>
-                                                    Registration new user
-                                                </a>
-
-                                                <a href="{{ route('user.genealogy') }}" class="btn btn-info rounded-3 profile-card-btn">
-                                                    <i class="fa fa-sitemap" aria-hidden="true"></i>
-                                                    My genealogy
-                                                </a>
+                                                <label href="#" class="btn btn btn-user profile-card-btn">
+                                                    <i class="fa fa-balance-scale" aria-hidden="true"></i>
+                                                    Loss sale count: USDT {{ $lost_commissions }}
+                                                </label>
                                             </div>
+                                            @if (Auth::user()->id === config('fortify.super_parent_id') || (Auth::user()->parent_id !== null && Auth::user()->position !== null))
+                                                <div class="btn-genealogy btn-genealogy mt-2">
+                                                    <a href="{{ route('user.genealogy.position.register') }}" class="btn btn-info rounded-3 profile-card-btn">
+                                                        <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                                        Registration new user
+                                                    </a>
+
+                                                    <a href="{{ route('user.genealogy') }}" class="btn btn-info rounded-3 profile-card-btn">
+                                                        <i class="fa fa-sitemap" aria-hidden="true"></i>
+                                                        My genealogy
+                                                    </a>
+                                                </div>
                                             @endif
-                                           
-                                              
-                                            
                                         </div>
-                                        <div class="float-left width-175  rounded-3">
+                                        <div class="float-left width-295  rounded-3">
                                             <img src="{{ Auth::user()->profile_photo_url }}" class=" w-100 profile-img-border img-round profile-pic-m" alt="">
                                         </div>
                                     </div>
@@ -353,7 +350,7 @@
                     <div class="owl-carousel owl-banner">
                         @foreach ($banners as $section)
                             <div class="item">
-                                <img class="img-round" src="{{ storage('pages/' . $section->image) }}" >
+                                <img class="img-round" src="{{ storage('pages/' . $section->image) }}">
                             </div>
                         @endforeach
                     </div>

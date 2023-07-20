@@ -69,6 +69,21 @@ class PurchasedPackage extends Pivot
         return $this->commission_issued_at !== null;
     }
 
+    public function getPackageActivateDateAttribute(): string
+    {
+        $created_at_week_day = $this->created_at->dayOfWeek;
+        if (in_array($created_at_week_day, [1, 2, 3, 4])) {
+            return $this->created_at->addDays(6)->format('Y-m-d') . " 12:00 AM";
+        }
+        if ($created_at_week_day === 5) {
+            return $this->created_at->addDays(5)->format('Y-m-d') . " 12:00 AM";
+        }
+        if (in_array($created_at_week_day, [0, 6])) {
+            return $this->created_at->addDays(4)->format('Y-m-d') . " 12:00 AM";
+        }
+        return $this->created_at->format('Y-m-d') . " 12:00 AM";
+    }
+
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id', 'id')->withDefault(new User);

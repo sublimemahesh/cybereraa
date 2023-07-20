@@ -4,10 +4,12 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Package;
+use App\Models\Strategy;
 use App\Models\User;
 use Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use JsonException;
 
 class PackageController extends Controller
 {
@@ -20,11 +22,17 @@ class PackageController extends Controller
         return view('backend.user.packages.index', compact('packages'));
     }
 
+    /**
+     * @throws JsonException
+     */
     public function active(Request $request)
     {
         $activePackages = Auth::user()->activePackages;
         $activePackages->load('transaction');
-      
+        $activePackages->loadSum('earnings', 'amount');
+// dd($activePackages);
+        $withdrawal_limits = Strategy::where('name', 'withdrawal_limits')->first();
+        $withdrawal_limits = json_decode($withdrawal_limits->value ?? '[]', false, 512, JSON_THROW_ON_ERROR);
         return view('backend.user.packages.active', compact('activePackages'));
     }
 
