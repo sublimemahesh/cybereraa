@@ -40844,7 +40844,7 @@ table.dataTable thead .sorting_asc {
 
 .buy-sell.style-1 .nav-tabs .nav-link.active {
     color: #ebf1f2;
-    background-color: #1fcee9;   
+    background-color: #1fcee9;
 
 }
 
@@ -49134,7 +49134,8 @@ div.dt-buttons .dt-button.buttons-collection {
 
 .profile-card-bg-image {
     background-image: url("../images/user-profile-bg-image.jpg");
-    /* Additional styles */
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .profile-card-btn {
