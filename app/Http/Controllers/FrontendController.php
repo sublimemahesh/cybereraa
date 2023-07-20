@@ -27,7 +27,7 @@ class FrontendController extends Controller
 
 
 
- 
+
 
         return view('frontend.index', compact('benefits', 'welcome', 'how_it_work','awesome_facts','any_query','contact_us'));
 
@@ -62,7 +62,7 @@ class FrontendController extends Controller
 
     public function pricing()
     {
-        $packages = Package::all();
+        $packages = Package::activePackages()->get();;
         return view('frontend.pricing', compact('packages'));
 
     }
