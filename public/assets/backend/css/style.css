@@ -49450,11 +49450,11 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
 
 .btn-user {
     border-radius: 25px;
-    margin-top: -2%;
+    /*margin-top: -2%;*/
     color: #1fcee9;
     background-color: #1c1b1b;
     border: 1px solid #1fcee9;
-    margin-bottom: 5%;
+    /*margin-bottom: 5%;*/
 }
 
 .hamburger .is-active .cc {

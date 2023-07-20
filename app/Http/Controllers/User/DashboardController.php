@@ -65,9 +65,9 @@ class DashboardController extends Controller
         $qualified_commissions = number_format($qualified_commissions, 2);
         $paid_commissions = number_format($paid_commissions, 2);
 
-        //        $lost_commissions = number_format(Commission::where('user_id', Auth::user()->id)
-        //            ->whereStatus('DISQUALIFIED')
-        //            ->sum('amount'), 2);
+        $lost_commissions = number_format(Commission::where('user_id', Auth::user()->id)
+            ->whereStatus('DISQUALIFIED')
+            ->sum('amount'), 2);
 
         Auth::user()->loadCount(['directSales as pending_direct_sales_count' => fn($query) => $query->whereNull('parent_id')->whereHas('activePackages')]);
         $wallet = Auth::user()->wallet;
@@ -155,7 +155,7 @@ class DashboardController extends Controller
                 'qualified_commissions',
                 'paid_commissions',
                 'pending_commissions',
-//                'lost_commissions',
+                'lost_commissions',
                 'currency_carousel',
                 'descendants_count',
                 'top_rankers',

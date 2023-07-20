@@ -31,6 +31,7 @@ trait NextPaymentDate
         if ($nextPayDay->isSaturday() || $nextPayDay->isSunday()) {
             $nextPayDay = $nextPayDay->nextWeekday();
         }
-        return $nextPayDay->format('Y-m-d H:i:s');
+        //return $nextPayDay->format('Y-m-d h:i A');
+        return $nextPayDay->format('Y-m-d') . " 12:00 AM";
     }
 }
