@@ -18,6 +18,7 @@
                                             <p class="fs-26 mb-1 mx-0 text-muted w-100 text-uppercase">{{ Auth::user()->name }}</p>
                                             <p class="fs-16 fw-bold text-warning">{{ Auth::user()->currentRank->rank ?? 'NO' }} STAR </p>
 
+                                        <div>
                                             <label href="#" class="btn btn btn-user  profile-card-btn">
                                                 <i class="fa fa-user" aria-hidden="true"></i>
                                                 Pending User Count: 10
@@ -27,9 +28,9 @@
                                                 <i class="fa fa-balance-scale" aria-hidden="true"></i>
                                                 Loss sale count: 20
                                             </label>
-
-
-                                           
+                                        </div>
+                                        @if (Auth::user()->id === config('fortify.super_parent_id') || (Auth::user()->parent_id !== null && Auth::user()->position !== null))
+                                            <div class="btn-genealogy">
                                                 <a href="{{ route('user.genealogy.position.register') }}" class="btn btn-info rounded-3 profile-card-btn">
                                                     <i class="fa fa-user-plus" aria-hidden="true"></i>
                                                     Registration new user
@@ -39,6 +40,10 @@
                                                     <i class="fa fa-sitemap" aria-hidden="true"></i>
                                                     My genealogy
                                                 </a>
+                                            </div>
+                                            @endif
+                                           
+                                              
                                             
                                         </div>
                                         <div class="float-left width-175  rounded-3">
