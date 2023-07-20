@@ -56,7 +56,7 @@
                                     <ul>
                                         <li><i class="fa fa-check" aria-hidden="true"></i>Within Investment Period</li>
                                         <li><i class="fa fa-check" aria-hidden="true"></i>Gas Fee USDT {{ $package->gas_fee }}</li>
-                                        <li><i class="fa fa-check" aria-hidden="true"></i>{{ $package->daily_leverage }} % Daily Profit</li>
+                                        <li><i class="fa fa-check" aria-hidden="true"></i>{{-- {{ $package->daily_leverage }}--}} 0.4% - 1.3% Daily Profit</li>
                                     </ul>
                                 </div>
                                 <a href="{{ route('user.packages.index') }}">Order Now</a>
