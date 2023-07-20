@@ -15,9 +15,9 @@
                         </ul>
                     </div>
 
-                    <div class="wt-topbar-right">
+                    <div class="wt-topbar-right ">
 
-                        <ul class="list-unstyled e-p-bx pull-right">
+                        <ul class="list-unstyled e-p-bx pull-right mob-btn">
                             @auth()
                             <li>
                                 <a class="site-button header-btn" href="{{ route(authUserFolder() .'.dashboard') }}"><i class="fa fa-dashboard"></i>Dashboard</a>

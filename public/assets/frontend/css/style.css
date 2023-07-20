@@ -7763,12 +7763,18 @@ ol.comment-list li.comment .comment-respond .comment-form p {
 	padding-bottom:5px;
 }
 .wt-topbar-left {
-	text-align:right;
+	text-align:center;
 }
 .wt-topbar-left .pull-left {
 	float:none !important;
 }
+.mob-btn{
+text-align: center !important;
+float: none !important;
+margin-top: 1%;
 }
+}
+
 /*-------------------------------------
 	1. eamil-phone (left)
 -------------------------------------*/
@@ -12998,3 +13004,7 @@ ol.commentlist li::after {
 .slider-bg-color{
     background-color:#000 !important;
 }
+
+
+
+
