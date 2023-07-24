@@ -15,11 +15,12 @@
                     <div class="mb-4">
                         <h4 class="card-title">Transfer Between wallet</h4>
                         <p>
-                            When payout limit is reached 0, All the active packages will be expired. <br>
-                            (The withdrawal limit is reduced only when withdrawing money using the main wallet)
+                            All active packages will be expired when the payout limit is reached 0.<br>
+                            (Your withdrawal limit is reduced when withdrawing money using the main wallet)
                         </p>
                         <p>
-                            Purchase a new package to increase your payout limit
+                            You need to purchase a new package to increase your payout limit
+
                         </p>
                         <p>
                             INTERNAL WALLET <br>

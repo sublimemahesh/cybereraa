@@ -19,16 +19,16 @@
                         <p>
                             Please note that
                             <code>USDT {{ $p2p_transfer_fee->value }}</code>
-                            transaction fee will be added with the every transfer.
+                            transaction fee will be added for every transfer.
                         </p>
                         <p>
                             Your Wallet Balance: <code>USDT {{ $wallet->balance }}</code>. <br>
                             Your current payout limit: <code>USDT {{ $wallet->withdraw_limit }}</code> <br>
-                            (Simply Purchase a new package to increase your payout limit)
+                            (Purchase a new package to increase your payout limit)
                         </p>
 
-                        <p>When payout limit is reached 0, All the active packages will be expired. <br>
-                            (The withdrawal limit is reduced only when withdrawing money using the  internal wallet {{--main wallet--}})
+                        <p>All active packages will be expired when the payout limit is reached 0<br>
+                            (Your withdrawal limit is reduced when withdrawing money using the internal wallet {{--main wallet--}})
                         </p>
                         <p>
                             INTERNAL WALLET

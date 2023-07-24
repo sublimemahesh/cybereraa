@@ -71,18 +71,16 @@
                     <div class="modal-body">
                         <div class="mb-4">
                             <p>
-                                If you want to purchase a package for <code>someone else</code>,
-                                Please <code>search username in below box</code> and <code>select the
-                                    username</code> you want to purchase package for.
+                                 Please <code>search username in the below box</code> and <code>select the username</code> you want to purchase the package If you want to purchase a package for <code>someone else</code>.
                             </p>
                             <div>
                                 Please Note:
                                 <ul class="list-disc">
-                                    <li class="mt-2">If you want to purchase a package for <code>Yourself</code> Please
-                                        <code>keep the select box empty</code>
+                                    <li class="mt-2">
+                                        If you want to purchase a package for <code>Yourself</code>.  Please <code>keep the select box empty</code>
                                     </li>
                                     <li class="mt-2">
-                                        <code>GAS FEE</code> will be added to the every order.
+                                        <code>GAS FEE</code> will be added to every order.
                                     </li>
                                 </ul>
                             </div>
