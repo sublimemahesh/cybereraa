@@ -97,7 +97,8 @@
                             <div class="col-sm-6">
                                 <div class="card bg-secondary pay-method-wallet cursor-pointer" id="wallet">
                                     <a class="card-body card-link">
-                                        <div class="text-center"><span><i class="fa fa-archive fa-4x"></i></span>
+                                        <div class="text-center">
+                                           <img src="{{ asset('assets/images/main-wallet.png') }}" alt="">
                                             <div class="mb-3"></div>
                                             <h6> INTERNAL WALLET</h6>
                                         </div>
@@ -107,7 +108,8 @@
                             <div class="col-sm-6">
                                 <div class="card bg-secondary pay-method-topup-wallet cursor-pointer" id="topup-wallet">
                                     <a class="card-body card-link">
-                                        <div class="text-center"><span><i class="fa fa-cube fa-4x"></i></span>
+                                        <div class="text-center">
+                                            <img src="{{ asset('assets/images/topup-wallet.png') }}" alt="logo" />
                                             <div class="mb-3"></div>
                                             {{-- <h6>TOPUP WALLET</h6> --}}
                                             <h6> EXTERNAL WALLET</h6>
@@ -118,7 +120,8 @@
                             <div class="col-sm-6">
                                 <div class="card bg-secondary pay-method-binance-pay cursor-pointer" id="binance-pay">
                                     <div class="card-body card-link">
-                                        <div class="text-center"><span><i class="fa fa-qrcode fa-4x"></i></span>
+                                        <div class="text-center">
+                                        <img src="{{ asset('assets/images/binance.png') }}" alt="logo" />
                                             <div class="mb-3"></div>
                                             <h6>BINANCE PAY</h6>
                                         </div>
@@ -128,7 +131,8 @@
                             <div class="col-sm-6">
                                 <div class="card bg-secondary pay-method-manual-pay cursor-pointer" id="manual-pay">
                                     <div class="card-body card-link">
-                                        <div class="text-center"><span><i class="fa fa-hand fa-4x"></i></span>
+                                        <div class="text-center"><span>
+                                        <img src="{{ asset('assets/images/manual.png') }}" alt="logo" />
                                             <div class="mb-3"></div>
                                             <h6>MANUAL PAY</h6>
                                         </div>
