@@ -24,17 +24,17 @@
                     <div class="mb-4">
                         <h4 class="card-title">Binance Payout</h4>
                         <p>
-                            Please note that transaction fees will be added to every withdrawal request based on your wallet type. <br>
-                            For wallets with type <code>"MAIN" & "TOPUP"</code>, the transaction fee is <code>USDT {{ $payout_transfer_fee->value }}</code>.<br>
+                            Just so you know, transaction fees will be added to every withdrawal request based on your wallet type. <br>
+                            For wallets with type <code>"INTERNAL" & "EXTERNAL"</code>, he transaction fee is <code>USDT {{ $payout_transfer_fee->value }}</code>.<br>
                             {{--For wallets with type <code>"STAKING"</code>, the transaction fee is <code>USDT {{ $staking_withdrawal_fee->value }}</code>.--}}
                         </p>
                         <p>
                             Your Wallet Balance: <code>USDT {{ $wallet->balance }}</code>.
                             Your current payout limit: <code>USDT {{ $wallet->withdraw_limit }}</code>. <br>
-                            (Simply Purchase a new package to increase your payout limit)
+                            (Purchase a new package to increase your payout limit)
                         </p>
-                        <p>When payout limit is reached 0, All the active packages will be expired. <br>
-                            (The withdrawal limit is reduced only when withdrawing money using the main wallet)</p>
+                        <p>All active packages will be expired when the payout limit is reached 0. <br>
+                            (Your withdrawal limit is reduced when withdrawing money using the main wallet)</p>
                         <hr>
                         <p>
                             {{-- MAIN WALLET  --}}

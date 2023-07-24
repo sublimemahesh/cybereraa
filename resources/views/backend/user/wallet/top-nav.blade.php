@@ -11,3 +11,4 @@
         <a class="nav-link {{ request()->routeIs('user.transfers.withdrawals') ? 'active' : '' }}" href="{{ !request()->routeIs('user.transfers.withdrawals') ? route('user.transfers.withdrawals') : 'javascript:void(0)' }}">Binance History</a>
     </div>
 </div>
+  

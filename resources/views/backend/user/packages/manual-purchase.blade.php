@@ -38,7 +38,10 @@
                                 <b>Up to {{ $package->daily_leverage }}% </b>Daily Leverage
                             </p>
                             <hr>
-                            <p>Please <code>Deposit above total amount</code> to given binance wallet address and request the package with <code>payment slip (Proof)</code>.</p>
+                            <p>
+                            Please <code>Deposit the above total amount</code> to the given Binance wallet address and request the package with <code> a payment slip (Proof)</code>.
+                          </p>
+
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
