@@ -33,7 +33,7 @@
                         <p>
                             INTERNAL WALLET
                             {{-- MAIN WALLET  --}}
-                            
+
                             <br>
                             &emsp; Balance: <code>USDT {{ $wallet->balance }}</code> <br>
                             &emsp; Payout limit: <code>USDT {{ $wallet->withdraw_limit }}</code>
@@ -72,7 +72,7 @@
                                             <input checked value="main" type="radio" name="wallet_type" id="main"/>
                                             <div class="plan-content">
                                                 <img loading="lazy"
-                                                     src="https://raw.githubusercontent.com/ismailvtl/ismailvtl.github.io/master/images/life-saver-img.svg"
+                                                     src="{{ asset('assets/images/main-wallet.png') }}"
                                                      alt=""/>
                                                 <div class="plan-details">
                                                     <span> Internal Wallet</span>
@@ -85,7 +85,7 @@
                                             <input type="radio" id="topup" name="wallet_type" value="topup"/>
                                             <div class="plan-content">
                                                 <img loading="lazy"
-                                                     src="https://raw.githubusercontent.com/ismailvtl/ismailvtl.github.io/master/images/potted-plant-img.svg"
+                                                     src="{{ asset('assets/images/topup-wallet.png') }}"
                                                      alt=""/>
                                                 <div class="plan-details">
                                                     <span>External Wallet</span>
