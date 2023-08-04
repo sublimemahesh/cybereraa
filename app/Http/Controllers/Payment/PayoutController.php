@@ -35,7 +35,7 @@ class PayoutController extends Controller
 
         $validated = Validator::make($request->all(), [
             'receiver' => 'required|exists:users,id',
-            'minimum_payout_limit' => 'required',
+            'minimum_p2p_transfer_limit' => 'required',
             'amount' => ['required', 'numeric', 'min:' . $request->minimum_p2p_transfer_limit],
             'password' => 'required',
             'code' => 'nullable',
