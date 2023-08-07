@@ -47,6 +47,22 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'profile_info.binance_email' => ['nullable', 'email', 'max:255'],
             'profile_info.binance_id' => ['nullable', 'string', 'max:255'],
             'profile_info.binance_phone' => ['nullable', 'string', 'max:255'],
+        ], customAttributes: [
+            'name' => "Name (Personal Details)",
+            'email' => "Email (Personal Details)",
+            'phone' => "Phone (Personal Details)",
+            'profile_info.gender' => "Gender (Personal Details)",
+            'profile_info.dob' => "Date of Birth (Personal Details)",
+            'profile_info.street' => "Street (Contact Details)",
+            'profile_info.state' => "State (Contact Details)",
+            'profile_info.address' => "Address (Contact Details)",
+            'profile_info.zip_code' => "Zip code (Contact Details)",
+            'profile_info.home_phone' => "Home phone (Contact Details)",
+            'profile_info.recover_email' => "Recover  (Contact Details)",
+            'profile_info.wallet_address' => "Wallet address (Payment Details)",
+            'profile_info.binance_email' => "Binance email (Payment Details)",
+            'profile_info.binance_id' => "Binance id (Payment Details)",
+            'profile_info.binance_phone' => "Binance phone (Payment Details)",
         ])->validateWithBag('updateProfileInformation');
 
         if (isset($input['photo'])) {
