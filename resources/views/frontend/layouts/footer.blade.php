@@ -1,117 +1,128 @@
+<!--==================================================-->
+<!-- Start footer-area -->
+<!--==================================================-->
+<div class="footer-area">
+	<div class="container">
+		<div class="row tops">
+			<div class="col-lg-3 col-md-6">
+				<div class="single-footer-box">
+					<div class="footer-logo">
+						<img src="assets/images/logo.png" alt="">
+					</div>
+					<div class="footer-content">
+						<div class="footer-title">
+							<p>Cryptocurrencies are used prim outside existing banking govern institutions hanged</p>
+						</div>
+						<div class="footer-icon">
+							<ul>
+								<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+								<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+								<li><a href="#"><i class="fab fa-pinterest"></i></a></li>
+								<li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6">
+				<div class="single-footer-box">
+					<div class="footer-content">
+						<div class="footer-title">
+							<h2>Catagories</h2>
+						</div>
+						<div class="footer-ico">
+							<ul>
+								<li><a href="#"><span>What is ICO</span></a></li>
+								<li><a href="#"><span>Tokens</span></a></li>
+								<li><a href="#"><span>Road Map</span></a></li>
+								<li><a href="#"><span>Advisor</span></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6">
+				<div class="single-footer-box">
+					<div class="footer-content">
+						<div class="footer-title">
+							<h2>Useful Links</h2>
+						</div>
+						<div class="footer-ico">
+							<ul>
+								<li><a href="#"><span>Payment & TAX</span></a></li>
+								<li><a href="#"><span>Terms of Services</span></a></li>
+								<li><a href="#"><span>My Account</span></a></li>
+								<li><a href="#"><span>Return Policy</span></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6">
+				<div class="single-footer-box">
+					<div class="footer-content">
+						<div class="footer-titles">
+							<h2>Newsletter</h2>
+							<p>Get now free 20% discount for all products on your first order</p>
+						</div>
+							<div class="row">
+								<div class="col-lg-12 col-md-12">
+									<div class="form_box style-two">
+										<input type="text" name="youe email address" placeholder="Enter E-mail">
+										<button type="submit"><i class="far fa-paper-plane"></i></button>
+									</div>
+								</div>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row footer-bottom">
+			<div class="col-lg-6 col-md-6">
+				<div class="copy-left-box">
+					<div class="copy-left-title">
+						<h3>Copyright © 2023 Coin1m. All Rights Reserved . </h3>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-6">
+				<div class="copy-right-box">
+					<div class="copy-right-title">
+						<ul>
+							<li><a href="#"><span>Privacy Policy</span></a></li>
+							<li><a href="#"><span>Terms & Condition</span></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
 
-    <!-- LOADING AREA START ===== -->
-    <div class="loading-area">
-        <div class="loading-box"></div>
-        <div class="loading-pic">
-            <div class="cssload-container">
-                <div class="cssload-dot" style="background-color:var(--theme-color1)"><img src='{{asset('assets/frontend/images/perloader.png')}}'></div>
-                <div class="step" id="cssload-s1"></div>
-                <div class="step" id="cssload-s2"></div>
-                <div class="step" id="cssload-s3"></div>
-            </div>
-        </div>
-    </div>
-    <!-- LOADING AREA  END ====== -->
+<!--==================================================-->
+<!-- Start Search Popup Area -->
+<!--==================================================-->
+<div class="search-popup">
+		<button class="close-search style-two"><i class="fa fa-times"></i></button>
+		<button class="close-search"><i class="fas fa-arrow-up"></i></button>
+		<form method="post" action="#">
+			<div class="form-group">
+				<input type="search" name="search-field" value="" placeholder="Search Here" required="">
+				<button type="submit"><i class="fa fa-search"></i></button>
+			</div>
+		</form>
+	</div>
 
-
-<footer class="site-footer footer-dark bg-no-repeat bg-full-height bg-center " id='footer'  style="background-image:url({{ asset('assets/frontend/images/background/footer-bg.jpg') }});">
-    <!-- FOOTER BLOCKES START -->
-    <div class="footer-top overlay-wraper">
-        <div class="overlay-main themecolor-1 opacity-05"></div>
-        <div class="container">
-            <div class="row">
-                <!-- ABOUT COMPANY -->
-                <div class="col-md-3 col-sm-6">
-                    <div class="widget widget_about">
-                        <h4 class="widget-title text-white">About Company</h4>
-                        <div class="logo-footer clearfix p-b15">
-                            <a href="{{ route('/') }}"><img src="{{ asset('assets/frontend/images/footer-logo.png') }}" width="230" height="67" alt=""/></a>
-                        </div>
-                        {!! $footer_about !!}
-                        @if (strlen($footer_about) > 300)
-                        <a href="{{ route('about') }}">Read More</a>
-                    @endif
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-3">
-                    <div class="widget widget_services">
-                        <h4 class="widget-title text-white">Useful links</h4>
-                        <ul>
-                            <li><a href="{{ route('about') }}">ABOUT</a></li>
-                            <li><a href="{{ route('how-it-work') }}">HOW IT WORK</a></li>
-                            <li><a href="{{ route('faq') }}">FAQ</a></li>
-                            <li><a href="{{ route('pricing') }}">PACKAGES</a></li>
-                            <li><a href="{{ route('news') }}">NEWS</a></li>
-                            <li><a href="{{ route('contact') }}">CONTACT US </a></li>
-
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3">
-                    <div class="widget widget_services">
-                        <h4 class="widget-title text-white">Useful links</h4>
-                        <ul>
-                            <li><a href="{{ route('disclaimer') }}"> DISCLAIMER </a></li>
-                            <li><a href="{{ route('terms&Conditions') }}"> TERM AND CONDITONS </a></li>
-                            <li><a href="{{ route('privacy-and-policy') }}"> PRIVACY AND POLICY </a></li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- NEWSLETTER -->
-                <div class="col-md-3 col-sm-6">
-                    <div class="widget widget_newsletter">
-                        <h4 class="widget-title text-white">Newsletter</h4>
-                        <div class="newsletter-bx">
-                            <form role="search" method="post">
-                                <div class="input-group">
-                                <input name="news-letter" class="form-control" placeholder="ENTER YOUR EMAIL" type="text">
-                                <span class="input-group-btn">
-                                    <button type="submit" class="site-button"><i class="fa fa-paper-plane-o"></i></button>
-                                </span>
-                            </div>
-                             </form>
-                        </div>
-                    </div>
-                    <!-- SOCIAL LINKS -->
-                    <div class="widget widget_social_inks">
-                        <h4 class="widget-title text-white">Social Links</h4>
-                        <ul class="social-icons social-square social-darkest">
-                            <li><a href="javascript:void(0);" class="fa fa-facebook"></a></li>
-                            <li><a href="javascript:void(0);" class="fa fa-twitter"></a></li>
-                            <li><a href="javascript:void(0);" class="fa fa-linkedin"></a></li>
-                            <li><a href="javascript:void(0);" class="fa fa-rss"></a></li>
-                            <li><a href="javascript:void(0);" class="fa fa-youtube"></a></li>
-                            <li><a href="javascript:void(0);" class="fa fa-instagram"></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <!-- FOOTER COPYRIGHT -->
-    <div class="footer-bottom themecolor-1  overlay-wraper">
-        <div class="overlay-main"></div>
-        <div class="constrot-strip"></div>
-        <div class="container p-t30">
-            <div class="row">
-                <div class="wt-footer-bot-left">
-                    <span class="copyrights-text">© 2023 Owara3m. All Rights Reserved.</span>
-                </div>
-                <div class="wt-footer-bot-right">
-                    <ul class="copyrights-nav pull-right">
-                        <li><a href="javascript:void(0);">Terms  & Condition</a></li>
-                        <li><a href="javascript:void(0);">Privacy Policy</a></li>
-                        <li><a href="contact-1.html">Contact Us</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-
-<!-- BUTTON TOP START -->
-<button class="scroltop"><span class=" iconmoon-house relative" id="btn-vibrate"></span>Top</button>
-<!-- BUTTON TOP END -->
+<!-- scroll strat============  -->
+<div class="scroll-area">
+	<div class="top-wrap">
+		<div class="go-top-btn-wraper">
+			<div class="go-top go-top-button">
+				<i class="fa fa-angle-double-up" aria-hidden="true"></i>
+				<i class="fa fa-angle-double-up" aria-hidden="true"></i>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- scroll end============  -->
