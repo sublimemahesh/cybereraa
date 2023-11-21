@@ -1,29 +1,37 @@
  <!-- JAVASCRIPT  FILES ========================================= -->
- <script src="{{ asset('assets/frontend/js/jquery-1.12.4.min.js') }}"></script><!-- JQUERY.MIN JS -->
-
- <script src="{{ asset('assets/frontend/js/bootstrap.min.js') }}"></script><!-- BOOTSTRAP.MIN JS -->
-
- <script src="{{ asset('assets/frontend/js/bootstrap-select.min.js') }}"></script><!-- FORM JS -->
- <script src="{{ asset('assets/frontend/js/jquery.bootstrap-touchspin.min.js') }}"></script><!-- FORM JS -->
-
-
- <script src="{{ asset('assets/frontend/js/magnific-popup.min.js') }}"></script><!-- MAGNIFIC-POPUP JS -->
-
- <script src="{{ asset('assets/frontend/js/waypoints.min.js') }}"></script><!-- WAYPOINTS JS -->
- <script src="{{ asset('assets/frontend/js/counterup.min.js') }}"></script><!-- COUNTERUP JS -->
- <script src="{{ asset('assets/frontend/js/waypoints-sticky.min.js') }}"></script><!-- COUNTERUP JS -->
-
- <script src="{{ asset('assets/frontend/js/isotope.pkgd.min.js') }}"></script><!-- MASONRY  -->
-
- <script src="{{ asset('assets/frontend/js/owl.carousel.min.js') }}"></script><!-- OWL  SLIDER  -->
-
-
- <script src="{{ asset('assets/frontend/js/stellar.min.js') }}"></script><!-- PARALLAX BG IMAGE   -->
- <script src="{{ asset('assets/frontend/js/scrolla.min.js') }}"></script><!-- ON SCROLL CONTENT ANIMTE   -->
-
- <script src="{{ asset('assets/frontend/js/custom.js') }}"></script><!-- CUSTOM FUCTIONS  -->
- <script src="{{ asset('assets/frontend/js/shortcode.js') }}"></script><!-- SHORTCODE FUCTIONS  -->
- <script src="{{ asset('assets/frontend/js/switcher.js') }}"></script><!-- SWITCHER FUCTIONS  -->
- <script src="{{ asset('assets/frontend/js/jquery.bgscroll.js') }}"></script><!-- BACKGROUND SCROLL -->
- <script src="{{ asset('assets/frontend/js/tickerNews.min.js') }}"></script><!-- TICKERNEWS-->
-
+ 
+	<!-- jquery js -->	
+	<script src="{{ asset('assets/frontend/js/vendor/jquery-3.2.1.min.js') }}"></script>
+	<!-- bootstrap js -->	
+	<script src="{{ asset('assets/frontend/js/bootstrap.min.js') }}"></script>
+	<!-- carousel js -->
+	<script src="{{ asset('assets/frontend/js/owl.carousel.min.js') }}"></script>
+	<!-- counterup js -->
+	<script src="{{ asset('assets/frontend/js/jquery.counterup.min.js') }}"></script>
+	<!-- waypoints js -->
+	<script src="{{ asset('assets/frontend/js/waypoints.min.js') }}"></script>
+	<!-- wow js -->
+	<script src="{{ asset('assets/frontend/js/wow.js') }}"></script>
+	<!-- imagesloaded js -->
+	<script src="{{ asset('assets/frontend/js/imagesloaded.pkgd.min.js') }}"></script>
+	<!-- venobox js -->
+	<script src="{{ asset('assets/frontend/venobox/venobox.js') }}"></script>
+	<!-- ajax mail js -->
+	<script src="{{ asset('assets/frontend/js/ajax-mail.js') }}"></script>
+	<!--  animated-text js -->	
+	<script src="{{ asset('assets/frontend/js/animated-text.js') }}"></script>
+	<!-- venobox min js -->
+	<script src="{{ asset('assets/frontend/venobox/venobox.min.js') }}"></script>
+	<!-- isotope js -->
+	<script src="{{ asset('assets/frontend/js/isotope.pkgd.min.js') }}"></script>
+	<!-- jquery nivo slider pack js -->
+	<script src="{{ asset('assets/frontend/js/jquery.nivo.slider.pack.js') }}"></script>
+	<!-- jquery meanmenu js -->	
+	<script src="{{ asset('assets/frontend/js/jquery.meanmenu.js') }}"></script>
+	<script src="{{ asset('assets/frontend/js/popper.min.js') }}"></script>
+	<!-- jquery scrollup js -->	
+	<script src="{{ asset('assets/frontend/js/jquery.scrollUp.js') }}"></script>
+	<!-- theme js -->	
+	<script src="{{ asset('assets/frontend/js/theme.js') }}"></script>
+	<script src="{{ asset('assets/frontend/js/jquery.barfiller.js') }}"></script>
+	<script src="{{ asset('assets/frontend/js/devil.js') }}"></script>

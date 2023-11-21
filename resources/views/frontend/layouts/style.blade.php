@@ -1,34 +1,39 @@
- <!-- BOOTSTRAP STYLE SHEET -->
- <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend/css/bootstrap.min.css') }}">
- <!-- FONTAWESOME STYLE SHEET -->
- <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend/css/fontawesome/css/font-awesome.min.css') }}" />
- <!-- FLATICON STYLE SHEET -->
- <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend/css/flaticon.min.css') }}">
- <!-- ANIMATE STYLE SHEET -->
- <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend/css/animate.min.css') }}">
- <!-- OWL CAROUSEL STYLE SHEET --> 
- <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend/css/owl.carousel.min.css') }}">
- <!-- BOOTSTRAP SELECT BOX STYLE SHEET -->
- <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend/css/bootstrap-select.min.css')}}">
- <!-- MAGNIFIC POPUP STYLE SHEET -->
- <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend/css/magnific-popup.min.css')}}">
- <!-- LOADER STYLE SHEET -->
- <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend/css/loader.min.css')}}">
- <!-- MAIN STYLE SHEET -->
- <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend/css/style.css')}}">
- <!-- THEME COLOR CHANGE STYLE SHEET -->
- <link rel="stylesheet" class="skin" type="text/css" href="{{asset('assets/frontend/css/skin/skin-1.css')}}">
- <!-- CUSTOM  STYLE SHEET -->
- <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend/css/custom.css')}}">
- <!-- SIDE SWITCHER STYLE SHEET -->
- <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend/css/switcher.css')}}">
- <!-- REVOLUTION SLIDER CSS -->
- <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend/plugins/revolution/revolution/css/settings.css')}}">
- <!-- REVOLUTION NAVIGATION STYLE -->
- <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend/plugins/revolution/revolution/css/navigation.css')}}">
 
-  <!-- GOOGLE FONTS -->
-  <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,300italic,400italic,500,500italic,700,700italic,900italic,900' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,800italic,800,700italic' rel='stylesheet' type='text/css'>
-  <link href="https://fonts.googleapis.com/css?family=Crete+Round:400,400i&amp;subset=latin-ext" rel="stylesheet">
 
+<!-- Favicon -->
+<link rel="icon" type="image/png" sizes="56x56" href="{{asset('assets/images/fav-icon/icon.png') }}">
+<!-- bootstrap CSS -->
+<link rel="stylesheet" href="{{asset('assets/frontend/css/bootstrap.min.css') }}" type="text/css" media="all" />
+<!-- carousel CSS -->
+<link rel="stylesheet" href="{{asset('assets/frontend/css/owl.carousel.min.css') }}" type="text/css" media="all" />	
+
+<!-- nivo-slider CSS -->
+<link rel="stylesheet" href="{{asset('assets/frontend/css/nivo-slider.css') }}" type="text/css" media="all" />
+<!-- animate CSS -->
+<link rel="stylesheet" href="{{asset('assets/frontend/css/animate.css') }}" type="text/css" media="all" />	
+<!-- animated-text CSS -->
+<link rel="stylesheet" href="{{asset('assets/frontend/css/animated-text.css') }}" type="text/css" media="all" />	
+<!-- font-awesome CSS -->
+<link rel="stylesheet" href="{{asset('assets/frontend/css/all.min.css') }}" type="text/css" media="all" />	
+<!-- font-flaticon CSS -->
+<link rel="stylesheet" href="{{asset('assets/frontend/css/flaticon.css') }}" type="text/css" media="all" />	
+<!-- theme-default CSS -->
+<link rel="stylesheet" href="{{asset('assets/frontend/css/theme-default.css') }}" type="text/css" media="all" />	
+<!-- meanmenu CSS -->
+<link rel="stylesheet" href="{{asset('assets/frontend/css/meanmenu.min.css') }}" type="text/css" media="all" />	
+<link rel="stylesheet" href="{{asset('assets/frontend/css/font-awesome.min.css') }}" type="text/css" media="all" />	
+<!-- Main Style CSS -->
+<link rel="stylesheet"  href="{{asset('assets/frontend/css/style.css') }}" type="text/css" media="all" />
+<!-- transitions CSS -->
+<link rel="stylesheet" href="{{asset('assets/frontend/css/owl.transitions.css') }}" type="text/css" media="all" />
+<!-- venobox CSS -->
+<link rel="stylesheet" href="{{asset('assets/frontend/venobox/venobox.css') }}" type="text/css" media="all" />
+<!-- widget CSS -->
+<link rel="stylesheet" href="{{asset('assets/frontend/css/widget.css') }}" type="text/css" media="all" />
+<!-- responsive CSS -->
+<link rel="stylesheet" href="{{asset('assets/frontend/css/responsive.css') }}" type="text/css" media="all" />
+<!-- modernizr js -->	
+<script src="{{asset('assets/frontend/vendor/modernizr-3.5.0.min.js') }}"></script>
+
+
+<link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,600' rel='stylesheet' type='text/css'>
