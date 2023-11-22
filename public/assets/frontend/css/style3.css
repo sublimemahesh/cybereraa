@@ -1,0 +1,48 @@
+.coin-slider{
+     
+    
+        top: -50px ;
+      
+    .row.top{
+        padding: 30px 0 30px;
+    }
+    
+}
+
+.faq{
+ 
+    padding:100px 0 100px !important;  
+    .container h3{
+        padding: 10px;
+        color: wheat;
+    }
+
+    .btn-link:hover{
+        color: purple;
+        text-decoration: none;
+    }
+
+    .faq-main{
+        padding-top:20px;
+    }
+
+    .btn-link{
+        color:#141516;
+    }
+}
+
+
+
+.fixed-cat-bar{
+    position:fixed;
+    top:112px;
+    width:285px;
+}
+
+.slider-txt-top{
+    top:-50px
+}
+
+.project-img{
+    border-radius:20px;
+}

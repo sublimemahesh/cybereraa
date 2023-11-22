@@ -1,9 +1,9 @@
 <x-frontend.layouts.app>
-    @section('title', 'FAQ | Owara3m ')
+    @section('title', 'FAQ | Coin1m ')
     @section('header-title', 'Welcome ')
 
     @section('header')
-    @include('frontend.layouts.header-other')
+    @include('frontend.layouts.header')
 
     @section('styles')
     <style>
@@ -11,114 +11,204 @@
             scroll-behavior: smooth;
         }
     </style>
+	
+	<link rel="stylesheet" href="{{asset('assets/frontend/css/faq.css') }}" type="text/css" media="all" />
+
+
     @endsection
-    <!-- CONTENT START -->
-    <div class="page-content">
-
-        <!-- INNER PAGE BANNER -->
-        <div class="wt-bnr-inr overlay-wraper"
-            style="background-image:url({{asset('assets/frontend/images/banner/banner.png') }});">
-            <div class="overlay-main themecolor-1 opacity-07"></div>
-            <div class="container">
-                <div class="wt-bnr-inr-entry">
-                    <h1 class="text-white  banner-txt">Frequently Asked Questions</h1>
-                </div>
-            </div>
-        </div>
-        <!-- INNER PAGE BANNER END -->
-
-        <!-- BREADCRUMB ROW -->
-        <div class="themecolor-1 p-tb20">
-            <div class="container">
-                <ul class="wt-breadcrumb breadcrumb-style-2">
-                    <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home</a></li>
-                    <li>Frequently Asked Questions </li>
-                </ul>
-            </div>
-        </div>
-        <!-- BREADCRUMB ROW END -->
-
-        <!-- SECTION CONTENT -->
-        <div class="section-full p-t80 p-b50 themecolor-2">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-9">
-                        <!-- TITLE  START -->
-                        <div class="p-b30">
-                            <h2 class="text-uppercase">FAQ</h2>
-                            <div class="wt-separator-outer">
-                                <div class="wt-separator bg-primary"></div>
-                            </div>
-                        </div>
-                        <!-- TITLE START -->
-
-                        <!-- ACCORDION START -->
-                        <div class="wt-accordion acc-bg-gray" id="accordion5">
+<!-- CONTENT START -->
 
 
 
+	<!--==================================================-->
+	<!-- Start breadcumb-area -->
+	<!--==================================================-->
+	<div class="breadcumb-area style-nine d-flex align-items-center" style="background: url('{{ asset('assets/frontend/images/inner-bg.jpg') }}');background-size: cover;background-position: center;background-repeat: no-repeat;">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breacumb-content">
+						<div class="breadcumb-title">
+							<h1>FAQ</h1>
+						</div>
+						<div class="breadcumb-content-text">
+							<a href="index.php"> <span>home</span>FAQ</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--==================================================-->
+	<!--FAQ -->
+	<!--==================================================-->
+
+	<div class=" feature-area style-one upper faq">
+		<div class='container'>
+			<div class="row">
+				<div class="col-8">
+
+					<div id='1'>
+						<h3>FAQ SING UP AND SIGN IN</h3>
+						<div class="accordion">
+							<div class="accordion-item">
+								<div class="accordion-item-header">
+								FAQ SING UP AND SIGN IN ?
+								</div>
+								<div class="accordion-item-body">
+									<div class="accordion-item-body-content">
+										Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+										Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+										unknown printer took a galley of type and scrambled it to make a type specimen
+										book. It has survived not only five centuries, but also the leap into electronic
+										typesetting, remaining essentially unchanged. It was popularised in the 1960s
+										with the release of Letraset sheets containing Lorem Ipsum passages, and more
+										recently with desktop publishing software like Aldus PageMaker including
+										versions of Lorem Ipsum.
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="accordion">
+							<div class="accordion-item">
+								<div class="accordion-item-header">
+								FAQ SING UP AND SIGN IN ?
+								</div>
+								<div class="accordion-item-body">
+									<div class="accordion-item-body-content">
+										Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+										Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+										unknown printer took a galley of type and scrambled it to make a type specimen
+										book. It has survived not only five centuries, but also the leap into electronic
+										typesetting, remaining essentially unchanged. It was popularised in the 1960s
+										with the release of Letraset sheets containing Lorem Ipsum passages, and more
+										recently with desktop publishing software like Aldus PageMaker including
+										versions of Lorem Ipsum.
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div id='2'>
+						<h3>FAQ BUY PACKAGES</h3> 
+
+						<div class="accordion">
+							<div class="accordion-item">
+								<div class="accordion-item-header">
+									FAQ BUY PACKAGES ?
+								</div>
+								<div class="accordion-item-body">
+									<div class="accordion-item-body-content">
+										Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+										Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+										unknown printer took a galley of type and scrambled it to make a type specimen
+										book. It has survived not only five centuries, but also the leap into electronic
+										typesetting, remaining essentially unchanged. It was popularised in the 1960s
+										with the release of Letraset sheets containing Lorem Ipsum passages, and more
+										recently with desktop publishing software like Aldus PageMaker including
+										versions of Lorem Ipsum.
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="accordion">
+							<div class="accordion-item">
+								<div class="accordion-item-header">
+								FAQ BUY PACKAGES ?
+								</div>
+								<div class="accordion-item-body">
+									<div class="accordion-item-body-content">
+										Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+										Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+										unknown printer took a galley of type and scrambled it to make a type specimen
+										book. It has survived not only five centuries, but also the leap into electronic
+										typesetting, remaining essentially unchanged. It was popularised in the 1960s
+										with the release of Letraset sheets containing Lorem Ipsum passages, and more
+										recently with desktop publishing software like Aldus PageMaker including
+										versions of Lorem Ipsum.
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div id='3'>
+						<h3>FAQ INVITE MEMBERS</h3>
+
+						<div class="accordion">
+							<div class="accordion-item">
+								<div class="accordion-item-header">
+								FAQ INVITE MEMBERS ?
+								</div>
+								<div class="accordion-item-body">
+									<div class="accordion-item-body-content">
+										Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+										Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+										unknown printer took a galley of type and scrambled it to make a type specimen
+										book. It has survived not only five centuries, but also the leap into electronic
+										typesetting, remaining essentially unchanged. It was popularised in the 1960s
+										with the release of Letraset sheets containing Lorem Ipsum passages, and more
+										recently with desktop publishing software like Aldus PageMaker including
+										versions of Lorem Ipsum.
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="accordion">
+							<div class="accordion-item">
+								<div class="accordion-item-header">
+								FAQ INVITE MEMBERS ?
+								</div>
+								<div class="accordion-item-body">
+									<div class="accordion-item-body-content">
+										Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+										Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+										unknown printer took a galley of type and scrambled it to make a type specimen
+										book. It has survived not only five centuries, but also the leap into electronic
+										typesetting, remaining essentially unchanged. It was popularised in the 1960s
+										with the release of Letraset sheets containing Lorem Ipsum passages, and more
+										recently with desktop publishing software like Aldus PageMaker including
+										versions of Lorem Ipsum.
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 
 
-                            @foreach ($faqs as $key => $faq)
-                            <div id="{{ $key }}">
-                                <h3>{{ $faq->title }}</h3>
 
-                                @foreach ($faq->children as $key1 => $child)
+				</div>
 
-                                <div class="panel wt-panel">
-                                    <div class="acod-head">
-                                        <h3 class="acod-title">
-                                            <a data-toggle="collapse" href="#collapseTwo{{ $key}}{{ $key1}}"
-                                                class="collapsed" data-parent="#accordion5">
-                                                {{ $child->title }}
-                                                <span class="indicator"><i class="fa fa-plus"></i></span>
-                                            </a>
-                                        </h3>
-                                    </div>
-                                    <div id="collapseTwo{{ $key}}{{ $key1}}" class="acod-body collapse">
-                                        <div class="acod-content p-tb15">
-                                            {!! html_entity_decode($child->content) !!}
-                                        </div>
-                                    </div>
-                                </div>
+				<div class="col-4">
 
-                                @endforeach
-                            </div>
+					<ul class="list-group" id='faq-cat-holder'>
+						<li class="list-group-item">
+							<a href="#1">FAQ SING UP AND SIGN IN</a>
+						</li>
+						<li class="list-group-item">
+							<a href="#2">FAQ BUY PACKAGES</a>
+						</li>
+						<li class="list-group-item">
+							<a href="#3">FAQ INVITE MEMBERS</a>
+						</li>
+					</ul>
 
-                            @endforeach
-                        </div>
-                        <!-- ACCORDION END -->
-                    </div>
-                    <div class="col-md-3 col-sm-3 p-tb15">
-                        <!-- BROCHURES -->
-                        <div class="wt-box m-b30 " id="faq-cat-holder">
-                            <div class="text-left m-b20">
-                                <h4>FAQ Menu</h4>
-                                <div class="wt-separator-outer">
-                                    <div class="wt-separator bg-primary"></div>
-                                </div>
-                            </div>
+				</div>
+			</div>
+
+		</div>
+	</div>
 
 
-                            @foreach ($faqs as $key => $faq)
-                            <div class="wt-icon-box-wraper left bdr-1 bdr-gray p-a15 m-b15">
-                                <a href="#{{ $key }}" class="btn-block">
-                                    <span class="text-black m-r10"></span>
-                                    <strong class="text-uppercase text-black">{{ $faq->title }}</strong>
-                                </a>
-                            </div>
-                            @endforeach
+<!-- CONTENT END -->
 
 
-                        </div>
 
-                        <!-- CONTACT US -->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- SECTION CONTENT END -->
+@section('scripts')
+<script src="{{ asset('assets/frontend/js/faq.js') }}"></script>
+@endsection
 
-    </div>
-    <!-- CONTENT END -->
+
 </x-frontend.layouts.app>

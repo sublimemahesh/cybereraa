@@ -1,0 +1,899 @@
+/* Normal desktop :1700px. */
+@media (min-width: 1700px) and (max-width: 1920px) {
+
+
+}
+/* Normal desktop :1200px. */
+@media (min-width: 1500px) and (max-width: 1700px) {
+
+
+
+}
+/* Normal desktop :1200px. */
+@media (min-width: 1365px) and (max-width: 1499px) {
+.benefit-title p {
+    font-size: 15px;
+}
+
+
+
+
+}
+/* Normal desktop :1170px. */
+@media (min-width: 1170px) and (max-width: 1299px) {
+.slider-title h1 {
+    font-size: 50px;
+}
+.slider-title p {
+    font-size: 14px;
+    width: 97%;
+}
+.main-title h1 {
+    font-size: 33px;
+}
+.section-text p {
+    font-size: 14px;
+}
+.feature-title h3 {
+    font-size: 17px;
+}
+.feature-title p {
+    font-size: 12px;
+}
+.testimonial-text p {
+    font-size: 12px;
+}
+.call-do-action-title h1 {
+    font-size: 33px;
+}
+.call-do-action-title p {
+    font-size: 14px;
+}
+.call-do-shap {
+    left: -23px;
+}
+.call-shap {
+    top: 113px;
+    left: 90px;
+}
+.footer-title p {
+    font-size: 13px;
+}
+.footer-titles p {
+    font-size: 12px;
+}
+.feature-area.style-one .single-feature-box .feature-title p {
+    font-size: 13px;
+}
+.skills-area .section-text p {
+    font-size: 14px;
+}
+.blog-content h2 a {
+    font-size: 17px;
+}
+.style-four .feature-title p {
+    font-size: 12px;
+}
+.pricing-items-title h3 {
+    font-size: 18px;
+}
+.pricing-items::before {
+    width: 200px;
+}
+.pricing-single-box {
+    padding: 60px 20px 40px 25px;
+}
+.pricing-featur ul li {
+    font-size: 14px;
+}
+.rodmap-content h3 {
+    font-size: 20px;
+}
+.rodmap-content p {
+    font-size: 15px;
+}
+.benefit-title p {
+    font-size: 13px;
+}
+.feature-area.style-one.upper .single-feature-box .feature-title p {
+    font-size: 14px;
+}
+.blog-areas .blogs-content p {
+    font-size: 14px;
+}
+.blog-areas .blogs-singles-boxs h2 a {
+    font-size: 25px;
+}
+.tag-body ul li a {
+    padding: 2px 8px;
+    font-size: 14px;
+}
+.resent-title a h3 {
+    font-size: 13px;
+}
+.blog-details-tmb span {
+    font-size: 15px;
+}
+.comment-titles p {
+    font-size: 13px;
+}
+
+
+
+
+
+}
+
+/* Normal desktop :992px. */
+@media (min-width: 992px) and (max-width: 1170px) {
+.about-area {
+    padding: 205px 0 30px;
+}
+.feature-area {
+    padding: 50px 0 50px;
+}
+.data-table {
+    padding: 70px 0 50px;
+}
+.testimonial-area {
+    padding: 50px 0 100px;
+}
+.slider-title h1 {
+    font-size: 35px;
+}
+.slider-title p {
+    font-size: 13px;
+}
+.main-title h1 {
+    font-size: 30px;
+}
+.section-text p {
+    font-size: 14px;
+}
+.feature-title h3 {
+    font-size: 17px;
+}
+.feature-title p {
+    font-size: 12px;
+}
+.testimonial-text p {
+    font-size: 15px;
+}
+.call-do-action-title h1 {
+    font-size: 30px;
+}
+.call-do-action-title p {
+    font-size: 13px;
+}
+.footer-title p {
+    font-size: 12px;
+}
+.footer-titles p {
+    font-size: 12px;
+}
+.feature-area.style-one .single-feature-box .feature-title p {
+    font-size: 13px;
+}
+.skills-area .section-text p {
+    font-size: 14px;
+}
+.info-area-title h3 {
+    font-size: 17px;
+}
+.info-area-title p {
+    font-size: 10px;
+}
+.style-four .feature-single-box {
+    padding: 45px 20px 30px 20px;
+}
+.style-four .feature-title p {
+    font-size: 14px;
+}
+.calls-do-actions-title h1 {
+    font-size: 30px;
+}
+.pricing-single-box {
+    padding: 60px 15px 40px 20px;
+}
+.pricing-items::before {
+    width: 230px;
+}
+.pricing-featur ul li {
+    font-size: 14px;
+}
+.rodmap-content h3 {
+    font-size: 18px;
+}
+.rodmap-content p {
+    font-size: 13px;
+}
+.feature-area.style-one.upper .single-feature-box .feature-title p {
+    font-size: 14px;
+}
+.benefit-title p {
+    font-size: 13px;
+}
+.blog-areas .blogs-content p {
+    font-size: 14px;
+}
+.blog-areas .blogs-singles-boxs h2 a {
+    font-size: 25px;
+}
+.resent-title a h3 {
+    font-size: 12px;
+}
+.tag-body ul li a {
+    padding: 0px 7px;
+    font-size: 13px;
+}
+.resent-thunb img {
+    width: 90%;
+}
+.blog-details-tmb span {
+    font-size: 15px;
+}
+.comment-titles p {
+    font-size: 14px;
+}
+
+
+
+
+
+}
+/* small mobile :768px. */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+.slider-area {
+    margin-top: 0;
+}
+.slider-title h1 {
+    font-size: 27px;
+}
+.slider-title p {
+    font-size: 10px;
+    width: 100%;
+}
+.main-title h1 {
+    font-size: 24px;
+}
+.section-text p {
+    font-size: 10px;
+}
+.about-titles h4 {
+    font-size: 10px;
+    padding-top: 4px;
+}
+.about-tmb {
+    margin: 30px 0 -3px;
+}
+.about-area {
+    padding: 205px 0 30px;
+}
+.feature-area {
+    padding: 50px 0 70px;
+}
+.single-feature-box {
+    margin-bottom: 30px;
+}
+.feature-title h3 {
+    font-size: 17px;
+}
+.feature-title p {
+    font-size: 13px;
+}
+.feature-area {
+    padding: 50px 0 40px;
+}
+.data-table {
+    padding: 60px 0 50px;
+}
+.amrcat-cap-content p, .tsupply-content p, .valume-content p {
+    font-size: 11px;
+}
+.data-box .change span {
+    font-size: 11px;
+}
+.data-content h2 {
+    font-size: 16px;
+}
+.data-content p {
+    font-size: 12px;
+}
+.data-table .main-title h1 {
+    font-size: 30px;
+}
+.testimonial-text p {
+    font-size: 12px;
+}
+.testimonial-area {
+    padding: 60px 0 80px;
+}
+.call-shap {
+    left: 80px;
+}
+.call-do-action-title h1 {
+    font-size: 25px;
+}
+.call-do-action-title p {
+    font-size: 14px;
+}
+.call-do-shap {
+    left: -15px;
+}
+.single-footer-box {
+    margin-bottom: 20px;
+}
+.copy-left-title h3 {
+    font-size: 12px;
+}
+.copy-right-title ul li a {
+    font-size: 12px;
+}
+.row.tops {
+    padding: 60px 0 0;
+}
+.footer-title p {
+    font-size: 13px;
+}
+.breadcumb-area {
+    margin-top: 0;
+}
+.feature-area.style-one .single-feature-box {
+    margin-bottom: 50px;
+}
+.skills-area .section-text p {
+    font-size: 13px;
+}
+.blog-content p {
+    font-size: 15px;
+}
+.breadcumb-area.style-two {
+    margin-top: 0;
+}
+.info-area .single-info-box {
+    margin-bottom: 30px;
+}
+.info-area-title p {
+    font-size: 14px;
+}
+.style-four .feature-icon1 {
+    margin-right: 15px;
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+}
+.style-four .feature-single-box {
+    padding: 45px 20px 30px 20px;
+}
+.style-four .feature-title p {
+    font-size: 12px;
+    text-align: left;
+}
+.style-four .feature-title h3 {
+    font-size: 18px;
+}
+.calls-do-actions-title h1 {
+    font-size: 24px;
+}
+.call-do-btn {
+    margin-top: -130px;
+}
+.pricing-area .section-text p {
+    font-size: 13px;
+}
+.pricing-featur ul li {
+    font-size: 14px;
+}
+.breadcumb-area.style-nine {
+    margin-top: 0;
+}
+.rodmap-content h3 {
+    font-size: 15px;
+}
+.rodmap-content p {
+    font-size: 13px;
+}
+.benefit-title p {
+    font-size: 9px;
+    line-height: 1.7;
+}
+.benefit-area .about-check-text p {
+    font-size: 13px;
+}
+.blog-left ul li {
+    margin-right: 0px;
+}
+.blog-left ul li span {
+    font-size: 10px;
+}
+.blog-left ul li i {
+    font-size: 12px;
+}
+.blog-areas .blogs-singles-boxs h2 a {
+    font-size: 15px;
+}
+.blog-areas .blogs-content p {
+    font-size: 12px;
+}
+.tag-body ul li a {
+    padding: 4px 12px;
+}
+
+
+
+
+}
+/* small mobile :600px. */
+@media only screen and (min-width: 600px) and (max-width: 767px) {
+.slider-area {
+    margin-top: 0;
+}
+.slider-title h1 {
+    font-size: 40px;
+}
+.slider-title p {
+    font-size: 15px;
+}
+.shaps_img {
+    top: 0;
+    right: 0;
+}
+.main-title h1 {
+    font-size: 34px;
+}
+.about-tmb {
+    margin: 20px 0 -3px;
+}
+.about-area {
+    padding: 205px 0 20px;
+}
+.feature-area {
+    padding: 50px 0 50px;
+}
+.single-feature-box {
+    margin-bottom: 30px;
+}
+.data-box {
+    text-align: center;
+}
+.data-table .d-flex {
+    display: inherit!important;
+}
+.change span {
+    font-size: 12px;
+}
+.amrcat-cap-content p, .tsupply-content p, .valume-content p {
+    font-size: 12px;
+    margin: 0;
+}
+.change-thumb {
+    text-align: center;
+}
+.data-table .section-title {
+    text-align: center;
+}
+.data-thumb {
+    margin-right: 0;
+}
+.data-table {
+    padding: 50px 0 50px;
+}
+.testimonial-area {
+    padding: 50px 0 50px;
+}
+.single-call-do-box {
+    top: 0;
+}
+.call-do-action-thumb {
+    display: none;
+}
+.call-do-action-area {
+    padding: 40px 0 0;
+    height: 390px;
+}
+.copy-left-title h3 {
+    text-align: center;
+}
+.copy-right-title {
+    text-align: center;
+}
+.copy-right-title ul li {
+    margin-right: 30px;
+}
+.single-footer-box {
+    margin-bottom: 30px;
+}
+ .single-footer-box {
+    text-align: center;
+}
+.footer-title p {
+    text-align: center;
+}
+.call-do-action-title h1 {
+    font-size: 35px;
+}
+.row.tops {
+    padding: 70px 0 0;
+}
+.feature-title p {
+    font-size: 15px;
+}
+.breadcumb-area {
+    margin-top: 0;
+}
+.section-text p {
+    font-size: 13px;
+}
+.breadcumb-area.style-two {
+    margin-top: 0;
+}
+.info-area .single-info-box {
+    margin-bottom: 30px;
+}
+.style-four .feature-title p {
+    font-size: 15px;
+}
+.calls-do-actions-title h1 {
+    font-size: 30px;
+}
+.call-do-action-text p {
+    font-size: 14px;
+}
+.pricing-area .section-text p {
+    font-size: 14px;
+}
+.breadcumb-area.style-nine {
+    margin-top: 0;
+}
+.rodmap-content h1 {
+    text-align: center;
+}
+.rodmapss-content h1 {
+    text-align: center;
+}
+.benefit-title p {
+    font-size: 15px;
+}
+.call-do-btn {
+    text-align: center;
+}
+.blog-areas .blogs-singles-boxs h2 a {
+    font-size: 20px;
+}
+.blog-areas .pagination {
+    margin: 10px 0 30px;
+}
+.resent-post-single-box {
+    padding-bottom: 45px;
+}
+.blog-areas .blogs-content p {
+    font-size: 14px;
+}
+.blog-details-tmb span {
+    font-size: 11px;
+    line-height: 1.0;
+}
+.blog-details-icon ul li {
+    font-size: 15px;
+}
+.comment-titles p {
+    font-size: 10px;
+    line-height: 1.5;
+}
+.contact-form-box {
+    margin-bottom: 30px;
+}
+
+
+
+
+}
+
+/* small mobile :320px. */
+@media only screen and (min-width: 320px) and (max-width: 599px) {
+.slider-area {
+    padding: 90px 0 0px;
+    margin-top: 0;
+}
+.slider-title h1 {
+    font-size: 25px;
+}
+.slider-title p {
+    font-size: 14px;
+}
+.slider-button {
+    text-align: center;
+}
+.slider-button a {
+    font-size: 14px;
+    padding: 12px 20px;
+}
+.slider-thumb img {
+    width: 100%;
+}
+.seps_img {
+    display: none;
+}
+.brand-area {
+    top: 0;
+}
+.shaps_img {
+    display: none;
+}
+.row.top {
+    padding: 60px 0 60px;
+}
+.about-area {
+    padding: 90px 0 50px;
+    margin-top: 0;
+}
+.main-title h1 {
+    font-size: 27px;
+}
+.section-text p {
+    font-size: 10px;
+}
+.about-tmb {
+    margin: 15px 0 -3px;
+}
+.about-button a {
+    font-size: 14px;
+    padding: 10px 30px;
+}
+.main-title h1 {
+    font-size: 20px;
+}
+.feature-area {
+    padding: 50px 0 50px;
+}
+.feature-title h3 {
+    font-size: 15px;
+}
+.feature-title p {
+    font-size: 12px;
+}
+.single-feature-box {
+    margin-bottom: 30px;
+}
+.data-table .main-title h1 {
+    font-size: 25px;
+}
+.data-content {
+    text-align: center;
+}
+.change-thumb {
+    text-align: center;
+}
+.data-table .section-title {
+    text-align: center;
+}
+.data-thumb img {
+    display: none;
+}
+.amrcat-cap-content p, .tsupply-content p, .valume-content p {
+    font-size: 10px;
+    margin: 0;
+}
+.data-table .d-flex {
+    display: inherit!important;
+}
+.data-table {
+    padding: 50px 0 50px;
+}
+.testimonial-area {
+    padding: 50px 0 40px;
+}
+.testimonial-text p {
+    font-size: 11px;
+}
+.call-do-action-area {
+    padding: 40px 0 0px;
+}
+.call-do-action-thumb {
+    display: none;
+}
+.call-do-action-title h1 {
+    font-size: 26px;
+}
+.call-do-action-title p {
+    font-size: 13px;
+}
+.call-do-button a {
+    font-size: 12px;
+    padding: 10px 20px;
+}
+.call-do-button {
+    text-align: center;
+}
+.call-do-action-area {
+    height: 370px;
+}
+.row.tops {
+    padding: 40px 0 0;
+}
+.single-footer-box {
+    margin-bottom: 40px;
+    text-align: center;
+}
+.footer-title p {
+    font-size: 12px;
+    text-align: center;
+}
+.copy-left-title h3 {
+    font-size: 13px;
+}
+.copy-right-title ul li a {
+    font-size: 12px;
+}
+.copy-right-title {
+    text-align: center;
+}
+.copy-right-title ul li {
+    margin-right: 30px;
+}
+.about-titles h4 {
+    font-size: 11px;
+}
+.about-area.style-one .about-tmb i {
+    margin: 0px 10px 0 0;
+}
+.about-area.style-one .about-tmb {
+    margin: 30px 0 -15px;
+}
+.feature-area.style-one .single-feature-box .feature-title p {
+    font-size: 13px;
+}
+.skills-area .section-text p {
+    font-size: 12px;
+}
+.blog-content h2 a {
+    font-size: 16px;
+}
+.blog-content p {
+    font-size: 13px;
+}
+.breadcumb-area {
+    margin-top: 0;
+}
+.breadcumb-area.style-two {
+    margin-top: 0;
+}
+.info-area-title h3 {
+    font-size: 16px;
+}
+.info-area-title p {
+    font-size: 10px;
+}
+.info-area .single-info-box {
+    margin-bottom: 30px;
+}
+.style-four .feature-icon1 {
+    margin-right: 10px;
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+}
+.style-four .feature-single-box {
+    padding: 45px 20px 30px 20px;
+}
+.style-four .feature-title h3 {
+    font-size: 17px;
+}
+.style-four .feature-title p {
+    font-size: 12px;
+    text-align: left;
+}
+.calls-do-actions-title h1 {
+    font-size: 20px;
+}
+.call-do-action-text p {
+    font-size: 14px;
+}
+.pricing-area .section-text p {
+    font-size: 11px;
+    width: 90%;
+}
+.pricing-featur ul li {
+    font-size: 11px;
+}
+.pricing-items-title h3 {
+    font-size: 18px;
+}
+.breadcumb-area.style-nine {
+    margin-top: 0;
+}
+.rodmap-content p {
+    font-size: 11px;
+}
+.rodmap-content h3 {
+    font-size: 16px;
+}
+.rodmap-content h1 {
+    text-align: center;
+}
+.rodmapss-content h1 {
+    text-align: center;
+}
+.feature-area.style-one.upper .single-feature-box .feature-title p {
+    font-size: 14px;
+}
+.benefit-top-title h4 {
+    font-size: 20px;
+}
+.benefit-title p {
+    font-size: 8px;
+    line-height: 1.7;
+}
+.benefit-area .about-check-text p {
+    font-size: 12px;
+}
+.call-do-btn {
+    text-align: center;
+}
+.blog-areas .blogs-singles-boxs h2 a {
+    font-size: 13px;
+}
+.blog-left {
+    display: none;
+}
+.blog-areas .blogs-content p {
+    font-size: 10px;
+}
+.blog-areas .pagination {
+    margin: 10px 0 30px;
+}
+.resent-title a h3 {
+    font-size: 12px;
+}
+.tag-body ul li {
+    margin: 0 4px 16px 0;
+}
+.tag-body ul li a {
+    padding: 2px 7px;
+    font-size: 14px;
+}
+.breadcumb-content-text a {
+    font-size: 14px;
+}
+.breadcumb-title h1 {
+    font-size: 30px;
+}
+.blog-details-tmb span {
+    font-size: 16px;
+}
+.blog-details-icon ul li {
+    font-size: 7px;
+}
+.comment-titles h4 {
+    font-size: 12px;
+}
+.comment-titles span {
+    font-size: 12px;
+}
+.comment-icon {
+    display: none;
+}
+.comment-titles p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+.comments-tumbs {
+    margin: 0;
+}
+
+
+
+}
+/* small mobile :320px. */
+@media only screen and (min-width: 320px) and (max-width: 991px) {
+
+.main-header {
+    display: none!important;
+}
+header.main-header {
+    display: none;
+}
+
+
+}
+
