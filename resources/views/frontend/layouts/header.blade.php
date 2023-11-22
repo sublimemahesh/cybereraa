@@ -4,8 +4,8 @@
             <div class="col-lg-12">
                 <div id="sticky-header" class="nav-menu">
                     <div class="header-logo">
-                        <a href="{{ route('/') }}"><img src="assets/images/logo.png" alt=""></a>
-                        <a class="main_sticky" href="{{ route('/') }}"><img src="assets/images/logo.png" alt=""></a>
+                        <a href="{{ route('/') }}"><img src="{{asset('assets/frontend/images/logo.png') }}" alt=""></a>
+                        <a class="main_sticky" href="{{ route('/') }}"><img src="{{asset('assets/frontend/images/logo.png') }}" alt=""></a>
                     </div>
                     <div class="heder-menu">
                         <ul>
@@ -19,12 +19,12 @@
                                     </ul>
                                 </div>
                             </li>
-                            <li><a href="{{ route('pricing') }}">Packages</a></li>
+                            <li><a href="{{ route('pricing') }}">Packages</a></li> 
                             <li><a href="{{ route('how-it-work') }}">How It Work</a></li>
                             <li><a href="{{ route('faq') }}">FAQ</a></li>
                             <li><a href="{{ route('contact') }}">Contact </a></li>
                         </ul>
-                        <div class="menu-button">
+                        <div class="menu-button"> 
                             <a href="#">Join us</a>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
             <li><a href="about.php">about</a></li>
             <li><a href="#">Projects +</a>
                 <div class="sub-menu">
-                    <ul>
+                    <ul> 
                         <li><a href="existing-projects.php">Existing Projects</a></li>
                         <li><a href="upcoming-projects.php">Upcoming Projects</a></li>
                     </ul>

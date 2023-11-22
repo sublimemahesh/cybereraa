@@ -64,3 +64,21 @@ h1 {
     font-size: 14px;
   }
 }
+
+.faq-list-head-txt{
+    color: #111;
+    font-family: "Montserrat, sans-serif";
+    font-style: normal;
+    margin: 0px 0 0px;
+    line-height: 1.3;
+    font-weight: 733;
+    -webkit-transition: .5s;
+    transition: .5s;
+}
+
+.faq-section-head-txt{
+    font-family: "Montserrat, sans-serif";
+   
+}
+  
+  

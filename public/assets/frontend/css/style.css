@@ -233,10 +233,12 @@ div#sticky-header:hover .sub-menu {
     position: absolute;
     content: "";
     top: 3px;
-    left: 108px;
+    left: 300px;
     height: 100%;
     width: 100%;
-    background: url(assets/images/about-1.png);
+    /* background: url(assets/images/about-1.png); */
+    background: url('http://localhost/coin1m/public/assets/frontend/images/about-1.png');
+
     background-repeat: no-repeat;
 }
 .contact-area .sections-title .sub-title h3::after {
@@ -246,7 +248,8 @@ div#sticky-header:hover .sub-menu {
     left: -79px;
     height: 100%;
     width: 100%;
-    background: url(assets/images/feature-shap.png);
+    /* background: url(assets/images/feature-shap.png); */
+    background: url('http://localhost/coin1m/public/assets/frontend/images/feature-shap.png');
     background-repeat: no-repeat;
 }
 .contact-area .contact-thumb img {
@@ -602,7 +605,7 @@ h1.bottoms {
 .row.top {
     padding: 80px 0 80px;
     /* background: url(assets/images/tranding-5.png); */
-    background: url('http://localhost/coin1m/public/assets/frontend/images/tranding-5.png');
+    /* background: url('http://localhost/coin1m/public/assets/frontend/images/tranding-5.png'); */
     background-repeat: no-repeat;
     border-radius: 10px;
 }
@@ -1886,6 +1889,23 @@ span.fill {
 
     background-repeat: no-repeat;
 }
+
+.sub-title h3::before {
+    position: absolute;
+    content: "";
+    top: 3px;
+    left: 74px;
+    height: 100%;
+    width: 100%;
+    /* background: url(assets/images/about-1.png); */
+    background: url('http://localhost/coin1m/public/assets/frontend/images/about-1.png');
+
+    background-repeat: no-repeat;
+}
+
+
+
+
 .main-title h1 {
     font-size: 40px;
     color: #ffffff;
@@ -2109,7 +2129,9 @@ span.more {
     margin: 0 auto 0;
     height: 100%;
     width: 100%;
-    background: url(assets/images/about-1.png);
+    /* background: url(assets/images/about-1.png); */
+    background: url('http://localhost/coin1m/public/assets/frontend/images/about-1.png');
+
     background-repeat: no-repeat;
 }
 .testimonial-area .sections-title .sub-title h3::after {
@@ -2121,7 +2143,9 @@ span.more {
     margin: 0 auto 0;
     height: 100%;
     width: 100%;
-    background: url(assets/images/feature-shap.png);
+    /* background: url(assets/images/feature-shap.png); */
+    background: url('http://localhost/coin1m/public/assets/frontend/images/feature-shap.png');
+
     background-repeat: no-repeat;
 }
 .single-testimonial-box {
@@ -3268,4 +3292,18 @@ div#particles .slider-thumb {
     position: relative;
     top: -16px;
     margin-left:80px;
+}
+
+
+.index-sub-title h3::before {
+    position: absolute;
+    content: "";
+    top: 3px;
+    left: 320px;
+    height: 100%;
+    width: 100%;
+    /* background: url(assets/images/about-1.png); */
+    background: url('http://localhost/coin1m/public/assets/frontend/images/about-1.png');
+
+    background-repeat: no-repeat;
 }

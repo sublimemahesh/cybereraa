@@ -59,10 +59,10 @@
     </div>
     <!--==================================================-->
     <!-- Start brand-area -->
-    <!--==================================================-->
+    <!--==================================================--> 
     <div class="coin-slider brand-area">
         <div class="container">
-            <div class="row top">
+            <div class="row top" style="background: url('{{ asset('assets/frontend/images/tranding-5.png') }}');  background-repeat: no-repeat;">
                 <div class="owl-carousel brand_list">
                     <div class="col-lg-12">
                         <div class="single-brand-box">
@@ -119,7 +119,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="single-about-box">
                         <div class="section-title">
-                            <div class="sub-title">
+                            <div class="sub-title index-sub-title">
                                 <h3>UNLOCK THE FUTURE OF WEALTH</h3>
                             </div>
                             <div class="main-title">
@@ -168,7 +168,7 @@
                             </div>
                         </div>
                         <div class="about-button">
-                            <a href="#">learn more</a>
+                            <a href="{{ route('about') }}">learn more</a>
                         </div>
                     </div>
                 </div>
@@ -316,7 +316,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="single-feature-box">
                         <div class="feature-thumb">
-                            <img src="assets/images/tags.png {{asset('assets/frontend/images/tags.png') }}" alt />
+                            <img src="{{asset('assets/frontend/images/tags.png') }}" alt />
                         </div>
                         <div class="feature-title">
                             <h3>BUY INVESTMENT PACKAGES</h3>

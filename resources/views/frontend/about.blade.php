@@ -1,5 +1,5 @@
 <x-frontend.layouts.app>
-    @section('title', 'About Us | coin1m')
+    @section('title', 'About Us | Coin1m')
     @section('header-title', 'Welcome ')
 
     @section('header')
@@ -12,7 +12,7 @@
     <!--==================================================-->
 <!-- Start breadcumb-area -->
 <!--==================================================-->
-<div class="breadcumb-area d-flex align-items-center" style="background: url('{{ asset('assets/frontend/images/inner-bg.jpg') }}');"  >
+<div class="breadcumb-area d-flex align-items-center" style="background: url('{{ asset('assets/frontend/images/inner-bg.jpg') }}');background-size: cover;background-position: center;background-repeat: no-repeat;" >
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
@@ -44,9 +44,9 @@
 			<div class="col-lg-6 col-md-6">
 				<div class="single-about-box">
 					<div class="section-title">
-						<div class="sub-title">
+						{{-- <div class="sub-title">
 							<h3>about</h3>
-						</div>
+						</div> --}}
 						<div class="main-title">
 							<h1>We built Crypto platform to buy & sell shares.</h1>
 						</div>

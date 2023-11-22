@@ -1,5 +1,5 @@
 <x-frontend.layouts.app>
-    @section('title', 'Packages | Owara3m')
+    @section('title', 'Packages | Coin1m')
     @section('header-title', 'Welcome ')
 
     @section('header')
@@ -37,9 +37,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <div class="sub-title">
+                        {{-- <div class="sub-title">
                             <h3>Packages</h3>
-                        </div>
+                        </div> --}}
                         <div class="main-title">
                             <h1>Coin1M Packages Plan</h1>
                         </div>

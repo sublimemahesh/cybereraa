@@ -1,5 +1,5 @@
 <x-frontend.layouts.app>
-    @section('title', 'Existing Projects | Owara3m')
+    @section('title', 'Existing Projects | Coin1m ')
     @section('header-title', 'Welcome ')
 
     @section('header')
@@ -64,7 +64,7 @@
 						</div> -->
 
 						<div class="about-button upper">
-							<a href="#">contact us</a>
+							<a href="{{ route('contact') }}">contact us</a>
 						</div>
 					</div>
 				</div>
@@ -101,7 +101,7 @@
 							</div>
 						</div>
 						<div class="about-button upper">
-							<a href="#">contact us</a>
+							<a href="{{ route('contact') }}">contact us</a>
 						</div>
 					</div>
 				</div>
@@ -144,7 +144,7 @@
 						</div>
 
 						<div class="about-button upper">
-							<a href="#">contact us</a>
+							<a href="{{ route('contact') }}">contact us</a>
 						</div>
 					</div>
 				</div>

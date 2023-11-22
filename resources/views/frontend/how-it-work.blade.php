@@ -1,12 +1,12 @@
 <x-frontend.layouts.app>
-    @section('title', 'How it work | Owara3m ')
+    @section('title', 'How it work | Coin1m ')
     @section('header-title', 'Welcome ')
 
     @section('header')
     @include('frontend.layouts.header')
 
 <!-- CONTENT START -->
-
+ 
 
 
 	<!--==================================================-->
@@ -42,7 +42,7 @@
                             <h3>Steps</h3>
                         </div>
                         <div class="main-title">
-                            <h1>How It Work</h1>
+                            <h1>Three steps Coin1m</h1>
                         </div>
                         <div class="section-text">
                             <p>Cryptocurrencies are used primarily outside existing banking and coin
