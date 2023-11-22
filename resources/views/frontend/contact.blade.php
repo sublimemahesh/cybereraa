@@ -79,7 +79,7 @@
                 <div class="col-lg-12">
                     <div class="sections-title">
                         <div class="sub-title">
-                            <h3>contacts</h3>
+                            <h3>Ask any questions you have</h3>
                         </div>
                         <div class="main-title">
                             <h1>Write Us Something</h1>
@@ -91,7 +91,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="single-contact-box">
                         <div class="contact-thumb">
-                            <img src="assets/images/contact.png" alt>
+                            <img src="{{asset('assets/frontend/images/contact.png') }}" alt>
                         </div>
                     </div>
                 </div>

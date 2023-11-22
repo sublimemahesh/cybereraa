@@ -50,11 +50,11 @@
 				<div class="col-8">
 
 					<div id='1'>
-						<h3>FAQ SING UP AND SIGN IN</h3>
+						<h3 class='faq-section-head-txt'>FAQ SING UP AND SIGN IN</h3>
 						<div class="accordion">
 							<div class="accordion-item">
 								<div class="accordion-item-header">
-								FAQ SING UP AND SIGN IN ?
+                                    <h4 class='faq-list-head-txt'>FAQ SING UP AND SIGN IN ?</h4>
 								</div>
 								<div class="accordion-item-body">
 									<div class="accordion-item-body-content">
@@ -73,7 +73,7 @@
 						<div class="accordion">
 							<div class="accordion-item">
 								<div class="accordion-item-header">
-								FAQ SING UP AND SIGN IN ?
+                                    <h4 class='faq-list-head-txt'>FAQ SING UP AND SIGN IN ?</h4>
 								</div>
 								<div class="accordion-item-body">
 									<div class="accordion-item-body-content">
@@ -92,12 +92,12 @@
 					</div>
 
 					<div id='2'>
-						<h3>FAQ BUY PACKAGES</h3> 
+						<h3 class='faq-section-head-txt'>FAQ BUY PACKAGES</h3> 
 
 						<div class="accordion">
 							<div class="accordion-item">
 								<div class="accordion-item-header">
-									FAQ BUY PACKAGES ?
+									<h4 class='faq-list-head-txt'>FAQ BUY PACKAGES ?</h4>
 								</div>
 								<div class="accordion-item-body">
 									<div class="accordion-item-body-content">
@@ -116,7 +116,7 @@
 						<div class="accordion">
 							<div class="accordion-item">
 								<div class="accordion-item-header">
-								FAQ BUY PACKAGES ?
+                                    <h4 class='faq-list-head-txt'>FAQ BUY PACKAGES ?</h4>
 								</div>
 								<div class="accordion-item-body">
 									<div class="accordion-item-body-content">
@@ -135,12 +135,12 @@
 					</div>
 
 					<div id='3'>
-						<h3>FAQ INVITE MEMBERS</h3>
+						<h3 class='faq-section-head-txt'>FAQ INVITE MEMBERS</h3>
 
 						<div class="accordion">
 							<div class="accordion-item">
 								<div class="accordion-item-header">
-								FAQ INVITE MEMBERS ?
+                                    <h4 class='faq-list-head-txt'>FAQ INVITE MEMBERS ?</h4>
 								</div>
 								<div class="accordion-item-body">
 									<div class="accordion-item-body-content">
@@ -159,7 +159,7 @@
 						<div class="accordion">
 							<div class="accordion-item">
 								<div class="accordion-item-header">
-								FAQ INVITE MEMBERS ?
+                                    <h4 class='faq-list-head-txt'>FAQ INVITE MEMBERS ?</h4>
 								</div>
 								<div class="accordion-item-body">
 									<div class="accordion-item-body-content">

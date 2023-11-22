@@ -1,7 +1,7 @@
 
 
 <!-- Favicon -->
-<link rel="icon" type="image/png" sizes="56x56" href="{{asset('assets/images/fav-icon/icon.png') }}">
+<link rel="icon" type="image/png" sizes="56x56" href="{{asset('assets/frontend/images/fav-icon/icon.png') }}">
 <!-- bootstrap CSS -->
 <link rel="stylesheet" href="{{asset('assets/frontend/css/bootstrap.min.css') }}" type="text/css" media="all" />
 <!-- carousel CSS -->
