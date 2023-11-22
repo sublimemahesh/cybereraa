@@ -3,106 +3,159 @@
     @section('header-title', 'Welcome ')
 
     @section('header')
-    @include('frontend.layouts.header-other')
+    @include('frontend.layouts.header')
 
-    <!-- CONTENT START -->
-    <div class="page-content">
+<!-- CONTENT START -->
 
-        <!-- INNER PAGE BANNER -->
-        <div class="wt-bnr-inr overlay-wraper" style="background-image:url({{asset('assets/frontend/images/banner/banner.png') }});">
-            <div class="overlay-main themecolor-1 opacity-07"></div>
-            <div class="container">
-                <div class="wt-bnr-inr-entry">
-                    <h1 class="text-white  banner-txt">Existing projects</h1>
-                </div>
-            </div>
-        </div>
-        <!-- INNER PAGE BANNER END -->
+<!--==================================================-->
+	<!-- Start breadcumb-area -->
+	<!--==================================================-->
+	<div class="breadcumb-area style-nine d-flex align-items-center" style="background: url('{{ asset('assets/frontend/images/inner-bg.jpg') }}');background-size: cover;background-position: center;background-repeat: no-repeat;">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breacumb-content">
+						<div class="breadcumb-title">
+							<h1>Existing Projects</h1>
+						</div>
+						<div class="breadcumb-content-text">
+							<a href="index.php"> <span>home</span> Existing Projects</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--==================================================-->
+	<!-- Start projects area -->
+	<!--==================================================-->
+	<div class="about-area style-one upper ">
+		<div class="container">
+			<div class="row about-btm">
+				<div class="col-lg-6 col-md-6">
+					<div class="single-about-box">
+						<div class="about-thumb bounce-animate">
+							<img src="{{asset('assets/frontend/images/eproject/ep1.jpg') }}" class='project-img'>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6">
+					<div class="single-about-box">
+						<div class="section-title">
+							<div class="sub-title">
+								<h3>Projects</h3>
+							</div>
+							<div class="main-title">
+								<h1>Cryptocurrency Mining</h1>
+							</div>
+							<div class="section-text">
+								<p>Basically, what happens throughout the process of cryptocurrency mining is producing
+									new bitcoins. Cryptocurrency mining ensures that transactions are valid and added to
+									the cryptocurrency blockchain correctly using a global network of computers running
+									the cryptocurrency code. .</p>
+							</div>
+						</div>
+						<!-- <div class="about-tmb">
+							<i class="fas fa-check"></i>
+							<div class="about-titles">
+								<h4>Prioritize the features your customers need</h4>
+							</div>
+						</div> -->
+
+						<div class="about-button upper">
+							<a href="#">contact us</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="about-area style-one upper">
+		<div class="container">
+			<div class="row about-btm">
+				<div class="col-lg-6 col-md-6">
+					<div class="single-about-box">
+						<div class="section-title">
+							<div class="sub-title">
+								<h3>Projects</h3>
+							</div>
+							<div class="main-title">
+								<h1>Stock Market Trading</h1>
+							</div>
+							<div class="section-text">
+								<p>Basically, stock trading means any buying and selling of stock. There are a few
+									differences in this investment model. Stock trading is relatively a shorter-term
+									investment that is carried on by very active investors.
 
 
-        <!-- BREADCRUMB ROW -->
-        <div class="themecolor-1 p-tb20">
-            <div class="container">
-                <ul class="wt-breadcrumb breadcrumb-style-2">
-                    <li><a href="{{ route('/') }}"><i class="fa fa-home"></i> Home</a></li>
-                    <li>Existing projects</li>
-                </ul>
-            </div>
-        </div>
-        <!-- BREADCRUMB ROW END -->
+									It is almost impossible to trade in the stock market without proper study, guidance,
+									and training. But, if anyone is really keen on investing in the stock market, we at
+									SAFEST TRADES can do the hard work with the ultimate support of our expert team for
+									stock market trading.
+
+									At the same time, stock trading is a difficult and risky enterprise, but with proper
+									education, it is possible to lower the risks behind it so that we can increase your
+									likelihood of success.</p>
+							</div>
+						</div>
+						<div class="about-button upper">
+							<a href="#">contact us</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6">
+					<div class="single-about-box">
+						<div class="about-thumb bounce-animate">
+							<img src="{{asset('assets/frontend/images/eproject/ep2.jpg') }}" class='project-img'>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="about-area style-one upper">
+		<div class="container">
+			<div class="row about-btm">
+				<div class="col-lg-6 col-md-6">
+					<div class="single-about-box">
+						<div class="about-thumb bounce-animate">
+							<img src="{{asset('assets/frontend/images/eproject/ep3.jpg') }}" class='project-img'>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6">
+					<div class="single-about-box">
+						<div class="section-title">
+							<div class="sub-title">
+								<h3>Projects</h3>
+							</div>
+							<div class="main-title">
+								<h1>Diamond Mining</h1>
+							</div>
+							<div class="section-text">
+								<p>An estimated US$13 billion worth of rough diamonds are produced annually, of which
+									approximately US$8.5 billion are from Africa (approximately 65%). The diamond
+									industry employs about ten million people worldwide, both directly and indirectly,
+									across a wide spectrum of roles from mining to retail.</p>
+							</div>
+						</div>
+
+						<div class="about-button upper">
+							<a href="#">contact us</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 
-        <!-- SECTION CONTENT -->
-        <div class="section-full">
 
-            @foreach ($projects as $key => $project)
-
-            @if ($key % 2 == 0)
-
-            <div class="row themecolor-2 p-t80 p-b50">
-                <div class="container">
-                    <div class="col-md-7 col-sm-7">
-                        <div class="wt-info  p-b30 mob-p-b20">
-                            <h1 class="m-a0">{{ $project->title }}</h1>
-                        </div>
-                        <div class="mob-p-b30">
-
-                                {!! html_entity_decode($project->content) !!}
-
-                        </div>
-                    </div>
-                    <div class="col-md-5 col-sm-5">
-                        <!-- Card (Horizontal Flip) -->
-                        <div class="flip-container mob-mb-10">
-                            <div class="wt-box ">
-                                <div class="wt-thum-bx">
-                                    <img src="{{ storage('pages/' . $project->image) }}" alt="">
-                                </div>
-                                <div class="wt-info themecolor-1 text-center p-a20">
-                                    <h3 class="text-uppercase">{{ $project->title }}</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @else
-            <div class="row themecolor-1 p-t80 p-b50">
-                <div class="container">
-                    <div class="col-md-5 col-sm-5">
-                        <!-- Card (Horizontal Flip) -->
-                        <div class="flip-container mob-mb-10">
-                            <div class="wt-box ">
-                                <div class="wt-thum-bx">
-                                    <img src="{{ storage('pages/' . $project->image) }}" alt="">
-                                </div>
-                                <div class="wt-info themecolor-2 text-center p-a20">
-                                    <h3 class="text-uppercase">{{ $project->title }}</h3>
-                                    <p></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-7 col-sm-7">
-                        <div class="wt-info  p-b30 mob-ptb-20">
-                            <h1 class="m-a0">{{ $project->title }}</h1>
-                        </div>
-                        <div>
-                                {!! html_entity_decode($project->content) !!}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            @endif
-            @endforeach
-
-        </div>
-        <!-- SECTION CONTENT END -->
-    </div>
-    <!-- CONTENT END -->
+<!-- CONTENT END -->
 
 
 </x-frontend.layouts.app>

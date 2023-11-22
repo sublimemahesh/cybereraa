@@ -1,0 +1,3337 @@
+@import url(https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&amp;display=swap);
+
+
+.sftDetails{
+
+.bcinside span,
+.leftitem,
+.leftitem .imageIn,
+.marqueeitemWrap,
+.onlyborder span,
+.rightitem,
+.rightitem .imageIn,
+.selectVal,
+.videoWrapper {
+    align-items: center;
+    display: flex
+}
+
+#detailsAbutSFT p,
+#empower h3,
+#empower h6,
+#empower p,
+#fOffintc h2,
+#fOffintc p,
+#vishionMission h5,
+#vishionMission p,
+.bcinside span,
+.drItems,
+.formWrap button,
+.formWrap input,
+.iconset span,
+.item__marquee span,
+.item__marquee strong,
+.leftitem .imageIn,
+.leftitem .text,
+.onlyborder span,
+.rightitem .text,
+.selectVal span,
+.sliderIndideTxts h1,
+.sliderIndideTxts h6,
+.startNow h3,
+.startNow h5,
+.startNow p,
+.wrapInv h4,
+.wrapInv h6 {
+    font-family: Sora;
+    font-style: normal
+}
+
+#howtojoin h2,
+.contacFormwrap h3,
+.qitem h4,
+.sliderIndideTxts h1 {
+    -webkit-text-fill-color: transparent
+}
+
+.bcinside,
+.onlyborder span,
+a.onlyborder {
+    border-radius: 100px
+}
+
+.bcinside span,
+.onlyborder span {
+    color: var(--white, #fff);
+    font-size: 18px;
+    line-height: normal
+}
+
+.drItems,
+.onlyborder span {
+    font-weight: 700;
+    transition: background .5s
+}
+
+#contactUs,
+#setionGrid,
+#slider,
+.coinWrapper,
+.langSelect,
+.map_wrap,
+.wrapperGridtext,
+header {
+    position: relative
+}
+
+#empower h3,
+#fOffintc h2,
+.sliderIndideTxts h1 {
+    animation: 2s linear infinite textclip
+}
+
+#slider,
+#vishionMission,
+footer {
+    padding-bottom: 100px
+}
+
+.bcinside,
+.btnSection a,
+.contacFormwrap p a,
+.footerIconwarp a,
+a.onlyborder {
+    text-decoration: none
+}
+
+body,
+html {
+    overflow-x: hidden
+}
+
+::-webkit-scrollbar {
+    width: 5px
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: #1f2937
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #ff00e6 0, #7338ff 100%)
+}
+
+.containerSt {
+    max-width: 1640px;
+    margin: 0 auto;
+    padding: 0 20px
+}
+
+.fintecContainer {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 20px
+}
+
+.bcinside span img,
+.onlyborder span img,
+.selectVal {
+    margin-left: 15px
+}
+
+body {
+    background: #0a121e
+}
+
+#setionGrid .containerSt {
+    max-width: 1200px
+}
+
+header {
+    background: rgba(0, 0, 0, .43);
+    backdrop-filter: blur(3px);
+    padding: 30px 0;
+    margin-bottom: -114px;
+    z-index: 1
+}
+
+a.onlyborder {
+    background: var(--button-gradiant, linear-gradient(180deg, #3d00ce 0, #763dff 100%));
+    padding: 2px;
+    display: inline-block
+}
+
+.onlyborder span {
+    padding: 14px 30px;
+    background: #0a121e
+}
+
+.onlyborder:hover span {
+    background: #ffffff00
+}
+
+.rightBt {
+    display: flex;
+    justify-content: end
+}
+
+.rightBt a {
+    margin-left: 25px
+}
+
+.bcinside {
+    border: 2px solid #6324f8
+}
+
+.bcinside span {
+    padding: 14px 40px;
+    background: var(--button-gradiant, linear-gradient(180deg, #3d00ce 0, #763dff 100%));
+    border-radius: 100px;
+    font-weight: 700
+}
+
+.drop {
+    position: absolute;
+    display: none;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    border: 2px solid #6329ef;
+    background: #0a121e;
+    color: #fff;
+    border-radius: 10px;
+    top: 60px;
+    z-index: 9
+}
+
+.marqueeitemWrap,
+.selectVal {
+    background: rgba(255, 255, 255, .1)
+}
+
+.coinWrapper img,
+.eclips,
+div#particles-js {
+    position: absolute;
+    z-index: -1
+}
+
+.selectVal {
+    border-radius: 100px;
+    padding: 16px 40px
+}
+
+.drItems,
+.selectVal span {
+    display: flex;
+    align-items: center;
+    font-size: 17.72px
+}
+
+.selectVal span {
+    color: #fff;
+    font-weight: 400;
+    line-height: normal
+}
+
+.drItems img,
+.selectVal span img {
+    margin-right: 10px
+}
+
+.drItems {
+    border-bottom: 1px solid #3d00ce;
+    padding: 7px 15px;
+    cursor: pointer
+}
+
+.drItems:last-child {
+    margin: 0;
+    border: none
+}
+
+.drItems:hover {
+    background: #3d00ce
+}
+
+#slider {
+    background: url(../img/sliderBc.png) bottom center no-repeat;
+    min-height: 950px;
+    padding-top: 114px
+}
+
+div#particles-js {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%
+}
+
+.marqueeitemWrap {
+    border-radius: 20px;
+    padding: 10px;
+    width: 230px
+}
+
+.item__marquee {
+    margin: 20px 5px 0;
+    height: auto !important
+}
+
+.footerIconwarp a,
+.item__marquee img {
+    margin-right: 20px
+}
+
+.item__marquee span {
+    color: rgba(255, 255, 255, .4);
+    font-size: 14.948px;
+    font-weight: 400;
+    line-height: normal;
+    display: block
+}
+
+.item__marquee strong {
+    color: #fff;
+    font-size: 19.931px;
+    font-weight: 700;
+    line-height: normal;
+    margin-top: 5px;
+    display: block
+}
+
+.Mission,
+.sliderIndideTxts {
+    margin-top: 100px
+}
+
+.sliderIndideTxts h1 {
+    background: var(--multicolor, linear-gradient(90deg, #c2a9ff 0, #ff00e6 21.35%, #08a5d7 45.31%, #fc55ff 72.4%, #7338ff 100%));
+    background-clip: text;
+    -webkit-background-clip: text;
+    text-align: center;
+    font-size: 75px;
+    font-weight: 800;
+    line-height: normal;
+    background-size: 150% 100%
+}
+
+#empower h6,
+#fOffintc p,
+.sliderIndideTxts h6 {
+    color: #fff;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 400;
+    line-height: normal
+}
+
+.leftitem .imageIn,
+.leftitem .text,
+.qnum,
+.rightitem .imageIn,
+.rightitem .text,
+.startNow h3,
+.startNow h5,
+.wrapInv h6,
+section#safesttreds h6 {
+    color: var(--white, #fff)
+}
+
+.startNow {
+    margin-top: 300px;
+    text-align: center
+}
+
+.startNow h3 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 800;
+    line-height: normal
+}
+
+.startNow h5,
+.startNow p {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 30px
+}
+
+.startNow p {
+    color: rgba(255, 255, 255, .7)
+}
+
+.formWrap {
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+    background: #c2a9ff;
+    background: linear-gradient(90deg, #c2a9ff 0, #ff00e6 24%, #08a5d7 52%, #fc55ff 75%, #7338ff 100%);
+    padding: 2px;
+    border-radius: 100px
+}
+
+.formWrap button {
+    border-radius: 100px;
+    border: 2px solid #6324f8;
+    background: var(--button-gradiant, linear-gradient(180deg, #3d00ce 0, #763dff 100%));
+    display: inline-flex;
+    padding: 15px 40px;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    color: #fff;
+    font-size: 17.72px;
+    font-weight: 700;
+    line-height: normal;
+    transition: .5s
+}
+
+.formWrap input {
+    width: 360px;
+    border: #ffdead;
+    background: no-repeat;
+    outline: 0;
+    padding: 0 20px;
+    color: rgba(255, 255, 255, .35);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 30px
+}
+
+.wrapInv h4,
+.wrapInv h6 {
+    font-size: 30px
+}
+
+#Strategic h2,
+#detailsAbutSFT h2,
+#empower h3,
+#fOffintc h2,
+#vishionMission h3,
+.wrapInv h4,
+section#safesttreds h2 {
+     background: var(--multicolor, linear-gradient(90deg, #f1a9e1 0, #ac1297 21.35%, #18998f 45.31%, #eb3131 72.4%, #898989 100%));
+    -webkit-text-fill-color: transparent ;
+     
+}
+
+#empower h3,
+#fOffintc h2,
+.leftitem .imageIn,
+.wrapInv h4,
+.wrapInv h6 {
+    text-align: center;
+    font-weight: 800
+}
+
+#Strategic h2,
+#empower h3,
+#fOffintc h2,
+#vishionMission h3,
+#vishionMission h5,
+.leftitem .imageIn,
+.leftitem .text,
+.rightitem .imageIn,
+.rightitem .text,
+.wrapInv h4,
+.wrapInv h6 {
+    line-height: normal
+}
+
+.insidebc {
+    background: #000;
+    border-radius: 100px;
+    padding: 5px
+}
+
+.startNow form {
+    margin-top: 35px
+}
+
+.btnSection a:hover,
+.contacFormwrap button:hover,
+.formWrap button:hover {
+    border: 2px solid var(--yellow-primary, #ffae00);
+    background: var(--gold-gradiant, linear-gradient(106deg, #ffae00 0, #ffce36 100%));
+    color: #000
+}
+
+.formWrap button:hover svg path {
+    fill: #000
+}
+
+img.Ellipse136.eclips {
+    right: 0;
+    bottom: -240px;
+    animation: 4s infinite zoom-in-zoom-out
+}
+
+img.Ellipse135.eclips {
+    left: 0;
+    bottom: -360px;
+    animation: 5s infinite zoom-in-zoom-out
+}
+
+#fOffintc {
+    padding-top: 100px;
+    text-align: center
+}
+
+#fOffintc h2 {
+    font-size: 50px;
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-size: 120% 100%
+}
+
+.coinWrapper img {
+    transition: .5s;
+    opacity: 0
+}
+
+.in-viewport img.mainCoin {
+    transform: scale(1);
+    opacity: 1;
+    transition-delay: 1s
+}
+
+img.mainCoin {
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    transform: scale(2)
+}
+
+img.bccoins_1 {
+    top: 50%;
+    transform: translateY(-50%) scale(.8);
+    left: 330px;
+    z-index: 1
+}
+
+.in-viewport img.bccoins_1 {
+    transform: scale(1) translateY(-50%);
+    opacity: 1
+}
+
+img.bccoins_2 {
+    top: 50%;
+    transform: scale(.8) translateY(-50%);
+    right: 330px;
+    z-index: 1
+}
+
+.in-viewport img.bccoins_2 {
+    transform: translateY(-50%) scale(1);
+    opacity: 1;
+    transition-delay: 0.5s
+}
+
+.wrapper__fof_fintec {
+    background: url(../img/Rectangle2394.png) 0 0/100% 100% no-repeat;
+    padding-top: 50px
+}
+
+#empower {
+    padding-top: 30px;
+    text-align: center
+}
+
+#empower h3 {
+    font-size: 40px;
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-size: 110% 100%
+}
+
+#empower p {
+    color: rgba(255, 255, 255, .5);
+    text-align: center;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 30px;
+    margin-top: 30px
+}
+
+.videioContainer {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 0 20px
+}
+
+.videoWrapper {
+    background: url(../img/Rectangle2395.png) 0 0/contain no-repeat;
+    height: 581px;
+    justify-content: center
+}
+
+section#videoSec {
+    background: url(../img/bc_vecter.png) 0 0/100% 50% no-repeat;
+    background-position-y: bottom;
+    padding: 70px 0 100px;
+    position: relative
+}
+
+img.bccenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    animation: 5s infinite zoom-in
+}
+
+.videoWrapper img {
+    transition: .5s
+}
+
+.videoWrapper img:hover {
+    transform: scale(1.2)
+}
+
+.wrapInv {
+    text-align: center;
+    /* background: url(../images/sf/neon-frame-sign-element-png1.png) 0 0/100% 100% no-repeat; */
+    padding: 38px 48px 58px
+}
+
+.wrapInv h4 {
+    background-clip: text;
+    -webkit-background-clip: text
+}
+
+#howtojoin h5,
+.iconset span {
+    color: var(--primary, #9568ff)
+}
+
+.middleSec {
+    position: relative;
+    margin: 0 auto;
+    width: fit-content
+}
+
+img.coinmidle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.8);
+    filter: blur(2px);
+    opacity: 0;
+    transition-duration: .5s;
+    z-index: 1
+}
+
+.in-viewport img.coinmidle {
+    transform: translate(-50%, -50%) scale(1);
+    filter: blur(0px);
+    opacity: 1
+}
+
+img.roundgradiant {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%)
+}
+
+section#sftDetails {
+    padding: 100px 0 250px;
+    /* background: url(../images/sf/dynamic-hex.png) top center/cover no-repeat; */
+    position: relative
+}
+
+.bcGradiant {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: url(../img/gradiantInside.png) bottom repeat-x;
+    z-index: 0
+}
+
+.wrapperDetailsinside,
+section#vishionMission {
+    position: relative;
+    z-index: 1
+}
+
+.dt,
+.iconset,
+.leftitem,
+.posAdding,
+.qitem,
+.qnum,
+.rightitem,
+img.glow1,
+img.glow2 {
+    position: absolute
+}
+
+.leftitem,
+.rightitem {
+    width: 310px;
+    padding: 10px
+}
+
+.leftitem {
+    text-align: right;
+    justify-content: right
+}
+
+.leftitem .imageIn {
+    width: 75px;
+    height: 75px;
+    justify-content: center;
+    font-size: 23px;
+    background: #152238;
+    border-radius: 100%;
+    margin-left: 20px
+}
+
+.leftitem.DiamondMining,
+.leftitem.Plantations,
+.leftitem.RealEstate,
+.leftitem.WebProjects {
+    border-radius: 100px;
+    transition: .5s;
+    transform: translateX(-40px) scale(.8);
+    opacity: 0
+}
+
+.leftitem .text {
+    text-align: right;
+    font-size: 20px;
+    font-weight: 600
+}
+
+#Strategic h2,
+#vishionMission h3,
+.rightitem .imageIn,
+section#safesttreds h2,
+section#safesttreds h6 {
+    font-weight: 800;
+    font-family: Sora;
+    font-style: normal;
+    text-align: center
+}
+
+.leftitem.RealEstate {
+    background: linear-gradient(180deg, #8200e8 0, #77006b 100%);
+    color: #fff;
+    top: 10;
+    left: 0px;
+    margin-top: -504px;
+}
+
+.leftitem.DiamondMining,
+.leftitem.Plantations {
+    left: -50px
+}
+
+.in-viewport .leftitem.RealEstate,
+.in-viewport .rightitem.ForexTrading {
+    transform: translateX(0) scale(1);
+    opacity: 1
+}
+
+.leftitem.Plantations {
+    background: linear-gradient(180deg, #f14a4a 0, #e92727 100%);
+    top: 140px
+}
+
+.in-viewport .leftitem.Plantations,
+.in-viewport .rightitem.CommodityTrading {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+    transition-delay: 0.5s
+}
+
+.leftitem.DiamondMining {
+    background: linear-gradient(180deg, #a0a0a0 0, #2e2e2e 100%);
+    top: 270px
+}
+
+.in-viewport .leftitem.DiamondMining,
+.in-viewport .rightitem.EquityTrading {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+    transition-delay: 1s
+}
+
+.leftitem.WebProjects {
+    background: linear-gradient(180deg, #ffa800 0, #7a5100 100%);
+    top: 400px;
+    left: 0px
+}
+
+.in-viewport .leftitem.WebProjects,
+.in-viewport .rightitem.CryptoSpot {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+    transition-delay: 1.5s
+}
+
+.rightitem {
+    text-align: left;
+    justify-content: left
+}
+
+.rightitem .imageIn {
+    width: 75px;
+    height: 75px;
+    justify-content: center;
+    font-size: 23px;
+    background: #152238;
+    border-radius: 100%;
+    margin-right: 20px
+}
+
+.rightitem.CryptoDerivatives,
+.rightitem.CryptoSpot,
+.rightitem.ForexTrading {
+    border-radius: 100px;
+    transition: .5s;
+    opacity: 0
+}
+
+.rightitem.ForexTrading {
+    background: linear-gradient(180deg, #71bc80 0, #00ab97 100%);
+    top: 10px;
+    right: 0px;
+    transform: translateX(40px) scale(.8)
+}
+
+.rightitem.CommodityTrading,
+.rightitem.EquityTrading {
+    right: -56px;
+    transform: translateX(40px) scale(.8);
+    border-radius: 100px;
+    transition: .5s;
+    opacity: 0
+}
+
+.rightitem .text {
+    text-align: left;
+    font-size: 20px;
+    font-weight: 600
+}
+
+.rightitem.CommodityTrading {
+    background: var(--button-gradiant, linear-gradient(180deg, #3d00ce 0, #763dff 100%));
+    top: 140px
+}
+
+.rightitem.EquityTrading {
+    background: linear-gradient(180deg, #ffae00 0, #896801 100%);
+    top: 270px
+}
+
+.rightitem.CryptoSpot {
+    background: linear-gradient(180deg, #4198ff 0, #572bbf 100%);
+    top: 400px;
+    right: 0px;
+    transform: translateX(40px) scale(.8)
+}
+
+.dt {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    display: block;
+    background: #152238;
+}
+
+#setionGrid .MainImageQ,
+.posAdding,
+section#safesttreds .mainImage {
+    width: 100%
+}
+
+span.dt.i1 {
+    top: 20px;
+    left: 67px
+}
+
+span.dt.i2 {
+    top: 156px;
+    left: -16px
+}
+
+span.dt.i3 {
+    top: 284px;
+    left: -16px
+}
+
+span.dt.i4 {
+    top: 387px;
+    left: 46px
+}
+
+span.dt.i6 {
+    top: 31px;
+    right: 51px
+}
+
+span.dt.i7 {
+    top: 155px;
+    right: -18px
+}
+
+span.dt.i8 {
+    top: 282px;
+    right:-22px;
+}
+
+span.dt.i9 {
+    top: 400px;
+    right: 45px
+}
+
+span.dt.i5 {
+    left: 190px;
+    bottom: -22px
+}
+
+.rightitem.CryptoDerivatives {
+    background: linear-gradient(180deg, #9568ff 0, #1c005f 100%);
+    left: 50%;
+    bottom: -140px;
+    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(50px) scale(.8);
+    width: 350px
+}
+
+.in-viewport .rightitem.CryptoDerivatives {
+    transform: translateX(-50%) translateX(0) scale(1);
+    opacity: 1;
+    transition-delay: 2s
+}
+
+#Strategic {
+    padding: 100px 0
+}
+
+#Strategic h2 {
+    font-size: 50px;
+    background-clip: text;
+    -webkit-background-clip: text;
+    margin-bottom: 50px
+}
+
+.wrap_part {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 146px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, .1);
+    transition: .5s
+}
+
+.wrap_part img {
+    mix-blend-mode: luminosity;
+    transition: .5s
+}
+
+.wrap_part:hover img {
+    mix-blend-mode: normal;
+    transform: scale(.8)
+}
+
+section#safesttreds h6 {
+    font-size: 25px;
+    line-height: normal;
+    margin-bottom: 20px
+}
+
+section#safesttreds h2 {
+    background-clip: text;
+    -webkit-background-clip: text;
+    font-size: 85px;
+    line-height: 100%
+}
+
+.posAdding {
+    z-index: 1
+}
+
+section#safesttreds {
+    position: relative;
+    padding: 100px 0
+}
+
+img.glow1 {
+    left: 0;
+    animation: 3s infinite zoom-in
+}
+
+img.glow2 {
+    right: 0;
+    top: 230px;
+    animation: 5s infinite zoom-in
+}
+
+#vishionMission h3 {
+    font-size: 40px;
+    background-clip: text;
+    -webkit-background-clip: text
+}
+
+#vishionMission h5 {
+    color: #fff;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 400;
+    margin-bottom: 30px
+}
+
+#detailsAbutSFT p,
+#vishionMission p,
+.iconset span {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 30px
+}
+
+#detailsAbutSFT h2,
+.btnSection a,
+.qnum {
+    line-height: normal;
+    font-family: Sora;
+    font-style: normal
+}
+
+#detailsAbutSFT p,
+#vishionMission p {
+    color: rgba(255, 255, 255, .5);
+    text-align: center
+}
+
+#detailsAbutSFT h2,
+.qnum {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 800
+}
+
+section#vishionMission {
+    margin-top: -330px
+}
+
+.wrap_part:hover {
+    transform: scale(1.05)
+}
+
+.iconset {
+    top: 0
+}
+
+.iconset span {
+    border-radius: 200pc;
+    background: var(--secondary-dark, #25164f);
+    display: inline-flex;
+    padding: 10px 35px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px
+}
+
+.icon_dubai {
+    top: 380px;
+    right: 520px
+}
+
+.icon_dubai svg {
+    animation: 3s infinite zoom-in
+}
+
+.icon_SafestTrades {
+    top: 150px;
+    left: 265px
+}
+
+.icon_SafestTrades svg {
+    animation: 2s infinite zoom-in
+}
+
+.icon_ca {
+    top: 280px;
+    left: 290px
+}
+
+.icon_ca svg {
+    animation: 2.5s infinite zoom-in
+}
+
+.leftGradiant,
+img.rightGradiant {
+    z-index: -1;
+    animation: 5s infinite zoom-in
+}
+
+.btnSection {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 100px
+}
+
+.bottmSpan,
+.topSpan {
+    display: block;
+    background: url(../img/repeatImage_02.png) 0 0/auto 100% repeat-x;
+    height: 48px;
+    width: 50%;
+    position: absolute
+}
+
+.btnSection a,
+.qnum {
+    align-items: center
+}
+
+.btnSection a {
+    display: flex;
+    border-radius: 100px;
+    border: 2px solid #6324f8;
+    background: var(--button-gradiant, linear-gradient(180deg, #3d00ce 0, #763dff 100%));
+    color: #fff;
+    font-size: 17.72px;
+    font-weight: 700;
+    padding: 15px 40px;
+    transition: .5s
+}
+
+.btnSection a:hover svg {
+    stroke: #000
+}
+
+.btnSection a svg {
+    margin-left: 10px
+}
+
+#detailsAbutSFT {
+    padding-bottom: 165px
+}
+
+#detailsAbutSFT h2 {
+    background-clip: text;
+    -webkit-background-clip: text;
+    margin-bottom: 20px
+}
+
+.topSpan {
+    top: 0;
+    left: 0
+}
+
+.bottmSpan {
+    bottom: 0;
+    right: 0
+}
+
+.qnum {
+    width: 180px;
+    height: 180px;
+    background: url(../img/Ellipse128.svg) 0 0/contain no-repeat;
+    display: flex;
+    justify-content: center;
+    filter: blur(5px);
+    transform: scale(1.5);
+    opacity: 0;
+    transition: 1s;
+    top: -25px
+}
+
+.qitem:nth-child(2n) .qnum {
+    left: -40px
+}
+
+.qitem:nth-child(odd) .qnum {
+    right: -40px
+}
+
+.qnum.in-viewport {
+    filter: blur(0px);
+    transform: scale(1);
+    opacity: 1;
+    transition-timing-function: ease-in-out
+}
+
+.qitem {
+    display: flex;
+    align-items: center;
+    width: 100%
+}
+
+.qitem.qitem_1,
+.qitem.qitem_3,
+.qitem.qitem_5 {
+    justify-content: space-between
+}
+
+.qitem li {
+    color: rgba(255, 255, 255, .7);
+    font-family: Sora;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 25px;
+    margin-left: 30px;
+    transform: scale(.8);
+    opacity: 0;
+    transition: .5s
+}
+
+#howtojoin h2,
+#howtojoin h5,
+.qitem h4 {
+    font-weight: 800;
+    font-family: Sora;
+    font-style: normal
+}
+
+#howtojoin h2,
+.qitem h4 {
+    line-height: normal;
+    background: var(--multicolor, linear-gradient(90deg, #c2a9ff 0, #ff00e6 21.35%, #08a5d7 45.31%, #fc55ff 72.4%, #7338ff 100%))
+}
+
+.qitem.in-viewport li:first-child {
+    margin-left: 0;
+    transform: scale(1);
+    opacity: 1;
+    transition-delay: 0s
+}
+
+.qitem.in-viewport li:nth-child(2) {
+    margin-left: 0;
+    transform: scale(1);
+    opacity: 1;
+    transition-delay: 0.2s
+}
+
+.qitem.in-viewport li:nth-child(3) {
+    margin-left: 0;
+    transform: scale(1);
+    opacity: 1;
+    transition-delay: 0.4s
+}
+
+.qitem.in-viewport li:nth-child(4) {
+    margin-left: 0;
+    transform: scale(1);
+    opacity: 1;
+    transition-delay: 0.6s
+}
+
+.qitem.in-viewport li:nth-child(5) {
+    margin-left: 0;
+    transform: scale(1);
+    opacity: 1;
+    transition-delay: 0.8s
+}
+
+.qitem.in-viewport li:nth-child(6) {
+    margin-left: 0;
+    transform: scale(1);
+    opacity: 1;
+    transition-delay: 1s
+}
+
+.qitem h4 {
+    background-clip: text;
+    -webkit-background-clip: text;
+    text-align: right;
+    font-size: 40px;
+    transform: scale(0);
+    opacity: 0;
+    transition: 1s
+}
+
+.qitem.in-viewport h4 {
+    transform: scale(1);
+    opacity: 1;
+    transition-timing-function: ease-in-out;
+    transition-delay: 0.5s
+}
+
+.qitem.qitem_1 {
+    top: 62px;
+    left: 0;
+    padding: 0 250px 0 200px
+}
+
+.qitem.qitem_2 {
+    top: 255px;
+    left: 0;
+    padding: 0 50px 0 250px
+}
+
+.qitem.qitem_2 .itemyear,
+.qitem.qitem_4 .itemyear,
+.qitem.qitem_6 .itemyear,
+.qitem.qitem_8 .itemyear {
+    margin-right: 100px
+}
+
+.qitem.qitem_3 {
+    top: 468px;
+    left: 0;
+    padding: 0 250px 0 200px
+}
+
+.qitem.qitem_4 {
+    top: 670px;
+    left: 0;
+    padding: 0 100px 0 250px
+}
+
+.qitem.qitem_5,
+.qitem_7 {
+    padding: 0 250px 0 200px;
+    left: 0
+}
+
+.qitem.qitem_5 {
+    top: 876px
+}
+
+.qitem.qitem_6 {
+    top: 1084px;
+    left: 0;
+    padding: 0 200px 0 250px
+}
+
+.qitem_7 {
+    top: 1295px;
+    justify-content: space-between
+}
+
+.qitem_8 {
+    top: 1480px;
+    left: 0;
+    padding: 0 100px 0 250px
+}
+
+#howtojoin {
+    padding-top: 160px;
+    padding-bottom: 160px
+}
+
+#howtojoin h5 {
+    text-align: center;
+    font-size: 30px;
+    line-height: 43px
+}
+
+#howtojoin h5 span {
+    color: var(--main-green, #71bc80)
+}
+
+#howtojoin h2 {
+    text-align: center;
+    font-size: 40px;
+    background-clip: text;
+    -webkit-background-clip: text;
+    margin-top: 80px;
+    margin-bottom: 80px
+}
+
+.wrapJoin {
+    border-radius: 20px;
+    background: rgba(255, 255, 255, .1);
+    position: relative;
+    padding: 70px 30px 40px;
+    height: 100%
+}
+
+.wrapJoin span {
+    width: 74px;
+    height: 74px;
+    position: absolute;
+    background: var(--button-gradiant, linear-gradient(180deg, #3d00ce 0, #763dff 100%));
+    line-height: 74px;
+    border-radius: 100%;
+    color: #fff;
+    text-align: center;
+    font-family: Sora;
+    font-size: 28px;
+    font-style: normal;
+    top: -35px;
+    font-weight: 700;
+    left: 50%;
+    transform: translateX(-50%)
+}
+
+.wrapJoin p {
+    color: rgba(255, 255, 255, .7);
+    text-align: center;
+    font-family: Sora;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px
+}
+
+.contacFormwrap {
+    border-radius: 100px;
+    background: #c2a9ff;
+    background: linear-gradient(90deg, #c2a9ff 0, #ff00e6 24%, #08a5d7 52%, #fc55ff 75%, #7338ff 100%);
+    padding: 2px
+}
+
+.contacFormwrap form {
+    background: #0a121e;
+    border-radius: 100px;
+    margin: 0;
+    padding: 50px 100px
+}
+
+.contacFormwrap h3 {
+    text-align: center;
+    font-family: Sora;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    background: var(--multicolor, linear-gradient(90deg, #c2a9ff 0, #ff00e6 21.35%, #08a5d7 45.31%, #fc55ff 72.4%, #7338ff 100%));
+    background-clip: text;
+    -webkit-background-clip: text;
+    margin-bottom: 60px
+}
+
+.contacFormwrap input,
+.contacFormwrap textarea {
+    background: var(--primary-hover, #152238);
+    box-shadow: 0 10.909433364868164px 13.247169494628906px 0 rgba(0, 0, 0, .04);
+    outline: 0;
+    color: var(--text-secondary, #969fb0);
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 30px;
+    font-family: Sora;
+    font-style: normal;
+    width: 100%
+}
+
+.contacFormwrap input {
+    border-radius: 100px;
+    border: none;
+    line-height: 54px;
+    padding: 0 30px
+}
+
+.contacFormwrap textarea {
+    border-radius: 25px;
+    border: none;
+    line-height: 1;
+    padding: 30px
+}
+
+.contacFormwrap button {
+    display: flex;
+    align-items: center;
+    border-radius: 100px;
+    border: 2px solid #6324f8;
+    background: var(--button-gradiant, linear-gradient(180deg, #3d00ce 0, #763dff 100%));
+    color: #fff;
+    font-family: Sora;
+    font-size: 17.72px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    padding: 15px 40px;
+    text-decoration: none;
+    width: 100%;
+    justify-content: center
+}
+
+.contacFormwrap p,
+.contacFormwrap p a,
+footer p {
+    color: #fff;
+    font-family: Sora;
+    font-style: normal;
+    line-height: 24px
+}
+
+.contacFormwrap button svg {
+    margin-left: 20px
+}
+
+.contacFormwrap button:hover svg {
+    fill: #000 !important
+}
+
+.contacFormwrap p {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 20px;
+    margin-bottom: 0
+}
+
+.contacFormwrap p a {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700
+}
+
+.leftGradiant {
+    position: absolute;
+    left: 0;
+    top: 0
+}
+
+img.rightGradiant {
+    position: absolute;
+    right: 0;
+    top: -400px
+}
+
+footer {
+    padding-top: 280px;
+    background: url(../img/Vector_26771.png) top center/cover no-repeat
+}
+
+footer p {
+    font-size: 17px;
+    font-weight: 400
+}
+
+.footerIconwarp {
+    display: flex;
+    margin-top: 20px
+}
+
+@keyframes textclip {
+    to {
+        background-position: 150% center
+    }
+}
+
+@keyframes zoom-in-zoom-out {
+
+    0%,
+    100% {
+        transform: scale(1, 1)
+    }
+
+    50% {
+        transform: scale(1.5, 1.5)
+    }
+}
+
+@keyframes zoom-in {
+
+    0%,
+    100% {
+        transform: scale(1, 1)
+    }
+
+    50% {
+        transform: scale(1.3, 1.3)
+    }
+}
+
+@media only screen and (max-width:479px) {
+
+    .bcinside,
+    .bcinside span,
+    .rightBt a {
+        background: 0 0 !important
+    }
+
+    header .col-sm-3 {
+        width: 45%
+    }
+
+    .formWrap,
+    .map_wrap img,
+    header .col-sm-3 img,
+    img.mainCoin {
+        width: 100%
+    }
+
+    #invest_profit .col-sm-6,
+    .rightBt.col-sm-6,
+    img.glow1,
+    img.glow2 {
+        width: 50%
+    }
+
+    .onlyborder span {
+        padding: 0;
+        font-size: 0 !important
+    }
+
+    .drItems,
+    .langSelect span {
+        font-size: 0
+    }
+
+    a.bcinside span {
+        font-size: 0;
+        padding: 0
+    }
+
+    .selectVal {
+        padding: 3px 10px
+    }
+
+    .bcinside,
+    .rightBt a {
+        margin-left: 10px;
+        border: none !important
+    }
+
+    .bcinside span img,
+    .onlyborder span img {
+        margin-left: 0 !important
+    }
+
+    .selectVal span img {
+        margin-right: 5px;
+        width: 20px
+    }
+
+    .drop {
+        top: 35px;
+        width: auto;
+        transform: none;
+        right: 0;
+        left: auto
+    }
+
+    .drItems {
+        padding: 9px
+    }
+
+    .imageIn,
+    .text {
+        font-size: 10px !important
+    }
+
+    .drItems img {
+        margin-right: 0
+    }
+
+    .marqueeitemWrap {
+        width: 170px;
+        padding: 10px
+    }
+
+    .marqueeitemWrap img {
+        width: 40px
+    }
+
+    .item__marquee span,
+    .wrapInv h6 {
+        font-size: 10px
+    }
+
+    .contacFormwrap textarea,
+    .formWrap input,
+    .item__marquee strong {
+        font-size: 15px
+    }
+
+    #Strategic h2,
+    .sliderIndideTxts h1,
+    section#safesttreds h2 {
+        font-size: 40px
+    }
+
+    #fOffintc p,
+    .sliderIndideTxts h6 {
+        font-size: 16px
+    }
+
+    .startNow {
+        margin-top: 100px;
+        z-index: 2;
+        position: relative
+    }
+
+    img.Ellipse135.eclips {
+        width: 50%;
+        bottom: 300px !important;
+        z-index: 1
+    }
+
+    img.Ellipse136.eclips {
+        width: 50%;
+        bottom: 420px;
+        z-index: 1
+    }
+
+    #vishionMission h3,
+    .startNow h3,
+    section#safesttreds h6 {
+        font-size: 20px
+    }
+
+    #empower h6,
+    #vishionMission h5,
+    .startNow h5 {
+        font-size: 18px
+    }
+
+    .startNow p {
+        font-size: 12px;
+        line-height: 1
+    }
+
+    .formWrap button {
+        font-size: 0;
+        padding: 15px 10px;
+        width: 20%
+    }
+
+    .insidebc {
+        display: flex
+    }
+
+    section#slider {
+        background-size: 200%
+    }
+
+    .wrapper__fof_fintec {
+        background-size: 100%;
+        padding: 40px 20px
+    }
+
+    #empower h3,
+    #fOffintc h2 {
+        font-size: 30px
+    }
+
+    img.bccoins_1 {
+        width: 120px;
+        left: -30px
+    }
+
+    img.bccoins_2 {
+        width: 120px;
+        left: 200px
+    }
+
+    #empower p {
+        line-height: 1.6;
+        font-size: 12px
+    }
+
+    .videoWrapper {
+        background-size: cover;
+        height: 182px;
+        width: 320px;
+        margin: 0 auto
+    }
+
+    .videoWrapper img {
+        width: 80px
+    }
+
+    .wrapInv {
+        padding: 20px;
+        background-size: contain
+    }
+
+    .wrapInv h4 {
+        font-size: 13px;
+        height: 60px
+    }
+
+    .leftitem {
+        width: 130px !important;
+        padding: 5px
+    }
+
+    img.roundIns {
+        width: 150px
+    }
+
+    img.roundgradiant {
+        width: 120px
+    }
+
+    img.coinmidle {
+        width: 100px
+    }
+
+    .wrapInv h6 span {
+        display: block
+    }
+
+    #setionGrid .MainImageQ,
+    .dt,
+    span.topSpan {
+        display: none
+    }
+
+    .imageIn {
+        width: 30px !important;
+        height: 30px !important;
+        min-width: 30px
+    }
+
+    .leftitem .imageIn {
+        margin-left: 10px
+    }
+
+    .leftitem.RealEstate {
+        left: 30px;
+        top: -30px
+    }
+
+    .leftitem.Plantations {
+        left: -10px;
+        top: 20px
+    }
+
+    .leftitem.DiamondMining {
+        top: 70px;
+        left: -10px
+    }
+
+    .leftitem.WebProjects {
+        top: 120px;
+        left: 30px
+    }
+
+    .rightitem {
+        width: 130px;
+        padding: 5px
+    }
+
+    .rightitem .imageIn {
+        margin-right: 10px
+    }
+
+    .rightitem.ForexTrading {
+        right: 30px;
+        top: -30px
+    }
+
+    .rightitem.CommodityTrading {
+        top: 20px;
+        right: -10px
+    }
+
+    .rightitem.EquityTrading {
+        top: 70px;
+        right: -10px
+    }
+
+    .rightitem.CryptoSpot {
+        top: 120px;
+        right: 30px
+    }
+
+    .rightitem.CryptoDerivatives {
+        width: 160px;
+        bottom: -60px
+    }
+
+    section#sftDetails {
+        padding: 100px 0;
+        background-size: 100% 100%
+    }
+
+    #Strategic .col-sm-2 {
+        width: 50%;
+        margin-bottom: 20px
+    }
+
+    .wrap_part img {
+        height: 20px
+    }
+
+    .posAdding {
+        position: relative !important
+    }
+
+    section#vishionMission {
+        margin-top: 0
+    }
+
+    .map_wrap {
+        width: 330px;
+        margin: 0 auto 50
+    }
+
+    #setionGrid .containerSt,
+    section#safesttreds {
+        padding: 0
+    }
+
+    #vishionMission p {
+        font-size: 14px;
+        line-height: 20px
+    }
+
+    .iconset {
+        display: flex;
+        align-items: center
+    }
+
+    .iconset svg {
+        min-width: 20px;
+        width: 20px
+    }
+
+    .iconset.icon_dubai {
+        top: 53px;
+        right: auto;
+        left: 185px
+    }
+
+    .iconset span {
+        padding: 6px 20px;
+        font-size: 10px;
+        line-height: 1
+    }
+
+    .iconset.icon_SafestTrades {
+        top: 10px;
+        left: 60px
+    }
+
+    .iconset.icon_ca {
+        top: 45px;
+        left: 55px
+    }
+
+    #detailsAbutSFT h2 {
+        font-size: 30px !important
+    }
+
+    #detailsAbutSFT p {
+        font-size: 12px;
+        line-height: 1.6
+    }
+
+    .btnSection {
+        flex-wrap: wrap;
+        margin-top: 50px
+    }
+
+    .btnSection a {
+        font-size: 10px;
+        padding: 10px 16px;
+        margin-bottom: 15px
+    }
+
+    #detailsAbutSFT {
+        padding-bottom: 75px
+    }
+
+    .qitem {
+        position: relative;
+        padding: 150px 0 80px !important;
+        top: 0 !important;
+        background: url(../img/setGridMob_02.png) top left repeat-x
+    }
+
+    span.bottmSpan {
+        width: 100%;
+        position: relative;
+        height: 60px
+    }
+
+    .qitem h4 {
+        font-size: 30px;
+        margin-bottom: 0
+    }
+
+    .itemtext {
+        padding: 0 20px
+    }
+
+    .qnum {
+        z-index: 1;
+        width: 100px;
+        height: 100px;
+        font-size: 20px
+    }
+
+    .qitem:nth-child(odd) .qnum {
+        right: 20px
+    }
+
+    .qitem:nth-child(2n) .qnum {
+        left: 20px
+    }
+
+    .itemyear {
+        position: absolute;
+        top: 90px;
+        left: 30px
+    }
+
+    .qitem:nth-child(2n) .itemyear {
+        right: 20px;
+        margin: 0;
+        left: auto
+    }
+
+    section#howtojoin {
+        padding-top: 80px;
+        padding-bottom: 80px
+    }
+
+    #howtojoin h5 {
+        font-size: 20px;
+        line-height: 1.6
+    }
+
+    #howtojoin h2 {
+        font-size: 35px;
+        margin-top: 50px
+    }
+
+    .wrapJoin {
+        padding: 50px 20px 10px;
+        height: 160px;
+        margin-bottom: 50px;
+        display: flex;
+        align-items: center
+    }
+
+    .wrapJoin span {
+        font-size: 18px;
+        width: 60px;
+        line-height: 60px;
+        height: 60px;
+        top: -30px
+    }
+
+    .wrapJoin p {
+        font-size: 12px
+    }
+
+    .joinSec .col {
+        width: 50%;
+        flex: 50%;
+        max-width: 50%
+    }
+
+    .footerIconwarp,
+    .joinSec {
+        justify-content: center
+    }
+
+    .contacFormwrap form {
+        padding: 50px 30px;
+        border-radius: 50px
+    }
+
+    .contacFormwrap {
+        border-radius: 50px
+    }
+
+    .contacFormwrap h3 {
+        font-size: 30px;
+        margin-bottom: 20px
+    }
+
+    .contacFormwrap input {
+        line-height: 50px;
+        margin-bottom: 10px;
+        font-size: 15px
+    }
+
+    .contacFormwrap a,
+    .contacFormwrap p {
+        font-size: 12px !important
+    }
+
+    footer {
+        padding-top: 100px;
+        text-align: center
+    }
+
+    img.rightGradiant {
+        width: 80%;
+        top: auto;
+        bottom: -150px;
+        right: -130px
+    }
+
+    img.leftGradiant {
+        width: 80%;
+        top: -120px;
+        left: -70px
+    }
+}
+
+@media only screen and (min-width:480px) and (max-width:767px) {
+
+    .bcinside,
+    .bcinside span,
+    .rightBt a {
+        background: 0 0 !important
+    }
+
+    .insidebc,
+    .wrapInv h4 {
+        display: flex
+    }
+
+    header .col-sm-3 {
+        width: 45%
+    }
+
+    .formWrap,
+    .map_wrap img,
+    header .col-sm-3 img,
+    img.mainCoin {
+        width: 100%
+    }
+
+    .rightBt.col-sm-6 {
+        width: 50%;
+        align-items: center
+    }
+
+    .onlyborder span {
+        padding: 0;
+        font-size: 0 !important
+    }
+
+    .drItems,
+    .langSelect span {
+        font-size: 0
+    }
+
+    a.bcinside span {
+        font-size: 0;
+        padding: 0
+    }
+
+    .selectVal {
+        padding: 10px 15px
+    }
+
+    .bcinside,
+    .rightBt a {
+        margin-left: 30px;
+        border: none !important
+    }
+
+    .bcinside span img,
+    .onlyborder span img {
+        margin-left: 0 !important;
+        width: 30px
+    }
+
+    .selectVal span img {
+        margin-right: 5px;
+        width: 20px
+    }
+
+    .drop {
+        top: 35px;
+        width: auto;
+        transform: none;
+        right: 0;
+        left: auto
+    }
+
+    .drItems {
+        padding: 9px
+    }
+
+    .drItems img {
+        margin-right: 0
+    }
+
+    .marqueeitemWrap {
+        width: 170px;
+        padding: 10px
+    }
+
+    .marqueeitemWrap img {
+        width: 40px
+    }
+
+    .item__marquee span {
+        font-size: 10px
+    }
+
+    .contacFormwrap textarea,
+    .item__marquee strong {
+        font-size: 15px
+    }
+
+    #Strategic h2,
+    .sliderIndideTxts h1,
+    section#safesttreds h2 {
+        font-size: 40px
+    }
+
+    #fOffintc p,
+    .sliderIndideTxts h6 {
+        font-size: 16px
+    }
+
+    .startNow {
+        margin-top: 100px;
+        z-index: 2;
+        position: relative;
+        padding: 0 100px
+    }
+
+    img.Ellipse135.eclips {
+        width: 50%;
+        bottom: 300px !important;
+        z-index: -1
+    }
+
+    img.Ellipse136.eclips {
+        width: 50%;
+        bottom: 420px;
+        z-index: -1
+    }
+
+    #setionGrid .containerSt,
+    section#safesttreds,
+    section#slider .containerSt {
+        padding: 0
+    }
+
+    #vishionMission h3,
+    .startNow h3,
+    .wrapInv h6,
+    section#safesttreds h6 {
+        font-size: 20px
+    }
+
+    #empower h6,
+    #vishionMission h5,
+    .startNow h5 {
+        font-size: 18px
+    }
+
+    .startNow p {
+        font-size: 12px;
+        line-height: 1
+    }
+
+    .formWrap button {
+        font-size: 0;
+        padding: 15px 10px;
+        width: 20%
+    }
+
+    .formWrap input {
+        font-size: 15px;
+        width: 100%
+    }
+
+    section#slider {
+        background-size: 130%;
+        min-height: 100px;
+        padding-bottom: 20px
+    }
+
+    .wrapper__fof_fintec {
+        background-size: 100%;
+        padding: 40px 20px
+    }
+
+    .coinWrapper {
+        width: 300px;
+        margin: 0 auto
+    }
+
+    #empower h3,
+    #fOffintc h2 {
+        font-size: 30px
+    }
+
+    img.bccoins_1 {
+        width: 120px;
+        left: -30px
+    }
+
+    img.bccoins_2 {
+        width: 120px;
+        left: 200px
+    }
+
+    #empower p {
+        line-height: 1.6;
+        font-size: 12px
+    }
+
+    .videoWrapper {
+        background-size: cover;
+        height: 285px;
+        width: 500px;
+        margin: 0 auto
+    }
+
+    #invest_profit .col-sm-6,
+    img.glow1,
+    img.glow2 {
+        width: 50%
+    }
+
+    .wrapInv {
+        padding: 20px;
+        background-size: contain
+    }
+
+    .wrapInv h4 {
+        font-size: 23px;
+        height: 60px;
+        align-items: center;
+        justify-content: center
+    }
+
+    .contacFormwrap a,
+    .contacFormwrap p,
+    .imageIn,
+    .text {
+        font-size: 12px !important
+    }
+
+    .leftitem {
+        width: 170px !important;
+        padding: 5px
+    }
+
+    img.roundIns {
+        width: 300px
+    }
+
+    img.roundgradiant {
+        width: 200px
+    }
+
+    img.coinmidle {
+        width: 150px
+    }
+
+    .wrapInv h6 span {
+        display: block
+    }
+
+    #setionGrid .MainImageQ,
+    .dt,
+    span.topSpan {
+        display: none
+    }
+
+    .imageIn {
+        width: 50px !important;
+        height: 50px !important;
+        min-width: 50px
+    }
+
+    .leftitem .imageIn {
+        margin-left: 10px
+    }
+
+    .leftitem.RealEstate {
+        left: 30px;
+        top: 0
+    }
+
+    .leftitem.Plantations {
+        left: -10px;
+        top: 80px
+    }
+
+    .leftitem.DiamondMining {
+        top: 160px;
+        left: -10px
+    }
+
+    .leftitem.WebProjects {
+        top: 240px;
+        left: 30px
+    }
+
+    .rightitem {
+        width: 170px;
+        padding: 5px
+    }
+
+    .rightitem .imageIn {
+        margin-right: 10px
+    }
+
+    .rightitem.ForexTrading {
+        right: 30px;
+        top: 0
+    }
+
+    .rightitem.CommodityTrading {
+        top: 80px;
+        right: -10px
+    }
+
+    .rightitem.EquityTrading {
+        top: 160px;
+        right: -10px
+    }
+
+    .rightitem.CryptoSpot {
+        top: 240px;
+        right: 30px
+    }
+
+    .rightitem.CryptoDerivatives {
+        width: 160px;
+        bottom: -80px
+    }
+
+    section#sftDetails {
+        padding: 100px 0;
+        background-size: 100% 100%
+    }
+
+    #Strategic .col-sm-2 {
+        width: 33.333%;
+        margin-bottom: 20px
+    }
+
+    .wrap_part img {
+        height: 20px
+    }
+
+    .posAdding {
+        position: relative !important
+    }
+
+    section#vishionMission {
+        margin-top: 0
+    }
+
+    .map_wrap {
+        width: 500px;
+        margin: 0 auto 50
+    }
+
+    #vishionMission p {
+        font-size: 14px;
+        line-height: 20px
+    }
+
+    .iconset {
+        display: flex;
+        align-items: center
+    }
+
+    .iconset svg {
+        min-width: 20px;
+        width: 20px
+    }
+
+    .iconset.icon_dubai {
+        top: 100px;
+        right: auto;
+        left: 285px
+    }
+
+    .iconset span {
+        padding: 6px 20px;
+        font-size: 10px;
+        line-height: 1
+    }
+
+    .iconset.icon_SafestTrades {
+        top: 36px;
+        left: 100px
+    }
+
+    .iconset.icon_ca {
+        top: 80px;
+        left: 95px
+    }
+
+    #detailsAbutSFT h2 {
+        font-size: 30px !important
+    }
+
+    #detailsAbutSFT p {
+        font-size: 12px;
+        line-height: 1.6
+    }
+
+    .btnSection {
+        flex-wrap: wrap;
+        margin-top: 50px
+    }
+
+    .btnSection a {
+        font-size: 10px;
+        padding: 10px 16px;
+        margin-bottom: 15px
+    }
+
+    #detailsAbutSFT {
+        padding-bottom: 75px
+    }
+
+    .qitem {
+        position: relative;
+        padding: 150px 0 80px !important;
+        top: 0 !important;
+        background: url(../img/setGridMob_02.png) top left repeat-x
+    }
+
+    span.bottmSpan {
+        width: 100%;
+        position: relative;
+        height: 60px
+    }
+
+    .qitem h4 {
+        font-size: 30px;
+        margin-bottom: 0
+    }
+
+    .itemtext {
+        padding: 0 20px
+    }
+
+    .qnum {
+        z-index: 1;
+        width: 100px;
+        height: 100px;
+        font-size: 20px
+    }
+
+    .qitem:nth-child(odd) .qnum {
+        right: 20px
+    }
+
+    .qitem:nth-child(2n) .qnum {
+        left: 20px
+    }
+
+    .itemyear {
+        position: absolute;
+        top: 90px;
+        left: 30px
+    }
+
+    .qitem:nth-child(2n) .itemyear {
+        right: 20px;
+        margin: 0;
+        left: auto
+    }
+
+    section#howtojoin {
+        padding-top: 80px;
+        padding-bottom: 80px
+    }
+
+    #howtojoin h5 {
+        font-size: 20px;
+        line-height: 1.6
+    }
+
+    #howtojoin h2 {
+        font-size: 35px;
+        margin-top: 50px
+    }
+
+    .wrapJoin {
+        padding: 50px 20px 10px;
+        height: 160px;
+        margin-bottom: 50px;
+        display: flex;
+        align-items: center
+    }
+
+    .wrapJoin span {
+        font-size: 18px;
+        width: 60px;
+        line-height: 60px;
+        height: 60px;
+        top: -30px
+    }
+
+    .wrapJoin p {
+        font-size: 12px
+    }
+
+    .joinSec .col {
+        width: 50%;
+        flex: 50%;
+        max-width: 50%
+    }
+
+    .footerIconwarp,
+    .joinSec {
+        justify-content: center
+    }
+
+    .contacFormwrap form {
+        padding: 50px 30px;
+        border-radius: 50px
+    }
+
+    .contacFormwrap {
+        border-radius: 50px
+    }
+
+    .contacFormwrap h3 {
+        font-size: 30px;
+        margin-bottom: 20px
+    }
+
+    .contacFormwrap input {
+        line-height: 50px;
+        margin-bottom: 10px;
+        font-size: 15px
+    }
+
+    footer {
+        padding-top: 100px;
+        text-align: center;
+        padding-bottom: 30px
+    }
+
+    img.rightGradiant {
+        width: 80%;
+        top: auto;
+        bottom: -150px;
+        right: -130px
+    }
+
+    img.leftGradiant {
+        width: 80%;
+        top: -120px;
+        left: -70px
+    }
+
+    footer p {
+        text-align: left;
+        font-size: 15px
+    }
+
+    footer .row:nth-child(2) .col-sm-4 {
+        width: 100%;
+        justify-content: left;
+        display: flex
+    }
+}
+
+@media only screen and (min-width:768px) and (max-width:960px) {
+
+    .bcinside,
+    .bcinside span,
+    .rightBt a {
+        background: 0 0 !important
+    }
+
+    .insidebc,
+    .wrapInv h4 {
+        display: flex
+    }
+
+    header .col-sm-3 {
+        width: 45%
+    }
+
+    .formWrap,
+    .map_wrap img,
+    header .col-sm-3 img,
+    img.mainCoin {
+        width: 100%
+    }
+
+    .rightBt.col-sm-6 {
+        width: 50%;
+        align-items: center
+    }
+
+    .onlyborder span {
+        padding: 0;
+        font-size: 0 !important
+    }
+
+    .drItems,
+    .langSelect span {
+        font-size: 0
+    }
+
+    a.bcinside span {
+        font-size: 0;
+        padding: 0
+    }
+
+    .selectVal {
+        padding: 10px 15px
+    }
+
+    .bcinside,
+    .rightBt a {
+        margin-left: 30px;
+        border: none !important
+    }
+
+    .bcinside span img,
+    .onlyborder span img {
+        margin-left: 0 !important;
+        width: 30px
+    }
+
+    .selectVal span img {
+        margin-right: 5px;
+        width: 20px
+    }
+
+    .drop {
+        top: 35px;
+        width: auto;
+        transform: none;
+        right: 0;
+        left: auto
+    }
+
+    .drItems {
+        padding: 9px
+    }
+
+    .drItems img {
+        margin-right: 0
+    }
+
+    .marqueeitemWrap {
+        width: 170px;
+        padding: 10px
+    }
+
+    .marqueeitemWrap img {
+        width: 40px
+    }
+
+    .item__marquee span {
+        font-size: 10px
+    }
+
+    .contacFormwrap textarea,
+    .item__marquee strong {
+        font-size: 15px
+    }
+
+    #Strategic h2,
+    .sliderIndideTxts h1,
+    section#safesttreds h2 {
+        font-size: 40px
+    }
+
+    #fOffintc p,
+    .sliderIndideTxts h6 {
+        font-size: 16px
+    }
+
+    .startNow {
+        margin-top: 100px;
+        z-index: 2;
+        position: relative;
+        padding: 0 100px
+    }
+
+    img.Ellipse135.eclips {
+        width: 50%;
+        bottom: 300px !important;
+        z-index: -1
+    }
+
+    img.Ellipse136.eclips {
+        width: 50%;
+        bottom: 420px;
+        z-index: -1
+    }
+
+    #setionGrid .containerSt,
+    section#safesttreds,
+    section#slider .containerSt {
+        padding: 0
+    }
+
+    #vishionMission h3,
+    .startNow h3,
+    .wrapInv h6,
+    section#safesttreds h6 {
+        font-size: 20px
+    }
+
+    #empower h6,
+    #vishionMission h5,
+    .startNow h5 {
+        font-size: 18px
+    }
+
+    .startNow p {
+        font-size: 12px;
+        line-height: 1
+    }
+
+    .formWrap button {
+        font-size: 0;
+        padding: 15px 10px;
+        width: 20%
+    }
+
+    .formWrap input {
+        font-size: 15px;
+        width: 100%
+    }
+
+    section#slider {
+        background-size: 130%;
+        min-height: 100px;
+        padding-bottom: 20px
+    }
+
+    .wrapper__fof_fintec {
+        background-size: 100%;
+        padding: 40px 20px
+    }
+
+    .coinWrapper {
+        width: 300px;
+        margin: 0 auto
+    }
+
+    #empower h3,
+    #fOffintc h2 {
+        font-size: 30px
+    }
+
+    img.bccoins_1 {
+        width: 120px;
+        left: -30px
+    }
+
+    img.bccoins_2 {
+        width: 120px;
+        left: 200px
+    }
+
+    #empower p {
+        line-height: 1.6;
+        font-size: 12px
+    }
+
+    .videoWrapper {
+        background-size: cover;
+        height: 285px;
+        width: 500px;
+        margin: 0 auto
+    }
+
+    #invest_profit .col-sm-6,
+    img.glow1,
+    img.glow2 {
+        width: 50%
+    }
+
+    .wrapInv {
+        padding: 20px;
+        background-size: contain
+    }
+
+    .wrapInv h4 {
+        font-size: 23px;
+        height: 60px;
+        align-items: center;
+        justify-content: center
+    }
+
+    .contacFormwrap a,
+    .contacFormwrap p,
+    .imageIn,
+    .text {
+        font-size: 12px !important
+    }
+
+    .leftitem {
+        width: 170px !important;
+        padding: 5px
+    }
+
+    img.roundIns {
+        width: 300px
+    }
+
+    img.roundgradiant {
+        width: 200px
+    }
+
+    img.coinmidle {
+        width: 150px
+    }
+
+    .wrapInv h6 span {
+        display: block
+    }
+
+    #setionGrid .MainImageQ,
+    .dt,
+    span.topSpan {
+        display: none
+    }
+
+    .imageIn {
+        width: 50px !important;
+        height: 50px !important;
+        min-width: 50px
+    }
+
+    .leftitem .imageIn {
+        margin-left: 10px
+    }
+
+    .leftitem.RealEstate {
+        left: 30px;
+        top: 0
+    }
+
+    .leftitem.Plantations {
+        left: -10px;
+        top: 80px
+    }
+
+    .leftitem.DiamondMining {
+        top: 160px;
+        left: -10px
+    }
+
+    .leftitem.WebProjects {
+        top: 240px;
+        left: 30px
+    }
+
+    .rightitem {
+        width: 170px;
+        padding: 5px
+    }
+
+    .rightitem .imageIn {
+        margin-right: 10px
+    }
+
+    .rightitem.ForexTrading {
+        right: 30px;
+        top: 0
+    }
+
+    .rightitem.CommodityTrading {
+        top: 80px;
+        right: -10px
+    }
+
+    .rightitem.EquityTrading {
+        top: 160px;
+        right: -10px
+    }
+
+    .rightitem.CryptoSpot {
+        top: 240px;
+        right: 30px
+    }
+
+    .rightitem.CryptoDerivatives {
+        width: 160px;
+        bottom: -80px
+    }
+
+    section#sftDetails {
+        padding: 100px 0;
+        background-size: 100% 100%
+    }
+
+    #Strategic .col-sm-2 {
+        width: 33.333%;
+        margin-bottom: 20px
+    }
+
+    .wrap_part img {
+        height: 20px
+    }
+
+    .posAdding {
+        position: relative !important
+    }
+
+    section#vishionMission {
+        margin-top: 0
+    }
+
+    .map_wrap {
+        width: 500px;
+        margin: 0 auto 50
+    }
+
+    #vishionMission p {
+        font-size: 14px;
+        line-height: 20px
+    }
+
+    .iconset {
+        display: flex;
+        align-items: center
+    }
+
+    .iconset svg {
+        min-width: 20px;
+        width: 20px
+    }
+
+    .iconset.icon_dubai {
+        top: 100px;
+        right: auto;
+        left: 285px
+    }
+
+    .iconset span {
+        padding: 6px 20px;
+        font-size: 10px;
+        line-height: 1
+    }
+
+    .iconset.icon_SafestTrades {
+        top: 36px;
+        left: 100px
+    }
+
+    .iconset.icon_ca {
+        top: 80px;
+        left: 95px
+    }
+
+    #detailsAbutSFT h2 {
+        font-size: 30px !important
+    }
+
+    #detailsAbutSFT p {
+        font-size: 12px;
+        line-height: 1.6
+    }
+
+    .btnSection {
+        flex-wrap: wrap;
+        margin-top: 50px
+    }
+
+    .btnSection a {
+        font-size: 10px;
+        padding: 10px 16px;
+        margin-bottom: 15px
+    }
+
+    #detailsAbutSFT {
+        padding-bottom: 75px
+    }
+
+    .qitem {
+        position: relative;
+        padding: 150px 0 80px !important;
+        top: 0 !important;
+        background: url(../img/setGridMob_02.png) top left repeat-x
+    }
+
+    span.bottmSpan {
+        width: 100%;
+        position: relative;
+        height: 60px
+    }
+
+    .qitem h4 {
+        font-size: 30px;
+        margin-bottom: 0
+    }
+
+    .itemtext {
+        padding: 0 20px
+    }
+
+    .qnum {
+        z-index: 1;
+        width: 100px;
+        height: 100px;
+        font-size: 20px
+    }
+
+    .qitem:nth-child(odd) .qnum {
+        right: 20px
+    }
+
+    .qitem:nth-child(2n) .qnum {
+        left: 20px
+    }
+
+    .itemyear {
+        position: absolute;
+        top: 90px;
+        left: 30px
+    }
+
+    .qitem:nth-child(2n) .itemyear {
+        right: 20px;
+        margin: 0;
+        left: auto
+    }
+
+    section#howtojoin {
+        padding-top: 80px;
+        padding-bottom: 80px
+    }
+
+    #howtojoin h5 {
+        font-size: 20px;
+        line-height: 1.6
+    }
+
+    #howtojoin h2 {
+        font-size: 35px;
+        margin-top: 50px
+    }
+
+    .wrapJoin {
+        padding: 50px 20px 10px;
+        height: 160px;
+        margin-bottom: 50px;
+        display: flex;
+        align-items: center
+    }
+
+    .wrapJoin span {
+        font-size: 18px;
+        width: 60px;
+        line-height: 60px;
+        height: 60px;
+        top: -30px
+    }
+
+    .wrapJoin p {
+        font-size: 12px
+    }
+
+    .joinSec .col {
+        width: 50%;
+        flex: 50%;
+        max-width: 50%
+    }
+
+    .footerIconwarp,
+    .joinSec {
+        justify-content: center
+    }
+
+    .contacFormwrap form {
+        padding: 50px 30px;
+        border-radius: 50px
+    }
+
+    .contacFormwrap {
+        border-radius: 50px
+    }
+
+    .contacFormwrap h3 {
+        font-size: 30px;
+        margin-bottom: 20px
+    }
+
+    .contacFormwrap input {
+        line-height: 50px;
+        margin-bottom: 10px;
+        font-size: 15px
+    }
+
+    footer {
+        padding-top: 100px;
+        text-align: center;
+        padding-bottom: 30px
+    }
+
+    img.rightGradiant {
+        width: 80%;
+        top: auto;
+        bottom: -150px;
+        right: -130px
+    }
+
+    img.leftGradiant {
+        width: 80%;
+        top: -120px;
+        left: -70px
+    }
+
+    footer p {
+        text-align: left;
+        font-size: 15px
+    }
+
+    footer .row:nth-child(2) .col-sm-4 {
+        width: 100%;
+        justify-content: left;
+        display: flex
+    }
+}
+
+@media only screen and (max-width:1200px) and (min-width:960px) {
+    section#slider .containerSt {
+        padding: 0
+    }
+
+    img.bccoins_2 {
+        right: 280px
+    }
+
+    img.bccoins_1 {
+        left: 280px
+    }
+
+    .wrap_part img {
+        width: 100px;
+        height: 40px;
+        object-fit: contain
+    }
+
+    .map_wrap {
+        max-width: 1000px;
+        margin: 0 auto 50px
+    }
+
+    .map_wrap img {
+        width: 100%
+    }
+
+    .icon_ca {
+        top: 190px;
+        left: 180px
+    }
+
+    .icon_SafestTrades {
+        top: 90px;
+        left: 185px
+    }
+
+    .icon_dubai {
+        top: 230px;
+        right: 250px
+    }
+
+    span.topSpan {
+        height: 47.5px;
+        background-position: right
+    }
+
+    .qitem.qitem_1 {
+        padding: 0 200px 0 160px;
+        top: 60px
+    }
+
+    .qitem li {
+        font-size: 13px
+    }
+
+    .qnum {
+        width: 140px;
+        height: 140px
+    }
+
+    .qitem:nth-child(odd) .qnum {
+        right: 0;
+        top: -5px
+    }
+
+    .qitem.qitem_2 {
+        top: 260px;
+        padding: 0 0 0 170px
+    }
+
+    .qitem h4 {
+        font-size: 30px;
+        margin: 0
+    }
+
+    .qitem:nth-child(2n) .qnum {
+        left: -10px;
+        top: -5px
+    }
+
+    .qitem.qitem_3 {
+        top: 460px;
+        padding: 0 200px 0 160px
+    }
+
+    .qitem.qitem_4 {
+        top: 657px;
+        padding: 0 0 0 170px
+    }
+
+    .qitem.qitem_5,
+    .qitem_7 {
+        padding: 0 200px 0 160px
+    }
+
+    .qitem.qitem_5 {
+        top: 867px
+    }
+
+    .qitem.qitem_6 {
+        top: 1078px;
+        padding: 0 0 0 170px
+    }
+
+    span.qnum.num6 {
+        top: -25px !important
+    }
+
+    .qitem_7 {
+        top: 1278px
+    }
+
+    span.qnum.num7 {
+        top: -27px !important
+    }
+
+    span.bottmSpan {
+        height: 47.5px;
+        background-position: left
+    }
+
+    .qitem_8 {
+        top: 1455px;
+        padding: 0 0 0 170px
+    }
+
+    #howtojoin h5 {
+        font-size: 26px
+    }
+}
+
+.dt-round1{
+    justify-content: center;
+    display: flex;
+    text-align: center;
+    color: var(--white, #fff);
+    margin-top: 5px;
+    font-weight: 800;
+    font-size: 18px;
+    border-style: solid;
+
+    span{
+        margin-top: 15px;  
+        font-family: Sora;
+    }
+}
+
+}
+

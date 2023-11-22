@@ -3,101 +3,134 @@
      @section('header-title', 'Welcome ')
 
     @section('header')
-    @include('frontend.layouts.header-other')
+    @include('frontend.layouts.header')
 
-  <!-- CONTENT START -->
-  <div class="page-content">
+<!-- CONTENT START -->
 
-    <!-- INNER PAGE BANNER -->
-    <div class="wt-bnr-inr overlay-wraper" style="background-image:url({{asset('assets/frontend/images/banner/banner.png') }});">
-        <div class="overlay-main themecolor-1 opacity-07"></div>
-        <div class="container">
-            <div class="wt-bnr-inr-entry">
-                <h1 class="text-white  banner-txt">Upcoming projects</h1>
-            </div>
-        </div>
-    </div>
-    <!-- INNER PAGE BANNER END -->
+<!--==================================================-->
+	<!-- Start breadcumb-area -->
+	<!--==================================================-->
+	<div class="breadcumb-area style-nine d-flex align-items-center" style="background: url('{{ asset('assets/frontend/images/inner-bg.jpg') }}');background-size: cover;background-position: center;background-repeat: no-repeat;">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breacumb-content">
+						<div class="breadcumb-title">
+							<h1>Upcoming Projects</h1>
+						</div>
+						<div class="breadcumb-content-text">
+							<a href="index.php"> <span>home</span>Upcoming Projects</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--==================================================-->
+	<!-- Start projects area -->
+	<!--==================================================-->
+	<div class="about-area style-one upper">
+		<div class="container">
+			<div class="row about-btm">
+				<div class="col-lg-6 col-md-6">
+					<div class="single-about-box">
+						<div class="about-thumb bounce-animate">
+							<img src="{{asset('assets/frontend/images/eproject/op3.jpg') }}" class='project-img'>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6">
+					<div class="single-about-box">
+						<div class="section-title">
+							<div class="sub-title">
+								<h3>Projects</h3>
+							</div>
+							<div class="main-title">
+								<h1>Information Technology Solutions</h1>
+							</div>
+							<div class="section-text">
+								<p>We plan to invest in innovative IT-related project development in the future. Moreover, we hope to develop trading bots for various purposes in the future.</p>
+							</div>
+						</div>
+					
+						<div class="about-button upper">
+							<a href="#">contact us</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="about-area style-one upper">
+		<div class="container">
+			<div class="row about-btm">
+				<div class="col-lg-6 col-md-6">
+					<div class="single-about-box">
+						<div class="section-title">
+							<div class="sub-title">
+								<h3>Projects</h3>
+							</div>
+							<div class="main-title">
+								<h1>Hospitality Industry</h1>
+							</div>
+							<div class="section-text">
+								<p>With the expansion of the network, we plan to develop a hotel and accommodation booking system using a blockchain framework that can be utilized globally. What happens in such a booking system is that anyone who uses cryptocurrency gets teh opportunity to travel across the globe by making crypto payments for accommodations and hotels. The users can make any payment directly from their crypto wallet in the currency of their preference.</p>
+							</div>
+						</div>
+					
+						<div class="about-button upper">
+							<a href="#">contact us</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6">
+					<div class="single-about-box">
+						<div class="about-thumb bounce-animate">
+							<img src="{{asset('assets/frontend/images/eproject/op2.jpg') }}" class='project-img'>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="about-area style-one upper">
+		<div class="container">
+			<div class="row about-btm">
+				<div class="col-lg-6 col-md-6">
+					<div class="single-about-box">
+						<div class="about-thumb bounce-animate">
+							<img src="{{asset('assets/frontend/images/eproject/op1.jpg') }}" class='project-img'>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6">
+					<div class="single-about-box">
+						<div class="section-title">
+							<div class="sub-title">
+								<h3>Projects</h3>
+							</div>
+							<div class="main-title">
+								<h1>Real Estates</h1>
+							</div>
+							<div class="section-text">
+								<p>We have the plan to make investments in the real estate sector in the future. There, we expect to buy and sell lands, residential properties, commercial properties, and industrial properties in order to increase profits via an appreciation in the value of the real estate.</p>
+							</div>
+						</div>
+
+						<div class="about-button upper">
+							<a href="#">contact us</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
-    <!-- BREADCRUMB ROW -->
-    <div class="themecolor-1 p-tb20">
-        <div class="container">
-            <ul class="wt-breadcrumb breadcrumb-style-2">
-                <li><a href="{{ route('/') }}"><i class="fa fa-home"></i> Home</a></li>
-                <li>Upcoming projects</li>
-            </ul>
-        </div>
-    </div>
-    <!-- BREADCRUMB ROW END -->
 
-      <!-- SECTION CONTENT -->
-      <div class="section-full">
-        @foreach ($projects as $key => $project)
-        @if ($key % 2 == 0)
-        <div class="row themecolor-2 p-t80 p-b50">
-            <div class="container">
-                <div class="col-md-7 col-sm-7">
-                    <div class="wt-info  p-b30 mob-p-b20">
-                        <h1 class="m-a0">{{ $project->title }}</h1>
-                    </div>
-                    <div class="mob-p-b30">
-                        {!! html_entity_decode($project->content) !!}
-                    </div>
-                </div>
-                <div class="col-md-5 col-sm-5">
-                    <!-- Card (Horizontal Flip) -->
-                    <div class="flip-container mob-mb-10">
-                        <div class="wt-box ">
-                            <div class="wt-thum-bx">
-                                <img src="{{ storage('pages/' . $project->image) }}" alt="">
-                            </div>
-                            <div class="wt-info themecolor-1 text-center p-a20">
-                                <h3 class="text-uppercase">{{ $project->title }}</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @else
-        <div class="row themecolor-1 p-t80 p-b50">
-            <div class="container">
-                <div class="col-md-5 col-sm-5">
-                    <!-- Card (Horizontal Flip) -->
-                    <div class="flip-container mob-mb-10">
-                        <div class="wt-box ">
-                            <div class="wt-thum-bx">
-                                <img src="{{ storage('pages/' . $project->image) }}" alt="">
-                            </div>
-                            <div class="wt-info themecolor-2 text-center p-a20">
-                                <h3 class="text-uppercase">{{ $project->title }}</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-7 col-sm-7">
-                    <div class="wt-info  p-b30 mob-ptb-20">
-                        <h1 class="m-a0">{{ $project->title }}</h1>
-                    </div>
-                    <div>
-                        {!! html_entity_decode($project->content) !!}
-                    </div>
-                </div>
-            </div>
-        </div>
-        @endif
-        @endforeach
-
-
-    </div>
-    <!-- SECTION CONTENT END -->
-
-
-
-
-</div>
 <!-- CONTENT END -->
 
 

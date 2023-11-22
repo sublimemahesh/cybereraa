@@ -1,85 +1,53 @@
 <x-frontend.layouts.app>
-    @section('title', 'Home Page | Owara3m ')
-    @section('header-title', 'Welcome ')
-
+    @section('title', 'Home Page | Coin1m')
+    @section('header-title', 'Welcome')
     @section('header')
     @include('frontend.layouts.header')
     @endsection
 
+    @section('styles')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <link rel="stylesheet" href="{{asset('assets/frontend/css/style2.css') }}" type="text/css" media="all" />
+    @endsection
 
-    <!-- CONTENT START -->
-    <div class="page-content">
-        <!-- SLIDER START -->
-        @include('frontend.slider')
-        <!-- SLIDER END -->
+<!-- CONTENT START -->
 
-        <!-- MARQUEE SCROLL -->
-        <div class="marquee-bg marquee">
-            <div class="TickerNews" id="T1">
-                <div class="ti_wrapper">
-                    <div class="ti_slide">
-                        <div class="ti_content">
-                            <div class="ti_news">
-                                <a href="#">
-                                    <img src="{{asset('assets/frontend/images/coin-icon/bitcoin.png') }}" alt="">
-                                    <span>BTC: </span><span class="bitcoin"></span><span class="text-white p-lr5 bitcoin-change"></span></a>
-                            </div>
+ <!-- SLIDER START -->
+ {{-- @include('frontend.slider') --}}
+ <!-- SLIDER END -->
 
 
-                            <div class="ti_news">
-                                <a href="#">
-                                    <img src="{{asset('assets/frontend/images/coin-icon/Ethereum.png') }}" alt="">
-                                    <span>ETH: </span><span class="ethereum"></span><span class="text-white p-lr5 ethereum-change"></span></a>
-                            </div>
-
-
-
-                            <div class="ti_news">
-                                <a href="#">
-                                    <img src="{{asset('assets/frontend/images/coin-icon/litecoin.png') }}" alt="">
-                                    <span>LTC: </span><span class="litecoin"></span><span class="text-white p-lr5 litecoin-change"></span></a>
-                            </div>
-
-
-
-
-                            <div class="ti_news">
-                                <a href="#">
-                                    <img src="{{asset('assets/frontend/images/coin-icon/tether.png') }}" alt="">
-                                    <span>TETH: </span><span class="tether">Ƀ 0.05590</span><span class="text-white p-lr5 tether-change"></span></a>
-                            </div>
-
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- MARQUEE SCROLL SECTION  END -->
-
-        <!-- OUR VALUE SECTION START -->
-
-        <div class="section-full themecolor-1">
-            <div class="container">
-                <div class="section-content ">
-                    <!-- COLL-TO ACTION START -->
-                    <div class="wt-subscribe-box">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-9 col-sm-9">
-                                    <div class="call-to-action-left p-tb20 ">
-                                        <h5 class="text-uppercase m-b10 font-weight-600">We strive to make the investment process seamless and accessible to all.
-                                            <br>At SECURE INVEST, we firmly believe that everyone has the potential to become an investor.</h5>
-
+ <!-- ============================================================== -->
+    <!-- Start -slider-area -->
+    <!-- ============================================================= -->
+    <div id="particles">
+        <div id="webcoderskull">
+            <div class="slider-area d-flex align-items-center" id="home">
+                <div class="container">
+                    <div class="row d-flex align-items-center">
+                        <div class="col-lg-6 col-md-6 slider-txt-top">
+                            <div class="single-slider-box">
+                                <div class="slider-content">
+                                    <div class="slider-title">
+                                        <h1>The Best Trading Cryptocurrency Resource</h1>
+                                        <p>Cryptography, encryption process of transforming information referred to as
+                                            plaintext) using done.</p>
                                     </div>
                                 </div>
-
-                                <div class="col-md-3">
-                                    <div class="call-to-action-right p-tb30">
-                                        <a href="{{ route('register') }}" class="site-button-secondry text-uppercase font-weight-600">
-                                            JOIN US
-                                        </a>
+                                <div class="slider-button">
+                                    <a href="#">Get Started Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="single-sliders-box">
+                                <div class="slider-thumb">
+                                    <img src="{{asset('assets/frontend/images/crypto-2.png') }}" alt="" />
+                                    <!-- <div class="shaps_img rotateme">
+                                        <img src="assets/images/crypto.png" alt="">
+                                    </div> -->
+                                    <div class="seps_img bounce-animate">
+                                        <img src="{{asset('assets/frontend/images/crypto-1.png') }}" alt="" />
                                     </div>
                                 </div>
                             </div>
@@ -88,268 +56,490 @@
                 </div>
             </div>
         </div>
-
-        <!-- OUR VALUE SECTION  END -->
-
-        <!-- WELCOME SECTION START -->
-        <div class="section-full home-about-section p-t80 bg-no-repeat bg-bottom-right themecolor-2" style="background-image:url(images/background/bg-coin.png)">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-5">
-                        <div class="wt-box text-left">
-                            <img src="{{ storage('pages/' . $welcome->image) }}" alt="">
-                        </div>
-                    </div>
-                    <div class="col-md-7">
-                        <div class="wt-right-part p-b80 text-left">
-                            <!-- TITLE START -->
-                            <div class="section-head text-left">
-                                <span class="wt-title-subline font-16 text-gray-dark m-b15">Trusted  Investment Project</span>
-                                <h2 class="text-uppercase">{{ $welcome->title }}</h2>
-                                <div class="wt-separator-outer">
-                                    <div class="wt-separator bg-primary"></div>
-                                </div>
-                            </div>
-                            <!-- TITLE END -->
-                            <div class="section-content">
-                                <div class="wt-box">
-                                    <p>
-                                        <strong>
-                                            {!! $welcome->content !!}
-                                        </strong>
-                                    </p>
-
-                                    <a href="{{ route('about') }}" class="site-button text-uppercase m-r15 site-button2">Read More</a>
-                                    <a href="{{ route('contact') }}" class="site-button-secondry text-uppercase">Contact us</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- WELCOME SECTION  END -->
-
-        <!-- WHY CHOOSE US SECTION START  -->
-
-        <div class="section-full themecolor-1 p-t90 p-b30  ">
-            <div class="container">
-                <!-- TITLE START-->
-                <div class="section-head text-center">
-                    <span class="wt-title-subline font-16 text-gray-dark m-b15">Our Benefit</span>
-                    <h2 class="text-uppercase">Why Choose Owara3m</h2>
-                    <div class="wt-separator-outer">
-                        <div class="wt-separator bg-primary"></div>
-                    </div>
-                    {!! $benefits->content !!}
-                </div>
-                <!-- TITLE END-->
-                <div class="section-content hover-block-outer" data-toggle="tab-hover">
-                    <div class="row">
-
-                        <div class="col-md-4 col-sm-12 m-b30  p-t30">
-
-
-                            @foreach ($benefits?->children as $key => $section)
-                            @if ($key % 2 == 0)
-
-                            <div class="wt-icon-box-wraper  right p-a20" data-target="#tab1" data-toggle="tab">
-                                <div class="icon-md text-primary">
-                                    <span class="icon-cell  text-primary"><img src="{{ storage('pages/' . $section->image) }}" alt=""></span>
-                                </div>
-                                <div class="icon-content">
-                                    <h4 class="wt-tilte text-uppercase">{{ $section->title }}</h4>
-                                    <p> {!! $section->content !!}</p>
-                                </div>
-                            </div>
-                            @endif
-                            @endforeach
-
-
-                        </div>
-
-                        <div class="col-md-4 col-sm-12 m-b30 circle-content-pic ">
-
-                            <div class="tab-content ">
-                                <div id="tab1" class="tab-pane active">
-                                    <div class="wt-box">
-                                        <div class="wt-media text-primary m-t60 text-center">
-                                            <img class="up-down-animation" src="{{asset('assets/frontend/images/ipad/banner.png')}}" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 col-sm-12 m-b30  p-t30 mob-m">
-
-                            @foreach ($benefits?->children as $key => $section)
-                            @if ($key % 2 != 0)
-
-                            <div class="wt-icon-box-wraper left p-a20 ">
-                                <div class="icon-md text-primary">
-                                    <span class="icon-cell  text-primary"><img src="{{ storage('pages/' . $section->image) }}" alt=""></span>
-                                </div>
-                                <div class="icon-content">
-                                    <h4 class="wt-tilte text-uppercase">{{ $section->title }}</h4>
-                                    <p> {!! $section->content !!}</p>
-                                </div>
-                            </div>
-                            @endif
-                            @endforeach
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- WHY CHOOSE US SECTION END -->
-
-        <!-- HOW IT WORK SECTION START  -->
-
-
-        <div class="section-full p-t50 p-b50 overlay-wraper bg-parallax clouds1 bg-repeat" data-stellar-background-ratio="0.5" style="background-image:url({{ asset('assets/frontend/images/background/bg-1.jpg') }});">
-            <div class="overlay-main themecolor-3 opacity-05"></div>
-            <div class="container ">
-
-                <div class="container ">
-                    <!-- TITLE START-->
-                    <div class="section-head text-center">
-                        <span class="wt-title-subline font-16 text-gray-dark m-b15">Three steps Owara3m</span>
-                        <h2 class="text-uppercase">How It Work</h2>
-                        <div class="wt-separator-outer">
-                            <div class="wt-separator bg-primary"></div>
-                        </div>
-                        {!! html_entity_decode($how_it_work->content) !!}
-                    </div>
-                    <!-- TITLE END-->
-                    <div class="section-content no-col-gap">
-                        <div class="row">
-
-                            @foreach ($how_it_work->children as $key => $section)
-                            @if ($key%2 == 0)
-                            <!-- COLUMNS 1 -->
-
-                            <div class="col-md-4 col-sm-4 step-number-block">
-                                <div class="wt-icon-box-wraper  p-a30 center themecolor-2 m-a5">
-                                    <div class="icon-lg text-primary m-b20">
-                                        <a href="#" class="icon-cell">
-                                            <img src="{{ storage('pages/' . $section->image) }}" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="icon-content">
-                                        <div class="step-number">{{ $key+1 }}</div>
-                                        <h4 class="wt-tilte text-uppercase font-weight-500">{{ $section->title }}</h4>
-                                        {!! html_entity_decode($section->content) !!}
-                                    </div>
-                                </div>
-                            </div>
-
-                            @else
-                            <!-- COLUMNS 2 -->
-                            <div class="col-md-4 col-sm-4 step-number-block">
-                                <div class="wt-icon-box-wraper  p-a30 center themecolor-3 m-a5 ">
-                                    <div class="icon-lg m-b20">
-                                        <a href="#" class="icon-cell">
-                                            <img src="{{ storage('pages/' . $section->image) }}" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="icon-content text-white">
-                                        <div class="step-number active">{{ $key+1 }}</div>
-                                        <h4 class="wt-tilte text-uppercase font-weight-500">{{ $section->title }}</h4>
-                                        {!! html_entity_decode($section->content) !!}
-                                    </div>
-                                </div>
-                            </div>
-                            @endif
-                            @endforeach
-
-
-                        </div>
-                    </div>
-
-                </div>
-
-
-            </div>
-        </div>
-
-        <!-- HOW IT WORK  SECTION END -->
-
-
-        <!-- SECTION CONTENT START -->
-        <div class="section-full no-col-gap bg-repeat">
-            <div class="container-fluid">
-
-                <div class="row">
-                    <div class="col-md-6 col-sm-6 themecolor-3 h-410">
-                        <div class="section-content p-tb60 p-r30 clearfix">
-                            <div class="wt-left-part any-query">
-                                <img src="{{asset('assets/frontend/images/any-query.png')}}" alt="">
-                                <div class="text-center p-t60">
-                                    <h3 class="text-uppercase font-weight-500 text-white">Any Query?</h3>
-                                    <div class="text-white">{!! $any_query->content !!}</div>
-                                    <h4 class="text-primary">support@owara3m.com</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-6 bg-primary h-410">
-                        <div class="section-content p-tb60 p-l30 clearfix">
-                            <div class="wt-right-part any-query-contact">
-                                <img src="{{asset('assets/frontend/images/any-query-contact.png')}}" alt="">
-                                <div class="text-center p-t60">
-                                    <h3 class="text-uppercase font-weight-500 text-white">Contact Us</h3>
-                                    <p class="text-white"><div class="text-white">{!! $contact_us->content !!}</div></p>
-                                    <h4 class="text-secondry">support@owara3m.com</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <!-- SECTION CONTENT  END -->
     </div>
+    <!--==================================================-->
+    <!-- Start brand-area -->
+    <!--==================================================-->
+    <div class="coin-slider brand-area">
+        <div class="container">
+            <div class="row top">
+                <div class="owl-carousel brand_list">
+                    <div class="col-lg-12">
+                        <div class="single-brand-box">
+                            <div class="brand-thumb">
+                                <img src="{{asset('assets/frontend/images/coin-icon/bitcoin(4).png') }}" alt="" />
+                                <span class="bitcoin text-white"></span> | <span class="bitcoin-change text-white"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="single-brand-box">
+                            <div class="brand-thumb">
+                                <img src="{{asset('assets/frontend/images/coin-icon/ethereum(3).png') }}" alt="" />
+                                <span class="ethereum text-white"></span> | <span
+                                    class="ethereum-change text-white"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="single-brand-box">
+                            <div class="brand-thumb">
+                                <img src="{{asset('assets/frontend/images/coin-icon/litecoin(7).png') }}" alt="" />
+                                <span class="text-white litecoin"></span> | <span
+                                    class="litecoin-change text-white"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="single-brand-box">
+                            <div class="brand-thumb">
+                                <img src="{{asset('assets/frontend/images/coin-icon/tether.png') }}" alt="" />
+                                <span class="tether text-white"></span> | <span class="text-white tether-change"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--==================================================-->
+    <!-- Start about-area -->
+    <!--==================================================-->
+    <div class="about-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="single-about-box">
+                        <div class="about-thumb bounce-animate" data-devil='pt:70'>
+                            <img src="{{asset('assets/frontend/images/crypto-3.png') }}" alt="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="single-about-box">
+                        <div class="section-title">
+                            <div class="sub-title">
+                                <h3>UNLOCK THE FUTURE OF WEALTH</h3>
+                            </div>
+                            <div class="main-title">
+                                <h1>Empower Your Prosperity in the Digital Frontier</h1>
+                            </div>
+                            <div class="section-text">
+                                <p>
+                                    Welcome to Coin1M – Your Portal to Crypto Prosperity! Dive into the world of digital
+                                    assets with confidence. Whether you're a seasoned investor or just starting, our
+                                    platform offers expert insights,
+                                    tools, and a community to help you navigate and thrive in the exciting realm of
+                                    crypto investments. Explore the future of finance with Coin1M – where possibilities
+                                    are limitless, and your financial
+                                    success is our priority.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="about-tmb">
+                                    <img src="{{asset('assets/frontend/images/about.png') }} " alt="" />
+                                    <div class="about-titles">
+                                        <h4>Binance Smart Chain</h4>
+                                    </div>
+                                </div>
+                                <div class="about-tmb">
+                                    <img src="{{asset('assets/frontend/images/about.png') }}" alt="" />
+                                    <div class="about-titles">
+                                        <h4>Coin Entherium</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="about-tmb">
+                                    <img src="{{asset('assets/frontend/images/about.png') }}" alt="" />
+                                    <div class="about-titles">
+                                        <h4>Exchange Money</h4>
+                                    </div>
+                                </div>
+                                <div class="about-tmb">
+                                    <img src="{{asset('assets/frontend/images/about.png') }} " alt="" />
+                                    <div class="about-titles">
+                                        <h4>OKEX Block Chain</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="about-button">
+                            <a href="#">learn more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--==================================================-->
+    <!-- Start feature-area -->
+    <!--==================================================-->
+    <div class="feature-area sftDetails" style="background: url('{{ asset('assets/frontend/images/tranding-6.jpg') }}');background-size: cover;background-position: center center;background-repeat: no-repeat;">
+        <div style="background: url('{{ asset('assets/frontend/images/sf/dynamic-hex.png') }}')top center/cover no-repeat;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="sections-title">
+                            <div class="sub-title">
+                                <h3>features</h3>
+                            </div>
+                            <div class="main-title">
+                                <h1>We Take Care Quality</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- start Investments Profit -->
+                <section id="invest_profit">
+                    <div class="containerSt">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="wrapInv">
+                                    <h4> Investments</h4>
+                                    <h6> <span class="counter">5407000.0000000</span></h6>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="wrapInv">
+                                    <h4> Profit Shared with users</h4>
+                                    <h6> <span class="counter">559764.8498661</span></h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div>
+                <div class="container">
+                    <!-- start Profit chart-->
+                    <section id="sftDetails" class="animations">
+                        <div class="fintecContainer">
+                            <div class="wrapperDetailsinside">
+                                <div class="middleSec">
+                                    <img src="{{asset('assets/frontend/images/sf/NewToken.png') }}" alt="NewToken" class="coinmidle" />
+                                    <img src="{{asset('assets/frontend/images/sf/Ellipse36.png') }}" alt="Ellipse36" class="roundIns change-width" />
+                                    <img src="{{asset('assets/frontend/images/sf/Ellipse35.png') }}" alt="Ellipse35" class="roundgradiant" />
+                                    <span class="dt i1 dt-round1"><span>10%</span></span>
+                                    <span class="dt i2 dt-round1"><span>2%</span></span>
+                                    <span class="dt i3  dt-round1"><span class="">2%</span></span>
+                                    <span class="dt i4  dt-round1"><span class="">1%</span></span>
+                                    <span class="dt i5 dt-round1"><span>12%</span></span>
+                                    <span class="dt i6 dt-round1"><span>25%</span></span>
+                                    <span class="dt i7 dt-round1"><span>10%</span></span>
+                                    <span class="dt i8 dt-round1"><span>8%</span></span>
+                                    <span class="dt i9 dt-round1"><span>12%</span></span>
+                                </div>
+                                <div class="leftitem RealEstate">
+                                    <div class="text">Real Estate</div>
+                                    <div class="imageIn"><img src='{{asset('assets/frontend/images/sf/house.png') }}'></div>
+                                </div>
+                                <div class="leftitem Plantations">
+                                    <div class="text">Plantations</div>
+                                    <div class="imageIn"><img src='{{asset('assets/frontend/images/sf/plantation.png') }}'></div>
+                                </div>
+                                <div class="leftitem DiamondMining">
+                                    <div class="text">Diamond Mining</div>
+                                    <div class="imageIn"><img src='{{asset('assets/frontend/images/sf/diamond.png') }}'></div>
+                                </div>
+                                <div class="leftitem WebProjects">
+                                    <div class="text">Web 3.0 Projects</div>
+                                    <div class="imageIn"><img src='{{asset('assets/frontend/images/sf/web.png') }}'></div>
+                                </div>
+                                <div class="rightitem ForexTrading">
+                                    <div class="imageIn"><img src='{{asset('assets/frontend/images/sf/candlestick.png') }}'></div>
+                                    <div class="text">Forex Trading</div>
+                                </div>
+                                <div class="rightitem CommodityTrading">
+                                    <div class="imageIn"><img src='{{asset('assets/frontend/images/sf/commodity.png') }}'></div>
+                                    <div class="text">Commodity Trading</div>
+                                </div>
+                                <div class="rightitem EquityTrading">
+                                    <div class="imageIn"><img src='{{asset('assets/frontend/images/sf/low.png') }}'></div>
+                                    <div class="text">Equity Trading</div>
+                                </div>
+                                <div class="rightitem CryptoSpot">
+                                    <div class="imageIn"><img src='{{asset('assets/frontend/images/sf/crypto-trading.png') }}'></div>
+                                    <div class="text">Crypto Spot</div>
+                                </div>
+                                <div class="rightitem CryptoDerivatives">
+                                    <div class="imageIn"><img src='{{asset('assets/frontend/images/sf/crypto.png') }}'></div>
+                                    <div class="text">Crypto Derivatives</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bcGradiant"></div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--==================================================-->
+    <!--How it work -->
+    <!--==================================================-->
+
+    <div class="feature-area style-one upper">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="sections-title">
+                        <div class="sub-title">
+                            <h3>Steps</h3>
+                        </div>
+                        <div class="main-title">
+                            <h1>How It Work</h1>
+                        </div>
+                        <div class="section-text">
+                            <p>Cryptocurrencies are used primarily outside existing banking and coin governmental
+                                institutions and are exchanged</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row bottom">
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-feature-box">
+                        <div class="feature-thumb">
+                            <img src="{{asset('assets/frontend/images/lock.png') }}" alt />
+                        </div>
+                        <div class="feature-title">
+                            <h3>SING UP AND SIGN IN</h3>
+                            <p>Professionally engineer customized sce vis innovative interfaces. Synergisticall
+                                sustainable infomediaries via</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-feature-box">
+                        <div class="feature-thumb">
+                            <img src="assets/images/tags.png {{asset('assets/frontend/images/tags.png') }}" alt />
+                        </div>
+                        <div class="feature-title">
+                            <h3>BUY INVESTMENT PACKAGES</h3>
+                            <p>Professionally engineer customized sce vis innovative interfaces. Synergisticall
+                                sustainable infomediaries via</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-feature-box">
+                        <div class="feature-thumb">
+                            <img src="{{asset('assets/frontend/images/money.png') }}" alt />
+                        </div>
+                        <div class="feature-title">
+                            <h3>WITHDRAW MONEY</h3>
+                            <p>Professionally engineer customized sce vis innovative interfaces. Synergisticall
+                                sustainable infomediaries via</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--==================================================-->
+    <!-- Start testimonial-area -->
+    <!--==================================================-->
+    <div class="testimonial-area" style="background: url('{{ asset('assets/frontend/images/tranding.jpg') }}');">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="sections-title">
+                        <div class="sub-title">
+                            <h3>testimonial</h3>
+                        </div>
+                        <div class="main-title">
+                            <h1>From Our Clients</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="owl-carousel testi_list">
+                    <div class="col-lg-12">
+                        <div class="single-testimonial-box">
+                            <div class="testimonial-thumb">
+                                <img src="{{asset('assets/frontend/images/crypto-8.png') }}" alt="" />
+                                <div class="testi-title">
+                                    <h2>alex john</h2>
+                                    <h4>founder</h4>
+                                </div>
+                            </div>
+                            <div class="testimonial-text">
+                                <p>Holisticly recaptiualiz collaborative deliverables rather than interactive
+                                    opportunities. Continually myoca web-enabled done.</p>
+                            </div>
+                            <div class="testimonial-icon">
+                                <ul>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i> <span>(4.5)</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="single-testimonial-box">
+                            <div class="testimonial-thumb">
+                                <img src="{{asset('assets/frontend/images/crypto-9.png') }}" alt="" />
+                                <div class="testi-title">
+                                    <h2>Anna Asler</h2>
+                                    <h4>Investor</h4>
+                                </div>
+                            </div>
+                            <div class="testimonial-text">
+                                <p>Holisticly recaptiualiz collaborative deliverables rather than interactive
+                                    opportunities. Continually myoca web-enabled done.</p>
+                            </div>
+                            <div class="testimonial-icon">
+                                <ul>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i> <span>(5)</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="single-testimonial-box">
+                            <div class="testimonial-thumb">
+                                <img src="{{asset('assets/frontend/images/crypto-7.png') }}" alt="" />
+                                <div class="testi-title">
+                                    <h2>Debra Hiles</h2>
+                                    <h4>Students</h4>
+                                </div>
+                            </div>
+                            <div class="testimonial-text">
+                                <p>Holisticly recaptiualiz collaborative deliverables rather than interactive
+                                    opportunities. Continually myoca web-enabled done.</p>
+                            </div>
+                            <div class="testimonial-icon">
+                                <ul>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i> <span>(4.5)</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="single-testimonial-box">
+                            <div class="testimonial-thumb">
+                                <img src="{{asset('assets/frontend/images/crypto-8.png') }}" alt="" />
+                                <div class="testi-title">
+                                    <h2>alex john</h2>
+                                    <h4>founder</h4>
+                                </div>
+                            </div>
+                            <div class="testimonial-text">
+                                <p>Holisticly recaptiualiz collaborative deliverables rather than interactive
+                                    opportunities. Continually myoca web-enabled done.</p>
+                            </div>
+                            <div class="testimonial-icon">
+                                <ul>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i> <span>(4.5)</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="single-testimonial-box">
+                            <div class="testimonial-thumb">
+                                <img src="{{asset('assets/frontend/images/crypto-9.png')}}" alt="" />
+                                <div class="testi-title">
+                                    <h2>Anna Asler</h2>
+                                    <h4>Investor</h4>
+                                </div>
+                            </div>
+                            <div class="testimonial-text">
+                                <p>Holisticly recaptiualiz collaborative deliverables rather than interactive
+                                    opportunities. Continually myoca web-enabled done.</p>
+                            </div>
+                            <div class="testimonial-icon">
+                                <ul>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i> <span>(5)</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--==================================================-->
+    <!-- Start call-do-action-area -->
+    <!--==================================================-->
+    <div class="call-do-action-area" style="background: url('{{ asset('assets/frontend/images/call-do.png') }}');">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="single-call-do-action-box">
+                        <div class="call-do-action-title">
+                            <h1>Explore the Next Crypto Ready to Selling</h1>
+                            <p>Credibly streamline premium innovation and client-focused the. Intrinsicly integrate
+                                end-to-end synergy whereas.</p>
+                        </div>
+                        <div class="call-do-button">
+                            <a href="#">Get Started Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="single-call-do-box">
+                        <div class="call-do-action-thumb">
+                            <img src="{{asset('assets/frontend/images/crypto-6.png') }}" alt="" />
+                            <div class="call-shap rotateme">
+                                <img src="{{asset('assets/frontend/images/crypto-4.png') }}" alt="" />
+                            </div>
+                            <div class="call-do-shap bounce-animate">
+                                <img src="{{asset('assets/frontend/images/crypto-5.png') }}" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <!-- CONTENT END -->
 
 
     @section('scripts')
 
-    <script type="text/javascript">
-        jQuery(function() {
-            var timer = !1;
-            _Ticker = jQuery("#T1").newsTicker();
-            _Ticker.on("mouseenter", function() {
-                var __self = this;
-                timer = setTimeout(function() {
-                    __self.pauseTicker();
-                }, 200);
-            });
-            _Ticker.on("mouseleave", function() {
-                clearTimeout(timer);
-                if (!timer) return !1;
-                this.startTicker();
-            });
-        });
+    <script src="{{ asset('assets/frontend/js/particls.chart1.js') }}"></script>
 
+     <!-- Coin prices API js -->
+     <script src="{{ asset('assets/frontend/js/coin_prices.js') }}"></script>
+     <script src="{{ asset('assets/frontend/js/counterup.min.js') }}"></script>
+     <script src="{{ asset('assets/frontend/js/sf.js') }}"></script>
+     
+ 
+     <script src="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/owl.carousel.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+     <script>
+        inViewport("animations");
     </script>
-
-    <script src="{{asset('assets/frontend/plugins/revolution/revolution/js/jquery.themepunch.tools.min.js') }}"></script>
-    <script src="{{asset('assets/frontend/plugins/revolution/revolution/js/jquery.themepunch.revolution.min.js') }}"></script>
-
-    <!-- SLIDER REVOLUTION 5.0 EXTENSIONS  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->
-    <script src="{{asset('assets/frontend/plugins/revolution/revolution/js/extensions/revolution-plugin.js') }}"></script>
-    <!-- REVOLUTION SLIDER FUNCTION  ===== -->
-    <script src="{{ asset('assets/frontend/js/rev-script-1.js') }}"></script>
-    <script src="{{ asset('assets/frontend/js/coin_prices.js') }}"></script>
-
     @endsection
 
 </x-frontend.layouts.app>
