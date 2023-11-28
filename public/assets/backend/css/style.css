@@ -108,19 +108,24 @@
     --border-radius: 6px;
     --br-nav-tab: 6px;
     --br-input: 10px;
-    --bg-color: #171b26;
+    /* --bg-color: #171b26; */
+    --bg-color: #23233d;
 
-    --bg-color-card: #252a3d;
+    /* --bg-color-card: #252a3d; */
+    --bg-color-card: #0c0d21;
     --box-shadow-card: 6px 6px 6px #06080d;
     --border-radius-card: 15px;
 
-    --bg-color-deznav: #252a3d;
+    /* --bg-color-deznav: #252a3d; */
+     --bg-color-deznav: #0c0d21;
 
-    --bg-color-nav-header: #252a3d;
+    /* --bg-color-nav-header: #252a3d; */
+    --bg-color-nav-header: #0c0d21;
     --border-top-left-radius-nav-header: 6px;
     --border-top-right-radius-nav-header: 6px;
 
-    --bg-color-header: #3a3f50;
+    --bg-color-header: #23233b;
+    /* --bg-color-header: #3a3f50; */
     --bg-color-footer: #3a3f50;
 
     --bg-color-dz-side-menu: #3a3f50;
@@ -12743,7 +12748,7 @@ label {
     top: 0;
     background-color: var(--bg-color-nav-header);
     transition: all .2s ease;
-    z-index: 5;
+    z-index: 10;
     /*  .logo-abbr {
         max-width: 2.9375rem;
 		@include respond('laptop') {
@@ -12808,8 +12813,15 @@ label {
 }
 
 .nav-header .logo-abbr {
-    width: 45px;
+    /* width: 45px; */
+    width: 60px;
 }
+
+.nav-header .brand-title{
+    /* width: 45px; */
+    width: 80px;
+}
+
 
 .nav-header .logo-color {
     display: none;
@@ -49469,4 +49481,9 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
     margin-top: -26px;
     margin-left: 4px ;
 
+}
+
+.nav-username{
+    text-align: center;
+    margin-top: -18px !important;
 }

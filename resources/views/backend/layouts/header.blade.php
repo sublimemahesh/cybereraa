@@ -6,6 +6,7 @@
         <img src="{{ asset('assets/backend/images/logo/logo-color.png') }}" class="logo-color" alt="">
         <img src="{{ asset('assets/backend/images/logo/logo-text-color.png') }}" class="brand-title color-title" alt="">
     </a>
+    <h3 class="nav-username">@yield('header-title2')</h3>
     <div class="nav-control">
         <div class="hamburger">
             <span class="line"></span><span class="line"></span><span class="line"></span>
@@ -32,9 +33,9 @@
             <div class="collapse navbar-collapse justify-content-between">
                 <div class="header-left">
                     <div class="dashboard_bar ">
-                        <h3 class="h3-txt">@yield('header-title')</h3>
+                        {{-- <h3 class="h3-txt">@yield('header-title')</h3> --}}
                         <span class="txte-right">
-                            @yield('header-title2')
+                            {{-- @yield('header-title2') --}}
                         </span>
                     </div>
                 </div>
