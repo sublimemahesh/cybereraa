@@ -88,7 +88,7 @@
     <!--********************************** Content body start ***********************************-->
     <div class="content-body">
         <!-- row -->
-        <div class="container-fluid">
+        <div class="container-fluid cf-mt">
 
             {{-- <div class="page-titles">
                 <ol class="breadcrumb">

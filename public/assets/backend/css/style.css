@@ -49487,3 +49487,15 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
     text-align: center;
     margin-top: -18px !important;
 }
+
+.card-mt-10{
+    margin-top: 10px;
+}
+
+.br-dashboard-card{
+    border-radius: 5px !important;
+}
+
+.cf-mt{
+    margin-top: -60px !important;
+}
