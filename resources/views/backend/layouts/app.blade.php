@@ -90,7 +90,7 @@
         <!-- row -->
         <div class="container-fluid">
 
-            <div class="page-titles">
+            {{-- <div class="page-titles">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
                         <a href="{{ route('/') }}">
@@ -102,7 +102,7 @@
                     </li>
                     @yield('breadcrumb-items')
                 </ol>
-            </div>
+            </div> --}}
             <div id="alert-container">
                 <x-jet-validation-errors class="alert alert-danger mb-4"/>
                 @if (session('success'))
