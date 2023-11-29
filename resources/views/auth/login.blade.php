@@ -1,8 +1,8 @@
-@extends('auth.layouts.auth')
+@extends('auth.layouts.auth') 
 @section('title', 'Login')
 @section('contents')
 
-    <div class="row justify-content-center main-register-form-style">
+    <div class="row justify-content-center main-register-form-style" >
         <div class="col-md-6">
             <div class="authincation-content">
                 <div class="row no-gutters">
