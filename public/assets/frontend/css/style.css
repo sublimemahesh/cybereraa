@@ -236,8 +236,8 @@ div#sticky-header:hover .sub-menu {
     left: 300px;
     height: 100%;
     width: 100%;
-    /* background: url(assets/images/about-1.png); */
-    background: url('http://localhost/coin1m/public/assets/frontend/images/about-1.png');
+    background: url(../images/about-1.png);
+    /* background: url('http://localhost/coin1m/public/assets/frontend/images/about-1.png'); */
 
     background-repeat: no-repeat;
 }
@@ -334,7 +334,7 @@ div#sticky-header:hover .sub-menu {
     left: -90px;
     height: 100%;
     width: 100%;
-    background: url(assets/images/btn-shape.png);
+    background: url(../images/btn-shape.png);
     background-repeat: no-repeat;
     background-position: center;
     opacity: 0;
@@ -518,7 +518,7 @@ h1.bottoms {
 <!-- Start  slider-area   Css -->
 <!-- ============================================================== -->*/
 .slider-area {
-    background: url(assets/images/tranding.jpg);
+    /* background: url(assets/images/tranding.jpg); */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -563,7 +563,7 @@ h1.bottoms {
     left: -90px;
     height: 100%;
     width: 100%;
-    background: url(assets/images/btn-shape.png);
+    background: url(../images/btn-shape.png);
     background-repeat: no-repeat;
     background-position: center;
     opacity: 0;
@@ -671,7 +671,7 @@ h1.bottoms {
     left: -90px;
     height: 100%;
     width: 100%;
-    background: url(assets/images/btn-shape.png);
+    background: url(../images/btn-shape.png);
     background-repeat: no-repeat;
     background-position: center;
     opacity: 0;
@@ -704,8 +704,8 @@ h1.bottoms {
     left: 100px;
     height: 100%;
     width: 100%;
-    /* background: url(assets/images/about-1.png); */
-    background: url('http://localhost/coin1m/public/assets/frontend/images/about-1.png');
+    background: url(../images/about-1.png);
+    /* background: url('http://localhost/coin1m/public/assets/frontend/images/about-1.png'); */
 
     background-repeat: no-repeat;
 }
@@ -930,7 +930,7 @@ h1.bottoms {
     left: -90px;
     height: 100%;
     width: 100%;
-    background: url(assets/images/btn-shape.png);
+    background: url(../images/btn-shape.png);
     background-repeat: no-repeat;
     background-position: center;
     opacity: 0;
@@ -959,8 +959,8 @@ h1.bottoms {
     left: 86px;
     height: 100%;
     width: 100%;
-    /* background: url(assets/images/about-1.png); */
-    background: url('http://localhost/coin1m/public/assets/frontend/images/about-1.png');
+    background: url(../images/about-1.png);
+    /* background: url('http://localhost/coin1m/public/assets/frontend/images/about-1.png'); */
 
     background-repeat: no-repeat;
 }
@@ -1373,9 +1373,9 @@ span.fill {
     left: 62px;
     height: 100%;
     width: 100%;
-    background: url('http://localhost/coin1m/public/assets/frontend/images/about-1.png');
+    /* background: url('http://localhost/coin1m/public/assets/frontend/images/about-1.png'); */
 
-    /* background: url(assets/images/about-1.png); */
+    background: url(../images/about-1.png);
     background-repeat: no-repeat;
 }
 .blog-area .sub-title h3::after {
@@ -1852,7 +1852,7 @@ span.fill {
     left: -90px;
     height: 100%;
     width: 100%;
-    background: url(assets/images/btn-shape.png);
+    background: url(../images/btn-shape.png);
     background-repeat: no-repeat;
     background-position: center;
     opacity: 0;
@@ -1884,8 +1884,8 @@ span.fill {
     left: 66px;
     height: 100%;
     width: 100%;
-    /* background: url(assets/images/about-1.png); */
-    background: url('http://localhost/coin1m/public/assets/frontend/images/about-1.png');
+    background: url(../images/about-1.png);
+    /* background: url('http://localhost/coin1m/public/assets/frontend/images/about-1.png'); */
 
     background-repeat: no-repeat;
 }
@@ -1897,8 +1897,8 @@ span.fill {
     left: 74px;
     height: 100%;
     width: 100%;
-    /* background: url(assets/images/about-1.png); */
-    background: url('http://localhost/coin1m/public/assets/frontend/images/about-1.png');
+    background: url(../images/about-1.png);
+    /* background: url('http://localhost/coin1m/public/assets/frontend/images/about-1.png'); */
 
     background-repeat: no-repeat;
 }
@@ -2031,8 +2031,8 @@ span.more {
     margin: 0 auto 0;
     height: 100%;
     width: 100%;
-    background: url('http://localhost/coin1m/public/assets/frontend/images/about-1.png');
-    /* background: url(assets/images/about-1.png); */
+    /* background: url('http://localhost/coin1m/public/assets/frontend/images/about-1.png'); */
+    background: url(../images/about-1.png);
     background-repeat: no-repeat;
 }
 .feature-area .sections-title .sub-title h3::after {
@@ -2129,8 +2129,8 @@ span.more {
     margin: 0 auto 0;
     height: 100%;
     width: 100%;
-    /* background: url(assets/images/about-1.png); */
-    background: url('http://localhost/coin1m/public/assets/frontend/images/about-1.png');
+    background: url(../images/about-1.png);
+    /* background: url('http://localhost/coin1m/public/assets/frontend/images/about-1.png'); */
 
     background-repeat: no-repeat;
 }
@@ -2163,7 +2163,7 @@ span.more {
     left: 0;
     height: 100%;
     width: 100%;
-    background: url(assets/images/tranding-2.png);
+    background: url(../images/tranding-2.png);
     opacity: 0;
     z-index: -1;
     transition: .5s;
@@ -2261,7 +2261,7 @@ span.more {
     left: -90px;
     height: 100%;
     width: 100%;
-    background: url(assets/images/btn-shape.png);
+    background: url(../images/btn-shape.png);
     background-repeat: no-repeat;
     background-position: center;
     opacity: 0;
@@ -2712,43 +2712,6 @@ span.more {
     background: #725BEC;
     border-radius: 50px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /* rotateme*/
@@ -3302,8 +3265,8 @@ div#particles .slider-thumb {
     left: 320px;
     height: 100%;
     width: 100%;
-    /* background: url(assets/images/about-1.png); */
-    background: url('http://localhost/coin1m/public/assets/frontend/images/about-1.png');
+    background: url(../images/about-1.png);
+    /* background: url('http://localhost/coin1m/public/assets/frontend/images/about-1.png'); */
 
     background-repeat: no-repeat;
 }
