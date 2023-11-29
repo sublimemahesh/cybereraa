@@ -6,7 +6,6 @@
     @endsection
 
     @section('styles')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <link rel="stylesheet" href="{{asset('assets/frontend/css/style2.css') }}" type="text/css" media="all" />
     @endsection
 
@@ -59,7 +58,7 @@
     </div>
     <!--==================================================-->
     <!-- Start brand-area -->
-    <!--==================================================--> 
+    <!--==================================================-->
     <div class="coin-slider brand-area">
         <div class="container">
             <div class="row top" style="background: url('{{ asset('assets/frontend/images/tranding-5.png') }}');  background-repeat: no-repeat;">
@@ -526,16 +525,15 @@
 
     @section('scripts')
 
-    <script src="{{ asset('assets/frontend/js/particls.chart1.js') }}"></script>
-
+     <!-- particls js -->
+     <script src="{{ asset('assets/frontend/js/particls.chart1.js') }}"></script>
      <!-- Coin prices API js -->
      <script src="{{ asset('assets/frontend/js/coin_prices.js') }}"></script>
      <script src="{{ asset('assets/frontend/js/counterup.min.js') }}"></script>
      <script src="{{ asset('assets/frontend/js/sf.js') }}"></script>
-     
- 
-     <script src="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/owl.carousel.min.js"></script>
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
 
      <script>
         inViewport("animations");
