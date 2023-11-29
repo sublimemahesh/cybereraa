@@ -279,7 +279,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
     });
 
     // USER ROUTES
-    Route::group(["prefix" => "user", 'middleware' => ['role:user', 'mobile_verified'], "as" => 'user.'], function () {
+    Route::group(["prefix" => "user", 'middleware' => ['role:user'/*, 'mobile_verified'*/], "as" => 'user.'], function () {
         Route::get('dashboard', 'User\DashboardController@index')->name('dashboard');
 
         // KYC

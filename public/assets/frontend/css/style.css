@@ -80,7 +80,7 @@
     color: #715AEB;
 }
 .heder-menu ul li:hover .sub-menu {
-    left: ;
+    /*left: ;*/
     top:93px;
     opacity: 1;
     visibility: visible;
