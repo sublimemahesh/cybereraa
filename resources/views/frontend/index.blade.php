@@ -9,14 +9,14 @@
     <link rel="stylesheet" href="{{asset('assets/frontend/css/style2.css') }}" type="text/css" media="all" />
     @endsection
 
-<!-- CONTENT START -->
+    <!-- CONTENT START -->
 
- <!-- SLIDER START -->
- {{-- @include('frontend.slider') --}}
- <!-- SLIDER END -->
+    <!-- SLIDER START -->
+    {{-- @include('frontend.slider') --}}
+    <!-- SLIDER END -->
 
 
- <!-- ============================================================== -->
+    <!-- ============================================================== -->
     <!-- Start -slider-area -->
     <!-- ============================================================= -->
     <div id="particles">
@@ -75,8 +75,7 @@
                         <div class="single-brand-box">
                             <div class="brand-thumb">
                                 <img src="{{asset('assets/frontend/images/coin-icon/ethereum(3).png') }}" alt="" />
-                                <span class="ethereum text-white"></span> | <span
-                                    class="ethereum-change text-white"></span>
+                                <span class="ethereum text-white"></span> | <span class="ethereum-change text-white"></span>
                             </div>
                         </div>
                     </div>
@@ -84,8 +83,7 @@
                         <div class="single-brand-box">
                             <div class="brand-thumb">
                                 <img src="{{asset('assets/frontend/images/coin-icon/litecoin(7).png') }}" alt="" />
-                                <span class="text-white litecoin"></span> | <span
-                                    class="litecoin-change text-white"></span>
+                                <span class="text-white litecoin"></span> | <span class="litecoin-change text-white"></span>
                             </div>
                         </div>
                     </div>
@@ -102,7 +100,7 @@
         </div>
     </div>
 
-<!--==================================================-->
+    <!--==================================================-->
     <!-- Start about-area -->
     <!--==================================================-->
     <div class="about-area">
@@ -177,106 +175,135 @@
     <!--==================================================-->
     <!-- Start feature-area -->
     <!--==================================================-->
-    <div class="feature-area sftDetails" style="background: url('{{ asset('assets/frontend/images/tranding-6.jpg') }}');background-size: cover;background-position: center center;background-repeat: no-repeat;">
-        <div style="background: url('{{ asset('assets/frontend/images/sf/dynamic-hex.png') }}')top center/cover no-repeat;">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="sections-title">
-                            <div class="sub-title">
-                                <h3>features</h3>
-                            </div>
-                            <div class="main-title">
-                                <h1>We Take Care Quality</h1>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <section class='sftDetails-sec' style="background: url('{{ asset('assets/frontend/images/sf/bg.jpg') }}');top center/cover no-repeat;">
 
-                <!-- start Investments Profit -->
-                <section id="invest_profit">
-                    <div class="containerSt">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="wrapInv">
-                                    <h4> Investments</h4>
-                                    <h6> <span class="counter">5407000.0000000</span></h6>
+        <div class="feature-area " style="background: url('{{ asset('assets/frontend/images/sf/net-sf.png') }}');top center/cover no-repeat;">
+            <div>
+                <div class="container" data-devil='mb:200'>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="sections-title">
+                                <div class="sub-title">
+                                    <h3>features</h3>
                                 </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="wrapInv">
-                                    <h4> Profit Shared with users</h4>
-                                    <h6> <span class="counter">559764.8498661</span></h6>
+                                <div class="main-title">
+                                    <h1>We Take Care Quality</h1>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
-            </div>
-            <div>
-                <div class="container">
-                    <!-- start Profit chart-->
-                    <section id="sftDetails" class="animations">
-                        <div class="fintecContainer">
-                            <div class="wrapperDetailsinside">
-                                <div class="middleSec">
-                                    <img src="{{asset('assets/frontend/images/sf/NewToken.png') }}" alt="NewToken" class="coinmidle" />
-                                    <img src="{{asset('assets/frontend/images/sf/Ellipse36.png') }}" alt="Ellipse36" class="roundIns change-width" />
-                                    <img src="{{asset('assets/frontend/images/sf/Ellipse35.png') }}" alt="Ellipse35" class="roundgradiant" />
-                                    <span class="dt i1 dt-round1"><span>10%</span></span>
-                                    <span class="dt i2 dt-round1"><span>2%</span></span>
-                                    <span class="dt i3  dt-round1"><span class="">2%</span></span>
-                                    <span class="dt i4  dt-round1"><span class="">1%</span></span>
-                                    <span class="dt i5 dt-round1"><span>12%</span></span>
-                                    <span class="dt i6 dt-round1"><span>25%</span></span>
-                                    <span class="dt i7 dt-round1"><span>10%</span></span>
-                                    <span class="dt i8 dt-round1"><span>8%</span></span>
-                                    <span class="dt i9 dt-round1"><span>12%</span></span>
+
+                    <!-- start Investments Profit -->
+                    <section id="invest_profit">
+                        <div class="containerSt">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="rightitem counter-number">
+                                        <div class="imageIn"><img src='{{asset('assets/frontend/images/sf/members.png') }}'></div>
+                                        <div>
+                                            <div class="text counter">35,000</div>
+                                            <span class="counter-txt">OUR FAMILY MEMBERS</span>
+                                        </div>
+
+                                    </div>
+
                                 </div>
-                                <div class="leftitem RealEstate">
-                                    <div class="text">Real Estate</div>
-                                    <div class="imageIn"><img src='{{asset('assets/frontend/images/sf/house.png') }}'></div>
+                                <div class="col-sm-4">
+
+                                    <div class="rightitem counter-number">
+                                        <div class="imageIn"><img src='{{asset('assets/frontend/images/sf/join-members.png') }}'></div>
+                                        <div>
+                                            <div class="text counter">750</div>
+                                            <span class="counter-txt">TODAY JOIN FAMILY</span>
+                                        </div>
+
+                                    </div>
+
+
                                 </div>
-                                <div class="leftitem Plantations">
-                                    <div class="text">Plantations</div>
-                                    <div class="imageIn"><img src='{{asset('assets/frontend/images/sf/plantation.png') }}'></div>
-                                </div>
-                                <div class="leftitem DiamondMining">
-                                    <div class="text">Diamond Mining</div>
-                                    <div class="imageIn"><img src='{{asset('assets/frontend/images/sf/diamond.png') }}'></div>
-                                </div>
-                                <div class="leftitem WebProjects">
-                                    <div class="text">Web 3.0 Projects</div>
-                                    <div class="imageIn"><img src='{{asset('assets/frontend/images/sf/web.png') }}'></div>
-                                </div>
-                                <div class="rightitem ForexTrading">
-                                    <div class="imageIn"><img src='{{asset('assets/frontend/images/sf/candlestick.png') }}'></div>
-                                    <div class="text">Forex Trading</div>
-                                </div>
-                                <div class="rightitem CommodityTrading">
-                                    <div class="imageIn"><img src='{{asset('assets/frontend/images/sf/commodity.png') }}'></div>
-                                    <div class="text">Commodity Trading</div>
-                                </div>
-                                <div class="rightitem EquityTrading">
-                                    <div class="imageIn"><img src='{{asset('assets/frontend/images/sf/low.png') }}'></div>
-                                    <div class="text">Equity Trading</div>
-                                </div>
-                                <div class="rightitem CryptoSpot">
-                                    <div class="imageIn"><img src='{{asset('assets/frontend/images/sf/crypto-trading.png') }}'></div>
-                                    <div class="text">Crypto Spot</div>
-                                </div>
-                                <div class="rightitem CryptoDerivatives">
-                                    <div class="imageIn"><img src='{{asset('assets/frontend/images/sf/crypto.png') }}'></div>
-                                    <div class="text">Crypto Derivatives</div>
+                                <div class="col-sm-4">
+
+                                    <div class="rightitem counter-number">
+                                        <div class="imageIn"><img src='{{asset('assets/frontend/images/sf/income-members.png') }}'></div>
+                                        <div>
+                                            <div class="text counter">1,935,000</div>
+                                            <span class="counter-txt">MEMBERS INCOME</span>
+                                        </div>
+
+                                    </div>
+
+
+
                                 </div>
                             </div>
                         </div>
-                        <div class="bcGradiant"></div>
                     </section>
+                </div>
+                <div>
+                    <div class="container">
+                        <!-- start Profit chart-->
+                        <section id="sftDetails" class="animations">
+                            <div class="fintecContainer">
+                                <div class="wrapperDetailsinside">
+                                    <div class="middleSec">
+                                        <img src="{{asset('assets/frontend/images/sf/NewToken.png') }}" alt="NewToken" class="coinmidle" />
+                                        <img src="{{asset('assets/frontend/images/sf/Ellipse36.png') }}" alt="Ellipse36" class="roundIns change-width" />
+                                        <img src="{{asset('assets/frontend/images/sf/Ellipse35.png') }}" alt="Ellipse35" class="roundgradiant" />
+                                        <span class="dt i1 dt-round1"><span>15%</span></span>
+                                        <span class="dt i2 dt-round1"><span>10%</span></span>
+                                        <span class="dt i3  dt-round1"><span class="">05%</span></span>
+                                        <!-- <span class="dt i4  dt-round1"><span class="">1%</span></span> -->
+                                        <span class="dt i5 dt-round1"><span>05%</span></span>
+                                        <span class="dt i6 dt-round1"><span>35%</span></span>
+                                        <span class="dt i7 dt-round1"><span>20%</span></span>
+                                        <span class="dt i8 dt-round1"><span>05%</span></span>
+                                        <span class="dt i9 dt-round1"><span>05%</span></span>
+                                    </div>
+                                    <div class="leftitem RealEstate">
+                                        <div class="text">REAL ESTATE</div>
+                                        <div class="imageIn"><img src='{{asset('assets/frontend/images/sf/house.png')}}'></div>
+                                    </div>
+                                    <div class="leftitem Plantations">
+                                        <div class="text">SPOT TRADING</div>
+                                        <div class="imageIn"><img src='{{asset('assets/frontend/images/sf/trophy.png')}}'></div>
+                                    </div>
+                                    <div class="leftitem DiamondMining">
+                                        <div class="text">NFT HOLD</div>
+                                        <div class="imageIn"><img src='{{asset('assets/frontend/images/sf/nft.png')}}'></div>
+                                    </div>
+                                    <!-- <div class="leftitem WebProjects">
+                                        <div class="text">Web 3.0 Projects</div>
+                                        <div class="imageIn"><img src='./assets/images/sf/web.png'></div>
+                                    </div> -->
+                                    <div class="rightitem ForexTrading">
+                                        <div class="imageIn"><img src='{{asset('assets/frontend/images/sf/crypto-trading.png')}}'></div>
+                                        <div class="text"> CRYPTO TRADING </div>
+                                    </div>
+                                    <div class="rightitem CommodityTrading">
+                                        <div class="imageIn"><img src='{{asset('assets/frontend/images/sf/candlestick.png')}}'></div>
+                                        <div class="text">FOREX TRADING</div>
+                                    </div>
+                                    <div class="rightitem EquityTrading">
+                                        <div class="imageIn"><img src='{{asset('assets/frontend/images/sf/commodity.png')}}'></div>
+                                        <div class="text">COMMODITY TRADING</div>
+                                    </div>
+                                    <div class="rightitem CryptoSpot">
+                                        <div class="imageIn"><img src='{{asset('assets/frontend/images/sf/plantation.png')}}'></div>
+                                        <div class="text">PLANTATION</div>
+                                    </div>
+                                    <div class="rightitem CryptoDerivatives">
+                                        <div class="imageIn"><img src='{{asset('assets/frontend/images/sf/liquidity.png')}}'></div>
+                                        <div class="text">LIQUIDITY SUPPLY</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bcGradiant"></div>
+                        </section>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
     <!--==================================================-->
     <!--How it work -->
     <!--==================================================-->
@@ -525,18 +552,19 @@
 
     @section('scripts')
 
-     <!-- particls js -->
-     <script src="{{ asset('assets/frontend/js/particls.chart1.js') }}"></script>
-     <!-- Coin prices API js -->
-     <script src="{{ asset('assets/frontend/js/coin_prices.js') }}"></script>
-     <script src="{{ asset('assets/frontend/js/counterup.min.js') }}"></script>
-     <script src="{{ asset('assets/frontend/js/sf.js') }}"></script>
+    <!-- particls js -->
+    <script src="{{ asset('assets/frontend/js/particls.chart1.js') }}"></script>
+    <!-- Coin prices API js -->
+    <script src="{{ asset('assets/frontend/js/coin_prices.js') }}"></script>
+    <script src="{{ asset('assets/frontend/js/counterup.min.js') }}"></script>
+    <script src="{{ asset('assets/frontend/js/sf.js') }}"></script>
 
 
 
 
-     <script>
+    <script>
         inViewport("animations");
+
     </script>
     @endsection
 
