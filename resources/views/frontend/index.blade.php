@@ -34,7 +34,7 @@
                                     </div>
                                 </div>
                                 <div class="slider-button">
-                                    <a href="#">Get Started Now</a>
+                                    <a href="{{ route('register')}}">Get Started Now</a>
                                 </div>
                             </div>
                         </div>
@@ -524,7 +524,7 @@
                                 end-to-end synergy whereas.</p>
                         </div>
                         <div class="call-do-button">
-                            <a href="#">Get Started Now</a>
+                            <a href="{{ route('register')}}">Get Started Now</a>
                         </div>
                     </div>
                 </div>
