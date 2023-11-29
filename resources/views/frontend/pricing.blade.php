@@ -50,7 +50,48 @@
                     </div>
                 </div>
             </div>
+            
             <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12 pt-left pl-0 pr-0">
+                    <div class="pricing-single-box">
+                        <!-- pricing top -->
+                        <div class="pricing-top-ber">
+                            <div class="pricing-head">
+                                <div class="pricing-title">
+                                    <h3>BASIC</h3>
+                                </div>
+                            </div>  
+                        </div>
+                        <div class="pricing-items">
+                            <div class="pricing-items-title">
+                                <h3>coin1M</h3>
+                                <p>[ BASIC 01 ]</p>
+                            </div>
+                            <div class="pricing-items-center">
+                                <span class="curencyp">USDT</span>
+                                <span class="tk">100</span>
+                                <!-- <span class="monthp"> / 12 Month</span> -->
+                            </div>
+                        </div>
+                        <div class="pricing-boody">
+                            <div class="pricing-featur">
+                                <ul>
+                                    <li><span><i class="fas fa-check"></i></span>Within Investment Period</li>
+                                    <li><span><i class="fas fa-check"></i></span>Gas Fee USDT 10</li>
+                                    <li><span><i class="fas fa-check"></i></span> 0.4% - 1.3% Daily Profit</li>
+                                    <!-- <li><span><i class="fas fa-check"></i></span> Dedicated Supports</li> -->
+                                    <li class="price-icon-text"><span class="price-icon-text"><i
+                                                class="fi fi-rr-cross"></i></span> Lifetime Gurenty</li>
+                                </ul>
+                            </div>
+                            <div class="pricing-button">
+                                <a href="#">Purches Now</a>
+                            </div>
+                            <div class="pricing-hide"></div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-lg-4 col-md-6 col-sm-12 pt-left pl-0 pr-0">
                     <div class="pricing-single-box">
                         <!-- pricing top -->
@@ -63,22 +104,22 @@
                         </div>
                         <div class="pricing-items">
                             <div class="pricing-items-title">
-                                <h3>Powerful Design</h3>
-                                <p>[Elementor Pro]</p>
+                                <h3>coin1M</h3>
+                                <p>[ BASIC 02 ]</p>
                             </div>
                             <div class="pricing-items-center">
-                                <span class="curencyp">$</span>
-                                <span class="tk">5.68</span>
-                                <span class="monthp"> / Project</span>
+                                <span class="curencyp">USDT</span>
+                                <span class="tk">250</span>
+                                <!-- <span class="monthp"> / 12 Month</span> -->
                             </div>
                         </div>
                         <div class="pricing-boody">
                             <div class="pricing-featur">
                                 <ul>
-                                    <li><span><i class="fas fa-check"></i></span> Wordpress Installation</li>
-                                    <li><span><i class="fas fa-check"></i></span> Theme Upload & Customize</li>
-                                    <li><span><i class="fas fa-check"></i></span> Server Installation</li>
-                                    <li><span><i class="fas fa-check"></i></span> Dedicated Supports</li>
+                                    <li><span><i class="fas fa-check"></i></span>Within Investment Period</li>
+                                    <li><span><i class="fas fa-check"></i></span>Gas Fee USDT 10</li>
+                                    <li><span><i class="fas fa-check"></i></span> 0.4% - 1.3% Daily Profit</li>
+                                    <!-- <li><span><i class="fas fa-check"></i></span> Dedicated Supports</li> -->
                                     <li class="price-icon-text"><span class="price-icon-text"><i
                                                 class="fi fi-rr-cross"></i></span> Lifetime Gurenty</li>
                                 </ul>
@@ -90,88 +131,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 pt-left pl-0 pr-0">
-                    <div class="pricing-single-box active">
-                        <!-- pricing top -->
-                        <div class="pricing-top-ber">
-                            <div class="pricing-head">
-                                <div class="pricing-title">
-                                    <h3>STANDARD</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pricing-items">
-                            <div class="pricing-items-title">
-                                <h3>Wallet Developed</h3>
-                                <p>[Elementor Pro]</p>
-                            </div>
-                            <div class="pricing-items-center">
-                                <span class="curencyp">$</span>
-                                <span class="tk">9.83</span>
-                                <span class="monthp"> / Project</span>
-                            </div>
-                        </div>
-                        <!-- pricing boody -->
-                        <div class="pricing-boody">
-                            <div class="pricing-featur">
-                                <ul>
-                                    <li><span><i class="fas fa-check"></i></span> Wordpress Installation</li>
-                                    <li><span><i class="fas fa-check"></i></span> Theme Upload & Customize</li>
-                                    <li><span><i class="fas fa-check"></i></span> Server Installation</li>
-                                    <li><span><i class="fas fa-check"></i></span> Dedicated Supports</li>
-                                    <li><span class="price-icon-text"><i class="fi fi-rr-cross"></i></span> Lifetime
-                                        Gurenty</li>
-                                </ul>
-                            </div>
-                            <div class="pricing-button">
-                                <a href="#">Purches Now</a>
-                            </div>
-                            <div class="pricing-hide"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 pt-left pl-0 pr-0">
-                    <div class="pricing-single-box">
-                        <!-- pricing top -->
-                        <div class="pricing-top-ber">
-                            <div class="pricing-head">
-                                <div class="pricing-title">
-                                    <h3>PREMIUM</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pricing-items">
-                            <div class="pricing-items-title">
-                                <h3>Money Exchange</h3>
-                                <p>[Elementor Pro]</p>
-                            </div>
-                            <div class="pricing-items-center">
-                                <span class="curencyp">$</span>
-                                <span class="tk">9.98</span>
-                                <span class="monthp"> / Project</span>
-                            </div>
-                        </div>
-                        <!-- pricing boody -->
-                        <div class="pricing-boody">
-                            <div class="pricing-featur">
-                                <ul>
-                                    <li><span><i class="fas fa-check"></i></span> Wordpress Installation</li>
-                                    <li><span><i class="fas fa-check"></i></span> Theme Upload & Customize</li>
-                                    <li><span><i class="fas fa-check"></i></span> Server Installation</li>
-                                    <li><span><i class="fas fa-check"></i></span> Dedicated Supports</li>
-                                    <li class="price-icon-text"><span class="price-icon-text"><i
-                                                class="fi fi-rr-cross"></i></span> Lifetime Gurenty</li>
-                                </ul>
-                            </div>
-                            <div class="pricing-button">
-                                <a href="#">Purches Now</a>
-                            </div>
-                            <div class="pricing-hide"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
+
                 <div class="col-lg-4 col-md-6 col-sm-12 pt-left pl-0 pr-0">
                     <div class="pricing-single-box">
                         <!-- pricing top -->
@@ -184,22 +144,22 @@
                         </div>
                         <div class="pricing-items">
                             <div class="pricing-items-title">
-                                <h3>Powerful Design</h3>
-                                <p>[Elementor Pro]</p>
+                                <h3>coin1M</h3>
+                                <p>[ BASIC 03 ]</p>
                             </div>
                             <div class="pricing-items-center">
-                                <span class="curencyp">$</span>
-                                <span class="tk">5.68</span>
-                                <span class="monthp"> / Project</span>
+                                <span class="curencyp">USDT</span>
+                                <span class="tk">500    </span>
+                                <!-- <span class="monthp"> / 12 Month</span> -->
                             </div>
                         </div>
                         <div class="pricing-boody">
                             <div class="pricing-featur">
                                 <ul>
-                                    <li><span><i class="fas fa-check"></i></span> Wordpress Installation</li>
-                                    <li><span><i class="fas fa-check"></i></span> Theme Upload & Customize</li>
-                                    <li><span><i class="fas fa-check"></i></span> Server Installation</li>
-                                    <li><span><i class="fas fa-check"></i></span> Dedicated Supports</li>
+                                    <li><span><i class="fas fa-check"></i></span>Within Investment Period</li>
+                                    <li><span><i class="fas fa-check"></i></span>Gas Fee USDT 10</li>
+                                    <li><span><i class="fas fa-check"></i></span> 0.4% - 1.3% Daily Profit</li>
+                                    <!-- <li><span><i class="fas fa-check"></i></span> Dedicated Supports</li> -->
                                     <li class="price-icon-text"><span class="price-icon-text"><i
                                                 class="fi fi-rr-cross"></i></span> Lifetime Gurenty</li>
                                 </ul>
@@ -211,8 +171,11 @@
                         </div>
                     </div>
                 </div>
+                
+            </div>
+            <div class="row">
                 <div class="col-lg-4 col-md-6 col-sm-12 pt-left pl-0 pr-0">
-                    <div class="pricing-single-box active">
+                    <div class="pricing-single-box">
                         <!-- pricing top -->
                         <div class="pricing-top-ber">
                             <div class="pricing-head">
@@ -223,63 +186,22 @@
                         </div>
                         <div class="pricing-items">
                             <div class="pricing-items-title">
-                                <h3>Wallet Developed</h3>
-                                <p>[Elementor Pro]</p>
+                                <h3>coin1M</h3>
+                                <p>[ STANDARD 01 ]</p>
                             </div>
                             <div class="pricing-items-center">
-                                <span class="curencyp">$</span>
-                                <span class="tk">9.83</span>
-                                <span class="monthp"> / Project</span>
+                                <span class="curencyp">USDT</span>
+                                <span class="tk">1000</span>
+                                <!-- <span class="monthp"> / 12 Month</span> -->
                             </div>
                         </div>
-                        <!-- pricing boody -->
                         <div class="pricing-boody">
                             <div class="pricing-featur">
                                 <ul>
-                                    <li><span><i class="fas fa-check"></i></span> Wordpress Installation</li>
-                                    <li><span><i class="fas fa-check"></i></span> Theme Upload & Customize</li>
-                                    <li><span><i class="fas fa-check"></i></span> Server Installation</li>
-                                    <li><span><i class="fas fa-check"></i></span> Dedicated Supports</li>
-                                    <li><span class="price-icon-text"><i class="fi fi-rr-cross"></i></span> Lifetime
-                                        Gurenty</li>
-                                </ul>
-                            </div>
-                            <div class="pricing-button">
-                                <a href="#">Purches Now</a>
-                            </div>
-                            <div class="pricing-hide"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 pt-left pl-0 pr-0">
-                    <div class="pricing-single-box">
-                        <!-- pricing top -->
-                        <div class="pricing-top-ber">
-                            <div class="pricing-head">
-                                <div class="pricing-title">
-                                    <h3>PREMIUM</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pricing-items">
-                            <div class="pricing-items-title">
-                                <h3>Money Exchange</h3>
-                                <p>[Elementor Pro]</p>
-                            </div>
-                            <div class="pricing-items-center">
-                                <span class="curencyp">$</span>
-                                <span class="tk">9.98</span>
-                                <span class="monthp"> / Project</span>
-                            </div>
-                        </div>
-                        <!-- pricing boody -->
-                        <div class="pricing-boody">
-                            <div class="pricing-featur">
-                                <ul>
-                                    <li><span><i class="fas fa-check"></i></span> Wordpress Installation</li>
-                                    <li><span><i class="fas fa-check"></i></span> Theme Upload & Customize</li>
-                                    <li><span><i class="fas fa-check"></i></span> Server Installation</li>
-                                    <li><span><i class="fas fa-check"></i></span> Dedicated Supports</li>
+                                    <li><span><i class="fas fa-check"></i></span>Within Investment Period</li>
+                                    <li><span><i class="fas fa-check"></i></span>Gas Fee USDT 10</li>
+                                    <li><span><i class="fas fa-check"></i></span> 0.4% - 1.3% Daily Profit</li>
+                                    <!-- <li><span><i class="fas fa-check"></i></span> Dedicated Supports</li> -->
                                     <li class="price-icon-text"><span class="price-icon-text"><i
                                                 class="fi fi-rr-cross"></i></span> Lifetime Gurenty</li>
                                 </ul>
@@ -291,7 +213,91 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-12 pt-left pl-0 pr-0">
+                    <div class="pricing-single-box">
+                        <!-- pricing top -->
+                        <div class="pricing-top-ber">
+                            <div class="pricing-head">
+                                <div class="pricing-title">
+                                    <h3>STANDARD</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pricing-items">
+                            <div class="pricing-items-title">
+                                <h3>coin1M</h3>
+                                <p>[ STANDARD 02 ]</p>
+                            </div>
+                            <div class="pricing-items-center">
+                                <span class="curencyp">USDT</span>
+                                <span class="tk">2500</span>
+                                <!-- <span class="monthp"> / 12 Month</span> -->
+                            </div>
+                        </div>
+                        <div class="pricing-boody">
+                            <div class="pricing-featur">
+                                <ul>
+                                    <li><span><i class="fas fa-check"></i></span>Within Investment Period</li>
+                                    <li><span><i class="fas fa-check"></i></span>Gas Fee USDT 10</li>
+                                    <li><span><i class="fas fa-check"></i></span> 0.4% - 1.3% Daily Profit</li>
+                                    <!-- <li><span><i class="fas fa-check"></i></span> Dedicated Supports</li> -->
+                                    <li class="price-icon-text"><span class="price-icon-text"><i
+                                                class="fi fi-rr-cross"></i></span> Lifetime Gurenty</li>
+                                </ul>
+                            </div>
+                            <div class="pricing-button">
+                                <a href="#">Purches Now</a>
+                            </div>
+                            <div class="pricing-hide"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-12 pt-left pl-0 pr-0">
+                    <div class="pricing-single-box">
+                        <!-- pricing top -->
+                        <div class="pricing-top-ber">
+                            <div class="pricing-head">
+                                <div class="pricing-title">
+                                    <h3>STANDARD</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pricing-items">
+                            <div class="pricing-items-title">
+                                <h3>coin1M</h3>
+                                <p>[ STANDARD 03 ]</p>
+                            </div>
+                            <div class="pricing-items-center">
+                                <span class="curencyp">USDT</span>
+                                <span class="tk">5000</span>
+                                <!-- <span class="monthp"> / 12 Month</span> -->
+                            </div>
+                        </div>
+                        <div class="pricing-boody">
+                            <div class="pricing-featur">
+                                <ul>
+                                    <li><span><i class="fas fa-check"></i></span>Within Investment Period</li>
+                                    <li><span><i class="fas fa-check"></i></span>Gas Fee USDT 10</li>
+                                    <li><span><i class="fas fa-check"></i></span> 0.4% - 1.3% Daily Profit</li>
+                                    <!-- <li><span><i class="fas fa-check"></i></span> Dedicated Supports</li> -->
+                                    <li class="price-icon-text"><span class="price-icon-text"><i
+                                                class="fi fi-rr-cross"></i></span> Lifetime Gurenty</li>
+                                </ul>
+                            </div>
+                            <div class="pricing-button">
+                                <a href="#">Purches Now</a>
+                            </div>
+                            <div class="pricing-hide"></div>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
+
+
+
         </div>
     </div>
     <!--==================================================-->

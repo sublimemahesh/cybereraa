@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&amp;display=swap);
 
 
-
+.sftDetails{
 
 .bcinside span,
 .leftitem,
@@ -650,7 +650,7 @@ section#sftDetails {
     left: 0;
     height: 100%;
     width: 100%;
-    /* background: url(../img/gradiantInside.png) bottom repeat-x; */
+    background: url(../img/gradiantInside.png) bottom repeat-x;
     z-index: 0
 }
 
@@ -721,12 +721,11 @@ section#safesttreds h6 {
 }
 
 .leftitem.RealEstate {
-    /* background: linear-gradient(180deg, #8200e8 0, #77006b 100%); */
-    background: linear-gradient(180deg, #6dee49 0, #199d06 100%);
+    background: linear-gradient(180deg, #8200e8 0, #77006b 100%);
     color: #fff;
     top: 10;
-    left: 3px;
-    margin-top: -470px;
+    left: 0px;
+    margin-top: -504px;
 }
 
 .leftitem.DiamondMining,
@@ -741,10 +740,8 @@ section#safesttreds h6 {
 }
 
 .leftitem.Plantations {
-    /* background: linear-gradient(180deg, #f14a4a 0, #e92727 100%); */
-    background: linear-gradient(180deg, #e44af1 0, #81079b 100%);
-    top: 200px;
-    left: -60px;
+    background: linear-gradient(180deg, #f14a4a 0, #e92727 100%);
+    top: 140px
 }
 
 .in-viewport .leftitem.Plantations,
@@ -755,10 +752,8 @@ section#safesttreds h6 {
 }
 
 .leftitem.DiamondMining {
-    /* background: linear-gradient(180deg, #a0a0a0 0, #2e2e2e 100%); */
-    background: linear-gradient(180deg, #f27b25 0, #e17e15 100%);
-    top: 370px;
-    left: 4px;
+    background: linear-gradient(180deg, #a0a0a0 0, #2e2e2e 100%);
+    top: 270px
 }
 
 .in-viewport .leftitem.DiamondMining,
@@ -805,10 +800,9 @@ section#safesttreds h6 {
 }
 
 .rightitem.ForexTrading {
-    /* background: linear-gradient(180deg, #71bc80 0, #00ab97 100%); */
-    background: linear-gradient(180deg, #ffc400 0, #faae03 100%);
-    top: -139px;
-    right: 370px;
+    background: linear-gradient(180deg, #71bc80 0, #00ab97 100%);
+    top: 10px;
+    right: 0px;
     transform: translateX(40px) scale(.8)
 }
 
@@ -828,24 +822,18 @@ section#safesttreds h6 {
 }
 
 .rightitem.CommodityTrading {
-    /* background: var(--button-gradiant, linear-gradient(180deg, #3d00ce 0, #763dff 100%)); */
-    background: var(--button-gradiant, linear-gradient(180deg, #fc3131 0, #6d0707 100%));
-    top: 25px;
-    right: 5px;
+    background: var(--button-gradiant, linear-gradient(180deg, #3d00ce 0, #763dff 100%));
+    top: 140px
 }
 
 .rightitem.EquityTrading {
-    /* background: linear-gradient(180deg, #ffae00 0, #896801 100%); */
-    background: linear-gradient(180deg, #2f5f07 0, #54880a 100%);
-    top: 200px;
-    right: -60px;
-
+    background: linear-gradient(180deg, #ffae00 0, #896801 100%);
+    top: 270px
 }
 
 .rightitem.CryptoSpot {
-    /* background: linear-gradient(180deg, #4198ff 0, #572bbf 100%); */
-    background: linear-gradient(180deg, #2f09e3 0, #2a067d 100%);
-    top: 370px;
+    background: linear-gradient(180deg, #4198ff 0, #572bbf 100%);
+    top: 400px;
     right: 0px;
     transform: translateX(40px) scale(.8)
 }
@@ -865,18 +853,18 @@ section#safesttreds .mainImage {
 }
 
 span.dt.i1 {
-    top: 45px;
-    left: 40px
+    top: 20px;
+    left: 67px
 }
 
 span.dt.i2 {
-    top: 212px;
-    left: -23px
+    top: 156px;
+    left: -16px
 }
 
 span.dt.i3 {
-    top: 375px;
-    left: 40px
+    top: 284px;
+    left: -16px
 }
 
 span.dt.i4 {
@@ -885,33 +873,32 @@ span.dt.i4 {
 }
 
 span.dt.i6 {
-    top: -32px;
-    right: 225px
+    top: 31px;
+    right: 51px
 }
 
 span.dt.i7 {
-    top: 45px;
-    right: 40px
+    top: 155px;
+    right: -18px
 }
 
 span.dt.i8 {
-    top: 212px;
+    top: 282px;
     right:-22px;
 }
 
 span.dt.i9 {
-    top: 380px;
-    right: 35px
+    top: 400px;
+    right: 45px
 }
 
 span.dt.i5 {
-    left: 224px;
+    left: 190px;
     bottom: -22px
 }
 
 .rightitem.CryptoDerivatives {
-    /* background: linear-gradient(180deg, #9568ff 0, #1c005f 100%); */
-    background: linear-gradient(180deg, #b4afbe 0, #555456 100%);
+    background: linear-gradient(180deg, #9568ff 0, #1c005f 100%);
     left: 50%;
     bottom: -140px;
     transform: translateX(-50%);
@@ -1798,24 +1785,23 @@ footer p {
     }
 
     .leftitem.RealEstate {
-        left: 5px;
-        top: -30px;
-        margin-top: 0px;
+        left: 30px;
+        top: -30px
     }
 
     .leftitem.Plantations {
-        left: -30px;
+        left: -10px;
         top: 20px
     }
 
     .leftitem.DiamondMining {
         top: 70px;
-        left: -25px
+        left: -10px
     }
 
     .leftitem.WebProjects {
         top: 120px;
-        left: 0px
+        left: 30px
     }
 
     .rightitem {
@@ -1834,17 +1820,17 @@ footer p {
 
     .rightitem.CommodityTrading {
         top: 20px;
-        right: -30px
+        right: -10px
     }
 
     .rightitem.EquityTrading {
         top: 70px;
-        right: -32px
+        right: -10px
     }
 
     .rightitem.CryptoSpot {
         top: 120px;
-        right: 0px
+        right: 30px
     }
 
     .rightitem.CryptoDerivatives {
@@ -2081,18 +2067,6 @@ footer p {
         width: 80%;
         top: -120px;
         left: -70px
-    }
-
-    .dt-round1{
-        display: none !important;
-    }
-
-    .leftitem .imageIn img{
-        width: 50% !important;
-    }
-
-    .rightitem .imageIn img{
-        width: 50% !important;
     }
 }
 
@@ -3353,25 +3327,11 @@ footer p {
     font-size: 18px;
     border-style: solid;
 
-    
-}
-.dt-round1 span{
-    margin-top: 15px;  
-    font-family: Sora;
-}
-
-
-.counter-number{
-
-  border-radius: 100px;
-  border-style: solid;
-  border-color: white;
- 
- 
+    span{
+        margin-top: 15px;  
+        font-family: Sora;
+    }
 }
 
-.counter-txt{
-    color: white;
-  font-family: 'time rose';
-  font-size: 15px;
 }
+
