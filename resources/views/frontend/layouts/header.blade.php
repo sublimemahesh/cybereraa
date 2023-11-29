@@ -25,7 +25,7 @@
                             <li><a href="{{ route('contact') }}">Contact </a></li>
                         </ul>
                         <div class="menu-button"> 
-                            <a href="#">Join us</a>
+                            <a href="{{ route('login') }}">Join us</a>
                         </div>
                     </div>
                 </div>
