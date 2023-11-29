@@ -40055,7 +40055,8 @@ table.dataTable thead .sorting_asc {
 }
 
 [data-theme-version="dark"] .authincation-content {
-    background: #252a3d;
+    /* background: #252a3d; */
+    background: #0c0d21;
     box-shadow: var(--box-shadow-card);
     border-radius: var(--border-radius);
 }
