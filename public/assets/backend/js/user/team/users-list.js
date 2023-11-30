@@ -10,7 +10,7 @@ $(function () {
         serverSide: true,
         //fixedHeader: true,
         responsive: true,
-        order: [[4, 'asc']],
+        order: [[3, 'asc']],
         //stateSave: true,
         ajax: location.href,
         columns: [
@@ -18,9 +18,10 @@ $(function () {
             {data: "user_details", name: 'username', searchable: true, orderable: false},
             {data: "contact_details", name: 'email', searchable: true, orderable: false},
             {data: "sponsor", name: 'super_parent_id', searchable: false, orderable: false},
-            {data: "parent", name: 'parent_id', searchable: false, orderable: false},
+            // {data: "parent", name: 'parent_id', searchable: false, orderable: false},
             {data: "joined", name: 'created_at', searchable: false},
             {data: "suspended", name: 'suspended_at', searchable: false},
+            {data: "actions", searchable: false},
         ],
         columnDefs: [
 
@@ -46,5 +47,14 @@ $(function () {
         table.ajax.url(url).load();
     });
 
+    $(document).on("click", ".view-downline-user", function (e) {
+        e.preventDefault();
+        urlParams.set("date-range", $("#date-range").val());
+        urlParams.set("status", $("#status").val());
+        let username = $(this).data('username');
+        let url = TEAM_URL + "/" + username + "?" + urlParams.toString();
+        history.replaceState({}, "", url);
+        table.ajax.url(url).load();
+    });
 
 })

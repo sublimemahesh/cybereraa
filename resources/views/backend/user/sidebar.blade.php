@@ -33,7 +33,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('user.genealogy') }}" class="rounded-1" aria-expanded="false">
+                <a href="{{ route('user.team.users-list') }}" class="rounded-1" aria-expanded="false">
                     <i class="bi bi-person-hearts"></i>
                     <span class="nav-text">Team Details</span>
                 </a>
