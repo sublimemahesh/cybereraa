@@ -160,6 +160,124 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-xl-4  col-sm-12">
+            <div class="card">
+                <div class="card-header border-0 pb-0">
+                    <h2 class="heading">Assets Allocation</h2>
+                    <div class="dropdown custom-dropdown">
+                        <div class="btn sharp btn-primary tp-btn " data-bs-toggle="dropdown">
+                            <svg width="6" height="20" viewBox="0 0 6 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5.19995 10.001C5.19995 9.71197 5.14302 9.42576 5.03241 9.15872C4.9218 8.89169 4.75967 8.64905 4.55529 8.44467C4.35091 8.24029 4.10828 8.07816 3.84124 7.96755C3.5742 7.85694 3.28799 7.80001 2.99895 7.80001C2.70991 7.80001 2.4237 7.85694 2.15667 7.96755C1.88963 8.07816 1.64699 8.24029 1.44261 8.44467C1.23823 8.64905 1.0761 8.89169 0.965493 9.15872C0.854882 9.42576 0.797952 9.71197 0.797952 10.001C0.798085 10.5848 1.0301 11.1445 1.44296 11.5572C1.85582 11.9699 2.41571 12.2016 2.99945 12.2015C3.58319 12.2014 4.14297 11.9694 4.55565 11.5565C4.96832 11.1436 5.20008 10.5838 5.19995 10L5.19995 10.001ZM5.19995 3.00101C5.19995 2.71197 5.14302 2.42576 5.03241 2.15872C4.9218 1.89169 4.75967 1.64905 4.55529 1.44467C4.35091 1.24029 4.10828 1.07816 3.84124 0.967552C3.5742 0.856941 3.28799 0.800011 2.99895 0.800011C2.70991 0.800011 2.4237 0.856941 2.15667 0.967552C1.88963 1.07816 1.64699 1.24029 1.44261 1.44467C1.23823 1.64905 1.0761 1.89169 0.965493 2.15872C0.854883 2.42576 0.797953 2.71197 0.797953 3.00101C0.798085 3.58475 1.0301 4.14453 1.44296 4.55721C1.85582 4.96988 2.41571 5.20164 2.99945 5.20151C3.58319 5.20138 4.14297 4.96936 4.55565 4.5565C4.96832 4.14364 5.20008 3.58375 5.19995 3.00001L5.19995 3.00101ZM5.19995 17.001C5.19995 16.712 5.14302 16.4258 5.03241 16.1587C4.9218 15.8917 4.75967 15.6491 4.55529 15.4447C4.35091 15.2403 4.10828 15.0782 3.84124 14.9676C3.5742 14.8569 3.28799 14.8 2.99895 14.8C2.70991 14.8 2.4237 14.8569 2.15666 14.9676C1.88963 15.0782 1.64699 15.2403 1.44261 15.4447C1.23823 15.6491 1.0761 15.8917 0.965493 16.1587C0.854882 16.4258 0.797952 16.712 0.797952 17.001C0.798084 17.5848 1.0301 18.1445 1.44296 18.5572C1.85582 18.9699 2.41571 19.2016 2.99945 19.2015C3.58319 19.2014 4.14297 18.9694 4.55565 18.5565C4.96832 18.1436 5.20008 17.5838 5.19995 17L5.19995 17.001Z" fill="var(--primary)"/>
+                            </svg>
+                        </div>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <a class="dropdown-item" href="javascript:void(0);">Option 1</a>
+                            <a class="dropdown-item" href="javascript:void(0);">Option 2</a>
+                            <a class="dropdown-item" href="javascript:void(0);">Option 3</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body text-center pt-0 pb-2">
+                    <div id="morris_donught" class="custome-donut"></div>
+                    <div class="chart-items">
+                        <div class="row">
+                            <div class=" col-xl-12 col-sm-12">
+                                <div class="text-start">
+                                    <span class="font-w600 mb-2 d-block text-secondary fs-14">Legend</span>
+                                    <div class="color-picker">
+                                        <span class="mb-0 col-6 fs-14">
+                                            <svg class="me-2" width="16" height="16" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <rect width="14" height="14" rx="4" fill="var(--primary)"/>
+                                            </svg>
+                                            XTZ(40%)
+                                        </span>
+                                        <h5>$763</h5>													
+                                    </div>
+                                    <div class="color-picker">
+                                        <span class="mb-0 col-6 fs-14">
+                                            <svg class="me-2" width="16" height="16" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <rect width="14" height="14" rx="4" fill="#2A353A"/>
+                                            </svg>
+                                            BTC(20%)
+                                        </span>
+                                        <h5>$321</h5>
+                                    </div>
+                                    <div class="color-picker">
+                                        <span class="mb-0 col-6 fs-14">
+                                            <svg class="me-2" width="16" height="16" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <rect width="14" height="14" rx="4" fill="#C0E192"/>
+                                            </svg>
+                                            BNB(10%)
+                                        </span>
+                                        <h5>$69</h5>
+                                    </div>
+                                    <div class="color-picker">
+                                        <span class="mb-0 col-6 fs-14">
+                                            <svg class="me-2" width="16" height="16" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <rect width="14" height="14" rx="4" fill="#E085E4"/>
+                                            </svg>
+                                            ETH(10%)
+                                        </span>
+                                        <h5>$154</h5>
+                                    </div>	
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>	
+        </div>
+
+        <div class="col-xl-8 col-sm-12  wow fadeInUp" data-wow-delay="1.5s">
+            <div class="card market_chart">
+                <div class="card-header border-0 align-items-start flex-wrap pb-0">
+                    <div>
+                        <h2 class="heading">Market Chart</h2>
+                        <div class="market-data">
+                            <div class="income data">
+                                <span>This Month</span>
+                                <h4>$29.999.00</h4>
+                            </div>
+                            <div class="price data">
+                                <span>Price</span>
+                                <h4>480 <sub>- 0,5%</sub></h4>
+                            </div>
+                            <div class="rate data">
+                                <span>Rate</span>
+                                <h4>-0.0662%/hr</h4>
+                            </div>
+                            <div class="volume data">
+                                <span>volume</span>
+                                <h4>175k</h4>
+                            </div>
+
+                        </div>		
+                    </div>
+                    <div class="dropdown custom-dropdown">
+                        <div class="btn sharp btn-primary tp-btn " data-bs-toggle="dropdown">
+                            <svg width="6" height="20" viewBox="0 0 6 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5.19995 10.001C5.19995 9.71197 5.14302 9.42576 5.03241 9.15872C4.9218 8.89169 4.75967 8.64905 4.55529 8.44467C4.35091 8.24029 4.10828 8.07816 3.84124 7.96755C3.5742 7.85694 3.28799 7.80001 2.99895 7.80001C2.70991 7.80001 2.4237 7.85694 2.15667 7.96755C1.88963 8.07816 1.64699 8.24029 1.44261 8.44467C1.23823 8.64905 1.0761 8.89169 0.965493 9.15872C0.854882 9.42576 0.797952 9.71197 0.797952 10.001C0.798085 10.5848 1.0301 11.1445 1.44296 11.5572C1.85582 11.9699 2.41571 12.2016 2.99945 12.2015C3.58319 12.2014 4.14297 11.9694 4.55565 11.5565C4.96832 11.1436 5.20008 10.5838 5.19995 10L5.19995 10.001ZM5.19995 3.00101C5.19995 2.71197 5.14302 2.42576 5.03241 2.15872C4.9218 1.89169 4.75967 1.64905 4.55529 1.44467C4.35091 1.24029 4.10828 1.07816 3.84124 0.967552C3.5742 0.856941 3.28799 0.800011 2.99895 0.800011C2.70991 0.800011 2.4237 0.856941 2.15667 0.967552C1.88963 1.07816 1.64699 1.24029 1.44261 1.44467C1.23823 1.64905 1.0761 1.89169 0.965493 2.15872C0.854883 2.42576 0.797953 2.71197 0.797953 3.00101C0.798085 3.58475 1.0301 4.14453 1.44296 4.55721C1.85582 4.96988 2.41571 5.20164 2.99945 5.20151C3.58319 5.20138 4.14297 4.96936 4.55565 4.5565C4.96832 4.14364 5.20008 3.58375 5.19995 3.00001L5.19995 3.00101ZM5.19995 17.001C5.19995 16.712 5.14302 16.4258 5.03241 16.1587C4.9218 15.8917 4.75967 15.6491 4.55529 15.4447C4.35091 15.2403 4.10828 15.0782 3.84124 14.9676C3.5742 14.8569 3.28799 14.8 2.99895 14.8C2.70991 14.8 2.4237 14.8569 2.15666 14.9676C1.88963 15.0782 1.64699 15.2403 1.44261 15.4447C1.23823 15.6491 1.0761 15.8917 0.965493 16.1587C0.854882 16.4258 0.797952 16.712 0.797952 17.001C0.798084 17.5848 1.0301 18.1445 1.44296 18.5572C1.85582 18.9699 2.41571 19.2016 2.99945 19.2015C3.58319 19.2014 4.14297 18.9694 4.55565 18.5565C4.96832 18.1436 5.20008 17.5838 5.19995 17L5.19995 17.001Z" fill="var(--primary)"/>
+                            </svg>
+                        </div>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <a class="dropdown-item" href="javascript:void(0);">Option 1</a>
+                            <a class="dropdown-item" href="javascript:void(0);">Option 2</a>
+                            <a class="dropdown-item" href="javascript:void(0);">Option 3</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body custome-tooltip pt-0">
+                    <div id="activity1"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
 
     <div class="row">
         <div class="col-xl-12">
@@ -675,12 +793,201 @@
 
     @push('scripts')
     <script src="{{ asset('assets/backend/vendor/webticker/jquery.webticker.min.js') }}"></script>
+    <script src="{{ asset('assets/backend/vendor/raphael/raphael.min.js') }}"></script>
+    <script src="{{ asset('assets/backend/vendor/morris/morris.min.js') }}"></script>
     <script src="{{ asset('assets/backend/js/user/dashboard.js') }}"></script>
     <script src="{{ asset('assets/backend/js/user/coin_prices.js') }}"></script>
 
 
 
     <script>
+
+var activity1 = function(){
+		var optionsArea = {
+          series: [{
+            name: "Running",
+            data: [1400, 800, 1200, 550, 1550, 600, 1250]
+          },
+		  {
+            name: "Pending",
+            data: [500, 600, 300, 1200, 1200, 800, 1400]
+          }
+        ],
+          chart: {
+          height: 400,
+          type: 'area',
+		  group: 'social',
+		  toolbar: {
+            show: false
+          },
+          zoom: {
+            enabled: false
+          },
+        },
+        dataLabels: {
+          enabled: false
+        },
+		
+        legend: {
+			show:false,
+          tooltipHoverFormatter: function(val, opts) {
+            return val + ' - ' + opts.w.globals.series[opts.seriesIndex][opts.dataPointIndex] + ''
+          },
+		  markers: {
+			fillColors:['var(--secondary)','var(--primary)'],
+			width: 3,
+			height: 16,
+			strokeWidth: 0,
+			radius: 16
+		  }
+        },
+        markers: {
+          size: [8,0],
+		  strokeWidth: [4,0],
+		  strokeColors: ['#fff','#fff'],
+		  border:4,
+		  radius: 4,
+		  colors:['#2A353A','#2A353A','#fff'],
+          hover: {
+            size: 10,
+          }
+        },
+        xaxis: {
+          categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+		  labels: {
+		   style: {
+			  colors: '#3E4954',
+			  fontSize: '14px',
+			   fontFamily: 'Poppins',
+			  fontWeight: 100,
+			  
+			},
+		  },
+		  axisBorder:{
+			  show: false,
+		  }
+        },
+		yaxis: {
+			labels: {
+				show: true,
+				align: 'right',
+				minWidth: 15,
+				offsetX:-16,
+				style: {
+				  colors: '#666666',
+				  fontSize: '14px',
+				   fontFamily: 'Poppins',
+				  fontWeight: 100,
+				  
+				},
+			},
+		},
+		fill: {
+			colors:['#fff','#FF9432'],
+			type:'gradient',
+			opacity: 1,
+			gradient: {
+				shade:'light',
+				shadeIntensity: 1,
+				colorStops: [ 
+				  [
+					{
+					  offset: 0,
+					  color: 'var(--secondary)',
+					  opacity: 0.4
+					},
+					{
+					  offset: 0.6,
+					  color: 'var(--secondary)',
+					  opacity: 0.25
+					},
+					{
+					  offset: 100,
+					  color: 'var(--secondary)',
+					  opacity: 0
+					}
+				  ],
+				  [
+					{
+					  offset: 0,
+					  color: 'var(--primary)',
+					  opacity: .4
+					},
+					{
+					  offset: 50,
+					  color: 'var(--primary)',
+					  opacity: 0.25
+					},
+					{
+					  offset: 100,
+					  color: '#fff',
+					  opacity: 0
+					}
+				  ]
+				]
+
+		  },
+		},
+		colors:['var(--secondary)','var(--primary)'],
+		stroke:{
+			curve : "straight",
+			 width: 3,
+		},
+        grid: {
+          borderColor: '#e1dede',
+		  strokeDashArray:8,
+		  
+			xaxis: {
+				lines: {
+				show: true,
+				opacity: 0.5,
+				}
+			},
+			yaxis: {
+				lines: {
+				show: true,
+				opacity: 0.5,
+				}
+			},
+			row: {
+				colors: undefined,
+				opacity: 0.5
+			},  
+			column: {
+				colors: undefined,
+				opacity: 0.5
+			},  
+        },
+		 responsive: [{
+			breakpoint: 1602,
+			options: {
+				markers: {
+					 size: [6,6,4],
+					 hover: {
+						size: 7,
+					  }
+				},chart: {
+				height: 230,
+			},	
+			},
+			
+		 }]
+        };
+		var chartArea = new ApexCharts(document.querySelector("#activity1"), optionsArea);
+        chartArea.render();
+
+}
+
+
+    activity1();
+
+
+
+
+
+
+
+
         const pending_assign_count = parseInt("{{ Auth::user()->pending_direct_sales_count }}")
             if (pending_assign_count > 0) {
                 const notificationNoteModal = new bootstrap.Modal('#notification-modal', {

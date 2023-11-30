@@ -57,3 +57,35 @@ owl.owlCarousel({
     autoplayTimeout:1000,
     autoplayHoverPause:true
 });
+
+
+
+var donutChart = function(){
+   
+    Morris.Donut({
+        element: 'morris_donught',
+        data: [{
+            label: "\xa0 \xa0 Promotion \xa0 \xa0",
+            value: 12,
+ 
+        }, {
+            label: "\xa0 \xa0 In-Store Sales \xa0 \xa0",
+            value: 30
+        },{
+            label: "\xa0 \xa0 In-Store Sales \xa0 \xa0",
+            value: 30
+        }, {
+            label: "\xa0 \xa0 Mail-Order Sales \xa0 \xa0",
+            value: 20
+        }],
+        resize: true,
+        redraw: true,
+        colors: ['#E085E4', '#2A353A', '#C0E192','#9568ff'],
+        //responsive:true,
+        
+    });
+ }
+ 
+
+ donutChart();
+            
