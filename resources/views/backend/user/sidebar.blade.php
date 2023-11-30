@@ -4,70 +4,70 @@
         <ul class="metismenu" id="menu">
             <li>
                 <a href="{{ route('user.dashboard') }}" class="rounded-1" aria-expanded="false">
-                    <i class="bi bi-house-heart"></i>
+                    <i class="bi bi-columns-gap"></i>
                     <span class="nav-text">Dashbord</span>
                 </a>
             </li>
             <li>
                 <a href="{{ route('profile.show') }}" class="rounded-1" aria-expanded="false">
-                    <i class="bi bi-gear"></i>
+                    <i class="bi bi-person-bounding-box"></i>
                     <span class="nav-text">Profile</span>
                 </a>
             </li>
             <li>
                 <a href="{{ route('user.kyc.index') }}" class="rounded-1" aria-expanded="false">
-                    <i class="bi bi-shield-check"></i>
+                    <i class="bi bi-check2-circle"></i>
                     <span class="nav-text">KYC Verification</span>
                 </a>
             </li>
             <li>
                 <a href="{{ route('user.packages.index') }}" class="rounded-1" aria-expanded="false">
-                    <i class="bi bi-rocket-takeoff"></i>
+                    <i class="bi bi-piggy-bank"></i>
                     <span class="nav-text">Deposit Asset</span>
                 </a>
             </li>
             <li>
                 <a href="{{ route('user.earnings.summary-report') }}" class="rounded-1" aria-expanded="false">
-                    <i class="bi bi-currency-exchange"></i>
+                    <i class="bi bi-cash-coin"></i>
                     <span class="nav-text">Withdraw Asset</span>
                 </a>
             </li>
             <li>
                 <a href="{{ route('user.wallet.index') }}" class="rounded-1" aria-expanded="false">
-                    <i class="bi bi-wallet2"></i>
+                    <i class="bi bi-wallet"></i>
                     <span class="nav-text"> My Wallet </span>
                 </a>
             </li>
 
             <li>
                 <a href="{{ route('user.team.users-list') }}" class="rounded-1" aria-expanded="false">
-                    <i class="bi bi-person-hearts"></i>
+                    <i class="bi bi-diagram-3"></i>
                     <span class="nav-text">Refferal System</span>
                 </a>
             </li>
 
             <li>
                 <a href="{{ route('user.ranks.summery') }}" class="rounded-1" aria-expanded="false">
-                    <i class="bi bi-trophy-fill"></i>
+                    <i class="bi bi-graph-up-arrow"></i>
                     <span class="nav-text"> Summery </span>
                 </a>
             </li>
 
             <li>
                 <a href="{{ route('user.support.tickets.index') }}" class="rounded-1" aria-expanded="false">
-                    <i class="bi bi-telephone-forward"></i>
+                    <i class="bi bi-question-octagon"></i>
                     <span class="nav-text">Customer Support</span>
                 </a>
             </li>
 
             <li>
                 <a href="{{ route('user.tutorials.index') }}" class="rounded-1" aria-expanded="false">
-                    <i class="bi bi-book"></i>
+                    <i class="bi bi-journals"></i>
                     <span class="nav-text">Tutorials</span>
                 </a>
             </li>
 
-          
+
 
 
 
