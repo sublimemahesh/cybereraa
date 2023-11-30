@@ -35,7 +35,9 @@
                                 </div>
                                 <div class="slider-button">
                                     <a href="{{ route('register')}}">Get Started Now</a>
+                                    <a href="{{ route('login') }}" data-devil="ml:10 pl:35 pr:35" data-dxs="mt:10">Login Now</a>
                                 </div>
+
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6">
@@ -176,10 +178,9 @@
     <!-- Start feature-area -->
     <!--==================================================-->
     <section class='sftDetails-sec' style="background: url('{{ asset('assets/frontend/images/sf/bg.jpg') }}');top center/cover no-repeat;">
-
         <div class="feature-area " style="background: url('{{ asset('assets/frontend/images/sf/net-sf.png') }}');top center/cover no-repeat;">
             <div>
-                <div class="container" data-devil='mb:200'>
+                <div class="container" data-devil='mb:200' data-dxs="mb:0">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="sections-title">
@@ -197,8 +198,8 @@
                     <section id="invest_profit">
                         <div class="containerSt">
                             <div class="row">
-                                <div class="col-sm-4">
-                                    <div class="rightitem counter-number">
+                                <div class="col-sm-12 col-md-4">
+                                    <div class="rightitem counter-number marg-auto" data-dxs="p:unset w:300 mb:10" >
                                         <div class="imageIn"><img src='{{asset('assets/frontend/images/sf/members.png') }}'></div>
                                         <div>
                                             <div class="text counter">35,000</div>
@@ -208,9 +209,9 @@
                                     </div>
 
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-12 col-md-4">
 
-                                    <div class="rightitem counter-number">
+                                    <div class="rightitem counter-number marg-auto" data-dxs="p:unset w:300 mb:10">
                                         <div class="imageIn"><img src='{{asset('assets/frontend/images/sf/join-members.png') }}'></div>
                                         <div>
                                             <div class="text counter">750</div>
@@ -221,9 +222,9 @@
 
 
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-12 col-md-4">
 
-                                    <div class="rightitem counter-number">
+                                    <div class="rightitem counter-number marg-auto" data-dxs="p:unset w:300">
                                         <div class="imageIn"><img src='{{asset('assets/frontend/images/sf/income-members.png') }}'></div>
                                         <div>
                                             <div class="text counter">1,935,000</div>
@@ -304,6 +305,8 @@
             </div>
         </div>
     </section>
+
+
     <!--==================================================-->
     <!--How it work -->
     <!--==================================================-->

@@ -47,8 +47,7 @@
 	<div class=" feature-area style-one upper faq">
 		<div class='container'>
 			<div class="row">
-				<div class="col-8">
-
+				<div class="col-sm-12 col-md-8">
 					<div id='1'>
 						<h3 class='faq-section-head-txt'>FAQ SING UP AND SIGN IN</h3>
 						<div class="accordion">
@@ -177,11 +176,9 @@
 						</div>
 					</div>
 
-
-
 				</div>
 
-				<div class="col-4">
+				<div class="col-md-4" data-dxs="dis:none">
 
 					<ul class="list-group" id='faq-cat-holder'>
 						<li class="list-group-item">

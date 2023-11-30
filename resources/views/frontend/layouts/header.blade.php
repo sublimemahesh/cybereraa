@@ -42,20 +42,20 @@
         <ul class="nav_scroll">
 
             <li><a href="{{ route('/') }}">Home</a></li>
-            <li><a href="about.php">about</a></li>
+            <li><a href="{{ route('about') }}">about</a></li>
             <li><a href="#">Projects +</a>
                 <div class="sub-menu">
                     <ul> 
-                        <li><a href="existing-projects.php">Existing Projects</a></li>
-                        <li><a href="upcoming-projects.php">Upcoming Projects</a></li>
+                        <li><a href="{{ route('project') }}">Existing Projects</a></li>
+                        <li><a href="{{ route('Upcoming-project') }}">Upcoming Projects</a></li>
                     </ul>
                 </div>
             </li>
 
-            <li><a href="packages.php">Packages </a></li>
-            <li><a href="packhow-it-work.phpages.php">How It Work</a></li>
-            <li><a href="faq.php">FAQ</a></li>
-            <li><a href="contact.php">Contact </a></li>
+            <li><a href="{{ route('pricing') }}">Packages </a></li>
+            <li><a href="{{ route('how-it-work') }}">How It Work</a></li>
+            <li><a href="{{ route('faq') }}">FAQ</a></li>
+            <li><a href="{{ route('contact') }}">Contact </a></li>
         </ul>
     </nav>
 </div>
