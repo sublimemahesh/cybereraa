@@ -26,6 +26,6 @@
     </p>
     <p>
         Best regards,<br>
-        owara3m.com Team.
+        coin1m.com Team.
     </p>
 @endsection

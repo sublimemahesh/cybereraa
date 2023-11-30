@@ -139,7 +139,7 @@
                 </td>
                 <td>
                     <div style="width:100%; display:flex;justify-content: end;align-items: end">
-                        <img style="float:right" src="{{ $invoice->site_qr }}" width="80" alt="https://www.owara3m.com">
+                        <img style="float:right" src="{{ $invoice->site_qr }}" width="80" alt="https://www.coin1m.com">
                     </div>
                 </td>
             </tr>

@@ -17,7 +17,7 @@
     </p>
     <p>
         Best regards, <br>
-        owara3m.com
+        coin1m.com
 
     </p>
 
