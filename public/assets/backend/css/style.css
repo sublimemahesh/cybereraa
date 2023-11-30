@@ -12792,8 +12792,8 @@ label {
 
 @media only screen and (max-width: 87.5rem) {
     .nav-header .brand-logo {
-        padding-left: 1.25rem;
-        padding-right: 1.25rem;
+        /* padding-left: 1.25rem; */
+        /* padding-right: 1.25rem; */
     }
 }
 
@@ -12813,8 +12813,8 @@ label {
 }
 
 .nav-header .logo-abbr {
-    /* width: 45px; */
-    width: 60px;
+    width: 45px;
+    /* width: 60px; */
 }
 
 .nav-header .brand-title{
@@ -17822,6 +17822,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 .deznav {
     width: 18.75rem;
     padding-bottom: 10px;
+    padding-top: 20px;
     height: calc(100% - 5rem);
     position: absolute;
     top: 5rem;
@@ -17836,6 +17837,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
     .deznav {
         top: 5.5rem;
         height: calc(100% - 78px);
+
     }
 }
 
@@ -17843,6 +17845,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
     .deznav {
         top: 5rem;
         height: calc(100% - 70px);
+
     }
 }
 
@@ -17873,6 +17876,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 .deznav .metismenu {
     display: flex;
     flex-direction: column;
+    padding-top: 10px;
 }
 
 .deznav .metismenu.fixed {

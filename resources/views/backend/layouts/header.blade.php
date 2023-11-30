@@ -6,7 +6,7 @@
         <img src="{{ asset('assets/backend/images/logo/logo-color.png') }}" class="logo-color" alt="">
         <img src="{{ asset('assets/backend/images/logo/logo-text-color.png') }}" class="brand-title color-title" alt="">
     </a>
-    <h3 class="nav-username">@yield('header-title2')</h3>
+    <h4 class="nav-username">@yield('header-title2')</h4>
     {{-- <div class="nav-control">
         <div class="hamburger">
             <span class="line"></span><span class="line"></span><span class="line"></span>
