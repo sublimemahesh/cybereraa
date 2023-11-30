@@ -1,9 +1,4 @@
-<li>
-    <a href="{{ route('profile.show') }}" class="rounded-1" aria-expanded="false">
-        <i class="bi bi-gear"></i>
-        <span class="nav-text">Settings</span>
-    </a>
-</li>
+
 
 <li>
     <form method="POST" action="{{ route('logout') }}">
