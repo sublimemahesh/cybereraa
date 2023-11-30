@@ -415,7 +415,7 @@ section#safesttreds h6 {
 section#safesttreds h2 {
      background: var(--multicolor, linear-gradient(90deg, #f1a9e1 0, #ac1297 21.35%, #18998f 45.31%, #eb3131 72.4%, #898989 100%));
     -webkit-text-fill-color: transparent ;
-     
+
 }
 
 #empower h3,
@@ -3353,10 +3353,10 @@ footer p {
     font-size: 18px;
     border-style: solid;
 
-    
+
 }
 .dt-round1 span{
-    margin-top: 15px;  
+    margin-top: 15px;
     font-family: Sora;
 }
 
@@ -3366,12 +3366,17 @@ footer p {
   border-radius: 100px;
   border-style: solid;
   border-color: white;
- 
- 
+
+
 }
 
 .counter-txt{
     color: white;
   font-family: 'time rose';
   font-size: 15px;
+}
+
+.marg-auto{
+    margin-right: auto;
+    margin-left: auto;
 }
