@@ -136,7 +136,7 @@
     <!--**********************************  Footer start   ***********************************-->
     <div class="footer out-footer rounded-3">
         <div class="copyright">
-            <p>© {{ date('Y') }} Owara3m. All Rights Reserved.</p>
+            <p>© {{ date('Y') }} coin1m. All Rights Reserved.</p>
         </div>
     </div>
     <!--********************************** Footer end  ***********************************-->

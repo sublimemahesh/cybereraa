@@ -6,11 +6,11 @@
     </p>
 
     <p>
-        We're thrilled to welcome you to owara3m.com! Thank you for registering with us.
+        We're thrilled to welcome you to coin1m.com! Thank you for registering with us.
     </p>
 
     <p>
-        At owara3m.com, we're committed to providing you with the best possible experience.
+        At coin1m.com, we're committed to providing you with the best possible experience.
         Whether you're here to invest, staking, or deposit with us, we're here to help.
     </p>
 
@@ -24,6 +24,6 @@
 
     <p>
         Best regards, <br>
-        owara3m.com
+        coin1m.com
     </p>
 @endsection

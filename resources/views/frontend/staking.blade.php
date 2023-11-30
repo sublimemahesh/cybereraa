@@ -1,13 +1,13 @@
 <x-frontend.layouts.app>
-    @section('title', 'Staking Package | Owara3m | One to One Marketing Website')
+    @section('title', 'Staking Package | coin1m | One to One Marketing Website')
     @section('header-title', 'Welcome ')
 
     @section('meta')
         <meta name="description"
             content="The reliable crypto currency trading platform for every kind of investors in the world">
         <meta name="keywords"
-            content="Owara3m, Owara3m, one to one marketing, one to one marketing website, network marketing website, e money sites, money investment sites, cryptocurrency trading, trade, trade online, trades websites">
-        <meta name="author" content="Owara3m">
+            content="Coin1m, Coin1m, one to one marketing, one to one marketing website, network marketing website, e money sites, money investment sites, cryptocurrency trading, trade, trade online, trades websites">
+        <meta name="author" content="Coin1m">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     @endsection
 
