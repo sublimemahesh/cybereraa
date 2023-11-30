@@ -21,7 +21,7 @@
                 <div class="card-body">
                     <div class="w-full my-3 dark:bg-gray-800">
                         <div class="rounded-sm">
-                          
+
                             <div class="border-l border-b border-r border-gray-200 dark:border-gray-600 px-2 py-4 dark:border-0  dark:bg-secondary-dark">
                                 <div>
                                     <div class="md:flex md:flex-wrap">
@@ -83,14 +83,14 @@
                     <div class="table-responsive">
                         <table id="team-users" class="table-responsive display mb-1" style="table-layout: fixed">
                             <thead>
-                            <tr>
-                                <th>USER DETAILS</th>
-                                <th>CONTACT DETAILS</th>
-                                <th>SPONSOR</th>
-                                <th>PARENT</th>
-                                <th>JOINED DATE</th>
-                                <th>SUSPENDED</th>
-                            </tr>
+                                <tr>
+                                    <th>USER DETAILS</th>
+                                    <th>CONTACT DETAILS</th>
+                                    <th>SPONSOR/PARENT</th>
+                                    <th>JOINED DATE</th>
+                                    <th>SUSPENDED</th>
+                                    <th>ACTIONS</th>
+                                </tr>
                             </thead>
                         </table>
                     </div>
@@ -100,6 +100,9 @@
     </div>
 
     @push('scripts')
+        <script !src="">
+            const TEAM_URL = "{{ route('user.team.users-list') }}"
+        </script>
         <!-- Datatable -->
         <script src="{{ asset('assets/backend/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/dataTables.buttons.min.js') }}"></script>

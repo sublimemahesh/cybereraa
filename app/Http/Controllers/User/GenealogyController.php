@@ -9,6 +9,7 @@ use Auth;
 use Carbon\Carbon;
 use DB;
 use Exception;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -49,17 +50,19 @@ class GenealogyController extends Controller
     /**
      * @throws Exception
      */
-    public function teamList(Request $request)
+    public function teamList(Request $request, User|null $user = null)
     {
-
+        if ($user?->id === null) {
+            $user = auth()->user();
+        }
         if ($request->wantsJson()) {
             $users = User::with('sponsor', 'parent')
+                ->where('super_parent_id', $user?->id)
                 //                ->find(Auth::user()->id)
                 //                ->descendants()
                 ->when($request->get('status') === 'suspend', function (Builder $q) {
                     $q->whereNotNull('suspended_at');
                 })
-                ->whereIn('id', Auth::user()->descendants()->pluck('id')->toArray())
                 ->when($request->get('status') === 'active', function (Builder $q) {
                     $q->whereNull('suspended_at');
                 })
@@ -90,9 +93,9 @@ class GenealogyController extends Controller
                 ->addColumn('sponsor', function ($user) {
                     return "{$user->super_parent_id} - <code>{$user?->sponsor?->username} </code>";
                 })
-                ->addColumn('parent', function ($user) {
-                    return "{$user->parent_id} - <code>{$user?->parent?->username} </code><br>Position: {$user->position}";
-                })
+                //                ->addColumn('parent', function ($user) {
+                //                    return "{$user->parent_id} - <code>{$user?->parent?->username} </code><br>Position: {$user->position}";
+                //                })
                 ->addColumn('joined', fn($user) => $user->created_at->format('Y-m-d h:i A'))
                 ->addColumn('suspended', function ($user) {
                     if ($user->is_suspended) {
@@ -100,7 +103,13 @@ class GenealogyController extends Controller
                     }
                     return '-';
                 })
-                ->rawColumns(['profile_photo', 'user_details', 'contact_details', 'sponsor', 'parent'])
+                ->addColumn('actions', function ($user) {
+                    return '<a class="btn btn-secondary btn-success btn-xxs p-1 view-downline-user" data-username="' . $user->username . '">
+                        <i class="fa fa-users"></i>
+                    </a>';
+
+                })
+                ->rawColumns(['profile_photo', 'user_details', 'contact_details', 'sponsor', 'actions'])
                 ->make();
         }
 
