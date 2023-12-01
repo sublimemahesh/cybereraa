@@ -40111,7 +40111,7 @@ table.dataTable thead .sorting_asc {
 }
 
 .auth-form img {
-    width: 220px;
+    width: 160px;
 }
 
 .welcome-content {
@@ -40182,7 +40182,7 @@ table.dataTable thead .sorting_asc {
 }
 
 .auth-form {
-    padding: 3.125rem 3.125rem;
+    padding: 2rem 2rem;
 }
 
 @media only screen and (max-width: 35.9375rem) {
@@ -49514,3 +49514,48 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
 .dash-p-10{
     padding-left: 10px !important;
 }
+
+
+
+.login-bg-image {
+    background: url(../images/background/login.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 535px;
+    position: relative;
+}
+
+.login-bg-img-col{
+    padding-right:0px !important;
+    padding-left: 0px !important;
+}
+
+
+.login-bg-txt{
+    top: 120px;
+    position: relative;
+
+}
+
+.login-bg-txt h2{
+    line-height: 1;
+    font-weight: 800;
+    text-align: right;
+    font-size: 38px;
+    text-shadow: 2px 2px 3px black;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+}
+
+.login-bg-txt p{
+    color: white;
+    text-align: right;
+    text-shadow: 2px 2px 3px black;
+    font-family: 'Oswald', sans-serif;
+    text-transform: capitalize;
+    font-size: 15px;
+
+}
+
+
