@@ -596,9 +596,27 @@
                                             <p class="mb-1">TEAM COUNT {{$descendants_count }}</p>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="col-xl-2 col-lg-3 col-sm-6">
+                            <div class="widget-stat card rounded-3">
+                                <div class="card-body p-4">
 
+                                    <div class="col-mb-12 ">
+                                        <div class="media justify-content-center dash-p-10">
+                                            <span class="me-3">
+                                                {{-- <i class="la la-users"></i> --}}
+                                            </span>
+                                        </div>
+                                    </div>
 
+                                    <div class="col-mb-12 ">
+                                        <div class="media-body text-white dash-p">
+                                            <p class="mb-1">NAN</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
