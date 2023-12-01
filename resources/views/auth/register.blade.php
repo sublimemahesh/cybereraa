@@ -2,8 +2,17 @@
 @section('title', 'SIGN UP YOUR ACCOUNT')
 @section('contents')
 
-    <div class="row justify-content-center main-register-form-style">
-        <div class="col-md-10">
+    <div class="row justify-content-center main-register-form-style login-bg-img-col">
+
+        <div class="col-md-4 reg-bg-image">
+            <div class="reg-bg-txt">
+                <h2>Create Your Account at Coin1m Trading Hub</h2>
+                <p> Start your cryptocurrency trading journey by registering at Coin1m – your gateway to a world of financial possibilities. Sign up for a free account and gain access to a secure and user-friendly platform. Join a community of savvy investors and begin your exploration of the exciting realm of digital assets. Don't miss out on the future of finance – register now at Coin1m Trading Hub.</p>
+            </div>
+        </div>
+
+
+        <div class="col-md-8 login-bg-img-col">
             <div class="authincation-content">
                 <div class="row no-gutters">
 
