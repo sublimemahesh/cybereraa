@@ -49504,3 +49504,13 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
 .cf-mt{
     margin-top: -60px !important;
 }
+
+.dash-p{
+    text-align: center;
+  line-height: 1.2;
+  padding-top: 18px;
+}
+
+.dash-p-10{
+    padding-left: 10px !important;
+}

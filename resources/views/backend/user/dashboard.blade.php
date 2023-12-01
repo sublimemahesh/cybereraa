@@ -14,7 +14,7 @@
                         <p class="mb-2 fs-13">My Insvestment</p>
 
                     </div>
-                    <img src="{{ asset('assets/backend/images/icon/investment.png') }}"/>
+                    <img src="{{ asset('assets/backend/images/icon/investment.png') }}" />
                 </div>
             </div>
 
@@ -29,7 +29,7 @@
                         <p class="mb-2 fs-13">My Withdrawal</p>
 
                     </div>
-                    <img src="{{ asset('assets/backend/images/icon/withdrawal.png') }}"/>
+                    <img src="{{ asset('assets/backend/images/icon/withdrawal.png') }}" />
                 </div>
             </div>
 
@@ -44,7 +44,7 @@
                         <p class="mb-2 fs-13">Wallet Balance</p>
 
                     </div>
-                    <img src="{{ asset('assets/backend/images/icon/wallet.png') }}"/>
+                    <img src="{{ asset('assets/backend/images/icon/wallet.png') }}" />
                 </div>
             </div>
 
@@ -60,7 +60,7 @@
 
                     </div>
 
-                    <img src="{{ asset('assets/backend/images/icon/team.png') }}"/>
+                    <img src="{{ asset('assets/backend/images/icon/team.png') }}" />
                 </div>
             </div>
 
@@ -167,8 +167,11 @@
                     <h2 class="heading">Assets Allocation</h2>
                     <div class="dropdown custom-dropdown">
                         <div class="btn sharp btn-primary tp-btn " data-bs-toggle="dropdown">
-                            <svg width="6" height="20" viewBox="0 0 6 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5.19995 10.001C5.19995 9.71197 5.14302 9.42576 5.03241 9.15872C4.9218 8.89169 4.75967 8.64905 4.55529 8.44467C4.35091 8.24029 4.10828 8.07816 3.84124 7.96755C3.5742 7.85694 3.28799 7.80001 2.99895 7.80001C2.70991 7.80001 2.4237 7.85694 2.15667 7.96755C1.88963 8.07816 1.64699 8.24029 1.44261 8.44467C1.23823 8.64905 1.0761 8.89169 0.965493 9.15872C0.854882 9.42576 0.797952 9.71197 0.797952 10.001C0.798085 10.5848 1.0301 11.1445 1.44296 11.5572C1.85582 11.9699 2.41571 12.2016 2.99945 12.2015C3.58319 12.2014 4.14297 11.9694 4.55565 11.5565C4.96832 11.1436 5.20008 10.5838 5.19995 10L5.19995 10.001ZM5.19995 3.00101C5.19995 2.71197 5.14302 2.42576 5.03241 2.15872C4.9218 1.89169 4.75967 1.64905 4.55529 1.44467C4.35091 1.24029 4.10828 1.07816 3.84124 0.967552C3.5742 0.856941 3.28799 0.800011 2.99895 0.800011C2.70991 0.800011 2.4237 0.856941 2.15667 0.967552C1.88963 1.07816 1.64699 1.24029 1.44261 1.44467C1.23823 1.64905 1.0761 1.89169 0.965493 2.15872C0.854883 2.42576 0.797953 2.71197 0.797953 3.00101C0.798085 3.58475 1.0301 4.14453 1.44296 4.55721C1.85582 4.96988 2.41571 5.20164 2.99945 5.20151C3.58319 5.20138 4.14297 4.96936 4.55565 4.5565C4.96832 4.14364 5.20008 3.58375 5.19995 3.00001L5.19995 3.00101ZM5.19995 17.001C5.19995 16.712 5.14302 16.4258 5.03241 16.1587C4.9218 15.8917 4.75967 15.6491 4.55529 15.4447C4.35091 15.2403 4.10828 15.0782 3.84124 14.9676C3.5742 14.8569 3.28799 14.8 2.99895 14.8C2.70991 14.8 2.4237 14.8569 2.15666 14.9676C1.88963 15.0782 1.64699 15.2403 1.44261 15.4447C1.23823 15.6491 1.0761 15.8917 0.965493 16.1587C0.854882 16.4258 0.797952 16.712 0.797952 17.001C0.798084 17.5848 1.0301 18.1445 1.44296 18.5572C1.85582 18.9699 2.41571 19.2016 2.99945 19.2015C3.58319 19.2014 4.14297 18.9694 4.55565 18.5565C4.96832 18.1436 5.20008 17.5838 5.19995 17L5.19995 17.001Z" fill="var(--primary)"/>
+                            <svg width="6" height="20" viewBox="0 0 6 20" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M5.19995 10.001C5.19995 9.71197 5.14302 9.42576 5.03241 9.15872C4.9218 8.89169 4.75967 8.64905 4.55529 8.44467C4.35091 8.24029 4.10828 8.07816 3.84124 7.96755C3.5742 7.85694 3.28799 7.80001 2.99895 7.80001C2.70991 7.80001 2.4237 7.85694 2.15667 7.96755C1.88963 8.07816 1.64699 8.24029 1.44261 8.44467C1.23823 8.64905 1.0761 8.89169 0.965493 9.15872C0.854882 9.42576 0.797952 9.71197 0.797952 10.001C0.798085 10.5848 1.0301 11.1445 1.44296 11.5572C1.85582 11.9699 2.41571 12.2016 2.99945 12.2015C3.58319 12.2014 4.14297 11.9694 4.55565 11.5565C4.96832 11.1436 5.20008 10.5838 5.19995 10L5.19995 10.001ZM5.19995 3.00101C5.19995 2.71197 5.14302 2.42576 5.03241 2.15872C4.9218 1.89169 4.75967 1.64905 4.55529 1.44467C4.35091 1.24029 4.10828 1.07816 3.84124 0.967552C3.5742 0.856941 3.28799 0.800011 2.99895 0.800011C2.70991 0.800011 2.4237 0.856941 2.15667 0.967552C1.88963 1.07816 1.64699 1.24029 1.44261 1.44467C1.23823 1.64905 1.0761 1.89169 0.965493 2.15872C0.854883 2.42576 0.797953 2.71197 0.797953 3.00101C0.798085 3.58475 1.0301 4.14453 1.44296 4.55721C1.85582 4.96988 2.41571 5.20164 2.99945 5.20151C3.58319 5.20138 4.14297 4.96936 4.55565 4.5565C4.96832 4.14364 5.20008 3.58375 5.19995 3.00001L5.19995 3.00101ZM5.19995 17.001C5.19995 16.712 5.14302 16.4258 5.03241 16.1587C4.9218 15.8917 4.75967 15.6491 4.55529 15.4447C4.35091 15.2403 4.10828 15.0782 3.84124 14.9676C3.5742 14.8569 3.28799 14.8 2.99895 14.8C2.70991 14.8 2.4237 14.8569 2.15666 14.9676C1.88963 15.0782 1.64699 15.2403 1.44261 15.4447C1.23823 15.6491 1.0761 15.8917 0.965493 16.1587C0.854882 16.4258 0.797952 16.712 0.797952 17.001C0.798084 17.5848 1.0301 18.1445 1.44296 18.5572C1.85582 18.9699 2.41571 19.2016 2.99945 19.2015C3.58319 19.2014 4.14297 18.9694 4.55565 18.5565C4.96832 18.1436 5.20008 17.5838 5.19995 17L5.19995 17.001Z"
+                                    fill="var(--primary)" />
                             </svg>
                         </div>
                         <div class="dropdown-menu dropdown-menu-end">
@@ -187,8 +190,9 @@
                                     <span class="font-w600 mb-2 d-block text-secondary fs-14">Legend</span>
                                     <div class="color-picker">
                                         <span class="mb-0 col-6 fs-14">
-                                            <svg class="me-2" width="16" height="16" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <rect width="14" height="14" rx="4" fill="var(--primary)"/>
+                                            <svg class="me-2" width="16" height="16" viewBox="0 0 14 14" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <rect width="14" height="14" rx="4" fill="var(--primary)" />
                                             </svg>
                                             XTZ(40%)
                                         </span>
@@ -196,8 +200,9 @@
                                     </div>
                                     <div class="color-picker">
                                         <span class="mb-0 col-6 fs-14">
-                                            <svg class="me-2" width="16" height="16" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <rect width="14" height="14" rx="4" fill="#2A353A"/>
+                                            <svg class="me-2" width="16" height="16" viewBox="0 0 14 14" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <rect width="14" height="14" rx="4" fill="#2A353A" />
                                             </svg>
                                             BTC(20%)
                                         </span>
@@ -205,8 +210,9 @@
                                     </div>
                                     <div class="color-picker">
                                         <span class="mb-0 col-6 fs-14">
-                                            <svg class="me-2" width="16" height="16" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <rect width="14" height="14" rx="4" fill="#C0E192"/>
+                                            <svg class="me-2" width="16" height="16" viewBox="0 0 14 14" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <rect width="14" height="14" rx="4" fill="#C0E192" />
                                             </svg>
                                             BNB(10%)
                                         </span>
@@ -214,8 +220,9 @@
                                     </div>
                                     <div class="color-picker">
                                         <span class="mb-0 col-6 fs-14">
-                                            <svg class="me-2" width="16" height="16" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <rect width="14" height="14" rx="4" fill="#E085E4"/>
+                                            <svg class="me-2" width="16" height="16" viewBox="0 0 14 14" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <rect width="14" height="14" rx="4" fill="#E085E4" />
                                             </svg>
                                             ETH(10%)
                                         </span>
@@ -256,8 +263,11 @@
                     </div>
                     <div class="dropdown custom-dropdown">
                         <div class="btn sharp btn-primary tp-btn " data-bs-toggle="dropdown">
-                            <svg width="6" height="20" viewBox="0 0 6 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5.19995 10.001C5.19995 9.71197 5.14302 9.42576 5.03241 9.15872C4.9218 8.89169 4.75967 8.64905 4.55529 8.44467C4.35091 8.24029 4.10828 8.07816 3.84124 7.96755C3.5742 7.85694 3.28799 7.80001 2.99895 7.80001C2.70991 7.80001 2.4237 7.85694 2.15667 7.96755C1.88963 8.07816 1.64699 8.24029 1.44261 8.44467C1.23823 8.64905 1.0761 8.89169 0.965493 9.15872C0.854882 9.42576 0.797952 9.71197 0.797952 10.001C0.798085 10.5848 1.0301 11.1445 1.44296 11.5572C1.85582 11.9699 2.41571 12.2016 2.99945 12.2015C3.58319 12.2014 4.14297 11.9694 4.55565 11.5565C4.96832 11.1436 5.20008 10.5838 5.19995 10L5.19995 10.001ZM5.19995 3.00101C5.19995 2.71197 5.14302 2.42576 5.03241 2.15872C4.9218 1.89169 4.75967 1.64905 4.55529 1.44467C4.35091 1.24029 4.10828 1.07816 3.84124 0.967552C3.5742 0.856941 3.28799 0.800011 2.99895 0.800011C2.70991 0.800011 2.4237 0.856941 2.15667 0.967552C1.88963 1.07816 1.64699 1.24029 1.44261 1.44467C1.23823 1.64905 1.0761 1.89169 0.965493 2.15872C0.854883 2.42576 0.797953 2.71197 0.797953 3.00101C0.798085 3.58475 1.0301 4.14453 1.44296 4.55721C1.85582 4.96988 2.41571 5.20164 2.99945 5.20151C3.58319 5.20138 4.14297 4.96936 4.55565 4.5565C4.96832 4.14364 5.20008 3.58375 5.19995 3.00001L5.19995 3.00101ZM5.19995 17.001C5.19995 16.712 5.14302 16.4258 5.03241 16.1587C4.9218 15.8917 4.75967 15.6491 4.55529 15.4447C4.35091 15.2403 4.10828 15.0782 3.84124 14.9676C3.5742 14.8569 3.28799 14.8 2.99895 14.8C2.70991 14.8 2.4237 14.8569 2.15666 14.9676C1.88963 15.0782 1.64699 15.2403 1.44261 15.4447C1.23823 15.6491 1.0761 15.8917 0.965493 16.1587C0.854882 16.4258 0.797952 16.712 0.797952 17.001C0.798084 17.5848 1.0301 18.1445 1.44296 18.5572C1.85582 18.9699 2.41571 19.2016 2.99945 19.2015C3.58319 19.2014 4.14297 18.9694 4.55565 18.5565C4.96832 18.1436 5.20008 17.5838 5.19995 17L5.19995 17.001Z" fill="var(--primary)"/>
+                            <svg width="6" height="20" viewBox="0 0 6 20" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M5.19995 10.001C5.19995 9.71197 5.14302 9.42576 5.03241 9.15872C4.9218 8.89169 4.75967 8.64905 4.55529 8.44467C4.35091 8.24029 4.10828 8.07816 3.84124 7.96755C3.5742 7.85694 3.28799 7.80001 2.99895 7.80001C2.70991 7.80001 2.4237 7.85694 2.15667 7.96755C1.88963 8.07816 1.64699 8.24029 1.44261 8.44467C1.23823 8.64905 1.0761 8.89169 0.965493 9.15872C0.854882 9.42576 0.797952 9.71197 0.797952 10.001C0.798085 10.5848 1.0301 11.1445 1.44296 11.5572C1.85582 11.9699 2.41571 12.2016 2.99945 12.2015C3.58319 12.2014 4.14297 11.9694 4.55565 11.5565C4.96832 11.1436 5.20008 10.5838 5.19995 10L5.19995 10.001ZM5.19995 3.00101C5.19995 2.71197 5.14302 2.42576 5.03241 2.15872C4.9218 1.89169 4.75967 1.64905 4.55529 1.44467C4.35091 1.24029 4.10828 1.07816 3.84124 0.967552C3.5742 0.856941 3.28799 0.800011 2.99895 0.800011C2.70991 0.800011 2.4237 0.856941 2.15667 0.967552C1.88963 1.07816 1.64699 1.24029 1.44261 1.44467C1.23823 1.64905 1.0761 1.89169 0.965493 2.15872C0.854883 2.42576 0.797953 2.71197 0.797953 3.00101C0.798085 3.58475 1.0301 4.14453 1.44296 4.55721C1.85582 4.96988 2.41571 5.20164 2.99945 5.20151C3.58319 5.20138 4.14297 4.96936 4.55565 4.5565C4.96832 4.14364 5.20008 3.58375 5.19995 3.00001L5.19995 3.00101ZM5.19995 17.001C5.19995 16.712 5.14302 16.4258 5.03241 16.1587C4.9218 15.8917 4.75967 15.6491 4.55529 15.4447C4.35091 15.2403 4.10828 15.0782 3.84124 14.9676C3.5742 14.8569 3.28799 14.8 2.99895 14.8C2.70991 14.8 2.4237 14.8569 2.15666 14.9676C1.88963 15.0782 1.64699 15.2403 1.44261 15.4447C1.23823 15.6491 1.0761 15.8917 0.965493 16.1587C0.854882 16.4258 0.797952 16.712 0.797952 17.001C0.798084 17.5848 1.0301 18.1445 1.44296 18.5572C1.85582 18.9699 2.41571 19.2016 2.99945 19.2015C3.58319 19.2014 4.14297 18.9694 4.55565 18.5565C4.96832 18.1436 5.20008 17.5838 5.19995 17L5.19995 17.001Z"
+                                    fill="var(--primary)" />
                             </svg>
                         </div>
                         <div class="dropdown-menu dropdown-menu-end">
@@ -275,18 +285,8 @@
 
     </div>
 
-
-
-
-
     <div class="row">
         <div class="col-xl-12">
-
-
-
-
-
-
             <div class="row">
                 <div class="col-xl-12">
                     <div class="row">
@@ -355,197 +355,257 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-sm-12">
+                        <div class="col-xl-2 col-lg-3 col-sm-2">
                             <div class="widget-stat card rounded-3 bg-info-dark">
                                 <div class="card-body  p-4">
-                                    <div class="media">
-                                        <span class="me-3"><i class="la la-wallet"></i></span>
-                                        <div class="media-body text-white">
-                                            <p class="mb-1">INCOME BALANCE</p>
-                                            <h4 class="text-white user-dashboard-card-font-size-change">
-                                                USDT {{number_format($wallet->balance,2) }}
-                                            </h4>
-                                            <small> </small>
+                                    <div class="col-mb-12 ">
+                                        <div class="media justify-content-center dash-p-10">
+                                            <span class="me-3 justify-content-center"><i
+                                                    class="la la-wallet"></i></span></center>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-mb-12">
+                                        <div class="media">
+                                            <div class="media-body text-white">
+                                                <p class="mb-1 dash-p">INCOME BALANCE USDT
+                                                    {{number_format($wallet->balance,2) }}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-6 col-lg-6 col-sm-12">
+                        <div class="col-xl-2 col-lg-3 col-sm-2">
                             <div class="widget-stat card rounded-3 bg-warning-dark ">
                                 <div class="card-body  p-4">
-                                    <div class="media">
-                                        <span class="me-3"><i class="la la-wallet"></i></span>
-                                        <div class="media-body text-white">
-                                            <p class="mb-1">PAYOUT BALANCE</p>
-                                            <h4 class="text-white user-dashboard-card-font-size-change">
-                                                USDT {{number_format($wallet->withdraw_limit,2) }}
-                                            </h4>
-                                            <small> </small>
+                                    <div class="col-mb-12 ">
+                                        <div class="media justify-content-center dash-p-10">
+                                            <span class="me-3"><i class="la la-wallet"></i></span>
                                         </div>
                                     </div>
+
+                                    <div class="col-mb-12">
+                                        <div class="media">
+                                            <div class="media-body text-white">
+                                                <p class="mb-1  dash-p">PAYOUT BALANCE USDT
+                                                    {{number_format($wallet->withdraw_limit,2) }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xl-12 col-lg-6 col-sm-12">
-                            <div class="row">
-                                <div class="col-xl-4 col-lg-6 col-sm-6">
-                                    <div class="widget-stat card rounded-3">
-                                        <div class="card-body  p-4">
-                                            <div class="media">
-                                                <span class="me-3">
-                                                    <i class="la la-coins"></i>
-                                                </span>
-                                                <div class="media-body text-white">
-                                                    <p class="mb-1">TOTAL INVESTMENT</p>
-                                                    <h4 class="text-white  user-dashboard-card-font-size-change">
-                                                        USDT {{$total_investment }}</h4>
-                                                    <br>
-                                                    <small>
-                                                        <a href="{{ route('user.transactions.index') }}">Details</a>
-                                                    </small>
-                                                </div>
-                                            </div>
+                        <div class="col-xl-2 col-lg-3 col-sm-6">
+                            <div class="widget-stat card rounded-3">
+                                <div class="card-body  p-4">
+                                    <div class="col-mb-12 ">
+                                        <div class="media justify-content-center dash-p-10">
+                                            <span class="me-3">
+                                                <i class="la la-coins"></i>
+                                            </span>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6 col-sm-6">
-                                    <div class="widget-stat card rounded-3 bg-green-dark">
-                                        <div class="card-body  p-4">
-                                            <div class="media">
-                                                <span class="me-3"><i class="la la-upload"></i></span>
-                                                <div class="media-body text-white">
-                                                    <p class="mb-1">ACTIVE PLAN</p>
-                                                    <h4 class="text-white user-dashboard-card-font-size-change">
-                                                        USDT {{$active_investment }}</h4>
-                                                    <br>
-                                                    <small>
-                                                        <a href="{{ route('user.packages.active') }}">Details</a>
-                                                    </small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6 col-sm-6">
-                                    <div class="widget-stat card rounded-3  bg-danger-dark">
-                                        <div class="card-body  p-4">
-                                            <div class="media">
-                                                <span class="me-3">
-                                                    <i class="la la-diamond"></i>
-                                                </span>
-                                                <div class="media-body text-white">
-                                                    <p class="mb-1">EXPIRED PLAN</p>
-                                                    <h4 class="text-white user-dashboard-card-font-size-change">
-                                                        USDT {{$expired_investment }}
-                                                    </h4>
-                                                    <br>
-                                                    <small> </small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6 col-sm-6">
-                                    <div class="widget-stat card rounded-3 bg-gradient">
-                                        <div class="card-body  p-4">
-                                            <div class="media">
-                                                <span class="me-3"><i class="la la-dollar-sign"></i></span>
-                                                <div class="media-body text-white">
-                                                    <p class="mb-1">PLAN INCOME</p>
-                                                    <h4 class="text-white user-dashboard-card-font-size-change"> USDT {{
-                                                        number_format($invest_income,2) }}</h4>
-                                                    <br>
-                                                    <small> </small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6 col-sm-6">
-                                    <div class="widget-stat card rounded-3">
-                                        <div class="card-body  p-4">
-                                            <div class="media">
-                                                <span class="me-3"><i class="la la-money-bill-wave"></i></span>
-                                                <div class="media-body text-white">
-                                                    <p class="mb-1">TOTAL COMMISSIONS</p>
-                                                    <h4 class="text-white user-dashboard-card-font-size-change"> USDT
-                                                        {{$qualified_commissions }}</h4>
-                                                    <br>
-                                                    <small> </small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6 col-sm-6">
-                                    <div class="widget-stat card rounded-3">
-                                        <div class="card-body  p-4">
-                                            <div class="media">
-                                                <span class="me-3"><i class="la bi-hourglass-split"></i></span>
-                                                <div class="media-body text-white">
-                                                    <p class="mb-1">PENDING COMMISSIONS</p>
-                                                    <h4 class="text-white user-dashboard-card-font-size-change"> USDT
-                                                        {{$pending_commissions }}</h4>
-                                                    <br>
-                                                    <small> </small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6 col-sm-6">
-                                    <div class="widget-stat card rounded-3">
-                                        <div class="card-body  p-4">
-                                            <div class="media">
-                                                <span class="me-3"><i class="la la-money-check-alt"></i></span>
-                                                <div class="media-body text-white">
-                                                    <p class="mb-1">TOTAL EARNED</p>
-                                                    <h4 class="text-white user-dashboard-card-font-size-change"> USDT {{
-                                                        $income }}</h4>
-                                                    <br>
-                                                    <small> </small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6 col-sm-6">
-                                    <div class="widget-stat card rounded-3">
-                                        <div class="card-body  p-4">
-                                            <div class="media">
-                                                <span class="me-3"><i class="la la-money-check-alt"></i></span>
-                                                <div class="media-body text-white">
-                                                    <p class="mb-1">TODAY INCOME</p>
-                                                    <h4 class="text-white user-dashboard-card-font-size-change"> USDT {{
-                                                        $today_income }}</h4>
-                                                    <br>
-                                                    <small> </small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6 col-sm-6">
-                                    <div class="widget-stat card rounded-3">
-                                        <div class="card-body p-4">
-                                            <div class="media">
-                                                <span class="me-3"><i class="la la-users"></i></span>
-                                                <div class="media-body text-white">
-                                                    <p class="mb-1">TEAM COUNT</p>
-                                                    <h4 class="text-white user-dashboard-card-font-size-change">
-                                                        {{$descendants_count }}</h4>
-                                                    <br>
-                                                    <small> </small>
-                                                </div>
+
+                                    <div class="col-mb-12">
+                                        <div class="media">
+                                            <div class="media-body text-white dash-p">
+                                                <p class="mb-1 ">TOTAL INVESTMENT USDT {{$total_investment }}</p>
+                                                <small class="text-center">
+                                                    <a href="{{ route('user.transactions.index') }}">Details</a>
+                                                </small>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="col-xl-2 col-lg-3 col-sm-6">
+                            <div class="widget-stat card rounded-3 bg-green-dark">
+                                <div class="card-body  p-4">
+                                    <div class="col-mb-12 ">
+                                        <div class="media justify-content-center dash-p-10">
+                                            <span class="me-3"><i class="la la-upload"></i></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-mb-12">
+                                        <div class="media-body text-white dash-p">
+                                            <p class="mb-1">ACTIVE PLAN USDT {{$active_investment }}</p>
+                                            <small>
+                                                <a href="{{ route('user.packages.active') }}">Details</a>
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-sm-6">
+                            <div class="widget-stat card rounded-3  bg-danger-dark">
+                                <div class="card-body  p-4">
+
+                                    <div class="col-mb-12 ">
+                                        <div class="media justify-content-center dash-p-10">
+                                            <span class="me-3 justify-content-center dash-p-10">
+                                                <i class="la la-diamond"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-mb-12 ">
+                                        <div class="media-body text-white  dash-p">
+                                            <p class="mb-1">EXPIRED PLAN USDT {{$expired_investment }}</p>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-sm-6">
+                            <div class="widget-stat card rounded-3 bg-gradient">
+                                <div class="card-body  p-4">
+
+                                    <div class="col-mb-12 ">
+                                        <div class="media justify-content-center dash-p-10">
+                                            <span class="me-3"><i class="la la-dollar-sign"></i></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-mb-12 ">
+                                        <div class="media-body text-white dash-p">
+                                            <p class="mb-1">PLAN INCOME USDT {{number_format($invest_income,2) }}</p>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-sm-6">
+                            <div class="widget-stat card rounded-3">
+                                <div class="card-body  p-4">
+
+                                    <div class="col-mb-12 ">
+                                        <div class="media justify-content-center dash-p-10">
+                                            <span class="me-3">
+                                                <i class="la la-money-bill-wave"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-mb-12 ">
+                                        <div class="media-body text-white dash-p">
+                                            <p class="mb-1">TOTAL COMMISSIONS USDT
+                                                {{$qualified_commissions }}</p>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-2 col-lg-3 col-sm-6">
+                            <div class="widget-stat card rounded-3">
+                                <div class="card-body  p-4">
+
+                                    <div class="col-mb-12 ">
+                                        <div class="media justify-content-center dash-p-10">
+                                            <span class="me-3">
+                                                <i class="la bi-hourglass-split"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-mb-12 ">
+                                        <div class="media-body text-white dash-p">
+                                            <p class="mb-1">PENDING COMMISSIONS USDT
+                                                {{$pending_commissions }}</p>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-sm-6">
+                            <div class="widget-stat card rounded-3">
+                                <div class="card-body  p-4">
+
+                                    <div class="col-mb-12 ">
+                                        <div class="media justify-content-center dash-p-10">
+                                            <span class="me-3">
+                                                <i class="la la-money-check-alt"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-mb-12 ">
+                                        <div class="media-body text-white dash-p">
+                                            <p class="mb-1">TOTAL EARNED USDT {{
+                                                $income }}</p>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-sm-6">
+                            <div class="widget-stat card rounded-3">
+                                <div class="card-body  p-4">
+
+                                    <div class="col-mb-12 ">
+                                        <div class="media justify-content-center dash-p-10">
+                                            <span class="me-3">
+                                                <i class="la la-money-check-alt"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-mb-12 ">
+                                        <div class="media-body text-white dash-p">
+                                            <p class="mb-1">TODAY INCOME USDT {{
+                                                $today_income }}</p>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-2 col-lg-3 col-sm-6">
+                            <div class="widget-stat card rounded-3">
+                                <div class="card-body p-4">
+
+                                    <div class="col-mb-12 ">
+                                        <div class="media justify-content-center dash-p-10">
+                                            <span class="me-3">
+                                                <i class="la la-users"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-mb-12 ">
+                                        <div class="media-body text-white dash-p">
+                                            <p class="mb-1">TEAM COUNT {{$descendants_count }}</p>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
                     </div>
                 </div>
             </div>
@@ -801,8 +861,6 @@
 
 
     <script>
-
-
         const pending_assign_count = parseInt("{{ Auth::user()->pending_direct_sales_count }}")
             if (pending_assign_count > 0) {
                 const notificationNoteModal = new bootstrap.Modal('#notification-modal', {
