@@ -14,7 +14,7 @@ class TransactionService
     public function filter(int|null $user_id = null, int|null $purchase_id = null)
     {
         return Transaction::filter()
-            ->with('package', 'user', 'purchaser')
+            ->with( 'user', 'purchaser')
             ->when($user_id !== null, static function ($query) use ($user_id) {
                 $query->where('user_id', $user_id);
             })

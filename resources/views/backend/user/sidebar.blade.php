@@ -5,7 +5,7 @@
             <li>
                 <a href="{{ route('user.dashboard') }}" class="rounded-1" aria-expanded="false">
                     <i class="bi bi-columns-gap"></i>
-                    <span class="nav-text">Dashbord</span>
+                    <span class="nav-text">Dashboard</span>
                 </a>
             </li>
             <li>
@@ -21,7 +21,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('user.packages.index') }}" class="rounded-1" aria-expanded="false">
+                <a href="{{ route('user.packages.custom') }}" class="rounded-1" aria-expanded="false">
                     <i class="bi bi-piggy-bank"></i>
                     <span class="nav-text">Deposit Asset</span>
                 </a>
@@ -42,7 +42,7 @@
             <li>
                 <a href="{{ route('user.team.users-list') }}" class="rounded-1" aria-expanded="false">
                     <i class="bi bi-diagram-3"></i>
-                    <span class="nav-text">Refferal System</span>
+                    <span class="nav-text">Referral System</span>
                 </a>
             </li>
 

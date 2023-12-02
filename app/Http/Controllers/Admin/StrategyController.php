@@ -8,6 +8,7 @@ use Arr;
 use DB;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use JsonException;
 use RuntimeException;
 use Throwable;
@@ -117,8 +118,8 @@ class StrategyController extends Controller
 
         $strategies = Strategy::whereIn('name', ['commission_level_count', 'commissions', 'rank_gift', 'rank_bonus'])->get();
 
-        $commission_level_count = $strategies->where('name', 'commission_level_count')->first(null, fn() => new Strategy(['value' => 7]));
-        $commissions = $strategies->where('name', 'commissions')->first(null, fn() => new Strategy(['value' => '{"1":25,"2":20,"3":15,"4":10,"5":5,"6":5,"7":5}']));
+        $commission_level_count = $strategies->where('name', 'commission_level_count')->first(null, fn() => new Strategy(['value' => 0]));
+        $commissions = $strategies->where('name', 'commissions')->first(null, fn() => new Strategy(['value' => '{}']));
         $rank_gift = $strategies->where('name', 'rank_gift')->first(null, fn() => new Strategy(['value' => 5]));
         $rank_bonus = $strategies->where('name', 'rank_bonus')->first(null, fn() => new Strategy(['value' => 10]));
 
@@ -322,14 +323,18 @@ class StrategyController extends Controller
         $this->authorize('update', Strategy::class);
 
         $validated = Validator::make($request->all(), [
-            'commission_level_count' => ['required', 'integer', 'gte:2'],
-            'commissions' => ['required', 'array', 'size:' . $request->get('commission_level_count')],
+            'commission_level_count' => ['required', 'integer'],
+            'commissions' => ['nullable', Rule::requiredIf($request->get('commission_level_count') > 0), 'array', 'size:' . $request->get('commission_level_count')],
             'commissions.*' => ['required', 'integer'],
             'rank_gift' => ['required', 'integer'],
             'rank_bonus' => ['required', 'integer'],
         ])->validate();
 
-        unset($validated['commissions'][0]); // Make sure does not contain 0th index
+        if (isset($validated['commissions']) && is_array($validated['commissions'])) {
+            unset($validated['commissions'][0]); // Make sure does not contain 0th index
+        } else {
+            $validated['commissions'] = [];
+        }
 
         $total_percentage = array_sum($validated['commissions']) + $validated['rank_gift'] + $validated['rank_bonus'];
 
@@ -338,7 +343,11 @@ class StrategyController extends Controller
         }
 
         $commission_level_count = count($validated['commissions']);
-        $commissions = json_encode($validated['commissions'], JSON_THROW_ON_ERROR);
+        if (!isset($validated['commissions']) || count($validated['commissions']) <= 0) {
+            $commissions = '{}';
+        } else {
+            $commissions = json_encode($validated['commissions'], JSON_THROW_ON_ERROR);
+        }
 
         if ((int)$request->get('commission_level_count') !== $commission_level_count) {
             throw new RuntimeException('Something does not seem to be ok with commission level count');

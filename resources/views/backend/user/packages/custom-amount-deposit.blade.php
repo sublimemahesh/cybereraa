@@ -4,8 +4,6 @@
     @section('plugin-styles')
         <link rel="stylesheet" href="{{ asset('assets/backend/vendor/select2/css/select2.min.css') }}">
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     @endsection
     @section('breadcrumb-items')
         <li class="breadcrumb-item">Buy Package</li>
@@ -14,47 +12,50 @@
 
     <div class="row">
         @include('backend.user.transactions.top-nav')
-        @foreach($packages as $package)
-            {{--@php
-                $gas_fee = $is_gas_fee_added ? $package->gas_fee : 0;
-            @endphp--}}
-            <div class="col-xl-3 col-md-6 col-sm-12 col-lg-3">
-                <div class="card text-center">
-                    <div class="card-header bp-header-txt">
-                        <h5 class="card-title">{{ $package->name }}</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="basic-list-group">
-                            <ul class="list-group">
 
-                                <li class="list-group-item"><b>Price </b>USDT {{ $package->amount }}</li>
-                                <li class="list-group-item">
-                                    {{--@if(!$is_gas_fee_added)
-                                        <del><b>Gas Fee </b>USDT {{ $package->gas_fee }}</del>
-                                    @endif
-                                    @if($is_gas_fee_added)--}}
-                                    <b>Gas Fee </b>USDT {{ $package->gas_fee }}
-                                    {{--@endif--}}
-                                </li>
-                                <li class="list-group-item"><b>Package </b>{{ $package->name }}</li>
-                                <li class="list-group-item">
-                                    Within Investment Period
-                                </li>
-                                <li class="list-group-item">
-                                    <b> {{--{{ $package->daily_leverage }} %--}} 0.4% - 1.3% </b> Daily Profit
-                                </li>
-                            </ul>
-                        </div>
+        <div class="col-xl-3 col-md-6 col-sm-12 col-lg-3">
+            <div class="card text-center">
+                <div class="card-header bp-header-txt">
+                    <h5 class="card-title">{{ $package->name }}</h5>
+                </div>
+                <div class="card-body">
+                    <div class="basic-list-group">
+                        <ul class="list-group">
 
-                        <button type="button" class="btn btn-primary bp-price-btn no-hover-style"> {{ $package->currency }} {{ $package->amount + $package->gas_fee }}</button>
+                            <li class="list-group-item"><b>Price </b>USDT {{ $package->amount }}</li>
+                            <li class="list-group-item">
+                                {{--@if(!$is_gas_fee_added)
+                                    <del><b>Gas Fee </b>USDT {{ $package->gas_fee }}</del>
+                                @endif
+                                @if($is_gas_fee_added)--}}
+                                <b>Gas Fee </b>USDT {{ $package->gas_fee }}
+                                {{--@endif--}}
+                            </li>
+                            <li class="list-group-item"><b>Package </b>{{ $package->name }}</li>
+                            <li class="list-group-item">
+                                Within Investment Period
+                            </li>
+                            <li class="list-group-item">
+                                <b> {{--{{ $package->daily_leverage }} %--}} 0.4% - 1.3% </b> Daily Profit
+                            </li>
+                        </ul>
+                    </div>
 
+                    <div class="form-group mt-5">
+                        <label for="custom-deposit-amount"> Enter the amount</label>
+                        <input type="number" name="amount" step="0.1" value="5" min="5" max="50000" id="custom-deposit-amount" class="form-control no-hover-style"/>
                     </div>
-                    <div class="card-footer">
-                        <button type="button" class="btn btn-primary mb-2" id="{{ $package->slug }}-choose">Choose</button>
-                    </div>
+
+                    <button type="button" class="btn btn-primary bp-price-btn no-hover-style" id="total-amount">
+                        USDT {{ 5 + $package->gas_fee }}
+                    </button>
+
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-primary mb-2" id="{{ $package->slug }}-choose">Deposit</button>
                 </div>
             </div>
-        @endforeach
+        </div>
 
     </div>
 
@@ -182,13 +183,14 @@
         </div>
     @endpush
     @push('scripts')
-        <script>
-            const ALLOWED_PACKAGES = {!! json_encode($packages->pluck('slug'),JSON_THROW_ON_ERROR) !!};
+        <script !src="">
+            $('#custom-deposit-amount').change(function (e) {
+                let amount = parseFloat($(this).val())
+                let total_amount = parseFloat({{ $package->gas_fee }}) + amount;
+                $('#total-amount').html('USDT ' + total_amount)
+            })
         </script>
         <script src="{{ asset('assets/backend/vendor/select2/js/select2.full.min.js') }}"></script>
-        <script src="{{ asset('assets/backend/js/packages/choose.js') }}"></script>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-        <script src="{{ asset('assets/backend/js/packages/gift_slider.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/packages/custom-package.js') }}"></script>
     @endpush
 </x-backend.layouts.app>

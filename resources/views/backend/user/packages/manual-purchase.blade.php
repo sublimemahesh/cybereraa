@@ -7,7 +7,9 @@
     @endsection
 
     @section('breadcrumb-items')
-        <li class="breadcrumb-item"><a href="{{ route('user.packages.index') }}">Buy Packages</a></li>
+        <li class="breadcrumb-item">
+            <a href="{{ route('user.packages.index') }}">Buy Packages</a>
+        </li>
         <li class="breadcrumb-item active">Manual Purchase</li>
     @endsection
 
@@ -39,8 +41,8 @@
                             </p>
                             <hr>
                             <p>
-                            Please <code>Deposit the above total amount</code> to the given Binance wallet address and request the package with <code> a payment slip (Proof)</code>.
-                          </p>
+                                Please <code>Deposit the above total amount</code> to the given Binance wallet address and request the package with <code> a payment slip (Proof)</code>.
+                            </p>
 
                         </div>
                         <div class="row">
@@ -72,6 +74,7 @@
                         </div>
                         <hr>
                         <input type="hidden" name="package" value="{{ $package->slug }}" id="package_slug">
+                        <input type="hidden" name="amount" value="{{ $package->amount }}" id="custom-deposit-amount">
                         <button type="submit" class="btn btn-primary" id="requestManualPurchase">REQUEST</button>
                     </form>
                 </div>

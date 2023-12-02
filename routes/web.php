@@ -295,7 +295,9 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::post('binancepay/order/create', 'Payment\BinancePayController@initiateBinancePay');
 
         Route::get('packages', 'User\PackageController@index')->name('packages.index');
+        Route::get('packages/custom', 'User\PackageController@custom')->name('packages.custom');
         Route::get('packages/active', 'User\PackageController@active')->name('packages.active');
+        Route::get('packages/custom/{amount}/{purchase_for?}', 'User\PackageController@manualPurchaseCustom')->name('packages.custom.manual-pay');
         Route::get('packages/{package:slug}/{purchase_for?}', 'User\PackageController@manualPurchase')->name('packages.manual.purchase');
 
         // STAKING PLANS START
