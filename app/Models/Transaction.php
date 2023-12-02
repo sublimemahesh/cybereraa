@@ -37,6 +37,7 @@ class Transaction extends Model
         'purchaser_id',
         'package_id',
         'package_type',
+        'package_info',
         'currency',
         'amount',
         'gas_fee',
@@ -48,10 +49,22 @@ class Transaction extends Model
     ];
 
     protected $appends = [
+        'package_info_json',
         'create_order_request_info',
         'create_order_response_info',
         'response_info'
     ];
+
+
+    public function getPackageInfoJsonAttribute()
+    {
+        return json_decode($this->package_info ?? '[]', false, 512, JSON_THROW_ON_ERROR);
+    }
+
+    public function getPackageAttribute()
+    {
+        return $this->package_info_json;
+    }
 
     /**
      * @throws JsonException
@@ -59,7 +72,7 @@ class Transaction extends Model
     public function getCreateOrderRequestInfoAttribute()
     {
         if ($this->create_order_request !== null) {
-            return $this->create_order_request_info = json_decode($this->create_order_request, false, 512, JSON_THROW_ON_ERROR);
+            return json_decode($this->create_order_request, false, 512, JSON_THROW_ON_ERROR);
         }
         return null;
     }
@@ -70,7 +83,7 @@ class Transaction extends Model
     public function getCreateOrderResponseInfoAttribute()
     {
         if ($this->create_order_response !== null) {
-            return $this->create_order_response_info = json_decode($this->create_order_response, false, 512, JSON_THROW_ON_ERROR);
+            return json_decode($this->create_order_response, false, 512, JSON_THROW_ON_ERROR);
         }
         return null;
     }
@@ -100,10 +113,10 @@ class Transaction extends Model
         return $this->belongsTo(User::class, 'purchaser_id')->withDefault(new User);
     }
 
-    public function package(): BelongsTo
-    {
-        return $this->belongsTo(Package::class, 'package_id', 'id');
-    }
+//    public function package(): BelongsTo
+//    {
+//        return $this->belongsTo(Package::class, 'package_id', 'id');
+//    }
 
     public function product(): MorphTo
     {

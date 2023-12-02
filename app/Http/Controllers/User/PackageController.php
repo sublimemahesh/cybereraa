@@ -22,6 +22,22 @@ class PackageController extends Controller
         return view('backend.user.packages.index', compact('packages'));
     }
 
+    public function custom()
+    {
+
+        $package = new Package([
+            'name' => 'Custom',
+            'slug' => 'custom',
+            'currency' => 'USDT',
+            'amount' => null,
+            'gas_fee' => 10,
+            'month_of_period' => 15,
+            'daily_leverage' => 1,
+            'is_active' => 1,
+        ]);
+        return view('backend.user.packages.custom-amount-deposit', compact('package'));
+    }
+
     /**
      * @throws JsonException
      */
@@ -34,6 +50,21 @@ class PackageController extends Controller
         $withdrawal_limits = Strategy::where('name', 'withdrawal_limits')->first();
         $withdrawal_limits = json_decode($withdrawal_limits->value ?? '[]', false, 512, JSON_THROW_ON_ERROR);
         return view('backend.user.packages.active', compact('activePackages'));
+    }
+
+    public function manualPurchaseCustom(Request $request, float $amount, User|null $purchase_for = null)
+    {
+        $package = new Package([
+            'name' => 'Custom',
+            'slug' => 'custom',
+            'currency' => 'USDT',
+            'amount' => $amount,
+            'gas_fee' => 10,
+            'month_of_period' => 15,
+            'daily_leverage' => 1,
+            'is_active' => 1,
+        ]);
+        return $this->manualPurchase($request, $package, $purchase_for);
     }
 
     public function manualPurchase(Request $request, Package $package, User|null $purchase_for = null)

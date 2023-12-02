@@ -30,7 +30,11 @@ class BinancePayController extends Controller
     public function initiateBinancePay(Request $request, ActivateTransaction $activateTransaction)
     {
         $validated = Validator::make($request->all(), [
-            'package' => ['required', 'exists:packages,slug'],
+            'package' => [
+                'required',
+                $request->get('package') !== 'custom' ? 'exists:packages,slug' : 'in:custom',
+            ],
+            'amount' => ['nullable', 'required_if:package,custom'],
             'method' => ['required', 'in:binance,main,topup,manual'],/**/
             'proof_document' => ['required_if:method,manual', 'nullable', 'file:pdf,jpg,jpeg,png'],
             'purchase_for' => [
@@ -57,7 +61,23 @@ class BinancePayController extends Controller
 
         $user->loadMax('purchasedPackages', 'invested_amount');
 
-        $package = Package::whereSlug($validated['package'])->firstOrFail();
+        if ($validated['package'] === 'custom') {
+            $package = new Package([
+                'name' => 'Custom',
+                'slug' => 'custom',
+                'currency' => 'USDT',
+                'amount' => $validated['amount'],
+                'gas_fee' => 10,
+                'month_of_period' => 15,
+                'daily_leverage' => 1,
+                'is_active' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        } else {
+            $package = Package::whereSlug($validated['package'])->firstOrFail();
+        }
+
         $max_amount = $user->purchased_packages_max_invested_amount;
         if (Gate::inspect('purchase', [$package, $max_amount])->denied()) {
             $json['status'] = false;
@@ -67,7 +87,7 @@ class BinancePayController extends Controller
         }
 
         try {
-            return DB::transaction(function () use ($activateTransaction, $user, $purchased_by, $package, $validated) {
+            return DB::transaction(function () use ($user, $purchased_by, $package, $validated, $activateTransaction) {
 
                 //$amount = $package->amount;
                 //$gas_fee = $user->purchasedPackages()->count() <= 0 ? $package->gas_fee : 0;
@@ -76,6 +96,7 @@ class BinancePayController extends Controller
                     'user_id' => $user->id,
                     'purchaser_id' => $purchased_by->id,
                     'package_id' => $package->id,
+                    'package_info' => $package->toJson(),
                     'currency' => "USDT",
                     'amount' => $package->amount,
                     'gas_fee' => $package->gas_fee,
@@ -232,6 +253,7 @@ class BinancePayController extends Controller
                 throw new \RuntimeException("Something wrong with your payment method!");
             });
         } catch (Throwable $e) {
+            throw $e;
             $json['status'] = false;
             $json['message'] = $e->getMessage();
             $json['code'] = $e->getCode();
