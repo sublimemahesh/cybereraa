@@ -325,9 +325,9 @@ class StrategyController extends Controller
         $validated = Validator::make($request->all(), [
             'commission_level_count' => ['required', 'integer'],
             'commissions' => ['nullable', Rule::requiredIf($request->get('commission_level_count') > 0), 'array', 'size:' . $request->get('commission_level_count')],
-            'commissions.*' => ['required', 'integer'],
-            'rank_gift' => ['required', 'integer'],
-            'rank_bonus' => ['required', 'integer'],
+            'commissions.*' => ['required', 'numeric'],
+            'rank_gift' => ['required', 'numeric'],
+            'rank_bonus' => ['required', 'numeric'],
         ])->validate();
 
         if (isset($validated['commissions']) && is_array($validated['commissions'])) {

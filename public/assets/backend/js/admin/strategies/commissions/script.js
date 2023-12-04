@@ -47,7 +47,7 @@ $(document).ready(function () {
             let html = `<div class="form-group row mb-2" id="commissions-level-${i}">
                 ${label}
                 <div class="col-sm-9">
-                    <input class="form-control" data-input="commissions" id="commissions.${i}" name="commissions[${i}]" placeholder="Commissions" type="text">                
+                    <input class="form-control" data-input="commissions" id="commissions.${i}" name="commissions[${i}]" placeholder="Commissions" type="text">
                 </div>
             </div>`
             $('#level-commission-inputs').append(html)
@@ -62,7 +62,7 @@ $(document).ready(function () {
         let total_percentage = 0;
         let inputElements = document.querySelectorAll('input[data-input=commissions]');
 
-        inputElements.forEach(input => total_percentage += (parseInt(input.value) || 0))
+        inputElements.forEach(input => total_percentage += (parseFloat(input.value) || 0))
         $('#total-percentage').html(total_percentage)
         console.log(total_percentage)
     }
