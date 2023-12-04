@@ -20,10 +20,17 @@ class ActivateTransaction
     public function execute(Transaction $transaction): bool
     {
         return DB::transaction(static function () use ($transaction) {
+            $withdrawal_limits = Strategy::where('name', 'withdrawal_limits')->firstOr(fn() => new Strategy(['value' => '{"package": 300, "commission": 100}']));
+            $commission_withdrawal_limits = json_decode($withdrawal_limits->value, false, 512, JSON_THROW_ON_ERROR);
+            $investment_profit = $commission_withdrawal_limits->package;
+            $level_commission_profit = $commission_withdrawal_limits->commission;
+
             PurchasedPackage::updateOrCreate(['transaction_id' => $transaction->id], [
                 'user_id' => $transaction->user_id,
                 'purchaser_id' => $transaction->purchaser_id,
                 'package_id' => $transaction->package_id,
+                'investment_profit' => $investment_profit,
+                'level_commission_profit' => $level_commission_profit,
                 'invested_amount' => $transaction->package->amount,
                 'payable_percentage' => $transaction->package->daily_leverage,
                 'status' => 'ACTIVE',

@@ -40,7 +40,7 @@ class RegisteredUserController extends Controller
             ->where(function ($q) {
                 $q->where(function ($q) {
                     $q->where('id', '<>', config('fortify.super_parent_id'))
-                        ->whereNotNull('position')->whereNotNull('parent_id');
+                        ->whereNotNull('super_parent_id');
                 })->orWhere('id', config('fortify.super_parent_id'));
             })
             ->get();
