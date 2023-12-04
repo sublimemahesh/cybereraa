@@ -66,7 +66,7 @@ class StrategySeeder extends Seeder
             [
                 'name' => 'commission_level_count',
                 'data_type' => 'int',
-                'value' => 7,
+                'value' => 4,
                 'comment' => 'How many levels are allowed to give commission',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -74,7 +74,7 @@ class StrategySeeder extends Seeder
             [
                 'name' => 'commissions',
                 'data_type' => 'json',
-                'value' => '{"1":25,"2":20,"3":15,"4":10,"5":5,"6":5,"7":5}',
+                'value' => '{"1":"5","2":"2.5","3":"1.5","4":"1"}',
                 'comment' => 'Commission percentages for each commission allowed levels',
                 'created_at' => now(),
                 'updated_at' => now(),
