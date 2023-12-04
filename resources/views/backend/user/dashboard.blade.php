@@ -181,7 +181,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-body text-center pt-0 pb-2">
+                <div class="card-body text-center pt-0 pb-2" data-devil="mb:15">
                     <div id="morris_donught" class="custome-donut"></div>
                     <div class="chart-items">
                         <div class="row">
@@ -238,7 +238,7 @@
 
         <div class="col-xl-8 col-sm-12  wow fadeInUp" data-wow-delay="1.5s">
             <div class="card market_chart">
-                <div class="card-header border-0 align-items-start flex-wrap pb-0">
+                <div class="card-header border-0 align-items-start flex-wrap pb-0" data-devil='mt:30'>
                     <div>
                         <h2 class="heading">Market Chart</h2>
                         <div class="market-data">

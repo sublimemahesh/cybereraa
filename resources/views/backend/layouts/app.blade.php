@@ -166,6 +166,7 @@
 {{--    <script src="{{ asset('assets/backend/js/dashboard/tradingview-2.js') }}"></script> --}}
 
 <script src="{{ asset('assets/frontend/js/owl.carousel.min.js') }}"></script><!-- OWL  SLIDER  -->
+<script src="{{ asset('assets/frontend/js/devil.js') }}"></script><!-- OWL  SLIDER  -->
 
 @yield('scripts')
 @stack('scripts')
