@@ -8,50 +8,185 @@
                     <span class="nav-text">Dashboard</span>
                 </a>
             </li>
-            <li>
+
+            {{-- <li><a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
+                    <i class="material-icons">description</i>
+                    <span class="nav-text">Reports</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="history.html">History</a></li>
+                    <li><a href="orders.html">Orders</a></li>
+                    <li><a href="reports.html">Report</a></li>
+                    <li><a href="user.html">User</a></li>
+                    <li><a href="contact.html">Contacts</a></li>
+                    <li><a href="activity.html">Activity</a></li>
+                </ul>
+            </li> --}}
+
+
+            <li><a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
+                    <i class="bi bi-person-bounding-box"></i>
+                    <span class="nav-text">Profile</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('profile.show') }}">Personal Details</a></li>
+                    <li><a href="{{ route('user.kyc.index') }}">KYC</a></li>
+                </ul>
+            </li>
+
+
+
+            {{-- <li>
                 <a href="{{ route('profile.show') }}" class="rounded-1" aria-expanded="false">
                     <i class="bi bi-person-bounding-box"></i>
                     <span class="nav-text">Profile</span>
                 </a>
-            </li>
-            <li>
+            </li> --}}
+            {{-- <li>
                 <a href="{{ route('user.kyc.index') }}" class="rounded-1" aria-expanded="false">
                     <i class="bi bi-check2-circle"></i>
                     <span class="nav-text">KYC Verification</span>
                 </a>
+            </li> --}}
+
+
+
+            <li><a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
+                    <i class="bi bi-piggy-bank"></i>
+                    <span class="nav-text">Deposit Asset</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('user.packages.custom') }}">Investment</a></li>
+                    <li><a href="{{ route('user.packages.active') }}">My Asset Details</a></li>
+                    <li><a href="{{ route('user.wallet.request-topup-balance') }}">Topup Request</a></li>
+                    <li><a href="{{ route('user.wallet.topup-request.history') }}">Topup History</a></li>
+                </ul>
             </li>
-            <li>
+
+
+            {{-- <li>
                 <a href="{{ route('user.packages.custom') }}" class="rounded-1" aria-expanded="false">
                     <i class="bi bi-piggy-bank"></i>
                     <span class="nav-text">Deposit Asset</span>
                 </a>
-            </li>
-            <li>
+            </li> --}}
+
+
+
+
+
+
+            {{-- <li>
                 <a href="{{ route('user.earnings.summary-report') }}" class="rounded-1" aria-expanded="false">
                     <i class="bi bi-cash-coin"></i>
                     <span class="nav-text">Withdraw Asset</span>
                 </a>
+            </li> --}}
+
+
+            <li><a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
+                    <i class="bi bi-cash-coin"></i>
+                    <span class="nav-text">Withdraw Asset</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('user.wallet.withdraw') }}">Withdraw Asset</a></li>
+                    <li><a href="{{ route('user.transfers.withdrawals') }}">Withdrawal History</a></li>
+                    <li><a href="{{ route('user.transactions.purchased.history') }}">Purchase History</a></li>
+                    <li><a href="{{ route('user.wallet.transfer') }}">P2P Asset</a></li>
+                    <li><a href="{{ route('user.transfers.p2p', ['status' => 'success', 'filter' => 'sent']) }}">P2P
+                            History</a></li>
+                    <li><a href="{{ route('user.transfers.p2p', ['status' => 'success', 'filter' => 'received']) }}">P2P
+                            Received </a></li>
+                </ul>
             </li>
-            <li>
+
+
+
+
+
+
+
+            {{-- <li>
                 <a href="{{ route('user.wallet.index') }}" class="rounded-1" aria-expanded="false">
                     <i class="bi bi-wallet"></i>
                     <span class="nav-text"> My Wallet </span>
                 </a>
+            </li> --}}
+
+
+            <li><a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
+                    <i class="bi bi-wallet"></i>
+                    <span class="nav-text">My Wallet </span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('user.wallet.index') }}">Wallet Summery</a></li>
+                    <li><a href="{{ route('user.wallet.transfer.to-wallet') }}">W2W Transfer</a></li>
+                </ul>
             </li>
 
-            <li>
+
+
+
+
+            {{-- <li>
                 <a href="{{ route('user.team.users-list') }}" class="rounded-1" aria-expanded="false">
                     <i class="bi bi-diagram-3"></i>
                     <span class="nav-text">Referral System</span>
                 </a>
+            </li> --}}
+
+
+            <li><a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
+                    <i class="bi bi-diagram-3"></i>
+                    <span class="nav-text">Referral System</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('user.team.users-list') }}">Team List</a></li>
+
+                </ul>
             </li>
 
+
+
+            <li><a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
+                <i class="bi bi-bank"></i>
+                <span class="nav-text">Income Details</span>
+            </a>
+            <ul aria-expanded="false">
+                <li><a href="{{ route('user.earnings.summary-report') }}">My Income Summery</a></li>
+                <li><a href="{{ route('user.incomes.commission') }}">My Commission</a></li>
+                <li><a href="{{ route('user.incomes.rewards') }}">My Rewards</a></li>
+                <li><a href="{{ route('user.earnings.index') }}">My Earning</a></li>
+                <li><a href="{{ route('user.team.incomes.commission') }}">Team Income</a></li>
+                <li><a href="{{ route('user.earnings.team-income') }}">Highest Earners</a></li>
+
+            </ul>
+        </li>
+
+
+{{--
             <li>
                 <a href="{{ route('user.ranks.summery') }}" class="rounded-1" aria-expanded="false">
                     <i class="bi bi-graph-up-arrow"></i>
                     <span class="nav-text"> Summery </span>
                 </a>
-            </li>
+            </li> --}}
+
+
+            <li><a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
+                <i class="bi bi-graph-up-arrow"></i>
+                <span class="nav-text">Summery</span>
+            </a>
+            <ul aria-expanded="false">
+                <li><a href="{{ route('user.ranks.benefits.requirements') }}">Bonus Requirments</a></li>
+                <li><a href="{{ route('user.earnings.yearly-income-chart') }}">Income Chart</a></li>
+
+            </ul>
+        </li>
+
+
+
+
 
             <li>
                 <a href="{{ route('user.support.tickets.index') }}" class="rounded-1" aria-expanded="false">
