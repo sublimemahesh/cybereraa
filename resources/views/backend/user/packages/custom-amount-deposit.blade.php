@@ -150,7 +150,7 @@
                         <div class="col-8">
                             <div class="form-group mt-5">
                                 <label for="custom-deposit-amount"> Enter the amount</label>
-                                <input type="number" name="amount" step="0.1" value="5" min="5" max="50000" id="custom-deposit-amount" class="form-control no-hover-style"/>
+                                <input type="number" name="amount" step="0.1" value="10" min="10" max="50000" id="custom-deposit-amount" class="form-control no-hover-style"/>
                             </div>
                         </div>
                         <div class="col-2"></div>
@@ -174,7 +174,7 @@
 
 
                     <button type="button" class="btn btn-primary bp-price-btn no-hover-style" id="total-amount" data-devil='mt:4'>
-                        USDT {{ 5 + $package->gas_fee }}
+                        USDT {{ 10 + $package->gas_fee }}
                     </button>
 
                 </div>
