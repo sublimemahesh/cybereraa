@@ -6,8 +6,8 @@
         <img src="{{ asset('assets/backend/images/logo/logo-color.png') }}" class="logo-color" alt="">
         <img src="{{ asset('assets/backend/images/logo/logo-text-color.png') }}" class="brand-title color-title" alt="">
     </a>
-    <h4 class="nav-username">@yield('header-title2')</h4>
-    {{-- <div class="nav-control">
+    <h4 class="nav-username" id='nav-username-id'>@yield('header-title2')</h4>
+    <div class="nav-control" data-devil="dis:none"   data-dxs="dis:block">
         <div class="hamburger">
             <span class="line"></span><span class="line"></span><span class="line"></span>
             <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -22,7 +22,7 @@
                 <rect y="22" height="4" rx="2" fill="#2A353A" width="400"></rect>
             </svg>
         </div>
-    </div> --}}
+    </div>
 </div>
 <!--********************************** Nav header end ***********************************-->
 
