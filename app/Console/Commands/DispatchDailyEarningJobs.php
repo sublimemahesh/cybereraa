@@ -7,6 +7,7 @@ use App\Models\PurchasedPackage;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Builder;
+use Log;
 use Symfony\Component\Console\Command\Command as CommandAlias;
 
 class DispatchDailyEarningJobs extends Command
@@ -32,20 +33,20 @@ class DispatchDailyEarningJobs extends Command
      */
     public function handle(): int
     {
-        logger()->notice("calculate:profit started: " . Carbon::now());
+        Log::channel('daily')->notice("calculate:profit started: " . Carbon::now());
         // Retrieve all users with purchased packages
         $today = Carbon::today();
         if (!$today->isWeekend()) {
             $activePackages = PurchasedPackage::with('user')
                 ->where('status', 'active')
-                ->where(function (Builder $query) {
-                    $query->whereRaw(
-                        "(WEEKDAY(`created_at`) IN (1,2,3,4) AND DATE(`created_at`) + INTERVAL 6 DAY <= DATE('" . Carbon::now() . "')) OR
-                            (WEEKDAY(`created_at`) = 5 AND DATE(`created_at`) + INTERVAL 5 DAY <= DATE('" . Carbon::now() . "')) OR
-	                        (WEEKDAY(`created_at`) IN (0,6) AND DATE(`created_at`) + INTERVAL 4 DAY <= DATE('" . Carbon::now() . "'))"
-                    ) // after 5 days from package purchase
-                    ->orWhereDate('created_at', '<', '2023-02-01');
-                })
+//                ->where(function (Builder $query) {
+//                    $query->whereRaw(
+//                        "(WEEKDAY(`created_at`) IN (1,2,3,4) AND DATE(`created_at`) + INTERVAL 6 DAY <= DATE('" . Carbon::now() . "')) OR
+//                            (WEEKDAY(`created_at`) = 5 AND DATE(`created_at`) + INTERVAL 5 DAY <= DATE('" . Carbon::now() . "')) OR
+//	                        (WEEKDAY(`created_at`) IN (0,6) AND DATE(`created_at`) + INTERVAL 4 DAY <= DATE('" . Carbon::now() . "'))"
+//                    ) // after 5 days from package purchase
+//                    ->orWhereDate('created_at', '<', '2023-02-01');
+//                })
                 ->where('expired_at', '>=', Carbon::now())
                 ->whereDoesntHave('earnings', fn($query) => $query->whereDate('created_at', date('Y-m-d')))
                 ->chunk(100, function ($activePackages) {
@@ -59,16 +60,19 @@ class DispatchDailyEarningJobs extends Command
                         if ($executionTime->isWeekend()) {
                             continue;
                         }
-                        logger()->notice("calculate:profit jobs dispatching. | Package: " . $package->id . " Purchased Date: " . $package->created_at . " | User: " . $package->user->username . "-" . $package->user_id);
+                        Log::channel('daily')->notice("calculate:profit jobs dispatching. | Package: " . $package->id . " Purchased Date: " . $package->created_at . " | User: " . $package->user->username . "-" . $package->user_id);
                         GenerateUserDailyEarning::dispatch($package, $executionTime)->afterCommit();
 
                         // TODO: uncomment if need to run exact time they purchased enable this
                         //GenerateUserDailyEarning::dispatch($package, $executionTime)->delay($executionTime)->afterCommit();
                     }
                 });
+
+            Log::channel('daily')->notice("calculate:profit Finished | Successfully dispatched GenerateUserDailyEarning jobs | END TIME: " . Carbon::now());
             $this->info('Successfully dispatched GenerateUserDailyEarning jobs.');
             return CommandAlias::SUCCESS;
         }
+        Log::channel('daily')->notice("calculate:profit Finished | Today is not a week day | END TIME: " . Carbon::now());
         $this->warn('Today is not a week day.');
         return CommandAlias::FAILURE;
     }

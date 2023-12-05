@@ -19,8 +19,8 @@ class SendUserRegisteredWelcomeNotification
     public function handle(Registered $event)
     {
         if ($event->user instanceof User) {
-            Mail::to($event->user->email)->send(new WelcomeMail($event->user));
-            Mail::to($event->user->sponsor->email)->send(new NewDownlineMail($event->user));
+            Mail::to($event->user->email)->queue(new WelcomeMail($event->user));
+            Mail::to($event->user->sponsor->email)->queue(new NewDownlineMail($event->user));
         }
     }
 }

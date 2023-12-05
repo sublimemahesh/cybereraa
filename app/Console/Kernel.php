@@ -17,17 +17,17 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('calculate:profit')->weekdays()->everyMinute()->withoutOverlapping();
         $schedule->command('calculate:profit')->weekdays()->dailyAt('00:01')->withoutOverlapping();
-        $schedule->command('calculate:commission')->weekdays()->dailyAt('00:01')->withoutOverlapping();
+        // $schedule->command('calculate:commission')->weekdays()->dailyAt('00:01')->withoutOverlapping();
 
-        //$schedule->command('calculate:staking-interest')->dailyAt('00:01')->withoutOverlapping();
+        // $schedule->command('calculate:staking-interest')->dailyAt('00:01')->withoutOverlapping();
 
-        //$schedule->command('calculate:rank-benefit-earning')->weekdays()->dailyAt('00:01')->withoutOverlapping();
+        // $schedule->command('calculate:rank-benefit-earning')->weekdays()->dailyAt('00:01')->withoutOverlapping();
 
         // $schedule->command('calculate:rank-bonus')->monthly()->dailyAt('00:01')->withoutOverlapping();
 
         // $schedule->command('genealogy:assign')->everySixHours()->withoutOverlapping();
 
-        //$schedule->command('remind:payment')->fridays()->at('01:00')->withoutOverlapping();
+        // $schedule->command('remind:payment')->fridays()->at('01:00')->withoutOverlapping();
 
         $schedule->command('queue:work', ['--stop-when-empty'])->everyMinute()->withoutOverlapping();
 
