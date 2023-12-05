@@ -32,7 +32,7 @@ return [
      * in case you are trying to isolate queries or have a lot
      * going on in the laravel.log. Defaults to laravel.log though.
      */
-    'log_channel' => env('QUERY_DETECTOR_LOG_CHANNEL', 'daily'),
+    'log_channel' => env('QUERY_DETECTOR_LOG_CHANNEL', 'n+1'),
 
     /*
      * Define the output format that you want to use. Multiple classes are supported.

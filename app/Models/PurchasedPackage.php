@@ -34,6 +34,7 @@ class PurchasedPackage extends Pivot
         'package_info',
         'investment_profit',
         'level_commission_profit',
+        'package_earned_profit',
         'earned_profit',
     ];
 
@@ -88,6 +89,11 @@ class PurchasedPackage extends Pivot
     public function getTotalProfitPercentageAttribute(): float
     {
         return $this->investment_profit + $this->level_commission_profit;
+    }
+
+    public function getTotalPackageProfitAttribute(): float
+    {
+        return ($this->invested_amount / 100) * $this->investment_profit;
     }
 
     public function getTotalProfitAttribute(): float

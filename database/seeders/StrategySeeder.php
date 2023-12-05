@@ -80,6 +80,14 @@ class StrategySeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'name' => 'trade_income',
+                'data_type' => 'json',
+                'value' => '{"1":"50","2":"25","3":"12.50","4":"6.25"}',
+                'comment' => 'Trade Income percentages for each level',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
                 'name' => 'rank_level_count',
                 'data_type' => 'int',
                 'value' => 7,
