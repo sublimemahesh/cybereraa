@@ -3,6 +3,7 @@
     @section('header-title', 'Packages' )
     @section('plugin-styles')
         <link rel="stylesheet" href="{{ asset('assets/backend/vendor/select2/css/select2.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/backend/css/custom-range.css') }}">
 
     @endsection
     @section('breadcrumb-items')
@@ -13,40 +14,92 @@
     <div class="row">
         @include('backend.user.transactions.top-nav')
 
-        <div class="col-xl-3 col-md-6 col-sm-12 col-lg-3">
+        <div class="col-xl-12 col-md-12 col-sm-12 col-lg-12">
             <div class="card text-center">
                 <div class="card-header bp-header-txt">
-                    <h5 class="card-title">{{ $package->name }}</h5>
+                    <h5 class="card-title">{{ $package->name }} Invest Your Own Amount</h5>
                 </div>
                 <div class="card-body">
                     <div class="basic-list-group">
-                        <ul class="list-group">
 
-                            <li class="list-group-item"><b>Price </b>USDT {{ $package->amount }}</li>
-                            <li class="list-group-item">
-                                {{--@if(!$is_gas_fee_added)
-                                    <del><b>Gas Fee </b>USDT {{ $package->gas_fee }}</del>
-                                @endif
-                                @if($is_gas_fee_added)--}}
-                                <b>Gas Fee </b>USDT {{ $package->gas_fee }}
-                                {{--@endif--}}
-                            </li>
-                            <li class="list-group-item"><b>Package </b>{{ $package->name }}</li>
-                            <li class="list-group-item">
-                                Within Investment Period
-                            </li>
-                            <li class="list-group-item">
-                                <b> {{--{{ $package->daily_leverage }} %--}} 0.4% - 1.3% </b> Daily Profit
-                            </li>
-                        </ul>
+
+
+
+
+                        <div class="row">
+                            <div class="col-2" >
+                                <div class="card text-center" data-devil="bgc:#aa1195 c:white">
+                                    <div class="card-body" >
+                                <b>Price </b>USDT {{ $package->amount }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-2">
+                                <div class="card text-center" data-devil="bgc:#aa1195 c:white">
+                                    <div class="card-body">
+                                        <b>Gas Fee </b>USDT {{ $package->gas_fee }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-3">
+                                <div class="card text-center" data-devil="bgc:#aa1195 c:white">
+                                    <div class="card-body">
+                                        <b>Package </b>{{ $package->name }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-3">
+                                <div class="card text-center" data-devil="bgc:#aa1195 c:white">
+                                    <div class="card-body">
+                                        Within Investment Period
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-2">
+                                <div class="card text-center" data-devil="bgc:#aa1195 c:white">
+                                    <div class="card-body">
+                                        <b> 0.4% - 1.3% </b> Daily Profit
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
                     </div>
 
-                    <div class="form-group mt-5">
-                        <label for="custom-deposit-amount"> Enter the amount</label>
-                        <input type="number" name="amount" step="0.1" value="5" min="5" max="50000" id="custom-deposit-amount" class="form-control no-hover-style"/>
+                    <div class="row">
+                        <div class="col-2"></div>
+                        <div class="col-8">
+                            <div class="form-group mt-5">
+                                <label for="custom-deposit-amount"> Enter the amount</label>
+                                <input type="number" name="amount" step="0.1" value="5" min="5" max="50000" id="custom-deposit-amount" class="form-control no-hover-style"/>
+                            </div>
+                        </div>
+                        <div class="col-2"></div>
                     </div>
 
-                    <button type="button" class="btn btn-primary bp-price-btn no-hover-style" id="total-amount">
+                    <div>
+
+                        <div class="range-slider">
+                          <span id="rs-bullet" class="rs-label">10</span>
+                          <input id="rs-range-line" class="rs-range" type="range" value="10" min="10" max="2500">
+
+                        </div>
+
+                        <div class="box-minmax">
+                          <span>10</span><span>2500</span>
+                        </div>
+
+                    </div>
+
+
+
+
+                    <button type="button" class="btn btn-primary bp-price-btn no-hover-style" id="total-amount" data-devil='mt:4'>
                         USDT {{ 5 + $package->gas_fee }}
                     </button>
 
@@ -189,8 +242,16 @@
                 let total_amount = parseFloat({{ $package->gas_fee }}) + amount;
                 $('#total-amount').html('USDT ' + total_amount)
             })
+
+            $('#rs-range-line').change(function (e) {
+                let amount = parseFloat($(this).val())
+                let total_amount = parseFloat({{ $package->gas_fee }}) + amount;
+                $('#total-amount').html('USDT ' + total_amount)
+            })
+
         </script>
         <script src="{{ asset('assets/backend/vendor/select2/js/select2.full.min.js') }}"></script>
         <script src="{{ asset('assets/backend/js/packages/custom-package.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/packages/range.js') }}"></script>
     @endpush
 </x-backend.layouts.app>
