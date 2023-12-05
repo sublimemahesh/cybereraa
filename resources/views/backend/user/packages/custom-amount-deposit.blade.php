@@ -150,7 +150,7 @@
                         <div class="col-8">
                             <div class="form-group mt-5">
                                 <label for="custom-deposit-amount"> Enter the amount</label>
-                                <input type="number" name="amount" step="0.1" value="10" min="10" max="50000" id="custom-deposit-amount" class="form-control no-hover-style"/>
+                                <input type="number" name="amount" step="0.1" value="10" min="10" max="50000" id="custom-deposit-amount" class="form-control no-hover-style" data-devil='fs:20'  >
                             </div>
                         </div>
                         <div class="col-2"></div>
@@ -160,7 +160,7 @@
 
                         <div class="range-slider">
                           <span id="rs-bullet" class="rs-label">10</span>
-                          <input id="rs-range-line" class="rs-range" type="range" value="10" min="10" max="2500">
+                          <input id="rs-range-line" class="rs-range" type="range" value="10" min="10" max="2500" >
 
                         </div>
 
