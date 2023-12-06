@@ -4,9 +4,9 @@ namespace App\Console\Commands;
 
 use App\Jobs\GenerateUserDailyEarning;
 use App\Models\PurchasedPackage;
+use App\Models\Strategy;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
-use Illuminate\Database\Eloquent\Builder;
 use Log;
 use Symfony\Component\Console\Command\Command as CommandAlias;
 
@@ -37,8 +37,11 @@ class DispatchDailyEarningJobs extends Command
         // Retrieve all users with purchased packages
         $today = Carbon::today();
         if (!$today->isWeekend()) {
+            $investment_start_at = Strategy::where('name', 'investment_start_at')->firstOr(fn() => new Strategy(['value' => 2]));
+//            Log::channel('daily')->notice("calculate:profit package earning starts at: `created_at` + INTERVAL {$investment_start_at->value} DAY <= NOW()");
             $activePackages = PurchasedPackage::with('user')
                 ->where('status', 'active')
+                ->whereRaw("`created_at` + INTERVAL {$investment_start_at->value} DAY <= NOW()") // after 5 days from package purchase
 //                ->where(function (Builder $query) {
 //                    $query->whereRaw(
 //                        "(WEEKDAY(`created_at`) IN (1,2,3,4) AND DATE(`created_at`) + INTERVAL 6 DAY <= DATE('" . Carbon::now() . "')) OR

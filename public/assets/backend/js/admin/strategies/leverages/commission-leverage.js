@@ -21,7 +21,7 @@ $(function () {
             Toast.fire({
                 icon: 'error', title: error.response.data.message || "Something went wrong!",
             })
-            let errorMap = ['direct', 'indirect', 'rank_bonus']
+            let errorMap = ['package', 'direct', 'indirect', 'rank_bonus', 'investment_start_at']
             errorMap.map(id => {
                 error.response.data.errors[id] && appendError(id, `<span class="text-danger">${error.response.data.errors[id]}</span>`)
             })

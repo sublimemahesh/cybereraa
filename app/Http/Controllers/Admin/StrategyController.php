@@ -161,10 +161,11 @@ class StrategyController extends Controller
     {
         $this->authorize('viewAny', Strategy::class);
 
-        $payable_percentages = Strategy::where('name', 'payable_percentages')->firstOr(fn() => new Strategy(['value' => '{"direct":0.332,"indirect":0.332,"rank_bonus":0.332,"package":1}']));
+        $investment_start_at = Strategy::where('name', 'investment_start_at')->firstOr(fn() => new Strategy(['value' => 2]));
+        $payable_percentages = Strategy::where('name', 'payable_percentages')->firstOr(fn() => new Strategy(['value' => '{"direct":100,"indirect":100,"rank_bonus":100,"package":1}']));
         $payable_percentages = json_decode($payable_percentages->value, false, 512, JSON_THROW_ON_ERROR);
 
-        return view('backend.admin.strategies.leverages.index', compact('payable_percentages'));
+        return view('backend.admin.strategies.leverages.index', compact('payable_percentages', 'investment_start_at'));
     }
 
 
@@ -551,14 +552,28 @@ class StrategyController extends Controller
         $this->authorize('update', Strategy::class);
 
         $validated = Validator::make($request->all(), [
-            'direct' => ['required', 'numeric'],
-            'indirect' => 'required|numeric',
+            'investment_start_at' => ['required', 'numeric', 'gte:1'],
             'package' => 'required|numeric',
+            'direct' => ['nullable', 'numeric'],
+            'indirect' => 'nullable|numeric',
             'rank_bonus' => 'nullable|numeric',
         ])->validate();
 
+        $investment_start_at = $validated['investment_start_at'];
+        unset($validated['investment_start_at']);
+
+        $validated['direct'] = 100;
+        $validated['indirect'] = 100;
+        $validated['rank_bonus'] = 100;
+
         $payable_percentages = json_encode($validated, JSON_THROW_ON_ERROR);
-        DB::transaction(function () use ($payable_percentages) {
+        DB::transaction(function () use ($investment_start_at, $payable_percentages) {
+
+            Strategy::updateOrCreate(
+                ['name' => 'investment_start_at'],
+                ['value' => $investment_start_at]
+            );
+
             Strategy::updateOrCreate(
                 ['name' => 'payable_percentages'],
                 ['value' => $payable_percentages]
