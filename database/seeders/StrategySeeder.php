@@ -64,6 +64,14 @@ class StrategySeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'name' => 'level_commission_requirement',
+                'data_type' => 'int',
+                'value' => 5,
+                'comment' => 'How many direct sales are required to unlock level commissions',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
                 'name' => 'commission_level_count',
                 'data_type' => 'int',
                 'value' => 4,

@@ -1,9 +1,16 @@
 <div class="row">
     <div class="col-sm-8">
         <div class="form-group row mb-2">
+            <label class="col-sm-3 col-form-label" for="level_commission_requirement">Direct Sale Requirement</label>
+            <div class="col-sm-9">
+                <input class="form-control" id="level_commission_requirement" name="level_commission_requirement" value="{{ $level_commission_requirement->value }}" type="number">
+            </div>
+        </div>
+        <hr>
+        <div class="form-group row mb-2">
             <label class="col-sm-3 col-form-label" for="commission_level_count">Commission Level Count</label>
             <div class="col-sm-9">
-                <input class="form-control" id="commission_level_count" name="commission_level_count" value="{{ $commission_level_count->value }}" type="text">
+                <input class="form-control" id="commission_level_count" name="commission_level_count" value="{{ $commission_level_count->value }}" type="number">
             </div>
         </div>
         <div id="level-commission-inputs">

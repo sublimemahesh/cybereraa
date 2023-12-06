@@ -15,14 +15,27 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">
-                        Commissions Percentage
-                    </h5>
-                    <p>Mention the values in percentage of 100</p>
-                    <hr>
                     <form class="theme-form" enctype="multipart/form-data" id="commissions-form">
+                        <h5 class="card-title">
+                            Trade Income Percentage
+                        </h5>
+                        <p>Mention the values in percentage of 100</p>
+                        <hr>
+                        @include('backend.admin.strategies.commissions.trade-income-percentages')
+                        <hr>
 
+                        <h5 class="card-title">
+                            Commissions Percentage
+                        </h5>
+                        <p>Mention the values in percentage of 100</p>
+                        <hr>
                         @include('backend.admin.strategies.commissions.commission-payment-percentages')
+                        <hr>
+
+                        <h5 class="card-title">
+                            Rank Gift/Bonus Percentage
+                        </h5>
+                        <p>Mention the values in percentage of 100</p>
                         <hr>
                         @include('backend.admin.strategies.commissions.rank-payment-percentages')
 
