@@ -105,7 +105,7 @@ class SaleLevelCommissionJob implements ShouldQueue
 
                     $isQualified = $commission_level_user->is_active && $is_level_commission_requirement_satisfied;
 
-                    Log::channel('daily')->{$isQualified ? 'warning' : 'info'}("COMMISSION ELIGIBILITY | PURCHASE PACKAGE: {$package->id} | COMMISSION AMOUNT: {$commission_amount} ", [
+                    Log::channel('daily')->{$isQualified ? 'info' : 'warning'}("COMMISSION ELIGIBILITY | PURCHASE PACKAGE: {$package->id} | COMMISSION AMOUNT: {$commission_amount} ", [
                         'commission_level_user' => $commission_level_user->id,
                         'direct_sale_count' => $direct_sale_count,
                         'level_commission_requirement' => $level_commission_requirement->value ?? 5,

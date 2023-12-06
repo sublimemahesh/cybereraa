@@ -114,7 +114,7 @@ class StrategySeeder extends Seeder
             [
                 'name' => 'rank_bonus',
                 'data_type' => 'int',
-                'value' => 10,
+                'value' => 0,
                 'comment' => 'Rank bonus percentage for selected rank level users',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -130,7 +130,7 @@ class StrategySeeder extends Seeder
             [
                 'name' => 'rank_gift',
                 'data_type' => 'int',
-                'value' => '5',
+                'value' => 0,
                 'comment' => 'Rank gift percentage for selected rank level users',
                 'created_at' => now(),
                 'updated_at' => now(),
