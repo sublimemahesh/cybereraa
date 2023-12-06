@@ -37,7 +37,14 @@ class SaleLevelCommissionJob implements ShouldQueue
     {
         $this->purchasedUser = $purchasedUser;
         $this->package = $package;
-        $this->strategies = Strategy::whereIn('name', ['rank_gift', 'rank_bonus', 'commissions', 'commission_level_count', 'max_withdraw_limit'])->get();
+        $this->strategies = Strategy::whereIn('name', [
+            'rank_gift',
+            'rank_bonus',
+            'commissions',
+            'level_commission_requirement',
+            'commission_level_count',
+            'max_withdraw_limit'
+        ])->get();
     }
 
     public function middleware()
@@ -63,6 +70,7 @@ class SaleLevelCommissionJob implements ShouldQueue
                 return true;
             }
 
+            $level_commission_requirement = $strategies->where('name', 'level_commission_requirement')->first(null, fn() => new Strategy(['value' => 5]));
 
             $commissions = $strategies->where('name', 'commissions')->first(null, fn() => new Strategy(['value' => '{"1":"5","2":"2.5","3":"1.5","4":"1"}']));
             $commissions = json_decode($commissions->value, true, 512, JSON_THROW_ON_ERROR);
@@ -92,18 +100,32 @@ class SaleLevelCommissionJob implements ShouldQueue
                     $commission_amount = ($package->invested_amount * $commissions[$i]) / 100;
                     $commission_amount_left = $commission_level_user->is_active ? 0 : $commission_amount;
 
+                    $direct_sale_count = $commission_level_user->children()->count();
+                    $is_level_commission_requirement_satisfied = $direct_sale_count >= ($level_commission_requirement->value ?? 5);
+
+                    $isQualified = $commission_level_user->is_active && $is_level_commission_requirement_satisfied;
+
+                    Log::channel('daily')->{$isQualified ? 'warning' : 'info'}("COMMISSION ELIGIBILITY | PURCHASE PACKAGE: {$package->id} | COMMISSION AMOUNT: {$commission_amount} ", [
+                        'commission_level_user' => $commission_level_user->id,
+                        'direct_sale_count' => $direct_sale_count,
+                        'level_commission_requirement' => $level_commission_requirement->value ?? 5,
+                        'is_level_commission_requirement_satisfied' => $is_level_commission_requirement_satisfied,
+                        'commission_level_user is_active' => $commission_level_user->is_active,
+                        'isQualified' => $isQualified,
+                    ]);
+
                     $commission = Commission::forceCreate([
                         'user_id' => $commission_level_user->id,
                         'purchased_package_id' => $package->id,
                         'amount' => $commission_amount,
                         'paid' => 0,
                         'type' => $i === 1 ? 'DIRECT' : 'INDIRECT',
-                        'status' => $commission_level_user->is_active ? 'QUALIFIED' : 'DISQUALIFIED'
+                        'status' => $isQualified ? 'QUALIFIED' : 'DISQUALIFIED'
                     ]);
 
                     $less_level_commissions -= $commission->amount;
 
-                    $isQualified = $commission_level_user->is_active;
+
                     if ($isQualified) {
                         $commissionLevelUserActivePackages = $commission_level_user->activePackages;
 
