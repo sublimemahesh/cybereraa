@@ -109,7 +109,7 @@
     --br-nav-tab: 6px;
     --br-input: 10px;
     /* --bg-color: #171b26; */
-    --bg-color: #23233d;
+    --bg-color:#5b5b5b;
 
     /* --bg-color-card: #252a3d; */
     --bg-color-card: #0c0d21;
@@ -40982,7 +40982,7 @@ table.dataTable thead .sorting_asc {
     font-weight: 600;
     text-transform: uppercase;
     color: var(--secondary);
-    background: transparent;
+    background: #828282;
     border: 0;
     width: calc(100% / 3);
     position: relative;
@@ -40999,7 +40999,7 @@ table.dataTable thead .sorting_asc {
     width: 0;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #1fcee9;
+    background-color: #17998f;
     transition: all 0.2s;
 }
 
@@ -41025,12 +41025,12 @@ table.dataTable thead .sorting_asc {
 }
 
 [data-theme-version="dark"] .buy-sell.style-1 .nav-tabs .nav-link {
-    color: var(--primary);
+    color: #0f0e13;
 }
 
 .buy-sell.style-1 .nav-tabs .nav-link.active {
     color: #ebf1f2;
-    background-color: #1fcee9;
+    background-color: #17998d;
 
 }
 
@@ -49600,5 +49600,65 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
     text-transform: capitalize;
     font-size: 15px;
     line-height: 1.5;
+
+}
+
+.progress-right-card-icon{
+  height: 4.313rem;
+  width: 5.313rem;
+  border-radius: 7px;
+  padding: 0.625rem 0.75rem;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #464a53;
+  background: #8e8e98;
+  border-color: #9568FF;
+  color: #000;
+
+}
+
+.p-none{
+    padding: 0px;
+}
+
+.btn-width{
+    width: 100% !important;
+}
+
+.dashboard-refferal-direct h5{
+    color:#6c6c76 !important;;
+    margin-top: 20px;
+}
+
+.dashboard-refferal-direct span{
+    color:white !important;;
+}
+
+.dashboard-Other-deatils h5{
+    color:#6c6c76 !important;;
+}
+
+.dashboard-Other-deatils span{
+    color:white;
+}
+
+.txt-dark-green{
+    color:#19543E !important;;
+}
+
+#grey-color-override .color-grey{
+    color:#939499 !important;;
+}
+
+
+.dashboard-title h2{
+    color: black !important;
+  margin-top: -20px;
+  margin-bottom: 20px;
+  font-family: 'Oswald', sans-serif;
+  font-style: italic;
+    font-size: 29px;
 
 }

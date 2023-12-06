@@ -1,14 +1,19 @@
 
 
-<li>
+ <div data-devil='ml:40 mt:-10'>
     <form method="POST" action="{{ route('logout') }}">
         @csrf
         <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();" class="rounded-1" aria-expanded="false">
-            <i class="bi bi-box-arrow-left"></span></i>
-            <span class="nav-text">{{ __('Logout') }} </span>
+            {{-- <i class="bi bi-box-arrow-left"></span></i>
+            <span class="nav-text">{{ __('Logout') }} </span> --}}
+            <img src="{{ asset('assets/backend/images/icon/logout.png') }}" /><br>
+            <div data-devil='ml:10'>
+            <span class="nav-text">{{ __('Logout') }} </span> 
+            </div>
         </a>
     </form>
-</li>
+</div>
+
 
 
 

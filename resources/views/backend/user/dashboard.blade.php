@@ -5,6 +5,12 @@
 
     <div class="row">
 
+        <div class="dashboard-title">
+            <h2 class="text-center mx-auto">
+                Welcome to  Coin 1M Family
+            </h2>
+        </div>
+
         <div class="col-xl-3 col-lg-6 col-sm-6">
 
             <div class="card overflow-hidden br-dashboard-card">
@@ -67,8 +73,6 @@
         </div>
 
     </div>
-
-
 
     <div class="row">
         <div class="col-xxl-12">
@@ -160,11 +164,266 @@
         </div>
     </div>
 
+    <div class='row'>
+         <!-- Column -->
+         <div class="col-xl-9">
+            <div class="card">
+                <div class="card-body">
+                    <h6>My Insvestment
+                        <span class="pull-end">100%</span>
+                    </h6>
+                    <div class="progress ">
+                        <div class="progress-bar bg-success progress-animated" style="width: 100%; height:6px;" role="progressbar">
+                            <span class="sr-only">60% Complete</span>
+                        </div>
+                    </div>
+                    <h6 class="mt-4">My Withdrawal
+                        <span class="pull-end">90%</span>
+                    </h6>
+                    <div class="progress">
+                        <div class="progress-bar bg-success progress-animated" style="width: 90%; height:6px;" role="progressbar">
+                            <span class="sr-only">60% Complete</span>
+                        </div>
+                    </div>
+
+                    <h6 class="mt-4">Wallet Balance
+                        <span class="pull-end">65%</span>
+                    </h6>
+                    <div class="progress">
+                        <div class="progress-bar bg-success progress-animated" style="width: 65%; height:6px;" role="progressbar">
+                            <span class="sr-only">60% Complete</span>
+                        </div>
+                    </div>
+
+                    <h6 class="mt-4">My Income
+                        <span class="pull-end">65%</span>
+                    </h6>
+                    <div class="progress">
+                        <div class="progress-bar bg-success progress-animated" style="width: 65%; height:6px;" role="progressbar">
+                            <span class="sr-only">60% Complete</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Column -->
+        <!-- Column -->
+        <div class="col-xl-3">
+            <div class="card">
+                <div class="card-body">
+                   <div class="row" id="grey-color-override">
+                    <div class="col-xl-12" data-devil="mt:20">
+                        <div>
+                            <div class="card-body d-flex align-items-center p-none">
+                                <span class="progress-right-card-icon">
+                                    <img src="{{ asset('assets/backend/images/icon/dollar.png') }}" />
+                                </span>
+                                <div data-devil='ml:22'>
+                                    <h4 class="heading mb-0">750 CMT</h4>
+                                    <h4 class="  mb-2 fs-13 color-grey">Total Earned</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-12" data-devil="mt:40">
+                        <div>
+                            <div class="card-body d-flex align-items-center p-none">
+                                <span class="progress-right-card-icon">
+                                    <img src="{{ asset('assets/backend/images/icon/dollar.png') }}" />
+                                </span>
+                                <div data-devil='ml:22'>
+                                    <h4 class="heading mb-0">2,250 CMT</h4>
+                                    <h4 class="mb-2 fs-13 color-grey">Payout Balance</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-xl-12"></div>
+                   </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+        <!-- Column -->
+    </div>
+
+    <div class="row">
+
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-header border-0 pb-0 d-flex mx-auto">
+                    <h5 class="card-title">Refferal Details</h5>
+                </div>
+                <div class="card-body ">
+                    <div>
+                        <input type="text" class="form-control input-default " placeholder="">
+                        <div class="text-center" data-devil="pt:15">
+                        <label>
+                            <input type="checkbox" name="exampleCheckbox">
+                            Copy Link
+                        </label>
+                        </div>
+                    </div>
+                    <div class="row" data-devil="mt:15">
+                       <div class="col-xl-4">
+                        <button type="button" class="btn btn-success btn-width">Whatsapp</button>
+                       </div>
+                       <div class=" col-xl-4">
+                        <button type="button" class="btn  btn-info btn-width">Facebook </button>
+                       </div>
+                       <div class=" col-xl-4">
+                        <button type="button" class="btn btn-warning btn-width">Massenger</button></div>
+                    </div>
+
+                    <div class="text-center dashboard-refferal-direct">
+                        <h5>Direct Sale Count <span>- 05</span></h5>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-header ">
+                    <div  class="text-center mx-auto">
+                        <h5 class="card-title">Other Deatils</h5>
+                    </div>
+                </div>
+                <div class="card-body dashboard-Other-deatils">
+                    <h5>Sponsor Username <span>- Amal01</span></h5>
+                    <h5>Register Date <span>- 2023-11-04</span></h5>
+                    <h5>Active Date <span>- 2023-11-05</span></h5>
+                    <h5>KYC <span>-</span><span class='txt-dark-green'>Active</span></h5>
+                    <h5>Package Plus <span>-</span><span class='txt-dark-green'>Active</span></h5>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-xl-12 col-sm-6">
+            <div class="card rounded-3">
+                <div class="border-0 card-header pb-2 pt-3">
+                    <h2 class="heading mb-0">Latest Incomes <span>(USDT)</span></h2>
+                </div>
+                <div class="card-body pt-0 pb-3 mt-2">
+                    <nav class="buy-sell style-1 ">
+                        <div class="nav nav-tabs" id="nav-tab1" role="tablist">
+                            <button class="last-income-round nav-link border border-right  active"
+                                id="nav-package-earning-tab last-income-round" data-bs-toggle="tab"
+                                data-bs-target="#nav-package-earning" type="button" role="tab"
+                                aria-controls="nav-package-earning" aria-selected="true">Latest Package
+                                Earnings
+                            </button>
+                            <button class="nav-link border border-left" id="nav-direct-sale-tab"
+                                data-bs-toggle="tab" data-bs-target="#nav-direct-sale" type="button"
+                                role="tab" aria-controls="nav-direct-sale" aria-selected="false">Direct
+                                Sales
+                            </button>
+                            <button class="nav-link border border-left " id="nav-indirect-sale-tab"
+                                data-bs-toggle="tab" data-bs-target="#nav-indirect-sale" type="button"
+                                role="tab" aria-controls="nav-indirect-sale"
+                                aria-selected="false">In-Direct Sales
+                            </button>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent3">
+                        <div class="tab-pane fade show active" id="nav-package-earning" role="tabpanel"
+                            aria-labelledby="package-earning-tab">
+                            <div class="list-row-head text-nowrap text-left px-3">
+                                <span class="px-0">Received</span>
+                                <span class="px-0">Package</span>
+                                <span class="px-0">Paid Percentage</span>
+                                <span class="px-0">Date</span>
+                            </div>
+                            <div class="list-table success">
+                                @foreach ($package_latest as $day_earn)
+                                <div class="list-row px-3">
+                                    <span class="p-0">$ {{ number_format($day_earn->amount,2) }}</span>
+                                    <span class="p-0">{{ $day_earn->earnable->package_info_json->name
+                                        }}</span>
+                                    <span class="p-0">{{ $day_earn->payed_percentage ??
+                                        $day_earn->earnable->payable_percentage }}%</span>
+                                    <span class="p-0">{{ $day_earn->created_at->format('Y-m-d')
+                                        }}</span>
+                                    <div class="bg-layer"></div>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-direct-sale" role="tabpanel"
+                            aria-labelledby="nav-direct-sale-tab">
+                            <div class="list-row-head text-nowrap text-left px-3">
+                                <span class="px-0">Received</span>
+                                <span class="px-0">Already Paid</span>
+                                <span class="px-0">User</span>
+                                <span class="px-0">Next Pay</span>
+                            </div>
+                            <div class="list-table success">
+                                @foreach ($direct as $sale)
+                                <div class="list-row px-3">
+                                    <span class="p-0">$ {{ number_format($sale->amount,2) }}</span>
+                                    <span class="p-0">$ {{ number_format($sale->paid,2) }}</span>
+                                    <span class="p-0">{{ $sale->purchasedPackage->user->username
+                                        }}</span>
+                                    <span class="p-0">{{
+                                        Carbon::parse($sale->next_payment_date)->format('Y-m-d')
+                                        }}</span>
+                                    <div class="bg-layer"></div>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-indirect-sale" role="tabpanel"
+                            aria-labelledby="nav-indirect-sale-tab">
+                            <div class="list-row-head text-nowrap text-left px-3">
+                                <span class="px-0">Received</span>
+                                <span class="px-0">Already Paid</span>
+                                <span class="px-0">User</span>
+                                <span class="px-0">Next Pay</span>
+                            </div>
+                            <div class="list-table success">
+                                @foreach ($indirect as $sale)
+                                <div class="list-row px-3">
+                                    <span class="p-0">$ {{ number_format($sale->amount,2) }}</span>
+                                    <span class="p-0">$ {{ number_format($sale->paid,2) }}</span>
+                                    <span class="p-0">{{ $sale->purchasedPackage->user->username
+                                        }}</span>
+                                    <span class="p-0">{{
+                                        Carbon::parse($sale->next_payment_date)->format('Y-m-d')
+                                        }}</span>
+                                    <div class="bg-layer"></div>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
     <div class="row">
         <div class="col-xl-4  col-sm-12">
             <div class="card">
                 <div class="card-header border-0 pb-0">
-                    <h2 class="heading">Assets Allocation</h2>
+                    <h2 class="heading">Income Chart</h2>
                     <div class="dropdown custom-dropdown">
                         <div class="btn sharp btn-primary tp-btn " data-bs-toggle="dropdown">
                             <svg width="6" height="20" viewBox="0 0 6 20" fill="none"
@@ -240,7 +499,7 @@
             <div class="card market_chart">
                 <div class="card-header border-0 align-items-start flex-wrap pb-0" data-devil='mt:30'>
                     <div>
-                        <h2 class="heading">Market Chart</h2>
+                        <h2 class="heading">My Business Growth</h2>
                         <div class="market-data">
                             <div class="income data">
                                 <span>This Month</span>
@@ -284,6 +543,8 @@
         </div>
 
     </div>
+
+
 
     <div class="row">
         <div class="col-xl-12">
@@ -628,7 +889,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xl-12">
+                {{-- <div class="col-xl-12">
                     <div class="row">
                         <div class="col-xl-12 col-sm-6">
                             <div class="card rounded-3">
@@ -731,7 +992,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="col-lg-12">
                     <div class="owl-carousel owl-banner">

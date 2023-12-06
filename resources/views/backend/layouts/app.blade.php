@@ -73,7 +73,7 @@
 
 </head>
 
-<body class="font-sans antialiased dark" style="background:var(--bg-color)">
+<body class="font-sans antialiased dark" style="background:var(--bg-color)"> 
 <!--******************* Preloader start ********************-->
 
 <!--******************* Preloader end ********************-->

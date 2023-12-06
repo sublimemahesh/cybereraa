@@ -216,7 +216,7 @@ var donutChart = function(){
 
       },
     },
-    colors:['red','blue'],
+    colors:['#17998f','#d8d8e0'],
     stroke:{
         curve : "straight",
          width: 3,
