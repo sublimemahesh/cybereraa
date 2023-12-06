@@ -86,7 +86,7 @@
     @include('backend.' . $folder .'.sidebar')
 
     <!--********************************** Content body start ***********************************-->
-    <div class="content-body">
+    <div class="content-body" data-dxs="mt:80">
         <!-- row -->
         <div class="container-fluid cf-mt">
 

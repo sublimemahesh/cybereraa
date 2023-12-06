@@ -27,45 +27,119 @@
 
 
                         <div class="row">
-                            <div class="col-2" >
-                                <div class="card text-center" data-devil="bgc:#aa1195 c:white">
-                                    <div class="card-body" >
-                                <b>Price </b>USDT {{ $package->amount }}
+                           
+                            <div class="col-xl-1 col-lg-1 col-sm-2"></div>
+
+                            <div class="col-xl-2 col-lg-3 col-sm-2">
+                                <div class="widget-stat card rounded-3" data-devil='bgc:#22223c'>
+                                    <div class="card-body  p-4">
+                                        <div class="col-mb-12 ">
+                                            <div class="media justify-content-center dash-p-10">
+                                                <span class="me-3 justify-content-center"><i
+                                                        class="fa-solid fa-dollar-sign"></i></span>
+                                            </div>
+                                        </div>
+    
+                                        <div class="col-mb-12">
+                                            <div class="media">
+                                                <div class="media-body text-white">
+                                                    <p class="mb-1 dash-p"> <b>Price </b> <br>USDT {{ $package->amount }} </p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-2">
-                                <div class="card text-center" data-devil="bgc:#aa1195 c:white">
-                                    <div class="card-body">
-                                        <b>Gas Fee </b>USDT {{ $package->gas_fee }}
+                          
+
+                            <div class="col-xl-2 col-lg-3 col-sm-2">
+                                <div class="widget-stat card rounded-3" data-devil='bgc:#22223c'>
+                                    <div class="card-body  p-4">
+                                        <div class="col-mb-12 ">
+                                            <div class="media justify-content-center dash-p-10">
+                                                <span class="me-3 justify-content-center"><i
+                                                        class="fa-solid fa-fire-flame-simple"></i></span>
+                                            </div>
+                                        </div>
+    
+                                        <div class="col-mb-12">
+                                            <div class="media">
+                                                <div class="media-body text-white">
+                                                    <p class="mb-1 dash-p"> <b>Gas Fee </b> <br>USDT {{ $package->gas_fee }} </p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-3">
-                                <div class="card text-center" data-devil="bgc:#aa1195 c:white">
-                                    <div class="card-body">
-                                        <b>Package </b>{{ $package->name }}
+                            
+                            <div class="col-xl-2 col-lg-3 col-sm-2">
+                                <div class="widget-stat card rounded-3 " data-devil='bgc:#22223c'>
+                                    <div class="card-body  p-4">
+                                        <div class="col-mb-12 ">
+                                            <div class="media justify-content-center dash-p-10">
+                                                <span class="me-3 justify-content-center"><i
+                                                        class="fa-solid fa-box-archive"></i></span>
+                                            </div>
+                                        </div>
+    
+                                        <div class="col-mb-12">
+                                            <div class="media">
+                                                <div class="media-body text-white">
+                                                    <p class="mb-1 dash-p"> <b>Package </b>{{ $package->name }} </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+
+                            <div class="col-xl-2 col-lg-3 col-sm-2">
+                                <div class="widget-stat card rounded-3 " data-devil='bgc:#22223c'>
+                                    <div class="card-body  p-4">
+                                        <div class="col-mb-12 ">
+                                            <div class="media justify-content-center dash-p-10">
+                                                <span class="me-3 justify-content-center"><i
+                                                        class="fa-solid fa-sack-dollar"></i></span>
+                                            </div>
+                                        </div>
+    
+                                        <div class="col-mb-12">
+                                            <div class="media">
+                                                <div class="media-body text-white">
+                                                    <p class="mb-1 dash-p"> Within Investment Period</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            <div class="col-xl-2 col-lg-3 col-sm-2">
+                                <div class="widget-stat card rounded-3 " data-devil='bgc:#22223c'>
+                                    <div class="card-body  p-4">
+                                        <div class="col-mb-12 ">
+                                            <div class="media justify-content-center dash-p-10">
+                                                <span class="me-3 justify-content-center"><i
+                                                        class="fa-solid fa-money-bill-trend-up"></i></span></center>
+                                            </div>
+                                        </div>
+    
+                                        <div class="col-mb-12">
+                                            <div class="media">
+                                                <div class="media-body text-white">
+                                                    <p class="mb-1 dash-p"> <b> 0.4% - 1.3% </b> Daily Profit </p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-3">
-                                <div class="card text-center" data-devil="bgc:#aa1195 c:white">
-                                    <div class="card-body">
-                                        Within Investment Period
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-2">
-                                <div class="card text-center" data-devil="bgc:#aa1195 c:white">
-                                    <div class="card-body">
-                                        <b> 0.4% - 1.3% </b> Daily Profit
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="col-xl-1 col-lg-1 col-sm-2"></div>
 
                         </div>
 
@@ -76,7 +150,7 @@
                         <div class="col-8">
                             <div class="form-group mt-5">
                                 <label for="custom-deposit-amount"> Enter the amount</label>
-                                <input type="number" name="amount" step="0.1" value="5" min="5" max="50000" id="custom-deposit-amount" class="form-control no-hover-style"/>
+                                <input type="number" name="amount" step="0.1" value="10" min="10" max="50000" id="custom-deposit-amount" class="form-control no-hover-style" data-devil='fs:20'  >
                             </div>
                         </div>
                         <div class="col-2"></div>
@@ -86,7 +160,7 @@
 
                         <div class="range-slider">
                           <span id="rs-bullet" class="rs-label">10</span>
-                          <input id="rs-range-line" class="rs-range" type="range" value="10" min="10" max="2500">
+                          <input id="rs-range-line" class="rs-range" type="range" value="10" min="10" max="2500" >
 
                         </div>
 
@@ -100,7 +174,7 @@
 
 
                     <button type="button" class="btn btn-primary bp-price-btn no-hover-style" id="total-amount" data-devil='mt:4'>
-                        USDT {{ 5 + $package->gas_fee }}
+                        USDT {{ 10 + $package->gas_fee }}
                     </button>
 
                 </div>
