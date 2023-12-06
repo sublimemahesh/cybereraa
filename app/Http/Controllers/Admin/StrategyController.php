@@ -137,7 +137,7 @@ class StrategyController extends Controller
         $rank_bonus = $strategies->where('name', 'rank_bonus')->first(null, fn() => new Strategy(['value' => 10]));
 
         $level_commission_requirement = $strategies->where('name', 'level_commission_requirement')->first(null, fn() => new Strategy(['value' => 5]));
-         
+
         $commissions = json_decode($commissions?->value, false, 512, JSON_THROW_ON_ERROR);
         $total_percentage = array_sum(get_object_vars($commissions));
         $total_percentage += ($rank_gift?->value + $rank_bonus?->value);

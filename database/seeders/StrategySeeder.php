@@ -14,7 +14,7 @@ class StrategySeeder extends Seeder
      */
     public function run()
     {
-        DB::table('strategies')->insert([
+        DB::table('strategies')->upsert([
             [
                 'name' => 'payout_transfer_fee',
                 'data_type' => 'double',
@@ -199,6 +199,6 @@ class StrategySeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-        ]);
+        ], 'name');
     }
 }
