@@ -130,6 +130,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
 
         //Traders
         Route::resource('traders', 'Admin\TradersController')->except('create', 'show');
+        Route::resource('traders.transactions', 'Admin\TraderTransactionController')->except('create', 'show')->shallow();
 
         //Packages
         Route::get('packages/arrange', 'Admin\PackageController@sort')->name('packages.arrange');

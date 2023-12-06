@@ -14,7 +14,13 @@ class TraderTransaction extends Model
     use softDeletes, CascadeSoftDeletes;
 
     protected $fillable = [
-        'name', 'email', 'phone',
+        'trader_id',
+        'admin_id',
+        'out_usdt',
+        'usdt_out_time',
+        'in_usdt',
+        'usdt_in_time',
+        'reference',
     ];
 
     public function trader(): BelongsTo

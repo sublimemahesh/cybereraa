@@ -1,6 +1,6 @@
 <x-backend.layouts.app>
-    @section('title', 'Traders | Expenses Summery')
-    @section('header-title', 'Traders | Expenses Summery' )
+    @section('title', 'Traders Transactions | Expenses Summery')
+    @section('header-title', 'Traders Transactions | Expenses Summery' )
     @section('plugin-styles')
         <!-- Datatable -->
         <link href="{{asset('assets/backend/vendor/datatables/css/jquery.dataTables.min.css')}}" rel="stylesheet">
@@ -8,7 +8,7 @@
 
     @section('breadcrumb-items')
         <li class="breadcrumb-item">
-            <a href="{{ route('admin.traders.index') }}">Traders</a>
+            <a href="{{ route('admin.traders.transactions.index', $trader) }}">Traders Transactions</a>
         </li>
     @endsection
 
@@ -16,47 +16,46 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    @include('backend.admin.traders.save', ['btn_id' => 'create'])
+                    @include('backend.admin.traders.transactions.save', ['btn_id' => 'create'])
                 </div>
             </div>
         </div>
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body table-responsive">
-                    <table class="table table-striped table-bordered dt-responsive nowrap" id="traders">
+                    <table class="table table-striped table-bordered dt-responsive nowrap" id="traders_transactions">
                         <thead>
                             <tr>
                                 <th>ACTIONS</th>
-                                <th>NAME</th>
-                                <th>EMAIL</th>
-                                <th>PHONE</th>
+                                <th>OUT USDT</th>
+                                <th>USDT OUT TIME</th>
+                                <th>IN USDT</th>
+                                <th>USDT IN TIME</th>
+                                <th>REFERENCE</th>
                                 <th>LAST MODIFIED</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($traders as $trader)
+                            @foreach ($transactions as $transaction)
                                 <tr>
                                     <td class="py-2">
-                                        @can('update', $trader)
-                                            <a class="btn btn-xs btn-info sharp" href="{{ route('admin.traders.edit', $trader) }}">
+                                        @can('update', $transaction)
+                                            <a class="btn btn-xs btn-info sharp" href="{{ route('admin.transactions.edit', $transaction) }}">
                                                 <i class="fa fa-pencil"></i>
                                             </a>
                                         @endcan
-                                        @can('delete', $trader)
-                                            <a class="btn btn-xs btn-danger sharp delete-trader" data-trader="{{ $trader->id }}" href="javascript:void(0)">
+                                        @can('delete', $transaction)
+                                            <a class="btn btn-xs btn-danger sharp delete-transaction" data-transaction="{{ $transaction->id }}" href="javascript:void(0)">
                                                 <i class="fa fa-trash"></i>
                                             </a>
                                         @endcan
-                                        @can('create', \App\Models\TraderTransaction::class)
-                                            <a class="btn btn-xs btn-success sharp" href="{{ route('admin.traders.transactions.index', $trader) }}">
-                                                <i class="fa fa-link"></i>
-                                            </a>
-                                        @endcan
                                     </td>
-                                    <td>{{ $trader->name }}</td>
-                                    <td>{{ $trader->email }}</td>
-                                    <td>{{ $trader->phone }}</td>
-                                    <td>{{ $trader->updated_at }}</td>
+                                    <td>{{ $transaction->out_usdt }}</td>
+                                    <td>{{ $transaction->usdt_out_time }}</td>
+                                    <td>{{ $transaction->in_usdt }}</td>
+                                    <td>{{ $transaction->usdt_in_time }}</td>
+                                    <td>{{ $transaction->reference }}</td>
+                                    <td>{{ $transaction->updated_at }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -70,7 +69,7 @@
         <!-- Datatable -->
         <script src="{{ asset('assets/backend/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('assets/backend/js/global-datatable-extension.js') }}"></script>
-        <script src="{{ asset('assets/backend/js/admin/cms/traders.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/admin/cms/traders_transaction.js') }}"></script>
     @endpush
 </x-backend.layouts.app>
 

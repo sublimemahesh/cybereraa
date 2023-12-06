@@ -42,7 +42,10 @@ class TraderPolicy
     public function delete(User $user, Trader $trader)
     {
         $trader->loadCount('traderTransactions');
-        if ($trader->trader_transactions_count === 0 && $user->hasPermissionTo('trader.delete')) {
+        if ($trader->trader_transactions_count > 0) {
+            return false;
+        }
+        if ($user->hasPermissionTo('trader.delete')) {
             return true;
         }
     }
@@ -57,7 +60,10 @@ class TraderPolicy
     public function forceDelete(User $user, Trader $trader)
     {
         $trader->loadCount('traderTransactions');
-        if ($trader->trader_transactions_count === 0 && $user->hasPermissionTo('trader.delete')) {
+        if ($trader->trader_transactions_count !== 0) {
+            return false;
+        }
+        if ($user->hasPermissionTo('trader.delete')) {
             return true;
         }
     }
