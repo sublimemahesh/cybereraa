@@ -146,7 +146,7 @@ class StrategySeeder extends Seeder
             [
                 'name' => 'payable_percentages',
                 'data_type' => 'json',
-                'value' => '{"direct":"0.332","indirect":"0.332","package":"1","rank_bonus":"100"}',
+                'value' => '{"direct":"100","indirect":"100","package":"1","rank_bonus":"100"}',
                 'comment' => 'Direct , Indirect & Rank bonus daily payable percentage',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -194,8 +194,16 @@ class StrategySeeder extends Seeder
             [
                 'name' => 'custom_investment_gas_fee',
                 'data_type' => 'double',
-                'value' => 1,
+                'value' => 2,
                 'comment' => 'Custom Investment Gas Fee In percentage',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'investment_start_at',
+                'data_type' => 'int',
+                'value' => 2,
+                'comment' => 'How many days after the daily earnings start from the package purchase date',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
