@@ -126,17 +126,31 @@ class StrategyController extends Controller
     {
         $this->authorize('viewAny', Strategy::class);
 
-        $strategies = Strategy::whereIn('name', ['commission_level_count', 'commissions', 'rank_gift', 'rank_bonus'])->get();
+        $strategies = Strategy::whereIn('name', ['trade_income', 'level_commission_requirement', 'commission_level_count', 'commissions', 'rank_gift', 'rank_bonus'])->get();
 
-        $commission_level_count = $strategies->where('name', 'commission_level_count')->first(null, fn() => new Strategy(['value' => 0]));
-        $commissions = $strategies->where('name', 'commissions')->first(null, fn() => new Strategy(['value' => '{}']));
+        $trade_income = $strategies->where('name', 'trade_income')->first(null, fn() => new Strategy(['value' => '{"1":"50","2":"25","3":"12.50","4":"6.25"}']));
+        $trade_income = json_decode($trade_income?->value, true, 512, JSON_THROW_ON_ERROR);
+
+        $commission_level_count = $strategies->where('name', 'commission_level_count')->first(null, fn() => new Strategy(['value' => 4]));
+        $commissions = $strategies->where('name', 'commissions')->first(null, fn() => new Strategy(['value' => '{"1":"5","2":"2.5","3":"1.5","4":"1"}']));
         $rank_gift = $strategies->where('name', 'rank_gift')->first(null, fn() => new Strategy(['value' => 5]));
         $rank_bonus = $strategies->where('name', 'rank_bonus')->first(null, fn() => new Strategy(['value' => 10]));
 
-        $commissions = json_decode($commissions->value, false, 512, JSON_THROW_ON_ERROR);
+        $level_commission_requirement = $strategies->where('name', 'level_commission_requirement')->first(null, fn() => new Strategy(['value' => 5]));
+         
+        $commissions = json_decode($commissions?->value, false, 512, JSON_THROW_ON_ERROR);
         $total_percentage = array_sum(get_object_vars($commissions));
-        $total_percentage += ($rank_gift->value + $rank_bonus->value);
-        return view('backend.admin.strategies.commissions.index', compact('total_percentage', 'commission_level_count', 'commissions', 'rank_gift', 'rank_bonus'));
+        $total_percentage += ($rank_gift?->value + $rank_bonus?->value);
+
+        return view('backend.admin.strategies.commissions.index', compact(
+            'total_percentage',
+            'trade_income',
+            'level_commission_requirement',
+            'commission_level_count',
+            'commissions',
+            'rank_gift',
+            'rank_bonus'
+        ));
     }
 
     /**
@@ -351,9 +365,15 @@ class StrategyController extends Controller
         $this->authorize('update', Strategy::class);
 
         $validated = Validator::make($request->all(), [
+            'trade_income_level_count' => ['required', 'integer', 'gte:1'],
+            'trade_income' => ['required', 'array', 'size:' . $request->get('trade_income_level_count')],
+            'trade_income.*' => ['required', 'numeric'],
+
+            'level_commission_requirement' => ['required', 'integer', 'gte:1'],
             'commission_level_count' => ['required', 'integer', 'gte:1'],
             'commissions' => ['nullable', Rule::requiredIf($request->get('commission_level_count') > 0), 'array', 'size:' . $request->get('commission_level_count')],
             'commissions.*' => ['required', 'numeric'],
+
             'rank_gift' => ['required', 'numeric'],
             'rank_bonus' => ['required', 'numeric'],
         ])->validate();
@@ -381,10 +401,22 @@ class StrategyController extends Controller
             throw new RuntimeException('Something does not seem to be ok with commission level count');
         }
 
+        $trade_income = $validated['trade_income'];
+        $level_commission_requirement = $validated['level_commission_requirement'];
         $rank_bonus = $validated['rank_bonus'];
         $rank_gift = $validated['rank_gift'];
 
-        DB::transaction(function () use ($commission_level_count, $commissions, $rank_gift, $rank_bonus) {
+        DB::transaction(function () use ($trade_income, $level_commission_requirement, $commission_level_count, $commissions, $rank_gift, $rank_bonus) {
+            Strategy::updateOrCreate(
+                ['name' => 'trade_income'],
+                ['value' => $trade_income]
+            );
+
+            Strategy::updateOrCreate(
+                ['name' => 'level_commission_requirement'],
+                ['value' => $level_commission_requirement]
+            );
+
             Strategy::updateOrCreate(
                 ['name' => 'commission_level_count'],
                 ['value' => $commission_level_count]

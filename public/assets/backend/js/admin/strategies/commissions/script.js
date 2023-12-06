@@ -22,8 +22,8 @@ $(document).ready(function () {
             Toast.fire({
                 icon: 'error', title: error.response.data.message || "Something went wrong!",
             })
-            let errorMap = ['rank_gift', 'rank_bonus', 'commission_level_count']
-            document.querySelectorAll('input[data-input=commissions]').forEach(input => {
+            let errorMap = ['rank_gift', 'rank_bonus', 'commission_level_count', 'trade_income']
+            document.querySelectorAll('input[data-input=commissions],input[data-input=trade_income]').forEach(input => {
                 errorMap.push(input.id)
             })
             errorMap.map(id => {
@@ -47,12 +47,31 @@ $(document).ready(function () {
             let html = `<div class="form-group row mb-2" id="commissions-level-${i}">
                 ${label}
                 <div class="col-sm-9">
-                    <input class="form-control" data-input="commissions" id="commissions.${i}" name="commissions[${i}]" placeholder="Commissions" type="text">
+                    <input class="form-control" data-input="commissions" id="commissions.${i}" name="commissions[${i}]" placeholder="Commissions" type="number">
                 </div>
             </div>`
             $('#level-commission-inputs').append(html)
         }
         updateSum()
+    })
+
+
+    $(document).on('change', '#trade_income_level_count', function (e) {
+        let __this = $(this);
+        let trade_income_level_count = __this.val();
+
+        $('#level-income-inputs').empty();
+        for (let i = 1; i <= trade_income_level_count; i++) {
+            let label = '';
+            label = `<label class="col-sm-3 col-form-label" for="trade_income.${i}">Trade Income Level ${i} (%)</label>`;
+            let html = `<div class="form-group row mb-2" id="trade_income-level-${i}">
+                ${label}
+                <div class="col-sm-9">
+                    <input class="form-control" data-input="trade_income" id="trade_income.${i}" name="trade_income[${i}]" placeholder="Trade Income" type="number">
+                </div>
+            </div>`
+            $('#level-income-inputs').append(html);
+        }
     })
 
     $(document).on('change', 'input[data-input=commissions]', updateSum)
