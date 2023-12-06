@@ -24,18 +24,22 @@ class PackageController extends Controller
 
     public function custom()
     {
+        $strategies = Strategy::whereIn('name', ['min_custom_investment', 'max_custom_investment', 'custom_investment_gas_fee'])->get();
+        $min_custom_investment = $strategies->where('name', 'min_custom_investment')->first(null, fn() => new Strategy(['value' => 10]));
+        $max_custom_investment = $strategies->where('name', 'max_custom_investment')->first(null, fn() => new Strategy(['value' => 5000]));
+        $custom_investment_gas_fee = $strategies->where('name', 'custom_investment_gas_fee')->first(null, fn() => new Strategy(['value' => 1]));
 
         $package = new Package([
             'name' => 'Custom',
             'slug' => 'custom',
             'currency' => 'USDT',
-            'amount' => null,
-            'gas_fee' => 10,
+            'amount' => $min_custom_investment?->value,
+            'gas_fee' => $custom_investment_gas_fee?->value,
             'month_of_period' => 15,
             'daily_leverage' => 1,
             'is_active' => 1,
         ]);
-        return view('backend.user.packages.custom-amount-deposit', compact('package'));
+        return view('backend.user.packages.custom-amount-deposit', compact('package', 'min_custom_investment', 'max_custom_investment', 'custom_investment_gas_fee'));
     }
 
     /**

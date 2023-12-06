@@ -34,7 +34,10 @@ class StrategyController extends Controller
             'minimum_p2p_transfer_limit',
             'payout_transfer_fee',
             'staking_withdrawal_fee',
-            'p2p_transfer_fee'
+            'p2p_transfer_fee',
+            'min_custom_investment',
+            'max_custom_investment',
+            'custom_investment_gas_fee',
         ])->get();
 
         $withdrawal_limits = $strategies->where('name', 'withdrawal_limits')->first(null, fn() => new Strategy(['value' => '{"package": 300, "commission": 100}']));
@@ -44,6 +47,10 @@ class StrategyController extends Controller
         $payout_transfer_fee = $strategies->where('name', 'payout_transfer_fee')->first(null, fn() => new Strategy(['value' => 5]));
         $staking_withdrawal_fee = $strategies->where('name', 'staking_withdrawal_fee')->first(null, fn() => new Strategy(['value' => 5]));
         $p2p_transfer_fee = $strategies->where('name', 'p2p_transfer_fee')->first(null, fn() => new Strategy(['value' => 2.5]));
+
+        $min_custom_investment = $strategies->where('name', 'min_custom_investment')->first(null, fn() => new Strategy(['value' => 10]));
+        $max_custom_investment = $strategies->where('name', 'max_custom_investment')->first(null, fn() => new Strategy(['value' => 5000]));
+        $custom_investment_gas_fee = $strategies->where('name', 'custom_investment_gas_fee')->first(null, fn() => new Strategy(['value' => 1]));
 
         $daily_max_withdrawal_limits = $strategies->where('name', 'daily_max_withdrawal_limits')->first(null, fn() => new Strategy(['value' => 100]));
         $withdrawal_days_of_week = $strategies->where('name', 'withdrawal_days_of_week')->first(null, fn() => new Strategy(['value' => '["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]']));
@@ -62,6 +69,9 @@ class StrategyController extends Controller
                 'p2p_transfer_fee',
                 'daily_max_withdrawal_limits',
                 'withdrawal_days_of_week',
+                'min_custom_investment',
+                'max_custom_investment',
+                'custom_investment_gas_fee',
             )
         );
     }
@@ -234,6 +244,9 @@ class StrategyController extends Controller
             'staking_withdrawal_fee' => ['required', 'numeric'],
             'payout_transfer_fee' => ['required', 'numeric'],
             'p2p_transfer_fee' => 'required|numeric',
+            'min_custom_investment' => 'required|numeric|min:5',
+            'max_custom_investment' => 'required|numeric|gte:min_custom_investment',
+            'custom_investment_gas_fee' => 'required|numeric|gte:1|lte:100',
         ])->validate();
 
         DB::transaction(function () use ($validated) {
@@ -258,6 +271,21 @@ class StrategyController extends Controller
             Strategy::updateOrCreate(
                 ['name' => 'p2p_transfer_fee'],
                 ['value' => $validated['p2p_transfer_fee']]
+            );
+        });
+
+        DB::transaction(function () use ($validated) {
+            Strategy::updateOrCreate(
+                ['name' => 'min_custom_investment'],
+                ['value' => $validated['min_custom_investment']]
+            );
+            Strategy::updateOrCreate(
+                ['name' => 'max_custom_investment'],
+                ['value' => $validated['max_custom_investment']]
+            );
+            Strategy::updateOrCreate(
+                ['name' => 'custom_investment_gas_fee'],
+                ['value' => $validated['custom_investment_gas_fee']]
             );
         });
 
