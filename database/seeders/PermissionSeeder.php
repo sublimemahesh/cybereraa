@@ -50,6 +50,16 @@ class PermissionSeeder extends Seeder
             ['name' => 'package.update', 'guard_name' => 'web'],
             ['name' => 'package.delete', 'guard_name' => 'web'],
 
+            ['name' => 'trader.viewAny', 'guard_name' => 'web'],
+            ['name' => 'trader.create', 'guard_name' => 'web'],
+            ['name' => 'trader.update', 'guard_name' => 'web'],
+            ['name' => 'trader.delete', 'guard_name' => 'web'],
+
+            ['name' => 'trader_transaction.viewAny', 'guard_name' => 'web'],
+            ['name' => 'trader_transaction.create', 'guard_name' => 'web'],
+            ['name' => 'trader_transaction.update', 'guard_name' => 'web'],
+            ['name' => 'trader_transaction.delete', 'guard_name' => 'web'],
+
             ['name' => 'page.viewAny', 'guard_name' => 'web'],
             ['name' => 'page.create', 'guard_name' => 'web'],
             ['name' => 'page.update', 'guard_name' => 'web'],

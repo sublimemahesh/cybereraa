@@ -38,6 +38,15 @@
     </li>
 @endcan
 
+@can('trader.viewAny')
+    <li>
+        <a href="{{ route('admin.traders.index') }}" class="" aria-expanded="false">
+            <i class="bi bi-person-lines-fill"></i>
+            <span class="nav-text">Traders</span>
+        </a>
+    </li>
+@endcan
+
 @canany(['admin_wallet.viewAny','admin_wallet_transactions.viewAny','admin_wallet_withdrawal.viewAny'])
     <li>
         <a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
@@ -54,7 +63,7 @@
                 <li>
                     <a href="{{ route('admin.admin-wallet-transaction.index') }}">History</a>
                 </li>
-            @endcan 
+            @endcan
             @can('admin_wallet_withdrawal.viewAny')
                 <li>
                     <a href="{{ route('admin.admin-wallet-withdrawal.index') }}">Withdrawal</a>

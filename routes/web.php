@@ -58,7 +58,7 @@ Route::get('test', function () {
 Route::get('payments/binancepay/response', 'Payment\BinancePayController@response');
 Route::get('payments/binancepay/fallback', 'Payment\BinancePayController@fallback');
 
-Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream.auth_session'), 'verified','active_user', 'has_any_role']], function () {
+Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream.auth_session'), 'verified', 'active_user', 'has_any_role']], function () {
 
     Route::withoutMiddleware('mobile_verified')->group(static function () {
         Route::get('verify/mobile', 'MobileVerifyController@index')->name('mobile.verification.notice');
@@ -127,6 +127,9 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::post('ranks/gifts/{gift}/qualify', 'Admin\RankGiftController@makeQualify');
         Route::match(['get', 'post'], 'ranks/gifts/{gift}/issue', 'Admin\RankGiftController@issueGift')->name('ranks.gifts.issue');
         // Route::post('ranks/gifts/{gift}/issue', 'Admin\RankGiftController@issueGift');
+
+        //Traders
+        Route::resource('traders', 'Admin\TradersController')->except('create', 'show');
 
         //Packages
         Route::get('packages/arrange', 'Admin\PackageController@sort')->name('packages.arrange');
@@ -380,7 +383,6 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
 
         // Tutorial Request
         Route::get('tutorials', 'User\TutorialController@index')->name('tutorials.index');
-
 
 
         // support tickets
