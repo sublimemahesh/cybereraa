@@ -167,6 +167,30 @@ class StrategySeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'name' => 'min_custom_investment',
+                'data_type' => 'double',
+                'value' => 10,
+                'comment' => 'Minimum Custom Investment Amount',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'max_custom_investment',
+                'data_type' => 'double',
+                'value' => 5000,
+                'comment' => 'Maximum Custom Investment Amount',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'custom_investment_gas_fee',
+                'data_type' => 'double',
+                'value' => 1,
+                'comment' => 'Custom Investment Gas Fee In percentage',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }

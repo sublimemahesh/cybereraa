@@ -7,6 +7,25 @@
             <div class="row">
                 <div class="col-sm-8">
                     <div class="form-group row mb-2">
+                        <label class="col-sm-4 col-form-label" for="min_custom_investment">Minimum Custom Investment Amount (USD)</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" value="{{ $min_custom_investment->value }}" id="min_custom_investment" name="min_custom_investment" placeholder="Minimum Custom Investment Amount (USD)" type="number">
+                        </div>
+                    </div>
+                    <div class="form-group row mb-2">
+                        <label class="col-sm-4 col-form-label" for="max_custom_investment">Maximum Custom Investment Amount (USD)</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" value="{{ $max_custom_investment->value }}" id="max_custom_investment" name="max_custom_investment" placeholder="Maximum Custom Investment Amount (USD)" type="number">
+                        </div>
+                    </div>
+                    <div class="form-group row mb-2">
+                        <label class="col-sm-4 col-form-label" for="custom_investment_gas_fee">Custom Investment Gas Fee (%)</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" value="{{ $custom_investment_gas_fee->value }}" min="1" max="100" id="custom_investment_gas_fee" name="custom_investment_gas_fee" placeholder="Custom Investment Gas Fee (%)" type="number">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group row mb-2">
                         <label class="col-sm-3 col-form-label" for="payout_transfer_fee">Withdrawal fee (USD)</label>
                         <div class="col-sm-9">
                             <input class="form-control" value="{{ $payout_transfer_fee->value }}" id="payout_transfer_fee" name="payout_transfer_fee" placeholder="Payout transfer fee" type="text">

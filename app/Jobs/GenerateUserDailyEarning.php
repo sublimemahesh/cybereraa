@@ -140,13 +140,13 @@ class GenerateUserDailyEarning implements ShouldQueue
                                         if ($trade_income_amount > $remaining_income) {
                                             $can_paid_trade_income_amount = $total_allowed_trade_income - $total_already_earned_trade_income;
                                             $trade_income_amount_left = $trade_income_amount - $can_paid_trade_income_amount;
+                                            $activePackage->update(['status' => 'EXPIRED']);
+                                            Log::channel('daily')->info(
+                                                "Package {$activePackage->id} | " .
+                                                "COMPLETED {$total_allowed_trade_income}. | " .
+                                                "Purchased Date: {$activePackage->created_at} | " .
+                                                "User: {$trade_income_level_user->username} - {$trade_income_level_user->id}");
                                             if ($can_paid_trade_income_amount <= 0) {
-                                                $activePackage->update(['status' => 'EXPIRED']);
-                                                Log::channel('daily')->info(
-                                                    "Package {$activePackage->id} | " .
-                                                    "COMPLETED {$total_already_earned_income}. | " .
-                                                    "Purchased Date: {$activePackage->created_at} | " .
-                                                    "User: {$trade_income_level_user->username} - {$trade_income_level_user->id}");
                                                 continue;
                                             }
                                             $trade_income_amount = $can_paid_trade_income_amount;

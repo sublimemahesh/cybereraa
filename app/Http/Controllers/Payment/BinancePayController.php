@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Payment;
 use App\Actions\ActivateTransaction;
 use App\Http\Controllers\Controller;
 use App\Models\Package;
+use App\Models\Strategy;
 use App\Models\Transaction;
 use App\Models\User;
 use Arr;
@@ -62,12 +63,24 @@ class BinancePayController extends Controller
         $user->loadMax('purchasedPackages', 'invested_amount');
 
         if ($validated['package'] === 'custom') {
+            $strategies = Strategy::whereIn('name', ['min_custom_investment', 'max_custom_investment', 'custom_investment_gas_fee'])->get();
+            $min_custom_investment = $strategies->where('name', 'min_custom_investment')->first(null, fn() => new Strategy(['value' => 10]));
+            $max_custom_investment = $strategies->where('name', 'max_custom_investment')->first(null, fn() => new Strategy(['value' => 5000]));
+            $custom_investment_gas_fee = $strategies->where('name', 'custom_investment_gas_fee')->first(null, fn() => new Strategy(['value' => 1]));
+
+            if ($validated['amount'] < $min_custom_investment?->value || $validated['amount'] > $max_custom_investment?->value) {
+                $json['status'] = false;
+                $json['message'] = "Please select a package amount between USDT: {$min_custom_investment?->value} - {$max_custom_investment?->value}";
+                $json['icon'] = 'error'; // warning | info | question | success | error
+                return response()->json($json, Response::HTTP_UNPROCESSABLE_ENTITY);
+            }
+
             $package = new Package([
                 'name' => 'Custom',
                 'slug' => 'custom',
                 'currency' => 'USDT',
                 'amount' => $validated['amount'],
-                'gas_fee' => 10,
+                'gas_fee' => ($validated['amount'] * $custom_investment_gas_fee?->value) /100,
                 'month_of_period' => 15,
                 'daily_leverage' => 1,
                 'is_active' => 1,
