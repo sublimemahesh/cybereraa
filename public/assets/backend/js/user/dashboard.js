@@ -267,4 +267,4 @@ var donutChart = function(){
 }
 
 
-activity1();
+// activity1();
