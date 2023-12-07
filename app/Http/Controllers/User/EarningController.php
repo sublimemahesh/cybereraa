@@ -47,7 +47,7 @@ class EarningController extends Controller
      */
     public function earningSummary(Request $request)
     {
-        if ($request->wantsJson()) {
+        if ($request->wantsJson()) { 
             $group_condition = 'DATE(created_at)';
             if (in_array($request->get('group-by'), ['DATE', 'YEARWEEK', 'MONTHNAME', 'YEAR'])) {
                 $group_condition = ($request->get('group-by', 'DATE')) . '(created_at)';
