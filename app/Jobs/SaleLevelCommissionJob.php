@@ -201,10 +201,17 @@ class SaleLevelCommissionJob implements ShouldQueue
                     }
 
                     if ($commission_level_user->super_parent_id === null) {
+                        Log::channel('daily')->warning(
+                            "NO INDIRECT PARENT USER FOUND | PURCHASE PACKAGE: {$package->id} | " .
+                            "COMMISSION LEVEL: {$i} | " .
+                            "USER : {$purchasedUser->username} - {$purchasedUser->id} | " .
+                            "LEVEL USER : {$commission_level_user->username} - {$commission_level_user->id}");
                         break;
                     }
                     $commission_level_user = $commission_level_user->parent;
                 }
+            } else {
+                Log::channel('daily')->warning("NO DIRECT PARENT USER FOUND | PURCHASE PACKAGE: {$package->id} | USER: {$purchasedUser->username} - {$purchasedUser->id}");
             }
 
 
