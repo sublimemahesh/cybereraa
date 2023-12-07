@@ -28,11 +28,11 @@ class DashboardController extends Controller
         $total_investment_profit = PurchasedPackage::where('user_id', Auth::user()->id)
             ->whereIn('status', ['ACTIVE', 'EXPIRED'])
             ->sum(DB::raw('investment_profit + level_commission_profit'));
-        $total_avg_investment_profit = $total_investment_profit / $total_purchased_packages_count;
+        $total_avg_investment_profit = $total_purchased_packages_count === 0 ? 0 : $total_investment_profit / $total_purchased_packages_count;
 
 
         $total_investment_total_earned_profit = $purchasedPackages->sum('earned_profit');
-        $total_investment_avg_earned_profit = $total_investment_total_earned_profit / $total_purchased_packages_count;
+        $total_investment_avg_earned_profit = $total_purchased_packages_count === 0 ? 0 : $total_investment_total_earned_profit / $total_purchased_packages_count;
 
 //        dd($total_investment_profit,
 //            $total_avg_investment_profit,
