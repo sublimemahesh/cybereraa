@@ -32,7 +32,7 @@
                                                     <label for="earning-type" class="text-gray-700 dark:text-gray-300">EARNING TYPE</label>
                                                     <div class="relative">
                                                         <select id="earning-type" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
-                                                            <option value="">ALL</option>
+                                                            <option value="">ALL</option>   
                                                             <option value="package">PACKAGE</option>
                                                             <option value="trade_direct">TRADE DIRECT</option>
                                                             <option value="trade_indirect">TRADE INDIRECT</option>
