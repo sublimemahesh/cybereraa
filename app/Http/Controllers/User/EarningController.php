@@ -118,6 +118,8 @@ class EarningController extends Controller
 
         $types = [
             'package' => 'PACKAGE',
+            'trade_direct' => 'TRADE DIRECT',
+            'trade_indirect' => 'TRADE INDIRECT',
             'direct' => 'DIRECT',
             'indirect' => 'INDIRECT',
         ];

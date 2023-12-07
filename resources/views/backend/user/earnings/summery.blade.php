@@ -34,11 +34,14 @@
                                                         <select id="earning-type" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
                                                             <option value="">ALL</option>
                                                             <option value="package">PACKAGE</option>
+                                                            <option value="trade_direct">TRADE DIRECT</option>
+                                                            <option value="trade_indirect">TRADE INDIRECT</option>
                                                             <option value="direct">DIRECT SALE</option>
                                                             <option value="indirect">INDIRECT SALE</option>
                                                             <option value="rank_bonus">RANK BONUS</option>
                                                             {{-- <option value="rank_gift">RANK GIFT</option>--}}
                                                             <option value="p2p">P2P</option>
+
                                                             {{--<option value="staking">STAKING</option>--}}
                                                         </select>
                                                         <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
