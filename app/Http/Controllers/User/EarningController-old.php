@@ -47,7 +47,7 @@ class EarningController extends Controller
      */
     public function earningSummary(Request $request)
     {
-        if ($request->wantsJson()) { 
+        if ($request->wantsJson()) {
             $group_condition = 'DATE(created_at)';
             if (in_array($request->get('group-by'), ['DATE', 'YEARWEEK', 'MONTHNAME', 'YEAR'])) {
                 $group_condition = ($request->get('group-by', 'DATE')) . '(created_at)';
@@ -207,6 +207,8 @@ class EarningController extends Controller
         $types = [
             'direct' => 'DIRECT',
             'indirect' => 'INDIRECT',
+            'trade_direct' => 'TRADE DIRECT',
+            'trade_indirect' => 'TRADE INDIRECT',
         ];
 
         return view('backend.user.incomes.commissions', compact('types'));

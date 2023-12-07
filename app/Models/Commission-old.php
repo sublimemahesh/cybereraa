@@ -74,7 +74,7 @@ class Commission extends Model
                     return;
                 }
             })
-            ->when(!empty(request()->input('type')) && in_array(request()->input('type'), ['direct', 'indirect']), function ($query) {
+            ->when(!empty(request()->input('type')) && in_array(request()->input('type'), ['direct', 'indirect','trade_direct' ,'trade_indirect']), function ($query) {
                 $query->where('type', request()->input('type'));
             })
             ->when(!empty(request()->input('status')) && in_array(request()->input('status'), ['qualified', 'disqualified', 'completed']), function ($query) {
