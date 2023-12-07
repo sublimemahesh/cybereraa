@@ -54,7 +54,7 @@ class EarningController extends Controller
                 ->rawColumns(['user', 'earnable_type'])
                 ->make();
         }
-        return view('backend.admin.users.earnings.index');
+        return view('backend.admin.users.earnings.index'); 
     }
 
     /**

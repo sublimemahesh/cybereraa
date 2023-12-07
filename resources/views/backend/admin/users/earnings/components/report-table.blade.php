@@ -25,6 +25,8 @@
                                         <select id="earning-type" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
                                             <option value="">ALL</option>
                                             <option value="package" {{ request()->input('earning-type') === 'package' ? 'selected' : '' }}>PACKAGE</option>
+                                            <option value="trade_direct" {{ request()->input('earning-type') === 'trade_direct' ? 'selected' : '' }}>TRADE DIRECT</option>
+                                            <option value="trade_indirect" {{ request()->input('earning-type') === 'trade_indirect' ? 'selected' : '' }}>TRADE INDIRECT</option>
                                             <option value="direct" {{ request()->input('earning-type') === 'direct' ? 'selected' : '' }}>DIRECT SALE</option>
                                             <option value="indirect" {{ request()->input('earning-type') === 'indirect' ? 'selected' : '' }}>INDIRECT SALE</option>
                                             <option value="p2p" {{ request()->input('earning-type') === 'p2p' ? 'selected' : '' }}>P2P TRANSFER</option>

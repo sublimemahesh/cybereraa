@@ -189,7 +189,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
             Route::get('wallets/profits/withdrawal/history', 'Admin\AdminWalletWithdrawalController@index')->name('admin-wallet-withdrawal.index');
 
             // Ranks
-            Route::get('ranks', 'Admin\RankController@index')->name('ranks');
+            Route::get('ranks', 'Admin\RankController@index')->name('ranks'); 
 
             // Ranks Bonus Summary
             Route::get('ranks/benefits/summery', 'Admin\RankBenefitSummeryController@index')->name('ranks.benefits.summery');
