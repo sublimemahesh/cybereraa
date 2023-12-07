@@ -790,7 +790,25 @@
                         options: {
                             scales: {
                                 y: {
+                                    border: {
+                                        dash: [5],
+                                    },
+                                    grid: {
+                                        color: 'rgba(255,255,255,0.3)',
+                                        tickLength: 1,
+                                    },
+                                    display: true,
                                     beginAtZero: true
+                                },
+                                x: {
+                                    border: {
+                                        dash: [5],
+                                    },
+                                    grid: {
+                                        color: 'rgba(255,255,255,0.3)',
+                                        tickLength: 1,
+                                    },
+                                    display: true,
                                 }
                             },
                             responsive: true,
