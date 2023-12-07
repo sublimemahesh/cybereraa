@@ -98,6 +98,7 @@ class RegisterSteps extends Component
             ->when(config('fortify.super_parent_username') !== $value, function ($q) {
                 $q->whereNotNull('super_parent_id');
             })
+            ->whereHas('purchasedPackages')
             ->firstOrNew();
         $this->state['super_parent_id'] = $this->sponsor?->id;
 
@@ -111,6 +112,7 @@ class RegisterSteps extends Component
             function ($q) {
                 $q->whereNotNull('super_parent_id');
             })
+            ->whereHas('purchasedPackages')
             ->findOrNew($value);
         $this->state['super_parent_id'] = $this->sponsor?->id;
         $this->validateOnly('state.sponsor');

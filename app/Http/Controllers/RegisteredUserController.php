@@ -23,10 +23,11 @@ class RegisteredUserController extends Controller
                 ->whereRelation('roles', 'name', 'user')
                 ->where(function ($q) {
                     $q->where(function ($q) {
-                        $q->where('username', '<>', config('fortify.super_parent_username'))
+                        $q->where('id', '<>', config('fortify.super_parent_id'))
                             ->whereNotNull('super_parent_id');
-                    })->orWhere('username', config('fortify.super_parent_username'));
+                    })->orWhere('id', config('fortify.super_parent_id'));
                 })
+                ->whereHas('purchasedPackages')
                 ->firstOrFail();
         }
 
@@ -43,6 +44,7 @@ class RegisteredUserController extends Controller
                         ->whereNotNull('super_parent_id');
                 })->orWhere('id', config('fortify.super_parent_id'));
             })
+            ->whereHas('purchasedPackages')
             ->get();
         return Select2UserResource::collection($users);
     }
