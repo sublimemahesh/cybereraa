@@ -189,7 +189,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
             Route::get('wallets/profits/withdrawal/history', 'Admin\AdminWalletWithdrawalController@index')->name('admin-wallet-withdrawal.index');
 
             // Ranks
-            Route::get('ranks', 'Admin\RankController@index')->name('ranks'); 
+            Route::get('ranks', 'Admin\RankController@index')->name('ranks');
 
             // Ranks Bonus Summary
             Route::get('ranks/benefits/summery', 'Admin\RankBenefitSummeryController@index')->name('ranks.benefits.summery');
@@ -329,13 +329,13 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::get('ranks/team/rankers', 'User\RankController@teamRankers')->name('ranks.team-rankers');
 
         // My Genealogy
-        Route::get('genealogy/new-registration', 'User\GenealogyController@registerForm')->name('genealogy.position.register');
-        Route::match(['get', 'post'], 'genealogy/{user:username?}', 'User\GenealogyController@index')->name('genealogy');
-
-        Route::group(['prefix' => 'genealogy/{parent:username}/position-{position}'], function () {
-            Route::get('', 'User\GenealogyController@managePosition')->name('genealogy.position.manage')->middleware('signed');
-            Route::post('', 'User\GenealogyController@assignPosition')->middleware('signed');
-        });
+//        Route::get('genealogy/new-registration', 'User\GenealogyController@registerForm')->name('genealogy.position.register');
+//        Route::match(['get', 'post'], 'genealogy/{user:username?}', 'User\GenealogyController@index')->name('genealogy');
+//
+//        Route::group(['prefix' => 'genealogy/{parent:username}/position-{position}'], function () {
+//            Route::get('', 'User\GenealogyController@managePosition')->name('genealogy.position.manage')->middleware('signed');
+//            Route::post('', 'User\GenealogyController@assignPosition')->middleware('signed');
+//        });
 
         Route::get('team/users-list/{user:username?}', 'User\GenealogyController@teamList')->name('team.users-list');
         Route::get('team/income-levels', 'User\GenealogyController@IncomeLevels')->name('team.income-levels');
