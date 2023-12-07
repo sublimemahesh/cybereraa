@@ -58,13 +58,28 @@
 
         </div>
 
+        {{-- <div class="col-xl-3 col-lg-6 col-sm-6 ">
+
+             <div class="card overflow-hidden br-dashboard-card">
+                 <div class="card-body d-flex align-items-center justify-content-between">
+                     <div class="me-4 card-mt-10">
+                         <h4 class="heading mb-0">{{ $descendants_count }}</h4>
+                         <p class="mb-2 fs-13">My Team</p>
+
+                     </div>
+
+                     <img src="{{ asset('assets/backend/images/icon/team.png') }}" alt=""/>
+                 </div>
+             </div>
+
+         </div>--}}
         <div class="col-xl-3 col-lg-6 col-sm-6 ">
 
             <div class="card overflow-hidden br-dashboard-card">
                 <div class="card-body d-flex align-items-center justify-content-between">
                     <div class="me-4 card-mt-10">
-                        <h4 class="heading mb-0">{{ $descendants_count }}</h4>
-                        <p class="mb-2 fs-13">My Team</p>
+                        <h4 class="heading mb-0">{{ $today_income }} $</h4>
+                        <p class="mb-2 fs-13">Today Income</p>
 
                     </div>
 
@@ -340,18 +355,16 @@
                             <button class="last-income-round nav-link border border-right  active"
                                     id="nav-package-earning-tab last-income-round" data-bs-toggle="tab"
                                     data-bs-target="#nav-package-earning" type="button" role="tab"
-                                    aria-controls="nav-package-earning" aria-selected="true">Latest Package
-                                Earnings
+                                    aria-controls="nav-package-earning" aria-selected="true">Latest Package Earnings
                             </button>
                             <button class="nav-link border border-left" id="nav-direct-sale-tab"
                                     data-bs-toggle="tab" data-bs-target="#nav-direct-sale" type="button"
-                                    role="tab" aria-controls="nav-direct-sale" aria-selected="false">Direct
-                                Sales
+                                    role="tab" aria-controls="nav-direct-sale" aria-selected="false">Direct/indirect Sales
                             </button>
                             <button class="nav-link border border-left " id="nav-indirect-sale-tab"
                                     data-bs-toggle="tab" data-bs-target="#nav-indirect-sale" type="button"
                                     role="tab" aria-controls="nav-indirect-sale"
-                                    aria-selected="false">In-Direct Sales
+                                    aria-selected="false">Trade Income
                             </button>
                         </div>
                     </nav>
@@ -370,10 +383,10 @@
                                         <span class="p-0">$ {{ number_format($day_earn->amount,2) }}</span>
                                         <span class="p-0">{{ $day_earn->earnable->package_info_json->name
                                         }}</span>
-                                        <span class="p-0">{{ $day_earn->payed_percentage ??
-                                        $day_earn->earnable->payable_percentage }}%</span>
-                                        <span class="p-0">{{ $day_earn->created_at->format('Y-m-d')
-                                        }}</span>
+                                        <span class="p-0">
+                                            {{ $day_earn->payed_percentage ??  $day_earn->earnable->payable_percentage }}%
+                                        </span>
+                                        <span class="p-0">{{ $day_earn->created_at->format('Y-m-d') }}</span>
                                         <div class="bg-layer"></div>
                                     </div>
                                 @endforeach
@@ -385,18 +398,15 @@
                                 <span class="px-0">Received</span>
                                 <span class="px-0">Already Paid</span>
                                 <span class="px-0">User</span>
-                                <span class="px-0">Next Pay</span>
+                                {{--<span class="px-0">Next Pay</span>--}}
                             </div>
                             <div class="list-table success">
-                                @foreach ($direct as $sale)
+                                @foreach ($direct_indirect as $sale)
                                     <div class="list-row px-3">
                                         <span class="p-0">$ {{ number_format($sale->amount,2) }}</span>
                                         <span class="p-0">$ {{ number_format($sale->paid,2) }}</span>
-                                        <span class="p-0">{{ $sale->purchasedPackage->user->username
-                                        }}</span>
-                                        <span class="p-0">{{
-                                        Carbon::parse($sale->next_payment_date)->format('Y-m-d')
-                                        }}</span>
+                                        <span class="p-0">{{ $sale->purchasedPackage->user->username }}</span>
+                                        {{--<span class="p-0">{{ Carbon::parse($sale->next_payment_date)->format('Y-m-d') }}</span>--}}
                                         <div class="bg-layer"></div>
                                     </div>
                                 @endforeach
@@ -406,20 +416,18 @@
                              aria-labelledby="nav-indirect-sale-tab">
                             <div class="list-row-head text-nowrap text-left px-3">
                                 <span class="px-0">Received</span>
-                                <span class="px-0">Already Paid</span>
+                                <span class="px-0">Type</span>
                                 <span class="px-0">User</span>
-                                <span class="px-0">Next Pay</span>
+                                <span class="px-0">Paid Percentage</span>
+                                {{--<span class="px-0">Next Pay</span>--}}
                             </div>
                             <div class="list-table success">
-                                @foreach ($indirect as $sale)
+                                @foreach ($trade_incomes as $sale)
                                     <div class="list-row px-3">
                                         <span class="p-0">$ {{ number_format($sale->amount,2) }}</span>
-                                        <span class="p-0">$ {{ number_format($sale->paid,2) }}</span>
-                                        <span class="p-0">{{ $sale->purchasedPackage->user->username
-                                        }}</span>
-                                        <span class="p-0">{{
-                                        Carbon::parse($sale->next_payment_date)->format('Y-m-d')
-                                        }}</span>
+                                        <span class="p-0"> {{ $sale->type }}</span>
+                                        <span class="p-0">{{ $sale->tradeIncomePackage->user->username }}</span>
+                                        <span class="p-0">{{ $sale->payed_percentage }}%</span>
                                         <div class="bg-layer"></div>
                                     </div>
                                 @endforeach

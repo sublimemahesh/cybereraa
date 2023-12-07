@@ -10,7 +10,6 @@ use App\Models\Earning;
 use App\Models\Page;
 use App\Models\PopupNotice;
 use App\Models\PurchasedPackage;
-use App\Models\Rank;
 use App\Models\Withdraw;
 use Auth;
 use DB;
@@ -49,11 +48,12 @@ class DashboardController extends Controller
 //            ->where('status', 'RECEIVED')
 //            ->where('type', '<>', 'P2P')->sum('amount'), 2);
 
-//        $today_income = number_format(Earning::where('user_id', Auth::user()->id)
-//            ->where('status', 'RECEIVED')
-//            ->where('type', '<>', 'P2P')
-//            ->whereDate('created_at', \Carbon::today()->format('Y-m-d'))
-//            ->sum('amount'), 2);
+        $today_income = number_format(Earning::where('user_id', Auth::user()->id)
+            ->where('status', 'RECEIVED')
+            ->whereIn('type', ['PACKAGE', 'TRADE_DIRECT', 'TRADE_INDIRECT', 'DIRECT', 'INDIRECT'])
+            //            ->where('type', '<>', 'P2P')
+            ->whereDate('created_at', \Carbon::today()->format('Y-m-d'))
+            ->sum('amount'), 2);
 
         $invest_income = Earning::where('user_id', Auth::user()->id)
             ->where('status', 'RECEIVED')
@@ -98,18 +98,15 @@ class DashboardController extends Controller
         $wallet = Auth::user()->wallet;
 
         // records
-        $direct = Commission::with('purchasedPackage.user')
+        $direct_indirect = Commission::with('purchasedPackage.user')
             ->where('user_id', Auth::user()->id)
-            //->where('created_at', '<=', date('Y-m-d H:i:s'))
-            ->where('type', 'DIRECT')
             ->limit(20)
             ->latest()
             ->get();
 
-        $indirect = Commission::with('purchasedPackage.user')
+        $trade_incomes = Earning::with('tradeIncomePackage.user')
             ->where('user_id', Auth::user()->id)
-            //->where('created_at', '<=', date('Y-m-d H:i:s'))
-            ->where('type', 'INDIRECT')
+            ->whereIn('type', ['TRADE_DIRECT', 'TRADE_INDIRECT'])
             ->limit(20)
             ->latest()
             ->get();
@@ -177,12 +174,12 @@ class DashboardController extends Controller
                 'trade_team_income',
 //                'expired_investment',
                 'package_latest',
-                'direct',
-                'indirect',
+                'direct_indirect',
+                'trade_incomes',
                 'wallet',
 
 //                'income',
-//                'today_income',
+                'today_income',
                 'direct_comm_income',
                 'indirect_comm_income',
 //                'rank_bonus_income',
