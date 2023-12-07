@@ -22,26 +22,30 @@ class YealyIncomeBarChartResource extends JsonResource
         $packageData = [
             'label' => 'PACKAGE',
             'data' => [],
-            'borderColor' => 'rgb(255, 99, 132)',//red
+            'borderColor' => 'rgb(255, 99, 132,0.2)',//red
             'backgroundColor' => 'rgb(255, 99, 132,0.5)',
+            'pointBackgroundColor' => 'rgb(255, 99, 132)',
         ];
         $directData = [
             'label' => 'DIRECT',
             'data' => [],
-            'borderColor' => 'rgb(54, 162, 235)',//blue
+            'borderColor' => 'rgb(54, 162, 235,0.2)',//blue
             'backgroundColor' => 'rgb(54, 162, 235,0.5)',
+            'pointBackgroundColor' => 'rgb(54, 162, 235)',
         ];
         $indirectData = [
             'label' => 'INDIRECT',
             'data' => [],
-            'borderColor' => 'rgb(75, 192, 192)',//green
+            'borderColor' => 'rgb(75, 192, 192,0.2)',//green
             'backgroundColor' => 'rgb(75, 192, 192,0.5)',
+            'pointBackgroundColor' => 'rgb(75, 192, 192)',
         ];
         $p2pData = [
             'label' => 'P2P',
             'data' => [],
-            'borderColor' => 'rgb(255, 205, 86)', //yellow
+            'borderColor' => 'rgb(255, 205, 86,0.2)', //yellow
             'backgroundColor' => 'rgb(255, 205, 86,0.5)',
+            'pointBackgroundColor' => 'rgb(255, 205, 86)',
         ];
 
         foreach ($this->resource as $earning) {

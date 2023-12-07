@@ -87,7 +87,7 @@ var donutChart = function(){
  }
 
 
- donutChart();
+ // donutChart();
 
 
  var activity1 = function(){
