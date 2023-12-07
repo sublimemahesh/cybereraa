@@ -136,6 +136,15 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->referral_link = route('register', ['ref' => $this->username]);
     }
 
+    public function getActiveDateAttribute(): string
+    {
+        $firstPackage = $this->purchasedPackages()->orderBy('created_at')->firstOrNew()->created_at;
+        if ($firstPackage) {
+            return $firstPackage->format('Y-m-d');
+        }
+        return '-';
+    }
+
     public function getIsActiveAttribute(): bool
     {
         return $this->purchasedPackages()->activePackages()->count() >= 1;

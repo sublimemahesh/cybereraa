@@ -158,7 +158,7 @@ class GenerateUserDailyEarning implements ShouldQueue
                                             'trade_income_package_id' => $purchase->id,
                                             'amount' => $trade_income_amount,
                                             'payed_percentage' => $trade_income_level_percentages[$i],
-                                            'type' => 'PACKAGE',
+                                            'type' => $i === 1 ? 'TRADE_DIRECT' : 'TRADE_INDIRECT',
                                             'status' => 'RECEIVED',
                                             'created_at' => $this->execution_time,
                                             'updated_at' => $this->execution_time
@@ -185,10 +185,10 @@ class GenerateUserDailyEarning implements ShouldQueue
                                         $wallet->increment('balance', $trade_income_amount);
 
                                         Log::channel('daily')->notice(
-                                            "Trade Income Earning saved (" . date('Y-m-d') . "). | " .
-                                            "Purchase Package: {$purchase->id} | " .
-                                            "Trade Income Active Package: {$activePackage->id} | " .
-                                            "Trade Income User: {$trade_income_level_user->username}- {$trade_income_level_user->id}");
+                                            ($i === 1 ? 'TRADE_DIRECT' : 'TRADE_INDIRECT') . " Income Earning saved (" . date('Y-m-d') . "). | " .
+                                                "Purchase Package: {$purchase->id} | " .
+                                                "Trade Income Active Package: {$activePackage->id} | " .
+                                                "Trade Income User: {$trade_income_level_user->username}- {$trade_income_level_user->id}");
 
                                         if ($trade_income_amount_left <= 0) {
                                             break;
@@ -197,9 +197,9 @@ class GenerateUserDailyEarning implements ShouldQueue
                                     }
                                 } else {
                                     Log::channel('daily')->warning(
-                                        "Trade Income Earning Active Package not found (" . date('Y-m-d') . "). | " .
-                                        "Purchase Package: {$purchase->id} | " .
-                                        "Trade Income User: {$trade_income_level_user->username}- {$trade_income_level_user->id}");
+                                        ($i === 1 ? 'TRADE_DIRECT' : 'TRADE_INDIRECT') . " Income Earning Active Package not found (" . date('Y-m-d') . "). | " .
+                                            "Purchase Package: {$purchase->id} | " .
+                                            "Trade Income User: {$trade_income_level_user->username}- {$trade_income_level_user->id}");
                                 }
 
                                 if ($trade_income_level_user->super_parent_id === null) {
