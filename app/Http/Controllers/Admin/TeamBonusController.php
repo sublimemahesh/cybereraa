@@ -187,7 +187,7 @@ class TeamBonusController extends Controller
         $allowed_packages = PurchasedPackage::with('user')
             ->when(!empty($excludedPackageIds),
                 function ($q) use ($excludedPackageIds) {
-                    $q->whereNotIn('id', $excludedPackageIds);
+                    $q->whereNotIn('id', explode(',', $excludedPackageIds));
                 })
             ->whereIn('user_id', $bonus->user->directSales->pluck('id')->toArray())
             ->get();

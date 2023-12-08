@@ -319,7 +319,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
         return PurchasedPackage::when(!empty($excludedPackageIds),
             function ($q) use ($excludedPackageIds) {
-                $q->whereNotIn('id', $excludedPackageIds);
+                $q->whereNotIn('id', explode(',', $excludedPackageIds));
             })
             ->totalDirectTeamInvestment($this)->sum('invested_amount');
     }
