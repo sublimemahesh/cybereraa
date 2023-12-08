@@ -7,8 +7,8 @@
         <a class="nav-link {{ request()->routeIs('user.wallet.transfer') ? 'active' : '' }}" href="{{ !request()->routeIs('user.wallet.transfer') ? route('user.wallet.transfer') : 'javascript:void(0)' }}">P2P Transfer</a>
         <a class="nav-link {{ request()->routeIs('user.transfers.p2p') && request()->input('filter') !== 'received' ? 'active' : '' }}" href="{{ !request()->routeIs('user.transfers.p2p') || request()->input('filter') === 'received' ? route('user.transfers.p2p', ['status' => 'success', 'filter' => 'sent']) : 'javascript:void(0)' }}">P2P History</a>
         <a class="nav-link {{ request()->routeIs('user.transfers.p2p') && request()->input('filter') === 'received' ? 'active' : '' }}" href="{{ !request()->routeIs('user.transfers.p2p') || request()->input('filter') !== 'received' ? route('user.transfers.p2p', ['status' => 'success', 'filter' => 'received']) : 'javascript:void(0)' }}">Received P2P</a>
-        <a class="nav-link {{ request()->routeIs('user.wallet.withdraw') ? 'active' : '' }}" href="{{ !request()->routeIs('user.wallet.withdraw') ? route('user.wallet.withdraw') : 'javascript:void(0)' }}">Binance Transfer</a>
-        <a class="nav-link {{ request()->routeIs('user.transfers.withdrawals') ? 'active' : '' }}" href="{{ !request()->routeIs('user.transfers.withdrawals') ? route('user.transfers.withdrawals') : 'javascript:void(0)' }}">Binance History</a>
+        <a class="nav-link {{ request()->routeIs('user.wallet.withdraw') ? 'active' : '' }}" href="{{ !request()->routeIs('user.wallet.withdraw') ? route('user.wallet.withdraw') : 'javascript:void(0)' }}">TRC20 Transfer</a>
+        <a class="nav-link {{ request()->routeIs('user.transfers.withdrawals') ? 'active' : '' }}" href="{{ !request()->routeIs('user.transfers.withdrawals') ? route('user.transfers.withdrawals') : 'javascript:void(0)' }}">TRC20 History</a>
     </div>
 </div>
   
