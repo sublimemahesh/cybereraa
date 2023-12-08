@@ -49666,3 +49666,66 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
     font-size: 29px;
 
 }
+
+
+
+
+
+#referral .copy-text {
+	position: relative;
+	padding: 05px;
+	background: #828282;;
+	border: 1px solid #828282;;
+	border-radius: 10px;
+	display: flex;
+}
+#referral .copy-text input.text {
+	padding: 10px;
+	font-size: 18px;
+	color: #060610;
+	border: none;
+	outline: none;
+    background: #828282;
+}
+#referral .copy-text button {
+	padding: 10px;
+	background: #5784f5;
+	color: #fff;
+	font-size: 18px;
+	border: none;
+	outline: none;
+	border-radius: 10px;
+	cursor: pointer;
+    margin-left: 56px;
+}
+
+#referral .copy-text button:active {
+	background: #809ce2;
+}
+#referral .copy-text button:before {
+	content: "Copied";
+	position: absolute;
+	top: -45px;
+	right: 0px;
+	background: #5c81dc;
+	padding: 8px 10px;
+	border-radius: 20px;
+	font-size: 15px;
+	display: none;
+}
+#referral .copy-text button:after {
+	content: "";
+	position: absolute;
+	top: -20px;
+	right: 25px;
+	width: 10px;
+	height: 10px;
+	background: #5c81dc;
+	transform: rotate(45deg);
+	display: none;
+}
+#referral .copy-text.active button:before,
+#referral .copy-text.active button:after {
+	display: block;
+}
+

@@ -229,7 +229,7 @@
                             <div class="pt-4">
                                 <div class="row" name="form">
                                     <div class="col-lg-6 m-b30 mt-2">
-                                        <label class="form-label" for="binance_email"> {{ __('Binance Email') }}
+                                        <label class="form-label" for="binance_email"> {{ __('TRC20  Email') }}
                                         </label>
                                         <x-jet-input id="binance_email"
                                                      wire:model.defer="state.profile_info.binance_email"
@@ -237,14 +237,14 @@
                                         <x-jet-input-error for="profile_info.binance_email" class="mt-2"/>
                                     </div>
                                     <div class="col-lg-6 m-b30">
-                                        <label class="form-label" for="binance_id"> {{ __('Binance Id') }}
+                                        <label class="form-label" for="binance_id"> {{ __('TRC20  Id') }}
                                         </label>
                                         <x-jet-input id="binance_id" wire:model.defer="state.profile_info.binance_id"
                                                      class="block mt-1 w-full form-control" type="text" name="binance_id"/>
                                         <x-jet-input-error for="profile_info.binance_id" class="mt-2"/>
                                     </div>
                                     <div class="col-lg-6 m-b30 mt-2">
-                                        <label class="form-label" for="binance_phone"> {{ __('Binance Phone') }}
+                                        <label class="form-label" for="binance_phone"> {{ __('TRC20  Phone') }}
                                         </label>
                                         <x-jet-input id="binance_phone"
                                                      wire:model.defer="state.profile_info.binance_phone"

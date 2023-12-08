@@ -276,19 +276,25 @@
                 <div class="card-header border-0 pb-0 d-flex mx-auto">
                     <h5 class="card-title">Referral Details</h5>
                 </div>
-                <div class="card-body ">
-                    <div>
-                        <label>
-                            <input type="text" class="form-control input-default " placeholder="">
-                        </label>
-                        <div class="text-center" data-devil="pt:15">
-                            <label>
-                                <input type="checkbox" name="exampleCheckbox">
-                                Copy Link
-                            </label>
-                        </div>
+                <div class="card-body" id='referral'>
+                 
+                    <?php
+
+                    if (Auth::user()->id === config('fortify.super_parent_id') || (Auth::user()->parent_id !== null && Auth::user()->position !== null)) {
+                        $i = Auth::user()->referral_link;
+                    } else {
+                        $i = 'Please activate the package.';
+                    }
+
+                    ?>
+
+                
+                    <div class="copy-text">
+                        <input type="text" class="text" value="{{ $i }}" />
+                        <button><i class="fa fa-clone"></i></button>
                     </div>
-                    <div class="row" data-devil="mt:15">
+
+                    <div class="row" data-devil="mt:25">
                         <div class="col-xl-4">
                             <button type="button" class="btn btn-success btn-width">Whatsapp</button>
                         </div>
@@ -455,7 +461,7 @@
                             <div class=" col-xl-12 col-sm-12">
                                 <div class="text-start">
                                     <div class="color-picker">
-                                        <span class="mb-0 col-6 fs-14">
+                                        <span class="mb-0 col-9 fs-14">
                                             <svg class="me-2" width="16" height="16" viewBox="0 0 14 14" fill="none"
                                                  xmlns="http://www.w3.org/2000/svg">
                                                 <rect width="14" height="14" rx="4" fill="#027f7f"/>
@@ -465,7 +471,7 @@
                                         <h5>${{ $invest_income }}</h5>
                                     </div>
                                     <div class="color-picker">
-                                        <span class="mb-0 col-6 fs-14">
+                                        <span class="mb-0 col-9 fs-14">
                                             <svg class="me-2" width="16" height="16" viewBox="0 0 14 14" fill="none"
                                                  xmlns="http://www.w3.org/2000/svg">
                                                 <rect width="14" height="14" rx="4" fill="#fbd5cb"/>
@@ -475,7 +481,7 @@
                                         <h5>${{ $trade_income }}</h5>
                                     </div>
                                     <div class="color-picker">
-                                        <span class="mb-0 col-6 fs-14">
+                                        <span class="mb-0 col-9 fs-14">
                                             <svg class="me-2" width="16" height="16" viewBox="0 0 14 14" fill="none"
                                                  xmlns="http://www.w3.org/2000/svg">
                                                 <rect width="14" height="14" rx="4" fill="#4a4a65"/>
@@ -485,7 +491,7 @@
                                         <h5>${{ $trade_team_income }}</h5>
                                     </div>
                                     <div class="color-picker">
-                                        <span class="mb-0 col-6 fs-14">
+                                        <span class="mb-0 col-9 fs-14">
                                             <svg class="me-2" width="16" height="16" viewBox="0 0 14 14" fill="none"
                                                  xmlns="http://www.w3.org/2000/svg">
                                                 <rect width="14" height="14" rx="4" fill="#937f25"/>
@@ -495,7 +501,7 @@
                                         <h5>${{ $direct_comm_income }}</h5>
                                     </div>
                                     <div class="color-picker">
-                                        <span class="mb-0 col-6 fs-14">
+                                        <span class="mb-0 col-9 fs-14">
                                             <svg class="me-2" width="16" height="16" viewBox="0 0 14 14" fill="none"
                                                  xmlns="http://www.w3.org/2000/svg">
                                                 <rect width="14" height="14" rx="4" fill="#983042"/>
@@ -782,58 +788,174 @@
             }
 
 
+            // jQuery(window).on('load', function () {
+            //     if (jQuery('#lineChart_1').length > 0) {
+
+
+            //         //basic line chart
+            //         const lineChart_1 = document.getElementById("lineChart_1").getContext('2d');
+
+
+            //        // Set the height to 500px
+            //          lineChart_1.height = 500;
+
+            //         new Chart(lineChart_1, {
+            //             type: 'line',
+            //             data: {!! json_encode($yearlyIncomeChartData,JSON_THROW_ON_ERROR) !!},
+            //             options: {
+            //                 layout: {
+            //         padding: {
+            //             left: 30 // Set the left padding to 100px
+            //         }
+            //     },
+            //                 scales: {
+            //                     y: {
+            //                         border: {
+            //                             dash: [5],
+            //                         },
+            //                         grid: {
+            //                             color: 'rgba(255,255,255,0.3)',
+            //                             tickLength: 1,
+            //                         },
+            //                         display: true,
+            //                         beginAtZero: true,
+
+            //                          ticks: {
+            //                 font: {
+            //                     size: 12, // Set the font size for y-axis
+            //                     color: 'red' // Set the font color for y-axis
+            //                 }
+            //             }
+                                    
+            //                     },
+            //                     x: {
+            //                         border: {
+            //                             dash: [5],
+            //                         },
+            //                         grid: {
+            //                             color: 'rgba(255,255,255,0.3)',
+            //                             tickLength: 1,
+            //                         },
+            //                         display: true,
+            //                     }
+            //                 },
+            //                 responsive: true,
+
+            //                 plugins: {
+            //                     legend: {
+            //                         position: 'top',
+            //                         align: 'end', 
+
+            //                     },
+            //                     title: {
+            //                         display: true,
+            //                         text: 'My Business Growth',
+            //                         position: 'top',
+            //                         align: 'start', 
+            //                         color: '#ffffff',
+            //                         padding: {
+            //                           left: 100,
+            //                           top: 20,
+            //                           },
+            //                           font: {
+            //                              size: 16 // Set the font size to 16 pixels
+            //                              }
+            //                     }
+            //                 }
+            //             },
+            //         });
+
+            //     }
+            // });
+
             jQuery(window).on('load', function () {
-                if (jQuery('#lineChart_1').length > 0) {
+    if (jQuery('#lineChart_1').length > 0) {
+        // Basic line chart
+        const lineChart_1 = document.getElementById("lineChart_1").getContext('2d');
 
+        // Set the height to 800px
+        lineChart_1.height = 800;
 
-                    //basic line chart
-                    const lineChart_1 = document.getElementById("lineChart_1").getContext('2d');
-
-
-                    lineChart_1.height = 100;
-
-                    new Chart(lineChart_1, {
-                        type: 'line',
-                        data: {!! json_encode($yearlyIncomeChartData,JSON_THROW_ON_ERROR) !!},
-                        options: {
-                            scales: {
-                                y: {
-                                    border: {
-                                        dash: [5],
-                                    },
-                                    grid: {
-                                        color: 'rgba(255,255,255,0.3)',
-                                        tickLength: 1,
-                                    },
-                                    display: true,
-                                    beginAtZero: true
-                                },
-                                x: {
-                                    border: {
-                                        dash: [5],
-                                    },
-                                    grid: {
-                                        color: 'rgba(255,255,255,0.3)',
-                                        tickLength: 1,
-                                    },
-                                    display: true,
-                                }
-                            },
-                            responsive: true,
-                            plugins: {
-                                legend: {
-                                    position: 'top',
-                                },
-                                title: {
-                                    display: true,
-                                    text: 'My Business Growth'
-                                }
-                            }
+        new Chart(lineChart_1, {
+            type: 'line',
+            data: {!! json_encode($yearlyIncomeChartData, JSON_THROW_ON_ERROR) !!},
+            options: {
+                layout: {
+                    padding: {
+                        left: 30,  // Set the left padding to 30px
+                    }
+                },
+                scales: {
+                    y: {
+                        border: {
+                            dash: [5],
                         },
-                    });
-
+                        grid: {
+                            color: 'rgba(255,255,255,0.3)',
+                        },
+                        display: true,
+                        beginAtZero: true,
+                        ticks: {
+                            color: '#ffffff', // Set the Y axis label font color directly
+                            font: {
+                                size: 16 // Set the Y axis label font size
+                            },
+                        }
+                    },
+                    x: {
+                        border: {
+                            dash: [5],
+                        },
+                        grid: {
+                            color: 'rgba(255,255,255,0.3)',
+                            tickLength: 1,
+                        },
+                        display: true,
+                        ticks: {
+                            color: '#ffffff', // Set the X axis label font color directly
+                            font: {
+                                size: 16 // Set the X axis label font size
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        align: 'end',
+                    },
+                    title: {
+                        display: true,
+                        text: 'My Business Growth',
+                        position: 'top',
+                        align: 'start',
+                        color: '#ffffff',
+                        padding: {
+                            left: 100,
+                            top: 20,
+                        },
+                        font: {
+                            size: 16 // Set the title font size
+                        }
+                    }
+                },
+                elements: {
+                    line: {
+                        borderWidth: 2, // Set the line thickness to 2 pixels
+                    }
                 }
-            });
+            },
+        });
+    }
+});
+
+
+var chartEl = document.getElementById("lineChart_1");
+         chartEl.height = 235;
+
+
+                
+
 
 
             Morris.Donut({
