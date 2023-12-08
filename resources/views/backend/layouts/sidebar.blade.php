@@ -345,6 +345,9 @@
                 <a href="{{ route('admin.strategies.withdrawal.index') }}">Withdrawal</a>
             </li>
             <li>
+                <a href="{{ route('admin.strategies.special-bonus') }}">Special Bonus</a>
+            </li>
+            <li>
                 <a href="{{ route('admin.strategies.rank-level.index') }}">Rank Bonus</a>
             </li>
             <li>

@@ -253,6 +253,10 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
             Route::patch('rank/package-requirements', 'savePackageRequirements');
             Route::patch('rank/gift-requirements', 'saveRankGiftInvestmentRequirement');
 
+            //Special Bonuses
+            Route::get('special-bonus', 'specialBonusRequirements')->name('special-bonus');
+            Route::patch('special-bonus/requirements', 'saveSpecialBonusRequirements');
+
             Route::get('commissions', 'commissions')->name('commissions.index');
             Route::patch('commissions', 'saveCommissions');
 
