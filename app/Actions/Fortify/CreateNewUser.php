@@ -4,6 +4,7 @@ namespace App\Actions\Fortify;
 
 use App\Models\Profile;
 use App\Models\Team;
+use App\Models\TeamBonus;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -47,6 +48,7 @@ class CreateNewUser implements CreatesNewUsers
                 $user->profile()->save(Profile::forceCreate([
                     "country_id" => $input['country_id'],
                 ]));
+                $this->createSpecialBonus($user);
                 $user->assignRole('user');
                 $this->createTeam($user);
             });
@@ -66,5 +68,37 @@ class CreateNewUser implements CreatesNewUsers
             'name' => explode(' ', $user->name, 2)[0] . "'s Team",
             'personal_team' => true,
         ]));
+    }
+
+    private function createSpecialBonus(User $user): void
+    {
+        if ($user->sponsor->specialBonuses->count() === 3) {
+            return;
+        }
+        
+        if ($user->sponsor->children()->count() >= 10) {
+            TeamBonus::updateOrCreate([
+                'user_id' => $user->super_parent_id,
+                'bonus' => '10_DIRECT_SALE',
+                'status' => 'DISQUALIFIED',
+                'type' => 'SPECIAL_BONUS'
+            ]);
+        }
+        if ($user->sponsor->children()->count() >= 20) {
+            TeamBonus::updateOrCreate([
+                'user_id' => $user->super_parent_id,
+                'bonus' => '20_DIRECT_SALE',
+                'status' => 'DISQUALIFIED',
+                'type' => 'SPECIAL_BONUS'
+            ]);
+        }
+        if ($user->sponsor->children()->count() >= 30) {
+            TeamBonus::updateOrCreate([
+                'user_id' => $user->super_parent_id,
+                'bonus' => '30_DIRECT_SALE',
+                'status' => 'DISQUALIFIED',
+                'type' => 'SPECIAL_BONUS'
+            ]);
+        }
     }
 }

@@ -206,6 +206,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->purchasedPackages()->totalInvestment($this);
     }
 
+    public function teamBonuses(): HasMany
+    {
+        return $this->hasMany(TeamBonus::class, 'user_id');
+    }
+
+    public function specialBonuses(): HasMany
+    {
+        return $this->hasMany(TeamBonus::class, 'user_id')->whereIn('bonus', ['10_DIRECT_SALE', '20_DIRECT_SALE', '30_DIRECT_SALE']);
+    }
+
     public function getDepthAttribute()
     {
         $depth = DB::selectOne(
@@ -222,7 +232,7 @@ class User extends Authenticatable implements MustVerifyEmail
             ['id' => $this->id]
         );
 
-        return optional($depth)->depth;
+        return $depth?->depth;
     }
 
     public static function findAvailableSubLevel($nodeId)
@@ -301,6 +311,17 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getTotalTeamInvestmentAttribute()
     {
         return PurchasedPackage::totalTeamInvestment($this)->sum('invested_amount');
+    }
+
+    public function getTotalDirectTeamInvestmentAttribute()
+    {
+        $excludedPackageIds = $this->specialBonuses->pluck('package_ids')->flatten()->unique()->implode(',');
+
+        return PurchasedPackage::when(!empty($excludedPackageIds),
+            function ($q) use ($excludedPackageIds) {
+                $q->whereNotIn('id', $excludedPackageIds);
+            })
+            ->totalDirectTeamInvestment($this)->sum('invested_amount');
     }
 
     public function getHighestRankAttribute(): int

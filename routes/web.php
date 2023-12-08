@@ -52,7 +52,8 @@ Route::group(['middleware' => 'guest:' . config('fortify.guard')], function () {
 });
 
 Route::get('test', function () {
-
+    $user = \App\Models\User::find(4);
+    dd($user->total_direct_team_investment);
 });
 
 Route::get('payments/binancepay/response', 'Payment\BinancePayController@response');
@@ -121,6 +122,10 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::get('/users/{user:username}/profile', 'Admin\UserController@profileShow')->name('users.profile.show');
 
         Route::match(['get', 'post'], 'genealogy/{user:username?}', 'Admin\GenealogyController@index')->name('genealogy')->middleware('signed');
+
+        // SPECIAL BONUS
+        Route::get('special-bonus', 'Admin\TeamBonusController@index')->name('special-bonus');
+        Route::match(['get', 'post'], 'special-bonus/{bonus}/issue', 'Admin\TeamBonusController@issueTeamBonus')->name('special-bonus.issue');
 
         // RANK GIFtS
         Route::get('ranks/gifts', 'Admin\RankGiftController@index')->name('ranks.gifts');
