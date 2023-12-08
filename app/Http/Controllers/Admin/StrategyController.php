@@ -122,6 +122,55 @@ class StrategyController extends Controller
      * @throws JsonException
      * @throws AuthorizationException
      */
+    public function specialBonusRequirements()
+    {
+        $this->authorize('viewAny', Strategy::class);
+
+        $special_bonus_requirement = Strategy::where('name', 'special_bonus_requirement')->firstOr(fn() => new Strategy(['value' => '{"1":{"direct_sales":"2","total_investment":"1000","bonus":"2"},"2":{"direct_sales":"20","total_investment":"10000","bonus":"2"},"3":{"direct_sales":"30","total_investment":"15000","bonus":"2"}}']));
+        $special_bonus_requirement = json_decode($special_bonus_requirement->value, true, 512, JSON_THROW_ON_ERROR);
+
+
+        return view('backend.admin.strategies.team-bonuses.special-bonus-requirement', compact('special_bonus_requirement'));
+    }
+
+    public function saveSpecialBonusRequirements(Request $request): \Illuminate\Http\JsonResponse
+    {
+        $this->authorize('update', Strategy::class);
+
+        //dd($request->all());
+        $validated = Validator::make($request->all(), [
+            'special_bonus_requirement' => ['required', 'array'],
+            'special_bonus_requirement.*' => ['required', 'array'],
+            'special_bonus_requirement.*.total_investment' => ['required', 'numeric',],
+            'special_bonus_requirement.*.bonus' => ['required', 'numeric', 'gte:1', 'lte:100'],
+        ])->validate();
+
+        $validated['special_bonus_requirement'][1] = ['direct_sales' => 10, ...$validated['special_bonus_requirement'][1]];
+        $validated['special_bonus_requirement'][2] = ['direct_sales' => 20, ...$validated['special_bonus_requirement'][2]];
+        $validated['special_bonus_requirement'][3] = ['direct_sales' => 30, ...$validated['special_bonus_requirement'][3]];
+
+        //dd($validated);
+        $special_bonus_requirement = json_encode($validated['special_bonus_requirement'], JSON_THROW_ON_ERROR);
+        DB::transaction(function () use ($special_bonus_requirement) {
+            Strategy::updateOrCreate(
+                ['name' => 'special_bonus_requirement'],
+                ['value' => $special_bonus_requirement]
+            );
+        });
+
+        $json['status'] = true;
+        $json['message'] = 'Special bonus requirements updated!';
+        $json['icon'] = 'success'; // warning | info | question | success | error
+        $json['data'] = $validated;
+
+        session()->flash('info', $json['message']);
+        return response()->json($json);
+    }
+
+    /**
+     * @throws JsonException
+     * @throws AuthorizationException
+     */
     public function commissions()
     {
         $this->authorize('viewAny', Strategy::class);

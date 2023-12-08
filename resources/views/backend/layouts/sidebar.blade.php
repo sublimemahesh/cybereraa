@@ -236,6 +236,15 @@
     </li>
 @endcan
 
+@can('special_bonus.viewAny')
+    <li>
+        <a href="{{ route('admin.special-bonus') }}" class="" aria-expanded="false">
+            <i class="bi bi-diagram-3-fill"></i>
+            <span class="nav-text"> Special Bonus </span>
+        </a>
+    </li>
+@endcan
+
 @can('rank.viewAny')
     <li>
         <a href="{{ route('admin.ranks') }}" class="" aria-expanded="false">
@@ -334,6 +343,9 @@
         <ul aria-expanded="false">
             <li>
                 <a href="{{ route('admin.strategies.withdrawal.index') }}">Withdrawal</a>
+            </li>
+            <li>
+                <a href="{{ route('admin.strategies.special-bonus') }}">Special Bonus</a>
             </li>
             <li>
                 <a href="{{ route('admin.strategies.rank-level.index') }}">Rank Bonus</a>

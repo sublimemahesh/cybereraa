@@ -191,6 +191,12 @@ class PurchasedPackage extends Pivot
             ->whereIn('user_id', $user->descendants()->pluck('id')->toArray());
     }
 
+    public function scopeTotalDirectTeamInvestment(Builder $query, User $user): Builder
+    {
+        return $query->whereIn('status', ['ACTIVE', 'EXPIRED'])
+            ->whereIn('user_id', $user->directSales->pluck('id')->toArray());
+    }
+
     public function scopeTotalMonthlyTeamInvestment(Builder $query, User $user, string|null $first_of_month, string|null $end_of_month): Builder
     {
         if ($first_of_month === null) {

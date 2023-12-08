@@ -80,6 +80,9 @@ class PermissionSeeder extends Seeder
             ['name' => 'rank_gift.issue_gift', 'guard_name' => 'web'],
             ['name' => 'rank_gift.make_qualify_gift', 'guard_name' => 'web'],
 
+            ['name' => 'special_bonus.viewAny', 'guard_name' => 'web'],
+            ['name' => 'special_bonus.issue_bonus', 'guard_name' => 'web'],
+
             ['name' => 'strategy.viewAny', 'guard_name' => 'web'],
             ['name' => 'strategy.update', 'guard_name' => 'web'],
 

@@ -277,7 +277,7 @@
                     <h5 class="card-title">Referral Details</h5>
                 </div>
                 <div class="card-body" id='referral'>
-                 
+
                     <?php
 
                     if (Auth::user()->id === config('fortify.super_parent_id') || (Auth::user()->parent_id !== null && Auth::user()->position !== null)) {
@@ -288,9 +288,9 @@
 
                     ?>
 
-                
+
                     <div class="copy-text">
-                        <input type="text" class="text" value="{{ $i }}" />
+                        <input type="text" class="text" value="{{ $i }}"/>
                         <button><i class="fa fa-clone"></i></button>
                     </div>
 
@@ -454,9 +454,9 @@
                 <div class="card-header border-0 pb-0">
                     <h2 class="heading">Income Chart</h2>
                 </div>
-                <div class="card-body text-center pt-0 pb-2" data-devil="mb:15">
+                <div class="card-body text-center pt-0 pb-2 justify-content-center d-flex flex-column" data-devil="mb:15">
                     <div id="total_income_pie_chart" class="custome-donut"></div>
-                    <div class="chart-items">
+                    <div class="chart-items mt-5">
                         <div class="row">
                             <div class=" col-xl-12 col-sm-12">
                                 <div class="text-start">
@@ -788,174 +788,91 @@
             }
 
 
-            // jQuery(window).on('load', function () {
-            //     if (jQuery('#lineChart_1').length > 0) {
-
-
-            //         //basic line chart
-            //         const lineChart_1 = document.getElementById("lineChart_1").getContext('2d');
-
-
-            //        // Set the height to 500px
-            //          lineChart_1.height = 500;
-
-            //         new Chart(lineChart_1, {
-            //             type: 'line',
-            //             data: {!! json_encode($yearlyIncomeChartData,JSON_THROW_ON_ERROR) !!},
-            //             options: {
-            //                 layout: {
-            //         padding: {
-            //             left: 30 // Set the left padding to 100px
-            //         }
-            //     },
-            //                 scales: {
-            //                     y: {
-            //                         border: {
-            //                             dash: [5],
-            //                         },
-            //                         grid: {
-            //                             color: 'rgba(255,255,255,0.3)',
-            //                             tickLength: 1,
-            //                         },
-            //                         display: true,
-            //                         beginAtZero: true,
-
-            //                          ticks: {
-            //                 font: {
-            //                     size: 12, // Set the font size for y-axis
-            //                     color: 'red' // Set the font color for y-axis
-            //                 }
-            //             }
-                                    
-            //                     },
-            //                     x: {
-            //                         border: {
-            //                             dash: [5],
-            //                         },
-            //                         grid: {
-            //                             color: 'rgba(255,255,255,0.3)',
-            //                             tickLength: 1,
-            //                         },
-            //                         display: true,
-            //                     }
-            //                 },
-            //                 responsive: true,
-
-            //                 plugins: {
-            //                     legend: {
-            //                         position: 'top',
-            //                         align: 'end', 
-
-            //                     },
-            //                     title: {
-            //                         display: true,
-            //                         text: 'My Business Growth',
-            //                         position: 'top',
-            //                         align: 'start', 
-            //                         color: '#ffffff',
-            //                         padding: {
-            //                           left: 100,
-            //                           top: 20,
-            //                           },
-            //                           font: {
-            //                              size: 16 // Set the font size to 16 pixels
-            //                              }
-            //                     }
-            //                 }
-            //             },
-            //         });
-
-            //     }
-            // });
-
             jQuery(window).on('load', function () {
-    if (jQuery('#lineChart_1').length > 0) {
-        // Basic line chart
-        const lineChart_1 = document.getElementById("lineChart_1").getContext('2d');
+                if (jQuery('#lineChart_1').length > 0) {
+                    //basic line chart
+                    const lineChart_1 = document.getElementById("lineChart_1").getContext('2d');
 
-        // Set the height to 800px
-        lineChart_1.height = 800;
+                    lineChart_1.height = 800;
 
-        new Chart(lineChart_1, {
-            type: 'line',
-            data: {!! json_encode($yearlyIncomeChartData, JSON_THROW_ON_ERROR) !!},
-            options: {
-                layout: {
-                    padding: {
-                        left: 30,  // Set the left padding to 30px
-                    }
-                },
-                scales: {
-                    y: {
-                        border: {
-                            dash: [5],
-                        },
-                        grid: {
-                            color: 'rgba(255,255,255,0.3)',
-                        },
-                        display: true,
-                        beginAtZero: true,
-                        ticks: {
-                            color: '#ffffff', // Set the Y axis label font color directly
-                            font: {
-                                size: 16 // Set the Y axis label font size
+                    new Chart(lineChart_1, {
+                        type: 'line',
+                        data: {!! json_encode($yearlyIncomeChartData,JSON_THROW_ON_ERROR) !!},
+                        options: {
+                            layout: {
+                                padding: {
+                                    left: 20,  // Set the left padding to 30px
+                                }
                             },
-                        }
-                    },
-                    x: {
-                        border: {
-                            dash: [5],
-                        },
-                        grid: {
-                            color: 'rgba(255,255,255,0.3)',
-                            tickLength: 1,
-                        },
-                        display: true,
-                        ticks: {
-                            color: '#ffffff', // Set the X axis label font color directly
-                            font: {
-                                size: 16 // Set the X axis label font size
+                            scales: {
+                                y: {
+                                    border: {
+                                        dash: [5],
+                                    },
+                                    grid: {
+                                        color: 'rgba(255,255,255,0.3)',
+                                        tickLength: 1,
+                                    },
+                                    display: true,
+                                    beginAtZero: true,
+                                    ticks: {
+                                        color: '#ffffff', // Set the Y axis label font color directly
+                                        font: {
+                                            size: 16 // Set the Y axis label font size
+                                        },
+                                    }
+                                },
+                                x: {
+                                    border: {
+                                        dash: [5],
+                                    },
+                                    grid: {
+                                        color: 'rgba(255,255,255,0.3)',
+                                        tickLength: 1,
+                                    },
+                                    display: true,
+                                    ticks: {
+                                        color: '#ffffff', // Set the X axis label font color directly
+                                        font: {
+                                            size: 16 // Set the X axis label font size
+                                        }
+                                    },
+                                }
+                            },
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    position: 'top',
+                                    align: 'end',
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'My Business Growth',
+                                    position: 'top',
+                                    align: 'start',
+                                    color: '#ffffff',
+                                    padding: {
+                                        left: 100,
+                                        top: 20,
+                                    },
+                                    font: {
+                                        size: 16 // Set the title font size
+                                    }
+                                }
+                            },
+                            elements: {
+                                line: {
+                                    borderWidth: 2, // Set the line thickness to 2 pixels
+                                }
                             }
-                        }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        position: 'top',
-                        align: 'end',
-                    },
-                    title: {
-                        display: true,
-                        text: 'My Business Growth',
-                        position: 'top',
-                        align: 'start',
-                        color: '#ffffff',
-                        padding: {
-                            left: 100,
-                            top: 20,
                         },
-                        font: {
-                            size: 16 // Set the title font size
-                        }
-                    }
-                },
-                elements: {
-                    line: {
-                        borderWidth: 2, // Set the line thickness to 2 pixels
-                    }
+                    });
+
                 }
-            },
-        });
-    }
-});
+            });
 
-
-var chartEl = document.getElementById("lineChart_1");
-         chartEl.height = 235;
-
-
-                
-
+            let chartEl = document.getElementById("lineChart_1");
+            chartEl.height = 235;
 
 
             Morris.Donut({
