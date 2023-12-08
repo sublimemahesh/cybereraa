@@ -276,19 +276,25 @@
                 <div class="card-header border-0 pb-0 d-flex mx-auto">
                     <h5 class="card-title">Referral Details</h5>
                 </div>
-                <div class="card-body ">
-                    <div>
-                        <label>
-                            <input type="text" class="form-control input-default " placeholder="">
-                        </label>
-                        <div class="text-center" data-devil="pt:15">
-                            <label>
-                                <input type="checkbox" name="exampleCheckbox">
-                                Copy Link
-                            </label>
-                        </div>
+                <div class="card-body" id='referral'>
+                 
+                    <?php
+
+                    if (Auth::user()->id === config('fortify.super_parent_id') || (Auth::user()->parent_id !== null && Auth::user()->position !== null)) {
+                        $i = Auth::user()->referral_link;
+                    } else {
+                        $i = 'Please activate the package.';
+                    }
+
+                    ?>
+
+                
+                    <div class="copy-text">
+                        <input type="text" class="text" value="{{ $i }}" />
+                        <button><i class="fa fa-clone"></i></button>
                     </div>
-                    <div class="row" data-devil="mt:15">
+
+                    <div class="row" data-devil="mt:25">
                         <div class="col-xl-4">
                             <button type="button" class="btn btn-success btn-width">Whatsapp</button>
                         </div>
