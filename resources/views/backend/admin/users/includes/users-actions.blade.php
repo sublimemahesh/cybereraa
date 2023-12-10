@@ -6,7 +6,7 @@
     @endcan
 
     @can('users.genealogy')
-        <a class='btn btn-xs btn-google sharp my-1 mr-1 shadow' href='{{ URL::signedRoute('admin.genealogy', ['user' => $user, 'filter-user' => $user->username]) }}'>
+        <a class='btn btn-xs btn-google sharp my-1 mr-1 shadow' href='{{ route('admin.team.users-list', ['user' => $user, 'filter-user' => $user->username]) }}'>
             <i class='bi bi-diagram-3-fill'></i>
         </a>
     @endcan

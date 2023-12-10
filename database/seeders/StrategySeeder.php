@@ -114,7 +114,7 @@ class StrategySeeder extends Seeder
             [
                 'name' => 'special_bonus_requirement',
                 'data_type' => 'json',
-                'value' => '{"1":{"direct_sales":"2","total_investment":"1000","bonus":"2"},"2":{"direct_sales":"20","total_investment":"10000","bonus":"2"},"3":{"direct_sales":"30","total_investment":"15000","bonus":"2"}}',
+                'value' => '{"1":{"direct_sales":"10","total_investment":"1000","bonus":"2"},"2":{"direct_sales":"20","total_investment":"10000","bonus":"2"},"3":{"direct_sales":"30","total_investment":"15000","bonus":"2"}}',
                 'comment' => 'Special Bonus requirements must user need to get for eligible for direct sale special bonus',
                 'created_at' => now(),
                 'updated_at' => now(),

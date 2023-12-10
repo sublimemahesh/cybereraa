@@ -280,7 +280,7 @@
 
                     <?php
 
-                    if (Auth::user()->id === config('fortify.super_parent_id') || (Auth::user()->parent_id !== null && Auth::user()->position !== null)) {
+                    if (Auth::user()->active_date !== null) {
                         $i = Auth::user()->referral_link;
                     } else {
                         $i = 'Please activate the package.';
@@ -290,7 +290,7 @@
 
 
                     <div class="copy-text">
-                        <input type="text" class="text" value="{{ $i }}"/>
+                        <input type="text" class="text w-100" readonly value="{{ $i }}"/>
                         <button><i class="fa fa-clone"></i></button>
                     </div>
 
@@ -591,7 +591,7 @@
                                     <div class="col-mb-12 ">
                                         <div class="media-body text-white dash-p">
                                             <p class="mb-1">
-                                                Team Sale Income ${{ number_format($indirect_comm_income,2) }}
+                                                Indirect Income ${{ number_format($indirect_comm_income,2) }}
                                             </p>
                                         </div>
                                     </div>
@@ -611,7 +611,7 @@
                                     </div>
                                     <div class="col-mb-12 ">
                                         <div class="media-body text-white dash-p">
-                                            <p class="mb-1">Direct Trade Income ${{ number_format($trade_income,2) }}</p>
+                                            <p class="mb-1">Direct Trade My Income ${{ number_format($trade_income,2) }}</p>
                                         </div>
                                     </div>
 
@@ -633,7 +633,7 @@
 
                                     <div class="col-mb-12 ">
                                         <div class="media-body text-white dash-p">
-                                            <p class="mb-1">Team Trade Income ${{ number_format($trade_team_income,2) }}</p>
+                                            <p class="mb-1">Indirect Trade My Income ${{ number_format($trade_team_income,2) }}</p>
                                         </div>
                                     </div>
                                 </div>
