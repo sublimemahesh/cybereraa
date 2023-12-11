@@ -49,8 +49,6 @@
                 </a>
             </li> --}}
 
-
-
             <li><a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
                     <i class="bi bi-piggy-bank"></i>
                     <span class="nav-text">Deposit Asset</span>
@@ -63,7 +61,6 @@
                 </ul>
             </li>
 
-
             {{-- <li>
                 <a href="{{ route('user.packages.custom') }}" class="rounded-1" aria-expanded="false">
                     <i class="bi bi-piggy-bank"></i>
@@ -71,18 +68,12 @@
                 </a>
             </li> --}}
 
-
-
-
-
-
             {{-- <li>
                 <a href="{{ route('user.earnings.summary-report') }}" class="rounded-1" aria-expanded="false">
                     <i class="bi bi-cash-coin"></i>
                     <span class="nav-text">Withdraw Asset</span>
                 </a>
             </li> --}}
-
 
             <li><a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
                     <i class="bi bi-cash-coin"></i>

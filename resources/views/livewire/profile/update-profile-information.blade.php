@@ -228,33 +228,31 @@
                         <div class="tab-pane fade" :class="{ 'show active': activeTab === 'payment' }" id="payment">
                             <div class="pt-4">
                                 <div class="row" name="form">
-                                    <div class="col-lg-6 m-b30 mt-2">
+                                    {{-- <div class="col-lg-6 m-b30 mt-2">
                                         <label class="form-label" for="binance_email"> {{ __('TRC20  Email') }}
                                         </label>
                                         <x-jet-input id="binance_email"
                                                      wire:model.defer="state.profile_info.binance_email"
                                                      class="block mt-1 w-full form-control" type="email" name="binance_email"/>
                                         <x-jet-input-error for="profile_info.binance_email" class="mt-2"/>
-                                    </div>
-                                    <div class="col-lg-6 m-b30">
+                                    </div> --}}
+                                    {{-- <div class="col-lg-6 m-b30">
                                         <label class="form-label" for="binance_id"> {{ __('TRC20  Id') }}
                                         </label>
                                         <x-jet-input id="binance_id" wire:model.defer="state.profile_info.binance_id"
                                                      class="block mt-1 w-full form-control" type="text" name="binance_id"/>
                                         <x-jet-input-error for="profile_info.binance_id" class="mt-2"/>
-                                    </div>
-                                    <div class="col-lg-6 m-b30 mt-2">
+                                    </div> --}}
+                                    {{-- <div class="col-lg-6 m-b30 mt-2">
                                         <label class="form-label" for="binance_phone"> {{ __('TRC20  Phone') }}
                                         </label>
                                         <x-jet-input id="binance_phone"
                                                      wire:model.defer="state.profile_info.binance_phone"
                                                      class="block mt-1 w-full form-control" type="text" name="binance_phone"/>
                                         <x-jet-input-error for="profile_info.binance_phone" class="mt-2"/>
-                                    </div>
+                                    </div> --}}
                                     <div class="col-lg-6 m-b30 mt-2">
-                                        <label class="form-label" for="wallet_address"> {{ __('Wallet Address
-                                            (TRC20
-                                            USDT)') }}
+                                        <label class="form-label" for="wallet_address"> {{ __('TRC20 Wallter Address') }}
                                         </label>
                                         <x-jet-input id="wallet_address"
                                                      wire:model.defer="state.profile_info.wallet_address"
