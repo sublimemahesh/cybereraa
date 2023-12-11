@@ -294,6 +294,10 @@
                         <button><i class="fa fa-clone"></i></button>
                     </div>
 
+
+                    <a href="whatsapp://send?text=This is WhatsApp sharing example using link"       data-action="share/whatsapp/share"  
+                    target="_blank"> Share to WhatsApp </a>   
+
                     <div class="row" data-devil="mt:25">
                         <div class="col-xl-4">
                             <a id="whatsapp-button" href="#" onclick="shareOnWhatsApp()">
