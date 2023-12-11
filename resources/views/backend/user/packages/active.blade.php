@@ -37,9 +37,9 @@
                             <p class="card-text">Buy Date : <b> {{ $subscription->created_at->format('Y-m-d h:i A') }}</b></p>
                             <p class="card-text">Active Date : <b> {{ $subscription->package_activate_date }}</b></p>
                             <p class="card-text">Next Payment Date :<b> {{ $subscription->next_payment_date }} </b></p>
-                            <p class="card-text">Plan Expire Return :<b> {{ $subscription->transaction->currency }}  {{ $subscription->invested_amount * ($withdrawal_limits->package ?? 300) /100 }} </b></p>
+                            <p class="card-text">Plan Expire Return ({{ $subscription->investment_profit }}%) :<b> {{ $subscription->transaction->currency }}  {{ $subscription->invested_amount * ($subscription->investment_profit) /100 }} </b></p>
                             <p class="card-text">Completed Return :<b> {{ $subscription->transaction->currency }}  {{ $subscription->earnings_sum_amount ?? 0 }} </b></p>
-                            <p class="card-text">Pending Return : <b> {{ $subscription->transaction->currency }}  {{ ($subscription->invested_amount * ($withdrawal_limits->package ?? 300) /100) - $subscription->earnings_sum_amount }} </b></p>
+                            <p class="card-text">Pending Return : <b> {{ $subscription->transaction->currency }}  {{ ($subscription->invested_amount * ($subscription->investment_profit) /100) - $subscription->earnings_sum_amount }} </b></p>
                             <p class="card-text">Purchased by : <b> #{{ str_pad($subscription->purchaser_id, 4, '0', STR_PAD_LEFT)}}</b></p>
                         </div>
                         <div class="card-footer">

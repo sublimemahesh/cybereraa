@@ -58,16 +58,20 @@ class PackageController extends Controller
 
     public function manualPurchaseCustom(Request $request, float $amount, User|null $purchase_for = null)
     {
+        $strategies = Strategy::whereIn('name', ['min_custom_investment', 'max_custom_investment', 'custom_investment_gas_fee'])->get();
+        $custom_investment_gas_fee = $strategies->where('name', 'custom_investment_gas_fee')->first(null, fn() => new Strategy(['value' => 1]));
+
         $package = new Package([
             'name' => 'Custom',
             'slug' => 'custom',
             'currency' => 'USDT',
             'amount' => $amount,
-            'gas_fee' => 10,
+            'gas_fee' => ($amount * $custom_investment_gas_fee?->value) / 100,
             'month_of_period' => 15,
             'daily_leverage' => 1,
             'is_active' => 1,
         ]);
+
         return $this->manualPurchase($request, $package, $purchase_for);
     }
 

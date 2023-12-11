@@ -42,11 +42,11 @@ $(function () {
     });
 
     $(document).on('click', topup_wallet_method_element, function () {
-        generateInvoice("topup", 'custom')
+        // generateInvoice("topup", 'custom')
     });
 
     $(document).on('click', wallet_method_element, function () {
-        generateInvoice("main", 'custom')
+        // generateInvoice("main", 'custom')
     });
 
     $(document).on('click', binancepay_method_element, function () {
