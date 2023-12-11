@@ -305,25 +305,28 @@
 
                         <div class=" col-xl-4">
                             <a id="messenger-button" href="https://www.facebook.com/sharer/sharer.php?u={{urlencode($url_ref)}}"  target="_blank">
-                                <button type="button" class="btn btn-warning btn-width"> 
+                                <button type="button" class="btn btn-warning btn-width">
                                     <i class="bi bi-messenger" data-devil='fs:12'></i> Messenger
                                 </button>
                             </a>
                         </div>
 
-                       
+
                         <div class=" col-xl-4">
                             <a id="telegram-button" href="#" onclick="shareOnTelegram()">
-                                <button type="button" class="btn  btn-info btn-width"> 
-                                    <i class="bi bi-telegram" data-devil='fs:12'></i> Telegram 
+                                <button type="button" class="btn  btn-info btn-width">
+                                    <i class="bi bi-telegram" data-devil='fs:12'></i> Telegram
                                 </button>
                             </a>
                         </div>
-                       
+
                     </div>
 
                     <div class="text-center dashboard-refferal-direct">
-                        <h5>Direct Sale Count <span>- {{ Auth::user()->direct_sales_count }}</span></h5>
+                        <h5>
+                            Active Direct Sales <span>- {{ Auth::user()->active_direct_sales }}</span> |
+                            InActive Direct Sales <span>- {{ Auth::user()->direct_sales_count - Auth::user()->active_direct_sales }}</span>
+                        </h5>
                     </div>
 
                 </div>
@@ -927,7 +930,7 @@
                  // Pass the Laravel variable to JavaScript
                  var urlToShare = '{{ $url_ref }}';
 
-                
+
 
                 function shareOnTelegram() {
                 var telegramLink = 'https://t.me/share/url?url=' + encodeURIComponent(urlToShare);
