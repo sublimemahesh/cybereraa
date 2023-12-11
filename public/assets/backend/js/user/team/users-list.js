@@ -2,6 +2,7 @@ $(function () {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const date_range = urlParams.get("date-range");
+    const depth = urlParams.get("depth");
 
     let table = $('#team-users').DataTable({
         scrollX: true,
@@ -49,11 +50,13 @@ $(function () {
 
     $(document).on("click", ".view-downline-user", function (e) {
         e.preventDefault();
+        let depth = parseInt(urlParams.get("depth")) || 1;
         urlParams.set("date-range", $("#date-range").val());
         urlParams.set("status", $("#status").val());
+        urlParams.set("depth", depth + 1);
         let username = $(this).data('username');
         let url = TEAM_URL + "/" + username + "?" + urlParams.toString();
-        history.replaceState({}, "", url);
+        history.pushState({}, "", url);
         table.ajax.url(url).load();
     });
 
