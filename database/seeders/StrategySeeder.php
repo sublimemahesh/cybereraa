@@ -225,8 +225,8 @@ class StrategySeeder extends Seeder
             ],
             [
                 'name' => 'withdrawal_days_of_week',
-                'data_type' => 'withdrawal_days_of_week',
-                'value' => ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+                'data_type' => 'array',
+                'value' => '["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]',
                 'comment' => 'Week days of that users can make withdraw requests',
                 'created_at' => now(),
                 'updated_at' => now(),

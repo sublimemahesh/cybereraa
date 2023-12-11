@@ -49,8 +49,8 @@ class RegisterSteps extends Component
         return [
             'state.first_name' => ['required', 'string', 'max:255'],
             'state.last_name' => ['required', 'string', 'max:255'],
-            'state.country_id' => ['required', 'exists:countries,id', 'max:255'],
-            'state.phone' => ['required', 'string', 'max:255', 'phone:' . $this->phone_iso],
+//            'state.country_id' => ['required', 'exists:countries,id', 'max:255'],
+//            'state.phone' => ['required', 'string', 'max:255', 'phone:' . $this->phone_iso],
             'state.email' => ['required', 'string', 'email', 'max:255'],
             'state.password' => $this->passwordRules(),
             'state.super_parent_id' => [

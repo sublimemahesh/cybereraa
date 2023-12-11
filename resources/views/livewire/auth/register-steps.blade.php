@@ -34,7 +34,7 @@
                     </div>
                     @enderror
                 </div>
-                <div class="col-lg-6 mt-3">
+                <div class="col-lg-6 mt-3 d-none">
                     <div wire:ignore>
                         <label class="mb-1" for="country"><strong class="main-register-form-text">{{ __('Country') }}
                                 <sup class="main-required">*</sup>
@@ -48,7 +48,7 @@
                     </div>
                     @enderror
                 </div>
-                <div class="col-lg-6 mt-3">
+                <div class="col-lg-6 mt-3 d-none">
                     <div wire:ignore>
                         <label class="mb-1" for="phone">
                             <strong class="main-register-form-text">{{ __('Mobile Number') }}
@@ -79,20 +79,20 @@
                 <div class="col-lg-6 mt-3">
                     <div wire:ignore>
                         <label class="mb-2" for="sponsor">
-                            <strong class="main-register-form-text">{{ __('Sponsor username') }}</strong>
+                            <strong class="main-register-form-text">{{ __('Referral username') }}</strong>
                         </label>
                         @if($disable_sponsor_modify)
                             <span class="block mt-1 w-full form-control">{{ $state['sponsor'] }}</span>
                         @else
                             <select wire:model.lazy="state.sponsor" class="single-select-placeholder js-states select2-hidden-accessible" id="sponsor">
-                                <option disabled>Start typing sponsor name</option>
+                                <option disabled>Start typing Referral name</option>
                             </select>
                             {{-- <x-jet-input id="sponsor" wire:model.lazy="state.sponsor" class="block mt-1 w-full  form-control" type="text" name="sponsor" required autocomplete="sponsor"/>--}}
                         @endif
                     </div>
                     @if(!empty($sponsor->name))
                         <div class="py-2 px-1 text-success">
-                            <strong>Sponsor Details:</strong> {{ $sponsor->username }} - {{ $sponsor->name }}
+                            <strong>Referral Details:</strong> {{ $sponsor->username }} - {{ $sponsor->name }}
                         </div>
                     @endif
                     @error('state.sponsor')
