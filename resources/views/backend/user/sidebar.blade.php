@@ -49,6 +49,8 @@
                 </a>
             </li> --}}
 
+
+
             <li><a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
                     <i class="bi bi-piggy-bank"></i>
                     <span class="nav-text">Deposit Asset</span>
@@ -61,6 +63,7 @@
                 </ul>
             </li>
 
+
             {{-- <li>
                 <a href="{{ route('user.packages.custom') }}" class="rounded-1" aria-expanded="false">
                     <i class="bi bi-piggy-bank"></i>
@@ -68,12 +71,18 @@
                 </a>
             </li> --}}
 
+
+
+
+
+
             {{-- <li>
                 <a href="{{ route('user.earnings.summary-report') }}" class="rounded-1" aria-expanded="false">
                     <i class="bi bi-cash-coin"></i>
                     <span class="nav-text">Withdraw Asset</span>
                 </a>
             </li> --}}
+
 
             <li><a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
                     <i class="bi bi-cash-coin"></i>
@@ -124,12 +133,11 @@
                     <i class="bi bi-diagram-3"></i>
                     <span class="nav-text">Referral System</span>
                 </a>
-                <i class="bi bi-person-hearts"></i>
             </li> --}}
 
 
             <li><a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
-                    <i class="bi bi-person-hearts"></i>
+                    <i class="bi bi-diagram-3"></i>
                     <span class="nav-text">Referral System</span>
                 </a>
                 <ul aria-expanded="false">
@@ -145,10 +153,10 @@
                 <span class="nav-text">Income Details</span>
             </a>
             <ul aria-expanded="false">
-                {{-- <li><a href="{{ route('user.earnings.summary-report') }}">My Income Summery</a></li> --}}
-                <li><a href="{{ route('user.earnings.index') }}">My Earning</a></li>
+                <li><a href="{{ route('user.earnings.summary-report') }}">My Income Summery</a></li>
                 <li><a href="{{ route('user.incomes.commission') }}">My Commission</a></li>
-                {{-- <li><a href="{{ route('user.incomes.rewards') }}">My Rewards</a></li> --}}
+                <li><a href="{{ route('user.incomes.rewards') }}">My Rewards</a></li>
+                <li><a href="{{ route('user.earnings.index') }}">My Earning</a></li>
                 <li><a href="{{ route('user.team.incomes.commission') }}">Team Income</a></li>
                 <li><a href="{{ route('user.earnings.team-income') }}">Highest Earners</a></li>
 
