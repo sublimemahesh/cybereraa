@@ -69,9 +69,9 @@
                     <li>
                         <a href="{{ route('user.transactions.purchased.history') }}">Purchase History</a>
                     </li>
-                   {{-- <li>
-                        <a href="{{ route('user.wallet.request-topup-balance') }}">Topup Request</a>
-                    </li>--}}
+                    {{-- <li>
+                         <a href="{{ route('user.wallet.request-topup-balance') }}">Topup Request</a>
+                     </li>--}}
                     {{--<li>
                         <a href="{{ route('user.wallet.topup-request.history') }}">Topup History</a>
                     </li>--}}
@@ -166,10 +166,12 @@
                     <span class="nav-text">Referral System</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li>
+                    {{--<li>
                         <a href="{{ route('user.team.users-list') }}">Team List</a>
+                    </li>--}}
+                    <li>
+                        <a href="{{ route('user.team.users-levels',['depth' =>  1]) }}">Team Levels</a>
                     </li>
-
                 </ul>
             </li>
 

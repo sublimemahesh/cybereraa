@@ -49,6 +49,74 @@ class GenealogyController extends Controller
     /**
      * @throws Exception
      */
+    public function userLevels(Request $request, int $depth = 1)
+    {
+        if ($depth > 4) {
+            $depth = 4;
+        }
+        $user = Auth::user();
+        $descendants = $user?->descendants()
+            ->with('sponsor', 'parent')
+            ->where('depth', $depth)
+            ->when($request->get('status') === 'suspend', function (Builder $q) {
+                $q->whereNotNull('suspended_at');
+            })
+            ->when($request->get('status') === 'active', function (Builder $q) {
+                $q->whereNull('suspended_at');
+            })
+            ->withSum(['activePackages', 'purchasedPackages'], 'invested_amount')
+            ->get();
+        //dd($user->id, $descendants);
+        if ($request->wantsJson()) {
+            return DataTables::of($descendants)
+                ->addColumn('profile_photo', function ($user) {
+                    return "<img class='rounded-circle' width='35' src='" . $user->profile_photo_url . "' alt='' />";
+                })
+                ->addColumn('user_details', function ($user) {
+                    return "<i class='fa fa-user-circle'></i> #{$user->id} <br>
+                            <i class='fa fa-user'></i> {$user->username}<br>
+                            <i class='fa fa-user'></i> {$user->name}<br>";
+                })
+                ->addColumn('contact_details', function ($user) {
+                    return "<i class='fa fa-phone'></i> $user->phone <br>
+                            <i class='fa fa-envelope'></i> $user->email<br>";
+                })
+                ->addColumn('sponsor', function ($user) {
+                    return "{$user->super_parent_id} - <code>{$user?->sponsor?->username} </code>";
+                })
+                //                ->addColumn('parent', function ($user) {
+                //                    return "{$user->parent_id} - <code>{$user?->parent?->username} </code><br>Position: {$user->position}";
+                //                })
+                ->addColumn('joined', fn($user) => $user->created_at->format('Y-m-d h:i A'))
+                ->addColumn('suspended', function ($user) {
+                    if ($user->is_suspended) {
+                        return Carbon::parse($user->suspended_at)->format('Y-m-d h:i A');
+                    }
+                    return '-';
+                })
+                ->addColumn('account_status', function ($user) {
+                    $active_packages_sum_invested_amount = $user->active_packages_sum_invested_amount;
+                    $purchased_packages_sum_invested_amount = $user->purchased_packages_sum_invested_amount;
+                    $account_status = 'INACTIVE';
+                    if ($purchased_packages_sum_invested_amount > 0) {
+                        $account_status = 'IDLE';
+                        if ($active_packages_sum_invested_amount > 0) {
+                            $account_status = 'ACTIVE';
+                        }
+                    }
+                    return "Account Status: <code>{$account_status}</code></br>" .
+                        "Active Packages: <code>{$active_packages_sum_invested_amount}</code></br>" .
+                        "Total Investment: <code>{$purchased_packages_sum_invested_amount}</code>";
+                })
+                ->rawColumns(['profile_photo', 'user_details', 'contact_details', 'sponsor', 'account_status'])
+                ->make();
+        }
+        return view('backend.user.teams.users-list', compact('user', 'depth'));
+    }
+
+    /**
+     * @throws Exception
+     */
     public function teamList(Request $request, User|null $user = null)
     {
         if ($user?->id === null) {
@@ -105,8 +173,8 @@ class GenealogyController extends Controller
                     return '-';
                 })
                 ->addColumn('actions', function ($user) use ($request,) {
-                    if ($request->get('depth') < 4 && $user->direct_sales_count > 0) {
-                        return '<a class="btn btn-secondary btn-success btn-xxs p-1 view-downline-user" data-username="' . $user->username . '">
+                    if ($user->direct_sales_count > 0 && $request->get('depth') < 4) {
+                        return '<a class="btn btn-secondary btn-success btn-xxs p-1 " href="' . route("user.team.users-list", [$user, "depth" => $request->get("depth") + 1]) . '">
                         <i class="fa fa-users"></i>
                     </a>';
                     }
@@ -116,7 +184,7 @@ class GenealogyController extends Controller
                 ->make();
         }
 
-        return view('backend.user.teams.users-list');
+        return view('backend.user.teams.users-list', ['depth' => $request->get('depth')]);
     }
 
     public function IncomeLevels(Request $request)
