@@ -281,29 +281,45 @@
                     <?php
 
                     if (Auth::user()->active_date !== null) {
-                        $i = Auth::user()->referral_link;
+                        $url_ref = Auth::user()->referral_link;
                     } else {
-                        $i = 'Please activate the package.';
+                        $url_ref = 'Please activate the package.';
                     }
 
                     ?>
 
 
                     <div class="copy-text">
-                        <input type="text" class="text w-100" readonly value="{{ $i }}"/>
+                        <input type="text" class="text w-100" readonly value="{{$url_ref }}"/>
                         <button><i class="fa fa-clone"></i></button>
                     </div>
 
                     <div class="row" data-devil="mt:25">
                         <div class="col-xl-4">
-                            <button type="button" class="btn btn-success btn-width">Whatsapp</button>
+                            <a id="whatsapp-button" href="#" onclick="shareOnWhatsApp()">
+                                 <button type="button" class="btn btn-success btn-width">
+                                    <i class="bi bi-whatsapp" data-devil='fs:12'></i> Whatsapp
+                                </button>
+                            </a>
                         </div>
+
                         <div class=" col-xl-4">
-                            <button type="button" class="btn  btn-info btn-width">Facebook</button>
+                            <a id="messenger-button" href="#" onclick="shareOnMessenger()">
+                                <button type="button" class="btn btn-warning btn-width"> 
+                                    <i class="bi bi-messenger" data-devil='fs:12'></i> Messenger
+                                </button>
+                            </a>
                         </div>
+
+                       
                         <div class=" col-xl-4">
-                            <button type="button" class="btn btn-warning btn-width">Messenger</button>
+                            <a id="telegram-button" href="#" onclick="shareOnTelegram()">
+                                <button type="button" class="btn  btn-info btn-width"> 
+                                    <i class="bi bi-telegram" data-devil='fs:12'></i> Telegram 
+                                </button>
+                            </a>
                         </div>
+                       
                     </div>
 
                     <div class="text-center dashboard-refferal-direct">
@@ -762,6 +778,7 @@
 
 
         <script>
+
             /*const pending_assign_count = parseInt("{{--{{ Auth::user()->pending_direct_sales_count }}--}}")
             if (pending_assign_count > 0) {
                 const notificationNoteModal = new bootstrap.Modal('#notification-modal', {
@@ -906,6 +923,36 @@
                 //responsive:true,
 
             });
+
+                 // Pass the Laravel variable to JavaScript
+                 var urlToShare = '{{ $url_ref }}';
+
+                 function shareOnWhatsApp() {
+                    // Replace '1234567890' with the actual phone number you want to share
+                    var phoneNumber = '1234567890';
+
+                    // Create the WhatsApp link with the URL as a parameter
+                    var whatsappLink = 'https://wa.me/' + phoneNumber + '?text=' + encodeURIComponent(urlToShare);
+
+                    // Open the link in a new tab
+                    window.open(whatsappLink, '_blank');
+                    }
+
+
+
+                    function shareOnMessenger() {
+                    // Create the Messenger share link with the dynamic URL as a parameter
+                    var messengerLink = 'https://www.facebook.com/dialog/send?link=' + encodeURIComponent(urlToShare) + '&app_id=YOUR_APP_ID';
+
+                    // Open the link in a new tab
+                    window.open(messengerLink, '_blank');
+                }
+
+                function shareOnTelegram() {
+                var telegramLink = 'https://t.me/share/url?url=' + encodeURIComponent(urlToShare);
+                window.open(telegramLink, '_blank');
+                }
+
 
         </script>
     @endpush
