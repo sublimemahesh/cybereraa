@@ -49,6 +49,8 @@
     <script src="{{ asset('assets/backend/js/custom.js') }}"></script>
     <script src="{{ asset('assets/backend/js/deznav-init.js') }}"></script>
     <script src="{{ asset('assets/backend/vendor/jquery-smartwizard/dist/js/jquery.smartWizard.js') }}"></script>
+    <script src="{{ asset('assets/frontend/js/devil.js') }}"></script>
+
     @stack('scripts')
 </body>
 

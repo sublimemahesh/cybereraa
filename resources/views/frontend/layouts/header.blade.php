@@ -19,7 +19,7 @@
                                     </ul>
                                 </div>
                             </li>
-                            <li><a href="{{ route('pricing') }}">Packages</a></li> 
+                            <li><a href="{{ route('user.packages.custom') }}">Packages</a></li> 
                             <li><a href="{{ route('how-it-work') }}">How It Work</a></li>
                             <li><a href="{{ route('faq') }}">FAQ</a></li>
                             <li><a href="{{ route('contact') }}">Contact </a></li>
@@ -28,7 +28,7 @@
                             <a href="{{ route('login') }}">Join us</a>
                         </div>
                     </div>
-                </div>
+                </div> 
             </div>
         </div>
     </div>

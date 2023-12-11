@@ -3,7 +3,7 @@
 @section('contents')
 
 <div class="row justify-content-center main-register-form-style">
-    <div class="col-md-6  login-bg-img-col">
+    <div class="col-md-6  login-bg-img-col" data-dxs="dis:none">
         <div class="authincation-content">
             <div class="row no-gutters">
                 <div class="col-xl-12">
@@ -12,12 +12,6 @@
                             <h2>Coin1m Trading Hub <br> Secure Login</h2>
                             <p>Welcome to Coin1m, your premier destination for seamless and secure cryptocurrency trading. Unlock the door to a world of financial opportunities with our trusted login page. Safeguarding your assets while providing a user-friendly experience is our priority. Join us on the journey to financial success – log in with confidence at Coin1m Trading Hub.</p>
                         </div>
-
-
-
-
-
-
                     </div>
                 </div>
             </div>

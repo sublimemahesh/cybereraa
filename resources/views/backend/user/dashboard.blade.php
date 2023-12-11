@@ -83,7 +83,7 @@
 
                     </div>
 
-                    <img src="{{ asset('assets/backend/images/icon/team.png') }}" alt=""/>
+                    <img src="{{ asset('assets/backend/images/icon/calendar.png') }}" alt=""/>
                 </div>
             </div>
 
@@ -281,29 +281,45 @@
                     <?php
 
                     if (Auth::user()->active_date !== null) {
-                        $i = Auth::user()->referral_link;
+                        $url_ref = Auth::user()->referral_link;
                     } else {
-                        $i = 'Please activate the package.';
+                        $url_ref = 'Please activate the package.';
                     }
 
                     ?>
 
 
                     <div class="copy-text">
-                        <input type="text" class="text w-100" readonly value="{{ $i }}"/>
+                        <input type="text" class="text w-100" readonly value="{{$url_ref }}"/>
                         <button><i class="fa fa-clone"></i></button>
                     </div>
 
                     <div class="row" data-devil="mt:25">
                         <div class="col-xl-4">
-                            <button type="button" class="btn btn-success btn-width">Whatsapp</button>
+                            <a id="whatsapp-button" href="whatsapp://send?text={{$url_ref}}"  data-action="share/whatsapp/share" target="_blank">
+                                 <button type="button" class="btn btn-success btn-width">
+                                    <i class="bi bi-whatsapp" data-devil='fs:12'></i> Whatsapp
+                                </button>
+                            </a>
                         </div>
+
                         <div class=" col-xl-4">
-                            <button type="button" class="btn  btn-info btn-width">Facebook</button>
+                            <a id="messenger-button" href="https://www.facebook.com/sharer/sharer.php?u={{urlencode($url_ref)}}"  target="_blank">
+                                <button type="button" class="btn btn-warning btn-width"> 
+                                    <i class="bi bi-messenger" data-devil='fs:12'></i> Messenger
+                                </button>
+                            </a>
                         </div>
+
+                       
                         <div class=" col-xl-4">
-                            <button type="button" class="btn btn-warning btn-width">Messenger</button>
+                            <a id="telegram-button" href="#" onclick="shareOnTelegram()">
+                                <button type="button" class="btn  btn-info btn-width"> 
+                                    <i class="bi bi-telegram" data-devil='fs:12'></i> Telegram 
+                                </button>
+                            </a>
                         </div>
+                       
                     </div>
 
                     <div class="text-center dashboard-refferal-direct">
@@ -762,6 +778,7 @@
 
 
         <script>
+
             /*const pending_assign_count = parseInt("{{--{{ Auth::user()->pending_direct_sales_count }}--}}")
             if (pending_assign_count > 0) {
                 const notificationNoteModal = new bootstrap.Modal('#notification-modal', {
@@ -906,6 +923,17 @@
                 //responsive:true,
 
             });
+
+                 // Pass the Laravel variable to JavaScript
+                 var urlToShare = '{{ $url_ref }}';
+
+                
+
+                function shareOnTelegram() {
+                var telegramLink = 'https://t.me/share/url?url=' + encodeURIComponent(urlToShare);
+                window.open(telegramLink, '_blank');
+                }
+
 
         </script>
     @endpush
