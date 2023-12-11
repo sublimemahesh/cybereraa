@@ -22,7 +22,7 @@ $(function () {
             // {data: "parent", name: 'parent_id', searchable: false, orderable: false},
             {data: "joined", name: 'created_at', searchable: false},
             {data: "suspended", name: 'suspended_at', searchable: false},
-            {data: "actions", searchable: false},
+            {data: "account_status", searchable: false},
         ],
         columnDefs: [
 
@@ -43,7 +43,8 @@ $(function () {
         e.preventDefault();
         urlParams.set("date-range", $("#date-range").val());
         urlParams.set("status", $("#status").val());
-        let url = location.href.split(/\?|\#/)[0] + "?" + urlParams.toString();
+        // let url = location.href.split(/\?|\#/)[0] + "?" + urlParams.toString();
+        let url = TEAM_URL + "/" + $("#depth").val() + "?" + urlParams.toString();
         history.replaceState({}, "", url);
         table.ajax.url(url).load();
     });
@@ -53,9 +54,9 @@ $(function () {
         let depth = parseInt(urlParams.get("depth")) || 1;
         urlParams.set("date-range", $("#date-range").val());
         urlParams.set("status", $("#status").val());
-        urlParams.set("depth", depth + 1);
-        let username = $(this).data('username');
-        let url = TEAM_URL + "/" + username + "?" + urlParams.toString();
+        // urlParams.set("depth", depth + 1);
+        // let username = $(this).data('username');
+        let url = TEAM_URL + "/" + $("#depth").val() + "?" + urlParams.toString();
         history.pushState({}, "", url);
         table.ajax.url(url).load();
     });

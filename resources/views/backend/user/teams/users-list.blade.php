@@ -61,6 +61,26 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
+                                            <div>
+                                                <div class=" pt-2 p-2 ">
+                                                    <label for="depth" class="text-gray-700 dark:text-gray-300">LEVEL</label>
+                                                    <div class="relative">
+                                                        <select id="depth" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
+                                                            <option value="1" {{ $depth === 1 ? 'selected' : '' }}>DIRECT</option>
+                                                            <option value="2" {{ $depth === 2 ? 'selected' : '' }}>LEVEL 2</option>
+                                                            <option value="3" {{ $depth === 3 ? 'selected' : '' }}>LEVEL 3</option>
+                                                            <option value="4" {{ $depth === 4 ? 'selected' : '' }}>LEVEL 4</option>
+                                                        </select>
+                                                        <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
+                                                            <svg class="pointer-events-none w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="flex flex-col mb-2">
                                             <div>
                                                 <div class=" pt-2 p-2 ">
@@ -89,7 +109,7 @@
                                     <th>SPONSOR/PARENT</th>
                                     <th>JOINED DATE</th>
                                     <th>SUSPENDED</th>
-                                    <th>ACTIONS</th>
+                                    <th>ACCOUNT STATUS</th>
                                 </tr>
                             </thead>
                         </table>
@@ -101,7 +121,7 @@
 
     @push('scripts')
         <script !src="">
-            const TEAM_URL = "{{ route('user.team.users-list') }}"
+            const TEAM_URL = "{{ route('user.team.users-levels') }}"
         </script>
         <!-- Datatable -->
         <script src="{{ asset('assets/backend/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>

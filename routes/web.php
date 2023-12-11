@@ -54,7 +54,7 @@ Route::group(['middleware' => 'guest:' . config('fortify.guard')], function () {
 Route::get('test', function () {
     $user = \App\Models\User::find(5);
 //    dd($user->total_direct_team_investment);
-    dd($user->descendants()->get());
+    //dd($user->descendants()->get());
 });
 
 Route::get('payments/binancepay/response', 'Payment\BinancePayController@response');
@@ -118,7 +118,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::get('users/kycs/{kyc}', 'Admin\KycController@show')->name('users.kycs.show');
         Route::get('users/kycs/{kyc}/document/{document}/reject', 'Admin\KycController@reject')->name('users.kycs.document.reject');
         Route::post('users/kyc-documents/{document}/status', 'Admin\KycController@status');
- 
+
         // Profile
         Route::get('/users/{user:username}/profile', 'Admin\UserController@profileShow')->name('users.profile.show');
 
@@ -350,7 +350,8 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
 //            Route::post('', 'User\GenealogyController@assignPosition')->middleware('signed');
 //        });
 
-        Route::get('team/users-list/{user:username?}', 'User\GenealogyController@teamList')->name('team.users-list');
+//        Route::get('team/users-list/{user:username?}', 'User\GenealogyController@teamList')->name('team.users-list');
+        Route::get('team/users-level/{depth?}', 'User\GenealogyController@userLevels')->name('team.users-levels');
 //        Route::get('team/income-levels', 'User\GenealogyController@IncomeLevels')->name('team.income-levels');
         Route::get('team/incomes/commission', 'User\EarningController@teamCommissionsIncome')->name('team.incomes.commission');
         Route::get('team/incomes/earnings', 'User\EarningController@teamHighestEarnings')->name('earnings.team-income');
