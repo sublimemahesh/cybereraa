@@ -83,7 +83,7 @@
 
                     </div>
 
-                    <img src="{{ asset('assets/backend/images/icon/team.png') }}" alt=""/>
+                    <img src="{{ asset('assets/backend/images/icon/calendar.png') }}" alt=""/>
                 </div>
             </div>
 
