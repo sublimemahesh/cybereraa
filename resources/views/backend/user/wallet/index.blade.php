@@ -14,7 +14,7 @@
     <div class="row">
         @include('backend.user.wallet.top-nav')
         <div class="col-xl-4 col-lg-4">
-            <div class="rounded-1 card prim-card">
+            <div class="rounded-1 card prim-card" data-devil="h:180">
                 <div class="card-body py-3 d-flex flex-column justify-content-evenly">
                     <img src="{{ asset('assets/images/main-wallet.png') }}" alt="logo" width="64"/>
                     <div class="d-flex">
@@ -40,9 +40,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-xl-4 col-lg-4">
-            <div class="rounded-1 card prim-card">
+
+            <div class="rounded-1 card prim-card"  data-devil="h:180">
                 <div class="card-body py-3 d-flex flex-column justify-content-evenly">
                     <img src="{{ asset('assets/images/topup-wallet.png') }}" alt="logo" width="64"/>
                     <div class="d-flex">
@@ -64,41 +63,16 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-4 col-lg-4">
+
+        <div class="col-xl-8 col-lg-8">
             <div class="card">
                 <div class="card-body p-1">
                     <canvas id="lineChart_1"></canvas>
                 </div>
             </div>
         </div>
-        <div class="col-xl-4 col-lg-4">
-            <div class="card">
-                <div class="card-body">
-                    @foreach($commission_categories as $commission_type)
-                        <div class="d-flex {{ !$loop->last ? 'mb-3' :'' }}">
-                            <div class="icon-box bg-primary me-2 ">
-                                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M14.0038 25.4285C11.7434 25.4285 9.53382 24.7582 7.6544 23.5024C5.77498 22.2466 4.31015 20.4617 3.44515 18.3734C2.58015 16.2851 2.35382 13.9872 2.7948 11.7703C3.23577 9.55337 4.32424 7.51699 5.92255 5.91868C7.52087 4.32036 9.55724 3.2319 11.7742 2.79092C13.9911 2.34995 16.289 2.57627 18.3773 3.44127C20.4656 4.30627 22.2505 5.7711 23.5063 7.65052C24.7621 9.52994 25.4323 11.7395 25.4323 13.9999C25.429 17.0299 24.2239 19.9349 22.0813 22.0774C19.9388 24.22 17.0338 25.4251 14.0038 25.4285ZM14.0038 4.85704C12.1955 4.85704 10.4278 5.39326 8.92427 6.39789C7.42074 7.40252 6.24887 8.83044 5.55687 10.5011C4.86487 12.1717 4.68381 14.01 5.03659 15.7836C5.38937 17.5571 6.26014 19.1862 7.5388 20.4649C8.81745 21.7435 10.4465 22.6143 12.2201 22.9671C13.9936 23.3199 15.832 23.1388 17.5026 22.4468C19.1732 21.7548 20.6011 20.5829 21.6058 19.0794C22.6104 17.5759 23.1466 15.8082 23.1466 13.9999C23.1439 11.5759 22.1798 9.25196 20.4657 7.53793C18.7517 5.8239 16.4278 4.85976 14.0038 4.85704Z" fill="#FCFCFC"></path>
-                                    <path d="M15.1466 18.5714H11.7181C11.4149 18.5714 11.1243 18.451 10.9099 18.2367C10.6956 18.0224 10.5752 17.7317 10.5752 17.4286C10.5752 17.1255 10.6956 16.8348 10.9099 16.6204C11.1243 16.4061 11.4149 16.2857 11.7181 16.2857H15.1466V15.1428H12.8609C12.2547 15.1428 11.6733 14.902 11.2447 14.4734C10.816 14.0447 10.5752 13.4633 10.5752 12.8571V11.7143C10.5752 11.1081 10.816 10.5267 11.2447 10.098C11.6733 9.66937 12.2547 9.42856 12.8609 9.42856H16.2895C16.5926 9.42856 16.8833 9.54897 17.0976 9.76329C17.3119 9.97762 17.4323 10.2683 17.4323 10.5714C17.4323 10.8745 17.3119 11.1652 17.0976 11.3795C16.8833 11.5939 16.5926 11.7143 16.2895 11.7143H12.8609V12.8571H15.1466C15.7528 12.8571 16.3342 13.0979 16.7629 13.5266C17.1915 13.9553 17.4323 14.5366 17.4323 15.1428V16.2857C17.4323 16.8919 17.1915 17.4733 16.7629 17.9019C16.3342 18.3306 15.7528 18.5714 15.1466 18.5714Z" fill="#FCFCFC"></path>
-                                    <path d="M14.0032 11.7142C13.7001 11.7142 13.4094 11.5937 13.1951 11.3794C12.9808 11.1651 12.8604 10.8744 12.8604 10.5713V9.42844C12.8604 9.12534 12.9808 8.83465 13.1951 8.62032C13.4094 8.40599 13.7001 8.28558 14.0032 8.28558C14.3063 8.28558 14.597 8.40599 14.8113 8.62032C15.0257 8.83465 15.1461 9.12534 15.1461 9.42844V10.5713C15.1461 10.8744 15.0257 11.1651 14.8113 11.3794C14.597 11.5937 14.3063 11.7142 14.0032 11.7142ZM14.0032 19.7142C13.7001 19.7142 13.4094 19.5937 13.1951 19.3794C12.9808 19.1651 12.8604 18.8744 12.8604 18.5713V17.4284C12.8604 17.1253 12.9808 16.8346 13.1951 16.6203C13.4094 16.406 13.7001 16.2856 14.0032 16.2856C14.3063 16.2856 14.597 16.406 14.8113 16.6203C15.0257 16.8346 15.1461 17.1253 15.1461 17.4284V18.5713C15.1461 18.8744 15.0257 19.1651 14.8113 19.3794C14.597 19.5937 14.3063 19.7142 14.0032 19.7142Z" fill="#FCFCFC"></path>
-                                </svg>
-                            </div>
-                            <div class="ps-2 w-100 flex-1">
-                                <h6 class="">{{ $commission_type->type }}</h6>
-                                <div class="progress mt-2">
-                                    <div class="progress-bar bg-primary" style="width:{{ $commission_type->total_paid * 100 / $commission_type->total_amount }}%"></div>
-                                </div>
-                                <div class="mt-2">
-                                    <span>PAID ${{ number_format($commission_type->total_paid,2) }}</span>
-                                    <span class="text-primary"> / TOTAL ${{ number_format($commission_type->total_amount,2) }}</span>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-        <div class="col-xxl-2 col-xl-2">
+
+        <div class="col-xxl-3 col-xl-3">
             <div class="rounded-1 card">
                 <div class="card-header border-0 pb-0">
                     <h5 class="fs-18 heading mb-0 m-auto">Income</h5>
@@ -116,7 +90,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xxl-2 col-xl-2">
+        <div class="col-xxl-3 col-xl-3">
             <div class="rounded-1 card">
                 <div class="card-header border-0 pb-0">
                     <h5 class="fs-18 heading mb-0 m-auto">Withdraw </h5>
@@ -134,7 +108,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xxl-2 col-xl-2">
+        <div class="col-xxl-3 col-xl-3">
             <div class="rounded-1 card">
                 <div class="card-header border-0 pb-0">
                     <h5 class="fs-16 heading mb-0 m-auto  text-responsiv">Commissions </h5>
@@ -152,7 +126,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xxl-2 col-xl-2">
+        <div class="col-xxl-3 col-xl-3">
             <div class="rounded-1 card">
                 <div class="card-header border-0 pb-0">
                     <h5 class="fs-18 heading mb-0 m-auto">Disqualified </h5>
