@@ -133,11 +133,12 @@
                     <i class="bi bi-diagram-3"></i>
                     <span class="nav-text">Referral System</span>
                 </a>
+                <i class="bi bi-person-hearts"></i>
             </li> --}}
 
 
             <li><a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
-                    <i class="bi bi-diagram-3"></i>
+                    <i class="bi bi-person-hearts"></i>
                     <span class="nav-text">Referral System</span>
                 </a>
                 <ul aria-expanded="false">
