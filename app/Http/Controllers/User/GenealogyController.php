@@ -9,7 +9,6 @@ use Auth;
 use Carbon\Carbon;
 use DB;
 use Exception;
-use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -55,8 +54,10 @@ class GenealogyController extends Controller
         if ($user?->id === null) {
             $user = auth()->user();
         }
+
         if ($request->wantsJson()) {
             $users = User::with('sponsor', 'parent')
+                ->withCount('directSales')
                 ->where('super_parent_id', $user?->id)
                 //                ->find(Auth::user()->id)
                 //                ->descendants()
@@ -103,11 +104,13 @@ class GenealogyController extends Controller
                     }
                     return '-';
                 })
-                ->addColumn('actions', function ($user) {
-                    return '<a class="btn btn-secondary btn-success btn-xxs p-1 view-downline-user" data-username="' . $user->username . '">
+                ->addColumn('actions', function ($user) use ($request,) {
+                    if ($request->get('depth') < 4 && $user->direct_sales_count > 0) {
+                        return '<a class="btn btn-secondary btn-success btn-xxs p-1 view-downline-user" data-username="' . $user->username . '">
                         <i class="fa fa-users"></i>
                     </a>';
-
+                    }
+                    return '-';
                 })
                 ->rawColumns(['profile_photo', 'user_details', 'contact_details', 'sponsor', 'actions'])
                 ->make();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Kyc;
 use App\Models\KycDocument;
+use App\Models\Profile;
 use Auth;
 use Carbon;
 use DB;
@@ -85,18 +86,45 @@ class KycController extends Controller
             'nic' => [
                 Rule::requiredIf($kyc->type === 'nic'),
                 'nullable',
+                function ($attribute, $value, $fail) {
+                    // Count the number of existing records with the same NIC
+                    $count = Profile::where('nic', $value)->count();
+
+                    // Apply uniqueness rule only if less than 10 records exist
+                    if ($count >= 10) {
+                        $fail("The {$attribute} has already been taken by 10 Kycs.");
+                    }
+                },
                 //Rule::unique('profiles', 'nic')->ignoreModel($kyc->profile),
                 'max:250'
             ],
             'driving_lc' => [
                 Rule::requiredIf($kyc->type === 'driving_lc'),
                 'nullable',
+                function ($attribute, $value, $fail) {
+                    // Count the number of existing records with the same NIC
+                    $count = Profile::where('driving_lc_number', $value)->count();
+
+                    // Apply uniqueness rule only if less than 10 records exist
+                    if ($count >= 10) {
+                        $fail("The {$attribute} has already been taken by 10 Kycs.");
+                    }
+                },
                 //Rule::unique('profiles', 'driving_lc_number')->ignoreModel($kyc->profile),
                 'max:250'
             ],
             'passport' => [
                 Rule::requiredIf($kyc->type === 'passport'),
                 'nullable',
+                function ($attribute, $value, $fail) {
+                    // Count the number of existing records with the same NIC
+                    $count = Profile::where('passport_number', $value)->count();
+
+                    // Apply uniqueness rule only if less than 10 records exist
+                    if ($count >= 10) {
+                        $fail("The {$attribute} has already been taken by 10 Kycs.");
+                    }
+                },
                 //Rule::unique('profiles', 'passport_number')->ignoreModel($kyc->profile),
                 'max:250'
             ],

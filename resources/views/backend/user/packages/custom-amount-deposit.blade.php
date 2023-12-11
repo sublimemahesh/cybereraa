@@ -218,7 +218,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-6 d-none">
                                 <div class="card bg-secondary pay-method-wallet cursor-pointer" id="wallet">
                                     <a class="card-body card-link">
                                         <div class="text-center">
@@ -229,7 +229,7 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-6 d-none">
                                 <div class="card bg-secondary pay-method-topup-wallet cursor-pointer" id="topup-wallet">
                                     <a class="card-body card-link">
                                         <div class="text-center">
@@ -241,7 +241,7 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-6 d-none">
                                 <div class="card bg-secondary pay-method-binance-pay cursor-pointer" id="binance-pay">
                                     <div class="card-body card-link">
                                         <div class="text-center">

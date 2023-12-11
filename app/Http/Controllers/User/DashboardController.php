@@ -13,6 +13,7 @@ use App\Models\PurchasedPackage;
 use App\Models\Withdraw;
 use Auth;
 use DB;
+use Illuminate\Database\Eloquent\Builder;
 
 class DashboardController extends Controller
 {
@@ -94,9 +95,11 @@ class DashboardController extends Controller
 //            ->whereStatus('DISQUALIFIED')
 //            ->sum('amount'), 2);
 
-        Auth::user()->loadCount(['directSales']);
+        Auth::user()->loadCount([
+            'directSales',
+            'directSales as active_direct_sales' => fn(Builder $q) => $q->whereHas('purchasedPackages'),
+        ]);
         $wallet = Auth::user()->wallet;
-
         // records
         $direct_indirect = Commission::with('purchasedPackage.user')
             ->where('user_id', Auth::user()->id)

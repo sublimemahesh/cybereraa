@@ -52,8 +52,9 @@ Route::group(['middleware' => 'guest:' . config('fortify.guard')], function () {
 });
 
 Route::get('test', function () {
-//    $user = \App\Models\User::find(4);
+    $user = \App\Models\User::find(5);
 //    dd($user->total_direct_team_investment);
+    dd($user->descendants()->get());
 });
 
 Route::get('payments/binancepay/response', 'Payment\BinancePayController@response');
@@ -350,7 +351,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
 //        });
 
         Route::get('team/users-list/{user:username?}', 'User\GenealogyController@teamList')->name('team.users-list');
-        Route::get('team/income-levels', 'User\GenealogyController@IncomeLevels')->name('team.income-levels');
+//        Route::get('team/income-levels', 'User\GenealogyController@IncomeLevels')->name('team.income-levels');
         Route::get('team/incomes/commission', 'User\EarningController@teamCommissionsIncome')->name('team.incomes.commission');
         Route::get('team/incomes/earnings', 'User\EarningController@teamHighestEarnings')->name('earnings.team-income');
         Route::match(['get', 'post'], 'earnings/summarize-yearly-income', 'User\EarningController@incomeChart')->name('earnings.yearly-income-chart');
@@ -362,7 +363,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::get('transactions/invoice/steam/{transaction}', 'Payment\InvoiceController@streamPurchaseInvoice')->name('transactions.invoice.stream')->middleware('signed');
 
         Route::get('incomes/commission', 'User\EarningController@commission')->name('incomes.commission');
-        Route::get('incomes/rewards', 'User\EarningController@rewards')->name('incomes.rewards');
+//        Route::get('incomes/rewards', 'User\EarningController@rewards')->name('incomes.rewards');
         Route::get('earnings', 'User\EarningController@index')->name('earnings.index');
         Route::get('earnings/summary-report', 'User\EarningController@earningSummary')->name('earnings.summary-report');
 
@@ -370,8 +371,8 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::post('filter/users/{search_text}', 'User\WithdrawController@findUsers');
 
         Route::get('wallet', 'User\WalletController@index')->name('wallet.index');
-        Route::match(['get', 'post'], 'wallet/transfer/to-wallet', 'User\WalletTransferController@transfer')->name('wallet.transfer.to-wallet');
-        Route::get('wallet/transfer', 'User\WithdrawController@p2pTransfer')->name('wallet.transfer');
+//        Route::match(['get', 'post'], 'wallet/transfer/to-wallet', 'User\WalletTransferController@transfer')->name('wallet.transfer.to-wallet');
+//        Route::get('wallet/transfer', 'User\WithdrawController@p2pTransfer')->name('wallet.transfer');
         Route::post('wallet/transfer/p2p/2ft-verify', 'Payment\PayoutController@twoftVerifyP2P');
         Route::post('wallet/transfer/p2p', 'Payment\PayoutController@p2pTransfer');
         Route::match(['get', 'post'], 'wallet/transfer/p2p/{p2p}/confirmation', 'User\WithdrawController@p2pConfirm')->name('withdraw.confirm-p2p');
@@ -382,7 +383,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::post('wallet/withdraw/binance', 'Payment\PayoutController@withdraw');
         Route::match(['get', 'post'], 'wallet/withdraws/{withdraw}/cancel-request', 'User\WithdrawController@cancelWithdraw')->name('wallet.withdraw.cancel');
 
-        Route::get('wallet/transfers/p2p/history', 'User\WithdrawController@p2pHistory')->name('transfers.p2p');
+//        Route::get('wallet/transfers/p2p/history', 'User\WithdrawController@p2pHistory')->name('transfers.p2p');
         Route::get('wallet/transfers/withdrawals/history', 'User\WithdrawController@withdrawalsHistory')->name('transfers.withdrawals');
         Route::get('wallet/transfers/staking-withdrawals/history', 'User\WithdrawController@withdrawalsHistory')->name('staking.transfers.withdrawals');
 
@@ -390,8 +391,8 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::get('wallet/transfer/invoice/steam/{withdraw}', 'Payment\InvoiceController@streamPayoutInvoice')->name('wallet.transfer.invoice.stream')->middleware('signed');
 
         // Topup Request
-        Route::match(['get', 'post'], 'wallet/request-topup-balance', 'User\WalletTopupHistoryController@index')->name('wallet.request-topup-balance');
-        Route::get('wallet/topup-requests/history', 'User\WalletTopupHistoryController@history')->name('wallet.topup-request.history');
+//        Route::match(['get', 'post'], 'wallet/request-topup-balance', 'User\WalletTopupHistoryController@index')->name('wallet.request-topup-balance');
+//        Route::get('wallet/topup-requests/history', 'User\WalletTopupHistoryController@history')->name('wallet.topup-request.history');
 
 
         // Tutorial Request
