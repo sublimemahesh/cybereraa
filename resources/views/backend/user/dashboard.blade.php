@@ -294,13 +294,9 @@
                         <button><i class="fa fa-clone"></i></button>
                     </div>
 
-
-                    <a href="whatsapp://send?text=This is WhatsApp sharing example using link"       data-action="share/whatsapp/share"  
-                    target="_blank"> Share to WhatsApp </a>   
-
                     <div class="row" data-devil="mt:25">
                         <div class="col-xl-4">
-                            <a id="whatsapp-button" href="#" onclick="shareOnWhatsApp()">
+                            <a id="whatsapp-button" href="whatsapp://send?text={{$url_ref}}"  data-action="share/whatsapp/share" target="_blank">
                                  <button type="button" class="btn btn-success btn-width">
                                     <i class="bi bi-whatsapp" data-devil='fs:12'></i> Whatsapp
                                 </button>
@@ -308,7 +304,7 @@
                         </div>
 
                         <div class=" col-xl-4">
-                            <a id="messenger-button" href="#" onclick="shareOnMessenger()">
+                            <a id="messenger-button" href="https://www.facebook.com/sharer/sharer.php?u={{urlencode($url_ref)}}"  target="_blank">
                                 <button type="button" class="btn btn-warning btn-width"> 
                                     <i class="bi bi-messenger" data-devil='fs:12'></i> Messenger
                                 </button>
@@ -931,26 +927,7 @@
                  // Pass the Laravel variable to JavaScript
                  var urlToShare = '{{ $url_ref }}';
 
-                 function shareOnWhatsApp() {
-                    // Replace '1234567890' with the actual phone number you want to share
-                    var phoneNumber = '1234567890';
-
-                    // Create the WhatsApp link with the URL as a parameter
-                    var whatsappLink = 'https://wa.me/' + phoneNumber + '?text=' + encodeURIComponent(urlToShare);
-
-                    // Open the link in a new tab
-                    window.open(whatsappLink, '_blank');
-                    }
-
-
-
-                    function shareOnMessenger() {
-                    // Create the Messenger share link with the dynamic URL as a parameter
-                    var messengerLink = 'https://www.facebook.com/dialog/send?link=' + encodeURIComponent(urlToShare) + '&app_id=YOUR_APP_ID';
-
-                    // Open the link in a new tab
-                    window.open(messengerLink, '_blank');
-                }
+                
 
                 function shareOnTelegram() {
                 var telegramLink = 'https://t.me/share/url?url=' + encodeURIComponent(urlToShare);

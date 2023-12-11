@@ -147,10 +147,10 @@
         </div>
     </div>
 
-    <div class="row">
-        <!-- column -->
+    {{-- <div class="row">
+       
         <div class="col-xl-12">
-            <!-- row -->
+           
             <div class="row">
                 <div class="col-xl-12">
                     <div class="card">
@@ -196,7 +196,7 @@
                         </div>
                     </div>
                 </div>
-                {{--<div class="col-xl-4">
+                <div class="col-xl-4">
                     <!-- row -->
                     <div class="row">
                         <!-- column-->
@@ -264,10 +264,10 @@
                             </div>
                         </div>
                     </div>
-                </div>--}}
+                </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 
     @push('scripts')
