@@ -3,30 +3,28 @@
 
 
         <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Update Account Settings</h4>
-            </div>
-            <div class="card-body">
+         
+            <div class="card-body" id="nav-txt-color">
                 <!-- Nav tabs -->
                 <div class="default-tab" x-data="{ activeTab: 'home' }">
                     <ul class="nav nav-tabs" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" :class="{ 'active': activeTab === 'home' }" @click="activeTab = 'home'" href="#home">
+                        <li class="nav-item nav-item-mr nav-item-li-width">
+                            <a class="nav-link text-center" data-bs-toggle="tab" :class="{ 'active': activeTab === 'home' }" @click="activeTab = 'home'" href="#home">
                                 Profile Photo
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" :class="{ 'active': activeTab === 'profile' }" @click="activeTab = 'profile'" href="#profile">
+                        <li class="nav-item nav-item-ml nav-item-mr nav-item-li-width">
+                            <a class="nav-link text-center" data-bs-toggle="tab" :class="{ 'active': activeTab === 'profile' }" @click="activeTab = 'profile'" href="#profile">
                                 Personal Details
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" :class="{ 'active': activeTab === 'contact' }" @click="activeTab = 'contact'" href="#contact">
+                        <li class="nav-item nav-item-ml nav-item-mr nav-item-li-width">
+                            <a class="nav-link text-center" data-bs-toggle="tab" :class="{ 'active': activeTab === 'contact' }" @click="activeTab = 'contact'" href="#contact">
                                 Contact Details
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" :class="{ 'active': activeTab === 'payment' }" @click="activeTab = 'payment'" href="#payment">
+                        <li class="nav-item nav-item-ml nav-item-li-width">
+                            <a class="nav-link text-center" data-bs-toggle="tab" :class="{ 'active': activeTab === 'payment' }" @click="activeTab = 'payment'" href="#payment">
                                 Payment details
                             </a>
                         </li>

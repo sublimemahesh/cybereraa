@@ -37793,9 +37793,9 @@ code {
 }
 
 .default-tab .nav-link {
-    background: transparent;
-    border-top-left-radius: 0.75rem;
-    border-top-right-radius: 0.75rem;
+    background: #828282;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     font-weight: 500;
 }
 
@@ -37809,14 +37809,21 @@ code {
     color: #495057;
     background-color: #fff;
     border-color: #dee2e6 #dee2e6 #fff #ebeef6;
-    border-radius: 0.625rem 0.625rem 0 0;
+    border-radius: 5px 5px 0 0;
     color: var(--primary);
 }
 
 [data-theme-version="dark"] .default-tab .nav-link:focus, [data-theme-version="dark"] .default-tab .nav-link:hover, [data-theme-version="dark"] .default-tab .nav-link.active {
-    background-color: var(--rgba-primary-1);
+    /* background-color: var(--rgba-primary-1); */
+    background-color: #17998f;
     border-color: transparent transparent #707070 transparent;
 }
+
+[data-theme-version="dark"] .default-tab .nav-link:focus, [data-theme-version="dark"] .default-tab .nav-link:hover, [data-theme-version="dark"] #nav-txt-color .default-tab .nav-link.active {
+    color: white  !important;
+}
+
+
 
 .custom-tab-1 .nav-link {
     background: transparent;
@@ -49743,11 +49750,11 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
 
 .logout-btn{
         position: absolute;
-        height: auto
+        height: auto;
         bottom: 1.25rem;
         top: 0rem;
         right: 0;
-        margin-top: -2px; 
+        margin-top: -2px;
 }
 
 .logout-btn img{
@@ -49756,4 +49763,18 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
 
 
 
+.nav-item-ml{
+    margin-left: 0px;
+}
 
+.nav-item-mr{
+    margin-right: 5px;
+}
+
+.nav-item-li-width{
+    width: 24%;
+}
+
+#nav-txt-color a{
+    color: black !important;
+}
