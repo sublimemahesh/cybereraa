@@ -31,6 +31,7 @@ class UserController extends Controller
 
         if ($request->wantsJson()) {
             $users = User::with('sponsor')
+                ->withSum('purchasedPackages', 'invested_amount')
                 ->whereRelation('roles', 'name', 'user')
                 ->when($request->get('status') === 'suspend', function (Builder $q) {
                     $q->whereNotNull('suspended_at');
@@ -76,11 +77,14 @@ class UserController extends Controller
                             <i class='fa fa-phone'></i> $user->phone <br>
                             <i class='fa fa-envelope'></i> $user->email<br>";
                 })
-                ->addColumn('joined', fn($user) => $user->created_at->format('Y-m-d h:i A'))
+                ->addColumn('joined', function ($user) {
+                    return "Total Investment: <code>{$user?->purchased_packages_sum_invested_amount} </code> <br>
+                            <i class='fa fa-calendar'></i> {$user->created_at->format('Y-m-d h:i A')}";
+                })
                 ->addColumn('actions', function ($user) {
                     return view('backend.admin.users.includes.users-actions', compact('user'))->render();
                 })
-                ->rawColumns(['actions', 'profile_photo', 'user_details', 'contact_details'])
+                ->rawColumns(['actions', 'profile_photo', 'user_details', 'contact_details', 'joined'])
                 ->make();
         }
         return view('backend.admin.users.index');

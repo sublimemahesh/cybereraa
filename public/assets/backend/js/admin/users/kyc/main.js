@@ -33,11 +33,11 @@ $(function () {
                     return `<div style="font-size: 0.76rem !important;width:150px"> ${data} </div>`;
                 },
                 width: "150px",
-                targets: 3,
+                targets: [1, 3],
             },
             {
                 render: function (data, type, full, meta) {
-                    return `<div style="min-width:150px"> ${data} </div>`;
+                    return `<div style="font-size: 0.76rem !important;min-width:150px"> ${data} </div>`;
                 },
                 targets: 2,
             },
