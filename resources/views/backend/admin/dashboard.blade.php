@@ -144,6 +144,40 @@
                                     <i class="la la-coins"></i>
                                 </span>
                                 <div class="media-body text-white">
+                                    <p class="mb-1">TOTAL DIRECT TRADE</p>
+                                    <h4 class="text-white  dashboard-card-font-size-change"> $ {{ $total_trade_earnings }}</h4>
+                                    <br>
+                                    <small> Package Direct Trade income </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3  col-lg-6 col-sm-6">
+                    <div class="widget-stat card">
+                        <div class="card-body  p-4">
+                            <div class="media">
+                                <span class="me-3">
+                                    <i class="la la-coins"></i>
+                                </span>
+                                <div class="media-body text-white">
+                                    <p class="mb-1">TOTAL INDIRECT TRADE</p>
+                                    <h4 class="text-white  dashboard-card-font-size-change"> $ {{ $total_indirect_earnings }}</h4>
+                                    <br>
+                                    <small> Package Indirect Trade income </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3  col-lg-6 col-sm-6">
+                    <div class="widget-stat card">
+                        <div class="card-body  p-4">
+                            <div class="media">
+                                <span class="me-3">
+                                    <i class="la la-coins"></i>
+                                </span>
+                                <div class="media-body text-white">
                                     <p class="mb-1">TOTAL DIRECT EARNINGS</p>
                                     <h4 class="text-white dashboard-card-font-size-change"> $ {{ $total_direct_commission_earnings }}</h4>
                                     <br>
@@ -178,10 +212,10 @@
                                     <i class="la la-coins"></i>
                                 </span>
                                 <div class="media-body text-white">
-                                    <p class="mb-1">TOTAL RANK BONUSES</p>
-                                    <h4 class="text-white dashboard-card-font-size-change"> $ {{ $total_rank_bonus_earnings }}</h4>
+                                    <p class="mb-1">TOTAL SPECIAL BONUSES</p>
+                                    <h4 class="text-white dashboard-card-font-size-change"> $ {{ $total_special_bonus_earnings }}</h4>
                                     <br>
-                                    <small> Daily Rank Bonus </small>
+                                    <small> Special Bonus </small>
                                 </div>
                             </div>
                         </div>
@@ -196,7 +230,7 @@
                                     <i class="la la-wallet"></i>
                                 </span>
                                 <div class="media-body text-white">
-                                    <p class="mb-1">MAIN WALLET BALANCE</p>
+                                    <p class="mb-1">INTERNAL WALLET BALANCE</p>
                                     <h4 class="text-white  dashboard-card-font-size-change"> $ {{ $total_available_wallet_balance }}</h4>
                                     <br>
                                     <small> Total main Wallets balance </small>
@@ -213,7 +247,7 @@
                                     <i class="la la-wallet"></i>
                                 </span>
                                 <div class="media-body text-white">
-                                    <p class="mb-1">TOPUP WALLET BALANCE</p>
+                                    <p class="mb-1">EXTERNAL WALLET BALANCE</p>
                                     <h4 class="text-white  dashboard-card-font-size-change"> $ {{ $total_available_wallet_topup_balance }}</h4>
                                     <br>
                                     <small>Total topup Wallets balance </small>
@@ -222,23 +256,23 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3  col-lg-6 col-sm-6">
-                    <div class="widget-stat card bg-green">
-                        <div class="card-body  p-4">
-                            <div class="media">
-                                <span class="me-3">
-                                    <i class="la la-arrows-h"></i>
-                                </span>
-                                <div class="media-body text-white">
-                                    <p class="mb-1">WALLET TRANSACTIONS</p>
-                                    <h4 class="text-white  dashboard-card-font-size-change"> $ {{ $total_between_wallet_transactions }}</h4>
-                                    <br>
-                                    <small>Transactions between wallets </small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {{-- <div class="col-xl-3  col-lg-6 col-sm-6">
+                     <div class="widget-stat card bg-green">
+                         <div class="card-body  p-4">
+                             <div class="media">
+                                 <span class="me-3">
+                                     <i class="la la-arrows-h"></i>
+                                 </span>
+                                 <div class="media-body text-white">
+                                     <p class="mb-1">WALLET TRANSACTIONS</p>
+                                     <h4 class="text-white  dashboard-card-font-size-change"> $ {{ $total_between_wallet_transactions }}</h4>
+                                     <br>
+                                     <small>Transactions between wallets </small>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>--}}
                 <div class="col-xl-3  col-lg-6 col-sm-6">
                     <div class="widget-stat card bg-info">
                         <div class="card-body p-4">
@@ -256,7 +290,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3  col-lg-6 col-sm-6">
+                {{--<div class="col-xl-3  col-lg-6 col-sm-6">
                     <div class="widget-stat card">
                         <div class="card-body p-4">
                             <div class="media">
@@ -272,7 +306,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>--}}
                 <div class="col-xl-3  col-lg-6 col-sm-6">
                     <div class="widget-stat card">
                         <div class="card-body p-4">
@@ -407,8 +441,8 @@
                                     </svg>
                                 </span>
                                 <div class="media-body">
-                                    <p class="mb-1">Today Login</p>
-                                    <h4 class="mb-0">{{ $today_logins }}</h4>
+                                    <p class="mb-1">Active Users</p>
+                                    <h4 class="mb-0">{{ $active_users }}</h4>
                                     {{--<span class="badge badge-success">+3.5%</span>--}}
                                 </div>
                             </div>
@@ -420,17 +454,14 @@
                         <div class="card-body p-4">
                             <div class="media ai-icon">
                                 <span class="me-3 bgl-warning text-warning">
-                                    <svg id="icon-orders" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
-                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                        <polyline points="14 2 14 8 20 8"></polyline>
-                                        <line x1="16" y1="13" x2="8" y2="13"></line>
-                                        <line x1="16" y1="17" x2="8" y2="17"></line>
-                                        <polyline points="10 9 9 9 8 9"></polyline>
+                                    <svg id="icon-customers" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="12" cy="7" r="4"></circle>
                                     </svg>
                                 </span>
                                 <div class="media-body">
-                                    <p class="mb-1">Registrations</p>
-                                    <h4 class="mb-0">{{ $registrations_count }}</h4>
+                                    <p class="mb-1">InActive Users</p>
+                                    <h4 class="mb-0">{{ $inactive_users }}</h4>
                                     {{--<span class="badge badge-warning">+3.5%</span>--}}
                                 </div>
                             </div>
@@ -448,15 +479,15 @@
                                     </svg>
                                 </span>
                                 <div class="media-body">
-                                    <p class="mb-1">Total Rankers</p>
-                                    <h4 class="mb-0">{{ $total_rankers }}</h4>
+                                    <p class="mb-1">Total Special Reward Users</p>
+                                    <h4 class="mb-0">{{ $total_special_bonus_users }}</h4>
                                     {{--<span class="badge badge-danger">-3.5%</span>--}}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3  col-lg-6 col-sm-6">
+                {{--<div class="col-xl-3  col-lg-6 col-sm-6">
                     <div class="widget-stat card">
                         <div class="card-body p-4">
                             <div class="media ai-icon">
@@ -471,12 +502,12 @@
                                 <div class="media-body">
                                     <p class="mb-1">Pending TO Assign</p>
                                     <h4 class="mb-0">{{ $pending_sales_count }}</h4>
-                                    {{--<span class="badge badge-success">-3.5%</span>--}}
+                                    --}}{{--<span class="badge badge-success">-3.5%</span>--}}{{--
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>--}}
 
                 {{--<div class="col-xl-3  col-lg-6 col-sm-6">
                     <div class="card bg-info">
@@ -565,36 +596,34 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Top 10 Rankers</h4>
+                            <h4 class="card-title">Top 10 Highest Income</h4>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-responsive-md">
                                     <thead>
-                                    <tr>
-                                        <th><strong>User ID.</strong></th>
-                                        <th><strong>NAME</strong></th>
-                                        <th><strong>Email</strong></th>
-                                        <th><strong>ACTIVATED</strong></th>
-                                        <th><strong>Rank</strong></th>
-                                        <th><strong>TOTAL RANKERS</strong></th>
-                                    </tr>
+                                        <tr>
+                                            <th><strong>USER ID.</strong></th>
+                                            <th><strong>USER NAME</strong></th>
+                                            <th><strong>NAME</strong></th>
+                                            <th><strong>EMAIL</strong></th>
+                                            <th><strong>TOTAL EARNED</strong></th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    @forelse($top_rankers as $ranker)
-                                        <tr>
-                                            <td>{{ $ranker->user_id }}</td>
-                                            <td class="text-success">{{ $ranker->user->username }}</td>
-                                            <td>{{ $ranker->user->email }}</td>
-                                            <td>{{ Carbon::parse($ranker->activated_at)->format('Y-m-d H:i:s') }}</td>
-                                            <td class="text-success">Rank 0{{ $ranker->rank }}</td>
-                                            <td class="text-center">{{ $ranker->total_rankers }}</td>
-                                        </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="6" class="text-center"> No Rankers</td>
-                                        </tr>
-                                    @endforelse
+                                        @forelse($highestEarners as $ranker)
+                                            <tr>
+                                                <td>{{ $ranker->id }}</td>
+                                                <td class="text-success">{{ $ranker->username }}</td>
+                                                <td class="text-success">{{ $ranker->name }}</td>
+                                                <td>{{ $ranker->email }}</td>
+                                                <td>{{ $ranker->earnings_sum_amount }}</td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="6" class="text-center"> No Users</td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
