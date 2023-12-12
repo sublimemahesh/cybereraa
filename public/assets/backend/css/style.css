@@ -49778,3 +49778,18 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
 #nav-txt-color a{
     color: black !important;
 }
+
+
+@media only screen and (max-width: 600px) {
+
+        .dashboard-title h2{
+            color: black !important;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            font-family: 'Oswald', sans-serif;
+            font-style: italic;
+            font-size: 25px;
+    }
+}
+
+
