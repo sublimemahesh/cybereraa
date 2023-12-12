@@ -11,6 +11,10 @@
     </p>
 
     <p>
+        <b>Reason:</b> {{ $user->suspend_reason }}
+    </p>
+
+    <p>
         As a result, we have temporarily suspended your account. During this suspension period,
         you will not be able to access your account, and any ongoing transactions will be paused until further notice.
     </p>

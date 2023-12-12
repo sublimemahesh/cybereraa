@@ -15,17 +15,17 @@
     </a>
 @endcan
 @can('users.view.profile')
-    <a href='{{ route('admin.users.profile.show', $user) }}' class='btn btn-xs btn-success sharp me-1 shadow'>
+    <a href='{{ route('admin.users.profile.show', $user) }}' title="View Profile" class='btn btn-xs btn-success sharp me-1 shadow'>
         <i class='fa fa-user' aria-hidden='true'></i>
     </a>
 @endcan
 @can('suspend', $user)
-    <a class='btn btn-xs btn-danger sharp my-1 mr-1 shadow suspend-user' data-user='{{ $user->id }}' href='javascript:void(0)'>
+    <a class='btn btn-xs btn-danger sharp my-1 mr-1 shadow suspend-user' title="Suspend the user" data-user='{{ $user->id }}' href='javascript:void(0)'>
         <i class='fa fa-ban' aria-hidden='true'></i>
     </a>
 @endcan
 @can('reActivate', $user)
-    <a class='btn btn-xs btn-success sharp my-1 mr-1 shadow activate-suspended-user' data-user='{{ $user->id }}' href='javascript:void(0)'>
+    <a class='btn btn-xs btn-success sharp my-1 mr-1 shadow activate-suspended-user' data-reason="{{ $user->suspend_reason }}" title="Re-activate the user" data-user='{{ $user->id }}' href='javascript:void(0)'>
         <i class='fa fa-check-double' aria-hidden='true'></i>
     </a>
 @endcan

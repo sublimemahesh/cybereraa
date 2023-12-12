@@ -127,11 +127,13 @@ class UserController extends Controller
         return view('backend.admin.users.profile.show', compact('user', 'types', 'Profile_details', 'wallet', 'latest_transactions', 'income', 'withdraw', 'qualified_commissions', 'lost_commissions'));
     }
 
-    public function suspendUser(User $user)
+    public function suspendUser(Request $request, User $user)
     {
         abort_if(Gate::denies('suspend', $user), Response::HTTP_FORBIDDEN);
 
-        $user->update(['suspended_at' => Carbon::now()]);
+        $request->validate(['reason' => 'required|string|max:255']);
+
+        $user->update(['suspend_reason' => $request->get('reason'), 'suspended_at' => Carbon::now()]);
 
         \Mail::to($user->email)->send(new AccountSuspendMail($user));
 
@@ -146,7 +148,7 @@ class UserController extends Controller
     {
         abort_if(Gate::denies('reActivate', $user), Response::HTTP_FORBIDDEN);
 
-        $user->update(['suspended_at' => null]);
+        $user->update(['suspend_reason' => null, 'suspended_at' => null]);
 
         \Mail::to($user->email)->send(new AccountReactivateMail($user));
 
