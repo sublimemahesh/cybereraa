@@ -98,6 +98,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::post('filter/users/{search_text}', 'SuperAdmin\UserController@findUsers');
 
         Route::get('users/{user}/change-password', 'SuperAdmin\UserController@changePassword')->name('users.changePassword');
+        Route::post('users/{user}/remove-two-factor', 'SuperAdmin\UserController@removeTwoFactor')->name('users.remove-two-factor');
         Route::post('users/{user}/save-password', 'SuperAdmin\UserController@savePassword')->name('users.savePassword');
 
         Route::get('users/{user}/view-permissions', 'SuperAdmin\UserController@showPermissions')->name('users.show-permissions');
