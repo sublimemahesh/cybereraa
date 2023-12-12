@@ -38,9 +38,10 @@
                                                             <option value="trade_indirect">TRADE INDIRECT</option>
                                                             <option value="direct">DIRECT SALE</option>
                                                             <option value="indirect">INDIRECT SALE</option>
-                                                            <option value="rank_bonus">RANK BONUS</option>
+                                                            <option value="direct">SPECIAL BONUS</option>
+                                                            {{-- <option value="rank_bonus">RANK BONUS</option> --}}
                                                             {{--<option value="rank_gift">RANK GIFT</option>--}}
-                                                            <option value="p2p">P2P</option>
+                                                            {{-- <option value="p2p">P2P</option> --}}
                                                             {{--<option value="staking">STAKING</option>--}}
                                                         </select>
                                                         <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
