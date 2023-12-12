@@ -312,69 +312,73 @@
 
 
     </form>
+    @push('scripts')
+        <script src="{{ asset('assets/backend/vendor/jquery-mask-plugin/jquery.mask.min.js') }}"></script>
+        <script !src="">
+            window.addEventListener('DOMContentLoaded', (event) => {
+                $('.bday-mask').mask('0000-00-00', {
+                    onComplete: function (cep) {
+                        console.log('cep changed! ', cep);
+                    }
+                    , placeholder: "YYYY-MM-DD"
+                    , selectOnFocus: true
+                });
+
+                const __REG_STEP = @this;
+                let itl_phone
+
+                function init(phone_iso = 'lk') {
+                    itl_phone && itl_phone.destroy();
+
+                    try {
+                        return intlTelInput.intlTelInput(document.querySelector("#phone"), {
+                            initialCountry: phone_iso
+                            , formatOnDisplay: false,
+                            //allowDropdown: false,
+                            autoPlaceholder: 'aggressive'
+                        })
+                    } catch (e) {
+                        console.log(e.message)
+                        return init('lk')
+                    }
+                }
+
+                itl_phone = init()
+
+                document.querySelector("#phone").addEventListener('change', function (e) {
+                    let countryData = itl_phone.getSelectedCountryData();
+                    let phone = itl_phone.getNumber(intlTelInputUtils.numberFormat.E164);
+                    if (itl_phone.isValidNumber()) {
+                        __REG_STEP.set('state.phone', phone);
+                    } else {
+                        //__REG_STEP.set('state.phone', null);
+                        Toast.fire({
+                            icon: 'error'
+                            , title: "Invalid number!"
+                            ,
+                        })
+                    }
+                    console.log('phone: change: ', countryData)
+                })
+                document.getElementById("phone").addEventListener("close:countrydropdown", function () {
+                    let countryData = itl_phone.getSelectedCountryData();
+                    let phone = itl_phone.getNumber(intlTelInputUtils.numberFormat.E164);
+                    __REG_STEP.set('state.phone', null);
+                    console.log('countryChange: phone_iso: ', countryData)
+                });
+
+                Livewire.hook('element.updated', (message, component) => {
+                    //console.log(component.serverMemo.data)
+                    try {
+                        document.querySelector("#phone").value = component.serverMemo.data.state.phone;
+                    } catch (e) {
+
+                    }
+                });
+            });
+
+        </script>
+    @endpush
 </div>
 
-@push('scripts')
-    <script src="{{ asset('assets/backend/vendor/jquery-mask-plugin/jquery.mask.min.js') }}"></script>
-    <script !src="">
-        window.addEventListener('DOMContentLoaded', (event) => {
-            $('.bday-mask').mask('0000-00-00', {
-                onComplete: function (cep) {
-                    console.log('cep changed! ', cep);
-                }
-                , placeholder: "YYYY-MM-DD"
-                , selectOnFocus: true
-            });
 
-            const __REG_STEP = @this;
-            let itl_phone
-
-            function init(phone_iso = 'lk') {
-                itl_phone && itl_phone.destroy();
-
-                try {
-                    return intlTelInput.intlTelInput(document.querySelector("#phone"), {
-                        initialCountry: phone_iso
-                        , formatOnDisplay: false,
-                        //allowDropdown: false,
-                        autoPlaceholder: 'aggressive'
-                    })
-                } catch (e) {
-                    console.log(e.message)
-                    return init('lk')
-                }
-            }
-
-            itl_phone = init()
-
-            document.querySelector("#phone").addEventListener('change', function (e) {
-                let countryData = itl_phone.getSelectedCountryData();
-                let phone = itl_phone.getNumber(intlTelInputUtils.numberFormat.E164);
-                if (itl_phone.isValidNumber()) {
-                    __REG_STEP.set('state.phone', phone);
-                } else {
-                    //__REG_STEP.set('state.phone', null);
-                    Toast.fire({
-                        icon: 'error'
-                        , title: "Invalid number!"
-                        ,
-                    })
-                }
-                console.log('phone: change: ', countryData)
-            })
-            document.getElementById("phone").addEventListener("close:countrydropdown", function () {
-                let countryData = itl_phone.getSelectedCountryData();
-                let phone = itl_phone.getNumber(intlTelInputUtils.numberFormat.E164);
-                __REG_STEP.set('state.phone', null);
-                console.log('countryChange: phone_iso: ', countryData)
-            });
-
-            Livewire.hook('element.updated', (message, component) => {
-                //console.log(component.serverMemo.data)
-                document.querySelector("#phone").value = component.serverMemo.data.state.phone;
-            });
-        });
-
-    </script>
-    @endpush
-    </div>

@@ -2,7 +2,7 @@
     <a class="btn btn-xs btn-primary shadow sharp my-1" href="{{ route('super_admin.users.edit', $user) }}" title="Edit">
         <i class="fa fa-pencil" aria-hidden="true"></i>
     </a>
-    <a class="btn btn-xs btn-info sharp my-1" href="{{ route('super_admin.users.changePassword', $user) }}" title="Reset Password">
+    <a class="btn btn-xs btn-info sharp my-1" href="{{ route('super_admin.users.changePassword', $user) }}" title="Reset Password & Manage 2-Factor Authentication">
         <i class="fa fa-unlock-alt" aria-hidden="true"></i>
     </a>
 @endcan

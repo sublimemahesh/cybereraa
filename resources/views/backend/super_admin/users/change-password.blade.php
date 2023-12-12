@@ -53,10 +53,55 @@
                 </div>
             </div>
         </div>
-
+        @if($user?->two_factor_secret && in_array( \Laravel\Fortify\TwoFactorAuthenticatable::class, class_uses_recursive($user),true))
+            <div class="col-sm-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Remove two Factor Authentication
+                        </h5>
+                        <hr>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <button type="submit" id="remove-two-factor" class="btn btn-primary">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
     </div>
 
     @push('scripts')
-
+        <script !src="">
+            $(function () {
+                $('#remove-two-factor').click(function () {
+                    Swal.fire({
+                        title: "Are You Sure?",
+                        text: "Remove Two Factor Authentication From this Account?",
+                        icon: "info",
+                        confirmButtonText: `<i class="fa fa-thumbs-up"></i> Remove!`,
+                        showCancelButton: true,
+                    }).then((activate) => {
+                        if (activate.isConfirmed) {
+                            loader()
+                            axios.post('{{ route('super_admin.users.remove-two-factor', $user) }}').then(response => {
+                                Toast.fire({
+                                    icon: response.data.icon, title: response.data.message,
+                                })
+                                if (response.data.redirectUrl !== null) {
+                                    location.href = response.data.redirectUrl
+                                }
+                            }).catch(error => {
+                                console.log(error)
+                                Toast.fire({
+                                    icon: 'error', title: error.response.data.message || "Something went wrong!",
+                                })
+                            })
+                        }
+                    });
+                })
+            })
+        </script>
     @endpush
 </x-backend.layouts.app>

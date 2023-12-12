@@ -22,6 +22,8 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use JsonException;
+use Laravel\Fortify\Events\TwoFactorAuthenticationDisabled;
+use Laravel\Fortify\Fortify;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Symfony\Component\HttpFoundation\Response;
@@ -243,6 +245,32 @@ class UserController extends Controller
         ])->save();
 
         return redirect()->route('super_admin.users.index')->with('success', 'Password changed successfully');
+    }
+
+    public function removeTwoFactor(User $user, Request $request)
+    {
+        abort_if(Gate::denies('users.update'), Response::HTTP_FORBIDDEN);
+
+
+        if ($user->two_factor_secret !== null ||
+            $user->two_factor_recovery_codes !== null ||
+            $user->two_factor_confirmed_at !== null) {
+            $user->forceFill([
+                    'two_factor_secret' => null,
+                    'two_factor_recovery_codes' => null,
+                ] + (Fortify::confirmsTwoFactorAuthentication() ? [
+                    'two_factor_confirmed_at' => null,
+                ] : []))->save();
+
+            TwoFactorAuthenticationDisabled::dispatch($user);
+        }
+
+
+        $json['status'] = true;
+        $json['message'] = "Two Factor Authentication disabled!";
+        $json['icon'] = 'success'; // warning | info | question | success | error
+        $json['redirectUrl'] = route('super_admin.users.changePassword', $user);
+        return response()->json($json, Response::HTTP_OK);
     }
 
 
