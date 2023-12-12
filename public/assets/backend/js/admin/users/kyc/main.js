@@ -23,7 +23,7 @@ $(function () {
         columnDefs: [
             {
                 render: function (data, type, full, meta) {
-                    return `<div style='width:50px'> ${data} </div>`;
+                    return `<div style="width:50px"> ${data} </div>`;
                 },
                 width: "50px",
                 targets: 0,
@@ -37,12 +37,13 @@ $(function () {
             },
             {
                 render: function (data, type, full, meta) {
-                    return `<div style='min-width:150px'> ${data} </div>`;
+                    return `<div style="min-width:150px"> ${data} </div>`;
                 },
                 targets: 2,
             },
         ],
     });
+    window.admin_users_table = table;
 
     flatpickr("#date-range", {
         mode: "range", dateFormat: "Y-m-d", defaultDate: date_range && date_range.split("to"),
@@ -58,40 +59,5 @@ $(function () {
         table.ajax.url(url).load();
     });
 
-    $(document).on("click", ".suspend-user", function (e) {
-        e.preventDefault();
-        let user = $(this).data('user')
-        let url = APP_URL + "/admin/users/" + user + "/suspend"
-        userStatusChanged(url, "You want to Suspend selected user?")
-    });
-    $(document).on("click", ".activate-suspended-user", function (e) {
-        e.preventDefault();
-        let user = $(this).data('user')
-        let url = APP_URL + "/admin/users/" + user + "/activate"
-        userStatusChanged(url, "You want to Re-activate suspended user?")
-    });
 
-    function userStatusChanged(url, msg) {
-        Swal.fire({
-            title: "Are You Sure?",
-            text: msg,
-            icon: "info",
-            showCancelButton: true,
-        }).then((calculate) => {
-            if (calculate.isConfirmed) {
-                loader()
-                axios.post(url).then(response => {
-                    Toast.fire({
-                        icon: response.data.icon, title: response.data.message,
-                    })
-                    table.draw();
-                }).catch(error => {
-                    console.log(error)
-                    Toast.fire({
-                        icon: 'error', title: error.response.data.message || "Something went wrong!",
-                    })
-                })
-            }
-        });
-    }
 })

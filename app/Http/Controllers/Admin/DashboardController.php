@@ -70,7 +70,7 @@ class DashboardController extends Controller
             ->count();
 
         $total_special_bonus_users = User::whereRelation('roles', 'name', 'user')
-            ->whereHas('specialBonuses')
+            ->whereHas('specialBonuses', fn($q) => $q->where('status', 'QUALIFIED'))
             ->count();
 
 //        $today_logins = DB::table('sessions')->where('last_activity', '>', Carbon::today()->timestamp)->count();
