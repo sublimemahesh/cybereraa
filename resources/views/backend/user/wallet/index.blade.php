@@ -14,7 +14,7 @@
     <div class="row">
         @include('backend.user.wallet.top-nav')
         <div class="col-xl-4 col-lg-4">
-            <div class="rounded-1 card prim-card" data-devil="h:180">
+            <div class="rounded-1 card prim-card height-45-100">
                 <div class="card-body py-3 d-flex flex-column justify-content-evenly">
                     <img src="{{ asset('assets/images/main-wallet.png') }}" alt="logo" width="64"/>
                     <div class="d-flex">
@@ -41,7 +41,7 @@
                 </div>
             </div>
 
-            <div class="rounded-1 card prim-card"  data-devil="h:180">
+            <div class="rounded-1 card prim-card height-45-100">
                 <div class="card-body py-3 d-flex flex-column justify-content-evenly">
                     <img src="{{ asset('assets/images/topup-wallet.png') }}" alt="logo" width="64"/>
                     <div class="d-flex">
@@ -148,9 +148,9 @@
     </div>
 
     {{-- <div class="row">
-       
+
         <div class="col-xl-12">
-           
+
             <div class="row">
                 <div class="col-xl-12">
                     <div class="card">
