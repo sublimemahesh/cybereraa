@@ -20,7 +20,7 @@
                         <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
                             <div>
                                 <div class=" pt-2 p-2 ">
-                                    <label for="earning-type" class="text-gray-700 dark:text-gray-300">EARNING TYPE</label>
+                                    <label for="earning-type" class="text-gray-700 dark:text-gray-300">EARNING TYPE </label>
                                     <div class="relative">
                                         <select id="earning-type" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
                                             <option value="">ALL</option>
@@ -29,8 +29,9 @@
                                             <option value="trade_indirect" {{ request()->input('earning-type') === 'trade_indirect' ? 'selected' : '' }}>TRADE INDIRECT</option>
                                             <option value="direct" {{ request()->input('earning-type') === 'direct' ? 'selected' : '' }}>DIRECT SALE</option>
                                             <option value="indirect" {{ request()->input('earning-type') === 'indirect' ? 'selected' : '' }}>INDIRECT SALE</option>
-                                            <option value="p2p" {{ request()->input('earning-type') === 'p2p' ? 'selected' : '' }}>P2P TRANSFER</option>
-                                            <option value="rank_bonus" {{ request()->input('earning-type') === 'rank_bonus' ? 'selected' : '' }}>RANK BONUS</option>
+                                            <option value="special_bonus" {{ request()->input('earning-type') === 'special_bonus' ? 'selected' : '' }}>SPECIAL BONUS</option>
+                                            {{-- <option value="p2p" {{ request()->input('earning-type') === 'p2p' ? 'selected' : '' }}>P2P TRANSFER</option> --}}
+                                            {{-- <option value="rank_bonus" {{ request()->input('earning-type') === 'rank_bonus' ? 'selected' : '' }}>RANK BONUS</option> --}}
                                             <option value="rank_gift" {{ request()->input('earning-type') === 'rank_gift' ? 'selected' : '' }}>RANK GIFT</option>
                                             <option value="staking" {{ request()->input('earning-type') === 'staking' ? 'selected' : '' }}>STAKING</option>
                                         </select>
