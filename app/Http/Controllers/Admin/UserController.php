@@ -124,7 +124,35 @@ class UserController extends Controller
         $Profile_details = $user->profile;
         $wallet = $user->wallet;
 
-        return view('backend.admin.users.profile.show', compact('user', 'types', 'Profile_details', 'wallet', 'latest_transactions', 'income', 'withdraw', 'qualified_commissions', 'lost_commissions'));
+        $sameKycUsers = User::whereRelation('profile.kycs', 'status', 'accepted')
+            ->whereHas('profile',
+                function (Builder $q) use ($user) {
+                    $q
+                        ->when($user->profile->nic !== null, function (Builder $query) use ($user) {
+                            $query->where('nic', $user->profile->nic);
+                        })
+                        ->when($user->profile->driving_lc_number !== null, function (Builder $query) use ($user) {
+                            $query->orWhere('driving_lc_number', $user->profile->driving_lc_number);
+                        })
+                        ->when($user->profile->passport_number !== null, function (Builder $query) use ($user) {
+                            $query->orWhere('passport_number', $user->profile->passport_number);
+                        });
+                })
+            ->get();
+
+        return view('backend.admin.users.profile.show', compact(
+                'user',
+                'types',
+                'Profile_details',
+                'wallet',
+                'latest_transactions',
+                'income',
+                'withdraw',
+                'qualified_commissions',
+                'lost_commissions',
+                'sameKycUsers'
+            )
+        );
     }
 
     public function suspendUser(Request $request, User $user)

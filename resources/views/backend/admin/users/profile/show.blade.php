@@ -36,7 +36,9 @@
                                     Username: {{ $user->username }}
                                     @if($user->sponsor->id !== null)
                                         <br>
-                                        Sponsor: <code><a href='{{ route('admin.users.profile.show', $user->sponsor)  }}'>{{ $user?->sponsor?->username }}</a> </code>
+                                        Sponsor: <code>
+                                            <a href='{{ route('admin.users.profile.show', $user->sponsor)  }}'>{{ $user?->sponsor?->username }}</a>
+                                        </code>
                                     @endif
                                 </p>
                             </div>
@@ -474,6 +476,43 @@
         </div>
     </div>
     <div class="row dark"> {{--! Tailwind css used. if using tailwind plz run npm run dev and add tailwind classes--}}
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Same Kyc Users</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-responsive-md">
+                            <thead>
+                                <tr>
+                                    <th><strong>USER ID.</strong></th>
+                                    <th><strong>USER NAME</strong></th>
+                                    <th><strong>NAME</strong></th>
+                                    <th><strong>EMAIL</strong></th>
+                                    <th><strong>SPONSOR</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse($sameKycUsers as $kyc_user)
+                                    <tr>
+                                        <td>{{ $kyc_user->id }}</td>
+                                        <td class="text-success">{{ $kyc_user->username }}</td>
+                                        <td class="text-success">{{ $kyc_user->name }}</td>
+                                        <td>{{ $kyc_user->email }}</td>
+                                        <td>{{ $kyc_user->sponsor->username }}</td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="6" class="text-center"> No Users</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
         @can('transactions.viewAny')
             <div class="col-12">
                 <div class="card">
