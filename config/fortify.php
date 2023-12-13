@@ -50,9 +50,9 @@ return [
 
     'email' => 'email',
 
-    'super_parent_id' => 4,
+    'super_parent_id' => 6,
 
-    'super_parent_username' => 'owara1',
+    'super_parent_username' => 'coin1m4',
 
     /*
     |--------------------------------------------------------------------------

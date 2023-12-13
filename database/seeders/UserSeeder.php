@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
                     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 ],
                 //Admin
-                [ 
+                [
                     'name' => 'James caron',
                     'username' => 'admin',
                     'email' => 'hansajithsynotec@gmail.com',
@@ -36,8 +36,8 @@ class UserSeeder extends Seeder
                 ],
                 //User
                 [
-                    'name' => 'john smith',
-                    'username' => 'user',
+                    'name' => 'Coin1m 1st Level',
+                    'username' => 'coin1m1',
                     'email' => 'hansajith18@gmail.com',
                     'created_at' => now(),
                     'updated_at' => now(),
