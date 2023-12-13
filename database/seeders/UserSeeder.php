@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
                     'name' => 'Navod Hansajith',
                     'username' => 'super_admin',
                     'email' => 'hansajith.synotec@gmail.com',
+                    'email_verified_at' => now(),
                     'created_at' => now(),
                     'updated_at' => now(),
                     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
@@ -38,7 +39,38 @@ class UserSeeder extends Seeder
                 [
                     'name' => 'Coin1m 1st Level',
                     'username' => 'coin1m1',
-                    'email' => 'hansajith18@gmail.com',
+                    'email' => 'noreply@coin1m.com',
+                    'email_verified_at' => now(),
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                    'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+                ],
+                //User
+                [
+                    'name' => 'Coin1m 2nd Level',
+                    'username' => 'coin1m2',
+                    'email' => 'noreply@coin1m.com',
+                    'email_verified_at' => now(),
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                    'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+                ],
+                //User
+                [
+                    'name' => 'Coin1m 3rd Level',
+                    'username' => 'coin1m3',
+                    'email' => 'noreply@coin1m.com',
+                    'email_verified_at' => now(),
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                    'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+                ],
+                //User
+                [
+                    'name' => 'Coin1m 4th Level',
+                    'username' => 'coin1m4',
+                    'email' => 'noreply@coin1m.com',
+                    'email_verified_at' => now(),
                     'created_at' => now(),
                     'updated_at' => now(),
                     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
@@ -62,6 +94,21 @@ class UserSeeder extends Seeder
                 //User
                 [
                     'user_id' => 3,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ], //User
+                [
+                    'user_id' => 4,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ], //User
+                [
+                    'user_id' => 5,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ], //User
+                [
+                    'user_id' => 6,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ],
