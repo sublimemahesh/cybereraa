@@ -11890,7 +11890,7 @@ h1, .h1, .h1, h2, .h2, .h2, h3, .h3, .h3, h4, .h4, .h4, h5, .h5, .h5, h6, .h6, .
 }
 
 .content-body .container-fluid, .content-body .container-sm, .content-body .container-md, .content-body .container-lg, .content-body .container-xl, .content-body .container-xxl {
-    padding-top: 1.875rem;
+    padding-top: 5.875rem;
     padding-right: 1.875rem;
     padding-left: 1.875rem;
 }
@@ -49228,12 +49228,10 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 
 
 .txte-right {
-    float: right !important;
-    position: absolute;
-    /* margin-left: 600px; */
-    right: -68px;
-    top: 16px;
-
+  float: right !important;
+  position: absolute;
+  right: -26px;
+  top: 16px;
 }
 
 .ref-card-body {
@@ -49665,12 +49663,12 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
 
 
 .dashboard-title h2{
-    color: black !important;
+  color: black !important;
   margin-top: -4px;
   margin-bottom: 20px;
   font-family: 'Oswald', sans-serif;
   font-style: italic;
-    font-size: 29px;
+  font-size: 29px;
 
 }
 
@@ -49749,12 +49747,12 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
 }
 
 .logout-btn{
-        position: absolute;
-        height: auto;
-        bottom: 1.25rem;
-        top: 0rem;
-        right: 25px;
-        margin-top: -2px;
+    position: absolute;
+    height: auto;
+    bottom: 1.25rem;
+    top: 16px;
+    right: -80px;
+    margin-top: -2px;
 }
 
 .logout-btn img{
@@ -49779,6 +49777,9 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
     color: black !important;
 }
 
+.mob-dis-logout{
+    display: none;
+  }
 
 @media only screen and (max-width: 600px) {
 
@@ -49790,6 +49791,27 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
             font-style: italic;
             font-size: 25px;
     }
+
+    .logout-btn {
+        position: absolute;
+        height: auto;
+        bottom: 1.25rem;
+        top: 16px;
+        right: 0px;
+        margin-top: -2px;
+      }
+
+      .mob-dis-logout{
+        display: block;
+      }
+
+      .mob-dis-logout{
+        display: block;
+      }
+
+      .mob-dis-breadcrumb{
+        display: none;
+      }
 }
 
 

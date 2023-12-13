@@ -90,7 +90,7 @@
         <!-- row -->
         <div class="container-fluid cf-mt">
 
-            <div class="page-titles">
+            <div class="page-titles mob-dis-breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
                         <a href="{{ route('/') }}">

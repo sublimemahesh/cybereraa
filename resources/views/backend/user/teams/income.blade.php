@@ -1,6 +1,6 @@
 <x-backend.layouts.app>
     @section('title', 'Referral Income')
-    @section('header-title', 'Team Commission Income' )
+    @section('header-title', 'My Referral Income' )
     @section('plugin-styles')
         <!-- Datatable -->
         <link href="{{ asset('assets/backend/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
@@ -11,7 +11,7 @@
     @endsection
 
     @section('breadcrumb-items')
-        <li class="breadcrumb-item">Team Commission</li>
+        <li class="breadcrumb-item">Referral Income</li>
     @endsection
 
     <div class="row dark"> {{--! Tailwind css used. if using tailwind plz run npm run dev and add tailwind classes--}}
