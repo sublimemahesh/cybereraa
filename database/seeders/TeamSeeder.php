@@ -36,7 +36,31 @@ class TeamSeeder extends Seeder
                 //User
                 [
                     'user_id' => '3',
-                    'name' => 'User\'s Team',
+                    'name' => 'Coin1m\'s Team',
+                    'personal_team' => 1,
+                    'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                    'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                ],
+                //User
+                [
+                    'user_id' => '4',
+                    'name' => 'Coin1m\'s Team',
+                    'personal_team' => 1,
+                    'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                    'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                ],
+                //User
+                [
+                    'user_id' => '5',
+                    'name' => 'Coin1m\'s Team',
+                    'personal_team' => 1,
+                    'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                    'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                ],
+                //User
+                [
+                    'user_id' => '6',
+                    'name' => 'Coin1m\'s Team',
                     'personal_team' => 1,
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
