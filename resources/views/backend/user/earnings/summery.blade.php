@@ -38,9 +38,11 @@
                                                             <option value="trade_indirect">TRADE INDIRECT</option>
                                                             <option value="direct">DIRECT SALE</option>
                                                             <option value="indirect">INDIRECT SALE</option>
-                                                            <option value="rank_bonus">RANK BONUS</option>
+                                                            <option value="special_bonus">SPECIAL BONUS</option> 
+
+                                                            {{-- <option value="rank_bonus">RANK BONUS</option> --}}
                                                             {{-- <option value="rank_gift">RANK GIFT</option>--}}
-                                                            <option value="p2p">P2P</option>
+                                                            {{-- <option value="p2p">P2P</option>  --}}
 
                                                             {{--<option value="staking">STAKING</option>--}}
                                                         </select>
