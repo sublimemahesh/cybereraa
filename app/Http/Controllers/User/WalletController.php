@@ -45,9 +45,12 @@ class WalletController extends Controller
 
         $income = Earning::authUserCurrentMonth()->where('status', 'RECEIVED')->sum('amount');
         $withdraw = Withdraw::authUserCurrentMonth()->where('status', 'SUCCESS')->sum(DB::raw('amount + transaction_fee'));
-        $qualified_commissions = Commission::authUserCurrentMonth()->where('status', 'QUALIFIED')->sum('amount');
-        $lost_commissions = Commission::authUserCurrentMonth()->whereStatus('DISQUALIFIED')->sum('amount');
 
+        $qualified_commissions = Commission::authUserCurrentMonth()->where('status', 'QUALIFIED')->sum('paid');
+//        $lost_commissions = Commission::authUserCurrentMonth()->selectRaw('(SUM(`amount`) - SUM(`paid`)) as disqualified')->first();
+//        $lost_commissions = Commission::authUserCurrentMonth()->sum(DB::raw('amount - paid'));
+        $lost_commissions = Commission::authUserCurrentMonth()->whereStatus('DISQUALIFIED')->sum('amount');
+        
         $income = number_format($income, 2);
         $withdraw = number_format($withdraw, 2);
         $qualified_commissions = number_format($qualified_commissions, 2);

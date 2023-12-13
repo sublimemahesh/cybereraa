@@ -186,6 +186,17 @@ class SaleLevelCommissionJob implements ShouldQueue
                     }
 
                     if (!$isQualified || $commission_amount_left > 0) {
+                        if ($commission_amount_left > 0) {
+                            Commission::forceCreate([
+                                'parent_id' => $commission->id,
+                                'user_id' => $commission_level_user->id,
+                                'purchased_package_id' => $package->id,
+                                'amount' => $commission_amount_left,
+                                'paid' => 0,
+                                'type' => $i === 1 ? 'DIRECT' : 'INDIRECT',
+                                'status' => 'DISQUALIFIED'
+                            ]);
+                        }
                         $commission->adminEarnings()->create([
                             'user_id' => $commission->user_id,
                             'type' => 'DISQUALIFIED_COMMISSION',

@@ -40,7 +40,7 @@ class DispatchDailyEarningJobs extends Command
             $investment_start_at = Strategy::where('name', 'investment_start_at')->firstOr(fn() => new Strategy(['value' => 2]));
 //            Log::channel('daily')->notice("calculate:profit package earning starts at: `created_at` + INTERVAL {$investment_start_at->value} DAY <= NOW()");
             $activePackages = PurchasedPackage::with('user')
-                ->where('status', 'active')
+                ->where('status', 'ACTIVE')
                 ->whereRaw("`created_at` + INTERVAL {$investment_start_at->value} DAY <= NOW()") // after 5 days from package purchase
 //                ->where(function (Builder $query) {
 //                    $query->whereRaw(
@@ -50,7 +50,7 @@ class DispatchDailyEarningJobs extends Command
 //                    ) // after 5 days from package purchase
 //                    ->orWhereDate('created_at', '<', '2023-02-01');
 //                })
-                ->where('expired_at', '>=', Carbon::now())
+                //->where('expired_at', '>=', Carbon::now())
                 ->whereDoesntHave('earnings', fn($query) => $query->whereDate('created_at', date('Y-m-d')))
                 ->chunk(100, function ($activePackages) {
                     // Loop over each  active packages and calculate their profit

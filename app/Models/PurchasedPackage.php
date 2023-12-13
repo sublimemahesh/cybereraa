@@ -168,14 +168,14 @@ class PurchasedPackage extends Pivot
 
     public function scopeActivePackages(Builder $query): Builder
     {
-        return $query->where('status', 'active')
-            ->where('expired_at', '>=', Carbon::now()->format('Y-m-d H:i:s'));
+        return $query->where('status', 'ACTIVE');
+            //->where('expired_at', '>=', Carbon::now()->format('Y-m-d H:i:s'));
     }
 
     public function scopeExpiredPackages(Builder $query): Builder
     {
-        return $query->where('status', 'EXPIRED')
-            ->where('expired_at', '<', Carbon::now()->format('Y-m-d H:i:s'));
+        return $query->where('status', 'EXPIRED');
+            //->where('expired_at', '<', Carbon::now()->format('Y-m-d H:i:s'));
     }
 
     public function scopeTotalInvestment(Builder $query, User|null $user): Builder

@@ -49,18 +49,18 @@ class OTPService
         ]);
 
         $json['sms_error'] = null;
-        if ($phone_validator->passes()) {
-            $validated = $phone_validator->validated();
-            $username = $user->username;
-            $message = "{$otp} is your one-time password (OTP) to complete your Transaction from username: {$username}. Thank you. coin1m.com";
-            try {
-                if (!sendSMS($validated['phone'], $message)) {
-                    $json['sms_error'] = "SMS send failed!.";
-                }
-            } catch (Exception $e) {
-                $json['sms_error'] = "Something went wrong!";
-            }
-        }
+//        if ($phone_validator->passes()) {
+//            $validated = $phone_validator->validated();
+//            $username = $user->username;
+//            $message = "{$otp} is your one-time password (OTP) to complete your Transaction from username: {$username}. Thank you. coin1m.com";
+//            try {
+//                if (!sendSMS($validated['phone'], $message)) {
+//                    $json['sms_error'] = "SMS send failed!.";
+//                }
+//            } catch (Exception $e) {
+//                $json['sms_error'] = "Something went wrong!";
+//            }
+//        }
 
         $json['status'] = true;
         $json['sent_verify_code'] = true;
