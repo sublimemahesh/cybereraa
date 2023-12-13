@@ -21,8 +21,8 @@ class DashboardController extends Controller
 
         $total_earnings = Earning::where('status', 'RECEIVED')->whereNotIn('type', ['P2P', 'RANK_BONUS', 'RANK_GIFT', 'TEAM_BONUS', 'SPECIAL_BONUS', 'STAKING'])->sum('amount');
         $total_earnings = number_format($total_earnings, 2);
-        $total_commissions = Commission::sum('amount');
-        $total_qualified_commissions = Commission::where('status', 'QUALIFIED')->sum('amount');
+        $total_commissions = Commission::whereNull('parent_id')->sum('amount');
+        $total_qualified_commissions = Commission::where('status', 'QUALIFIED')->sum('paid');
         $lost_commissions = Commission::whereStatus('DISQUALIFIED')->sum('amount');
 
         $total_package_earnings = Earning::where('status', 'RECEIVED')->where('type', 'PACKAGE')->sum('amount');

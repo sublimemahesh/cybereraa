@@ -12,8 +12,6 @@ use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Mail;
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
 use Validator;
 
 class UpdateProfileInformation extends Component
@@ -55,11 +53,7 @@ class UpdateProfileInformation extends Component
 
     }
 
-    /**
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
-     */
-    public function updateProfileInformation(UpdatesUserProfileInformation $updater): \Illuminate\Http\RedirectResponse|null
+    public function updateProfileInformation(UpdatesUserProfileInformation $updater)
     {
         $this->resetErrorBag();
 
