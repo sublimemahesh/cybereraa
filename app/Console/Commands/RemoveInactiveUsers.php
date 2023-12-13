@@ -32,7 +32,7 @@ class RemoveInactiveUsers extends Command
      */
     public function handle()
     {
-        $cutoffDate = now()->subDays(3);
+        $cutoffDate = now()->subDays(30);
         Log::channel('daily')->notice("remove:inactive-users cutoff date: {$cutoffDate}");
 
         // Use chunking to process a large number of records in smaller batches
@@ -51,6 +51,7 @@ class RemoveInactiveUsers extends Command
                     $user->teams()->detach();
                     $user->deleteProfilePhoto();
                     $user->tokens->each->delete();
+                    $user->profile()->forceDelete();
                     $user->forceDelete();
 
                     $this->info("User #{$user->id} removed due to inactivity.");
