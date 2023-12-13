@@ -49666,7 +49666,7 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
 
 .dashboard-title h2{
     color: black !important;
-  margin-top: -20px;
+  margin-top: -4px;
   margin-bottom: 20px;
   font-family: 'Oswald', sans-serif;
   font-style: italic;
@@ -49753,7 +49753,7 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
         height: auto;
         bottom: 1.25rem;
         top: 0rem;
-        right: 0;
+        right: 25px;
         margin-top: -2px;
 }
 

@@ -1,5 +1,5 @@
 <x-backend.layouts.app>
-    @section('title', 'Team Income')
+    @section('title', 'Referral Income')
     @section('header-title', 'Team Commission Income' )
     @section('plugin-styles')
         <!-- Datatable -->

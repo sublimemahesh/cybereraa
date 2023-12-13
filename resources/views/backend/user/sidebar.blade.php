@@ -162,7 +162,7 @@
 
             <li>
                 <a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
-                    <i class="bi bi-diagram-3"></i>
+                    <i class="bi bi-people"></i>
                     <span class="nav-text">Referral System</span>
                 </a>
                 <ul aria-expanded="false">
@@ -170,7 +170,7 @@
                         <a href="{{ route('user.team.users-list') }}">Team List</a>
                     </li>--}}
                     <li>
-                        <a href="{{ route('user.team.users-levels',['depth' =>  1]) }}">Team Levels</a>
+                        <a href="{{ route('user.team.users-levels',['depth' =>  1]) }}">Referral Level</a>
                     </li>
                 </ul>
             </li>
@@ -195,7 +195,7 @@
                         <a href="{{ route('user.incomes.rewards') }}">My Rewards</a>
                     </li>--}}
                     <li>
-                        <a href="{{ route('user.team.incomes.commission') }}">Team Income</a>
+                        <a href="{{ route('user.team.incomes.commission') }}">Referral Income</a>
                     </li>
                     <li>
                         <a href="{{ route('user.earnings.team-income') }}">Highest Earners</a>
