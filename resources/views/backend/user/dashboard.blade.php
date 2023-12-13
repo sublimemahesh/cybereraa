@@ -2,9 +2,8 @@
     @section('title', 'User Dashboard')
     @section('header-title', 'Welcome ' . Auth::user()->name)
     @section('header-title2',Auth::user()->username) 
-
-    <div class="row"> 
-
+    
+    <div class="row">
         <div class="dashboard-title">
             <h2 class="text-center mx-auto">
                 Welcome to Coin 1M Family

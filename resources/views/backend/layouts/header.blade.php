@@ -55,6 +55,7 @@
 
                     <div class="dashboard_bar ">
                         <h3 class="h3-txt">@yield('header-title')</h3>
+                        <div id="google_translate_element"></div>
                         <span class="txte-right">
                             @yield('header-title2',Auth::user()->username)
                         </span>
