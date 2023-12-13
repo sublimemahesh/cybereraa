@@ -1,10 +1,9 @@
 <x-backend.layouts.app>
     @section('title', 'User Dashboard')
     @section('header-title', 'Welcome ' . Auth::user()->name)
-    @section('header-title2',Auth::user()->username)
-
+    @section('header-title2',Auth::user()->username) 
+    
     <div class="row">
-
         <div class="dashboard-title">
             <h2 class="text-center mx-auto">
                 Welcome to Coin 1M Family
@@ -341,7 +340,7 @@
                     </div>
                 </div>
                 <div class="card-body dashboard-Other-deatils">
-                    <h5>Sponsor Username <span>- {{ Auth::user()->sponsor->username }}</span></h5>
+                    <h5>Referral Username <span>- {{ Auth::user()->sponsor->username }}</span></h5>
                     <h5>Register Date <span>- {{ Auth::user()->created_at->format('Y-m-d') }}</span></h5>
                     <h5>Active Date <span>- {{ Auth::user()->active_date }}</span></h5>
                     <h5>KYC <span>- </span>

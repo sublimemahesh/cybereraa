@@ -74,6 +74,34 @@
 </head>
 
 <body class="font-sans antialiased dark" style="background:var(--bg-color)"> 
+
+<script type="text/javascript">
+function googleTranslateElementInit() {   new google.translate.TranslateElement({
+    pageLanguage: 'en', 
+    layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL,
+    autoDisplay: false
+}, 'google_translate_element');
+}
+
+// function googleTranslateElementInit() {
+//     new google.translate.TranslateElement({
+//         pageLanguage: 'en',
+//         includedLanguages: 'en,si,ta,de,ru,ar',
+//         layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+//         autoDisplay: false
+//     }, 'google_translate_element');
+// }
+
+
+
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+
+
+
 <!--******************* Preloader start ********************-->
 
 <!--******************* Preloader end ********************-->
@@ -90,7 +118,7 @@
         <!-- row -->
         <div class="container-fluid cf-mt">
 
-            <div class="page-titles">
+            <div class="page-titles mob-dis-breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
                         <a href="{{ route('/') }}">

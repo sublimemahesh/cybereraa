@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
             [
                 //Super Admin
                 [
+                    'super_parent_id' => null,
                     'name' => 'Navod Hansajith',
                     'username' => 'super_admin',
                     'email' => 'hansajith.synotec@gmail.com',
@@ -28,15 +29,18 @@ class UserSeeder extends Seeder
                 ],
                 //Admin
                 [
+                    'super_parent_id' => null,
                     'name' => 'James caron',
                     'username' => 'admin',
                     'email' => 'hansajithsynotec@gmail.com',
+                    'email_verified_at' => null,
                     'created_at' => now(),
                     'updated_at' => now(),
                     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 ],
                 //User
                 [
+                    'super_parent_id' => null,
                     'name' => 'Coin1m 1st Level',
                     'username' => 'coin1m1',
                     'email' => 'noreply@coin1m.com',
@@ -47,6 +51,7 @@ class UserSeeder extends Seeder
                 ],
                 //User
                 [
+                    'super_parent_id' => 3,
                     'name' => 'Coin1m 2nd Level',
                     'username' => 'coin1m2',
                     'email' => 'noreply@coin1m.com',
@@ -57,6 +62,7 @@ class UserSeeder extends Seeder
                 ],
                 //User
                 [
+                    'super_parent_id' => 4,
                     'name' => 'Coin1m 3rd Level',
                     'username' => 'coin1m3',
                     'email' => 'noreply@coin1m.com',
@@ -67,6 +73,7 @@ class UserSeeder extends Seeder
                 ],
                 //User
                 [
+                    'super_parent_id' => 5,
                     'name' => 'Coin1m 4th Level',
                     'username' => 'coin1m4',
                     'email' => 'noreply@coin1m.com',
