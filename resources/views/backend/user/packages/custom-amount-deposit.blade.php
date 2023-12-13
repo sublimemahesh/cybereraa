@@ -29,7 +29,7 @@
                                 <input type="number" name="amount" step="0.1"
                                     value="{{ $min_custom_investment->value }}"
                                     min="{{ $min_custom_investment->value }}" max="{{ $max_custom_investment->value }}"
-                                    id="custom-deposit-amount" class="form-control no-hover-style" data-devil='fs:20'>
+                                    id="custom-deposit-amount" class="form-control " data-devil='fs:20'>
                             </div>
                         </div>
                         <div class="col-2"></div>
@@ -323,6 +323,7 @@
     @endpush
     @push('scripts')
     <script !src="">
+
         $('#custom-deposit-amount').change(function (e) {
                 let amount = parseFloat($(this).val())
                 let gas_fee = (amount * parseFloat({{ $package->gas_fee }})) / 100
@@ -341,6 +342,8 @@
                 $('#pkg-gas-fee').html('USDT ' + gas_fee)
             })
 
+
+            
     </script>
     <script src="{{ asset('assets/backend/vendor/select2/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets/backend/js/packages/custom-package.js') }}"></script>
