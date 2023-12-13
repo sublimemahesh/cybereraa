@@ -32,6 +32,7 @@ class UserController extends Controller
         if ($request->wantsJson()) {
             $users = User::with('sponsor')
                 ->withSum('purchasedPackages', 'invested_amount')
+                ->withSum(['earnings' => fn($q) => $q->whereIn('type', ['PACKAGE', 'TRADE_DIRECT', 'TRADE_INDIRECT', 'DIRECT', 'INDIRECT'])], 'amount') // ,'TEAM_BONUS','SPECIAL_BONUS','RANK_BONUS','RANK_GIFT','P2P','STAKING'
                 ->whereRelation('roles', 'name', 'user')
                 ->when($request->get('status') === 'suspend', function (Builder $q) {
                     $q->whereNotNull('suspended_at');
@@ -64,27 +65,28 @@ class UserController extends Controller
                 });
             return DataTables::eloquent($users)
                 ->addColumn('profile_photo', function ($user) {
-                    return "<img class='rounded-circle' width='35' src='" . $user->profile_photo_url . "' alt='' />";
+                    return "<img class='rounded-circle py-1' width='35' src='" . $user->profile_photo_url . "' alt='' />";
                 })
                 ->addColumn('user_details', function ($user) {
-                    return "<i class='fa fa-user-circle'></i> $user->id <br>
-                            <i class='fa fa-user'></i> $user->username<br>
+                    return "<i class='fa fa-user-circle'></i> #{$user->id} |  <code>{$user->username}</code><br>
                             <i class='fa fa-user'></i> $user->name<br>
                             ";
                 })
                 ->addColumn('contact_details', function ($user) {
+                    //  <i class='fa fa-phone'></i> $user->phone <br>
                     return "Sponsor: <code>{$user?->sponsor?->username} </code> <br>
-                            <i class='fa fa-phone'></i> $user->phone <br>
                             <i class='fa fa-envelope'></i> $user->email<br>";
                 })
-                ->addColumn('joined', function ($user) {
+                ->addColumn('investment', function ($user) {
                     return "Total Investment: <code>{$user?->purchased_packages_sum_invested_amount} </code> <br>
-                            <i class='fa fa-calendar'></i> {$user->created_at->format('Y-m-d h:i A')}";
+                            Total Earned: <code>{$user?->earnings_sum_amount} </code> ";
+                })->addColumn('joined', function ($user) {
+                    return $user->created_at->format('Y-m-d h:i A');
                 })
                 ->addColumn('actions', function ($user) {
                     return view('backend.admin.users.includes.users-actions', compact('user'))->render();
                 })
-                ->rawColumns(['actions', 'profile_photo', 'user_details', 'contact_details', 'joined'])
+                ->rawColumns(['actions', 'profile_photo', 'user_details', 'contact_details', 'investment'])
                 ->make();
         }
         return view('backend.admin.users.index');

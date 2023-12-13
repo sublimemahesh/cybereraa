@@ -12,7 +12,8 @@ class PackagePolicy
 
     public function purchase($user, Package $package, $max_amount)
     {
-        return $max_amount <= $package->amount;
+        return true;
+//        return $max_amount <= $package->amount;
     }
 
     public function viewAny(User $user)

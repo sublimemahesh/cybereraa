@@ -128,6 +128,7 @@
                                 <th style="width:50px">PIC</th>
                                 <th>USER DETAILS</th>
                                 <th>CONTACT DETAILS</th>
+                                <th>INVESTMENT</th>
                                 <th style="width:150px">JOINED DATE</th>
                                 <th>ACTION</th>
                             </tr>
