@@ -153,7 +153,7 @@ class WithdrawController extends Controller
         $profile = Auth::user()->profile;
 
         if ($profile->wallet_address === null) {
-            return redirect()->route('profile.show')->with('warning', 'Please Fill your Binance Account details, before continuing.!');
+            return redirect()->route('profile.show')->with('warning', 'Please Fill your Account Payment details, before continuing.!');
         }
 
         $strategies = Strategy::whereIn('name', ['payout_transfer_fee', 'minimum_payout_limit', 'staking_withdrawal_fee', 'daily_max_withdrawal_limits', 'withdrawal_days_of_week'])->get();

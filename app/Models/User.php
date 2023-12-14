@@ -222,24 +222,24 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
 
-    public function getDepthAttribute()
-    {
-        $depth = DB::selectOne(
-            "WITH RECURSIVE user_tree AS (
-                      SELECT id, parent_id, 1 as depth
-                      FROM users
-                      WHERE parent_id IS NULL -- Find the root node(s) of the tree
-                      UNION ALL
-                      SELECT u.id, u.parent_id, t.depth + 1 as depth
-                      FROM users u
-                      JOIN user_tree t ON u.parent_id = t.id
-                   )
-                   SELECT depth FROM user_tree WHERE id = :id",
-            ['id' => $this->id]
-        );
-
-        return $depth?->depth;
-    }
+//    public function getDepthAttribute()
+//    {
+//        $depth = DB::selectOne(
+//            "WITH RECURSIVE user_tree AS (
+//                      SELECT id, parent_id, 1 as depth
+//                      FROM users
+//                      WHERE parent_id IS NULL -- Find the root node(s) of the tree
+//                      UNION ALL
+//                      SELECT u.id, u.parent_id, t.depth + 1 as depth
+//                      FROM users u
+//                      JOIN user_tree t ON u.parent_id = t.id
+//                   )
+//                   SELECT depth FROM user_tree WHERE id = :id",
+//            ['id' => $this->id]
+//        );
+//
+//        return $depth?->depth;
+//    }
 
     public static function findAvailableSubLevel($nodeId)
     {

@@ -16,7 +16,10 @@ $(function () {
             buttons: [
                 {
                     extend: 'pdfHtml5',
+                    //footer: true, // TODO: Remove all the colspan="" in the table footer and add footer columns to the table ex: if colspan=2 add <th></th> <th></th>
                     split: ['csv', 'excel'],
+                    orientation: 'landscape',
+                    pageSize: 'LEGAL',
                     exportOptions: {
                         columns: [":visible"],
                     },

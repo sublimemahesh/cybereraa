@@ -49,17 +49,22 @@ class GenealogyController extends Controller
     /**
      * @throws Exception
      */
-    public function userLevels(Request $request, int $depth = 1)
+    public function userLevels(Request $request, int|string $depth = 'all')
     {
-        if ($depth > 4) {
-            $depth = 4;
+        $level = $depth;
+        if ($depth !== 'all' && $depth > 4) {
+            $level = 4;
         }
-        $user = Auth::user();
-        //dd($user->id, $descendants);
+        $authUser = Auth::user();
+        //dd($authUser->id, $descendants);
         if ($request->wantsJson()) {
-            $descendants = $user?->descendants()
+            $descendants = $authUser?->descendants()
                 ->with('sponsor', 'parent')
-                ->where('depth', $depth)
+                ->when(($level === 'all' || $level < 1 || $level > 4), function (Builder $q) {
+                    $q->where('depth', "<=", 4);
+                })->when($level !== 'all' && ($level >= 1 && $level <= 4), function (Builder $q) use ($level) {
+                    $q->where('depth', $level);
+                })
                 ->when($request->get('status') === 'suspend', function (Builder $q) {
                     $q->whereNotNull('suspended_at');
                 })
@@ -76,11 +81,18 @@ class GenealogyController extends Controller
                     return "<img class='rounded-circle' width='35' src='" . $user->profile_photo_url . "' alt='' />";
                 })
                 ->addColumn('user_details', function ($user) {
-                    return "<i class='fa fa-user-circle'></i> #{$user->id} - <code>{$user->username}</code><br>
+                    $level = [
+                        1 => "DIRECT",
+                        2 => "LEVEL 1",
+                        3 => "LEVEL 2",
+                        4 => "LEVEL 3",
+                    ][$user->depth];
+                    return "<i class='fa fa-user-circle'></i> #{$user->id} - <code>{$user->username}</code> <br>
+                            <i class='fa fa-level-down'></i> {$level}  <br>
                             <i class='fa fa-user'></i> {$user->name} ";
                 })
                 ->addColumn('contact_details', function ($user) {
-                    return "Referal User: #{$user->super_parent_id} - <code>{$user->sponsor?->username}</code><br>
+                    return "Referal User: #{$user->super_parent_id} - <code>{$user->sponsor?->username}</code> <br>
                             <i class='fa fa-envelope'></i> $user->email<br>";
                 })
                 ->addColumn('sponsor', function ($user) {
@@ -93,7 +105,7 @@ class GenealogyController extends Controller
                     if ($user->is_suspended) {
                         return "ACCOUNT SUSPENDED";
                     }
-                    return $user->created_at->format('Y-m-d h:i A');
+                    return "Joined: " . $user->created_at->format('Y-m-d h:i A');
                 })
                 ->addColumn('suspended', function ($user) {
                     if ($user->is_suspended) {
@@ -119,14 +131,14 @@ class GenealogyController extends Controller
                             $account_status = 'ACTIVE';
                         }
                     }
-                    return "Account Status: <code>{$account_status}</code></br>" .
-                        "Active Packages: <code>{$active_packages_sum_invested_amount}</code></br>" .
+                    return "Account Status: <code>{$account_status}</code> </br>" .
+                        "Active Packages: <code>{$active_packages_sum_invested_amount}</code> </br>" .
                         "Total Investment: <code>{$purchased_packages_sum_invested_amount}</code>";
                 })
                 ->rawColumns(['profile_photo', 'user_details', 'contact_details', 'profit', 'sponsor', 'account_investments'])
                 ->make();
         }
-        return view('backend.user.teams.users-list', compact('user', 'depth'));
+        return view('backend.user.teams.users-list', compact('depth'));
     }
 
     /**

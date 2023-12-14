@@ -38,7 +38,7 @@
                                                             <option value="trade_indirect">TRADE INDIRECT</option>
                                                             <option value="direct">DIRECT SALE</option>
                                                             <option value="indirect">INDIRECT SALE</option>
-                                                            <option value="special_bonus">SPECIAL BONUS</option> 
+                                                            <option value="special_bonus">SPECIAL BONUS</option>
                                                             {{-- <option value="rank_bonus">RANK BONUS</option> --}}
                                                             {{--<option value="rank_gift">RANK GIFT</option>--}}
                                                             {{-- <option value="p2p">P2P</option> --}}
@@ -113,18 +113,22 @@
                     <div class="table-responsive">
                         <table id="earnings" class="display table-responsive-my " style="table-layout: fixed">
                             <thead>
-                            <tr>
-                                <th>EARNING TYPE</th>
-                                <th>PACKAGE</th>
-                                <th>STATUS</th>
-                                <th>PAYMENT DATE</th>
-                                <th class="text-right">AMOUNT</th>
-                            </tr>
+                                <tr>
+                                    <th>EARNING TYPE</th>
+                                    <th>PACKAGE</th>
+                                    <th>STATUS</th>
+                                    <th>PAYMENT DATE</th>
+                                    <th class="text-right">AMOUNT</th>
+                                </tr>
                             </thead>
                             <tfoot>
-                            <tr>
-                                <th colspan="5" style="text-align:right"></th>
-                            </tr>
+                                <tr>
+                                    <th style="text-align:right"></th>
+                                    <th style="text-align:right"></th>
+                                    <th style="text-align:right"></th>
+                                    <th style="text-align:right"></th>
+                                    <th style="text-align:right"></th>
+                                </tr>
                             </tfoot>
                         </table>
                     </div>
