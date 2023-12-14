@@ -109,7 +109,7 @@
     --br-nav-tab: 6px;
     --br-input: 10px;
     /* --bg-color: #171b26; */
-    --bg-color:#5b5b5b;
+    --bg-color:#5579C6;
 
     /* --bg-color-card: #252a3d; */
     --bg-color-card: #0c0d21;
@@ -49821,7 +49821,7 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
 #google_translate_element{
     float: right !important;
     position: absolute;
-    right: 12px;
+    right: 28px;
     top: 24px;
 }
 
@@ -49848,7 +49848,7 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
 .support-link{
     float: right !important;
     position: absolute;
-    right: -35px;
+    right: -30px;
     top: 15px;
 }
 
