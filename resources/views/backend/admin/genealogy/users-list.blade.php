@@ -85,7 +85,7 @@
                                 <tr>
                                     <th>USER DETAILS</th>
                                     <th>CONTACT DETAILS</th>
-                                    <th>SPONSOR/PARENT</th>
+                                    <th>REFERRAL USER</th>
                                     <th>JOINED DATE</th>
                                     <th>SUSPENDED</th>
                                     <th>ACTIONS</th>
@@ -112,6 +112,6 @@
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.html5.min.js') }}"></script>
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.print.min.js') }}"></script>
         <script src="{{ asset('assets/backend/js/global-datatable-extension.js') }}"></script>
-        <script src="{{ asset('assets/backend/js/user/team/users-list.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/admin/users/users-list.js') }}"></script>
     @endpush
 </x-backend.layouts.app>
