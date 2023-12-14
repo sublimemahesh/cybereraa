@@ -182,14 +182,16 @@
                     <span class="nav-text">Income Details</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li>
-                        <a href="{{ route('user.earnings.summary-report') }}">Income Summery</a>
-                    </li>
+
                     <li>
                         <a href="{{ route('user.earnings.index') }}">My Earning</a>
                     </li>
                     <li>
                         <a href="{{ route('user.incomes.commission') }}">My Commission</a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('user.earnings.summary-report') }}">Income Summery</a>
                     </li>
                     {{--<li>
                         <a href="{{ route('user.incomes.rewards') }}">My Rewards</a>
