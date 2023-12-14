@@ -20,7 +20,7 @@ class PageSeeder extends Seeder
                 'title' => 'Deposit Wallet Address',
                 'slug' => 'deposit-wallet-address',
                 'image' => 'deposit-wallet-address.jpg',
-                'content' => '<p>TLbnK7HxaasQKN67RqtAZ7t59NJ3JupmQh</p>',
+                'content' => '<p>wallet-address-here</p>',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
