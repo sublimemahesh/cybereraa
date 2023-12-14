@@ -61,9 +61,9 @@
 
                     <div class="basic-list-group" data-devil="mt:60">
                         <div class="row">
-                            <div class="col-xl-1 col-lg-1 col-sm-2"></div>
 
-                            <div class="col-xl-2 col-lg-3 col-sm-2">
+
+                            <div class="col-xl-4 col-lg-3 col-sm-2">
                                 <div class="widget-stat card rounded-3" data-devil='bgc:#22223c'>
                                     <div class="card-body  p-4">
                                         <div class="col-mb-12 ">
@@ -77,7 +77,7 @@
                                             <div class="media">
                                                 <div class="media-body text-white">
                                                     <p class="mb-1 dash-p">
-                                                        <b>Price </b> <br>
+                                                        <b>Price </b>
                                                         <span id="pkg-price">USDT {{ $package->amount }}</span>
                                                     </p>
                                                 </div>
@@ -88,7 +88,7 @@
                             </div>
 
 
-                            <div class="col-xl-2 col-lg-3 col-sm-2">
+                            <div class="col-xl-4 col-lg-3 col-sm-2">
                                 <div class="widget-stat card rounded-3" data-devil='bgc:#22223c'>
                                     <div class="card-body  p-4">
                                         <div class="col-mb-12 ">
@@ -101,7 +101,7 @@
                                             <div class="media">
                                                 <div class="media-body text-white">
                                                     <p class="mb-1 dash-p">
-                                                        <b>Gas Fee ({{ $package->gas_fee }}%)</b> <br>
+                                                        <b>Gas Fee ({{ $package->gas_fee }}%)</b> 
                                                         <span id="pkg-gas-fee">USDT {{ ($package->amount *
                                                             $package->gas_fee) /100 }}</span>
                                                     </p>
@@ -113,7 +113,7 @@
                             </div>
 
 
-                            <div class="col-xl-2 col-lg-3 col-sm-2">
+                            {{-- <div class="col-xl-2 col-lg-3 col-sm-2">
                                 <div class="widget-stat card rounded-3 " data-devil='bgc:#22223c'>
                                     <div class="card-body  p-4">
                                         <div class="col-mb-12 ">
@@ -130,12 +130,13 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
 
-                            <div class="col-xl-2 col-lg-3 col-sm-2">
+                            {{-- <div class="col-xl-2 col-lg-3 col-sm-2">
                                 <div class="widget-stat card rounded-3 " data-devil='bgc:#22223c'>
                                     <div class="card-body  p-4">
                                         <div class="col-mb-12 ">
@@ -154,9 +155,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
-                            <div class="col-xl-2 col-lg-3 col-sm-2">
+                            <div class="col-xl-4 col-lg-3 col-sm-2">
                                 <div class="widget-stat card rounded-3 " data-devil='bgc:#22223c'>
                                     <div class="card-body  p-4">
                                         <div class="col-mb-12 ">
@@ -169,7 +170,7 @@
                                         <div class="col-mb-12">
                                             <div class="media">
                                                 <div class="media-body text-white">
-                                                    <p class="mb-1 dash-p"><b> 0.4% - 1.3% </b> Daily Profit </p>
+                                                    <p class="mb-1 dash-p"><b> 0.3% - 0.7% </b> Daily Profit </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -177,7 +178,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-xl-1 col-lg-1 col-sm-2"></div>
+
 
                         </div>
 
@@ -343,7 +344,7 @@
             })
 
 
-            
+
     </script>
     <script src="{{ asset('assets/backend/vendor/select2/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets/backend/js/packages/custom-package.js') }}"></script>
