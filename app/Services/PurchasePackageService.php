@@ -34,10 +34,12 @@ class PurchasePackageService
                     " - <code class='text-uppercase'>{$trx->user->username}</code> <br>" .
                     "Purchased By: " . str_pad($trx->purchaser_id, '4', '0', STR_PAD_LEFT) .
                     " - <code class='text-uppercase'>{$trx->purchaser->username}</code> <br>" .
-                    "Package: " . $trx->package_info_json?->name . "(" . $trx->payable_percentage . ' %)';
+                    "Package: " . $trx->package_info_json?->name;
+//                    "Package: " . $trx->package_info_json?->name . "(" . $trx->payable_percentage . ' %)';
             })
             ->addColumn('package', function ($trx) {
-                return "NAME: " . $trx->package_info_json?->name . "(" . $trx->payable_percentage . ' %)';
+                return "NAME: " . $trx->package_info_json?->name;
+//                return "NAME: " . $trx->package_info_json?->name . "(" . $trx->payable_percentage . ' %)';
             })
             ->addColumn('invested', function ($trx) {
                 return number_format($trx->invested_amount, 2);

@@ -135,11 +135,11 @@
             <tbody>
             <tr>
                 <td>
-                    <img src="{{ $invoice->logo }}" alt="logo" width="250">
+                    <img src="{{ $invoice->logo }}" alt="logo" height="50">
                 </td>
                 <td>
                     <div style="width:100%; display:flex;justify-content: end;align-items: end">
-                        <img style="float:right" src="{{ $invoice->site_qr }}" width="80" alt="https://www.coin1m.com">
+                        <img style="float:right" src="{{ $invoice->site_qr }}" height="50" alt="https://www.coin1m.com">
                     </div>
                 </td>
             </tr>

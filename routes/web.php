@@ -53,11 +53,11 @@ Route::group(['middleware' => 'guest:' . config('fortify.guard')], function () {
 });
 
 Route::get('test', function () {
-    $user = \App\Models\User::find(5);
-    $qualified_commissions = Commission::where('user_id', 7)->where('status', 'QUALIFIED')->sum('paid');
-    $dis_commissions = Commission::where('user_id', 7)->whereStatus('DISQUALIFIED')->sum('amount');
-    $lost_commissions = Commission::where('user_id', 7)->sum(DB::raw('amount - paid'));
-    dd($qualified_commissions, $dis_commissions, $lost_commissions );
+//    $user = \App\Models\User::find(5);
+//    $qualified_commissions = Commission::where('user_id', 7)->where('status', 'QUALIFIED')->sum('paid');
+//    $dis_commissions = Commission::where('user_id', 7)->whereStatus('DISQUALIFIED')->sum('amount');
+//    $lost_commissions = Commission::where('user_id', 7)->sum(DB::raw('amount - paid'));
+//    dd($qualified_commissions, $dis_commissions, $lost_commissions );
 //    dd($user->total_direct_team_investment);
     //dd($user->descendants()->get());
 });

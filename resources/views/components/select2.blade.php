@@ -6,7 +6,7 @@
                 <button type="button" class="btn btn-info btn-xs deselect-all-button">DESELECT ALL</button>
             </div>
         @endif
-        <select class="single-select-placeholder js-states select2-hidden-accessible" data-placeholder="{{ __('Select your option') }}" {{ $attributes }}>
+        <select data-placeholder="{{ __('Select your option') }}" {{ $attributes->merge(['class' => 'single-select-placeholder js-states select2-hidden-accessible']) }}>
             @if (!isset($attributes['multiple']))
                 <option></option>
             @endif

@@ -216,6 +216,12 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(TeamBonus::class, 'user_id')->whereIn('bonus', ['10_DIRECT_SALE', '20_DIRECT_SALE', '30_DIRECT_SALE']);
     }
 
+    public function withdraws(): HasMany
+    {
+        return $this->hasMany(Withdraw::class, 'user_id');
+    }
+
+
     public function getDepthAttribute()
     {
         $depth = DB::selectOne(

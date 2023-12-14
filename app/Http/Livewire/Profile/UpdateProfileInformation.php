@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Profile;
 
 
 use App\Mail\ProfileModifyMail;
+use App\Models\Country;
 use App\Services\OTPService;
 use App\Traits\MaskCredentials;
 use Exception;
@@ -120,6 +121,7 @@ class UpdateProfileInformation extends Component
 
     public function render()
     {
-        return view('livewire.profile.update-profile-information');
+        $countries = Country::orderBy('name')->get(['name', 'iso', 'id'])->keyBy('iso');
+        return view('livewire.profile.update-profile-information', compact('countries'));
     }
 }

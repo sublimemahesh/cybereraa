@@ -55,30 +55,32 @@ class GenealogyController extends Controller
             $depth = 4;
         }
         $user = Auth::user();
-        $descendants = $user?->descendants()
-            ->with('sponsor', 'parent')
-            ->where('depth', $depth)
-            ->when($request->get('status') === 'suspend', function (Builder $q) {
-                $q->whereNotNull('suspended_at');
-            })
-            ->when($request->get('status') === 'active', function (Builder $q) {
-                $q->whereNull('suspended_at');
-            })
-            ->withSum(['activePackages', 'purchasedPackages'], 'invested_amount')
-            ->get();
         //dd($user->id, $descendants);
         if ($request->wantsJson()) {
+            $descendants = $user?->descendants()
+                ->with('sponsor', 'parent')
+                ->where('depth', $depth)
+                ->when($request->get('status') === 'suspend', function (Builder $q) {
+                    $q->whereNotNull('suspended_at');
+                })
+                ->when($request->get('status') === 'active', function (Builder $q) {
+                    $q->whereNull('suspended_at');
+                })
+                ->withSum(['withdraws' => fn($q) => $q->where('status', 'SUCCESS')->where('type', 'MANUAL')], 'amount')
+                ->withSum(['withdraws' => fn($q) => $q->where('status', 'SUCCESS')->where('type', 'MANUAL')], 'transaction_fee')
+                ->withSum(['earnings' => fn($q) => $q->whereIn('type', ['PACKAGE', 'TRADE_DIRECT', 'TRADE_INDIRECT', 'DIRECT', 'INDIRECT', 'TEAM_BONUS'])], 'amount')
+                ->withSum(['activePackages', 'purchasedPackages'], 'invested_amount')
+                ->get();
             return DataTables::of($descendants)
                 ->addColumn('profile_photo', function ($user) {
                     return "<img class='rounded-circle' width='35' src='" . $user->profile_photo_url . "' alt='' />";
                 })
                 ->addColumn('user_details', function ($user) {
-                    return "<i class='fa fa-user-circle'></i> #{$user->id} <br>
-                            <i class='fa fa-user'></i> {$user->username}<br>
-                            <i class='fa fa-user'></i> {$user->name}<br>";
+                    return "<i class='fa fa-user-circle'></i> #{$user->id} - <code>{$user->username}</code><br>
+                            <i class='fa fa-user'></i> {$user->name} ";
                 })
                 ->addColumn('contact_details', function ($user) {
-                    return "<i class='fa fa-phone'></i> $user->phone <br>
+                    return "Referal User: #{$user->super_parent_id} - <code>{$user->sponsor?->username}</code><br>
                             <i class='fa fa-envelope'></i> $user->email<br>";
                 })
                 ->addColumn('sponsor', function ($user) {
@@ -87,14 +89,27 @@ class GenealogyController extends Controller
                 //                ->addColumn('parent', function ($user) {
                 //                    return "{$user->parent_id} - <code>{$user?->parent?->username} </code><br>Position: {$user->position}";
                 //                })
-                ->addColumn('joined', fn($user) => $user->created_at->format('Y-m-d h:i A'))
+                ->addColumn('joined', function ($user) {
+                    if ($user->is_suspended) {
+                        return "ACCOUNT SUSPENDED";
+                    }
+                    return $user->created_at->format('Y-m-d h:i A');
+                })
                 ->addColumn('suspended', function ($user) {
                     if ($user->is_suspended) {
                         return Carbon::parse($user->suspended_at)->format('Y-m-d h:i A');
                     }
                     return '-';
                 })
-                ->addColumn('account_status', function ($user) {
+                ->addColumn('profit', function ($user) {
+                    $earnings_sum_amount = $user->earnings_sum_amount;
+                    $withdraws_sum_amount = $user->withdraws_sum_amount;
+                    $withdraws_sum_transaction_fee = $user->withdraws_sum_transaction_fee;
+                    $total_withdrawal = $withdraws_sum_amount + $withdraws_sum_transaction_fee;
+                    return
+                        "Total Earned: <code>{$earnings_sum_amount}</code></br>" .
+                        "Total Withdraw: <code>{$total_withdrawal}</code>";
+                })->addColumn('account_investments', function ($user) {
                     $active_packages_sum_invested_amount = $user->active_packages_sum_invested_amount;
                     $purchased_packages_sum_invested_amount = $user->purchased_packages_sum_invested_amount;
                     $account_status = 'INACTIVE';
@@ -108,7 +123,7 @@ class GenealogyController extends Controller
                         "Active Packages: <code>{$active_packages_sum_invested_amount}</code></br>" .
                         "Total Investment: <code>{$purchased_packages_sum_invested_amount}</code>";
                 })
-                ->rawColumns(['profile_photo', 'user_details', 'contact_details', 'sponsor', 'account_status'])
+                ->rawColumns(['profile_photo', 'user_details', 'contact_details', 'profit', 'sponsor', 'account_investments'])
                 ->make();
         }
         return view('backend.user.teams.users-list', compact('user', 'depth'));
