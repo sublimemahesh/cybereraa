@@ -44,8 +44,8 @@ $(function () {
         e.preventDefault();
         urlParams.set("date-range", $("#date-range").val());
         urlParams.set("status", $("#status").val());
-        // let url = location.href.split(/\?|\#/)[0] + "?" + urlParams.toString();
-        let url = TEAM_URL + "/" + $("#depth").val() + "?" + urlParams.toString();
+        let url = location.href.split(/\?|\#/)[0] + "?" + urlParams.toString();
+        // let url = TEAM_URL + "/" + $("#depth").val() + "?" + urlParams.toString();
         history.replaceState({}, "", url);
         table.ajax.url(url).load();
     });
@@ -56,8 +56,8 @@ $(function () {
         urlParams.set("date-range", $("#date-range").val());
         urlParams.set("status", $("#status").val());
         // urlParams.set("depth", depth + 1);
-        // let username = $(this).data('username');
-        let url = TEAM_URL + "/" + $("#depth").val() + "?" + urlParams.toString();
+        let username = $(this).data('username');
+        let url = TEAM_URL + "/" + username + "?" + urlParams.toString();
         history.pushState({}, "", url);
         table.ajax.url(url).load();
     });
