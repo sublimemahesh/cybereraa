@@ -57,6 +57,8 @@
                         TOTAL AMOUNT: <span id="total-amount">USDT {{ $package->amount + ($package->amount *
                             $package->gas_fee) /100 }}</span>
                     </button>
+<br>
+                      <button type="button" class="btn btn-primary mb-2" id="{{ $package->slug }}-choose"  data-devil="ml:20 mt:30">Deposit</button>
 
 
                     <div class="basic-list-group" data-devil="mt:60">
@@ -101,7 +103,7 @@
                                             <div class="media">
                                                 <div class="media-body text-white">
                                                     <p class="mb-1 dash-p">
-                                                        <b>Gas Fee ({{ $package->gas_fee }}%)</b> 
+                                                        <b>Gas Fee ({{ $package->gas_fee }}%)</b>
                                                         <span id="pkg-gas-fee">USDT {{ ($package->amount *
                                                             $package->gas_fee) /100 }}</span>
                                                     </p>
@@ -187,7 +189,7 @@
 
                 </div>
                 <div class="card-footer">
-                    <button type="button" class="btn btn-primary mb-2" id="{{ $package->slug }}-choose">Deposit</button>
+
                 </div>
             </div>
         </div>
