@@ -1,16 +1,17 @@
 
- 
+
 
   .box-minmax {
     margin-top: 30px;
-    width: 96%;
+    width: 620px;
     display: flex;
     justify-content: space-between;
     font-size: 20px;
     color: #FFFFFF;
+    margin-left: 207px;
   }
   .box-minmax span:first-child {
-    margin-left: 50px;
+    margin-left: 0px;
   }
 
   .range-slider {
@@ -19,7 +20,7 @@
 
   .rs-range {
     margin-top: 29px;
-    width: 90%;
+    width: 600PX;
     -webkit-appearance: none;
   }
   .rs-range:focus {
@@ -86,13 +87,13 @@
     box-sizing: border-box;
     border: 2px solid #fff;
     margin-top: 20px;
-    margin-left: 15px;
+    margin-left: 160px;
     left: attr(value);
     color: #fff;
     font-style: normal;
     font-weight: normal;
     line-height: normal;
-    font-size: 36px;
+    font-size: 28px;
   }
   /* .rs-label::after {
     content: "kg";
@@ -101,3 +102,31 @@
     letter-spacing: 0.07em;
     margin-top: -2px;
   } */
+
+
+  @media screen and (min-width: 1400px) {
+
+    .box-minmax{
+        margin-left: 450px;
+    }
+
+    .rs-label{
+        margin-left: 410px;
+    }
+
+  }
+
+  @media screen and (max-width:412px) {
+    .rs-range{
+        width: 300PX;
+    }
+
+    .box-minmax{
+        width: 300px;
+    margin-left: 5px;
+    }
+
+    .rs-label{
+        margin-left: 0px;
+    }
+  }

@@ -70,34 +70,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/plugins/confirmDate/confirmDate.min.css" integrity="sha512-i4miv4uj4m8CwmH7M2HfUr2BXzyLTmexzQi+e27yE+aXivR5iQ2urKV34j3rqNeZcesfmXAtSeLuFuaERTxgEA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/plugins/monthSelect/style.css">
 
-
 </head>
-
-<body class="font-sans antialiased dark" style="background:var(--bg-color)"> 
-
-<script type="text/javascript">
-function googleTranslateElementInit() {   new google.translate.TranslateElement({
-    pageLanguage: 'en', 
-    layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL,
-    autoDisplay: false
-}, 'google_translate_element');
-}
-
-// function googleTranslateElementInit() {
-//     new google.translate.TranslateElement({
-//         pageLanguage: 'en',
-//         includedLanguages: 'en,si,ta,de,ru,ar',
-//         layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-//         autoDisplay: false
-//     }, 'google_translate_element');
-// }
-
-
-
-</script>
-
+<body class="font-sans antialiased dark" style="background:var(--bg-color)">
+ <script src="{{ asset('assets/backend/js/google-translate.js') }}"></script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
 
 
 

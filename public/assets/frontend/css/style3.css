@@ -1,17 +1,17 @@
 .coin-slider{
-     
-    
+
+
         top: -50px ;
-      
+
     .row.top{
         padding: 30px 0 30px;
     }
-    
+
 }
 
 .faq{
- 
-    padding:100px 0 100px !important;  
+
+    padding:100px 0 100px !important;
     .container h3{
         padding: 10px;
         color: wheat;
@@ -45,4 +45,21 @@
 
 .project-img{
     border-radius:20px;
+}
+
+
+.stf-bc{
+    background: url(../images/sf/bg.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
+
+.stf-bc-net{
+    background: url(../images/sf/net-sf.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
 }

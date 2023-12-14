@@ -177,8 +177,8 @@
     <!--==================================================-->
     <!-- Start feature-area -->
     <!--==================================================-->
-    <section class='sftDetails-sec' style="background: url('{{ asset('assets/frontend/images/sf/bg.jpg') }}');top center/cover no-repeat;">
-        <div class="feature-area " style="background: url('{{ asset('assets/frontend/images/sf/net-sf.png') }}');top center/cover no-repeat;">
+    <section class='sftDetails-sec stf-bc'>
+        <div class="feature-area stf-bc-net">
             <div>
                 <div class="container" data-devil='mb:200' data-dxs="mb:0">
                     <div class="row">
