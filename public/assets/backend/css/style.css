@@ -49814,4 +49814,43 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
       }
 }
 
+ .goog-te-gadget span{
+    display: none !important;
+} 
+
+#google_translate_element{
+    float: right !important;
+    position: absolute;
+    right: 12px;
+    top: 24px;
+}
+
+#google_translate_element .goog-te-combo{
+    float: right;
+}
+
+
+
+.goog-te-gadget{
+    /* color: transparent !important; */
+    font-size: 0px !important;
+
+}
+
+.VIpgJd-ZVi9od-ORHb-OEVmcd{
+    /* visibility: hidden !important; */
+    display: none !important;
+
+
+}
+
+
+.support-link{
+    float: right !important;
+    position: absolute;
+    right: -35px;
+    top: 15px;
+}
+
+
 

@@ -56,9 +56,13 @@
                     <div class="dashboard_bar ">
                         <h3 class="h3-txt">@yield('header-title')</h3>
                         <div id="google_translate_element"></div>
-                        <span class="txte-right">
+                        <div class="support-link">
+                            <a href="{{ route('user.support.tickets.index') }}"><img src="{{ asset('assets/backend/images/icon/envelope.png') }}"></a>
+                        </div>
+
+                        {{-- <span class="txte-right">
                             @yield('header-title2',Auth::user()->username)
-                        </span>
+                        </span> --}}
 
                         <div class='logout-btn'>
                             <form method="POST" action="{{ route('logout') }}">
