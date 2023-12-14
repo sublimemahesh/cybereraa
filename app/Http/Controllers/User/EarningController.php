@@ -82,7 +82,7 @@ class EarningController extends Controller
     public function teamHighestEarnings(Request $request)
     {
         if ($request->wantsJson()) {
-            $descendants = Auth::user()->descendants()->select('id')->pluck('id')->toArray();
+            $descendants = Auth::user()->descendants()->where('depth', '<=', 4)->select('id')->pluck('id')->toArray();
             $earnings = Earning::selectRaw('user_id, SUM(amount) AS earnings')
                 ->filter()
                 ->with(['user.sponsor', 'earnable'])
@@ -148,7 +148,7 @@ class EarningController extends Controller
                 ->orderBy('type')
                 ->get();
 
-            $descendants = $user?->descendants()->pluck('id')->toArray();
+            $descendants = $user?->descendants()->where('depth', '<=', 4)->pluck('id')->toArray();
 
             $teamYearlyIncome = DB::table('earnings')
                 ->select(DB::raw('MONTH(created_at) AS month, type, SUM(amount) AS monthly_income'))
@@ -220,7 +220,7 @@ class EarningController extends Controller
     public function teamCommissionsIncome(Request $request)
     {
         if ($request->wantsJson()) {
-            $descendants = Auth::user()->descendants()->pluck('id')->toArray();
+            $descendants = Auth::user()->descendants()->where('depth', '<=', 4)->pluck('id')->toArray();
             $incomes = Commission::selectRaw('user_id, SUM(amount) AS total_amount, SUM(paid) AS total_paid')
                 ->filter()
                 ->with(['user.sponsor', 'user.currentRank'])

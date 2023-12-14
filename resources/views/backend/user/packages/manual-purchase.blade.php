@@ -37,7 +37,7 @@
                                 <b>During {{ $package->month_of_period }} </b> Month Of Period
                             </p>
                             <p>
-                                <b>Up to {{ $package->daily_leverage }}% </b>Daily Leverage
+                                <b> 0.3% - 0.7% </b>Daily Leverage
                             </p>
                             <hr>
                             <p>

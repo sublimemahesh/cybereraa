@@ -125,28 +125,28 @@
 @endcan--}}
 
 @can('wallet.topup')
-    <li>
+    {{--<li>
         <a href="{{ route('admin.wallet.topup') }}" class="" aria-expanded="false">
             <i class="bi bi-send-plus"></i>
             <span class="nav-text">Topup Wallet</span>
         </a>
-    </li>
+    </li>--}}
 @endcan
 
 @can('wallet.topup-history.viewAny')
-    <li>
+    {{--<li>
         <a href="{{ route('admin.wallet.topup.history') }}" class="" aria-expanded="false">
             <i class="bi bi-receipt-cutoff"></i>
             <span class="nav-text">Topup History</span>
         </a>
-    </li>
+    </li>--}}
 @endcan
 
 @can('users.genealogy')
     <li>
         <a href="{{ URL::signedRoute('admin.team.users-list') }}" class="" aria-expanded="false">
             <i class="bi bi-diagram-3-fill"></i>
-            <span class="nav-text">User Genealogy</span>
+            <span class="nav-text">User Levels</span>
         </a>
     </li>
 @endcan
@@ -182,22 +182,22 @@
 @endcan
 
 @can('withdraw.p2p.viewAny')
-    <li>
+    {{--<li>
         <a href="{{ route('admin.transfers.p2p', ['status' => 'success','date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .' to '.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}"
            class="" aria-expanded="false">
             <i class="bi fa-arrow-turn-down"></i>
             <span class="nav-text"> P2P Transactions </span>
         </a>
-    </li>
+    </li>--}}
 @endcan
 
 @can('wallet.transfers-history.viewAny')
-    <li>
+    {{--<li>
         <a href="{{ route('admin.transfers.wallets') }}" class="" aria-expanded="false">
             <i class="bi bi-arrow-clockwise"></i>
             <span class="nav-text"> Wallet Transactions </span>
         </a>
-    </li>
+    </li>--}}
 @endcan
 
 @can('withdrawals.viewAny')
@@ -225,12 +225,12 @@
                 </li>
             @endcan
             @can('rank_bonus.viewAny')
-                <li>
+                {{--<li>
                     <a href="{{ route('admin.incomes.rewards', ['status' => 'qualified','date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .' to '.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}"
                        class="" aria-expanded="false">
                         Rewards
                     </a>
-                </li>
+                </li>--}}
             @endcan
         </ul>
     </li>
@@ -246,16 +246,16 @@
 @endcan
 
 @can('rank.viewAny')
-    <li>
+    {{--<li>
         <a href="{{ route('admin.ranks') }}" class="" aria-expanded="false">
             <i class="bi bi-star-fill"></i>
             <span class="nav-text"> Ranks </span>
         </a>
-    </li>
+    </li>--}}
 @endcan
 
 @can('rank_bonus.viewAny')
-    <li>
+    {{--<li>
         <a href="javascript:void(0);" class="has-arrow" aria-expanded="false">
             <i class="bi bi-trophy-fill"></i>
             <span class="nav-text"> Rank Bonus </span>
@@ -272,16 +272,16 @@
                 </a>
             </li>
         </ul>
-    </li>
+    </li>--}}
 @endcan
 
 @can('rank_gift.viewAny')
-    <li>
+    {{--<li>
         <a href="{{ route('admin.ranks.gifts') }}" class="" aria-expanded="false">
             <i class="bi bi-gift"></i>
             <span class="nav-text"> Rank Gifts </span>
         </a>
-    </li>
+    </li>--}}
 @endcan
 
 @can('package.viewAny')

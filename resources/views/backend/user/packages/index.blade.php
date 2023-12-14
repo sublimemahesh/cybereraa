@@ -41,7 +41,7 @@
                                     Within Investment Period
                                 </li>
                                 <li class="list-group-item">
-                                    <b> {{--{{ $package->daily_leverage }} %--}} 0.4% - 1.3% </b> Daily Profit
+                                    <b> {{--{{ $package->daily_leverage }} %--}} 0.3% - 0.7% </b> Daily Profit
                                 </li>
                             </ul>
                         </div>
