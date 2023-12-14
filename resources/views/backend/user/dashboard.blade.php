@@ -1,14 +1,14 @@
 <x-backend.layouts.app>
     @section('title', 'User Dashboard')
-    @section('header-title', 'Welcome ' . Auth::user()->name)
+    @section('header-title', 'Welcome to Coin 1M Family')
     @section('header-title2',Auth::user()->username)
 
     <div class="row">
-        <div class="dashboard-title">
+        {{-- <div class="dashboard-title">
             <h2 class="text-center mx-auto">
                 Welcome to Coin 1M Family
             </h2>
-        </div>
+        </div> --}}
 
         <div class="col-xl-3 col-lg-6 col-sm-6">
 
