@@ -17,6 +17,15 @@ class PageSeeder extends Seeder
         DB::table('pages')->insert([
             [
                 'parent_id' => null,
+                'title' => 'Deposit Wallet Address',
+                'slug' => 'deposit-wallet-address',
+                'image' => 'deposit-wallet-address.jpg',
+                'content' => '<p>TLbnK7HxaasQKN67RqtAZ7t59NJ3JupmQh</p>',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'parent_id' => null,
                 'title' => 'WELCOME',
                 'slug' => 'welcome',
                 'image' => null,
@@ -359,8 +368,6 @@ class PageSeeder extends Seeder
                 'updated_at' => now(),
             ],
 
-
-           
 
         ]);
     }

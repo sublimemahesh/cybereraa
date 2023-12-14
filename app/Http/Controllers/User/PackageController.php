@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Package;
+use App\Models\Page;
 use App\Models\Strategy;
 use App\Models\User;
 use Gate;
@@ -91,6 +92,7 @@ class PackageController extends Controller
             session()->flash('error', "Please select a package amount is higher than or equal to USDT " . $user->purchased_packages_max_invested_amount);
         }
 
-        return view('backend.user.packages.manual-purchase', compact('package', 'purchase_for', 'max_amount'));
+        $wallet_page = Page::where('slug', 'deposit-wallet-address')->firstOrNew();
+        return view('backend.user.packages.manual-purchase', compact('package', 'purchase_for', 'max_amount', 'wallet_page'));
     }
 }

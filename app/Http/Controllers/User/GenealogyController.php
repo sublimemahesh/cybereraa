@@ -76,11 +76,11 @@ class GenealogyController extends Controller
                     return "<img class='rounded-circle' width='35' src='" . $user->profile_photo_url . "' alt='' />";
                 })
                 ->addColumn('user_details', function ($user) {
-                    return "<i class='fa fa-user-circle'></i> #{$user->id} - <code>{$user->username}</code><br>
+                    return "<i class='fa fa-user-circle'></i> #{$user->id} - <code>{$user->username}</code> <br>
                             <i class='fa fa-user'></i> {$user->name} ";
                 })
                 ->addColumn('contact_details', function ($user) {
-                    return "Referal User: #{$user->super_parent_id} - <code>{$user->sponsor?->username}</code><br>
+                    return "Referal User: #{$user->super_parent_id} - <code>{$user->sponsor?->username}</code> <br>
                             <i class='fa fa-envelope'></i> $user->email<br>";
                 })
                 ->addColumn('sponsor', function ($user) {
@@ -93,7 +93,7 @@ class GenealogyController extends Controller
                     if ($user->is_suspended) {
                         return "ACCOUNT SUSPENDED";
                     }
-                    return $user->created_at->format('Y-m-d h:i A');
+                    return "Joined: " . $user->created_at->format('Y-m-d h:i A');
                 })
                 ->addColumn('suspended', function ($user) {
                     if ($user->is_suspended) {
@@ -119,8 +119,8 @@ class GenealogyController extends Controller
                             $account_status = 'ACTIVE';
                         }
                     }
-                    return "Account Status: <code>{$account_status}</code></br>" .
-                        "Active Packages: <code>{$active_packages_sum_invested_amount}</code></br>" .
+                    return "Account Status: <code>{$account_status}</code> </br>" .
+                        "Active Packages: <code>{$active_packages_sum_invested_amount}</code> </br>" .
                         "Total Investment: <code>{$purchased_packages_sum_invested_amount}</code>";
                 })
                 ->rawColumns(['profile_photo', 'user_details', 'contact_details', 'profit', 'sponsor', 'account_investments'])
