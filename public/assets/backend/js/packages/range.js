@@ -4,7 +4,7 @@ var size=0;
 if (window.innerWidth <= 412) {
   // Code to execute for mobile view
   console.log('Mobile view with a width of 412 pixels or less');
-  size=280;
+  size=250;
 } else {
   // Code to execute for larger screens
   console.log('Larger screen view');
