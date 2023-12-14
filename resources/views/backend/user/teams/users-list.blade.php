@@ -106,10 +106,10 @@
                                 <tr>
                                     <th>USER DETAILS</th>
                                     <th>CONTACT DETAILS</th>
-                                    <th>SPONSOR/PARENT</th>
-                                    <th>JOINED DATE</th>
-                                    <th>SUSPENDED</th>
+                                    {{--<th>SPONSOR/PARENT</th>--}}
                                     <th>ACCOUNT STATUS</th>
+                                    <th>PROFIT</th>
+                                    <th>INVESTMENT</th>
                                 </tr>
                             </thead>
                         </table>

@@ -35,7 +35,7 @@ class PackageController extends Controller
             'currency' => 'USDT',
             'amount' => $min_custom_investment?->value,
             'gas_fee' => $custom_investment_gas_fee?->value,
-            'month_of_period' => 15,
+            'month_of_period' => 30,
             'daily_leverage' => 1,
             'is_active' => 1,
         ]);
@@ -67,7 +67,7 @@ class PackageController extends Controller
             'currency' => 'USDT',
             'amount' => $amount,
             'gas_fee' => ($amount * $custom_investment_gas_fee?->value) / 100,
-            'month_of_period' => 15,
+            'month_of_period' => 30,
             'daily_leverage' => 1,
             'is_active' => 1,
         ]);

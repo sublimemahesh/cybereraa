@@ -29,7 +29,7 @@
                                 </div>
                             </div>
                             <div class="form-group row mb-2">
-                                <label class="col-sm-3 col-form-label" for="package">Package (1/100)%</label>
+                                <label class="col-sm-3 col-form-label" for="package">Package</label>
                                 <div class="col-sm-9">
                                     <input class="form-control" value="{{ $payable_percentages?->package ?? 1 }}" id="package" name="package" placeholder="Package Investment daily leverage" type="number">
                                 </div>
@@ -37,7 +37,7 @@
                             <hr>
                             <div class="form-group row mb-2">
                                 <label class="col-sm-3 col-form-label" for="direct">
-                                    <del>Direct (1/100)% </del>
+                                    <del>Direct</del>
                                 </label>
                                 <div class="col-sm-9">
                                     <input class="form-control" disabled value="{{ $payable_percentages->direct }}" id="direct" name="direct" placeholder="Direct commission daily leverage" type="text">
@@ -46,7 +46,7 @@
 
                             <div class="form-group row mb-2">
                                 <label class="col-sm-3 col-form-label" for="indirect">
-                                    <del>Indirect (1/100)% </del>
+                                    <del>Indirect</del>
                                 </label>
                                 <div class="col-sm-9">
                                     <input class="form-control" disabled value="{{ $payable_percentages->indirect }}" id="indirect" name="indirect" placeholder="Indirect commission daily leverage" type="text">
@@ -55,7 +55,7 @@
 
                             <div class="form-group row mb-2">
                                 <label class="col-sm-3 col-form-label" for="rank_bonus">
-                                    <del>Rank bonus (1/100)% </del>
+                                    <del>Rank bonus</del>
                                 </label>
                                 <div class="col-sm-9">
                                     <input class="form-control" disabled value="{{ $payable_percentages->rank_bonus ?? 0.332 }}" id="rank_bonus" name="rank_bonus" placeholder="Rank bonus daily leverage" type="text">

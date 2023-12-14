@@ -3,7 +3,7 @@
 
 
         <div class="card">
-         
+
             <div class="card-body" id="nav-txt-color">
                 <!-- Nav tabs -->
                 <div class="default-tab" x-data="{ activeTab: 'home' }">
@@ -143,6 +143,17 @@
                                         @endif
                                     </div>
                                     <div class="col-lg-6 m-b30 mt-2">
+                                        <div wire:ignore>
+                                            <label class="form-label" for="country"> Country </label>
+                                            <x-select2 id="country" name="country_id" wire:model="state.profile_info.country_id" class="block mt-1 w-full form-control border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" :options="$countries"/>
+                                        </div>
+                                        @error('state.country_id')
+                                        <div class="main-register-from-error-alert">
+                                            <strong>Required! </strong> {{ $message }}.
+                                        </div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-6 m-b30 mt-2">
                                         <div>
                                             <label class="form-label" for="dob">{{ __('Birth Day') }}</label>
                                             <x-jet-input wire:ignore id="dob" wire:model.defer="state.profile_info.dob"
@@ -276,9 +287,9 @@
                         @if (!$otpSent)
                             <p>
                                 OTP code will be sent to Email: {{ $state['email'] }}
-                                @if (str_starts_with(auth()->user()?->phone, '+94'))
+                                {{--@if (str_starts_with(auth()->user()?->phone, '+94'))
                                     and Phone: {{ $state['phone'] }}
-                                @endif
+                                @endif--}}
                             </p>
                             <br>
                             <div id="2ft-section">
@@ -325,7 +336,7 @@
                 const __REG_STEP = @this;
                 let itl_phone
 
-                function init(phone_iso = 'lk') {
+                function init(phone_iso = 'us') {
                     itl_phone && itl_phone.destroy();
 
                     try {
@@ -337,7 +348,7 @@
                         })
                     } catch (e) {
                         console.log(e.message)
-                        return init('lk')
+                        return init('us')
                     }
                 }
 

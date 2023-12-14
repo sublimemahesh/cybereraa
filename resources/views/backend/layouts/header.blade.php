@@ -1,10 +1,13 @@
 <!--********************************** Nav header start ***********************************-->
 <div class="nav-header">
-    <a href="{{ route('/') }}" class="brand-logo">
-        <img src="{{ asset('assets/backend/images/logo/logo.png') }}" class="logo-abbr" id="logo-abbr" alt="">
-        <img src="{{ asset('assets/backend/images/logo/logo-text.png') }}" class="brand-title" id="brand-title" alt="">
-        <img src="{{ asset('assets/backend/images/logo/logo-color.png') }}" class="logo-color" alt="">
-        <img src="{{ asset('assets/backend/images/logo/logo-text-color.png') }}" class="brand-title color-title" alt="">
+    <a href="{{ route('/') }}" class="brand-logo d-flex flex-column justify-content-center">
+        <div>
+            <img src="{{ asset('assets/backend/images/logo/logo.png') }}" class="logo-abbr" id="logo-abbr" alt="">
+            <img src="{{ asset('assets/backend/images/logo/logo-text.png') }}" class="brand-title" id="brand-title" alt="">
+            <img src="{{ asset('assets/backend/images/logo/logo-color.png') }}" class="logo-color" alt="">
+            <img src="{{ asset('assets/backend/images/logo/logo-text-color.png') }}" class="brand-title color-title" alt="">
+        </div>
+        <div> {{ Auth::user()->username }}</div>
     </a>
     <div class="nav-control">
         <div class="hamburger">
@@ -28,29 +31,26 @@
 <!--********************************** Header start ***********************************-->
 
 
-
-
-
 <div class="header">
     <div class="header-content">
         <nav class="navbar navbar-expand">
             <div class="collapse navbar-collapse justify-content-between">
                 <div class="header-left">
 
-                    <div class='logout-btn mob-dis' >
+                    <div class='logout-btn mob-dis'>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();" class="rounded-1" aria-expanded="false">
                                 {{-- <i class="bi bi-box-arrow-left"></span></i>
                                 <span class="nav-text">{{ __('Logout') }} </span> --}}
-                                <img src="{{ asset('assets/backend/images/icon/logout.png') }}" /><br>
+                                <img src="{{ asset('assets/backend/images/icon/logout.png') }}"/>
+                                <br>
                                 <div data-devil='ml:10'>
-                                {{-- <span class="nav-text">{{ __('Logout') }} </span>  --}}
+                                    {{-- <span class="nav-text">{{ __('Logout') }} </span>  --}}
                                 </div>
                             </a>
                         </form>
                     </div>
-
 
 
                     <div class="dashboard_bar ">
@@ -66,9 +66,10 @@
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();" class="rounded-1" aria-expanded="false">
                                     {{-- <i class="bi bi-box-arrow-left"></span></i>
                                     <span class="nav-text">{{ __('Logout') }} </span> --}}
-                                    <img src="{{ asset('assets/backend/images/icon/logout.png') }}" /><br>
+                                    <img src="{{ asset('assets/backend/images/icon/logout.png') }}"/>
+                                    <br>
                                     <div data-devil='ml:10'>
-                                    {{-- <span class="nav-text">{{ __('Logout') }} </span>  --}}
+                                        {{-- <span class="nav-text">{{ __('Logout') }} </span>  --}}
                                     </div>
                                 </a>
                             </form>
@@ -79,7 +80,6 @@
         </nav>
     </div>
 </div>
-
 
 
 <!--********************************** Header end ti-comment-alt ***********************************-->

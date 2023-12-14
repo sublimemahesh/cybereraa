@@ -152,7 +152,7 @@ class WithdrawController extends Controller
     {
         $profile = Auth::user()->profile;
 
-        if ($profile->binance_email === null || $profile->binance_id === null || $profile->wallet_address === null || $profile->binance_phone === null) {
+        if ($profile->wallet_address === null) {
             return redirect()->route('profile.show')->with('warning', 'Please Fill your Binance Account details, before continuing.!');
         }
 

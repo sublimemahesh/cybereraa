@@ -1,8 +1,8 @@
 <x-backend.layouts.app>
     @section('title', 'User Dashboard')
     @section('header-title', 'Welcome ' . Auth::user()->name)
-    @section('header-title2',Auth::user()->username) 
-    
+    @section('header-title2',Auth::user()->username)
+
     <div class="row">
         <div class="dashboard-title">
             <h2 class="text-center mx-auto">
@@ -295,15 +295,15 @@
 
                     <div class="row" data-devil="mt:25">
                         <div class="col-xl-4">
-                            <a id="whatsapp-button" href="whatsapp://send?text={{$url_ref}}"  data-action="share/whatsapp/share" target="_blank">
-                                 <button type="button" class="btn btn-success btn-width">
+                            <a id="whatsapp-button" href="whatsapp://send?text={{$url_ref}}" data-action="share/whatsapp/share" target="_blank">
+                                <button type="button" class="btn btn-success btn-width">
                                     <i class="bi bi-whatsapp" data-devil='fs:12'></i> Whatsapp
                                 </button>
                             </a>
                         </div>
 
                         <div class=" col-xl-4">
-                            <a id="messenger-button" href="https://www.facebook.com/sharer/sharer.php?u={{urlencode($url_ref)}}"  target="_blank">
+                            <a id="messenger-button" href="https://www.facebook.com/sharer/sharer.php?u={{urlencode($url_ref)}}" target="_blank">
                                 <button type="button" class="btn btn-warning btn-width">
                                     <i class="bi bi-messenger" data-devil='fs:12'></i> Messenger
                                 </button>
@@ -472,6 +472,7 @@
                 <div class="card-header border-0 pb-0">
                     <h2 class="heading">Income Chart</h2>
                 </div>
+
                 <div class="card-body text-center pt-0 pb-2 justify-content-center d-flex flex-column" data-devil="mb:15">
                     <div id="total_income_pie_chart" class="custome-donut"></div>
                     <div class="chart-items mt-5">
@@ -484,7 +485,7 @@
                                                  xmlns="http://www.w3.org/2000/svg">
                                                 <rect width="14" height="14" rx="4" fill="#027f7f"/>
                                             </svg>
-                                            Trade Income
+                                            My Trade Income
                                         </span>
                                         <h5>${{ $invest_income }}</h5>
                                     </div>
@@ -494,7 +495,7 @@
                                                  xmlns="http://www.w3.org/2000/svg">
                                                 <rect width="14" height="14" rx="4" fill="#fbd5cb"/>
                                             </svg>
-                                            Trade Direct Income
+                                            Direct Trade Income
                                         </span>
                                         <h5>${{ $trade_income }}</h5>
                                     </div>
@@ -504,7 +505,7 @@
                                                  xmlns="http://www.w3.org/2000/svg">
                                                 <rect width="14" height="14" rx="4" fill="#4a4a65"/>
                                             </svg>
-                                            Trade Team Income
+                                            Indirect Trade Income
                                         </span>
                                         <h5>${{ $trade_team_income }}</h5>
                                     </div>
@@ -514,7 +515,7 @@
                                                  xmlns="http://www.w3.org/2000/svg">
                                                 <rect width="14" height="14" rx="4" fill="#937f25"/>
                                             </svg>
-                                            Direct Commission
+                                            Direct Referral Commission
                                         </span>
                                         <h5>${{ $direct_comm_income }}</h5>
                                     </div>
@@ -524,7 +525,7 @@
                                                  xmlns="http://www.w3.org/2000/svg">
                                                 <rect width="14" height="14" rx="4" fill="#983042"/>
                                             </svg>
-                                            Team Commission
+                                            Indirect Referral Commission
                                         </span>
                                         <h5>${{ $indirect_comm_income }}</h5>
                                     </div>
@@ -926,15 +927,14 @@
 
             });
 
-                 // Pass the Laravel variable to JavaScript
-                 var urlToShare = '{{ $url_ref }}';
+            // Pass the Laravel variable to JavaScript
+            var urlToShare = '{{ $url_ref }}';
 
 
-
-                function shareOnTelegram() {
+            function shareOnTelegram() {
                 var telegramLink = 'https://t.me/share/url?url=' + encodeURIComponent(urlToShare);
                 window.open(telegramLink, '_blank');
-                }
+            }
 
 
         </script>

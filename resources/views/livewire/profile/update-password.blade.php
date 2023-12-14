@@ -36,9 +36,9 @@
                     @if(!$otpSent)
                         <p>
                             OTP code will be sent to Email: {{ App\Traits\MaskCredentials::maskedEmailAddress(auth()->user()->email) }}
-                            @if(str_starts_with(auth()->user()?->phone, '+94'))
+                           {{-- @if(str_starts_with(auth()->user()?->phone, '+94'))
                                 and Phone: {{ App\Traits\MaskCredentials::maskedPhone(auth()->user()->phone) }}
-                            @endif
+                            @endif--}}
                         </p>
                         <br>
                         <div id="2ft-section">

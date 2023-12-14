@@ -1,7 +1,7 @@
 <!--********************************** Sidebar start ***********************************-->
-<div class="deznav">
+<div class="deznav pt-md-0">
     <div class="deznav-scroll">
-        <ul class="metismenu" id="menu">
+        <ul class="metismenu pt-0" id="menu">
             <li>
                 <a href="{{ route('super_admin.dashboard') }}" class="" aria-expanded="false">
                     <i class="bi bi-grid"></i>

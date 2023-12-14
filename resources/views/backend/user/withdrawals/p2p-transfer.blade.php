@@ -122,10 +122,10 @@
                                 <p>
                                     OTP code will be sent to Email: {{ substr(auth()->user()?->email, 0, 2) }}
                                     *****{{ substr(auth()->user()?->email, -9) }}
-                                    @if(str_starts_with(auth()->user()?->phone, '+94'))
+                                    {{--@if(str_starts_with(auth()->user()?->phone, '+94'))
                                         and Phone:  {{ substr(auth()->user()?->phone, 0, 5) }}
                                         *****{{ substr(auth()->user()?->phone, -2) }}
-                                    @endif
+                                    @endif--}}
                                 </p>
                                 <div id="2ft-section">
                                     <button type="submit" id="send-2ft-code" class="btn btn-sm btn-google mb-2">Send
