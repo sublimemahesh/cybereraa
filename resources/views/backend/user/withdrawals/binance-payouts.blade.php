@@ -8,7 +8,7 @@
         <li class="breadcrumb-item active">Make withdrawal request</li>
     @endsection
     <div class="row">
-        @include('backend.user.wallet.top-nav')
+        {{-- @include('backend.user.wallet.top-nav') --}}
         <div class="col-xl-8 col-sm-6">
             @if($remaining_withdraw_amount_for_day <= 0 || !in_array(Carbon::today()->englishDayOfWeek,$withdrawal_days_of_week,true))
                 <div class="alert alert-warning">

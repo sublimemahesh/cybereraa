@@ -15,7 +15,7 @@
     @endsection
 
     <div class="row dark"> {{--! Tailwind css used. if using tailwind plz run npm run dev and add tailwind classes--}}
-        @include('backend.user.incomes.top-nav')
+        {{-- @include('backend.user.incomes.top-nav') --}}
 
         <div class="col-12">
             <div class="card">
@@ -38,7 +38,7 @@
                                                             <option value="trade_indirect">TRADE INDIRECT</option>
                                                             <option value="direct">DIRECT SALE</option>
                                                             <option value="indirect">INDIRECT SALE</option>
-                                                            <option value="special_bonus">SPECIAL BONUS</option> 
+                                                            <option value="special_bonus">SPECIAL BONUS</option>
 
                                                             {{-- <option value="rank_bonus">RANK BONUS</option> --}}
                                                             {{-- <option value="rank_gift">RANK GIFT</option>--}}

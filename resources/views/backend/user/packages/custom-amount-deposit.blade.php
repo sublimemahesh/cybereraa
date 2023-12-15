@@ -29,7 +29,7 @@
                                 <input type="number" name="amount" step="0.1"
                                     value="{{ $min_custom_investment->value }}"
                                     min="{{ $min_custom_investment->value }}" max="{{ $max_custom_investment->value }}"
-                                    id="custom-deposit-amount" class="form-control " data-devil='fs:20'>
+                                    id="custom-deposit-amount" class="form-control " data-devil='fs:16'>
                             </div>
                         </div>
                         <div class="col-2"></div>
