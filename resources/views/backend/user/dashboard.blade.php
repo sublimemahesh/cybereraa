@@ -302,7 +302,7 @@
                             </a>
                         </div>
 
-                        <div class=" col-xl-4">
+                        <div class=" col-xl-4" data-dxs="mt:10 mb:10">
                             <a id="messenger-button" href="https://www.facebook.com/sharer/sharer.php?u={{urlencode($url_ref)}}" target="_blank">
                                 <button type="button" class="btn btn-warning btn-width">
                                     <i class="bi bi-messenger" data-devil='fs:12'></i> Messenger
@@ -321,12 +321,26 @@
 
                     </div>
 
-                    <div class="text-center dashboard-refferal-direct">
-                        <h5>
-                            Active Direct Sales <span>- {{ Auth::user()->active_direct_sales }}</span> |
-                            InActive Direct Sales <span>- {{ Auth::user()->direct_sales_count - Auth::user()->active_direct_sales }}</span>
-                        </h5>
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="text-center dashboard-refferal-direct">
+                                <h5>
+                                    Active Direct Sales <span>- {{ Auth::user()->active_direct_sales }}</span> <span data-devil="f:right"  data-dxs="dis:none">|<span>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="col-xl-6" data-dxs="mt:-15">
+
+                            <div class="text-center dashboard-refferal-direct">
+                                <h5>
+                                    InActive Direct Sales <span>- {{ Auth::user()->direct_sales_count - Auth::user()->active_direct_sales }}</span>
+                                </h5>
+                            </div>
+
+                        </div>
                     </div>
+
+
 
                 </div>
             </div>

@@ -132,7 +132,7 @@
                         </div>
                     </div>
                     <div class="table-responsive d-block">
-                        <table id="transactions" class="display table-responsive" style="table-layout: fixed;width: 100%;">
+                        <table id="transactions" class="display table-responsive table-responsive-my-2 " style="table-layout: fixed;width: 100%;">
                             <thead>
                             <tr>
                                 <th class="fs-13 text-center" style="max-width:30px">ACTION</th>
