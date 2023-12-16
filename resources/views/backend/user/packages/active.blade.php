@@ -17,7 +17,7 @@
     </div>
 
     <div class="row">
-        @include('backend.user.transactions.top-nav')
+         {{-- @include('backend.user.transactions.top-nav') --}}
         @foreach ($activePackages as $subscription)
             <div class="col-xl-6 ">
                 <div class="card1">

@@ -49179,6 +49179,10 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
         min-width: 890px !important;
     }
 
+    .table-responsive-my-2 {
+        min-width: 890px !important;
+    }
+
     #zoomModalImg {
         margin-top: 250px !important;
     }
@@ -49812,6 +49816,13 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
       .mob-dis-breadcrumb{
         display: none;
       }
+
+      .nav-item-li-width {
+        width: 23%;
+      }
+
+
+
 }
 
  .goog-te-gadget span{

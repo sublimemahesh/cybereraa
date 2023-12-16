@@ -12,7 +12,7 @@
         All package earnings will be generated after 3 working days from the date of purchase.
     </div>
     <div class="row">
-        @include('backend.user.wallet.top-nav')
+        {{-- @include('backend.user.wallet.top-nav') --}}
         <div class="col-xl-4 col-lg-4">
             <div class="rounded-1 card prim-card height-45-100">
                 <div class="card-body py-3 d-flex flex-column justify-content-evenly">

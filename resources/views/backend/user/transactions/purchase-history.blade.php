@@ -15,13 +15,13 @@
     @endsection
 
     <div class="row dark"> {{--! Tailwind css used. if using tailwind plz run npm run dev and add tailwind classes--}}
-        @include('backend.user.transactions.top-nav')
+        @include('backend.user.transactions.top-nav2')
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
                     <div class="w-full my-3 dark:bg-gray-800">
                         <div class="rounded-sm">
-                           
+
                             <div class="border-l border-b border-r border-gray-200 dark:border-gray-600 px-2 py-4 dark:border-0  dark:bg-secondary-dark">
                                 <div>
                                     <div class="md:flex md:flex-wrap">
@@ -132,7 +132,7 @@
                         </div>
                     </div>
                     <div class="table-responsive d-block">
-                        <table id="transactions" class="display table-responsive" style="table-layout: fixed;width: 100%;">
+                        <table id="transactions" class="display table-responsive table-responsive-my-2 " style="table-layout: fixed;width: 100%;">
                             <thead>
                             <tr>
                                 <th class="fs-13 text-center" style="max-width:30px">ACTION</th>
