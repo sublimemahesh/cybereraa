@@ -20,7 +20,7 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="mb-2">
-                                <p><b>Transaction id:</b> {{ $transaction->id }}</p>
+                                <p><b>Payment id:</b> {{ $transaction->id }}</p>
                                 <p><b>User:</b> {{ $transaction->user_id }} - {{ $transaction->user->username }}</p>
                                 <p><b>Purchased By:</b> {{ $transaction->purchaser_id }} - {{ $transaction->purchaser->username }}</p>
                                 <p><b>Package:</b> {{ $transaction->create_order_request_info->goods->goodsName ?? '-' }}</p>
@@ -46,6 +46,12 @@
                                     <div class="text-info">
                                         <label for="proof_document">Proof:</label>
                                         <a href="{{ asset('storage/user/manual-purchase/' . $transaction->proof_document) }}" target="_blank">View Proof</a>
+                                    </div>
+                                </div>
+                                <div class=" mt-1">
+                                    <div class="text-info">
+                                        <label for="proof_document">Transaction ID:</label>
+                                        <a href="javascript:void(0)">{{ $transaction->transaction_id }}</a>
                                     </div>
                                 </div>
                             </div>

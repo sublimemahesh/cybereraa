@@ -21,7 +21,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="mb-2">
-                                    <p><b>Transaction id:</b> {{ $transaction->id }}</p>
+                                    <p><b>Payment id:</b> {{ $transaction->id }}</p>
                                     <p><b>User:</b> {{ $transaction->user_id }} - {{ $transaction->user->username }}</p>
                                     <p><b>Purchased By:</b> {{ $transaction->purchaser_id }} - {{ $transaction->purchaser->username }}</p>
                                     <p><b>Package:</b> {{ $transaction->create_order_request_info->goods->goodsName ?? '-' }}</p>
@@ -34,7 +34,6 @@
                                     @endif
                                     <p><b>Status:</b> {{ $transaction->status }}</p>
                                 </div>
-
                             </div>
                             <div class="col-sm-6 m-auto text-center">
                                 <img src="{{ storage('user/manual-purchase/' . $transaction->proof_document) }}" alt="" class="img-thumbnail mw-100">
@@ -43,10 +42,16 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <hr>
-                                <div class="mb-3 mt-2">
+                                <div class="mb-2 mt-2">
                                     <div class="text-info">
                                         <label for="proof_document">Proof:</label>
                                         <a href="{{ asset('storage/user/manual-purchase/' . $transaction->proof_document) }}" target="_blank">View Proof</a>
+                                    </div>
+                                </div>
+                                <div class="mb-3 mt-1">
+                                    <div class="text-info">
+                                        <label for="proof_document">Transaction ID:</label>
+                                        <a href="javascript:void(0)">{{ $transaction->transaction_id }}</a>
                                     </div>
                                 </div>
                                 <hr>
