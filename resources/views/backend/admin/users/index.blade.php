@@ -62,27 +62,29 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
-                                            <div>
-                                                <div class=" pt-2 p-2 ">
-                                                    <label for="kyc-status" class="text-gray-700 dark:text-gray-300">KYC</label>
-                                                    <div class="relative">
-                                                        <select id="kyc-status" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
-                                                            <option value="">ALL</option>
-                                                            <option value="required" {{ request()->input('status') === 'required' ? 'selected' : '' }}>REQUIRED</option>
-                                                            <option value="pending" {{ request()->input('status') === 'pending' ? 'selected' : '' }}>PENDING</option>
-                                                            <option value="accepted" {{ request()->input('status') === 'complete' ? 'selected' : '' }}>VERIFIED</option>
-                                                            <option value="rejected" {{ request()->input('status') === 'reject' ? 'selected' : '' }}>REJECT</option>
-                                                        </select>
-                                                        <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
-                                                            <svg class="pointer-events-none w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                                            </svg>
+                                        @if(!request()->routeIs('admin.users.pending.kycs'))
+                                            <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
+                                                <div>
+                                                    <div class=" pt-2 p-2 ">
+                                                        <label for="kyc-status" class="text-gray-700 dark:text-gray-300">KYC</label>
+                                                        <div class="relative">
+                                                            <select id="kyc-status" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
+                                                                <option value="">ALL</option>
+                                                                <option value="required" {{ request()->input('status') === 'required' ? 'selected' : '' }}>REQUIRED</option>
+                                                                <option value="pending" {{ request()->input('status') === 'pending' ? 'selected' : '' }}>PENDING</option>
+                                                                <option value="accepted" {{ request()->input('status') === 'complete' ? 'selected' : '' }}>VERIFIED</option>
+                                                                <option value="rejected" {{ request()->input('status') === 'reject' ? 'selected' : '' }}>REJECT</option>
+                                                            </select>
+                                                            <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
+                                                                <svg class="pointer-events-none w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                                                </svg>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        @endif
                                         <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
                                             <div>
                                                 <div class=" pt-2 p-2 ">
@@ -124,14 +126,15 @@
                     <div class="table-responsive">
                         <table id="users" class="table-responsive display table-responsive-my" style="table-layout: fixed">
                             <thead>
-                            <tr>
-                                <th style="width:50px">PIC</th>
-                                <th>USER DETAILS</th>
-                                <th>CONTACT DETAILS</th>
-                                <th>INVESTMENT</th>
-                                <th style="width:150px">JOINED DATE</th>
-                                <th>ACTION</th>
-                            </tr>
+                                <tr>
+                                    <th style="width:50px">PIC</th>
+                                    <th>USER DETAILS</th>
+                                    <th>CONTACT DETAILS</th>
+                                    <th>KYC STATUS</th>
+                                    <th>INVESTMENT</th>
+                                    <th style="width:150px">JOINED DATE</th>
+                                    <th>ACTION</th>
+                                </tr>
                             </thead>
 
                         </table>

@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Commission;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -116,6 +115,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::get('dashboard', 'Admin\DashboardController@index')->name('dashboard');
 
         Route::get('users', 'Admin\UserController@index')->name('users.index');
+        Route::get('users/pending/kycs', 'Admin\UserController@index')->name('users.pending.kycs');
 
         Route::post('users/{user}/suspend', 'Admin\UserController@suspendUser')->name('users.suspend');
         Route::post('users/{user}/activate', 'Admin\UserController@activateUser')->name('users.activate');

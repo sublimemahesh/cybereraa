@@ -24,6 +24,9 @@ class KycPolicy
 
     public function create(User $user, string $kycType): bool
     {
+        if ($user->profile->is_kyc_verified) {
+            return false;
+        }
         $kyc = Kyc::where('type', $kycType)->whereRelation('profile.user', 'id', $user->id)->exists();
         return $user->hasRole("user") && !$kyc;
     }
