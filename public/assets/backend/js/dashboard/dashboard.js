@@ -7,6 +7,9 @@
 
         var swipercard = function () {
             var swiper = new Swiper('.crypto-Swiper', {
+                autoplay: {
+                    delay: 5000,
+                },
                 speed: 1500, slidesPerView: 4, spaceBetween: 40, parallax: true, loop: false, breakpoints: {
 
                     300: {
@@ -23,8 +26,6 @@
                 },
             });
         }
-
-
 
 
         var NewCustomers = function () {

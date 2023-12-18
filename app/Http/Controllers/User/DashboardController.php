@@ -164,6 +164,16 @@ class DashboardController extends Controller
         $banners = Page::where(['slug' => 'banner'])->firstOrNew();
         $banners = $banners?->children;
 
+        $total_package_payable = \DB::selectOne("
+                SELECT SUM(package_interest - total_package_earnings) total_pending_return
+                     FROM(
+                         SELECT
+                         (`invested_amount` * investment_profit / 100) package_interest,
+                        COALESCE((select sum(`earnings`.`amount`) from
+                         `earnings` where `purchased_package`.`id` = `earnings`.`earnable_id` and
+                         `earnings`.`earnable_type` = 'App\\Models\\PurchasedPackage' and `earnings`.`deleted_at` is null), 0) as `total_package_earnings`
+                        FROM `purchased_package` WHERE `purchased_package`.`user_id` = :user_id
+                    ) package_tbl;", ['user_id' => Auth::user()->id])->total_pending_return;
 
         return view('backend.user.dashboard',
             compact(
@@ -180,6 +190,7 @@ class DashboardController extends Controller
                 'direct_indirect',
                 'trade_incomes',
                 'wallet',
+                'total_package_payable',
 
 //                'income',
                 'today_income',

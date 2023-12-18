@@ -188,7 +188,7 @@
         <!-- Column -->
         <div class="col-xl-9">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body justify-content-center d-flex flex-column">
                     <h6>Total Investment: {{ number_format($total_investment,2) }}
                         <span class="float-end">Total Profit: {{ $total_avg_investment_profit }}%</span>
                     </h6>
@@ -208,13 +208,13 @@
                             }
                         @endphp
 
-                        <h6 class="mt-4">{{ $filled_percent }}%
+                        <h6 class="mt-4">{{ round($filled_percent,2) }}%
                             <span class="float-end">{{ ($i)*100 }}%</span>
                         </h6>
 
                         <div class="progress ">
                             <div class="progress-bar bg-success progress-animated" style="width: {{ $filled_percent }}%; height:10px;" role="progressbar">
-                                <span class="sr-only">{{ $filled_percent }}% Complete</span>
+                                <span class="sr-only">{{ round($filled_percent,2) }}% Complete</span>
                             </div>
                         </div>
                     @endfor
@@ -235,7 +235,7 @@
                                 </span>
                                     <div data-devil='ml:22'>
                                         <h4 class="heading mb-0">
-                                            {{ $invest_income + $trade_income + $trade_team_income + $direct_comm_income + $indirect_comm_income }} $
+                                            {{ number_format($invest_income + $trade_income + $trade_team_income + $direct_comm_income + $indirect_comm_income,2) }} $
                                         </h4>
                                         <h4 class="  mb-2 fs-13 color-grey">Total Investment Profit</h4>
                                     </div>
@@ -250,8 +250,22 @@
                                     <img src="{{ asset('assets/backend/images/icon/dollar.png') }}" alt=""/>
                                 </span>
                                     <div data-devil='ml:22'>
-                                        <h4 class="heading mb-0">{{ $wallet->withdraw_limit }} $</h4>
-                                        <h4 class="mb-2 fs-13 color-grey">Payout Balance</h4>
+                                        <h4 class="heading mb-0">{{ number_format($total_package_payable,2)}} $</h4>
+                                        <h4 class="mb-2 fs-13 color-grey">Package Earning Total Payout</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-12" data-devil="mt:40">
+                            <div>
+                                <div class="card-body d-flex align-items-center p-none">
+                                <span class="progress-right-card-icon">
+                                    <img src="{{ asset('assets/backend/images/icon/dollar.png') }}" alt=""/>
+                                </span>
+                                    <div data-devil='ml:22'>
+                                        <h4 class="heading mb-0">{{ number_format($wallet->withdraw_limit,2)  }} $</h4>
+                                        <h4 class="mb-2 fs-13 color-grey">Package Earning & Referrals Commission Total Payout</h4>
                                     </div>
                                 </div>
                             </div>
@@ -325,7 +339,9 @@
                         <div class="col-xl-6">
                             <div class="text-center dashboard-refferal-direct">
                                 <h5>
-                                    Active Direct Sales <span>- {{ Auth::user()->active_direct_sales }}</span> <span data-devil="f:right"  data-dxs="dis:none">|<span>
+                                    Active Direct Sales
+                                    <span>- {{ Auth::user()->active_direct_sales }}</span>
+                                    <span data-devil="f:right" data-dxs="dis:none">|</span>
                                 </h5>
                             </div>
                         </div>
@@ -339,7 +355,6 @@
 
                         </div>
                     </div>
-
 
 
                 </div>
@@ -501,7 +516,7 @@
                                             </svg>
                                             My Trade Income
                                         </span>
-                                        <h5>${{ $invest_income }}</h5>
+                                        <h5>${{ number_format($invest_income,2) }}</h5>
                                     </div>
                                     <div class="color-picker">
                                         <span class="mb-0 col-9 fs-14">
@@ -511,7 +526,7 @@
                                             </svg>
                                             Direct Trade Income
                                         </span>
-                                        <h5>${{ $trade_income }}</h5>
+                                        <h5>${{ number_format($trade_income,2) }}</h5>
                                     </div>
                                     <div class="color-picker">
                                         <span class="mb-0 col-9 fs-14">
@@ -521,7 +536,7 @@
                                             </svg>
                                             Indirect Trade Income
                                         </span>
-                                        <h5>${{ $trade_team_income }}</h5>
+                                        <h5>${{ number_format($trade_team_income,2) }}</h5>
                                     </div>
                                     <div class="color-picker">
                                         <span class="mb-0 col-9 fs-14">
@@ -531,7 +546,7 @@
                                             </svg>
                                             Direct Referral Commission
                                         </span>
-                                        <h5>${{ $direct_comm_income }}</h5>
+                                        <h5>${{ number_format($direct_comm_income,2) }}</h5>
                                     </div>
                                     <div class="color-picker">
                                         <span class="mb-0 col-9 fs-14">
@@ -541,7 +556,7 @@
                                             </svg>
                                             Indirect Referral Commission
                                         </span>
-                                        <h5>${{ $indirect_comm_income }}</h5>
+                                        <h5>${{ number_format($indirect_comm_income,2) }}</h5>
                                     </div>
                                 </div>
                             </div>

@@ -9,7 +9,6 @@ use App\Models\PurchasedPackage;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Models\Wallet;
-use App\Models\WalletTopupHistory;
 use App\Models\Withdraw;
 
 class DashboardController extends Controller
@@ -47,16 +46,27 @@ class DashboardController extends Controller
 //        $total_between_wallet_transactions = number_format(WalletTransfer::sum('amount'), 2);
         $total_withdraw_limit_wallet_balance = number_format(Wallet::sum('withdraw_limit'), 2);
 
+        $total_package_payable = \DB::selectOne("
+                SELECT SUM(package_interest - total_package_earnings) total_pending_return
+                     FROM(
+                         SELECT
+                         (`invested_amount` * investment_profit / 100) package_interest,
+                        COALESCE((select sum(`earnings`.`amount`) from
+                         `earnings` where `purchased_package`.`id` = `earnings`.`earnable_id` and
+                         `earnings`.`earnable_type` = 'App\\Models\\PurchasedPackage' and `earnings`.`deleted_at` is null), 0) as `total_package_earnings`
+                        FROM `purchased_package`
+                    ) package_tbl;")->total_pending_return;
+
 //        $total_manual_transactions = number_format(Transaction::where('status', 'PAID')->where('pay_method', 'MANUAL')->sum('amount'), 2);
 //        $total_manual_transactions_gas_fees = number_format(Transaction::where('status', 'PAID')->where('pay_method', 'MANUAL')->sum('gas_fee'), 2);
-        $total_wallet_topup = number_format(WalletTopupHistory::sum('amount'), 2);
+//        $total_wallet_topup = number_format(WalletTopupHistory::sum('amount'), 2);
         $total_active_package_balance = number_format(PurchasedPackage::activePackages()->sum('invested_amount'), 2);
         $total_expired_package_balance = number_format(PurchasedPackage::expiredPackages()->sum('invested_amount'), 2);
 
         $total_pending_withdrawal_balance = number_format(Withdraw::whereIn('status', ['PENDING', 'PROCESSING'])->whereIn('type', ['BINANCE', 'MANUAL'])->sum('amount'), 2);
-        $total_p2p_transfers = number_format(Withdraw::where('status', 'SUCCESS')->where('type', 'P2P')->sum('amount'), 2);
+//        $total_p2p_transfers = number_format(Withdraw::where('status', 'SUCCESS')->where('type', 'P2P')->sum('amount'), 2);
         $total_withdraws = number_format(Withdraw::where('status', 'SUCCESS')->whereIn('type', ['BINANCE', 'MANUAL'])->sum('amount'), 2);
-        $total_p2p_transaction_fees = Withdraw::where('status', 'SUCCESS')->where('type', 'P2P')->sum('transaction_fee');
+//        $total_p2p_transaction_fees = Withdraw::where('status', 'SUCCESS')->where('type', 'P2P')->sum('transaction_fee');
         $total_withdraws_transaction_fees = Withdraw::where('status', 'SUCCESS')->whereIn('type', ['BINANCE', 'MANUAL'])->sum('transaction_fee');
 
 //        $pending_sales_count = User::whereNull('parent_id')->whereHas('activePackages')->count();
@@ -119,17 +129,18 @@ class DashboardController extends Controller
                 'total_available_wallet_topup_balance',
 //                'total_between_wallet_transactions',
                 'total_withdraw_limit_wallet_balance',
+                'total_package_payable',
 
 //                'total_manual_transactions',
 //                'total_manual_transactions_gas_fees',
-                'total_wallet_topup',
+//                'total_wallet_topup',
                 'total_active_package_balance',
                 'total_expired_package_balance',
 
                 'total_pending_withdrawal_balance',
-                'total_p2p_transfers',
+//                'total_p2p_transfers',
                 'total_withdraws',
-                'total_p2p_transaction_fees',
+//                'total_p2p_transaction_fees',
                 'total_withdraws_transaction_fees',
 
                 'active_users',
