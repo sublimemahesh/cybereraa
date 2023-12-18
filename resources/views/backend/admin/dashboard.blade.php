@@ -178,7 +178,7 @@
                                     <i class="la la-coins"></i>
                                 </span>
                                 <div class="media-body text-white">
-                                    <p class="mb-1">TOTAL DIRECT EARNINGS</p>
+                                    <p class="mb-1">TOTAL DIRECT SALES COMMISSIONS</p>
                                     <h4 class="text-white dashboard-card-font-size-change"> $ {{ $total_direct_commission_earnings }}</h4>
                                     <br>
                                     <small> Daily direct commissions </small>
@@ -195,7 +195,7 @@
                                     <i class="la la-coins"></i>
                                 </span>
                                 <div class="media-body text-white">
-                                    <p class="mb-1">TOTAL INDIRECT EARNINGS</p>
+                                    <p class="mb-1">TOTAL INDIRECT SALE COMMISSION</p>
                                     <h4 class="text-white dashboard-card-font-size-change"> $ {{ $total_indirect_commission_earnings }}</h4>
                                     <br>
                                     <small> Daily indirect commission </small>

@@ -1,6 +1,6 @@
 <x-backend.layouts.app>
-    @section('title', 'Kyc Entry')
-    @section('header-title', 'Kyc Entry' )
+    @section('title', 'KYC  Entry')
+    @section('header-title', 'KYC  Entry' )
     @section('styles')
         <link rel="stylesheet" href="{{ asset('assets/backend/css/user/kyc.css') }}">
         @vite(['resources/css/app-jetstream.css'])
