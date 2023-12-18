@@ -8,7 +8,7 @@
         <li class="breadcrumb-item">My Wallet</li>
     @endsection
 
-    <div class="alert alert-info">
+    <div class="alert alert-info alert-border-color" data-devil="c:black">
         All package earnings will be generated after 3 working days from the date of purchase.
     </div>
     <div class="row">

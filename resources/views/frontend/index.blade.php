@@ -294,7 +294,7 @@
                                     </div>
                                     <div class="rightitem CryptoDerivatives">
                                         <div class="imageIn"><img src='{{asset('assets/frontend/images/sf/liquidity.png')}}'></div>
-                                        <div class="text">LIQUIDITY SUPPLY</div>
+                                        <div class="text">DIGITAL MARKETING</div>
                                     </div>
                                 </div>
                             </div>

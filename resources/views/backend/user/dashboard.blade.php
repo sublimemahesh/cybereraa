@@ -296,7 +296,7 @@
                     <div class="row" data-devil="mt:25">
                         <div class="col-xl-4">
                             <a id="whatsapp-button" href="whatsapp://send?text={{$url_ref}}" data-action="share/whatsapp/share" target="_blank">
-                                <button type="button" class="btn btn-success btn-width">
+                                <button type="button" class="btn btn-width" data-devil="bgc:#25D366 c:#fff">
                                     <i class="bi bi-whatsapp" data-devil='fs:12'></i> Whatsapp
                                 </button>
                             </a>
@@ -304,7 +304,7 @@
 
                         <div class=" col-xl-4" data-dxs="mt:10 mb:10">
                             <a id="messenger-button" href="https://www.facebook.com/sharer/sharer.php?u={{urlencode($url_ref)}}" target="_blank">
-                                <button type="button" class="btn btn-warning btn-width">
+                                <button type="button" class="btn btn-width"  data-devil="bgc:#0084FF c:#fff">
                                     <i class="bi bi-messenger" data-devil='fs:12'></i> Messenger
                                 </button>
                             </a>
@@ -313,7 +313,7 @@
 
                         <div class=" col-xl-4">
                             <a id="telegram-button" href="#" onclick="shareOnTelegram()">
-                                <button type="button" class="btn  btn-info btn-width">
+                                <button type="button" class="btn  btn-width" data-devil="bgc:#0088cc c:#fff">
                                     <i class="bi bi-telegram" data-devil='fs:12'></i> Telegram
                                 </button>
                             </a>
@@ -581,7 +581,7 @@
 
                                     <div class="col-mb-12 ">
                                         <div class="media-body text-white dash-p">
-                                            <p class="mb-1">Package Income ${{ number_format($invest_income,2) }}</p>
+                                            <p class="mb-1">My Package Income ${{ number_format($invest_income,2) }}</p>
                                         </div>
                                     </div>
 
@@ -604,7 +604,7 @@
 
                                     <div class="col-mb-12 ">
                                         <div class="media-body text-white dash-p">
-                                            <p class="mb-1">Direct Sale Income ${{ number_format($direct_comm_income,2) }}</p>
+                                            <p class="mb-1">Direct Sales Commission ${{ number_format($direct_comm_income,2) }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -624,7 +624,7 @@
                                     <div class="col-mb-12 ">
                                         <div class="media-body text-white dash-p">
                                             <p class="mb-1">
-                                                Indirect Income ${{ number_format($indirect_comm_income,2) }}
+                                                Indirect Sales Commission ${{ number_format($indirect_comm_income,2) }}
                                             </p>
                                         </div>
                                     </div>
@@ -680,14 +680,14 @@
                                     <div class="col-mb-12 ">
                                         <div class="media justify-content-center dash-p-10">
                                             <span class="me-3">
-                                                {{-- <i class="la la-users"></i> --}}
+                                                <i class="fa-solid fa-coins"></i>
                                             </span>
                                         </div>
                                     </div>
 
                                     <div class="col-mb-12 ">
                                         <div class="media-body text-white dash-p">
-                                            <p class="mb-1">Reward Income $0</p>
+                                            <p class="mb-1">Reward Commissions <br> $0</p>
                                         </div>
                                     </div>
                                 </div>

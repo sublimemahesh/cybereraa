@@ -102,7 +102,7 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table id="team-users" class="table-responsive display mb-1" style="table-layout: fixed">
+                        <table id="team-users" class="table-responsive table-responsive-my-2 display mb-1" style="table-layout: fixed">
                             <thead>
                                 <tr>
                                     <th>USER DETAILS</th>

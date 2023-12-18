@@ -49690,7 +49690,7 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
 }
 #referral .copy-text input.text {
 	padding: 10px;
-	font-size: 18px;
+	font-size: 14px;
 	color: #060610;
 	border: none;
 	outline: none;
@@ -49827,7 +49827,7 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
 
  .goog-te-gadget span{
     display: none !important;
-} 
+}
 
 #google_translate_element{
     float: right !important;
@@ -49863,5 +49863,6 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
     top: 15px;
 }
 
-
-
+.alert-border-color{
+border-color: rgb(12, 13, 13) !important;
+}

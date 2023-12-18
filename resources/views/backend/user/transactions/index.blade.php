@@ -21,7 +21,7 @@
                 <div class="card-body">
                     <div class="w-full my-3 dark:bg-gray-800">
                         <div class="rounded-sm">
-                            
+
                             <div class="border-l border-b border-r border-gray-200 dark:border-gray-600 px-2 py-4 dark:border-0  dark:bg-secondary-dark">
                                 <div>
                                     <div class="md:flex md:flex-wrap">
@@ -35,9 +35,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
+                                        <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4"  data-devil='dis:none'>
                                             <div>
-                                                <div class=" pt-2 p-2 ">
+                                                <div class=" pt-2 p-2 " >
                                                     <label for="currency-type" class="text-gray-700 dark:text-gray-300">TRX TYPE</label>
                                                     <div class="relative">
                                                         <select id="currency-type" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
