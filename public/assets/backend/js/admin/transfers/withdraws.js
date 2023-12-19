@@ -11,7 +11,7 @@ $(function () {
         serverSide: true,
         fixedHeader: true,
         responsive: true,
-        order: [[4, 'desc']],
+        order: [[5, 'desc']],
         //stateSave: true,
         ajax: WITHDRAW_REPORT_URL,
         columns: [
@@ -19,6 +19,7 @@ $(function () {
             {data: "user", name: 'user.username', searchable: true, orderable: false},
             {data: "type_n_wallet", name: 'type', searchable: false, orderable: false},
             {data: "status", searchable: false, orderable: false},
+            {data: "wallet_address", searchable: false, orderable: false},
             {data: "date", name: 'created_at', searchable: false},
             {data: "processed_date", name: 'processed_at', searchable: false},
             {data: "approved_date", name: 'approved_at', searchable: false},
@@ -44,24 +45,32 @@ $(function () {
                     }, 0);
             }
 
-            let amount = new Intl.NumberFormat().format(sumVal(8));
-            $(api.column(10).footer()).html(`Current page total amount: USDT ${amount}`);
+            let amount = new Intl.NumberFormat().format(sumVal(9));
+            $(api.column(11).footer()).html(`Current page total amount: USDT ${amount}`);
 
-            let transaction_fee = new Intl.NumberFormat().format(sumVal(9));
-            $(api.column(10).footer()).append(`<br><br>Current Page Trx fees: USDT ${transaction_fee}`);
+            let transaction_fee = new Intl.NumberFormat().format(sumVal(10));
+            $(api.column(11).footer()).append(`<br><br>Current Page Trx fees: USDT ${transaction_fee}`);
 
-            let total = new Intl.NumberFormat().format(sumVal(10));
-            $(api.column(10).footer()).append(`<br><br>Current Page Total: USDT ${total}`);
+            let total = new Intl.NumberFormat().format(sumVal(11));
+            $(api.column(11).footer()).append(`<br><br>Current Page Total: USDT ${total}`);
         },
-        columnDefs: [{
-            render: function (date, type, full, meta) {
-                return `<div style='font-size: 0.76rem !important;'> ${date} </div>`;
-            }, targets: [2, 3, 4, 5, 6, 7],
-        }, {
-            render: function (amount, type, full, meta) {
-                return `<div style='min-width:100px' class="text-right"> ${amount} </div>`;
-            }, targets: [8, 9, 10],
-        },],
+        columnDefs: [
+            {
+                render: function (date, type, full, meta) {
+                    return `<div style="font-size: 0.76rem !important;"> ${date} </div>`;
+                }, targets: [1, 2, 3, 5, 6, 7, 8],
+            },
+            {
+                render: function (data, type, full, meta) {
+                    return `<div style="font-size: 0.76rem !important;" class="text-truncate"> ${data} </div>`;
+                }, targets: [4],
+            },
+            {
+                render: function (amount, type, full, meta) {
+                    return `<div style="min-width:100px" class="text-right"> ${amount} </div>`;
+                }, targets: [9, 10, 11],
+            },
+        ],
     });
 
     let prevDate = null;

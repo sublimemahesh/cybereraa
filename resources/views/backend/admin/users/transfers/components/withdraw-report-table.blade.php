@@ -1,6 +1,6 @@
 <div class="w-full my-3 dark:bg-gray-800">
     <div class="rounded-sm">
-       
+
         <div class="border-l border-b border-r border-gray-200 dark:border-gray-600 px-2 py-4 dark:border-0  dark:bg-secondary-dark">
             <div>
                 <div class="md:flex md:flex-wrap">
@@ -93,24 +93,25 @@
 <div class="table-responsive">
     <table id="binance-trx" class="mb-1 nowrap table-responsive-my display" style="table-layout: fixed">
         <thead>
-        <tr>
-            <th>ACTIONS</th>
-            <th>USER</th>
-            <th>TYPE</th>
-            <th>STATUS</th>
-            <th>CREATED AT</th>
-            <th>PROCESSED</th>
-            <th>APPROVED</th>
-            <th>REJECTED</th>
-            <th class="text-right">AMOUNT</th>
-            <th class="text-right">FEE</th>
-            <th class="text-right">TOTAL</th>
-        </tr>
+            <tr>
+                <th>ACTIONS</th>
+                <th>USER</th>
+                <th>TYPE</th>
+                <th>STATUS</th>
+                <th>WALLET ADDRESS</th>
+                <th class="text-center">CREATED</th>
+                <th class="text-center">PROCESSED</th>
+                <th class="text-center">APPROVED</th>
+                <th class="text-center">REJECTED</th>
+                <th class="text-right">AMOUNT</th>
+                <th class="text-right">FEE</th>
+                <th class="text-right">TOTAL</th>
+            </tr>
         </thead>
         <tfoot>
-        <tr>
-            <th colspan="11" style="text-align:right"></th>
-        </tr>
+            <tr>
+                <th colspan="12" style="text-align:right"></th>
+            </tr>
         </tfoot>
     </table>
 </div>
