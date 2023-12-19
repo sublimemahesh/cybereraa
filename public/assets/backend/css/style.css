@@ -49540,7 +49540,7 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 535px;
+    height: 560px;
     position: relative;
 }
 
@@ -49577,13 +49577,13 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
 }
 
 
-
+ 
 .reg-bg-image {
     background: url(../images/background/reg.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 890px;
+    height: 810px;
     position: relative;
 }
 
