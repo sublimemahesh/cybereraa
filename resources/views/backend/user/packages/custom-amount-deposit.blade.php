@@ -58,7 +58,7 @@
                             $package->gas_fee) /100 }}</span>
                     </button>
 <br>
-                      <button type="button" class="btn btn-primary mb-2" id="{{ $package->slug }}-choose"  data-devil="ml:20 mt:30">Deposit</button>
+                      <button type="button" class="btn  mb-2" id="{{ $package->slug }}-choose"  data-devil="ml:20 mt:30 bgc:#18998f c:#fff">Deposit</button>
 
 
                     <div class="basic-list-group" data-devil="mt:60">
