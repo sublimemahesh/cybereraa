@@ -153,7 +153,7 @@ class SaleLevelCommissionJob implements ShouldQueue
                                 'type' => $commission->type,
                                 'status' => 'RECEIVED',
                             ]));
-                            $commission->update(['last_earned_at' => \Carbon::now()]);
+                            $commission->update(['last_earned_at' => \Carbon::now()->format('Y-m-d H:i:s')]);
                             $commission->increment('paid', $commission_amount);
 
                             $total_already_earned_income = $activePackage->total_earned_profit + $commission_amount;
