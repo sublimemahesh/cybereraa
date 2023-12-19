@@ -24,7 +24,7 @@ $(function () {
             {data: "processed_date", name: 'processed_at', searchable: false},
             {data: "approved_date", name: 'approved_at', searchable: false},
             {data: "rejected_date", name: 'rejected_at', searchable: false},
-            {data: "amount", name: 'amount', searchable: false, orderable: false},
+            {data: "amount_formatted", name: 'amount', searchable: false, orderable: true},
             {data: "transaction_fee", name: 'transaction_fee', searchable: false, orderable: false},
             {data: "total", searchable: false, orderable: false}
         ],
@@ -76,8 +76,10 @@ $(function () {
     let prevDate = null;
     flatpickr("#binance-trx-date-range", {
         mode: "range",
-        dateFormat: "Y-m-d",
+        dateFormat: "Y-m-d H:i",
         defaultDate: date_range && date_range.split("to"),
+        enableTime: true,
+        time_24hr: true,
         onClose: function (selectedDates, dateStr, instance) {
             // Check if only one date is selected
             if (selectedDates.length === 1) {
@@ -91,7 +93,7 @@ $(function () {
             // Switch back to range mode
             instance.set("mode", "range");
         },
-        onChange: function (selectedDates, dateStr, instance) {
+        /*onChange: function (selectedDates, dateStr, instance) {
             if (selectedDates.length === 1) {
                 if (prevDate !== null) {
                     instance.setDate(null, false);
@@ -100,14 +102,16 @@ $(function () {
                     prevDate = selectedDates;
                 }
             }
-        }
+        }*/
     });
 
     let prevApproveDate = null;
     flatpickr("#binance-trx-date-approve", {
         mode: "range",
-        dateFormat: "Y-m-d",
+        dateFormat: "Y-m-d H:i",
         defaultDate: date_approve && date_approve.split("to"),
+        enableTime: true,
+        time_24hr: true,
         onClose: function (selectedDates, dateStr, instance) {
             // Check if only one date is selected
             if (selectedDates.length === 1) {
@@ -121,7 +125,7 @@ $(function () {
             // Switch back to range mode
             instance.set("mode", "range");
         },
-        onChange: function (selectedDates, dateStr, instance) {
+        /*onChange: function (selectedDates, dateStr, instance) {
             if (selectedDates.length === 1) {
                 if (prevApproveDate !== null) {
                     instance.setDate(null, false);
@@ -130,7 +134,7 @@ $(function () {
                     prevApproveDate = selectedDates;
                 }
             }
-        }
+        }*/
     });
 
     $(document).on("click", ".process-withdraw", function (e) {
@@ -168,6 +172,8 @@ $(function () {
         urlParams.set("date-approve", $("#binance-trx-date-approve").val());
         urlParams.set("status", $("#binance-trx-status").val());
         urlParams.set("user_id", $("#user_id").val());
+        urlParams.set("amount-start", $("#amount-start").val());
+        urlParams.set("amount-end", $("#amount-end").val());
         let url = WITHDRAW_REPORT_URL.split(/\?|\#/)[0] + "?" + urlParams.toString();
         HISTORY_STATE && history.replaceState({}, "", url);
         table.ajax.url(url).load();

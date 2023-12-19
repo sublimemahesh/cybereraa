@@ -26,7 +26,9 @@ class WithdrawService
     public function datatable(Builder $withdrawals): EloquentDataTable|QueryDataTable|DataTableAbstract
     {
         return DataTables::eloquent($withdrawals)
-            ->addColumn('amount', fn($withdraw) => number_format($withdraw->amount, 2))
+            ->addColumn('amount_formatted', function ($withdraw) {
+                return number_format($withdraw->amount, 2);
+            })
             ->addColumn('fee', fn($withdraw) => number_format($withdraw->transaction_fee, 2))
             ->addColumn('total', fn($withdraw) => number_format($withdraw->amount + $withdraw->transaction_fee, 2))
             ->addColumn('date', fn($withdraw) => $withdraw->created_at->format('Y-m-d H:i:s'))

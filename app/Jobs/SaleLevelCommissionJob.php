@@ -135,6 +135,7 @@ class SaleLevelCommissionJob implements ShouldQueue
                             $total_already_earned_income = ($activePackage->invested_amount / 100) * $already_earned_percentage;
                             $total_allowed_income = ($activePackage->invested_amount / 100) * $activePackage->total_profit_percentage;
 
+                            // TODO: BUG $total_allowed_income is not accurate, use commission amount instead and fix
                             $remaining_income = $total_allowed_income - $total_already_earned_income;
                             if ($commission_amount > $remaining_income) {
                                 $can_paid_commission_amount = $total_allowed_income - $total_already_earned_income;

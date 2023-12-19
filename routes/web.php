@@ -220,15 +220,15 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
             Route::get('users/purchased-packages', 'Admin\PurchasedPackageController@index')->name('purchased-packages');
 
             // STAKING
-            Route::get('users/staking-purchased-packages', 'Admin\Staking\PurchasedStakingPlanController@index')->name('staking-purchased-packages');
-            Route::get('users/staking/transactions', 'Admin\TransactionController@index')->name('staking.transactions.index');
-            Route::get('users/staking/earnings', 'Admin\EarningController@index')->name('staking.earnings.index');
-            Route::get('users/staking/transfers/withdrawals', 'Admin\WithdrawController@withdrawals')->name('staking.transfers.withdrawals');
-
-            Route::get('users/staking-purchased-packages/{purchase}/cancellations', 'Admin\Staking\StakingCancelRequestController@index')->name('staking-cancel-request.index');
-            Route::post('users/staking-purchased-packages/cancellations/{cancelRequest}/process', 'Admin\Staking\StakingCancelRequestController@process')->name('staking-cancel-request.process');
-            Route::match(['get', 'post'], 'users/staking-purchased-packages/cancellations/{cancelRequest}/approve', 'Admin\Staking\StakingCancelRequestController@approve')->name('staking-cancel-request.approve');
-            Route::match(['get', 'post'], 'users/staking-purchased-packages/cancellations/{cancelRequest}/reject', 'Admin\Staking\StakingCancelRequestController@reject')->name('staking-cancel-request.reject');
+//            Route::get('users/staking-purchased-packages', 'Admin\Staking\PurchasedStakingPlanController@index')->name('staking-purchased-packages');
+//            Route::get('users/staking/transactions', 'Admin\TransactionController@index')->name('staking.transactions.index');
+//            Route::get('users/staking/earnings', 'Admin\EarningController@index')->name('staking.earnings.index');
+//            Route::get('users/staking/transfers/withdrawals', 'Admin\WithdrawController@withdrawals')->name('staking.transfers.withdrawals');
+//
+//            Route::get('users/staking-purchased-packages/{purchase}/cancellations', 'Admin\Staking\StakingCancelRequestController@index')->name('staking-cancel-request.index');
+//            Route::post('users/staking-purchased-packages/cancellations/{cancelRequest}/process', 'Admin\Staking\StakingCancelRequestController@process')->name('staking-cancel-request.process');
+//            Route::match(['get', 'post'], 'users/staking-purchased-packages/cancellations/{cancelRequest}/approve', 'Admin\Staking\StakingCancelRequestController@approve')->name('staking-cancel-request.approve');
+//            Route::match(['get', 'post'], 'users/staking-purchased-packages/cancellations/{cancelRequest}/reject', 'Admin\Staking\StakingCancelRequestController@reject')->name('staking-cancel-request.reject');
             // STAKING END
 
             Route::get('users/transactions', 'Admin\TransactionController@index')->name('transactions.index');

@@ -20,7 +20,7 @@
                 <div class="card-body">
                     <div class="w-full my-3 dark:bg-gray-800">
                         <div class="rounded-sm">
-                           
+
                             <div class="border-l border-b border-r border-gray-200 dark:border-gray-600 px-2 py-4 dark:border-0  dark:bg-secondary-dark">
                                 <div>
                                     <div class="md:flex md:flex-wrap">
@@ -35,18 +35,16 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                         <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
                                             <div>
                                                 <div class=" pt-2 p-2 ">
-                                                    <label for="purchaser_id" class="text-gray-700 dark:text-gray-300">PURCHASED BY </label>
+                                                    <label for="purchaser_id" class="text-gray-700 dark:text-gray-300">PURCHASED BY</label>
                                                     <div class="relative">
                                                         <input id="purchaser_id" value="{{ request()->input('purchaser_id') }}" placeholder="Enter User ID" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500"/>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-
                                         <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
                                             <div>
                                                 <div class=" pt-2 p-2 ">
@@ -84,9 +82,25 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
+                                            <div>
+                                                <div class=" p-2 ">
+                                                    <label class="text-gray-700 dark:text-gray-300">INVESTED AMOUNT</label>
+                                                    <div class="sm:flex w-full">
+                                                        <div class="pl-0 pt-1 w-full sm:pr-3 sm:w-1/2">
+                                                            <input id="amount-start" value="{{ request()->input('amount-start') }}" type="number" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500" placeholder="Min">
+                                                        </div>
+                                                        <div class="pl-0 pt-1 w-full sm:w-1/2">
+                                                            <input id="amount-end" value="{{ request()->input('amount-end') }}" type="number" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500" placeholder="Max">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="flex flex-col mb-2">
                                             <div>
                                                 <div class=" pt-2 p-2 ">
+                                                    <label for="" class="dark:text-gray-300 opacity-0 text-gray-700">search</label>
                                                     <div class="relative">
                                                         <button id="transaction-search" class="mt-1 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
                                                             Search
@@ -103,21 +117,28 @@
                     <div class="table-responsive">
                         <table id="transactions" class="display mb-1 nowrap table-responsive" style="table-layout: fixed;width: 100%;">
                             <thead>
-                            <tr>
-                                <th>TRX ID</th>
-                                <th>USER / PACKAGE</th>
-                                <th>STATUS</th>
-                                <th>LAST EARNED</th>
-                                <th>1<sup>st</sup>COMM.</th>
-                                <th>EXPIRED</th>
-                                <th>CREATED</th>
-                                <th>INVESTED</th>
-                            </tr>
+                                <tr>
+                                    <th>TRX ID</th>
+                                    <th>USER / PACKAGE</th>
+                                    <th class="text-center">STATUS</th>
+                                    <th>LAST EARNED</th>
+                                    <th>1<sup>st</sup>COMM.</th>
+                                    <th>EXPIRED</th>
+                                    <th>CREATED</th>
+                                    <th class="text-right">INVESTMENT</th>
+                                </tr>
                             </thead>
                             <tfoot>
-                            <tr>
-                                <th colspan="8" style="text-align:right"></th>
-                            </tr>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th style="text-align:right"></th>
+                                </tr>
                             </tfoot>
                         </table>
                     </div>

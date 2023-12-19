@@ -73,6 +73,21 @@
                             </div>
                         </div>
                     </div>
+                    <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
+                        <div>
+                            <div class=" p-2 ">
+                                <label class="text-gray-700 dark:text-gray-300">AMOUNT</label>
+                                <div class="sm:flex w-full">
+                                    <div class="pl-0 pt-1 w-full sm:pr-3 sm:w-1/2">
+                                        <input id="amount-start" value="{{ request()->input('amount-start') }}" type="number" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500" placeholder="Min">
+                                    </div>
+                                    <div class="pl-0 pt-1 w-full sm:w-1/2">
+                                        <input id="amount-end" value="{{ request()->input('amount-end') }}" type="number" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500" placeholder="Max">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="flex flex-col mb-2">
                         <div>
                             <div class=" pt-2 p-2 ">
@@ -110,7 +125,18 @@
         </thead>
         <tfoot>
             <tr>
-                <th colspan="12" style="text-align:right"></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th style="text-align:right"></th>
             </tr>
         </tfoot>
     </table>

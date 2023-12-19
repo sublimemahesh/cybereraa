@@ -14,7 +14,7 @@ class TransactionService
     public function filter(int|null $user_id = null, int|null $purchase_id = null)
     {
         return Transaction::filter()
-            ->with( 'user', 'purchaser')
+            ->with('user', 'purchaser')
             ->when($user_id !== null, static function ($query) use ($user_id) {
                 $query->where('user_id', $user_id);
             })
@@ -36,12 +36,14 @@ class TransactionService
                 return "ID: " . str_pad($trx->purchaser_id, '4', '0', STR_PAD_LEFT) .
                     "<br> <code class='text-uppercase'>{$trx->purchaser->username}</code>";
             })
-            ->addColumn('package', fn($trx) => $trx->create_order_request_info->goods->goodsName ?? '-')
+            ->addColumn('package', function ($trx) {
+                return "PRODUCT: <code class='text-uppercase'>" . $trx->package_type . '</code><br>' .
+                "NAME: " . $trx->create_order_request_info->goods->goodsName ?? '-';
+            })
             ->addColumn('trx_amount', fn($trx) => number_format($trx->amount, 2))
             ->addColumn('paid_at', fn($trx) => Carbon::parse($trx->created_at)->format('Y-m-d H:i:s'))
             ->addColumn('type', static function ($trx) {
-                return "PRODUCT: <code class='text-uppercase'>" . $trx->package_type . '</code><br>' .
-                    "TYPE: <code class='text-uppercase'>" . $trx->type . '</code><br>' .
+                return "TYPE: <code class='text-uppercase'>" . $trx->type . '</code><br>' .
                     "METHOD: <code class='text-uppercase'>" . $trx->pay_method . '</code>';
             })
             //->addColumn('created_at', fn($trx) => $trx->created_at->format('Y-m-d h:i A'))

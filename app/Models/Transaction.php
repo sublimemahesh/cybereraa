@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Mail\TransactionMail;
 use Carbon\Carbon;
+use Exception;
 use Haruncpi\LaravelUserActivity\Traits\Loggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -149,11 +150,11 @@ class Transaction extends Model
             ->when(!empty(request()->input('date-range')), function ($query) {
                 $period = explode(' to ', request()->input('date-range'));
                 try {
-                    $date1 = Carbon::createFromFormat('Y-m-d', $period[0]);
-                    $date2 = Carbon::createFromFormat('Y-m-d', $period[1]);
-                    $query->when($date1 && $date2, fn($q) => $q->whereDate('created_at', '>=', $date1)->whereDate('created_at', '<=', $date2));
-                } catch (\Exception $e) {
-                    $query->when(!empty($period), fn($q) => $q->whereDate('created_at', $period));
+                    $date1 = Carbon::parse($period[0])->format('Y-m-d H:i:s');
+                    $date2 = Carbon::parse($period[1])->format('Y-m-d H:i:s');
+                    $query->when($date1 && $date2, fn($q) => $q->where('created_at', '>=', $date1)->where('created_at', '<=', $date2));
+                } catch (Exception $e) {
+                    $query->whereDate('created_at', $period[0]);
                 } finally {
                     return;
                 }
@@ -176,6 +177,19 @@ class Transaction extends Model
             ->when(!empty(request()->input('status')) && in_array(request()->input('status'),
                     ['initial', 'pending', 'paid', 'canceled', 'expired', 'rejected']), function ($query) {
                 $query->where('status', request()->input('status'));
+            })
+            ->when(request()->filled('amount-start') && !request()->filled('amount-end'), function ($query) {
+                $amountStart = (float)request('amount-start');
+                return $query->where('amount', '>=', $amountStart);
+            })
+            ->when(request()->filled('amount-end') && !request()->filled('amount-start'), function ($query) {
+                $amountEnd = (float)request('amount-end');
+                return $query->where('amount', '<=', $amountEnd);
+            })
+            ->when(request()->filled('amount-start') && request()->filled('amount-end'), function ($query) {
+                $amountStart = (float)request('amount-start');
+                $amountEnd = (float)request('amount-end');
+                return $query->whereBetween('amount', [$amountStart, $amountEnd]);
             });
     }
 }

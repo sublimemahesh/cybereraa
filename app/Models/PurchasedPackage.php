@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\NextPaymentDate;
 use Carbon\Carbon;
+use Exception;
 use Haruncpi\LaravelUserActivity\Traits\Loggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -169,13 +170,13 @@ class PurchasedPackage extends Pivot
     public function scopeActivePackages(Builder $query): Builder
     {
         return $query->where('status', 'ACTIVE');
-            //->where('expired_at', '>=', Carbon::now()->format('Y-m-d H:i:s'));
+        //->where('expired_at', '>=', Carbon::now()->format('Y-m-d H:i:s'));
     }
 
     public function scopeExpiredPackages(Builder $query): Builder
     {
         return $query->where('status', 'EXPIRED');
-            //->where('expired_at', '<', Carbon::now()->format('Y-m-d H:i:s'));
+        //->where('expired_at', '<', Carbon::now()->format('Y-m-d H:i:s'));
     }
 
     public function scopeTotalInvestment(Builder $query, User|null $user): Builder
@@ -221,9 +222,11 @@ class PurchasedPackage extends Pivot
             ->when(!empty(request()->input('date-range')), function ($query) {
                 $period = explode(' to ', request()->input('date-range'));
                 try {
-                    $date1 = Carbon::createFromFormat('Y-m-d', $period[0]);
-                    $date2 = Carbon::createFromFormat('Y-m-d', $period[1]);
-                    $query->when($date1 && $date2, fn($q) => $q->whereDate('created_at', '>=', $period[0])->whereDate('created_at', '<=', $period[1]));
+                    $date1 = Carbon::parse($period[0])->format('Y-m-d H:i:s');
+                    $date2 = Carbon::parse($period[1])->format('Y-m-d H:i:s');
+                    $query->when($date1 && $date2, fn($q) => $q->where('created_at', '>=', $date1)->where('created_at', '<=', $date2));
+                } catch (Exception $e) {
+                    $query->whereDate('created_at', $period[0]);
                 } finally {
                     return;
                 }
@@ -237,6 +240,19 @@ class PurchasedPackage extends Pivot
             ->when(!empty(request()->input('status')) && in_array(request()->input('status'),
                     ['pending', 'active', 'expired', 'hold', 'ban']), function ($query) {
                 $query->where('status', request()->input('status'));
+            })
+            ->when(request()->filled('amount-start') && !request()->filled('amount-end'), function ($query) {
+                $amountStart = (float)request('amount-start');
+                return $query->where('invested_amount', '>=', $amountStart);
+            })
+            ->when(request()->filled('amount-end') && !request()->filled('amount-start'), function ($query) {
+                $amountEnd = (float)request('amount-end');
+                return $query->where('invested_amount', '<=', $amountEnd);
+            })
+            ->when(request()->filled('amount-start') && request()->filled('amount-end'), function ($query) {
+                $amountStart = (float)request('amount-start');
+                $amountEnd = (float)request('amount-end');
+                return $query->whereBetween('invested_amount', [$amountStart, $amountEnd]);
             });
     }
 }
