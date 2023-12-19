@@ -82,12 +82,20 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="col-lg-12  mt-4">
+                            {{-- <div class="col-lg-12  mt-4">
                                 <a class="underline text-sm text-gray-600 hover:text-gray-900"
                                     href="{{ route('register') }}">
                                     {{ __('Create Your Account ?') }}
                                 </a>
+                            </div> --}}
+
+                            <div class="col-lg-12  mt-4">
+                                <a class="underline text-sm text-gray-600 hover:text-gray-900"
+                                    href="{{ route('register') }}"> <button type="button" class="btn  btn-block"  data-devil="bgc:#19a298 c:#fff">{{ __('Create Your Account ?') }}</button></a>
                             </div>
+
+
+
                         </form>
 
                         <div class="new-account mt-3">
