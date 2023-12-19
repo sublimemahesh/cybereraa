@@ -11890,7 +11890,7 @@ h1, .h1, .h1, h2, .h2, .h2, h3, .h3, .h3, h4, .h4, .h4, h5, .h5, .h5, h6, .h6, .
 }
 
 .content-body .container-fluid, .content-body .container-sm, .content-body .container-md, .content-body .container-lg, .content-body .container-xl, .content-body .container-xxl {
-    padding-top: 5.875rem;
+    padding-top: 3.875rem;
     padding-right: 1.875rem;
     padding-left: 1.875rem;
 }
@@ -49577,7 +49577,7 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
 }
 
 
- 
+
 .reg-bg-image {
     background: url(../images/background/reg.jpg);
     background-size: cover;
