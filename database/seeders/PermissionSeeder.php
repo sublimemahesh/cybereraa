@@ -21,6 +21,8 @@ class PermissionSeeder extends Seeder
             ['name' => 'admin_wallet_withdrawal.viewAny', 'guard_name' => 'web'],
             ['name' => 'admin_wallet_withdrawal.create', 'guard_name' => 'web'],
 
+            ['name' => 'company_users.viewAny', 'guard_name' => 'web'],
+
             ['name' => 'blogs.viewAny', 'guard_name' => 'web'],
             ['name' => 'blogs.create', 'guard_name' => 'web'],
             ['name' => 'blogs.update', 'guard_name' => 'web'],

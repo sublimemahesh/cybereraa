@@ -46,6 +46,15 @@
     </li>
 @endcan
 
+@can('company_users.viewAny')
+    <li>
+        <a href="{{ route('admin.reports.company-users') }}" class="" aria-expanded="false">
+            <i class="bi bi-person-lines-fill"></i>
+            <span class="nav-text">Company Users</span>
+        </a>
+    </li>
+@endcan
+
 @can('trader.viewAny')
     <li>
         <a href="{{ route('admin.traders.index') }}" class="" aria-expanded="false">
