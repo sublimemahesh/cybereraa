@@ -1,47 +1,27 @@
 <x-backend.layouts.app>
-    @section('title', 'My KYC | Users')
-    @section('header-title', 'My KYC | Users' )
+    @section('title', 'Referral Level | Reports')
+    @section('header-title', $user->username . ' Referral Level' )
     @section('plugin-styles')
         <!-- Datatable -->
-        <link href="{{asset('assets/backend/vendor/datatables/css/jquery.dataTables.min.css')}}" rel="stylesheet">
+        <link href="{{ asset('assets/backend/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/backend/vendor/datatables/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/backend/vendor/datatables/css/buttons.bootstrap5.min.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/backend/vendor/datatables/css/datatable-extension.css') }}" rel="stylesheet">
         @vite(['resources/css/app-jetstream.css'])
-        <style>
-            #users th:nth-child(1),
-            #users td:nth-child(1) {
-                max-width: 50px;
-                width: 50px;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-            }
-
-            #users th:nth-child(4),
-            #users td:nth-child(4) {
-                max-width: 150px;
-                width: 150px;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-            }
-        </style>
     @endsection
 
     @section('breadcrumb-items')
-        <li class="breadcrumb-item">Users</li>
+        <li class="breadcrumb-item">Referral Level</li>
     @endsection
 
-    <div class="row">
+    <div class="row dark"> {{--! Tailwind css used. if using tailwind plz run npm run dev and add tailwind classes--}}
+        {{--        @include('backend.user.teams.top-nav')--}}
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Users</h4>
-                </div>
                 <div class="card-body">
                     <div class="w-full my-3 dark:bg-gray-800">
                         <div class="rounded-sm">
+
                             <div class="border-l border-b border-r border-gray-200 dark:border-gray-600 px-2 py-4 dark:border-0  dark:bg-secondary-dark">
                                 <div>
                                     <div class="md:flex md:flex-wrap">
@@ -62,29 +42,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        @if(!request()->routeIs('admin.users.pending.kycs'))
-                                            <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
-                                                <div>
-                                                    <div class=" pt-2 p-2 ">
-                                                        <label for="kyc-status" class="text-gray-700 dark:text-gray-300">KYC</label>
-                                                        <div class="relative">
-                                                            <select id="kyc-status" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
-                                                                <option value="">ALL</option>
-                                                                <option value="required" {{ request()->input('status') === 'required' ? 'selected' : '' }}>REQUIRED</option>
-                                                                <option value="pending" {{ request()->input('status') === 'pending' ? 'selected' : '' }}>PENDING</option>
-                                                                <option value="accepted" {{ request()->input('status') === 'complete' ? 'selected' : '' }}>VERIFIED</option>
-                                                                <option value="rejected" {{ request()->input('status') === 'reject' ? 'selected' : '' }}>REJECT</option>
-                                                            </select>
-                                                            <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
-                                                                <svg class="pointer-events-none w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                                                </svg>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endif
                                         <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
                                             <div>
                                                 <div class=" pt-2 p-2 ">
@@ -94,6 +51,27 @@
                                                             <option value="">ALL</option>
                                                             <option value="active" {{ request()->input('status') === 'active' ? 'selected' : '' }}>ACTIVE USERS</option>
                                                             <option value="suspend" {{ request()->input('status') === 'suspend' ? 'selected' : '' }}>SUSPENDED USERS</option>
+                                                        </select>
+                                                        <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
+                                                            <svg class="pointer-events-none w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
+                                            <div>
+                                                <div class=" pt-2 p-2 ">
+                                                    <label for="depth" class="text-gray-700 dark:text-gray-300">LEVEL</label>
+                                                    <div class="relative">
+                                                        <select id="depth" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
+                                                            <option value="all" {{ $depth === 'all' ? 'selected' : '' }}>ALL</option>
+                                                            <option value="1" {{ $depth === '1' ? 'selected' : '' }}>DIRECT</option>
+                                                            <option value="2" {{ $depth === '2' ? 'selected' : '' }}>LEVEL 1</option>
+                                                            <option value="3" {{ $depth === '3' ? 'selected' : '' }}>LEVEL 2</option>
+                                                            <option value="4" {{ $depth === '4' ? 'selected' : '' }}>LEVEL 3</option>
                                                         </select>
                                                         <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
                                                             <svg class="pointer-events-none w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -124,19 +102,17 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table id="users" class="table-responsive display table-responsive-my" style="table-layout: fixed">
+                        <table id="team-users" class="table-responsive table-responsive-my-2 display mb-1" style="table-layout: fixed">
                             <thead>
                                 <tr>
-                                    <th style="width:50px">PIC</th>
                                     <th>USER DETAILS</th>
                                     <th>CONTACT DETAILS</th>
-                                    <th>KYC STATUS</th>
+                                    {{--<th>SPONSOR/PARENT</th>--}}
+                                    <th>ACCOUNT STATUS</th>
+                                    <th>PROFIT</th>
                                     <th>INVESTMENT</th>
-                                    <th style="width:150px">JOINED DATE</th>
-                                    <th>ACTION</th>
                                 </tr>
                             </thead>
-
                         </table>
                     </div>
                 </div>
@@ -145,6 +121,9 @@
     </div>
 
     @push('scripts')
+        <script !src="">
+            const TEAM_URL = "{{ route('admin.team.users-levels', ['user' => $user]) }}"
+        </script>
         <!-- Datatable -->
         <script src="{{ asset('assets/backend/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/dataTables.buttons.min.js') }}"></script>
@@ -155,11 +134,6 @@
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.html5.min.js') }}"></script>
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.print.min.js') }}"></script>
         <script src="{{ asset('assets/backend/js/global-datatable-extension.js') }}"></script>
-        <script src="{{ asset('assets/backend/js/admin/users/kyc/main.js') }}"></script>
-        <script src="{{ asset('assets/backend/js/admin/users/suspend-users.js') }}"></script>
-        {{--<script src="{{ asset('assets/backend/js/admin/users/suspend.js') }}"></script>--}}
-        <script !src="">
-
-        </script>
+        <script src="{{ asset('assets/backend/js/user/team/users-list.js') }}"></script>
     @endpush
 </x-backend.layouts.app>

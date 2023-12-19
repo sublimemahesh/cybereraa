@@ -80,7 +80,7 @@
                                         {{--<code id="show-receiving-amount" x-html=" 'USDT ' + (parseFloat(payout_amount) + {{ (float) $payout_transfer_fee->value }})"></code>--}}
                                     </div>
                                 </div>
-                                <div class="mb-3 mt-2">
+                                <div class="mb-3 mt-2 d-none">
                                     <label for="remark">Remark</label>
                                     <textarea id="remark" name="remark" rows="3" placeholder="Remark" class="form-control h-auto"></textarea>
                                 </div>

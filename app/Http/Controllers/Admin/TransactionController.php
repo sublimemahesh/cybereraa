@@ -52,7 +52,7 @@ class TransactionController extends Controller
                     }
                     return $actions;
                 })
-                ->rawColumns(['actions', 'user', 'purchaser', 'type'])
+                ->rawColumns(['actions', 'user', 'purchaser', 'type', 'package'])
                 ->make(true);
         }
         return view('backend.admin.users.transactions.index');

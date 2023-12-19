@@ -67,7 +67,11 @@
                                     </select>
                                 </div>
                                 <div class="mb-3 mt-2">
-                                    <label for="proof_document">Payment Slip</label>
+                                    <label for="transaction_id">Transaction ID <sup class="text-danger">*</sup></label>
+                                    <input class="form-control" data-input='payout' type="text" name='transaction_id' id='transaction_id' placeholder="Enter the transaction id mentioned in payment slip">
+                                </div>
+                                <div class="mb-3 mt-2">
+                                    <label for="proof_document">Payment Slip <sup class="text-danger">*</sup></label>
                                     <input class="form-control" data-input='payout' type="file" name='proof_document' id='proof_document'>
                                 </div>
                             </div>

@@ -35,10 +35,17 @@ $(function () {
         }
         let footer = purchase_for_user_info.length > 0 && 'Package Purchase for: ' + purchase_for_user_info;
 
+        let transaction_id = $('#transaction_id').val();
         let proof_document = $('#proof_document').val();
         let purchase_for = $('#purchase_for').val()
         let package_slug = $('#package_slug').val()
-        if (proof_document === null || proof_document.length <= 0) {
+        if (transaction_id === null || transaction_id.length <= 0) {
+            Toast.fire({
+                icon: 'error',
+                title: "Please Enter Transaction ID!",
+            })
+            return false
+        } else if (proof_document === null || proof_document.length <= 0) {
             Toast.fire({
                 icon: 'error',
                 title: "Please provide the payment slip / Screenshot!",

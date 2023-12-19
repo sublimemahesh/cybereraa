@@ -61,7 +61,7 @@ class KycController extends Controller
             $document->repudiate_note = $validated['repudiate_note'];
             \Mail::to($document->kyc->profile->user->email)->send(new KYCRejectMail($user, $document));
         }
-        
+
         $document->save();
 
         $approved_doc_count = KycDocument::where('kyc_id', $document->kyc_id)->where('status', 'accepted')->count();
@@ -74,7 +74,8 @@ class KycController extends Controller
             $document->kyc->profile()->update([$profile_verified_columns[$document->kyc->type] => now()]);
         } else {
             $rejected_doc_count = KycDocument::where('kyc_id', $document->kyc_id)->where('status', 'rejected')->count();
-            if ($document->kyc->required_documents === $rejected_doc_count) {
+            //if ($document->kyc->required_documents === $rejected_doc_count) {
+            if ($rejected_doc_count >= 1) {
                 $document->kyc()->update(['status' => 'rejected']);
             }
         }

@@ -21,7 +21,7 @@ $(function () {
             {data: "package", searchable: false, orderable: false},
             {data: "status", searchable: false, orderable: false},
             {data: "date", name: 'created_at', searchable: false},
-            {data: "amount", name: 'amount', orderable: false},
+            {data: "amount_formatted", name: 'amount', orderable: true},
         ],
         footerCallback: function (row, data, start, end, display) {
             let api = this.api();
@@ -67,6 +67,8 @@ $(function () {
         urlParams.set("status", $("#earnings-status").val());
         urlParams.set("user_id", $("#user_id").val());
         urlParams.set("earning-type", $("#earning-type").val());
+        urlParams.set("amount-start", $("#amount-start").val());
+        urlParams.set("amount-end", $("#amount-end").val());
         let url = EARNING_URL.split(/\?|\#/)[0] + "?" + urlParams.toString();
         HISTORY_STATE && history.replaceState({}, "", url);
         table.ajax.url(url).load();

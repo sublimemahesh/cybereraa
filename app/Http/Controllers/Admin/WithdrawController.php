@@ -81,6 +81,11 @@ class WithdrawController extends Controller
                     return "Type: <code class='text-uppercase'>{$withdraw->type}</code> <br>
                             Wallet: <code class='text-uppercase'>{$withdraw->wallet_type}</code>";
                 })
+                ->addColumn('wallet_address', function ($withdraw) {
+                    $skeleton = '{"email":"","id":"","address":"","phone":""}';
+                    $payout_info = json_decode($withdraw?->payout_details ?? $skeleton, false, 512, JSON_THROW_ON_ERROR);
+                    return $payout_info->address;
+                })
                 ->addColumn('actions', static function ($withdraw) {
                     // withdraw.approve | withdraw.reject
                     $actions = '';

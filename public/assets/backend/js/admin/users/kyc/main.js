@@ -10,13 +10,14 @@ $(function () {
         serverSide: true,
         fixedHeader: true,
         responsive: true,
-        order: [[4, 'desc']],
+        order: [[5, 'desc']],
         //stateSave: true,
         ajax: location.href,
         columns: [
             {data: "profile_photo", name: 'id', searchable: true, orderable: false},
             {data: "user_details", name: 'username', searchable: true, orderable: false},
             {data: "contact_details", name: 'email', searchable: true, orderable: false},
+            {data: "kyc_status", searchable: false, orderable: false},
             {data: "investment", searchable: false, orderable: false},
             {data: "joined", name: 'created_at', searchable: false},
             {data: "actions", searchable: false, orderable: false},
@@ -34,13 +35,7 @@ $(function () {
                     return `<div style="font-size: 0.76rem !important"> ${data} </div>`;
                 },
                 // width: "150px",
-                targets: [1, 3, 4],
-            },
-            {
-                render: function (data, type, full, meta) {
-                    return `<div style="font-size: 0.76rem !important;"> ${data} </div>`;
-                },
-                targets: 2,
+                targets: [1, 2, 3, 4, 5],
             },
         ],
     });

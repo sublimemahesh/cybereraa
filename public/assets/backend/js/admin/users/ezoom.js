@@ -1,4 +1,3 @@
-
 var ezoom = {};
 
 ezoom = {
@@ -299,7 +298,7 @@ ezoom = {
                 // console.log(e.keyCode);
                 if (e.keyCode == 82 && e.ctrlKey) {
                     ezoom.doRotate("right");
-                 }
+                }
 
                 if (!ezoom.options.hideControlBtn) {
                     // Arrow direction key and the A D W S key
@@ -347,10 +346,12 @@ ezoom = {
     },
     // Prevent the default scroll event of the up and down keys
     _preventDefault: function (e) {
-        if (e && e.preventDefault) {
-            e.preventDefault();
-        } else {
-            window.event.returnValue = false;
+        if (ezoom.isShow) {
+            if (e && e.preventDefault) {
+                e.preventDefault();
+            } else {
+                window.event.returnValue = false;
+            }
         }
         return false;
     },

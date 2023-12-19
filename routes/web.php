@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Commission;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -116,6 +115,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::get('dashboard', 'Admin\DashboardController@index')->name('dashboard');
 
         Route::get('users', 'Admin\UserController@index')->name('users.index');
+        Route::get('users/pending/kycs', 'Admin\UserController@index')->name('users.pending.kycs');
 
         Route::post('users/{user}/suspend', 'Admin\UserController@suspendUser')->name('users.suspend');
         Route::post('users/{user}/activate', 'Admin\UserController@activateUser')->name('users.activate');
@@ -129,6 +129,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::get('/users/{user:username}/profile', 'Admin\UserController@profileShow')->name('users.profile.show');
 
         Route::get('team/users-list/{user:username?}', 'Admin\GenealogyController@teamList')->name('team.users-list');
+        Route::get('team/users-list/{user:username?}/users-level/{depth?}', 'Admin\GenealogyController@userLevels')->name('team.users-levels');
 //        Route::match(['get', 'post'], 'genealogy/{user:username?}', 'Admin\GenealogyController@index')->name('genealogy')->middleware('signed');
 
         // SPECIAL BONUS
@@ -219,15 +220,15 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
             Route::get('users/purchased-packages', 'Admin\PurchasedPackageController@index')->name('purchased-packages');
 
             // STAKING
-            Route::get('users/staking-purchased-packages', 'Admin\Staking\PurchasedStakingPlanController@index')->name('staking-purchased-packages');
-            Route::get('users/staking/transactions', 'Admin\TransactionController@index')->name('staking.transactions.index');
-            Route::get('users/staking/earnings', 'Admin\EarningController@index')->name('staking.earnings.index');
-            Route::get('users/staking/transfers/withdrawals', 'Admin\WithdrawController@withdrawals')->name('staking.transfers.withdrawals');
-
-            Route::get('users/staking-purchased-packages/{purchase}/cancellations', 'Admin\Staking\StakingCancelRequestController@index')->name('staking-cancel-request.index');
-            Route::post('users/staking-purchased-packages/cancellations/{cancelRequest}/process', 'Admin\Staking\StakingCancelRequestController@process')->name('staking-cancel-request.process');
-            Route::match(['get', 'post'], 'users/staking-purchased-packages/cancellations/{cancelRequest}/approve', 'Admin\Staking\StakingCancelRequestController@approve')->name('staking-cancel-request.approve');
-            Route::match(['get', 'post'], 'users/staking-purchased-packages/cancellations/{cancelRequest}/reject', 'Admin\Staking\StakingCancelRequestController@reject')->name('staking-cancel-request.reject');
+//            Route::get('users/staking-purchased-packages', 'Admin\Staking\PurchasedStakingPlanController@index')->name('staking-purchased-packages');
+//            Route::get('users/staking/transactions', 'Admin\TransactionController@index')->name('staking.transactions.index');
+//            Route::get('users/staking/earnings', 'Admin\EarningController@index')->name('staking.earnings.index');
+//            Route::get('users/staking/transfers/withdrawals', 'Admin\WithdrawController@withdrawals')->name('staking.transfers.withdrawals');
+//
+//            Route::get('users/staking-purchased-packages/{purchase}/cancellations', 'Admin\Staking\StakingCancelRequestController@index')->name('staking-cancel-request.index');
+//            Route::post('users/staking-purchased-packages/cancellations/{cancelRequest}/process', 'Admin\Staking\StakingCancelRequestController@process')->name('staking-cancel-request.process');
+//            Route::match(['get', 'post'], 'users/staking-purchased-packages/cancellations/{cancelRequest}/approve', 'Admin\Staking\StakingCancelRequestController@approve')->name('staking-cancel-request.approve');
+//            Route::match(['get', 'post'], 'users/staking-purchased-packages/cancellations/{cancelRequest}/reject', 'Admin\Staking\StakingCancelRequestController@reject')->name('staking-cancel-request.reject');
             // STAKING END
 
             Route::get('users/transactions', 'Admin\TransactionController@index')->name('transactions.index');

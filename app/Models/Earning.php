@@ -57,14 +57,27 @@ class Earning extends Model
                     return;
                 }
             })
-            ->when(!empty(request()->input('earning-type')) && in_array(request()->input('earning-type'), ['package', 'trade_direct', 'trade_indirect', 'direct', 'indirect', 'rank_bonus', 'rank_gift', 'p2p', 'staking','special_bonus']),
+            ->when(!empty(request()->input('earning-type')) && in_array(request()->input('earning-type'), ['package', 'trade_direct', 'trade_indirect', 'direct', 'indirect', 'rank_bonus', 'rank_gift', 'p2p', 'staking', 'special_bonus']),
                 static function ($query) {
                     $query->where('type', request()->input('earning-type'));
                 })
             ->when(!empty(request()->input('status')) && in_array(request()->input('status'), ['received', 'hold', 'canceled']),
                 static function ($query) {
                     $query->where('status', request()->input('status'));
-                });
+                })
+            ->when(request()->filled('amount-start') && !request()->filled('amount-end'), function ($query) {
+                $amountStart = (float)request('amount-start');
+                return $query->where('amount', '>=', $amountStart);
+            })
+            ->when(request()->filled('amount-end') && !request()->filled('amount-start'), function ($query) {
+                $amountEnd = (float)request('amount-end');
+                return $query->where('amount', '<=', $amountEnd);
+            })
+            ->when(request()->filled('amount-start') && request()->filled('amount-end'), function ($query) {
+                $amountStart = (float)request('amount-start');
+                $amountEnd = (float)request('amount-end');
+                return $query->whereBetween('amount', [$amountStart, $amountEnd]);
+            });
     }
 
     public function scopeAuthUserCurrentMonth(Builder $query): Builder

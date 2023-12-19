@@ -1,6 +1,6 @@
 <div class="w-full my-3 dark:bg-gray-800">
     <div class="rounded-sm">
-       
+
         <div class="border-l border-b border-r border-gray-200 dark:border-gray-600 px-2 py-4 dark:border-0  dark:bg-secondary-dark">
             <div>
                 <div class="md:flex md:flex-wrap">
@@ -73,6 +73,21 @@
                             </div>
                         </div>
                     </div>
+                    <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
+                        <div>
+                            <div class=" p-2 ">
+                                <label class="text-gray-700 dark:text-gray-300">AMOUNT</label>
+                                <div class="sm:flex w-full">
+                                    <div class="pl-0 pt-1 w-full sm:pr-3 sm:w-1/2">
+                                        <input id="amount-start" value="{{ request()->input('amount-start') }}" type="number" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500" placeholder="Min">
+                                    </div>
+                                    <div class="pl-0 pt-1 w-full sm:w-1/2">
+                                        <input id="amount-end" value="{{ request()->input('amount-end') }}" type="number" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500" placeholder="Max">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="flex flex-col mb-2">
                         <div>
                             <div class=" pt-2 p-2 ">
@@ -93,24 +108,36 @@
 <div class="table-responsive">
     <table id="binance-trx" class="mb-1 nowrap table-responsive-my display" style="table-layout: fixed">
         <thead>
-        <tr>
-            <th>ACTIONS</th>
-            <th>USER</th>
-            <th>TYPE</th>
-            <th>STATUS</th>
-            <th>CREATED AT</th>
-            <th>PROCESSED</th>
-            <th>APPROVED</th>
-            <th>REJECTED</th>
-            <th class="text-right">AMOUNT</th>
-            <th class="text-right">FEE</th>
-            <th class="text-right">TOTAL</th>
-        </tr>
+            <tr>
+                <th>ACTIONS</th>
+                <th>USER</th>
+                <th>TYPE</th>
+                <th>STATUS</th>
+                <th>WALLET ADDRESS</th>
+                <th class="text-center">CREATED</th>
+                <th class="text-center">PROCESSED</th>
+                <th class="text-center">APPROVED</th>
+                <th class="text-center">REJECTED</th>
+                <th class="text-right">AMOUNT</th>
+                <th class="text-right">FEE</th>
+                <th class="text-right">TOTAL</th>
+            </tr>
         </thead>
         <tfoot>
-        <tr>
-            <th colspan="11" style="text-align:right"></th>
-        </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th style="text-align:right"></th>
+            </tr>
         </tfoot>
     </table>
 </div>

@@ -49,12 +49,14 @@ class EarningController extends Controller
                 ->addColumn('user_id', fn($earn) => str_pad($earn->user_id, '4', '0', STR_PAD_LEFT))
                 ->addColumn('package', fn($earn) => $earn->earnable->package_info_json->name)
                 ->addColumn('username', fn($earn) => $earn->user->username)
-                ->addColumn('amount', fn($earn) => number_format($earn->amount, 2))
+                ->addColumn('amount_formatted', function ($earn) {
+                    return number_format($earn->amount, 2);
+                })
                 ->addColumn('date', fn($earn) => $earn->created_at->format('Y-m-d H:i:s'))
                 ->rawColumns(['user', 'earnable_type'])
                 ->make();
         }
-        return view('backend.admin.users.earnings.index'); 
+        return view('backend.admin.users.earnings.index');
     }
 
     /**

@@ -27,7 +27,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
+                    <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4 d-none">
                         <div>
                             <div class=" pt-2 p-2 ">
                                 <label for="currency-type" class="text-gray-700 dark:text-gray-300">CURRENCY</label>
@@ -108,7 +108,7 @@
                         </div>
                     </div>
                     @if(!request()->routeIs('admin.staking.transactions.index'))
-                        <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
+                        <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4 d-none">
                             <div>
                                 <div class=" pt-2 p-2 ">
                                     <label for="product-type" class="text-gray-700 dark:text-gray-300">PRODUCT TYPE</label>
@@ -130,6 +130,22 @@
                     @else
                         <input type="hidden" name="product-type" id="product-type" value="staking">
                     @endif
+
+                    <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
+                        <div>
+                            <div class=" p-2 ">
+                                <label class="text-gray-700 dark:text-gray-300">AMOUNT</label>
+                                <div class="sm:flex w-full">
+                                    <div class="pl-0 pt-1 w-full sm:pr-3 sm:w-1/2">
+                                        <input id="amount-start" value="{{ request()->input('amount-start') }}" type="number" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500" placeholder="Min">
+                                    </div>
+                                    <div class="pl-0 pt-1 w-full sm:w-1/2">
+                                        <input id="amount-end" value="{{ request()->input('amount-end') }}" type="number" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500" placeholder="Max">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="flex flex-col mb-2">
                         <div>
                             <div class=" pt-2 p-2 ">
@@ -150,23 +166,23 @@
 <div class="table-responsive">
     <table id="transactions" class="display mb-1 table-responsive-my" style="table-layout: fixed">
         <thead>
-        <tr>
-            <th>ACTIONS</th>
-            <th>TRX ID</th>
-            <th>USER</th>
-            <th>PURCHASE</th>
-            <th>PACKAGE</th>
-            <th class="text-center">TYPE</th>
-            <th>STATUS</th>
-            <th class="text-center">CREATED</th>
-            <th class="text-right">GAS FEE</th>
-            <th class="text-right">AMOUNT</th>
-        </tr>
+            <tr>
+                <th>ACTIONS</th>
+                <th>TRX ID</th>
+                <th>USER</th>
+                <th>PURCHASE</th>
+                <th>PACKAGE</th>
+                <th class="text-center">TYPE</th>
+                <th>STATUS</th>
+                <th>CREATED</th>
+                <th class="text-right">GAS FEE</th>
+                <th class="text-right">AMOUNT</th>
+            </tr>
         </thead>
         <tfoot>
-        <tr>
-            <th colspan="10" style="text-align:right"></th>
-        </tr>
+            <tr>
+                <th colspan="10" style="text-align:right"></th>
+            </tr>
         </tfoot>
     </table>
 </div>

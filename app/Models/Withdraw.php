@@ -92,23 +92,23 @@ class Withdraw extends Model
             static function (Builder $query) {
                 $period = explode(' to ', request()->input('date-range'));
                 try {
-                    $date1 = Carbon::createFromFormat('Y-m-d', $period[0]);
-                    $date2 = Carbon::createFromFormat('Y-m-d', $period[1]);
-                    $query->when($date1 && $date2, fn($q) => $q->whereDate('created_at', '>=', $period[0])->whereDate('created_at', '<=', $period[1]));
+                    $date1 = Carbon::parse($period[0])->format('Y-m-d H:i:s');
+                    $date2 = Carbon::parse($period[1])->format('Y-m-d H:i:s');
+                    $query->when($date1 && $date2, fn($q) => $q->where('created_at', '>=', $date1)->where('created_at', '<=', $date2));
                 } catch (Exception $e) {
-                    $query->whereDate('created_at', $period[0]);
+                    $query->where('created_at', '>=', $period[0]);
                 } finally {
                     return;
                 }
             })
             ->when(!empty(request()->input('date-approve')), static function (Builder $query) {
-                $period = explode(' to ', request()->input('date-approve'));
+                $period = explode(' to ', request()->input('date-range'));
                 try {
-                    $date1 = Carbon::createFromFormat('Y-m-d', $period[0]);
-                    $date2 = Carbon::createFromFormat('Y-m-d', $period[1]);
-                    $query->when($date1 && $date2, fn($q) => $q->whereDate('approved_at', '>=', $period[0])->whereDate('approved_at', '<=', $period[1]));
+                    $date1 = Carbon::parse($period[0])->format('Y-m-d H:i:s');
+                    $date2 = Carbon::parse($period[1])->format('Y-m-d H:i:s');
+                    $query->when($date1 && $date2, fn($q) => $q->where('approved_at', '>=', $date1)->where('approved_at', '<=', $date2));
                 } catch (Exception $e) {
-                    $query->whereDate('approved_at', $period[0]);
+                    $query->where('approved_at', '>=', $period[0]);
                 } finally {
                     return;
                 }
@@ -121,7 +121,20 @@ class Withdraw extends Model
                     ['pending', 'processing', 'success', 'cancelled', 'fail', 'reject']),
                 function ($query) {
                     $query->where('status', request()->input('status'));
-                });
+                })
+            ->when(request()->filled('amount-start') && !request()->filled('amount-end'), function ($query) {
+                $amountStart = (float)request('amount-start');
+                return $query->where('amount', '>=', $amountStart);
+            })
+            ->when(request()->filled('amount-end') && !request()->filled('amount-start'), function ($query) {
+                $amountEnd = (float)request('amount-end');
+                return $query->where('amount', '<=', $amountEnd);
+            })
+            ->when(request()->filled('amount-start') && request()->filled('amount-end'), function ($query) {
+                $amountStart = (float)request('amount-start');
+                $amountEnd = (float)request('amount-end');
+                return $query->whereBetween('amount', [$amountStart, $amountEnd]);
+            });
     }
 
 }

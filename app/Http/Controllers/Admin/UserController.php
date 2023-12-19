@@ -29,8 +29,12 @@ class UserController extends Controller
 
         abort_if(Gate::denies('users.viewAny'), Response::HTTP_FORBIDDEN);
 
+        if ($request->routeIs('admin.users.pending.kycs')) {
+            $request->merge(['kyc-status' => 'pending']);
+        }
+
         if ($request->wantsJson()) {
-            $users = User::with('sponsor')
+            $users = User::with('sponsor', 'profile.kycs')
                 ->withSum('purchasedPackages', 'invested_amount')
                 ->withSum(['earnings' => fn($q) => $q->whereIn('type', ['PACKAGE', 'TRADE_DIRECT', 'TRADE_INDIRECT', 'DIRECT', 'INDIRECT'])], 'amount') // ,'TEAM_BONUS','SPECIAL_BONUS','RANK_BONUS','RANK_GIFT','P2P','STAKING'
                 ->whereRelation('roles', 'name', 'user')
@@ -80,13 +84,26 @@ class UserController extends Controller
                 ->addColumn('investment', function ($user) {
                     return "Total Investment: <code>{$user?->purchased_packages_sum_invested_amount} </code> <br>
                             Total Earned: <code>{$user?->earnings_sum_amount} </code> ";
-                })->addColumn('joined', function ($user) {
+                })
+                ->addColumn('joined', function ($user) {
                     return $user->created_at->format('Y-m-d h:i A');
+                })
+                ->addColumn('kyc_status', function (User $user) {
+                    if ($user->profile->is_kyc_verified) {
+                        return "<span class='text-success'>VERIFIED</span>";
+                    }
+                    if ($user->profile->kycs->count() > 0 && $user->profile->kycs->where('status', 'rejected')->count() > 0) {
+                        return "<span class='text-danger'>REJECTED</span>";
+                    }
+                    if ($user->profile->kycs->count() <= 0 || $user->profile->kycs->where('status', 'required')->count() > 0) {
+                        return "<span class='text-white'>NOT SUBMITTED</span>";
+                    }
+                    return "<span class='text-warning'>PENDING</span>";
                 })
                 ->addColumn('actions', function ($user) {
                     return view('backend.admin.users.includes.users-actions', compact('user'))->render();
                 })
-                ->rawColumns(['actions', 'profile_photo', 'user_details', 'contact_details', 'investment'])
+                ->rawColumns(['actions', 'profile_photo', 'user_details', 'contact_details', 'investment', 'kyc_status'])
                 ->make();
         }
         return view('backend.admin.users.index');

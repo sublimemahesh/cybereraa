@@ -20,7 +20,7 @@
                         <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
                             <div>
                                 <div class=" pt-2 p-2 ">
-                                    <label for="earning-type" class="text-gray-700 dark:text-gray-300">EARNING TYPE </label>
+                                    <label for="earning-type" class="text-gray-700 dark:text-gray-300">EARNING TYPE</label>
                                     <div class="relative">
                                         <select id="earning-type" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
                                             <option value="">ALL</option>
@@ -84,6 +84,21 @@
                             </div>
                         </div>
                     </div>
+                    <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
+                        <div>
+                            <div class=" p-2 ">
+                                <label class="text-gray-700 dark:text-gray-300">AMOUNT</label>
+                                <div class="sm:flex w-full">
+                                    <div class="pl-0 pt-1 w-full sm:pr-3 sm:w-1/2">
+                                        <input id="amount-start" value="{{ request()->input('amount-start') }}" type="number" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500" placeholder="Min">
+                                    </div>
+                                    <div class="pl-0 pt-1 w-full sm:w-1/2">
+                                        <input id="amount-end" value="{{ request()->input('amount-end') }}" type="number" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500" placeholder="Max">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="flex flex-col mb-2">
                         <div>
                             <div class=" pt-2 p-2 ">
@@ -104,20 +119,20 @@
 <div class="table-responsive">
     <table id="earnings" class="display mb-1 table-responsive-my" style="table-layout: fixed">
         <thead>
-        <tr>
-            <th>EARNING TYPE</th>
-            <th>USER ID</th>
-            <th>USERNAME</th>
-            <th>PACKAGE</th>
-            <th>STATUS</th>
-            <th>PAYMENT DATE</th>
-            <th class="text-right">(USDT) AMOUNT</th>
-        </tr>
+            <tr>
+                <th>EARNING TYPE</th>
+                <th>USER ID</th>
+                <th>USERNAME</th>
+                <th>PACKAGE</th>
+                <th>STATUS</th>
+                <th>PAYMENT DATE</th>
+                <th class="text-right">(USDT) AMOUNT</th>
+            </tr>
         </thead>
         <tfoot>
-        <tr>
-            <th colspan="7" style="text-align:right"></th>
-        </tr>
+            <tr>
+                <th colspan="7" style="text-align:right"></th>
+            </tr>
         </tfoot>
     </table>
 </div>

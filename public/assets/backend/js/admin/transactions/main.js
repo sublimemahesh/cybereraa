@@ -24,7 +24,7 @@ $(function () {
             {data: "status", searchable: false, orderable: false},
             {data: "paid_at", name: 'created_at', searchable: false},
             {data: "gas_fee", name: 'gas_fee', searchable: false, orderable: false},
-            {data: "trx_amount", name: 'amount', searchable: false, orderable: false},
+            {data: "trx_amount", name: 'amount', searchable: false, orderable: true},
         ],
         footerCallback: function (row, data, start, end, display) {
             let api = this.api();
@@ -52,13 +52,13 @@ $(function () {
         columnDefs: [
             {
                 render: function (data, type, full, meta) {
-                    return `<div style="font-size: 0.75rem !important;" > ${data} </div>`;
+                    return `<div style="font-size: 0.74rem !important;" > ${data} </div>`;
                 },
-                targets: [5, 7],
+                targets: [1, 2, 3, 4, 5, 6, 7],
             },
             {
                 render: function (amount, type, full, meta) {
-                    return `<div style='min-width:120px' class="text-right"> ${amount} </div>`;
+                    return `<div style="min-width:120px" class="text-right"> ${amount} </div>`;
                 },
                 targets: [8, 9],
             },
@@ -66,7 +66,11 @@ $(function () {
     });
 
     flatpickr("#transaction-date-range", {
-        mode: "range", dateFormat: "Y-m-d", defaultDate: date_range && date_range.split("to"),
+        mode: "range",
+        dateFormat: "Y-m-d H:i",
+        defaultDate: date_range && date_range.split("to"),
+        enableTime: true,
+        time_24hr: true,
     });
 
     $(document).on("click", "#transaction-search", function (e) {
@@ -78,6 +82,8 @@ $(function () {
         urlParams.set("currency-type", $("#currency-type").val());
         urlParams.set("product-type", $("#product-type").val());
         urlParams.set("pay-method", $("#pay-method").val());
+        urlParams.set("amount-start", $("#amount-start").val());
+        urlParams.set("amount-end", $("#amount-end").val());
         let url = data_url.split(/\?|\#/)[0] + "?" + urlParams.toString();
         HISTORY_STATE && history.replaceState({}, "", url);
         table.ajax.url(url).load();

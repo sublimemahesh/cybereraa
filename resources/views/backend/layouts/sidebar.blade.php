@@ -12,6 +12,14 @@
             <span class="nav-text">Manage Users</span>
         </a>
     </li>
+    @can('kyc.viewAny')
+        <li>
+            <a href="{{ route('admin.users.pending.kycs') }}" class="" aria-expanded="false">
+                <i class="bi bi-bag-check"></i>
+                <span class="nav-text">Pending KYC</span>
+            </a>
+        </li>
+    @endcan
 @endcan
 
 @canany(['users.manage-permissions','admin.users.viewAny'])

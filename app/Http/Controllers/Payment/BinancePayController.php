@@ -37,7 +37,8 @@ class BinancePayController extends Controller
             ],
             'amount' => ['nullable', 'required_if:package,custom'],
             'method' => ['required', 'in:binance,main,topup,manual'],/**/
-            'proof_document' => ['required_if:method,manual', 'nullable', 'file:pdf,jpg,jpeg,png'],
+            'proof_document' => ['required_if:method,manual', 'nullable', 'image' /*'file:pdf,jpg,jpeg,png'*/],
+            'transaction_id' => ['required_if:method,manual', 'nullable', 'string', 'max:255'],
             'purchase_for' => [
                 'nullable',
                 Rule::exists('users', 'id'),
@@ -185,9 +186,16 @@ class BinancePayController extends Controller
                     }
 
                     if (strtolower($transaction->pay_method) === 'manual') {
-                        $validated_file = Validator::make(['proof_document' => request()->file('proof_document')], [
-                            'proof_document' => 'required|file:pdf,jpg,jpeg,png',
-                        ])->validate();
+                        $validated_file = Validator::make(
+                            [
+                                'proof_document' => request()->file('proof_document'),
+                                'transaction_id' => request()->input('transaction_id')
+                            ],
+                            [
+                                'proof_document' => 'required|file:pdf,jpg,jpeg,png',
+                                'transaction_id' => 'required|unique:transactions,transaction_id',
+                            ]
+                        )->validate();
                         $file = $validated_file['proof_document'];
                         $proof_documentation = Str::limit(Str::slug($file->getClientOriginalName()), 50) . "-" . $file->hashName();
                         $file->storeAs('user/manual-purchase', $proof_documentation);
@@ -195,6 +203,7 @@ class BinancePayController extends Controller
                         $res_data['bizStatus'] = 'PAY_PENDING';
 
                         $transaction->status = 'PENDING';
+                        $transaction->transaction_id = $validated_file['transaction_id'];
                         $transaction->proof_document = $proof_documentation;
                         $transaction->status_response = json_encode($res_data, JSON_THROW_ON_ERROR);
                         $transaction->save();

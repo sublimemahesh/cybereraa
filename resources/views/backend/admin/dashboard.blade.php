@@ -281,6 +281,23 @@
                                     <i class="la la-coins"></i>
                                 </span>
                                 <div class="media-body text-white">
+                                    <p class="mb-1">TOTAL PACKAGE PENDING</p>
+                                    <h4 class="text-white dashboard-card-font-size-change"> $ {{ number_format($total_package_payable,2) }}</h4>
+                                    <br>
+                                    <small>Package pending return liability </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3  col-lg-6 col-sm-6">
+                    <div class="widget-stat card bg-info">
+                        <div class="card-body p-4">
+                            <div class="media">
+                                <span class="me-3">
+                                    <i class="la la-coins"></i>
+                                </span>
+                                <div class="media-body text-white">
                                     <p class="mb-1">TOTAL PAYABLE</p>
                                     <h4 class="text-white dashboard-card-font-size-change"> $ {{ $total_withdraw_limit_wallet_balance }}</h4>
                                     <br>
@@ -307,7 +324,7 @@
                         </div>
                     </div>
                 </div>--}}
-                <div class="col-xl-3  col-lg-6 col-sm-6">
+                {{--<div class="col-xl-3  col-lg-6 col-sm-6">
                     <div class="widget-stat card">
                         <div class="card-body p-4">
                             <div class="media">
@@ -323,7 +340,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>--}}
 
                 <div class="col-xl-3  col-lg-6 col-sm-6">
                     <div class="widget-stat card bg-green">
@@ -376,23 +393,23 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3  col-lg-6 col-sm-6">
-                    <div class="widget-stat card">
-                        <div class="card-body p-4">
-                            <div class="media">
-                                <span class="me-3">
-                                    <i class="la la-coins"></i>
-                                </span>
-                                <div class="media-body text-white">
-                                    <p class="mb-1">TOTAL P2P TRANSACTIONS</p>
-                                    <h4 class="text-white dashboard-card-font-size-change"> $ {{ $total_p2p_transfers }}</h4>
-                                    <br>
-                                    <small>Total P2P Transactions </small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {{-- <div class="col-xl-3  col-lg-6 col-sm-6">
+                     <div class="widget-stat card">
+                         <div class="card-body p-4">
+                             <div class="media">
+                                 <span class="me-3">
+                                     <i class="la la-coins"></i>
+                                 </span>
+                                 <div class="media-body text-white">
+                                     <p class="mb-1">TOTAL P2P TRANSACTIONS</p>
+                                     <h4 class="text-white dashboard-card-font-size-change"> $ {{ $total_p2p_transfers }}</h4>
+                                     <br>
+                                     <small>Total P2P Transactions </small>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>--}}
                 <div class="col-xl-3  col-lg-6 col-sm-6">
                     <div class="widget-stat card">
                         <div class="card-body p-4">
@@ -419,9 +436,26 @@
                                 </span>
                                 <div class="media-body text-white">
                                     <p class="mb-1">TOTAL TRANSACTION FEES</p>
-                                    <h4 class="text-white dashboard-card-font-size-change"> $ {{ number_format($total_p2p_transaction_fees + $total_withdraws_transaction_fees,2) }}</h4>
+                                    <h4 class="text-white dashboard-card-font-size-change"> $ {{ number_format(/*$total_p2p_transaction_fees +*/ $total_withdraws_transaction_fees,2) }}</h4>
                                     <br>
-                                    <small> P2P: $ {{ $total_p2p_transaction_fees }} / Withdraw: $ {{ $total_withdraws_transaction_fees }} </small>
+                                    <small> {{--P2P: $ {{ $total_p2p_transaction_fees }} /Withdraw: $ {{ $total_withdraws_transaction_fees }} --}} Total withdrawal transaction fees </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3  col-lg-6 col-sm-6">
+                    <div class="widget-stat card">
+                        <div class="card-body p-4">
+                            <div class="media">
+                                <span class="me-3">
+                                    <i class="la la-coins"></i>
+                                </span>
+                                <div class="media-body text-white">
+                                    <p class="mb-1"> DISQUALIFIED COMMISSION</p>
+                                    <h4 class="text-white dashboard-card-font-size-change"> $ {{ $lost_commissions }}</h4>
+                                    <br>
+                                    <small>Total disqualified commissions </small>
                                 </div>
                             </div>
                         </div>

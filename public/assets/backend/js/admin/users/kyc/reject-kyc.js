@@ -1,16 +1,34 @@
 $(function () {
 
     try {
-        document.getElementById('reject-kyc').addEventListener('click', rejectKyc)
+        $(document).on('click', ".reject-kyc", rejectKyc)
+        // document.getElementById('reject-kyc').addEventListener('click', rejectKyc)
     } catch (e) {
 
     }
 
-    function rejectKyc(e) {
+    async function rejectKyc(e) {
         e.preventDefault();
-        let repudiate_note = $('#repudiate_note').val();
-        let document = $('#document').val();
+        // let repudiate_note = $('#repudiate_note').val();
+        // let document = $('#document').val();
+        let document = $(this).data('document');
         let kyc = $('#kyc').val();
+        const {value: repudiate_note} = await Swal.fire({
+            title: "Reject reason",
+            input: "select",
+            inputOptions: REJECT_REASONS,
+            inputPlaceholder: "Select a reject reason",
+            showCancelButton: true,
+            inputValidator: (value) => {
+                return new Promise((resolve) => {
+                    if (value === null || value.length <= 0) {
+                        resolve("Please provide the reject reason!");
+                    }
+                    resolve();
+                });
+            }
+        });
+
         if (repudiate_note === null || repudiate_note.length <= 0) {
             Toast.fire({
                 icon: 'error',
@@ -32,13 +50,14 @@ $(function () {
                     // formData.append(proof_document, proof_document)
                     axios.post(`${APP_URL}/admin/users/kyc-documents/${document}/status`, {
                         status: 'reject',
-                       repudiate_note
+                        repudiate_note
                     }).then(response => {
                         Toast.fire({
                             icon: response.data.icon, title: response.data.message,
                         }).then(res => {
                             if (response.data.status) {
-                                location.href = APP_URL + '/admin/users/kycs/' + kyc;
+                                // location.href = APP_URL + '/admin/users/kycs/' + kyc;
+                                location.reload();
                             }
                         })
                     }).catch((error) => {
