@@ -129,6 +129,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::get('/users/{user:username}/profile', 'Admin\UserController@profileShow')->name('users.profile.show');
 
         Route::get('team/users-list/{user:username?}', 'Admin\GenealogyController@teamList')->name('team.users-list');
+        Route::get('team/users-list/{user:username?}/users-level/{depth?}', 'Admin\GenealogyController@userLevels')->name('team.users-levels');
 //        Route::match(['get', 'post'], 'genealogy/{user:username?}', 'Admin\GenealogyController@index')->name('genealogy')->middleware('signed');
 
         // SPECIAL BONUS

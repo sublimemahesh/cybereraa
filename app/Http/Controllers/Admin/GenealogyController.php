@@ -74,34 +74,37 @@ class GenealogyController extends Controller
                 });
             //dd($users);
             return DataTables::eloquent($users)
-                ->addColumn('profile_photo', function ($user) {
-                    return "<img class='rounded-circle' width='35' src='" . $user->profile_photo_url . "' alt='' />";
+                ->addColumn('profile_photo', function ($userD) {
+                    return "<img class='rounded-circle' width='35' src='" . $userD->profile_photo_url . "' alt='' />";
                 })
-                ->addColumn('user_details', function ($user) {
-                    return "<i class='fa fa-user-circle'></i> $user->id <br>
-                            <i class='fa fa-user'></i> $user->username<br>
-                            <i class='fa fa-user'></i> $user->name<br>";
+                ->addColumn('user_details', function ($userD) {
+                    return "<i class='fa fa-user-circle'></i> $userD->id <br>
+                            <i class='fa fa-user'></i> $userD->username<br>
+                            <i class='fa fa-user'></i> $userD->name<br>";
                 })
-                ->addColumn('contact_details', function ($user) {
-                    return "<i class='fa fa-phone'></i> $user->phone <br>
-                            <i class='fa fa-envelope'></i> $user->email<br>";
+                ->addColumn('contact_details', function ($userD) {
+                    return "<i class='fa fa-phone'></i> $userD->phone <br>
+                            <i class='fa fa-envelope'></i> $userD->email<br>";
                 })
-                ->addColumn('sponsor', function ($user) {
-                    return "{$user->super_parent_id} - <code>{$user?->sponsor?->username} </code>";
+                ->addColumn('sponsor', function ($userD) {
+                    return "{$userD->super_parent_id} - <code>{$userD?->sponsor?->username} </code>";
                 })
-                //                ->addColumn('parent', function ($user) {
-                //                    return "{$user->parent_id} - <code>{$user?->parent?->username} </code><br>Position: {$user->position}";
+                //                ->addColumn('parent', function ($userD) {
+                //                    return "{$userD->parent_id} - <code>{$userD?->parent?->username} </code><br>Position: {$userD->position}";
                 //                })
-                ->addColumn('joined', fn($user) => $user->created_at->format('Y-m-d h:i A'))
-                ->addColumn('suspended', function ($user) {
-                    if ($user->is_suspended) {
-                        return Carbon::parse($user->suspended_at)->format('Y-m-d h:i A');
+                ->addColumn('joined', fn($userD) => $userD->created_at->format('Y-m-d h:i A'))
+                ->addColumn('suspended', function ($userD) {
+                    if ($userD->is_suspended) {
+                        return Carbon::parse($userD->suspended_at)->format('Y-m-d h:i A');
                     }
                     return '-';
                 })
-                ->addColumn('actions', function (User $user) {
-                    if ($user->direct_sales_count > 0) {
-                        return '<a class="btn btn-secondary btn-success btn-xxs p-1 view-downline-user" data-username="' . $user->username . '">
+                ->addColumn('actions', function (User $userD) {
+                    if ($userD->direct_sales_count > 0) {
+                        /*return '<a class="btn btn-secondary btn-success btn-xxs p-1 view-downline-user" data-username="' . $userD->username . '">
+                        <i class="fa fa-users"></i>
+                    </a>';*/
+                        return '<a class="btn btn-secondary btn-success btn-xxs p-1 " href="' . route('admin.team.users-levels', ['user' => $userD, 'depth' => 1]) . '">
                         <i class="fa fa-users"></i>
                     </a>';
                     }
@@ -112,6 +115,21 @@ class GenealogyController extends Controller
         }
 
         return view('backend.admin.genealogy.users-list');
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function userLevels(Request $request, User $user, int|string $depth = 'all')
+    {
+        $level = $depth;
+        if ($depth !== 'all' && $depth > 4) {
+            $level = 4;
+        }
+        if ($request->wantsJson()) {
+            return (new \App\Http\Controllers\User\GenealogyController())->userLevelDatatable($user, $level, $request);
+        }
+        return view('backend.admin.genealogy.users-levels-list', compact('depth', 'user'));
     }
 
     public function placePendingUsersInGenealogy(): \Illuminate\Http\JsonResponse

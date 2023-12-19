@@ -58,85 +58,7 @@ class GenealogyController extends Controller
         $authUser = Auth::user();
         //dd($authUser->id, $descendants);
         if ($request->wantsJson()) {
-            $descendants = $authUser?->descendants()
-                ->with('sponsor', 'parent')
-                ->when(($level === 'all' || $level < 1 || $level > 4), function (Builder $q) {
-                    $q->where('depth', "<=", 4);
-                })->when($level !== 'all' && ($level >= 1 && $level <= 4), function (Builder $q) use ($level) {
-                    $q->where('depth', $level);
-                })
-                ->when($request->get('status') === 'suspend', function (Builder $q) {
-                    $q->whereNotNull('suspended_at');
-                })
-                ->when($request->get('status') === 'active', function (Builder $q) {
-                    $q->whereNull('suspended_at');
-                })
-                ->withSum(['withdraws' => fn($q) => $q->where('status', 'SUCCESS')->where('type', 'MANUAL')], 'amount')
-                ->withSum(['withdraws' => fn($q) => $q->where('status', 'SUCCESS')->where('type', 'MANUAL')], 'transaction_fee')
-                ->withSum(['earnings' => fn($q) => $q->whereIn('type', ['PACKAGE', 'TRADE_DIRECT', 'TRADE_INDIRECT', 'DIRECT', 'INDIRECT', 'TEAM_BONUS'])], 'amount')
-                ->withSum(['activePackages', 'purchasedPackages'], 'invested_amount')
-                ->get();
-            return DataTables::of($descendants)
-                ->addColumn('profile_photo', function ($user) {
-                    return "<img class='rounded-circle' width='35' src='" . $user->profile_photo_url . "' alt='' />";
-                })
-                ->addColumn('user_details', function ($user) {
-                    $level = [
-                        1 => "DIRECT",
-                        2 => "LEVEL 1",
-                        3 => "LEVEL 2",
-                        4 => "LEVEL 3",
-                    ][$user->depth];
-                    return "<i class='fa fa-user-circle'></i> #{$user->id} - <code>{$user->username}</code> <br>
-                            <i class='fa fa-level-down'></i> {$level}  <br>
-                            <i class='fa fa-user'></i> {$user->name} ";
-                })
-                ->addColumn('contact_details', function ($user) {
-                    return "Referal User: #{$user->super_parent_id} - <code>{$user->sponsor?->username}</code> <br>
-                            <i class='fa fa-envelope'></i> $user->email<br>";
-                })
-                ->addColumn('sponsor', function ($user) {
-                    return "{$user->super_parent_id} - <code>{$user?->sponsor?->username} </code>";
-                })
-                //                ->addColumn('parent', function ($user) {
-                //                    return "{$user->parent_id} - <code>{$user?->parent?->username} </code><br>Position: {$user->position}";
-                //                })
-                ->addColumn('joined', function ($user) {
-                    if ($user->is_suspended) {
-                        return "ACCOUNT SUSPENDED";
-                    }
-                    return "Joined: " . $user->created_at->format('Y-m-d h:i A');
-                })
-                ->addColumn('suspended', function ($user) {
-                    if ($user->is_suspended) {
-                        return Carbon::parse($user->suspended_at)->format('Y-m-d h:i A');
-                    }
-                    return '-';
-                })
-                ->addColumn('profit', function ($user) {
-                    $earnings_sum_amount = $user->earnings_sum_amount;
-                    $withdraws_sum_amount = $user->withdraws_sum_amount;
-                    $withdraws_sum_transaction_fee = $user->withdraws_sum_transaction_fee;
-                    $total_withdrawal = $withdraws_sum_amount + $withdraws_sum_transaction_fee;
-                    return
-                        "Total Earned: <code>{$earnings_sum_amount}</code></br>" .
-                        "Total Withdraw: <code>{$total_withdrawal}</code>";
-                })->addColumn('account_investments', function ($user) {
-                    $active_packages_sum_invested_amount = $user->active_packages_sum_invested_amount;
-                    $purchased_packages_sum_invested_amount = $user->purchased_packages_sum_invested_amount;
-                    $account_status = 'INACTIVE';
-                    if ($purchased_packages_sum_invested_amount > 0) {
-                        $account_status = 'IDLE';
-                        if ($active_packages_sum_invested_amount > 0) {
-                            $account_status = 'ACTIVE';
-                        }
-                    }
-                    return "Account Status: <code>{$account_status}</code> </br>" .
-                        "Active Packages: <code>{$active_packages_sum_invested_amount}</code> </br>" .
-                        "Total Investment: <code>{$purchased_packages_sum_invested_amount}</code>";
-                })
-                ->rawColumns(['profile_photo', 'user_details', 'contact_details', 'profit', 'sponsor', 'account_investments'])
-                ->make();
+            return $this->userLevelDatatable($authUser, $level, $request);
         }
         return view('backend.user.teams.users-list', compact('depth'));
     }
@@ -351,6 +273,93 @@ class GenealogyController extends Controller
             abort_if($user->parent_id === null || $user->position === null, 403, 'Your genealogy position is still not available. Please contact your up link user or contact us to solve the problem');
         }
         return view('backend.user.genealogy.create-new-user');
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function userLevelDatatable(User $user, int|string $level, Request $request): \Illuminate\Http\JsonResponse
+    {
+        $descendants = $user?->descendants()
+            ->with('sponsor', 'parent')
+            ->when(($level === 'all' || $level < 1 || $level > 4), function (Builder $q) {
+                $q->where('depth', "<=", 4);
+            })->when($level !== 'all' && ($level >= 1 && $level <= 4), function (Builder $q) use ($level) {
+                $q->where('depth', $level);
+            })
+            ->when($request->get('status') === 'suspend', function (Builder $q) {
+                $q->whereNotNull('suspended_at');
+            })
+            ->when($request->get('status') === 'active', function (Builder $q) {
+                $q->whereNull('suspended_at');
+            })
+            ->withSum(['withdraws' => fn($q) => $q->where('status', 'SUCCESS')->where('type', 'MANUAL')], 'amount')
+            ->withSum(['withdraws' => fn($q) => $q->where('status', 'SUCCESS')->where('type', 'MANUAL')], 'transaction_fee')
+            ->withSum(['earnings' => fn($q) => $q->whereIn('type', ['PACKAGE', 'TRADE_DIRECT', 'TRADE_INDIRECT', 'DIRECT', 'INDIRECT', 'TEAM_BONUS'])], 'amount')
+            ->withSum(['activePackages', 'purchasedPackages'], 'invested_amount')
+            ->get();
+        return DataTables::of($descendants)
+            ->addColumn('profile_photo', function ($lvlUser) {
+                return "<img class='rounded-circle' width='35' src='" . $lvlUser->profile_photo_url . "' alt='' />";
+            })
+            ->addColumn('user_details', function ($lvlUser) {
+                $level = [
+                    1 => "DIRECT",
+                    2 => "LEVEL 1",
+                    3 => "LEVEL 2",
+                    4 => "LEVEL 3",
+                ][$lvlUser->depth];
+                return "<i class='fa fa-user-circle'></i> #{$lvlUser->id} - <code>{$lvlUser->username}</code> <br>
+                            <i class='fa fa-level-down'></i> {$level}  <br>
+                            <i class='fa fa-user'></i> {$lvlUser->name} ";
+            })
+            ->addColumn('contact_details', function ($lvlUser) {
+                return "Referal User: #{$lvlUser->super_parent_id} - <code>{$lvlUser->sponsor?->username}</code> <br>
+                            <i class='fa fa-envelope'></i> $lvlUser->email<br>";
+            })
+            ->addColumn('sponsor', function ($lvlUser) {
+                return "{$lvlUser->super_parent_id} - <code>{$lvlUser?->sponsor?->username} </code>";
+            })
+            //                ->addColumn('parent', function ($lvlUser) {
+            //                    return "{$lvlUser->parent_id} - <code>{$lvlUser?->parent?->username} </code><br>Position: {$lvlUser->position}";
+            //                })
+            ->addColumn('joined', function ($lvlUser) {
+                if ($lvlUser->is_suspended) {
+                    return "ACCOUNT SUSPENDED";
+                }
+                return "Joined: " . $lvlUser->created_at->format('Y-m-d h:i A');
+            })
+            ->addColumn('suspended', function ($lvlUser) {
+                if ($lvlUser->is_suspended) {
+                    return Carbon::parse($lvlUser->suspended_at)->format('Y-m-d h:i A');
+                }
+                return '-';
+            })
+            ->addColumn('profit', function ($lvlUser) {
+                $earnings_sum_amount = $lvlUser->earnings_sum_amount;
+                $withdraws_sum_amount = $lvlUser->withdraws_sum_amount;
+                $withdraws_sum_transaction_fee = $lvlUser->withdraws_sum_transaction_fee;
+                $total_withdrawal = $withdraws_sum_amount + $withdraws_sum_transaction_fee;
+                return
+                    "Total Earned: <code>{$earnings_sum_amount}</code></br>" .
+                    "Total Withdraw: <code>{$total_withdrawal}</code>";
+            })
+            ->addColumn('account_investments', function ($lvlUser) {
+                $active_packages_sum_invested_amount = $lvlUser->active_packages_sum_invested_amount;
+                $purchased_packages_sum_invested_amount = $lvlUser->purchased_packages_sum_invested_amount;
+                $account_status = 'INACTIVE';
+                if ($purchased_packages_sum_invested_amount > 0) {
+                    $account_status = 'IDLE';
+                    if ($active_packages_sum_invested_amount > 0) {
+                        $account_status = 'ACTIVE';
+                    }
+                }
+                return "Account Status: <code>{$account_status}</code> </br>" .
+                    "Active Packages: <code>{$active_packages_sum_invested_amount}</code> </br>" .
+                    "Total Investment: <code>{$purchased_packages_sum_invested_amount}</code>";
+            })
+            ->rawColumns(['profile_photo', 'user_details', 'contact_details', 'profit', 'sponsor', 'account_investments'])
+            ->make();
     }
 
 }
