@@ -49820,7 +49820,18 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
       .nav-item-li-width {
         width: 23%;
       }
+      .nav-header{
+        margin-left: 36% !important;
+      }
 
+
+
+}
+
+@media only screen and (max-width: 400px) {
+    .nav-control{
+        right: 180%;
+      }
 
 
 }
@@ -49866,3 +49877,4 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
 .alert-border-color{
 border-color: rgb(12, 13, 13) !important;
 }
+
