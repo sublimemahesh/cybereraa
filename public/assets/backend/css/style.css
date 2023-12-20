@@ -49824,6 +49824,14 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
         margin-left: 36% !important;
       }
 
+      .auth-bgi1{
+        background-image: none;
+    }
+
+    .auth-bgi2{
+          background-image: none;
+    }
+
 
 
 }
@@ -49878,3 +49886,10 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
 border-color: rgb(12, 13, 13) !important;
 }
 
+.auth-bgi1{
+    background: url(../../frontend/images/sf/bg.jpg);
+}
+
+.auth-bgi2{
+    background: url(../../frontend/images/sf/net-sf.png);
+}
