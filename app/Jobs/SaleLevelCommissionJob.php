@@ -146,10 +146,10 @@ class SaleLevelCommissionJob implements ShouldQueue
                                     "User: {$activePackage->user->username} - {$activePackage->user_id}");
 //                                $can_paid_commission_amount = $total_allowed_income - $total_already_earned_income;
                                 $can_paid_commission_amount = $remaining_income;
-                                $commission_amount_left = $commission_amount - $can_paid_commission_amount;
                                 if ($can_paid_commission_amount <= 0) {
                                     continue;
                                 }
+                                $commission_amount_left = $commission_amount - $can_paid_commission_amount;
                                 $commission_amount = $can_paid_commission_amount;
                             } else {
                                 $commission_amount_left = 0;
