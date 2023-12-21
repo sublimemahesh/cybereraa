@@ -36,12 +36,12 @@
 <body class="vh-100">
     <div id="loader"></div>
 
-    <div class="vh-100" style="background: url('{{ asset('assets/frontend/images/sf/bg.jpg') }}')">
-        <div class="vh-100"  style="background: url('{{ asset('assets/frontend/images/sf/net-sf.png') }}')">
+    <div class="vh-100 auth-bgi1" >
+        <div class="vh-100 auth-bgi2">
             <div class="container h-100">
             @yield('contents')
         </div>
-        </div>
+        </div> 
     </div>
 
     <script src="{{ asset('assets/backend//vendor/global/global.min.js') }}"></script>
