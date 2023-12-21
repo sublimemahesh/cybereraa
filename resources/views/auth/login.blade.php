@@ -22,7 +22,7 @@
         <div class="authincation-content">
             <div class="row no-gutters">
                 <div class="col-xl-12">
-                    <div class="auth-form">
+                    <div class="auth-form mob-vh-100">
                         <div class="text-center mb-3">
                             <a href="{{ route('/') }}">
                                 <img class="m-auto" src="{{ asset('assets/backend/images/logo/logo-full.png') }}"
@@ -35,7 +35,7 @@
                         <div class="mb-4 font-medium text-sm text-success text-green-600">
                             {{ session('status') }}
                         </div>
-                        @endif
+                        @endif 
 
                         <x-jet-validation-errors class="mb-4 text-danger" />
 

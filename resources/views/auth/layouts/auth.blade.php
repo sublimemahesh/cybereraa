@@ -41,7 +41,7 @@
             <div class="container h-100">
             @yield('contents')
         </div>
-        </div>
+        </div> 
     </div>
 
     <script src="{{ asset('assets/backend//vendor/global/global.min.js') }}"></script>
