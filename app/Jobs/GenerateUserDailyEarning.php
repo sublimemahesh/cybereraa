@@ -150,6 +150,8 @@ class GenerateUserDailyEarning implements ShouldQueue
                                                 continue;
                                             }
                                             $trade_income_amount = $can_paid_trade_income_amount;
+                                        } else {
+                                            $trade_income_amount_left = 0;
                                         }
 
                                         $activePackage->earnings()->save(Earning::forceCreate([
@@ -186,9 +188,9 @@ class GenerateUserDailyEarning implements ShouldQueue
 
                                         Log::channel('daily')->notice(
                                             ($i === 1 ? 'TRADE_DIRECT' : 'TRADE_INDIRECT') . " Income Earning saved (" . date('Y-m-d') . "). | " .
-                                                "Purchase Package: {$purchase->id} | " .
-                                                "Trade Income Active Package: {$activePackage->id} | " .
-                                                "Trade Income User: {$trade_income_level_user->username}- {$trade_income_level_user->id}");
+                                            "Purchase Package: {$purchase->id} | " .
+                                            "Trade Income Active Package: {$activePackage->id} | " .
+                                            "Trade Income User: {$trade_income_level_user->username}- {$trade_income_level_user->id}");
 
                                         if ($trade_income_amount_left <= 0) {
                                             break;
@@ -198,8 +200,8 @@ class GenerateUserDailyEarning implements ShouldQueue
                                 } else {
                                     Log::channel('daily')->warning(
                                         ($i === 1 ? 'TRADE_DIRECT' : 'TRADE_INDIRECT') . " Income Earning Active Package not found (" . date('Y-m-d') . "). | " .
-                                            "Purchase Package: {$purchase->id} | " .
-                                            "Trade Income User: {$trade_income_level_user->username}- {$trade_income_level_user->id}");
+                                        "Purchase Package: {$purchase->id} | " .
+                                        "Trade Income User: {$trade_income_level_user->username}- {$trade_income_level_user->id}");
                                 }
 
                                 if ($trade_income_level_user->super_parent_id === null) {

@@ -98,12 +98,12 @@ class SaleLevelCommissionJob implements ShouldQueue
                 for ($i = $commission_start_at; $i <= $commission_level; $i++) {
 
                     $commission_amount = ($package->invested_amount * $commissions[$i]) / 100;
-                    $commission_amount_left = $commission_level_user->is_active ? 0 : $commission_amount;
 
                     $direct_sale_count = $commission_level_user->children()->count();
                     $is_level_commission_requirement_satisfied = $direct_sale_count >= ($level_commission_requirement->value ?? 5);
 
                     $isQualified = $commission_level_user->is_active && $is_level_commission_requirement_satisfied;
+                    $commission_amount_left = $isQualified ? 0 : $commission_amount;
 
                     Log::channel('daily')->{$isQualified ? 'info' : 'warning'}("COMMISSION ELIGIBILITY | PURCHASE PACKAGE: {$package->id} | COMMISSION AMOUNT: {$commission_amount} ", [
                         'commission_level_user' => $commission_level_user->id,
@@ -138,12 +138,21 @@ class SaleLevelCommissionJob implements ShouldQueue
                             // TODO: BUG $total_allowed_income is not accurate, use commission amount instead and fix
                             $remaining_income = $total_allowed_income - $total_already_earned_income;
                             if ($commission_amount > $remaining_income) {
-                                $can_paid_commission_amount = $total_allowed_income - $total_already_earned_income;
+                                $activePackage->update(['status' => 'EXPIRED']);
+                                Log::channel('daily')->info(
+                                    "Package {$activePackage->id} | " .
+                                    "COMPLETED {$total_already_earned_income}. | " .
+                                    "Purchased Date: {$activePackage->created_at} | " .
+                                    "User: {$activePackage->user->username} - {$activePackage->user_id}");
+//                                $can_paid_commission_amount = $total_allowed_income - $total_already_earned_income;
+                                $can_paid_commission_amount = $remaining_income;
                                 $commission_amount_left = $commission_amount - $can_paid_commission_amount;
                                 if ($can_paid_commission_amount <= 0) {
                                     continue;
                                 }
                                 $commission_amount = $can_paid_commission_amount;
+                            } else {
+                                $commission_amount_left = 0;
                             }
 
 
@@ -151,6 +160,7 @@ class SaleLevelCommissionJob implements ShouldQueue
                                 'user_id' => $commission->user_id,
                                 'purchased_package_id' => $activePackage->id,
                                 'amount' => $commission_amount,
+                                'payed_percentage' => $commissions[$i],
                                 'type' => $commission->type,
                                 'status' => 'RECEIVED',
                             ]));
@@ -189,7 +199,7 @@ class SaleLevelCommissionJob implements ShouldQueue
                     }
 
                     if (!$isQualified || $commission_amount_left > 0) {
-                        if ($commission_amount_left > 0) {
+                        if ($commission_amount_left > 0 && $commission_amount_left !== $commission->amount) {
                             Commission::forceCreate([
                                 'parent_id' => $commission->id,
                                 'user_id' => $commission_level_user->id,
