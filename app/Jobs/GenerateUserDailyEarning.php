@@ -65,15 +65,28 @@ class GenerateUserDailyEarning implements ShouldQueue
                     $total_already_earned_income = $purchase->earnings_sum_amount;
                     $total_allowed_income = ($purchase->invested_amount / 100) * $purchase->investment_profit;
 
+
                     $remaining_income = $total_allowed_income - $total_already_earned_income;
 
                     $earned_amount = $purchase->invested_amount * ((float)$payable_percentage / 100);
+
 
                     if ($total_allowed_income < ($total_already_earned_income + $earned_amount)) {
                         $earned_amount = $total_allowed_income - $total_already_earned_income;
                         $purchase->update(['status' => 'EXPIRED']);
                         Log::channel('daily')->info(
                             "Package {$purchase->id} | " .
+                            "COMPLETED {$total_already_earned_income}. | " .
+                            "Purchased Date: {$purchase->created_at} | " .
+                            "User: {$purchase->user->username} - {$purchase->user_id}");
+                    }
+
+                    if ($purchase->investment_profit <= $purchase->earned_profit) {
+                        $earned_amount = 0;
+                        $purchase->update(['status' => 'EXPIRED']);
+                        Log::channel('daily')->warning(
+                            "Package {$purchase->id} | " .
+                            "PACKAGE FILLED | investment_profit <= earned_profit | {$purchase->investment_profit} <= {$purchase->earned_profit} | " .
                             "COMPLETED {$total_already_earned_income}. | " .
                             "Purchased Date: {$purchase->created_at} | " .
                             "User: {$purchase->user->username} - {$purchase->user_id}");
@@ -128,6 +141,11 @@ class GenerateUserDailyEarning implements ShouldQueue
                                     $tradeIncomeLevelUserActivePackages = $trade_income_level_user->activePackages;
 
                                     foreach ($tradeIncomeLevelUserActivePackages as $activePackage) {
+
+                                        if ($activePackage->investment_profit <= $activePackage->earned_profit) {
+                                            continue;
+                                        }
+
                                         $activePackage->loadSum('earnings', 'amount');
 
 //                                        $trade_income_already_earned_percentage = $activePackage->earned_profit;
@@ -139,7 +157,7 @@ class GenerateUserDailyEarning implements ShouldQueue
 
                                         if ($trade_income_amount > $remaining_income) {
                                             $can_paid_trade_income_amount = $total_allowed_trade_income - $total_already_earned_trade_income;
-                                            $trade_income_amount_left = $trade_income_amount - $can_paid_trade_income_amount;
+
                                             $activePackage->update(['status' => 'EXPIRED']);
                                             Log::channel('daily')->info(
                                                 "Package {$activePackage->id} | " .
@@ -149,6 +167,7 @@ class GenerateUserDailyEarning implements ShouldQueue
                                             if ($can_paid_trade_income_amount <= 0) {
                                                 continue;
                                             }
+                                            $trade_income_amount_left = $trade_income_amount - $can_paid_trade_income_amount;
                                             $trade_income_amount = $can_paid_trade_income_amount;
                                         } else {
                                             $trade_income_amount_left = 0;
