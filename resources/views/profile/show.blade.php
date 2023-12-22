@@ -14,10 +14,12 @@
     <div class="row">
 
 
-        <div class="col-xl-9 col-lg-8">
+        <div class="col-xl-9 col-lg-8"> 
 
             @if (Laravel\Fortify\Features::canUpdateProfileInformation())
+            <div class="mt-10 sm:mt-0">
                 @livewire('profile.update-profile-information')
+            </div>
             @endif
 
             @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
