@@ -596,7 +596,7 @@
 
                                     <div class="col-mb-12 ">
                                         <div class="media-body text-white dash-p">
-                                            <p class="mb-1">My Package Income ${{ number_format($invest_income,2) }}</p>
+                                            <p class="mb-1">My Package Income <br> <b>${{ number_format($invest_income,2) }}</b></p>
                                         </div>
                                     </div>
 
@@ -619,7 +619,7 @@
 
                                     <div class="col-mb-12 ">
                                         <div class="media-body text-white dash-p">
-                                            <p class="mb-1">Direct Sales Commission ${{ number_format($direct_comm_income,2) }}</p>
+                                            <p class="mb-1">Direct Sales Commission <br> <b>${{ number_format($direct_comm_income,2) }}</b></p>
                                         </div>
                                     </div>
                                 </div>
@@ -639,7 +639,7 @@
                                     <div class="col-mb-12 ">
                                         <div class="media-body text-white dash-p">
                                             <p class="mb-1">
-                                                Indirect Sales Commission ${{ number_format($indirect_comm_income,2) }}
+                                                Indirect Sales Commission <br> <b>${{ number_format($indirect_comm_income,2) }}</b>
                                             </p>
                                         </div>
                                     </div>
@@ -659,7 +659,7 @@
                                     </div>
                                     <div class="col-mb-12 ">
                                         <div class="media-body text-white dash-p">
-                                            <p class="mb-1">Direct Trade My Income ${{ number_format($trade_income,2) }}</p>
+                                            <p class="mb-1">Direct Trade My Income <br> <b>${{ number_format($trade_income,2) }}</b></p>
                                         </div>
                                     </div>
 
@@ -681,7 +681,7 @@
 
                                     <div class="col-mb-12 ">
                                         <div class="media-body text-white dash-p">
-                                            <p class="mb-1">Indirect Trade My Income ${{ number_format($trade_team_income,2) }}</p>
+                                            <p class="mb-1">Indirect Trade My Income <br> <b>${{ number_format($trade_team_income,2) }}</b></p>
                                         </div>
                                     </div>
                                 </div>
@@ -702,7 +702,7 @@
 
                                     <div class="col-mb-12 ">
                                         <div class="media-body text-white dash-p">
-                                            <p class="mb-1">Reward Commissions <br> $0</p>
+                                            <p class="mb-1">Reward Commissions <br> <b> $0</b></p>
                                         </div>
                                     </div>
                                 </div>
