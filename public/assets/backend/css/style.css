@@ -34508,12 +34508,12 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 .alert-info {
     background: #e8f6f9;
     border-color: #e8f6f9;
-    color: #58bad7;
+    color: #050505;
 }
 
 [data-theme-version="dark"] .alert-info {
     background: rgba(88, 186, 215, 0.1);
-    border-color: rgba(88, 186, 215, 0.1);
+    border-color:#050505;
 }
 
 .alert-dark {
