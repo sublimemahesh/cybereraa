@@ -60,6 +60,11 @@ class SaleLevelCommissionJob implements ShouldQueue
      */
     public function handle()
     {
+        Log::channel('daily')->info(
+            "SaleLevelCommissionJob Started | PURCHASE PACKAGE: {$this->package->id} | " .
+            "USER : {$this->purchasedUser->username} - {$this->purchasedUser->id}"
+        );
+
         \DB::transaction(function () {
             $purchasedUser = $this->purchasedUser;
             $package = $this->package;
@@ -299,5 +304,11 @@ class SaleLevelCommissionJob implements ShouldQueue
 
             $package->update(['commission_issued_at' => now()]);
         });
+
+
+        Log::channel('daily')->info(
+            "SaleLevelCommissionJob Exited | PURCHASE PACKAGE: {$this->package->id} | " .
+            "USER : {$this->purchasedUser->username} - {$this->purchasedUser->id}"
+        );
     }
 }
