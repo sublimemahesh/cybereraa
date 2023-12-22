@@ -334,6 +334,10 @@
                 $('#total-amount').html('USDT ' + total_amount)
                 $('#pkg-price').html('USDT ' + amount)
                 $('#pkg-gas-fee').html('USDT ' + gas_fee)
+
+               
+
+
             })
 
             $('#rs-range-line').change(function (e) {

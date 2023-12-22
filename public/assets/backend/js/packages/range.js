@@ -28,3 +28,21 @@ function showSliderValue() {
 //   console.log(bulletPosition);
 
 }
+
+
+customDepositAmountInput.addEventListener("input", showSliderValue1, false);
+
+function showSliderValue1() {
+  let amount = parseFloat($(this).val())
+  let amount_ran_bullet = 10
+  if (amount>=0) {
+    amount_ran_bullet=amount
+  }
+  rangeBullet.innerHTML = amount_ran_bullet ;
+  rangeSlider.value =  amount_ran_bullet;
+  var bulletPosition = (rangeSlider.value /rangeSlider.max);
+  rangeBullet.style.left = (bulletPosition * size) + "px";
+
+//   console.log(bulletPosition);
+
+}
