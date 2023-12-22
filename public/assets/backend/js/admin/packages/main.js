@@ -18,7 +18,7 @@ $(function () {
             {data: "user", name: 'user.username', orderable: false},
             {data: "status", searchable: false, orderable: false},
             {data: "last_earned", name: 'last_earned_at', searchable: false, orderable: false},
-            {data: "commission_issued", name: 'commission_issued_at', searchable: false, orderable: false},
+            {data: "commission_issued", name: 'commission_issued_at', searchable: false, orderable: true},
             {data: "expired", name: 'expired_at', searchable: false, orderable: false},
             {data: "created", name: 'created_at', searchable: false, orderable: true},
             {data: "invested", name: 'invested_amount', searchable: false, orderable: true},
@@ -93,6 +93,7 @@ $(function () {
         urlParams.set("purchaser_id", $("#purchaser_id").val());
         urlParams.set("amount-start", $("#amount-start").val());
         urlParams.set("amount-end", $("#amount-end").val());
+        urlParams.set("commission-issued", $("#commission-issued").val());
         let url = location.href.split(/\?|\#/)[0] + "?" + urlParams.toString();
         history.replaceState({}, "", url);
         table.ajax.url(url).load();

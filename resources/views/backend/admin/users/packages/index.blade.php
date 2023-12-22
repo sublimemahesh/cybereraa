@@ -97,6 +97,25 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="flex flex-col mb-2 md:w-1/2 lg:w-1/4">
+                                            <div>
+                                                <div class=" pt-2 p-2 ">
+                                                    <label for="commission-issued" class="text-gray-700 dark:text-gray-300">COMMISSION STATUS</label>
+                                                    <div class="relative">
+                                                        <select id="commission-issued" class="power_grid appearance-none block mt-1 mb-1 bg-gray-50 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full active dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
+                                                            <option value="">ALL</option>
+                                                            <option value="issued" {{ request()->input('commission-issued') === 'issued' ? 'selected' : '' }}>ISSUED</option>
+                                                            <option value="pending" {{ request()->input('commission-issued') === 'pending' ? 'selected' : '' }}>PENDING</option>
+                                                        </select>
+                                                        <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
+                                                            <svg class="pointer-events-none w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="flex flex-col mb-2">
                                             <div>
                                                 <div class=" pt-2 p-2 ">
@@ -122,7 +141,7 @@
                                     <th>USER / PACKAGE</th>
                                     <th class="text-center">STATUS</th>
                                     <th>LAST EARNED</th>
-                                    <th>1<sup>st</sup>COMM.</th>
+                                    <th>COMMISSION ISSUED</th>
                                     <th>EXPIRED</th>
                                     <th>CREATED</th>
                                     <th class="text-right">INVESTMENT</th>

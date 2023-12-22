@@ -147,6 +147,11 @@ class PurchasedPackage extends Pivot
         return $this->belongsTo(Transaction::class, 'transaction_id', 'id');
     }
 
+    public function commissions(): HasMany
+    {
+        return $this->hasMany(Commission::class, 'purchased_package_id');
+    }
+
     public function adminEarnings(): morphMany
     {
         return $this->morphMany(AdminWalletTransaction::class, 'earnable');
@@ -253,6 +258,15 @@ class PurchasedPackage extends Pivot
                 $amountStart = (float)request('amount-start');
                 $amountEnd = (float)request('amount-end');
                 return $query->whereBetween('invested_amount', [$amountStart, $amountEnd]);
+            })
+            ->when(request()->filled('commission-issued'), function ($query) {
+                $commissionIssued = request('commission-issued');
+                if ($commissionIssued === 'issued') {
+                    return $query->whereNotNull('commission_issued_at');
+                }
+                if ($commissionIssued === 'pending') {
+                    return $query->whereNull('commission_issued_at');
+                }
             });
     }
 }
