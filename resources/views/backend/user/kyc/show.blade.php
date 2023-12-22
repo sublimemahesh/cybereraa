@@ -16,7 +16,7 @@
         @if(!Auth::user()->profile_is_complete)
             <div class="col-xl-12 col-lg-12">
                 @if (Laravel\Fortify\Features::canUpdateProfileInformation())
-                    @livewire('profile.update-profile-information-form')
+                    {{-- @livewire('profile.update-profile-information-form') --}}
                 @endif
             </div>
         @endif
