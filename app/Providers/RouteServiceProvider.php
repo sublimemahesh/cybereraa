@@ -20,6 +20,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/user/profile';
 
+    public const LOGOUT_REDIRECT = '/login';
+
     public const REGISTERED_REDIRECT_SUPER_ADMIN = '/super-admin/dashboard';
 
     public const REGISTERED_REDIRECT_ADMIN = '/admin/dashboard';

@@ -126,6 +126,10 @@ return [
     |
     */
 
+    'redirects' => [
+        'logout' => RouteServiceProvider::LOGOUT_REDIRECT,
+    ],
+
     'limiters' => [
         'login' => 'login',
         'two-factor' => 'two-factor',

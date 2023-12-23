@@ -140,9 +140,97 @@
                                             <p class="mt-2">REJECT REASON: <code>{{ $document->repudiate_note }}</code></p>
                                         @endif
                                         <hr>
-                                        <a src="{{ storage('user/kyc/' . $kyc->type . '/' . $document->document_name) }}" href="javascript:void(0)" class="imgDiv">
-                                            <img src="{{ storage('user/kyc/' . $kyc->type . '/' . $document->document_name) }}" class="img-thumbnail" style="max-height: 600px" alt="">
-                                        </a>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <a src="{{ storage('user/kyc/' . $kyc->type . '/' . $document->document_name) }}" href="javascript:void(0)" class="imgDiv">
+                                                    <img src="{{ storage('user/kyc/' . $kyc->type . '/' . $document->document_name) }}" class="img-thumbnail" style="max-height: 600px" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="profile-personal-info">
+                                                    @if($user->profile->nic !== null)
+                                                        <div class="row mb-2">
+                                                            <div class="col-sm-3 col-5">
+                                                                <h5 class="f-w-500"> NIC no <span class="pull-end">:</span>
+                                                                </h5>
+                                                            </div>
+                                                            <div class="col-sm-9 col-7">
+                                                                <h5>{{ $user->profile->nic }}</h5>
+                                                            </div>
+                                                        </div>
+                                                    @endif
+                                                    @if($user->profile->passport_number !== null)
+                                                        <div class="row mb-2">
+                                                            <div class="col-sm-3 col-5">
+                                                                <h5 class="f-w-500"> Passport no<span class="pull-end">:</span>
+                                                                </h5>
+                                                            </div>
+                                                            <div class="col-sm-9 col-7">
+                                                                <h5>{{ $user->profile->passport_number }}</h5>
+                                                            </div>
+                                                        </div>
+                                                    @endif
+                                                    @if($user->profile->driving_lc_number !== null)
+                                                        <div class="row mb-2">
+                                                            <div class="col-sm-3 col-5">
+                                                                <h5 class="f-w-500"> Driving license no<span
+                                                                        class="pull-end">:</span>
+                                                                </h5>
+                                                            </div>
+                                                            <div class="col-sm-9 col-7">
+                                                                <h5>{{ $user->profile->driving_lc_number }}</h5>
+                                                            </div>
+                                                        </div>
+                                                    @endif
+
+                                                    <div class="row mb-2">
+                                                        <div class="col-sm-3 col-5">
+                                                            <h5 class="f-w-500"> Name <span class="pull-end">:</span>
+                                                            </h5>
+                                                        </div>
+                                                        <div class="col-sm-9 col-7">
+                                                            <h5>{{ $user->name }}</h5>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-2">
+                                                        <div class="col-sm-3 col-5">
+                                                            <h5 class="f-w-500">User name <span class="pull-end">:</span>
+                                                            </h5>
+                                                        </div>
+                                                        <div class="col-sm-9 col-7">
+                                                            <h5>{{ $user->username }}</h5>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-2">
+                                                        <div class="col-sm-3 col-5">
+                                                            <h5 class="f-w-500">Email <span class="pull-end">:</span>
+                                                            </h5>
+                                                        </div>
+                                                        <div class="col-sm-9 col-7">
+                                                            <h5>{{ $user->email }}</h5>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-2">
+                                                        <div class="col-sm-3 col-5">
+                                                            <h5 class="f-w-500">Date of birthday <span class="pull-end">:</span>
+                                                            </h5>
+                                                        </div>
+                                                        <div class="col-sm-9 col-7">
+                                                            <h5>{{ $user->dob }}</h5>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-2">
+                                                        <div class="col-sm-3 col-5">
+                                                            <h5 class="f-w-500">Gender <span class="pull-end">:</span>
+                                                            </h5>
+                                                        </div>
+                                                        <div class="col-sm-9 col-7">
+                                                            <h5>{{ $user->gender }}</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <hr>
                                         @can('approve', $document)
                                             <a target="_blank" class="btn btn-success btn-xxs mb-2 approve-kyc"
