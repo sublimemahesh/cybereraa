@@ -1,6 +1,6 @@
 <x-backend.layouts.app>
     @section('title', 'User Dashboard')
-    @section('header-title', 'Welcome to Coin 1M Family')
+    @section('header-title', 'Welcome to  Tycoon1m Family')
     @section('header-title2',Auth::user()->username)
 
     <div class="row">

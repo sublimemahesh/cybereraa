@@ -1,5 +1,5 @@
 <x-frontend.layouts.app>
-    @section('title', 'Home Page | Coin1m')
+    @section('title', 'Home Page | Tycoon1m')
     @section('header-title', 'Welcome')
     @section('header')
     @include('frontend.layouts.header')
@@ -126,11 +126,11 @@
                             </div>
                             <div class="section-text">
                                 <p>
-                                    Welcome to Coin1M – Your Portal to Crypto Prosperity! Dive into the world of digital
+                                    Welcome to Tycoon1m – Your Portal to Crypto Prosperity! Dive into the world of digital
                                     assets with confidence. Whether you're a seasoned investor or just starting, our
                                     platform offers expert insights,
                                     tools, and a community to help you navigate and thrive in the exciting realm of
-                                    crypto investments. Explore the future of finance with Coin1M – where possibilities
+                                    crypto investments. Explore the future of finance with Tycoon1m – where possibilities
                                     are limitless, and your financial
                                     success is our priority.
                                 </p>

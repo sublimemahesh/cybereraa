@@ -9,8 +9,8 @@
                 <div class="col-xl-12">
                     <div class="auth-form login-bg-image " >
                         <div class="login-bg-txt">
-                            <h2>Coin1m Trading Hub <br> Secure Login</h2>
-                            <p>Welcome to Coin1m, your premier destination for seamless and secure cryptocurrency trading. Unlock the door to a world of financial opportunities with our trusted login page. Safeguarding your assets while providing a user-friendly experience is our priority. Join us on the journey to financial success – log in with confidence at Coin1m Trading Hub.</p>
+                            <h2>Tycoon1m  Trading Hub <br> Secure Login</h2>
+                            <p>Welcome to Tycoon1m , your premier destination for seamless and secure cryptocurrency trading. Unlock the door to a world of financial opportunities with our trusted login page. Safeguarding your assets while providing a user-friendly experience is our priority. Join us on the journey to financial success – log in with confidence at Tycoon1m  Trading Hub.</p>
                         </div>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                         <div class="mb-4 font-medium text-sm text-success text-green-600">
                             {{ session('status') }}
                         </div>
-                        @endif 
+                        @endif
 
                         <x-jet-validation-errors class="mb-4 text-danger" />
 

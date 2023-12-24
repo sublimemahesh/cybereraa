@@ -1,5 +1,5 @@
 <x-frontend.layouts.app>
-    @section('title', 'Terms and Conditions | Coin1m ')
+    @section('title', 'Terms and Conditions | Tycoon1m ')
     @section('header-title', 'Welcome ')
     @section('header')
     @include('frontend.layouts.header-other')

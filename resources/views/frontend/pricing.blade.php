@@ -1,5 +1,5 @@
 <x-frontend.layouts.app>
-    @section('title', 'Packages | Coin1m')
+    @section('title', 'Packages | Tycoon1m')
     @section('header-title', 'Welcome ')
 
     @section('header')
@@ -41,7 +41,7 @@
                             <h3>Packages</h3>
                         </div> --}}
                         <div class="main-title">
-                            <h1>Coin1M Packages Plan</h1>
+                            <h1>Tycoon1m Packages Plan</h1>
                         </div>
                         <div class="section-text">
                             <p>Cryptocurrencies are used primarily outside existing banking and coin governmental
@@ -50,7 +50,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-sm-12 pt-left pl-0 pr-0">
                     <div class="pricing-single-box">
@@ -60,11 +60,11 @@
                                 <div class="pricing-title">
                                     <h3>BASIC</h3>
                                 </div>
-                            </div>  
+                            </div>
                         </div>
                         <div class="pricing-items">
                             <div class="pricing-items-title">
-                                <h3>coin1M</h3>
+                                <h3>tycoon1m</h3>
                                 <p>[ BASIC 01 ]</p>
                             </div>
                             <div class="pricing-items-center">
@@ -104,7 +104,7 @@
                         </div>
                         <div class="pricing-items">
                             <div class="pricing-items-title">
-                                <h3>coin1M</h3>
+                                <h3>tycoon1m</h3>
                                 <p>[ BASIC 02 ]</p>
                             </div>
                             <div class="pricing-items-center">
@@ -144,7 +144,7 @@
                         </div>
                         <div class="pricing-items">
                             <div class="pricing-items-title">
-                                <h3>coin1M</h3>
+                                <h3>tycoon1m</h3>
                                 <p>[ BASIC 03 ]</p>
                             </div>
                             <div class="pricing-items-center">
@@ -171,7 +171,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-sm-12 pt-left pl-0 pr-0">
@@ -186,7 +186,7 @@
                         </div>
                         <div class="pricing-items">
                             <div class="pricing-items-title">
-                                <h3>coin1M</h3>
+                                <h3>tycoon1m</h3>
                                 <p>[ STANDARD 01 ]</p>
                             </div>
                             <div class="pricing-items-center">
@@ -226,7 +226,7 @@
                         </div>
                         <div class="pricing-items">
                             <div class="pricing-items-title">
-                                <h3>coin1M</h3>
+                                <h3>tycoon1m</h3>
                                 <p>[ STANDARD 02 ]</p>
                             </div>
                             <div class="pricing-items-center">
@@ -266,7 +266,7 @@
                         </div>
                         <div class="pricing-items">
                             <div class="pricing-items-title">
-                                <h3>coin1M</h3>
+                                <h3>tycoon1m</h3>
                                 <p>[ STANDARD 03 ]</p>
                             </div>
                             <div class="pricing-items-center">
@@ -293,7 +293,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
 
 

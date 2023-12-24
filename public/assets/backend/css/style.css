@@ -12819,7 +12819,7 @@ label {
 
 .nav-header .brand-title{
     /* width: 45px; */
-    width: 80px;
+    width: 100px;
 }
 
 
@@ -49540,7 +49540,7 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 560px;
+    height: 533px;
     position: relative;
 }
 
@@ -49583,7 +49583,7 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 810px;
+    height: 778px;
     position: relative;
 }
 

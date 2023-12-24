@@ -12,7 +12,7 @@
         {{--<br>Please note: OTP is only valid for next 5 minutes.--}}
     </p>
     <p>
-        For security purpose, kindly do not share this OTP with anyone. coin1m.com shall not be responsible for any misuse.
+        For security purpose, kindly do not share this OTP with anyone. tycoon1m.com shall not be responsible for any misuse.
         In case you have not initiated this transaction please contact us immediately.
     </p>
     <p>
@@ -20,6 +20,6 @@
     </p>
     <p>
         Regards, <br>
-        coin1m.com
+        tycoon1m.com
     </p>
 @endsection

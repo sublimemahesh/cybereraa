@@ -1,5 +1,5 @@
 <x-frontend.layouts.app>
-    @section('title', 'FAQ | Coin1m ')
+    @section('title', 'FAQ | Tycoon1m ')
     @section('header-title', 'Welcome ')
 
     @section('header')
@@ -11,7 +11,7 @@
             scroll-behavior: smooth;
         }
     </style>
-	
+
 	<link rel="stylesheet" href="{{asset('assets/frontend/css/faq.css') }}" type="text/css" media="all" />
 
 
@@ -91,7 +91,7 @@
 					</div>
 
 					<div id='2'>
-						<h3 class='faq-section-head-txt'>FAQ BUY PACKAGES</h3> 
+						<h3 class='faq-section-head-txt'>FAQ BUY PACKAGES</h3>
 
 						<div class="accordion">
 							<div class="accordion-item">

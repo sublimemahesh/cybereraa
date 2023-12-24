@@ -16,7 +16,7 @@
     <p>
         Thank you,<br>
         Best regards, <br>
-        coin1m.com Team
+        tycoon1m.com Team
     </p>
 
 @endsection

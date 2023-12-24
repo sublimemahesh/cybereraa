@@ -1,12 +1,12 @@
 <x-frontend.layouts.app>
-    @section('title', 'How it work | Coin1m ')
+    @section('title', 'How it work | Tycoon1m ')
     @section('header-title', 'Welcome ')
 
     @section('header')
     @include('frontend.layouts.header')
 
 <!-- CONTENT START -->
- 
+
 
 
 	<!--==================================================-->
@@ -42,7 +42,7 @@
                             <h3>Steps</h3>
                         </div>
                         <div class="main-title">
-                            <h1>Three steps Coin1m</h1>
+                            <h1>Three steps Tycoon1m</h1>
                         </div>
                         <div class="section-text">
                             <p>Cryptocurrencies are used primarily outside existing banking and coin
@@ -53,7 +53,7 @@
             </div>
             <div class="row bottom">
                 <div class="col-lg-4 col-md-6">
-                    <div class="single-feature-box"> 
+                    <div class="single-feature-box">
                         <div class="feature-thumb">
                             <img src="{{asset('assets/frontend/images/lock.png') }}" alt>
                         </div>
