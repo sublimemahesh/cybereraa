@@ -8,7 +8,7 @@ $(function () {
         e.preventDefault();
         const wallet_type = $("input[name='wallet_type']:checked").val();
         let amount = parseFloat($('#withdraw-amount').val()) || 0;
-        let trx_fee = parseFloat(P2P_TRANSFER_FEE);
+        let trx_fee = (amount * parseFloat(P2P_TRANSFER_FEE)) / 100;
         console.log(wallet_type, wallet_type === 'staking')
         if (wallet_type === 'staking') {
             trx_fee = parseFloat(STAKING_TRANSFER_FEE);

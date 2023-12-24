@@ -25,7 +25,7 @@
                         <h4 class="card-title">Binance Payout</h4>
                         <p>
                             Just so you know, transaction fees will be added to every withdrawal request based on your wallet type. <br>
-                            For wallets with type <code>"INTERNAL" & "EXTERNAL"</code>, he transaction fee is <code>USDT {{ $payout_transfer_fee->value }}</code>.<br>
+                            For wallets with type <code>"INTERNAL" & "EXTERNAL"</code>, The transaction fee is <code>USDT {{ $payout_transfer_fee->value }}%</code>.<br>
                             {{--For wallets with type <code>"STAKING"</code>, the transaction fee is <code>USDT {{ $staking_withdrawal_fee->value }}</code>.--}}
                         </p>
                         <p>

@@ -356,8 +356,8 @@ class PayoutController extends Controller
             $total_amount = $validated['amount'] + $staking_withdrawal_fee->value;
             $transaction_fee = $staking_withdrawal_fee->value;
         } else {
-            $total_amount = $validated['amount'] + $payout_transfer_fee->value;
-            $transaction_fee = $payout_transfer_fee->value;
+            $transaction_fee = ($validated['amount'] * $payout_transfer_fee->value) / 100;
+            $total_amount = $validated['amount'] + $transaction_fee;
         }
 
 

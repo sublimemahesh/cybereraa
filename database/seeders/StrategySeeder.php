@@ -19,7 +19,7 @@ class StrategySeeder extends Seeder
                 'name' => 'payout_transfer_fee',
                 'data_type' => 'double',
                 'value' => 5,
-                'comment' => 'Transaction fee for payout to binance wallet',
+                'comment' => 'Transaction fee for withdrawal in percentage',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

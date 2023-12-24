@@ -26,7 +26,7 @@
                         </div>
                     </div>
                     <hr>
-                    <div class="form-group row mb-2">
+                    <div class="form-group row mb-2 d-none">
                         <label class="col-sm-3 col-form-label" for="minimum_p2p_transfer_limit">Minimum P2P Transfer Amount (USD)</label>
                         <div class="col-sm-9">
                             <input class="form-control" value="{{ $minimum_p2p_transfer_limit->value }}" id="minimum_p2p_transfer_limit" name="minimum_p2p_transfer_limit" placeholder="Minimum withdraw amount Ex: USD 10" type="number">
