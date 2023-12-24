@@ -1,5 +1,5 @@
  <x-frontend.layouts.app>
-     @section('title', 'Upcoming Project | Coin1m ')
+     @section('title', 'Upcoming Project | Tycoon1m ')
      @section('header-title', 'Welcome ')
 
     @section('header')
@@ -53,7 +53,7 @@
 								<p>We plan to invest in innovative IT-related project development in the future. Moreover, we hope to develop trading bots for various purposes in the future.</p>
 							</div>
 						</div>
-					
+
 						<div class="about-button upper">
 							<a href="{{ route('contact') }}">contact us</a>
 						</div>
@@ -79,7 +79,7 @@
 								<p>With the expansion of the network, we plan to develop a hotel and accommodation booking system using a blockchain framework that can be utilized globally. What happens in such a booking system is that anyone who uses cryptocurrency gets teh opportunity to travel across the globe by making crypto payments for accommodations and hotels. The users can make any payment directly from their crypto wallet in the currency of their preference.</p>
 							</div>
 						</div>
-					
+
 						<div class="about-button upper">
 							<a href="{{ route('contact') }}">contact us</a>
 						</div>

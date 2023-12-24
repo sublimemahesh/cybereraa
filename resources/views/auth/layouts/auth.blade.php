@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="keywords" content="trade ,coin1m ,crypto ,crypto wallet,crypto currency, Blockchain Crypto Exchange, Cryptocurrency Exchange, Bitcoin Trading, Ethereum price trend, BNB, CZ, BTC price, ETH wallet registration, LTC price, Binance, Poloniex, Bittrex ">
-    <meta name="author" content="coin1m">
+    <meta name="keywords" content="trade ,tycoon1m  ,crypto ,crypto wallet,crypto currency, Blockchain Crypto Exchange, Cryptocurrency Exchange, Bitcoin Trading, Ethereum price trend, BNB, CZ, BTC price, ETH wallet registration, LTC price, Binance, Poloniex, Bittrex ">
+    <meta name="author" content="tycoon1m ">
     <meta name="robots" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="The reliable crypto currency trading platform for every kind of investors in the world">
@@ -41,7 +41,7 @@
             <div class="container h-100">
             @yield('contents')
         </div>
-        </div> 
+        </div>
     </div>
 
     <script src="{{ asset('assets/backend//vendor/global/global.min.js') }}"></script>

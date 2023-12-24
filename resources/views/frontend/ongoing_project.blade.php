@@ -1,5 +1,5 @@
 <x-frontend.layouts.app>
-    @section('title', 'Existing Projects | Coin1m ')
+    @section('title', 'Existing Projects | Tycoon1m ')
     @section('header-title', 'Welcome ')
 
     @section('header')

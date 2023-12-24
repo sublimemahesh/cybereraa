@@ -1,5 +1,5 @@
 <x-frontend.layouts.app>
-    @section('title', 'Privacy & Policy | coin1m ')
+    @section('title', 'Privacy & Policy | Tycoon1m ')
     @section('header-title', 'Welcome ')
     @section('header')
     @include('frontend.layouts.header-other')

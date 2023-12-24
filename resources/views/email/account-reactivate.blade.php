@@ -25,6 +25,6 @@
 
     <p>
         Best regards, <br>
-        coin1m.com
+        tycoon1m.com
     </p>
 @endsection
