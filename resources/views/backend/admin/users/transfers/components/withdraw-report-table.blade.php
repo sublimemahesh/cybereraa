@@ -133,10 +133,10 @@
                 <th></th>
                 <th></th>
                 <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th style="text-align:right"></th>
+                <th>Current Page <br>Total: </th>
+                <th style="text-align:right" class="text-wrap pe-1"></th>
+                <th style="text-align:right" class="text-wrap pe-1"></th>
+                <th style="text-align:right" class="text-wrap pe-1"></th>
             </tr>
         </tfoot>
     </table>
