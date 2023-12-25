@@ -36,7 +36,7 @@ class TeamSeeder extends Seeder
                 //User
                 [
                     'user_id' => '3',
-                    'name' => 'Coin1m\'s Team',
+                    'name' => 'Allex\'s Team',
                     'personal_team' => 1,
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -44,7 +44,7 @@ class TeamSeeder extends Seeder
                 //User
                 [
                     'user_id' => '4',
-                    'name' => 'Coin1m\'s Team',
+                    'name' => 'Anna\'s Team',
                     'personal_team' => 1,
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -52,7 +52,7 @@ class TeamSeeder extends Seeder
                 //User
                 [
                     'user_id' => '5',
-                    'name' => 'Coin1m\'s Team',
+                    'name' => 'Debra\'s Team',
                     'personal_team' => 1,
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -60,7 +60,7 @@ class TeamSeeder extends Seeder
                 //User
                 [
                     'user_id' => '6',
-                    'name' => 'Coin1m\'s Team',
+                    'name' => 'Tycoon1m\'s Team',
                     'personal_team' => 1,
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),

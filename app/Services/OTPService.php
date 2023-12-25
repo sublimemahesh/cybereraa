@@ -52,7 +52,7 @@ class OTPService
 //        if ($phone_validator->passes()) {
 //            $validated = $phone_validator->validated();
 //            $username = $user->username;
-//            $message = "{$otp} is your one-time password (OTP) to complete your Transaction from username: {$username}. Thank you. coin1m.com";
+//            $message = "{$otp} is your one-time password (OTP) to complete your Transaction from username: {$username}. Thank you. tycoon1m.com";
 //            try {
 //                if (!sendSMS($validated['phone'], $message)) {
 //                    $json['sms_error'] = "SMS send failed!.";

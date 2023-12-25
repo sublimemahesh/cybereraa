@@ -133,11 +133,11 @@ a.meanmenu-reveal{display:none}
 }
 .mean-container .mean-bar::before {
 	color: #fff;
-	content: "coin1M";
+	content: "TyCoon1m";
 	font-size: 22px;
 	font-weight: 600;
 	left: 10px;
 	position: absolute;
 	top: 18px;
-  font-family: 'Roboto'; 
+  font-family: 'Roboto';
 }

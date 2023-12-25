@@ -25,7 +25,7 @@ class ContactController extends Controller
             'phone' => 'required',
         ]);
 
-        Mail::to('info@coin1m.com')->send(new ContactMail($details));
+        Mail::to('info@tycoon1m.com')->send(new ContactMail($details));
         Mail::to($request->get('email'))->send(new ContactReplyMail());
         return response()->json(true);
     }

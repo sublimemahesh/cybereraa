@@ -47,7 +47,7 @@ class SendPayoutConfirmationMail extends Mailable implements ShouldQueue
     public function envelope()
     {
         return new Envelope(
-            subject: 'Payout confirmation | coin1m.com',
+            subject: 'Payout confirmation | tycoon1m.com',
         );
     }
 

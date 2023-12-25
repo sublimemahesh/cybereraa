@@ -34,4 +34,4 @@
 
 <p style="margin-top:5px">Feel free to contact us anytime if you have any further inquiries.</p>
 
-<a href="mailto:info@coin1m">info@coin1m.com</a>
+<a href="mailto:info@tycoon1m">info@tycoon1m.com</a>

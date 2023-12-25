@@ -41,9 +41,9 @@ class UserSeeder extends Seeder
                 //User
                 [
                     'super_parent_id' => null,
-                    'name' => 'Coin1m 1st Level',
-                    'username' => 'coin1m1',
-                    'email' => 'noreply@coin1m.com',
+                    'name' => 'Alex John',
+                    'username' => 'Alex',
+                    'email' => 'noreply@tycoon1m.com',
                     'email_verified_at' => now(),
                     'created_at' => now(),
                     'updated_at' => now(),
@@ -52,9 +52,9 @@ class UserSeeder extends Seeder
                 //User
                 [
                     'super_parent_id' => 3,
-                    'name' => 'Coin1m 2nd Level',
-                    'username' => 'coin1m2',
-                    'email' => 'noreply@coin1m.com',
+                    'name' => 'Anna Asler',
+                    'username' => 'Anna',
+                    'email' => 'noreply@tycoon1m.com',
                     'email_verified_at' => now(),
                     'created_at' => now(),
                     'updated_at' => now(),
@@ -63,9 +63,9 @@ class UserSeeder extends Seeder
                 //User
                 [
                     'super_parent_id' => 4,
-                    'name' => 'Coin1m 3rd Level',
-                    'username' => 'coin1m3',
-                    'email' => 'noreply@coin1m.com',
+                    'name' => 'Debra Hiles',
+                    'username' => 'Debra',
+                    'email' => 'noreply@tycoon1m.com',
                     'email_verified_at' => now(),
                     'created_at' => now(),
                     'updated_at' => now(),
@@ -74,9 +74,9 @@ class UserSeeder extends Seeder
                 //User
                 [
                     'super_parent_id' => 5,
-                    'name' => 'Coin1m 4th Level',
-                    'username' => 'coin1m4',
-                    'email' => 'noreply@coin1m.com',
+                    'name' => 'Tycoon 1M',
+                    'username' => 'Tycoon1m',
+                    'email' => 'noreply@tycoon1m.com',
                     'email_verified_at' => now(),
                     'created_at' => now(),
                     'updated_at' => now(),

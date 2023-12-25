@@ -42,7 +42,7 @@ trait HasInvoice
 
     private function getQr(): string
     {
-        $url = asset('assets/images/coin1m.com-qr.png');
+        $url = asset('assets/images/tycoon1m.com-qr.png');
         $type = pathinfo($url, PATHINFO_EXTENSION);
         $data = file_get_contents($url);
 
