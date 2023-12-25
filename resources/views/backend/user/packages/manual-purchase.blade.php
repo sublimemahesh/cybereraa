@@ -49,8 +49,10 @@
                             <div class="col-sm-12">
                                 <div class="mb-3 mt-2">
                                     <label for="payout_info">Binance Wallet</label>
-                                    <div class="my-2">
-                                        <img class="w-25 img-thumbnail" src="{{ storage("pages/{$wallet_page->image}") }}" alt="wallet-address">
+                                    <div class="row mb-3">
+                                        <div class="col-md-12 col-lg-5">
+                                            <img class="w-100 img-thumbnail" src="{{ storage("pages/{$wallet_page->image}") }}" alt="wallet-address">
+                                        </div>
                                     </div>
                                     <div id="payout_info" disabled rows="3" placeholder="Remark" class="form-control h-auto my-2">
                                         {{ strip_tags($wallet_page->content) }}
