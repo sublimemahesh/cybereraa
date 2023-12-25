@@ -92,7 +92,7 @@
 
     <div class="row">
         <div class="col-xxl-12">
-            <div class="overflow-hidden bg-transparent dz-crypto-scroll shadow-none">
+            {{-- <div class="overflow-hidden bg-transparent dz-crypto-scroll shadow-none">
                 <div class="js-conveyor-example">
                     <ul class="crypto-list" id="crypto-webticker">
                         <li>
@@ -175,6 +175,74 @@
                                             d="M21 0.00012207C9.40213 0.00012207 0.00012207 9.40213 0.00012207 21C0.00012207 32.5979 9.40213 41.9999 21 41.9999C32.5979 41.9999 41.9999 32.5979 41.9999 21C41.9871 9.40762 32.5924 0.0129395 21 0.00012207ZM29.8417 20.171L22.3417 35.171C21.9714 35.9121 21.0701 36.2124 20.3294 35.8421C20.0387 35.697 19.8034 35.4617 19.6583 35.171L12.1583 20.171C11.9253 19.7032 11.9519 19.1479 12.2284 18.7043L19.7284 6.70453C20.2269 6.00232 21.1996 5.83661 21.9018 6.33511C22.0451 6.43674 22.1701 6.56125 22.2717 6.70453L29.7712 18.7043C30.0482 19.1479 30.0747 19.7032 29.8417 20.171Z"
                                             fill="#AC4CBC"/>
                                     </svg>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div> --}}
+
+            <div class="overflow-hidden dz-crypto-scroll shadow-none">
+                <div class="js-conveyor-example">
+                    <ul class="crypto-list" id="crypto-webticker">
+
+
+                        <li>
+                            <div class="card overflow-hidden">
+                                <div class="card-body d-flex align-items-center">
+                                    <div class="me-4">
+                                        <p class="mb-2 fs-13">
+                                            <span class="bitcoin-change"></span>
+                                        </p>
+                                        <h4 class="bitcoin"></h4>
+                                    </div>
+                                    <img src="{{asset('assets/frontend/images/coin-icon/bitcoin-big.png') }}" width="42"
+                                        height="42" viewBox="0 0 42 42" fill="none">
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="card overflow-hidden">
+                                <div class="card-body d-flex align-items-center">
+                                    <div class="me-4">
+                                        <p class="mb-2 fs-13">
+                                            <span class="litecoin-change"></span>
+                                        </p>
+                                        <h4 class="litecoin"></h4>
+                                    </div>
+                                    <img src="{{asset('assets/frontend/images/coin-icon/litecoin-big.png') }}"
+                                        width="42" height="42" viewBox="0 0 42 42" fill="none">
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="card overflow-hidden">
+                                <div class="card-body d-flex align-items-center">
+                                    <div class="me-4">
+                                        <p class="mb-2 fs-13">
+                                            <span class="ethereum-change"></span>
+                                        </p>
+                                        <h4 class="ethereum"></h4>
+                                    </div>
+                                    <img src="{{ asset('assets/frontend/images/coin-icon/ethereum-big.png') }}"
+                                        width="42" height="42" viewBox="0 0 42 42" fill="none">
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="card overflow-hidden">
+                                <div class="card-body d-flex align-items-center">
+                                    <div class="me-4">
+                                        <p class="mb-2 fs-13">
+                                            <span class="tether-change"></span>
+                                        </p>
+                                        <h4 class="tether"></h4>
+                                    </div>
+                                    <img src="{{ asset('assets/frontend/images/coin-icon/tether-big.png') }}" width="42"
+                                        height="42" viewBox="0 0 42 42" fill="none">
                                 </div>
                             </div>
                         </li>
