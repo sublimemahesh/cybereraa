@@ -13,7 +13,7 @@
     <meta property="og:title" content="">
     <meta property="og:description" content="">
     <meta property="og:image" content="">
-    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="telephone=no"> 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script type="text/javascript">
         const _TOKEN = "{!! csrf_token() !!}"
