@@ -90,7 +90,7 @@
 
     </div>
 
-    <div class="row">
+    <div class="row" data-devil="mb:6" data-dxs="mb:0">
         <div class="col-xxl-12">
             {{-- <div class="overflow-hidden bg-transparent dz-crypto-scroll shadow-none">
                 <div class="js-conveyor-example">
