@@ -274,9 +274,7 @@ class PayoutController extends Controller
 
             // Add an error with the remaining time
             $json['status'] = false;
-            $json['message'] = "We have sent the email verification link to your email address. " .
-                "If you do not receive the email, kindly wait for {$remainingTime} minutes. " .
-                "Please refrain from resending verification emails until the specified time has passed.";
+            $json['message'] = "Please wait {$remainingTime} minutes before requesting a new OTP.";
             $json['icon'] = 'error'; // warning | info | question | success | error
             return response()->json($json, Response::HTTP_UNAUTHORIZED);
         }
@@ -294,7 +292,7 @@ class PayoutController extends Controller
             Logger::channel('daily')->notice('MANUAL WITHDRAWAL OTP REQUEST | DATA: ' . $log_data);
         } catch (Exception $e) {
         }
-        
+
         session(['twoft_verify_withdraw_last_otp_requested_at' => now()]);
         return $otpService->sendOTP($validated, Auth::user(), $authenticateService);
     }

@@ -3,6 +3,7 @@
 namespace App\Actions\Fortify;
 
 use App\Models\Profile;
+use App\Notifications\VerifyEmail;
 use App\Traits\MaskCredentials;
 use Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -119,6 +120,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'email_verified_at' => null,
         ])->save();
 
-        $user->sendEmailVerificationNotification();
+        // $user->sendEmailVerificationNotification();
+        $user->notify(new VerifyEmail);
     }
 }

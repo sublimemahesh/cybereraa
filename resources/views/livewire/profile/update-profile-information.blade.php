@@ -89,7 +89,7 @@
                                 <p class="text-sm mt-2">
                                     {{ __('Your email address is unverified.') }}
 
-                                    <button type="button"
+                                    <button type="button" wire:loading.attr="disabled"
                                             class="underline text-sm text-gray-600 hover:text-gray-900"
                                             wire:click.prevent="sendEmailVerification">
                                         {{ __('Click here to re-send the verification email.') }}
@@ -101,6 +101,11 @@
                                         {{ __('A new verification link has been sent to your email
                                         address.') }}
                                     </p>
+                                @endif
+                                @if (session()->has('error') )
+                                    <div class="font-medium text-danger-600 text-sm text-danger">
+                                        {{ session('error') }}
+                                    </div>
                                 @endif
                             @endif
                         </div>

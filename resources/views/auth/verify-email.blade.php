@@ -23,6 +23,11 @@
                                     {{ __('A new verification link has been sent to the email address you provided in your profile settings.') }}
                                 </div>
                             @endif
+                            @if (session()->has('error') )
+                                <div class="font-medium mb-4 text-danger-600 text-sm text-danger">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
                             <x-jet-validation-errors class="mb-4 text-danger"/>
                             <form method="POST" action="{{ route('verification.send') }}">
                                 @csrf

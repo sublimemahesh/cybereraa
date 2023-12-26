@@ -62,7 +62,22 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function sendEmailVerificationNotification(): void
     {
+        // Check if the last OTP request time is stored in the session
+        $lastOTPRequestTime = session("{$this->id}_send_email_verification_notification_last_otp_requested_at");
+
+        if ($lastOTPRequestTime && now()->diffInMinutes($lastOTPRequestTime) < 5) {
+            // Calculate the remaining time until they can request a new OTP
+            $remainingTime = 5 - now()->diffInMinutes($lastOTPRequestTime);
+
+            // Add an error with the remaining time
+            session()->flash('error', "We have sent the email verification link to your email address. " .
+                "If you do not receive the email, kindly wait for {$remainingTime} minutes. " .
+                "Please refrain from resending verification emails until the specified time has passed.");
+            return;
+        }
         $this->notify(new VerifyEmail);
+        session()->flash('message', __('A new verification link has been sent to the email address you provided in your profile settings.'));
+        session(["{$this->id}_send_email_verification_notification_last_otp_requested_at" => now()]);
     }
 
 
