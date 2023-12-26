@@ -12,6 +12,18 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// TEST OTP EMAIL
+// Route::get('/test-email-design', function () {
+//     $user = // Retrieve your user data here, or create a sample user object
+//     $data = [
+//         'otp' =>'12132322434',
+//     ];
+
+//     return view('email.otp', $data);
+// });
+
+
+
 
 Route::get('/', 'FrontendController@index')->name('/');
 Route::get('about-us', 'FrontendController@about')->name('about');
