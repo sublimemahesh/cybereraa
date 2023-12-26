@@ -169,12 +169,44 @@
 @endcan
 
 @can('transactions.viewAny')
-    <li>
+    {{--<li>
         <a href="{{ route('admin.transactions.index', ['date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .' to '.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}"
            class="" aria-expanded="false">
             <i class="bi fa-chain-broken"></i>
             <span class="nav-text"> User Payments </span>
         </a>
+    </li>--}}
+    <li>
+        <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
+            <i class="bi fa-chain-broken"></i>
+            <span class="nav-text"> User Payments </span>
+        </a>
+        <ul aria-expanded="false">
+            <li>
+                <a href="{{ route('admin.transactions.index') }}"
+                   class="" aria-expanded="false">
+                    All Payments
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.transactions.index', ['status' => 'pending']) }}"
+                   class="" aria-expanded="false">
+                    Pending Payments
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.transactions.index', ['status' => 'paid']) }}"
+                   class="" aria-expanded="false">
+                    Approved Payments
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.transactions.index', ['status' => 'rejected']) }}"
+                   class="" aria-expanded="false">
+                    Rejected Payments
+                </a>
+            </li>
+        </ul>
     </li>
 @endcan
 
@@ -218,11 +250,49 @@
 @endcan
 
 @can('withdrawals.viewAny')
-    <li>
+    {{--<li>
         <a href="{{ route('admin.transfers.withdrawals', ['status' => 'pending']) }}" class="" aria-expanded="false">
             <i class="bi fa-arrow-turn-up"></i>
             <span class="nav-text"> Withdrawals </span>
         </a>
+    </li>--}}
+    <li>
+        <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
+            <i class="bi fa-arrow-turn-up"></i>
+            <span class="nav-text"> Withdrawals </span>
+        </a>
+        <ul aria-expanded="false">
+            <li>
+                <a href="{{ route('admin.transfers.withdrawals') }}"
+                   class="" aria-expanded="false">
+                    All Withdrawals
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.transfers.withdrawals', ['status' => 'pending']) }}"
+                   class="" aria-expanded="false">
+                    Pending
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.transfers.withdrawals', ['status' => 'processing']) }}"
+                   class="" aria-expanded="false">
+                    Processing
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.transfers.withdrawals', ['status' => 'success']) }}"
+                   class="" aria-expanded="false">
+                    Approved
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.transfers.withdrawals', ['status' => 'reject']) }}"
+                   class="" aria-expanded="false">
+                    Rejected
+                </a>
+            </li>
+        </ul>
     </li>
 @endcan
 
