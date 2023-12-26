@@ -58,7 +58,7 @@
                                         <img src="https://www.tycoon1m.com/assets/frontend/images/logo-light.png" alt="{{ config('app.name','Tycoon1m') }}" style="height: 50px;">
                                     </td>
                                     <td style="text-align: right; color:#999">
-                                        <span>{{ config('app.name','Tycoon1m') }}</span>
+                                        {{-- <span>{{ config('app.name','Tycoon1m') }}</span> --}}
                                     </td>
                                 </tr>
                                 </tbody>
