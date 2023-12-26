@@ -23211,7 +23211,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
 [data-sidebarbg="color_4"][data-theme-version="dark"] .deznav .metismenu>li.mm-active>a,
 [data-sidebarbg="color_4"] .deznav .metismenu>li.mm-active>a {
-    background: #0c0d21 !important;
+    background: #232b2b !important;
     color: #fff !important;
 }
 
@@ -40127,7 +40127,7 @@ table.dataTable thead .sorting_asc {
 }
 
 .auth-form img {
-    width: 160px;
+    /* width: 160px; */
 }
 
 .welcome-content {
@@ -49086,6 +49086,12 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 
 [data-theme-version="dark"] .deznav .metismenu ul a:hover, [data-theme-version="dark"] .deznav .metismenu ul a:focus, [data-theme-version="dark"] .deznav .metismenu ul a.mm-active {
     color: #fff !important;
+
+}
+
+.deznav .metismenu ul a.mm-active {
+    background-color: #232b2b;
+    border-radius: 0.625rem;
 }
 
 [data-theme-version="dark"] .deznav .metismenu ul a:before {
@@ -49836,9 +49842,9 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
 
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width:350px) {
     .nav-control{
-        right: 180%;
+        right: 190%;
       }
 
       .mob-vh-100{
@@ -49849,9 +49855,32 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
   padding-top: 0px!important;
   padding-bottom: 0px!important;
 }
+}
 
+@media only screen and (min-width: 350px) and (max-width: 400px) {
+    .nav-control{
+        right: 220%;
+      }
+  }
+
+@media only screen and (min-width: 400px) and (max-width: 500px) {
+
+    .nav-control{
+        right: 250%;
+      }
 
 }
+
+@media only screen and (min-width: 500px) and (max-width: 600px) {
+
+    .nav-control{
+        right: 300%;
+      }
+
+}
+
+
+
 
  .goog-te-gadget span{
     display: none !important;
@@ -49911,5 +49940,36 @@ border-color: rgb(12, 13, 13) !important;
         background-size: cover;
     }
 
-
   }
+
+
+.copy-binance{
+    font-size: 17px;
+    float: right;
+    margin-top: 8px;
+
+}
+
+.mouse-pointer{
+    cursor: pointer;
+}
+
+
+
+/* Style for the tooltip */
+.copyButton:hover::after {
+    content: attr(title);
+    font-size: 14px; /* Adjust the font size as needed */
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    margin-top: 25px;
+    /* margin-left: -50%; Center the tooltip */
+    white-space: nowrap;
+    z-index: 1;
+    opacity: 0.8;
+}
+
+

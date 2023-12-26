@@ -108,4 +108,40 @@ $(function () {
 
     }
 
+
+
+    // Select all elements with the class "copyButton"
+    var copyButtons = document.querySelectorAll('.copyButton');
+
+    // Add click event listener to each copyButton
+    copyButtons.forEach(function(copyButton) {
+        copyButton.addEventListener('click', function() {
+            // Get the text content of the div
+            var payoutInfoText = document.getElementById('payout_info').innerText;
+
+            // Create a textarea element to hold the text content
+            var textarea = document.createElement('textarea');
+            textarea.value = payoutInfoText;
+
+            // Append the textarea to the document
+            document.body.appendChild(textarea);
+
+            // Select the text inside the textarea
+            textarea.select();
+
+            // Copy the selected text to the clipboard
+            document.execCommand('copy');
+
+            // Remove the textarea from the document
+            document.body.removeChild(textarea);
+
+            // Display the copied text in the span
+            document.getElementById('copy-result').innerText = 'Text copied to clipboard!';
+            
+        
+        });
+    });
+
+
+
 })
