@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Notifications\VerifyEmail;
 use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Haruncpi\LaravelUserActivity\Traits\Loggable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -53,6 +54,17 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'name', 'email', 'password', 'phone', 'phone_verified_at', 'super_parent_id', 'parent_id', 'username', 'position', 'suspended_at', 'suspend_reason'
     ];
+
+    /**
+     * Send the email verification notification.
+     *
+     * @return void
+     */
+    public function sendEmailVerificationNotification(): void
+    {
+        $this->notify(new VerifyEmail);
+    }
+
 
     /**
      * The attributes that should be hidden for serialization.
