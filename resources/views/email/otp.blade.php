@@ -5,7 +5,7 @@
     <p>
         Your One-Time Password (OTP) for username: {{ $user->username }} is
         <br><br><br>
-        <b><center><span style="font-size:60px">{{ $otp }}</span></center></b>
+        <b><center><span style="font-size:58px">{{ $otp }}</span></center></b>
         <br><br>
         @if(!empty($data['amount']))
             for amount USDT {{ $data['amount'] }}
