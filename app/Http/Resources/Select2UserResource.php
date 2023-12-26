@@ -19,7 +19,7 @@ class Select2UserResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'text' => /*$this->id . ' - ' . */$this->name . " - " . $this->username
+            'text' => /*$this->id . ' - ' . $this->name . " - " . */$this->username
         ];
     }
 }
