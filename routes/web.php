@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 // TEST OTP EMAIL
-// Route::get('/test-email-design', function () {
+// Route::get('user/test-email-design', function () {
 //     $user = // Retrieve your user data here, or create a sample user object
 //     $data = [
 //         'otp' =>'1213xcT',
