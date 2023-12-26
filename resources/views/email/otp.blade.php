@@ -4,10 +4,11 @@
     <h2 style="font-weight: 600"> Hello {{ $user->username }} </h2>
     <p>
         Your One-Time Password (OTP) for username: {{ $user->username }} is
+
         <br>
         <span>
             <div style="text-align: center;">
-                <span style="font-size:40px;font-weight:500">{{ $otp }}</span>
+                <span style="font-size:35px;font-weight:600">{{ $otp }}</span>
             </div>
         </span>
         <br>
