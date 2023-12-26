@@ -36,9 +36,9 @@
                     @if(!$otpSent)
                         <p>
                             OTP code will be sent to Email: {{ App\Traits\MaskCredentials::maskedEmailAddress(auth()->user()->email) }}
-                           {{-- @if(str_starts_with(auth()->user()?->phone, '+94'))
-                                and Phone: {{ App\Traits\MaskCredentials::maskedPhone(auth()->user()->phone) }}
-                            @endif--}}
+                            {{-- @if(str_starts_with(auth()->user()?->phone, '+94'))
+                                 and Phone: {{ App\Traits\MaskCredentials::maskedPhone(auth()->user()->phone) }}
+                             @endif--}}
                         </p>
                         <br>
                         <div id="2ft-section">
@@ -48,9 +48,12 @@
                         </div>
                     @else
                         <div class="mb-3 mt-2">
-                            <label for="otp">OTP Code </label>
+                            <label for="otp">OTP Code</label>
                             <input id="otp" type="text" wire:model.lazy="otp" class="block mt-1 w-full form-control" autocomplete="one-time-password" placeholder="OTP code">
                             <div class="text-info cursor-pointer" wire:click="sendOTP" id="send-2ft-code">Resend OTP</div>
+                            @if(session()->has('message'))
+                                <div class="alert alert-success">{{ session('message') }}</div>
+                            @endif
                             @error('otp')
                             <div class="mr-3 text-sm text-danger">{{ $message }}</div>
                             @enderror

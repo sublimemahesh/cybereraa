@@ -265,6 +265,22 @@ class PayoutController extends Controller
             'remark' => 'nullable',
         ])->validate();
 
+        // Check if the last OTP request time is stored in the session
+        $lastOTPRequestTime = session('twoft_verify_withdraw_last_otp_requested_at');
+
+        if ($lastOTPRequestTime && now()->diffInMinutes($lastOTPRequestTime) < 5) {
+            // Calculate the remaining time until they can request a new OTP
+            $remainingTime = 5 - now()->diffInMinutes($lastOTPRequestTime);
+
+            // Add an error with the remaining time
+            $json['status'] = false;
+            $json['message'] = "We have sent the email verification link to your email address. " .
+                "If you do not receive the email, kindly wait for {$remainingTime} minutes. " .
+                "Please refrain from resending verification emails until the specified time has passed.";
+            $json['icon'] = 'error'; // warning | info | question | success | error
+            return response()->json($json, Response::HTTP_UNAUTHORIZED);
+        }
+
         try {
             $log_data = [
                 'RESPONSIBLE USER' => auth()->user()?->only(['id', 'username', 'email', 'phone']),
@@ -278,7 +294,8 @@ class PayoutController extends Controller
             Logger::channel('daily')->notice('MANUAL WITHDRAWAL OTP REQUEST | DATA: ' . $log_data);
         } catch (Exception $e) {
         }
-
+        
+        session(['twoft_verify_withdraw_last_otp_requested_at' => now()]);
         return $otpService->sendOTP($validated, Auth::user(), $authenticateService);
     }
 
@@ -318,6 +335,7 @@ class PayoutController extends Controller
             $json['icon'] = 'error'; // warning | info | question | success | error
             return response()->json($json, Response::HTTP_UNAUTHORIZED);
         }
+        session()->forget('twoft_verify_withdraw_last_otp_requested_at');
 
         if (!$user?->profile->is_kyc_verified) {
             $json['status'] = false;

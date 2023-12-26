@@ -32,6 +32,10 @@ class UpdateProfileInformation extends Component
 
     public function mount()
     {
+        $lastOTPRequestTime = session('update_profile_information_last_otp_requested_at');
+        if ($lastOTPRequestTime && now()->diffInMinutes($lastOTPRequestTime) < 5) {
+            $this->otpSent = true;
+        }
         $this->state = Auth::user()->withoutRelations()->toArray();
         $this->state['email'] = MaskCredentials::maskedEmailAddress(auth()->user()->email);
         //$this->state['phone'] = MaskCredentials::maskedPhone(auth()->user()->phone);
@@ -42,11 +46,24 @@ class UpdateProfileInformation extends Component
      */
     public function sendOTP(): void
     {
+        // Check if the last OTP request time is stored in the session
+        $lastOTPRequestTime = session('update_profile_information_last_otp_requested_at');
+
+        $this->resetErrorBag();
+        if ($lastOTPRequestTime && now()->diffInMinutes($lastOTPRequestTime) < 5) {
+            // Calculate the remaining time until they can request a new OTP
+            $remainingTime = 5 - now()->diffInMinutes($lastOTPRequestTime);
+
+            // Add an error with the remaining time
+            $this->addError('otp', "Please wait {$remainingTime} minutes before requesting a new OTP.");
+            return;
+        }
         $res = (new OTPService())->sendOTPCode(auth()->user())->getData();
         try {
-
             if ($res->status) {
+                session()->flash('message', 'OTP Has sent to your Email');
                 $this->otpSent = true;
+                session(['update_profile_information_last_otp_requested_at' => now()]);
             }
         } catch (Exception $e) {
             $this->otpSent = true;
@@ -80,6 +97,7 @@ class UpdateProfileInformation extends Component
                 : $this->state
         );
 
+        session()->forget('update_profile_information_last_otp_requested_at');
         session()->forget($hashed_username);
         $this->otpSent = false;
         $this->otp = null;

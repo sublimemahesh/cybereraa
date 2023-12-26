@@ -26,11 +26,20 @@ class UpdatePassword extends Component
     public $otp = null;
     public $otpSent = false;
 
+    public function mount()
+    {
+        $lastOTPRequestTime = session('update_password_last_otp_requested_at');
+        if ($lastOTPRequestTime && now()->diffInMinutes($lastOTPRequestTime) < 5) {
+            $this->otpSent = true;
+        }
+    }
+
     /**
      * @throws Exception
      */
     public function sendOTP(): void
     {
+        $this->resetErrorBag();
         Validator::make(
             $this->state,
             [
@@ -42,11 +51,24 @@ class UpdatePassword extends Component
             ]
         )->validateWithBag('updatePassword');
 
+        // Check if the last OTP request time is stored in the session
+        $lastOTPRequestTime = session('update_password_last_otp_requested_at');
+
+        if ($lastOTPRequestTime && now()->diffInMinutes($lastOTPRequestTime) < 5) {
+            // Calculate the remaining time until they can request a new OTP
+            $remainingTime = 5 - now()->diffInMinutes($lastOTPRequestTime);
+
+            // Add an error with the remaining time
+            $this->addError('otp', "Please wait {$remainingTime} minutes before requesting a new OTP.");
+            return;
+        }
+
         $res = (new OTPService())->sendOTPCode(auth()->user())->getData();
         try {
-
             if ($res->status) {
+                session()->flash('message', 'OTP Has sent to your Email');
                 $this->otpSent = true;
+                session(['update_password_last_otp_requested_at' => now()]);
             }
         } catch (Exception $e) {
             $this->otpSent = true;
@@ -67,6 +89,8 @@ class UpdatePassword extends Component
             $this->addError('otp', 'Entered OTP code is invalid!');
             return null;
         }
+
+        session()->forget('update_password_last_otp_requested_at');
         session()->forget($hashed_username);
         $this->otpSent = false;
         $this->otp = null;
