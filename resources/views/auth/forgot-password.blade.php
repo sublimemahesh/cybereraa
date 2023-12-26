@@ -19,7 +19,12 @@
                                     {{ session('status') }}
                                 </div>
                             @endif
-                            <x-jet-validation-errors class="mb-4  text-danger" />
+                            @if (session()->has('error') )
+                                <div class="font-medium mb-4 text-danger-600 text-sm text-danger">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
+                            <x-jet-validation-errors class="mb-4  text-danger"/>
                             <form method="POST" action="{{ route('password.email') }}">
                                 @csrf
                                 <div class="col-lg-12  mt-4">
