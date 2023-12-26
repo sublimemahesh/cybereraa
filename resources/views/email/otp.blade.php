@@ -4,13 +4,16 @@
     <h2 style="font-weight: 600"> Hello {{ $user->username }} </h2>
     <p>
         Your One-Time Password (OTP) for username: {{ $user->username }} is
-        <br><br><br>
-        <b><center><span style="font-size:58px">{{ $otp }}</span></center></b>
-        <br><br>
+        <br>
+        <span>
+            <div style="text-align: center;">
+                <span style="font-size:40px;font-weight:500">{{ $otp }}</span>
+            </div>
+        </span>
+        <br>
         @if(!empty($data['amount']))
             for amount USDT {{ $data['amount'] }}
         @endif
-        <br>
         {{-- Same has been sent to your registered mobile number. --}}
         {{--<br>Please note: OTP is only valid for next 5 minutes.--}}
     </p>
