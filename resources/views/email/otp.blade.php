@@ -5,19 +5,19 @@
     <p>
         Your One-Time Password (OTP) for username: {{ $user->username }} is
         <br><br><br>
-        <b>{{ $otp }}</b>
+        <b><center><span style="font-size:58px">{{ $otp }}</span></center></b>
         <br><br>
         @if(!empty($data['amount']))
             for amount USDT {{ $data['amount'] }}
         @endif
-        .<br>
+        <br>
         {{-- Same has been sent to your registered mobile number. --}}
         {{--<br>Please note: OTP is only valid for next 5 minutes.--}}
     </p>
     <p>
-        For security reasons, don't share this OTP with anyone. 
-        tycoon1m.com shall not be responsible for any misuse. 
-        In case you have not initiated this transaction be sure to get 
+        For security reasons, don't share this OTP with anyone.
+        tycoon1m.com shall not be responsible for any misuse.
+        In case you have not initiated this transaction be sure to get
         in touch with us immediately.
     </p>
     <p>

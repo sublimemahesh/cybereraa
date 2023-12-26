@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/test-email-design', function () {
 //     $user = // Retrieve your user data here, or create a sample user object
 //     $data = [
-//         'otp' =>'12132322434',
+//         'otp' =>'1213xcT',
 //     ];
 
 //     return view('email.otp', $data);
