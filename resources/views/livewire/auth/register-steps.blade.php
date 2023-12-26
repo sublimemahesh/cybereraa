@@ -171,8 +171,14 @@
                         </x-jet-label>
                     </div>
                 @endif
-                <div class="col-lg-12 mb-4">
+                <div class="col-lg-12 mb-4" wire:loading.remove>
                     @include('auth.components.button', ['attribute' => 'wire:click.prevent=register', 'slot' => 'Register'])
+                </div>
+
+                <div wire:loading wire:target="register">
+                    <div class="d-flex justify-content-center position-relative">
+                        <div class="loader"></div>
+                    </div>
                 </div>
                 <x-jet-validation-errors class="col-lg-12 mb-4 text-danger"/>
             </div>
