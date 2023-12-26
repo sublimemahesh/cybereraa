@@ -54,9 +54,13 @@
                                             <img class="w-100 img-thumbnail" src="{{ storage("pages/{$wallet_page->image}") }}" alt="wallet-address">
                                         </div>
                                     </div>
-                                    <div id="payout_info" disabled rows="3" placeholder="Remark" class="form-control h-auto my-2">
+                                    <div id="payout_info" disabled rows="3" placeholder="Remark" class="form-control h-auto my-2 copyButton mouse-pointer" title="Copy Text">
                                         {{ strip_tags($wallet_page->content) }}
+                                        
+                                        <i class="fa fa-clone copy-binance" id="copyButton" data-devil="fs:17 "></i>
                                     </div>
+                                    <code id='copy-result'></code>
+
                                 </div>
                                 <hr>
                                 <div class="mb-3 mt-2">
@@ -91,5 +95,6 @@
     @push('scripts')
         <script src="{{ asset('assets/backend/vendor/select2/js/select2.full.min.js') }}"></script>
         <script src="{{ asset('assets/backend/js/packages/manual-purchase.js') }}"></script>
+
     @endpush
 </x-backend.layouts.app>

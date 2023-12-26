@@ -17,7 +17,7 @@ let userDash = function () {
         resize: function () {
         },
 
-        load: function () {
+        load: function () { 
             handleWebpicker();
         },
     }
