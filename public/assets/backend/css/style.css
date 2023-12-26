@@ -23211,7 +23211,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
 [data-sidebarbg="color_4"][data-theme-version="dark"] .deznav .metismenu>li.mm-active>a,
 [data-sidebarbg="color_4"] .deznav .metismenu>li.mm-active>a {
-    background: #0c0d21 !important;
+    background: #232b2b !important;
     color: #fff !important;
 }
 
@@ -49086,6 +49086,12 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 
 [data-theme-version="dark"] .deznav .metismenu ul a:hover, [data-theme-version="dark"] .deznav .metismenu ul a:focus, [data-theme-version="dark"] .deznav .metismenu ul a.mm-active {
     color: #fff !important;
+
+}
+
+.deznav .metismenu ul a.mm-active {
+    background-color: #232b2b;
+    border-radius: 0.625rem;
 }
 
 [data-theme-version="dark"] .deznav .metismenu ul a:before {
