@@ -53,8 +53,9 @@ class PackageController extends Controller
         $activePackages->loadSum('earnings', 'amount');
 // dd($activePackages);
         $withdrawal_limits = Strategy::where('name', 'withdrawal_limits')->first();
+        $investment_start_at = Strategy::where('name', 'investment_start_at')->first();
         $withdrawal_limits = json_decode($withdrawal_limits->value ?? '[]', false, 512, JSON_THROW_ON_ERROR);
-        return view('backend.user.packages.active', compact('activePackages'));
+        return view('backend.user.packages.active', compact('activePackages', 'investment_start_at'));
     }
 
     public function manualPurchaseCustom(Request $request, float $amount, User|null $purchase_for = null)

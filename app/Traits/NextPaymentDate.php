@@ -6,20 +6,22 @@ use Carbon;
 
 trait NextPaymentDate
 {
-    public function getNextPaymentDateAttribute(): string
+    public function getNextPaymentDateAttribute(int|null $investment_start_at): string
     {
         $today = Carbon::parse(date('Y-m-d') . ' ' . $this->created_at->format('H:i:s'));
 
         $day = strtolower(Carbon::parse($this->created_at)->format('l'));
-
-        if (in_array($day, ['tuesday', 'wednesday', 'thursday', 'friday'])) {
-            $firstPayDate = $this->created_at->addDays(6);
-        } elseif ($day === 'saturday') {
-            $firstPayDate = $this->created_at->addDays(5);
-        } elseif (in_array($day, ['sunday', 'monday'])) {
-            $firstPayDate = $this->created_at->addDays(4);
-        }
-
+        //
+        //        if (in_array($day, ['tuesday', 'wednesday', 'thursday', 'friday'])) {
+        //            $firstPayDate = $this->created_at->addDays(6);
+        //        } elseif ($day === 'saturday') {
+        //            $firstPayDate = $this->created_at->addDays(5);
+        //        } elseif (in_array($day, ['sunday', 'monday'])) {
+        //            $firstPayDate = $this->created_at->addDays(4);
+        //        }
+        //
+        //        $nextPayDay = $firstPayDate;
+        $firstPayDate = $this->created_at->addDays($investment_start_at);
         $nextPayDay = $firstPayDate;
 
         if ($firstPayDate->isPast()) {

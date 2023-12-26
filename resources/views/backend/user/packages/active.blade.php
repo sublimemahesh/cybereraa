@@ -17,7 +17,7 @@
     </div>
 
     <div class="row">
-         {{-- @include('backend.user.transactions.top-nav') --}}
+        {{-- @include('backend.user.transactions.top-nav') --}}
         @foreach ($activePackages as $subscription)
             <div class="col-xl-6 ">
                 <div class="card1">
@@ -35,8 +35,8 @@
 
                         <div class="card-body mb-0 package-body">
                             <p class="card-text">Buy Date : <b> {{ $subscription->created_at->format('Y-m-d h:i A') }}</b></p>
-                            <p class="card-text">Active Date : <b> {{ $subscription->package_activate_date }}</b></p>
-                            <p class="card-text">Next Payment Date :<b> {{ $subscription->next_payment_date }} </b></p>
+                            <p class="card-text">Active Date : <b> {{ $subscription->created_at->addDays($investment_start_at->value)->format('Y-m-d') }} 12:00 AM</b></p>
+                            <p class="card-text">Next Payment Date :<b> {{ $subscription->getNextPaymentDateAttribute($investment_start_at->value) }} </b></p>
                             <p class="card-text">Plan Expire Return ({{ $subscription->investment_profit }}%) :<b> {{ $subscription->transaction->currency }}  {{ $subscription->invested_amount * ($subscription->investment_profit) /100 }} </b></p>
                             <p class="card-text">Completed Return :<b> {{ $subscription->transaction->currency }}  {{ $subscription->earnings_sum_amount ?? 0 }} </b></p>
                             <p class="card-text">Pending Return : <b> {{ $subscription->transaction->currency }}  {{ ($subscription->invested_amount * ($subscription->investment_profit) /100) - $subscription->earnings_sum_amount }} </b></p>
