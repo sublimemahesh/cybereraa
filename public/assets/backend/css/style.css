@@ -49836,9 +49836,9 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
 
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width:350px) {
     .nav-control{
-        right: 180%;
+        right: 190%;
       }
 
       .mob-vh-100{
@@ -49849,9 +49849,32 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
   padding-top: 0px!important;
   padding-bottom: 0px!important;
 }
+}
 
+@media only screen and (min-width: 350px) and (max-width: 400px) {
+    .nav-control{
+        right: 220%;
+      }
+  }
+
+@media only screen and (min-width: 400px) and (max-width: 500px) {
+
+    .nav-control{
+        right: 250%;
+      }
 
 }
+
+@media only screen and (min-width: 500px) and (max-width: 600px) {
+
+    .nav-control{
+        right: 300%;
+      }
+
+}
+
+
+
 
  .goog-te-gadget span{
     display: none !important;
