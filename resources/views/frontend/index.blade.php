@@ -105,12 +105,12 @@
     <!--==================================================-->
     <!-- Start about-area -->
     <!--==================================================-->
-    <div class="about-area">
+    <div class="about-area" data-dxs='mt:-50'>
         <div class="container">
-            <div class="row">
+            <div class="row" data-dxs='mb:-30'>
                 <div class="col-lg-6 col-md-6">
                     <div class="single-about-box">
-                        <div class="about-thumb bounce-animate" data-devil='pt:70'>
+                        <div class="about-thumb bounce-animate" data-devil='pt:70' data-dxs='pt:0 mt:0'>
                             <img src="{{asset('assets/frontend/images/crypto-3.png') }}" alt="" />
                         </div>
                     </div>
@@ -311,7 +311,7 @@
     <!--How it work -->
     <!--==================================================-->
 
-    <div class="feature-area style-one upper">
+    <div class="feature-area style-one upper" data-dxs="pt:60">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
