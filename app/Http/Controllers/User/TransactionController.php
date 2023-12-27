@@ -46,7 +46,7 @@ class TransactionController extends Controller
                                     </div>
                                 </div>';
                 })
-                ->rawColumns(['action', 'user', 'purchaser', 'type'])
+                ->rawColumns(['action', 'user', 'purchaser', 'type', 'package'])
                 ->make();
 
         }
@@ -86,7 +86,7 @@ class TransactionController extends Controller
                                     </div>
                                 </div>';
                 })
-                ->rawColumns(['action', 'user', 'purchaser', 'type'])
+                ->rawColumns(['action', 'user', 'purchaser', 'type', 'package'])
                 ->make();
         }
         return view('backend.user.transactions.purchase-history');

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Mail\TransactionMail;
+use App\Mail\TransactionRejectMail;
 use Carbon\Carbon;
 use Exception;
 use Haruncpi\LaravelUserActivity\Traits\Loggable;
@@ -29,6 +30,10 @@ class Transaction extends Model
             if ($transaction->status === 'PAID' && $transaction->isDirty('status')) {
                 $user = $transaction->user;
                 Mail::to($user->email)->send(new TransactionMail($transaction, $user));
+            }
+            if ($transaction->status === 'REJECTED' && $transaction->isDirty('status')) {
+                $user = $transaction->user;
+                Mail::to($user->email)->send(new TransactionRejectMail($transaction, $user));
             }
         });
     }
