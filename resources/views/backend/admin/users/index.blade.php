@@ -8,7 +8,7 @@
         <link href="{{ asset('assets/backend/vendor/datatables/css/buttons.bootstrap5.min.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/backend/vendor/datatables/css/datatable-extension.css') }}" rel="stylesheet">
         @vite(['resources/css/app-jetstream.css'])
-        <style>
+        {{--<style>
             #users th:nth-child(1),
             #users td:nth-child(1) {
                 max-width: 50px;
@@ -26,7 +26,7 @@
                 text-overflow: ellipsis;
                 white-space: nowrap;
             }
-        </style>
+        </style>--}}
     @endsection
 
     @section('breadcrumb-items')
@@ -127,7 +127,7 @@
                         <table id="users" class="table-responsive display table-responsive-my" style="table-layout: fixed">
                             <thead>
                                 <tr>
-                                    <th style="width:50px">PIC</th>
+                                    {{--<th style="width:50px">PIC</th>--}}
                                     <th>USER DETAILS</th>
                                     <th>CONTACT DETAILS</th>
                                     <th>KYC STATUS</th>

@@ -303,18 +303,14 @@ class GenealogyController extends Controller
                 return "<img class='rounded-circle' width='35' src='" . $lvlUser->profile_photo_url . "' alt='' />";
             })
             ->addColumn('user_details', function ($lvlUser) {
-                $level = [
-                    1 => "DIRECT",
-                    2 => "LEVEL 1",
-                    3 => "LEVEL 2",
-                    4 => "LEVEL 3",
-                ][$lvlUser->depth];
-                return "<i class='fa fa-user-circle'></i> #{$lvlUser->id} - <code>{$lvlUser->username}</code> <br>
-                            <i class='fa fa-level-down'></i> {$level}  <br>
-                            <i class='fa fa-user'></i> {$lvlUser->name} ";
+
+                $level = \App\Enums\ReferralLevelEnum::level()[$lvlUser->depth];
+
+                return "<i class='fa fa-user-circle'></i> <code>{$lvlUser->username}</code> <br>
+                            <i class='fa fa-level-down'></i> {$level} ";
             })
             ->addColumn('contact_details', function ($lvlUser) {
-                return "Referal User: #{$lvlUser->super_parent_id} - <code>{$lvlUser->sponsor?->username}</code> <br>
+                return "Referal User: <code>{$lvlUser->sponsor?->username}</code> <br>
                             <i class='fa fa-envelope'></i> $lvlUser->email<br>";
             })
             ->addColumn('sponsor', function ($lvlUser) {

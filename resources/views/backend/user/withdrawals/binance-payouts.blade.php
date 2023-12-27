@@ -25,7 +25,7 @@
                         <h4 class="card-title">Binance Payout</h4>
                         <p>
                             Just so you know, transaction fees will be added to every withdrawal request based on your wallet type. <br>
-                            For wallets with type <code>"INTERNAL" & "EXTERNAL"</code>, The transaction fee is <code>USDT {{ $payout_transfer_fee->value }}%</code>.<br>
+                            For wallets with type <code>"INTERNAL" & "EXTERNAL"</code>, The transaction fee is <code class="fs-15">USDT {{ $payout_transfer_fee->value }}%</code>.<br>
                             {{--For wallets with type <code>"STAKING"</code>, the transaction fee is <code>USDT {{ $staking_withdrawal_fee->value }}</code>.--}}
                         </p>
                         <p>
@@ -34,9 +34,9 @@
                             (Purchase a new package to increase your payout limit)
                         </p>
                         <p>All active packages will be expired when the payout limit is reached 0. <br>
-                            (Your withdrawal limit is reduced when withdrawing money using the main wallet)</p>
+                            (Your withdrawal limit is reduced when withdrawing money using the Internal wallet)</p>
                         <hr>
-                        <p>
+                        <p class="fs-15">
                             {{-- MAIN WALLET  --}}
                             INTERNAL WALLET
                             <br>
@@ -44,7 +44,7 @@
                             &emsp; Payout limit: <code>USDT {{ $wallet->withdraw_limit }}</code>
                         </p>
 
-                        <p>
+                        <p class="fs-15">
                             EXTERNAL WALLET <br>
                             {{-- TOPUP WALLET <br> --}}
                             &emsp; Balance: <code>USDT {{ $wallet->topup_balance }}</code>
@@ -52,15 +52,15 @@
                         <hr>
                         <p>
                             MAX AMOUNT THAT CAN WITHDRAW TODAY <br>
-                            &emsp; Balance: <code>USDT {{ $daily_max_withdrawal_limits->value }}</code>
+                            &emsp; Balance: <code class="fs-15">USDT {{ $daily_max_withdrawal_limits->value }}</code>
                         </p>
                         <p>
                             REMAINING AMOUNT FOR TODAY FOR WITHDRAW <br>
-                            &emsp; Balance: <code>USDT {{ $remaining_withdraw_amount_for_day }}</code>
+                            &emsp; Balance: <code class="fs-15">USDT {{ $remaining_withdraw_amount_for_day }}</code>
                         </p>
                         <p>
                             ALLOWED DAYS FOR THE WITHDRAWAL <br>
-                            &emsp; <code class="text-uppercase"> {{ implode(", ",$withdrawal_days_of_week) }}</code>
+                            &emsp; <code class="text-uppercase fs-15"> {{ implode(", ",$withdrawal_days_of_week) }}</code>
                         </p>
                         {{--<p>
                             STAKING WALLET <br>
@@ -74,8 +74,8 @@
                                     <label for="withdraw-amount">
                                         Withdrawal Amount
                                     </label>
-                                    <input min="{{ $minimum_payout_limit->value }}" x-model="payout_amount" id="withdraw-amount" type="number" class="form-control">
-                                    <div class="text-info">Total Amount:
+                                    <input min="{{ $minimum_payout_limit->value }}" x-model="payout_amount" data-input=form-input step="1" pattern="[0-9]" id="withdraw-amount" type="number" class="form-control">
+                                    <div class="text-center font-w600 fs-30 mt-3">Total:
                                         <code id="show-receiving-amount"></code>
                                         {{--<code id="show-receiving-amount" x-html=" 'USDT ' + (parseFloat(payout_amount) + {{ (float) $payout_transfer_fee->value }})"></code>--}}
                                     </div>
@@ -84,15 +84,16 @@
                                     <label for="remark">Remark</label>
                                     <textarea id="remark" name="remark" rows="3" placeholder="Remark" class="form-control h-auto"></textarea>
                                 </div>
-                                <div class="mb-3 mt-2">
+                                <div class="mb-3 mt-0">
                                     <label for="payout_info">Payout Info</label>
                                     <div id="payout_info" disabled rows="3" placeholder="Remark" class="form-control h-auto">
-                                        <p class="mb-0"><b>Email:</b> {{ $profile->binance_email }}</p>
-                                        <p class="mb-0"><b>Id:</b> {{ $profile->binance_id }}</p>
-                                        <p class="mb-0"><b>Address:</b> {{ $profile->wallet_address }}</p>
-                                        <p class="mb-0"><b>Phone:</b> {{ $profile->binance_phone }}</p>
+                                        {{--<p class="mb-0"><b>Email:</b> {{ $profile->binance_email }}</p>--}}
+                                        {{--<p class="mb-0"><b>Id:</b> {{ $profile->binance_id }}</p>--}}
+                                        <p class="mb-0"><b>Wallet Address:</b> {{ $profile->wallet_address }}</p>
+                                        <p class="mb-0"><b>Wallet Nickname:</b> {{ $profile->wallet_address_nickname }}</p>
+                                        {{--<p class="mb-0"><b>Phone:</b> {{ $profile->binance_phone }}</p>--}}
                                     </div>
-                                    <div class="text-info">Change Details:
+                                    <div class="text-info mt-1">Change Wallet Address:
                                         <a href="{{ route('profile.show') }}">Edit Profile</a>
                                     </div>
                                 </div>
@@ -101,9 +102,9 @@
                                     <div class="title">Choose a Wallet</div>
                                     <div class="plans row">
                                         <label class="plan basic-plan col-sm-4" for="main">
-                                            <input checked value="main" type="radio" name="wallet_type" id="main"/>
+                                            <input checked value="main" data-input=form-input type="radio" name="wallet_type" id="main"/>
                                             <div class="plan-content">
-                                                <img loading="lazy" src="https://raw.githubusercontent.com/ismailvtl/ismailvtl.github.io/master/images/life-saver-img.svg" alt=""/>
+                                                <img loading="lazy" src="{{ asset('assets/images/main-wallet.png') }}" alt=""/>
                                                 <div class="plan-details">
                                                     <span>  Internal Wallet</span>
                                                     {{-- <span>Main Wallet</span> --}}
@@ -112,9 +113,9 @@
                                         </label>
 
                                         <label class="plan complete-plan col-sm-4" for="topup">
-                                            <input type="radio" id="topup" name="wallet_type" value="topup"/>
+                                            <input type="radio" data-input=form-input id="topup" name="wallet_type" value="topup"/>
                                             <div class="plan-content">
-                                                <img loading="lazy" src="https://raw.githubusercontent.com/ismailvtl/ismailvtl.github.io/master/images/potted-plant-img.svg" alt=""/>
+                                                <img loading="lazy" src="{{ asset('assets/images/topup-wallet.png') }}" alt=""/>
                                                 <div class="plan-details">
                                                     <span>External Wallet</span>
                                                     {{-- <span>Topup Wallet</span> --}}
@@ -166,12 +167,12 @@
 
                                 <div class="mb-3 mt-2">
                                     <label for="password">Password</label>
-                                    <input id="password" type="password" class="form-control" autocomplete="new-password">
+                                    <input id="password" data-input=form-input type="password" class="form-control" autocomplete="new-password">
                                 </div>
                                 @if(Auth::user()?->two_factor_secret && in_array( \Laravel\Fortify\TwoFactorAuthenticatable::class, class_uses_recursive(Auth::user()),true))
                                     <div class="mb-3 mt-2">
                                         <label for="code">Two Factor code / Recovery Code</label>
-                                        <input id="code" type="password" class="form-control" autocomplete="one-time-password" placeholder="2FA code OR Recovery Code">
+                                        <input id="code" type="password" data-input=form-input class="form-control" autocomplete="one-time-password" placeholder="2FA code OR Recovery Code">
                                     </div>
                                 @endif
                                 <p>

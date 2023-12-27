@@ -82,7 +82,7 @@ class WithdrawController extends Controller
                             Wallet: <code class='text-uppercase'>{$withdraw->wallet_type}</code>";
                 })
                 ->addColumn('wallet_address', function ($withdraw) {
-                    $skeleton = '{"email":"","id":"","address":"","phone":""}';
+                    $skeleton = '{"email":"","id":"","address":"","phone":"", "wallet_address_nickname":""}';
                     $payout_info = json_decode($withdraw?->payout_details ?? $skeleton, false, 512, JSON_THROW_ON_ERROR);
                     return $payout_info->address;
                 })

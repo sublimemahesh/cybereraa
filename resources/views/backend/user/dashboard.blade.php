@@ -197,7 +197,7 @@
                                         <h4 class="bitcoin"></h4>
                                     </div>
                                     <img src="{{asset('assets/frontend/images/coin-icon/bitcoin-big.png') }}" width="42"
-                                        height="42" viewBox="0 0 42 42" fill="none">
+                                         height="42" viewBox="0 0 42 42" fill="none">
                                 </div>
                             </div>
                         </li>
@@ -212,7 +212,7 @@
                                         <h4 class="litecoin"></h4>
                                     </div>
                                     <img src="{{asset('assets/frontend/images/coin-icon/litecoin-big.png') }}"
-                                        width="42" height="42" viewBox="0 0 42 42" fill="none">
+                                         width="42" height="42" viewBox="0 0 42 42" fill="none">
                                 </div>
                             </div>
                         </li>
@@ -227,7 +227,7 @@
                                         <h4 class="ethereum"></h4>
                                     </div>
                                     <img src="{{ asset('assets/frontend/images/coin-icon/ethereum-big.png') }}"
-                                        width="42" height="42" viewBox="0 0 42 42" fill="none">
+                                         width="42" height="42" viewBox="0 0 42 42" fill="none">
                                 </div>
                             </div>
                         </li>
@@ -242,7 +242,7 @@
                                         <h4 class="tether"></h4>
                                     </div>
                                     <img src="{{ asset('assets/frontend/images/coin-icon/tether-big.png') }}" width="42"
-                                        height="42" viewBox="0 0 42 42" fill="none">
+                                         height="42" viewBox="0 0 42 42" fill="none">
                                 </div>
                             </div>
                         </li>
@@ -386,7 +386,7 @@
 
                         <div class=" col-xl-4" data-dxs="mt:10 mb:10">
                             <a id="messenger-button" href="https://www.facebook.com/sharer/sharer.php?u={{urlencode($url_ref)}}" target="_blank">
-                                <button type="button" class="btn btn-width"  data-devil="bgc:#0084FF c:#fff">
+                                <button type="button" class="btn btn-width" data-devil="bgc:#0084FF c:#fff">
                                     <i class="bi bi-messenger" data-devil='fs:12'></i> Messenger
                                 </button>
                             </a>
@@ -519,6 +519,8 @@
                                 <span class="px-0">Received</span>
                                 <span class="px-0">Already Paid</span>
                                 <span class="px-0">User</span>
+                                <span class="px-0">Income Level</span>
+                                {{--<span class="px-0">Paid Percentage</span>--}}
                                 {{--<span class="px-0">Next Pay</span>--}}
                             </div>
                             <div class="list-table success">
@@ -527,6 +529,8 @@
                                         <span class="p-0">$ {{ number_format($sale->amount,2) }}</span>
                                         <span class="p-0">$ {{ number_format($sale->paid,2) }}</span>
                                         <span class="p-0">{{ $sale->purchasedPackage->user->username }}</span>
+                                        <span class="p-0">{{ \App\Enums\ReferralLevelEnum::level()[$sale->commission_level] ?? '-' }}</span>
+                                        {{--<span class="p-0">{{ $sale->payed_percentage }}%</span>--}}
                                         {{--<span class="p-0">{{ Carbon::parse($sale->next_payment_date)->format('Y-m-d') }}</span>--}}
                                         <div class="bg-layer"></div>
                                     </div>
@@ -539,6 +543,7 @@
                                 <span class="px-0">Received</span>
                                 <span class="px-0">Type</span>
                                 <span class="px-0">User</span>
+                                <span class="px-0">Income Level</span>
                                 <span class="px-0">Paid Percentage</span>
                                 {{--<span class="px-0">Next Pay</span>--}}
                             </div>
@@ -548,6 +553,7 @@
                                         <span class="p-0">$ {{ number_format($sale->amount,2) }}</span>
                                         <span class="p-0"> {{ $sale->type }}</span>
                                         <span class="p-0">{{ $sale->tradeIncomePackage->user->username }}</span>
+                                        <span class="p-0">{{ \App\Enums\ReferralLevelEnum::level()[$sale->income_level] ?? '-' }}</span>
                                         <span class="p-0">{{ $sale->payed_percentage }}%</span>
                                         <div class="bg-layer"></div>
                                     </div>

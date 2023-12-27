@@ -86,18 +86,21 @@
                     <div class="table-responsive">
                         <table id="earnings" class="display table-responsive-my " style="table-layout: fixed">
                             <thead>
-                            <tr>
-                                <th>USER ID</th>
-                                <th>USERNAME</th>
-                                <th>NAME</th>
-                                <th>SPONSOR</th>
-                                <th class="text-right">AMOUNT</th>
-                            </tr>
+                                <tr>
+                                    {{--<th>USER ID</th>--}}
+                                    <th>USERNAME</th>
+                                    <th>EMAIL</th>
+                                    <th>REFERRAL USER</th>
+                                    <th class="text-right">AMOUNT $</th>
+                                </tr>
                             </thead>
                             <tfoot>
-                            <tr>
-                                <th colspan="5" style="text-align:right"></th>
-                            </tr>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th style="text-align:right">Total $</th>
+                                    <th style="text-align:right"></th>
+                                </tr>
                             </tfoot>
                         </table>
                     </div>

@@ -4,6 +4,16 @@ $(function () {
     const date_range = urlParams.get("date-range");
     const date_approve = urlParams.get("date-approve");
 
+    let clipboard = new ClipboardJS('.copy-to-clipboard');
+
+    // Handle copy success
+    clipboard.on('success', function (e) {
+        Toast.fire({
+            icon: 'success', title: 'Address copied to clipboard!',
+        })
+        e.clearSelection();
+    });
+
     let table = $('#binance-trx').DataTable({
         scrollX: true,
         destroy: true,
@@ -44,14 +54,17 @@ $(function () {
                         return intVal(a) + intVal(b);
                     }, 0);
             }
-
-            let amount = new Intl.NumberFormat().format(sumVal(9));
+            let numberFormatOptions = {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            }
+            let amount = new Intl.NumberFormat('en-US', numberFormatOptions).format(sumVal(9));
             $(api.column(9).footer()).html(`USDT ${amount}`);
 
-            let transaction_fee = new Intl.NumberFormat().format(sumVal(10));
+            let transaction_fee = new Intl.NumberFormat('en-US', numberFormatOptions).format(sumVal(10));
             $(api.column(10).footer()).html(`USDT ${transaction_fee}`);
 
-            let total = new Intl.NumberFormat().format(sumVal(11));
+            let total = new Intl.NumberFormat('en-US', numberFormatOptions).format(sumVal(11));
             $(api.column(11).footer()).html(`USDT ${total}`);
         },
         columnDefs: [
@@ -62,7 +75,10 @@ $(function () {
             },
             {
                 render: function (data, type, full, meta) {
-                    return `<div style="font-size: 0.76rem !important;" class="text-truncate"> ${data} </div>`;
+                    return `<div style="font-size: 0.76rem !important;" class="text-truncate copy-to-clipboard cursor-pointer"  data-clipboard-text="${data}">
+                                <i class="fa fa-clone" style="font-size: 17px;"></i>
+                                ${data}
+                            </div>`;
                 }, targets: [4],
             },
             {

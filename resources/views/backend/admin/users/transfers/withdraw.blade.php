@@ -67,10 +67,15 @@
                                 <div class="mb-3 mt-2">
                                     <label for="payout_info">Payout Info</label>
                                     <div id="payout_info" disabled rows="3" placeholder="Remark" class="form-control h-auto">
-                                        <p class="mb-0"><b>Email:</b> {{ $payout_info->email }}</p>
-                                        <p class="mb-0"><b>Id:</b> {{ $payout_info->id }}</p>
-                                        <p class="mb-0"><b>Address:</b> {{ $payout_info->address }}</p>
-                                        <p class="mb-0"><b>Phone:</b> {{ $payout_info->phone }}</p>
+                                        {{--<p class="mb-0"><b>Email:</b> {{ $payout_info->email }}</p>
+                                        <p class="mb-0"><b>Id:</b> {{ $payout_info->id }}</p>--}}
+                                        <div class="mb-0"><b>Wallet Address:</b>
+                                            <div class="text-truncate copy-to-clipboard cursor-pointer" data-clipboard-text="{{ $payout_info->address }}">
+                                                {{ $payout_info->address }}
+                                                <i class="fa fa-clone" style="font-size: 17px;"></i>
+                                            </div>
+                                        </div>
+                                        {{--<p class="mb-0"><b>Phone:</b> {{ $payout_info->phone }}</p>--}}
                                     </div>
                                     <div class="text-info">View Profile Details:
                                         <a href="{{ route('admin.users.profile.show', $withdraw->user) }}">View Profile</a>
@@ -108,5 +113,17 @@
 
     @push('scripts')
         <script src="{{ asset('assets/backend/js/admin/transfers/withdraw_form.js') }}"></script>
+        <script src="{{ asset('assets/backend/vendor/clipboard/clipboard.min.js') }}"></script>
+        <script !src="">
+            let clipboard = new ClipboardJS('.copy-to-clipboard');
+
+            // Handle copy success
+            clipboard.on('success', function (e) {
+                Toast.fire({
+                    icon: 'success', title: 'Address copied to clipboard!',
+                })
+                e.clearSelection();
+            });
+        </script>
     @endpush
 </x-backend.layouts.app>

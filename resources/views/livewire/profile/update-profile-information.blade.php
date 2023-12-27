@@ -7,7 +7,7 @@
             <div class="card-body" id="nav-txt-color">
                 <div class="tab-content">
                     <div class="row" name="form">
-                        <div class="col-sm-12 m-b30">
+                        <div class="col-sm-12">
                             <!-- Profile Photo -->
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                 <div x-data="{ photoName: null, photoPreview: null }"
@@ -28,8 +28,7 @@
                                              class="rounded-full h-20 w-20 object-cover">
 
 
-                                        <x-jet-secondary-button class="mt-2 mr-2 btn-m" type="button"
-                                                                x-on:click.prevent="$refs.photo.click()" data-devil="c:#fff">
+                                        <x-jet-secondary-button class="mt-2 mr-2 btn-m" type="button" x-on:click.prevent="$refs.photo.click()" data-devil="c:#fff">
                                             {{ __('Select A New Photo') }}
                                         </x-jet-secondary-button>
 
@@ -56,15 +55,13 @@
                     </div>
                     <div class="row" name="form">
                         @if ($this->user->super_parent_id !== null)
-                            <div class="col-sm-6 m-b30 mt-2">
-                                <label class="form-label" for="sponsor">{{ __('Sponsor') }}</label>
-                                <div class="form-control">#{{ $this->user->super_parent_id }}:
-                                    {{ $this->user->sponsor->name }}
-                                    - {{ $this->user->sponsor->username }}</div>
+                            <div class="col-sm-6 mt-2 mb-3">
+                                <label class="form-label" for="sponsor">{{ __('Referral User') }}</label>
+                                <div class="form-control"> {{ $this->user->sponsor->username }}</div>
                             </div>
                         @endif
-                        <div class="col-sm-6 m-b30 mt-2">
-                            <label class="form-label" for="name">{{ __('Name') }}</label>
+                        <div class="col-sm-6 mt-2 mb-3">
+                            <label class="form-label" for="name">{{ __('Name') }}<sup class="text-danger">*</sup></label>
                             @if (auth()->user()->profile->is_kyc_verified)
                                 <div class="form-control">{{ $state['name'] }}</div>
                             @else
@@ -73,33 +70,28 @@
                             @endif
                             <x-jet-input-error for="name" class="mt-2"/>
                         </div>
-                        <div class="col-sm-6 m-b30 mt-2" wire:ignore>
-                            <label class="form-label" for="phone">{{ __('Phone') }}</label>
-                            <input type="text" id="phone" class="form-control" wire:model.defer="state.phone">
-                            {{-- <div class="form-control">{{ $state['phone'] }}</div> --}}
+                        <div class="col-sm-6 mt-2 mb-3">
+                            <div wire:ignore>
+                                <label class="form-label" for="phone">{{ __('Phone') }}<sup class="text-danger">*</sup></label>
+                                <input type="text" id="phone" class="form-control" wire:model.defer="state.phone">
+                                {{-- <div class="form-control">{{ $state['phone'] }}</div> --}}
+                            </div>
                             <x-jet-input-error for="phone" class="mt-2"/>
                         </div>
-                        <div class="col-sm-6 m-b30 mt-2">
-                            <label class="form-label" for="email">{{ __('Email') }}</label>
+                        <div class="col-sm-6 mt-2 mb-3">
+                            <label class="form-label" for="email">{{ __('Email') }}<sup class="text-danger">*</sup></label>
                             <input type="text" id="email" class="form-control" wire:model.defer="state.email">
                             <x-jet-input-error for="email" class="mt-2"/>
-                            @if (
-                            !$this->user->hasVerifiedEmail() &&
-                            Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::emailVerification()))
+                            @if (!$this->user->hasVerifiedEmail() && Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::emailVerification()))
                                 <p class="text-sm mt-2">
                                     {{ __('Your email address is unverified.') }}
-
-                                    <button type="button" wire:loading.attr="disabled"
-                                            class="underline text-sm text-gray-600 hover:text-gray-900"
-                                            wire:click.prevent="sendEmailVerification">
+                                    <button type="button" wire:loading.attr="disabled" class="underline text-sm text-gray-600 hover:text-gray-900" wire:click.prevent="sendEmailVerification">
                                         {{ __('Click here to re-send the verification email.') }}
                                     </button>
                                 </p>
-
                                 @if ($this->verificationLinkSent)
                                     <p v-show="verificationLinkSent" class="mt-2 font-medium text-sm text-green-600">
-                                        {{ __('A new verification link has been sent to your email
-                                        address.') }}
+                                        {{ __('A new verification link has been sent to your email address.') }}
                                     </p>
                                 @endif
                                 @if (session()->has('error') )
@@ -109,13 +101,10 @@
                                 @endif
                             @endif
                         </div>
-                        <div class="col-lg-6 m-b30 mt-2">
+                        <div class="col-sm-6 mt-2 mb-3">
                             <div wire:ignore>
-                                <label class="form-label" for="country"> Country</label>
-                                <x-select2 id="country" name="country_id"
-                                           wire:model="state.profile_info.country_id"
-                                           class="block mt-1 w-full form-control border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                                           :options="$countries"/>
+                                <label class="form-label" for="country"> Country <sup class="text-danger">*</sup></label>
+                                <x-select2 id="country" name="country_id" wire:model="state.profile_info.country_id" class="block mt-1 w-full form-control border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" :options="$countries"/>
                             </div>
                             @error('state.country_id')
                             <div class="main-register-from-error-alert">
@@ -123,18 +112,16 @@
                             </div>
                             @enderror
                         </div>
-                        <div class="col-lg-6 m-b30 mt-2">
+                        <div class="col-sm-6 mt-2 mb-3">
                             <div>
-                                <label class="form-label" for="dob">{{ __('Birth Day') }}</label>
-                                <x-jet-input wire:ignore id="dob" wire:model.defer="state.profile_info.dob"
-                                             class="bday-mask block mt-1 w-full form-control" type="text" name="dob"
-                                             autofocus autocomplete="dob"/>
+                                <label class="form-label" for="dob">{{ __('Birth Day') }}<sup class="text-danger">*</sup></label>
+                                <x-jet-input wire:ignore id="dob" wire:model.defer="state.profile_info.dob" class="bday-mask block mt-1 w-full form-control" type="text" name="dob" autofocus autocomplete="dob"/>
                                 <x-jet-input-error for="profile_info.dob" class="mt-2"/>
                             </div>
                         </div>
 
-                        <div class="col-lg-6 m-b30 mt-2">
-                            <label class="form-label" for="gender">{{ __('Gender') }}</label>
+                        <div class="col-sm-6 mt-2 mb-3">
+                            <label class="form-label" for="gender">{{ __('Gender') }}<sup class="text-danger">*</sup></label>
                             <select id="gender" wire:model.defer="state.profile_info.gender"
                                     class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm  form-control">
                                 <option value="">Select Gender</option>
@@ -143,87 +130,83 @@
                             </select>
                             <x-jet-input-error for="profile_info.gender" class="mt-2"/>
                         </div>
+
+                        <div class="col-sm-6 mt-2 mb-3">
+                            <label class="form-label" for="nic">{{ __('NIC') }}<sup class="text-danger">*</sup></label>
+                            <x-jet-input id="nic" wire:model.defer="state.profile_info.nic" class="block mt-1 w-full form-control" type="text" name="nic" autofocus autocomplete="nic"/>
+                            <x-jet-input-error for="profile_info.nic" class="mt-2"/>
+                        </div>
                     </div>
                     <div class="row" name="form">
-                        <div class="col-lg-6 m-b30 mt-2">
-                            <label class="form-label" for="street">{{ __('Address Line 01')
-                                        }}</label>
-                            <x-jet-input id="street" wire:model.defer="state.profile_info.street"
-                                         class="block mt-1 w-full form-control" type="text" name="street" autofocus
-                                         autocomplete="street"/>
+                        <div class="col-sm-6 mt-2 mb-3">
+                            <label class="form-label" for="street">{{ __('Street') }}</label>
+                            <x-jet-input id="street" wire:model.defer="state.profile_info.street" class="block mt-1 w-full form-control" type="text" name="street" autofocus autocomplete="street"/>
                             <x-jet-input-error for="profile_info.street" class="mt-2"/>
                         </div>
-                        <div class="col-lg-6 m-b30 mt-2">
-                            <label class="form-label" for="state">{{ __('City') }}</label>
-                            <x-jet-input id="state" wire:model.defer="state.profile_info.state"
-                                         class="block mt-1 w-full form-control" type="text" name="state" autofocus
-                                         autocomplete="state"/>
+                        <div class="col-sm-6 mt-2 mb-3">
+                            <label class="form-label" for="state">{{ __('State') }}</label>
+                            <x-jet-input id="state" wire:model.defer="state.profile_info.state" class="block mt-1 w-full form-control" type="text" name="state" autofocus autocomplete="state"/>
                             <x-jet-input-error for="profile_info.state" class="mt-2"/>
                         </div>
-                        <div class="col-lg-6 m-b30 mt-2">
-                            <label class="form-label" for="address">{{ __('State') }}</label>
-                            <x-jet-input id="address" wire:model.defer="state.profile_info.address"
-                                         class="block mt-1 w-full form-control" type="text" name="address" autofocus
-                                         autocomplete="address"/>
+                        <div class="col-sm-6 mt-2 mb-3">
+                            <label class="form-label" for="address">{{ __('Address') }} <sup class="text-danger">*</sup></label>
+                            <x-jet-input id="address" wire:model.defer="state.profile_info.address" class="block mt-1 w-full form-control" type="text" name="address" autofocus autocomplete="address"/>
                             <x-jet-input-error for="profile_info.address" class="mt-2"/>
                         </div>
-                        <div class="col-lg-6 m-b30 mt-2">
-                            <label class="form-label" for="zip_code">{{ __('Zip Code')
-                                        }}</label>
-                            <x-jet-input id="zip_code" wire:model.defer="state.profile_info.zip_code"
-                                         class="block mt-1 w-full form-control" type="number" name="zip_code" autofocus
-                                         autocomplete="zip_code"/>
+                        <div class="col-sm-6 mt-2 mb-3">
+                            <label class="form-label" for="zip_code">{{ __('Zip Code') }}</label>
+                            <x-jet-input id="zip_code" wire:model.defer="state.profile_info.zip_code" class="block mt-1 w-full form-control" type="number" name="zip_code" autofocus autocomplete="zip_code"/>
                             <x-jet-input-error for="profile_info.zip_code" class="mt-2"/>
                         </div>
 
-                        <div class="col-lg-6 m-b30 mt-2">
+                        <div class="col-sm-6 mt-2 mb-3">
                             <label class="form-label" for="recover_email">
                                 {{ __('Recover Email') }}
                             </label>
-                            <x-jet-input id="recover_email" wire:model.defer="state.profile_info.recover_email"
-                                         class="block mt-1 w-full form-control" type="email" name="recover_email"/>
+                            <x-jet-input id="recover_email" wire:model.defer="state.profile_info.recover_email" class="block mt-1 w-full form-control" type="email" name="recover_email"/>
                             <x-jet-input-error for="profile_info.recover_email" class="mt-2"/>
                         </div>
 
-                        <div class="col-lg-6 m-b30 mt-2">
-                            <label class="form-label" for="home_phone"> {{ __('Recover Phone')
-                                        }}
+                        <div class="col-sm-6 mt-2 mb-3">
+                            <label class="form-label" for="home_phone"> {{ __('Recover Phone') }}
                             </label>
-                            <x-jet-input id="home_phone" wire:model.defer="state.profile_info.home_phone"
-                                         class="block mt-1 w-full form-control" type="text" name="home_phone"/>
+                            <x-jet-input id="home_phone" wire:model.defer="state.profile_info.home_phone" class="block mt-1 w-full form-control" type="text" name="home_phone"/>
                             <x-jet-input-error for="profile_info.home_phone" class="mt-2"/>
                         </div>
                     </div>
                     <div class="row" name="form">
-                        {{-- <div class="col-lg-6 m-b30 mt-2">
+                        {{-- <div class="col-sm-6 mt-2 mb-3">
                             <label class="form-label" for="binance_email"> {{ __('TRC20 Email') }}
                             </label>
                             <x-jet-input id="binance_email" wire:model.defer="state.profile_info.binance_email"
                                 class="block mt-1 w-full form-control" type="email" name="binance_email" />
                             <x-jet-input-error for="profile_info.binance_email" class="mt-2" />
                         </div> --}}
-                        {{-- <div class="col-lg-6 m-b30">
+                        {{-- <div class="col-lg-6">
                             <label class="form-label" for="binance_id"> {{ __('TRC20 Id') }}
                             </label>
                             <x-jet-input id="binance_id" wire:model.defer="state.profile_info.binance_id"
                                 class="block mt-1 w-full form-control" type="text" name="binance_id" />
                             <x-jet-input-error for="profile_info.binance_id" class="mt-2" />
                         </div> --}}
-                        {{-- <div class="col-lg-6 m-b30 mt-2">
+                        {{-- <div class="col-sm-6 mt-2 mb-3">
                             <label class="form-label" for="binance_phone"> {{ __('TRC20 Phone') }}
                             </label>
                             <x-jet-input id="binance_phone" wire:model.defer="state.profile_info.binance_phone"
                                 class="block mt-1 w-full form-control" type="text" name="binance_phone" />
                             <x-jet-input-error for="profile_info.binance_phone" class="mt-2" />
                         </div> --}}
-                        <div class="col-lg-6 m-b30 mt-2">
-                            <label class="form-label" for="wallet_address"> {{ __('TRC20 Wallter Address')
-                                        }}
+                        <div class="col-sm-6 mt-2 mb-3">
+                            <label class="form-label" for="wallet_address"> {{ __('TRC20 Wallet Address') }}
                             </label>
-                            <x-jet-input id="wallet_address"
-                                         wire:model.defer="state.profile_info.wallet_address"
-                                         class="block mt-1 w-full form-control" type="text" name="wallet_address"/>
+                            <x-jet-input id="wallet_address" wire:model.defer="state.profile_info.wallet_address" class="block mt-1 w-full form-control" type="text" name="wallet_address"/>
                             <x-jet-input-error for="profile_info.wallet_address" class="mt-2"/>
+                        </div>
+                        <div class="col-sm-6 mt-2 mb-3">
+                            <label class="form-label" for="wallet_address_nickname"> {{ __('Wallet Address Nickname') }}
+                            </label>
+                            <x-jet-input id="wallet_address_nickname" wire:model.defer="state.profile_info.wallet_address_nickname" class="block mt-1 w-full form-control" type="text" name="wallet_address_nickname"/>
+                            <x-jet-input-error for="profile_info.wallet_address_nickname" class="mt-2"/>
                         </div>
                     </div>
                 </div>

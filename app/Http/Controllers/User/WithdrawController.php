@@ -110,6 +110,11 @@ class WithdrawController extends Controller
                     return "Type: <code class='text-uppercase'>{$withdraw->type}</code> <br>
                             Wallet: <code class='text-uppercase'>{$withdraw->wallet_type}</code>";
                 })
+                ->addColumn('wallet_address', function ($withdraw) {
+                    $skeleton = '{"email":"","id":"","address":"","phone":"", "wallet_address_nickname":""}';
+                    $payout_info = json_decode($withdraw?->payout_details ?? $skeleton, false, 512, JSON_THROW_ON_ERROR);
+                    return $payout_info->address;
+                })
                 ->addColumn('actions', function ($withdraw) {
                     $actions = '<div class="d-flex">';
                     $actions .= '<a href="' . URL::signedRoute('user.wallet.transfer.invoice', $withdraw) . '" class="btn btn-xs btn-info sharp my-1 mr-1 shadow">
@@ -247,7 +252,7 @@ class WithdrawController extends Controller
         $user_wallet = $user?->wallet;
         $profile = $user?->profile;
 
-        $skel = '{"email":"","id":"","address":"","phone":""}';
+        $skel = '{"email":"","id":"","address":"","phone":"", "wallet_address_nickname":""}';
         $payout_info = json_decode($withdraw->payout_details ?? $skel, false, 512, JSON_THROW_ON_ERROR);
 
         if ($request->wantsJson() && $request->isMethod('post')) {

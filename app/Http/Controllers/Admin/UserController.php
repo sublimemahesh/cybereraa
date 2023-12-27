@@ -69,7 +69,7 @@ class UserController extends Controller
                 });
             return DataTables::eloquent($users)
                 ->addColumn('profile_photo', function ($user) {
-                    return "<img class='rounded-circle py-1' width='35' src='" . $user->profile_photo_url . "' alt='' />";
+//                    return "<img class='rounded-circle py-1' width='35' src='" . $user->profile_photo_url . "' alt='' />";
                 })
                 ->addColumn('user_details', function ($user) {
                     return "<i class='fa fa-user-circle'></i> #{$user->id} |  <code>{$user->username}</code><br>

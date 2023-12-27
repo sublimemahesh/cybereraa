@@ -84,21 +84,30 @@
                     <div class="table-responsive">
                         <table id="binance-trx" class="display table-responsive-my" style="width:100%;table-layout: fixed">
                             <thead>
-                            <tr>
-                                <th>ACTIONS</th>
-                                <th>TRX ID</th>
-                                <th>TYPE</th>
-                                <th>STATUS</th>
-                                <th>CREATED AT</th>
-                                <th class="text-right">AMOUNT</th>
-                                <th class="text-right">FEE</th>
-                                <th class="text-right">TOTAL</th>
-                            </tr>
+                                <tr>
+                                    <th>ACTIONS</th>
+                                    <th>TRX ID</th>
+                                    <th>TYPE</th>
+                                    <th>WALLET ADDRESS</th>
+                                    <th>STATUS</th>
+                                    <th>CREATED AT</th>
+                                    <th class="text-right">AMOUNT $</th>
+                                    <th class="text-right">FEE $</th>
+                                    <th class="text-right">TOTAL $</th>
+                                </tr>
                             </thead>
                             <tfoot>
-                            <tr>
-                                <th colspan="8" style="text-align:right"></th>
-                            </tr>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th style="text-align:right">TOTAL: $</th>
+                                    <th style="text-align:right"></th>
+                                    <th style="text-align:right"></th>
+                                    <th style="text-align:right"></th>
+                                </tr>
                             </tfoot>
                         </table>
                     </div>
@@ -117,6 +126,7 @@
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/vfs_fonts.js') }}"></script>
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.html5.min.js') }}"></script>
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.print.min.js') }}"></script>
+        <script src="{{ asset('assets/backend/vendor/clipboard/clipboard.min.js') }}"></script>
         <script src="{{ asset('assets/backend/js/global-datatable-extension.js') }}"></script>
         <script src="{{ asset('assets/backend/js/user/wallet/withdraw-history.js') }}"></script>
     @endpush

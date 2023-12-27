@@ -1,4 +1,7 @@
 $(function () {
+    function isFloat(n) {
+        return Number(n) === n && n % 1 !== 0;
+    }
 
     setTimeout(() => {
         $('#withdraw-amount').val(MINIMUM_PAYOUT_LIMIT).change();
@@ -6,10 +9,15 @@ $(function () {
 
     $(document).on('change', '#withdraw-amount, #main, #topup, #staking', function (e) {
         e.preventDefault();
+        appendError("withdraw-amount", ``);
         const wallet_type = $("input[name='wallet_type']:checked").val();
         let amount = parseFloat($('#withdraw-amount').val()) || 0;
+        if (isFloat(amount)) {
+            console.log("isFloat " + amount);
+            appendError("withdraw-amount", `<span class="text-danger">Please enter a valid integer amount for withdrawal. </span>`);
+        }
         let trx_fee = (amount * parseFloat(P2P_TRANSFER_FEE)) / 100;
-        console.log(wallet_type, wallet_type === 'staking')
+        console.log(trx_fee, wallet_type, wallet_type === 'staking')
         if (wallet_type === 'staking') {
             trx_fee = parseFloat(STAKING_TRANSFER_FEE);
         }
@@ -19,7 +27,7 @@ $(function () {
             return
         }
 
-        $('#show-receiving-amount').html('USDT ' + (amount + trx_fee))
+        $('#show-receiving-amount').html('USDT ' + (new Intl.NumberFormat().format(amount + trx_fee)))
     })
 
     $(document).on('click', '#send-2ft-code', function (e) {
@@ -46,7 +54,7 @@ $(function () {
                 $('#2ft-section').html(`
                      <div class="mb-3 mt-2">
                         <label for="code">OTP Code </label>
-                        <input id="otp" type="password" class="form-control" autocomplete="one-time-password" placeholder="OTP code">
+                        <input id="otp" data-input="form-input" type="password" class="form-control" autocomplete="one-time-password" placeholder="OTP code">
                         <div class="text-info cursor-pointer" id="send-2ft-code">Resend OTP </div>
                     </div>
                     <button type="submit" id="confirm-payout" class="btn btn-sm btn-success mb-2">Confirm & Withdraw</button>
@@ -62,6 +70,21 @@ $(function () {
         }).catch(error => {
             Toast.fire({
                 icon: 'error', title: error.response.data.message || "Something went wrong!",
+            });
+            let errorMap = [];
+            document.querySelectorAll('input[data-input=form-input]').forEach(input => {
+                console.log(input.id)
+                errorMap.push(input.id === 'withdraw-amount' ? 'withdraw-amount' : input.id)
+            })
+            console.log(errorMap)
+            errorMap.map(id => {
+                try {
+                    let errorMsg = id === 'withdraw-amount' ? error.response.data.errors['amount'] : error.response.data.errors[id];
+                    console.log(id, errorMsg)
+                    errorMsg && appendError(id, `<span class="text-danger">${errorMsg}</span>`)
+                } catch (e) {
+
+                }
             })
         })
     })
@@ -119,9 +142,34 @@ $(function () {
                         Toast.fire({
                             icon: 'error', title: error.response.data.message || "Something went wrong!",
                         })
+                        let errorMap = [];
+                        document.querySelectorAll('input[data-input=form-input]').forEach(input => {
+                            errorMap.push(input.id === 'withdraw-amount' ? 'withdraw-amount' : input.id)
+                        })
+                        errorMap.map(id => {
+                            try {
+                                let errorMsg = id === 'withdraw-amount' ? error.response.data.errors['amount'] : error.response.data.errors[id];
+                                console.log(id, errorMsg)
+                                errorMsg && appendError(id, `<span class="text-danger">${errorMsg}</span>`)
+                            } catch (e) {
+
+                            }
+                        })
                     })
                 }
             });
         }
     })
+
+
+    function appendError(id, html) {
+        try {
+            let el = $(document.getElementById(id));
+            $(el).next(".text-danger").remove();
+            $(html).insertAfter(el)
+        } catch (e) {
+
+        }
+    }
 })
+

@@ -19,6 +19,7 @@ class OTPService
             $json['status'] = false;
             $json['message'] = 'Please submit your KYC for account verification. If you already submitted Contact us for verification.';
             $json['icon'] = 'error'; // warning | info | question | success | error
+            session()->forget('twoft_verify_withdraw_last_otp_requested_at');
             return response()->json($json, Response::HTTP_UNAUTHORIZED);
         }
 
@@ -26,6 +27,7 @@ class OTPService
             $json['status'] = false;
             $json['message'] = 'Password is incorrect';
             $json['icon'] = 'error'; // warning | info | question | success | error
+            session()->forget('twoft_verify_withdraw_last_otp_requested_at');
             return response()->json($json, Response::HTTP_UNAUTHORIZED);
         }
         return $this->sendOTPCode($user, $validated);

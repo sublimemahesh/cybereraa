@@ -48,7 +48,7 @@
                                                     </h5>
                                                 </div>
                                                 <div class="col-sm-9 col-7">
-                                                    <h5>{{ $user->dob }}</h5>
+                                                    <h5>{{ $user->profile->dob }}</h5>
                                                 </div>
                                             </div>
                                             <div class="row mb-2">
@@ -57,7 +57,7 @@
                                                     </h5>
                                                 </div>
                                                 <div class="col-sm-9 col-7">
-                                                    <h5>{{ $user->gender }}</h5>
+                                                    <h5>{{ $user->profile->gender }}</h5>
                                                 </div>
                                             </div>
                                         </div>
@@ -216,7 +216,7 @@
                                                             </h5>
                                                         </div>
                                                         <div class="col-sm-9 col-7">
-                                                            <h5>{{ $user->dob }}</h5>
+                                                            <h5>{{ $user->profile->dob }}</h5>
                                                         </div>
                                                     </div>
                                                     <div class="row mb-2">
@@ -225,7 +225,16 @@
                                                             </h5>
                                                         </div>
                                                         <div class="col-sm-9 col-7">
-                                                            <h5>{{ $user->gender }}</h5>
+                                                            <h5>{{ $user->profile->gender }}</h5>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-2">
+                                                        <div class="col-sm-3 col-5">
+                                                            <h5 class="f-w-500">Address <span class="pull-end">:</span>
+                                                            </h5>
+                                                        </div>
+                                                        <div class="col-sm-9 col-7">
+                                                            <h5>{{ $user->profile->address }}</h5>
                                                         </div>
                                                     </div>
                                                 </div>

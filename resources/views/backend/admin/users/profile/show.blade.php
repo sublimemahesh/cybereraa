@@ -25,9 +25,9 @@
                     <div class="photo-content">
                         <div class="cover-photo rounded"></div>
                     </div>
-                    <div class="profile-info">
-                        <div class="profile-photo">
-                            <img src="{{ $user->profile_photo_url }}" class="profile-img img-fluid rounded-circle" alt="">
+                    <div class="profile-info align-items-center">
+                        <div class="">
+                            <img src="{{ $user->profile_photo_url }}" class="rounded-full h-20 w-20 object-cover" alt="">
                         </div>
                         <div class="profile-details">
                             <div class="profile-name px-3 pt-2">
@@ -36,7 +36,7 @@
                                     Username: {{ $user->username }}
                                     @if($user->sponsor->id !== null)
                                         <br>
-                                        Sponsor: <code>
+                                        Referral User: <code>
                                             <a href='{{ route('admin.users.profile.show', $user->sponsor)  }}'>{{ $user?->sponsor?->username }}</a>
                                         </code>
                                     @endif

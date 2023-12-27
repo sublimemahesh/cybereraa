@@ -177,6 +177,8 @@ class GenerateUserDailyEarning implements ShouldQueue
                                             'user_id' => $activePackage->user_id,
                                             'purchased_package_id' => $activePackage->id,
                                             'trade_income_package_id' => $purchase->id,
+                                            'level_user_id' => $purchasedUser->id,
+                                            'income_level' => $i,
                                             'amount' => $trade_income_amount,
                                             'payed_percentage' => $trade_income_level_percentages[$i],
                                             'type' => $i === 1 ? 'TRADE_DIRECT' : 'TRADE_INDIRECT',

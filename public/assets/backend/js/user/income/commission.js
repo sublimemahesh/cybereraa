@@ -18,7 +18,7 @@ $(function () {
             {data: "package", searchable: false, orderable: false},
             {data: "referer", searchable: true, name: 'purchasedPackage.user.username', orderable: false},
             {data: "created_date", name: 'created_at', searchable: false},
-            {data: "next_payment_date", searchable: false, orderable: false},
+            // {data: "next_payment_date", searchable: false, orderable: false},
             {data: "amount", name: 'amount', searchable: false, orderable: false},
             {data: "paid", name: 'paid', searchable: false, orderable: false},
         ],
@@ -39,24 +39,24 @@ $(function () {
                     }, 0);
             }
 
-            let amountTotal = new Intl.NumberFormat().format(sumVal(6));
-            $(api.column(7).footer()).html(`Current Page Amount Total: USDT ${amountTotal}`);
+            let amountTotal = new Intl.NumberFormat().format(sumVal(5));
+            $(api.column(5).footer()).html(`${amountTotal}`);
 
-            let paidTotal8 = new Intl.NumberFormat().format(sumVal(7));
-            $(api.column(7).footer()).append(`<br><br>Current Paid Total: USDT ${paidTotal8}`);
+            let paidTotal8 = new Intl.NumberFormat().format(sumVal(6));
+            $(api.column(6).footer()).append(`${paidTotal8}`);
         },
         columnDefs: [
             {
                 render: function (date, type, full, meta) {
                     return `<div style="font-size: 0.76rem !important;"> ${date} </div>`;
                 },
-                targets: [3, 4, 5],
+                targets: [0, 1, 2, 3, 4],
             },
             {
                 render: function (amount, type, full, meta) {
-                    return `<div style="min-width:100px" class="text-right"> ${amount} </div>`;
+                    return `<div style="font-size: 0.76rem !important;" class="text-right"> ${amount} </div>`;
                 },
-                targets: [6, 7],
+                targets: [5, 6],
             },
         ],
     })

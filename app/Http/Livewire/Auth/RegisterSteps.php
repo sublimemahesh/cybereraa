@@ -69,11 +69,14 @@ class RegisterSteps extends Component
                 'string',
                 'max:255'
             ],
-            'state.username' => ['required', 'unique:users,username', 'string', 'max:255', 'regex:/^[a-z0-9A-Z-_]+$/'],
+            'state.username' => ['required', 'unique:users,username', 'string', 'max:255', 'regex:/^[0-9A-Z]+$/'], // 'regex:/^[a-z0-9A-Z-_]+$/'
             'state.terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ];
     }
 
+    protected $messages = [
+        'state.username.regex' => 'The username must only contain numbers and uppercase letters',
+    ];
     protected $validationAttributes = [
         'state.super_parent_id' => 'Sponsor'
     ];
