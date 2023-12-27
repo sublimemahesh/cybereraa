@@ -40,11 +40,15 @@
                                 </div>
                                 <div class="mb-3 mt-2">
                                     <label for="payout_info">Payout Info</label>
-                                    <div id="payout_info" disabled rows="3" placeholder="Remark" class="form-control h-auto">
+                                    {{--<div id="payout_info" disabled rows="3" placeholder="Remark" class="form-control h-auto">
                                         <p class="mb-0"><b>Email:</b> {{ $payout_info->email }}</p>
                                         <p class="mb-0"><b>Id:</b> {{ $payout_info->id }}</p>
                                         <p class="mb-0"><b>Address:</b> {{ $payout_info->address }}</p>
                                         <p class="mb-0"><b>Phone:</b> {{ $payout_info->phone }}</p>
+                                    </div>--}}
+                                    <div id="payout_info" disabled rows="3" placeholder="Remark" class="form-control h-auto">
+                                        <p class="mb-0"><b>Wallet Address:</b> {{ $payout_info->address }}</p>
+                                        <p class="mb-0"><b>Wallet Nickname:</b> {{ $payout_info->wallet_address_nickname }}</p>
                                     </div>
                                 </div>
                                 @if($withdraw->expired_packages !== null)

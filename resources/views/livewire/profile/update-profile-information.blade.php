@@ -197,10 +197,16 @@
                             <x-jet-input-error for="profile_info.binance_phone" class="mt-2" />
                         </div> --}}
                         <div class="col-sm-6 mt-2 mb-3">
-                            <label class="form-label" for="wallet_address"> {{ __('TRC20 Wallter Address') }}
+                            <label class="form-label" for="wallet_address"> {{ __('TRC20 Wallet Address') }}
                             </label>
                             <x-jet-input id="wallet_address" wire:model.defer="state.profile_info.wallet_address" class="block mt-1 w-full form-control" type="text" name="wallet_address"/>
                             <x-jet-input-error for="profile_info.wallet_address" class="mt-2"/>
+                        </div>
+                        <div class="col-sm-6 mt-2 mb-3">
+                            <label class="form-label" for="wallet_address_nickname"> {{ __('Wallet Address Nickname') }}
+                            </label>
+                            <x-jet-input id="wallet_address_nickname" wire:model.defer="state.profile_info.wallet_address_nickname" class="block mt-1 w-full form-control" type="text" name="wallet_address_nickname"/>
+                            <x-jet-input-error for="profile_info.wallet_address_nickname" class="mt-2"/>
                         </div>
                     </div>
                 </div>

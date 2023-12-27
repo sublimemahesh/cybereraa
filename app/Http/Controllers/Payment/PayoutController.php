@@ -258,7 +258,7 @@ class PayoutController extends Controller
 
         $validated = Validator::make($request->all(), [
             'minimum_payout_limit' => 'required',
-            'amount' => ['required', 'numeric', 'min:' . $request->minimum_payout_limit],
+            'amount' => ['required', 'integer', 'min:' . $request->minimum_payout_limit],
             'password' => 'required',
             'code' => 'nullable',
             'wallet_type' => 'required|in:main,topup,staking',
@@ -317,7 +317,7 @@ class PayoutController extends Controller
         }
 
         $validated = Validator::make($request->all(), [
-            'amount' => ['required', 'numeric', 'min:' . $minimum_payout_limit->value],
+            'amount' => ['required', 'integer', 'min:' . $minimum_payout_limit->value],
             'wallet_type' => ['required', 'in:main,topup'], //,staking
             'password' => 'required',
             'otp' => 'required|digits:6',
@@ -414,6 +414,7 @@ class PayoutController extends Controller
                 'id' => $user->profile->binance_id,
                 'address' => $user->profile->wallet_address,
                 'phone' => $user->profile->binance_phone,
+                'wallet_address_nickname' => $user->profile->wallet_address_nickname,
             ];
 
             $user_details = [

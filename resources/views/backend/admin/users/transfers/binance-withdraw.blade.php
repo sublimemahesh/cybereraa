@@ -38,6 +38,7 @@
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/vfs_fonts.js') }}"></script>
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.html5.min.js') }}"></script>
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.print.min.js') }}"></script>
+        <script src="{{ asset('assets/backend/vendor/clipboard/clipboard.min.js') }}"></script>
         <script src="{{ asset('assets/backend/js/global-datatable-extension.js') }}"></script>
         <script src="{{ asset('assets/backend/js/admin/transfers/withdraws.js') }}"></script>
     @endpush

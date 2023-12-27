@@ -2,7 +2,15 @@ $(function () {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const date_range = urlParams.get("date-range");
+    let clipboard = new ClipboardJS('.copy-to-clipboard');
 
+    // Handle copy success
+    clipboard.on('success', function (e) {
+        Toast.fire({
+            icon: 'success', title: 'Address copied to clipboard!',
+        })
+        e.clearSelection();
+    });
     let table = $('#binance-trx').DataTable({
         scrollX: true,
         destroy: true,
@@ -10,13 +18,14 @@ $(function () {
         serverSide: true,
         fixedHeader: true,
         responsive: true,
-        order: [[4, 'desc']],
+        order: [[5, 'desc']],
         //stateSave: true,
         ajax: location.href,
         columns: [
             {data: "actions", searchable: false, orderable: false},
             {data: "withdraw_id", name: 'id', searchable: false, orderable: false},
             {data: "type_n_wallet", 'name': 'type', searchable: false, orderable: false},
+            {data: "wallet_address", searchable: false, orderable: false},
             {data: "status", searchable: false, orderable: false},
             {data: "date", name: 'created_at', searchable: false},
             {data: "amount", name: 'amount', searchable: false, orderable: false},
@@ -39,25 +48,39 @@ $(function () {
                         return intVal(a) + intVal(b);
                     }, 0);
             }
+            let numberFormatOptions = {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            }
+            let amount = new Intl.NumberFormat('en-US', numberFormatOptions).format(sumVal(6));
+            $(api.column(6).footer()).html(`${amount}`);
 
-            let amount = new Intl.NumberFormat().format(sumVal(5));
-            $(api.column(7).footer()).html(`Current page total amount: USDT ${amount}`);
+            let transaction_fee = new Intl.NumberFormat('en-US', numberFormatOptions).format(sumVal(7));
+            $(api.column(7).footer()).html(`${transaction_fee}`);
 
-            let transaction_fee = new Intl.NumberFormat().format(sumVal(6));
-            $(api.column(7).footer()).append(`<br><br>Current Page Trx fees: USDT ${transaction_fee}`);
-
-            let total = new Intl.NumberFormat().format(sumVal(7));
-            $(api.column(7).footer()).append(`<br><br>Current Page Total: USDT ${total}`);
+            let total = new Intl.NumberFormat('en-US', numberFormatOptions).format(sumVal(8));
+            $(api.column(8).footer()).html(`${total}`);
         },
-        columnDefs: [{
-            render: function (date, type, full, meta) {
-                return `<div style="font-size: 0.76rem !important;"> ${date} </div>`;
-            }, targets: [1, 2, 3, 4],
-        }, {
-            render: function (amount, type, full, meta) {
-                return `<div style="min-width:100px" class="text-right"> ${amount} </div>`;
-            }, targets: [5, 6, 7],
-        },],
+        columnDefs: [
+            {
+                render: function (date, type, full, meta) {
+                    return `<div style="font-size: 0.76rem !important;"> ${date} </div>`;
+                }, targets: [1, 2, 4, 5],
+            },
+            {
+                render: function (data, type, full, meta) {
+                    return `<div style="font-size: 0.76rem !important;" class="text-truncate copy-to-clipboard cursor-pointer"  data-clipboard-text="${data}">
+                                <i class="fa fa-clone" style="font-size: 17px;"></i>
+                                ${data}
+                            </div>`;
+                }, targets: [3],
+            },
+            {
+                render: function (amount, type, full, meta) {
+                    return `<div style="font-size: 0.76rem !important;" class="text-right"> ${amount} </div>`;
+                }, targets: [6, 7, 8],
+            },
+        ],
     });
 
     flatpickr("#date-range", {
