@@ -924,6 +924,8 @@ div#particles .slider-thumb
     margin-top: 5px; /* Optional: Add some space between the two spans in mobile view */
   }
 
+
+
 }
 
 @media screen and (min-width: 299px) and (max-width: 320px) {
@@ -939,6 +941,8 @@ div#particles .slider-thumb
       top: -16px;
       margin-left: 82px;
     }
+
+    
 
   }
 

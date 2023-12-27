@@ -49838,7 +49838,16 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
           background-image: none;
     }
 
+    .main-register-form-style
+    {
+      padding-top: 0px !important;
+      padding-bottom: 0px!important;
+    }
 
+    .mob-vh-100-login{
+        height: 105vh !important;
+      }
+  
 
 }
 

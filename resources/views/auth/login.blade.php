@@ -22,7 +22,7 @@
         <div class="authincation-content">
             <div class="row no-gutters">
                 <div class="col-xl-12">
-                    <div class="auth-form mob-vh-100">
+                    <div class="auth-form mob-vh-100-login">
                         <div class="text-center mb-3">
                             <a href="{{ route('/') }}">
                                 <img class="m-auto" src="{{ asset('assets/backend/images/logo/logo-full.png') }}"
