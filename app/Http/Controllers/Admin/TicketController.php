@@ -46,14 +46,17 @@ class TicketController extends Controller
                 })->addColumn('subject', static function ($ticket) {
                     return '<span class="text-wrap">' . $ticket->subject . '</span>';
                 })
-                ->addColumn('attachment', static function ($ticket) {
+                /*->addColumn('attachment', static function ($ticket) {
                     if (!empty($ticket->attachment)) {
-                        return '<img src="https://img.icons8.com/fluency/48/000000/pdf-mail.png"  alt=""/> 
+                        return '<img src="https://img.icons8.com/fluency/48/000000/pdf-mail.png"  alt=""/>
                             <a href="' . storage("supports/tickets/" . $ticket->attachment) . '" target="blank">
                                 View File
                             </a>';
                     }
                     return '';
+                })*/
+                ->addColumn('created_at_formatted', static function ($ticket) {
+                    return $ticket->created_at->format('Y-m-d H:i:s');
                 })
                 ->addColumn('actions', static function (SupportTicket $ticket) {
                     return view('backend.admin.tickets.components.actions', compact('ticket'));

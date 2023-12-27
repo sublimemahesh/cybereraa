@@ -15,7 +15,7 @@
             <div class="card">
                 <div class="card-body">
                     @include('backend.admin.tickets.components.filters', compact('filter_category', 'filter_priority', 'filter_status'))
-                    <table id="tickets" class="display table-responsive-my">
+                    <table id="tickets" class="display table-responsive-my" style="table-layout: fixed">
                         <thead>
                         <tr>
                             <th>ACTIONS</th>
@@ -38,6 +38,7 @@
 
     @push('scripts')
         <script src="{{ asset('assets/backend/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/global-datatable-extension.js') }}"></script>
         <script src="{{ asset('assets/backend/js/admin/tickets/index.js') }}"></script>
     @endpush
 </x-backend.layouts.app>

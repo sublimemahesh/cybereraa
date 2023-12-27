@@ -16,17 +16,21 @@
         <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
             <i class="bi fa-chain-broken"></i>
             <span class="nav-text"> User Payments </span>
+            @if($counts['pending_transactions'] > 0)
+                <span class="sidebar-pending-notification">{{ $counts['pending_transactions'] }}</span>
+            @endif
         </a>
         <ul aria-expanded="false">
             <li>
-                <a href="{{ route('admin.transactions.index') }}"
-                   class="" aria-expanded="false">
+                <a href="{{ route('admin.transactions.index') }}" class="" aria-expanded="false">
                     All Payments
+                    @if($counts['pending_transactions'] > 0)
+                        <span class="sidebar-pending-notification">{{ $counts['pending_transactions'] }}</span>
+                    @endif
                 </a>
             </li>
             <li>
-                <a href="{{ route('admin.transactions.index', ['status' => 'pending']) }}"
-                   class="" aria-expanded="false">
+                <a href="{{ route('admin.transactions.index', ['status' => 'pending']) }}" class="" aria-expanded="false">
                     Pending Payments
                 </a>
             </li>
@@ -51,21 +55,21 @@
         <a href="{{ route('admin.users.pending.kycs') }}" class="" aria-expanded="false">
             <i class="bi bi-bag-check"></i>
             <span class="nav-text">Pending KYC</span>
+            @if($counts['pending_kycs'] > 0)
+                <span class="sidebar-pending-notification">{{ $counts['pending_kycs'] }}</span>
+            @endif
         </a>
     </li>
 @endcan
 
 @can('withdrawals.viewAny')
-    {{--<li>
-        <a href="{{ route('admin.transfers.withdrawals', ['status' => 'pending']) }}" class="" aria-expanded="false">
-            <i class="bi fa-arrow-turn-up"></i>
-            <span class="nav-text"> Withdrawals </span>
-        </a>
-    </li>--}}
     <li>
         <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
             <i class="bi fa-arrow-turn-up"></i>
             <span class="nav-text"> Withdrawals </span>
+            @if($counts['pending_withdrawals'] > 0)
+                <span class="sidebar-pending-notification">{{ $counts['pending_withdrawals'] }}</span>
+            @endif
         </a>
         <ul aria-expanded="false">
             <li>
@@ -78,6 +82,9 @@
                 <a href="{{ route('admin.transfers.withdrawals', ['status' => 'pending']) }}"
                    class="" aria-expanded="false">
                     Pending
+                    @if($counts['pending_withdrawals'] > 0)
+                        <span class="sidebar-pending-notification">{{ $counts['pending_withdrawals'] }}</span>
+                    @endif
                 </a>
             </li>
             <li>
@@ -116,11 +123,18 @@
         <a class="has-arrow" href="javascript:void(0)">
             <i class="bi bi-question-diamond"></i>
             <span class="nav-text"> Support Ticket </span>
+            @if($counts['open_support_tickets'] > 0)
+                <span class="sidebar-pending-notification">{{ $counts['open_support_tickets'] }}</span>
+            @endif
         </a>
         <ul>
             @can('support_ticket.viewAny')
                 <li>
-                    <a href="{{ route('admin.support.tickets.index') }}"> User Tickets</a>
+                    <a href="{{ route('admin.support.tickets.index') }}"> User Tickets
+                        @if($counts['open_support_tickets'] > 0)
+                            <span class="sidebar-pending-notification">{{ $counts['open_support_tickets'] }}</span>
+                        @endif
+                    </a>
                 </li>
             @endcan
             @can('support_ticket.category.viewAny')

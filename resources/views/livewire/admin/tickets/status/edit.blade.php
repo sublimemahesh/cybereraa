@@ -8,7 +8,7 @@
         <div class="form-group row mb-2">
             <label class="col-sm-3 col-form-label" for="name">Ticket status</label>
             <div class="col-sm-9">
-                <input wire:model.lazy="status.name" id="name" class="form-control" placeholder="Enter name" type="text" required>
+                <input value="{{ $status->name }}" id="name" readonly class="form-control" placeholder="Enter name" type="text" required>
                 @error('status.name')
                 <span class="text-danger mt-2">{{ $message }}</span>
                 @enderror
