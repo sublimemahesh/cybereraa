@@ -11,13 +11,13 @@ $(function () {
         serverSide: true,
         //stateSave: false,
         ajax: location.href,
-        order: [[6, 'desc']],
+        order: [[4, 'desc']],
         columns: [
-            {data: "user", searchable: false, orderable: false},
-            {data: "username", searchable: false, orderable: false},
-            {data: "name", searchable: false, orderable: false},
+            // {data: "user", searchable: false, orderable: false},
+            {data: "username", name: 'user.username', searchable: true, orderable: false},
+            {data: "email", searchable: false, orderable: false},
             {data: "sponsor", searchable: false, orderable: false},
-            {data: "rank", searchable: false, orderable: false},
+            // {data: "rank", searchable: false, orderable: false},
             {data: "total_amount_format", name: 'total_amount', searchable: false, orderable: false},
             {data: "total_paid_format", name: 'total_paid', searchable: false, orderable: true},
         ],
@@ -38,24 +38,24 @@ $(function () {
                     }, 0);
             }
 
-            let amountTotal = new Intl.NumberFormat().format(sumVal(5));
-            $(api.column(6).footer()).html(`Current Page Amount Total: USDT ${amountTotal}`);
+            let amountTotal = new Intl.NumberFormat().format(sumVal(3));
+            $(api.column(3).footer()).html(`${amountTotal}`);
 
-            let paidTotal8 = new Intl.NumberFormat().format(sumVal(6));
-            $(api.column(6).footer()).append(`<br><br>Current Paid Total: USDT ${paidTotal8}`);
+            let paidTotal8 = new Intl.NumberFormat().format(sumVal(4));
+            $(api.column(4).footer()).html(`${paidTotal8}`);
         },
         columnDefs: [
             {
                 render: function (date, type, full, meta) {
-                    return `<div style="font-size: 0.76rem !important;"> ${date} </div>`;
+                    return `<div style="font-size: 0.9rem !important;"> ${date} </div>`;
                 },
-                targets: [0, 1, 2, 3, 4],
+                targets: [0, 1, 2,],
             },
             {
                 render: function (amount, type, full, meta) {
-                    return `<div style="min-width:100px" class="text-right"> ${amount} </div>`;
+                    return `<div style="font-size: 0.9rem !important;" class="text-right"> ${amount} </div>`;
                 },
-                targets: [5, 6],
+                targets: [3, 4],
             },
         ],
     })

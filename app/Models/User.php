@@ -11,8 +11,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\ImageManager;
 use JsonException;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
@@ -20,6 +23,7 @@ use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
+use Storage;
 use Throwable;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -80,6 +84,45 @@ class User extends Authenticatable implements MustVerifyEmail
         session(["{$this->id}_send_email_verification_notification_last_otp_requested_at" => now()]);
     }
 
+    public function updateProfilePhoto(UploadedFile $photo)
+    {
+        tap($this->profile_photo_path, function ($previous) use ($photo) {
+
+            $imagePath = $photo->storePublicly(
+                'profile-photos',
+                ['disk' => $this->profilePhotoDisk()]
+            );
+            $resizedImagePath = $this->resizeImage($imagePath, 300, 300);
+
+            $this->forceFill([
+                'profile_photo_path' => $resizedImagePath,
+            ])->save();
+
+            if ($previous) {
+                Storage::disk($this->profilePhotoDisk())->delete($previous);
+            }
+        });
+    }
+
+    private function resizeImage($imagePath, $width, $height)
+    {
+        $manager = new ImageManager(Driver::class);
+        $image = $manager->read(Storage::disk($this->profilePhotoDisk())->get($imagePath));
+//        $image = ImageManager::imagick()->read(Storage::disk($this->profilePhotoDisk())->get($imagePath));
+        $image = $image->scale(height: $height);
+
+        $resizedImagePath = $imagePath;
+        Storage::disk($this->profilePhotoDisk())->put($resizedImagePath, $image->toJpeg());
+//        $image = Image::make(Storage::disk($this->profilePhotoDisk())->get($imagePath));
+//        $image->resize($width, $height, function ($constraint) {
+//            $constraint->aspectRatio();
+//        });
+//        $resizedImagePath = $imagePath;
+//
+//        Storage::disk($this->profilePhotoDisk())->put($resizedImagePath, $image->stream());
+
+        return $resizedImagePath;
+    }
 
     /**
      * The attributes that should be hidden for serialization.

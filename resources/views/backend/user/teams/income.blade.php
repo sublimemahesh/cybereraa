@@ -82,20 +82,24 @@
                     <div class="table-responsive d-block">
                         <table id="team-commisions" class="display table-responsive-my" style="table-layout: fixed">
                             <thead>
-                            <tr>
-                                <th>USER ID</th>
-                                <th>USERNAME</th>
-                                <th>NAME</th>
-                                <th>SPONSOR</th>
-                                <th>RANK</th>
-                                <th class="text-right">TOTAL</th>
-                                <th class="text-right">PAID</th>
-                            </tr>
+                                <tr>
+                                    {{--<th>USER ID</th>--}}
+                                    <th>USERNAME</th>
+                                    <th>EMAIL</th>
+                                    <th>REFERRAL USER</th>
+                                    {{--<th>RANK</th>--}}
+                                    <th class="text-right">TOTAL $</th>
+                                    <th class="text-right">PAID $</th>
+                                </tr>
                             </thead>
                             <tfoot>
-                            <tr>
-                                <th colspan="7" style="text-align:right"></th>
-                            </tr>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th style="text-align:right">Total $</th>
+                                    <th style="text-align:right"></th>
+                                    <th style="text-align:right"></th>
+                                </tr>
                             </tfoot>
                         </table>
                     </div>

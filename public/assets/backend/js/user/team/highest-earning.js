@@ -13,11 +13,11 @@ $(function () {
         // scrollY: 200,
         // deferRender: true,
         // scroller: true,
-        order: [[4, 'desc']],
+        order: [[3, 'desc']],
         columns: [
-            {data: "user", searchable: false, orderable: false},
-            {data: "username", searchable: false, orderable: false},
-            {data: "name", searchable: false, orderable: false},
+            // {data: "user", searchable: false, orderable: false},
+            {data: "username", name: 'user.username', searchable: true, orderable: false},
+            {data: "email", searchable: false, orderable: false},
             {data: "sponsor", searchable: false, orderable: false},
             //{data: "earnable_type", searchable: false, orderable: false},
             //{data: "package", searchable: false, orderable: false},
@@ -42,19 +42,19 @@ $(function () {
                     }, 0);
             }
 
-            let total = new Intl.NumberFormat().format(sumVal(4));
-            $(api.column(4).footer()).html(`<br><br>Current Page Total: USDT ${total}`);
+            let total = new Intl.NumberFormat().format(sumVal(3));
+            $(api.column(3).footer()).html(`${total}`);
         },
         columnDefs: [
             {
                 render: function (date, type, full, meta) {
-                    return `<div style="font-size: 0.76rem !important;"> ${date} </div>`;
-                }, targets: [0, 1, 2, 3],
+                    return `<div style="font-size: 0.9rem !important;"> ${date} </div>`;
+                }, targets: [0, 1, 2],
             },
             {
                 render: function (amount, type, full, meta) {
-                    return `<div style="min-width:100px" class="text-right"> ${amount} </div>`;
-                }, targets: [4],
+                    return `<div style="font-size: 0.9rem !important" class="text-right"> ${amount} </div>`;
+                }, targets: [3],
             }
         ]
     });

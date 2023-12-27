@@ -10,32 +10,32 @@ $(function () {
         serverSide: true,
         fixedHeader: true,
         responsive: true,
-        order: [[5, 'desc']],
+        order: [[4, 'desc']],
         //stateSave: true,
         ajax: location.href,
         columns: [
-            {data: "profile_photo", name: 'id', searchable: true, orderable: false},
+            // {data: "profile_photo", name: 'id', searchable: true, orderable: false},
             {data: "user_details", name: 'username', searchable: true, orderable: false},
             {data: "contact_details", name: 'email', searchable: true, orderable: false},
-            {data: "kyc_status", searchable: false, orderable: false},
+            {data: "kyc_status", name: 'id', searchable: true, orderable: false},
             {data: "investment", searchable: false, orderable: false},
             {data: "joined", name: 'created_at', searchable: false},
             {data: "actions", searchable: false, orderable: false},
         ],
         columnDefs: [
-            {
-                render: function (data, type, full, meta) {
-                    return `<div style="width:50px"> ${data} </div>`;
-                },
-                width: "50px",
-                targets: 0,
-            },
+            /* {
+                 render: function (data, type, full, meta) {
+                     return `<div style="width:50px"> ${data} </div>`;
+                 },
+                 width: "50px",
+                 targets: 0,
+             },*/
             {
                 render: function (data, type, full, meta) {
                     return `<div style="font-size: 0.76rem !important"> ${data} </div>`;
                 },
                 // width: "150px",
-                targets: [1, 2, 3, 4, 5],
+                targets: [0, 1, 2, 3, 4],
             },
         ],
     });

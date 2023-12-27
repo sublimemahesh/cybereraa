@@ -96,14 +96,14 @@ class EarningController extends Controller
                 //                ->addColumn('earnable_type', function ($earn) {
                 //                    return $earn->type;
                 //                })
-                ->addColumn('user', static function ($trx) {
+                /*->addColumn('user', static function ($trx) {
                     return "#" . str_pad($trx->user_id, '4', '0', STR_PAD_LEFT);
-                })
+                })*/
                 ->addColumn('username', static function ($trx) {
                     return $trx->user->username;
                 })
-                ->addColumn('name', static function ($trx) {
-                    return $trx->user->name;
+                ->addColumn('email', static function ($trx) {
+                    return $trx->user->email;
                 })
                 ->addColumn('sponsor', static function ($trx) {
                     return $trx->user->sponsor->username;
@@ -229,25 +229,25 @@ class EarningController extends Controller
                 ->groupBy('user_id');
 
             return DataTables::of($incomes)
-                ->addColumn('user', static function ($commission) {
+                /*->addColumn('user', static function ($commission) {
 //                    dd($commission);
                     return "#" . str_pad($commission->user_id, '4', '0', STR_PAD_LEFT);
-                })
+                })*/
                 ->addColumn('username', static function ($commission) {
                     return $commission->user->username;
                 })
-                ->addColumn('name', static function ($commission) {
-                    return $commission->user->name;
+                ->addColumn('email', static function ($commission) {
+                    return $commission->user->email;
                 })
                 ->addColumn('sponsor', static function ($commission) {
                     return $commission->user->sponsor->username;
                 })
-                ->addColumn('rank', static function ($commission) {
+               /* ->addColumn('rank', static function ($commission) {
                     if ($commission->user?->currentRank?->rank !== null) {
                         return "Rank 0" . $commission->user->currentRank->rank;
                     }
                     return "-";
-                })
+                })*/
                 ->addColumn('total_amount_format', fn($commission) => number_format($commission->total_amount, 2))
                 ->addColumn('total_paid_format', fn($commission) => number_format($commission->total_paid, 2))
                 ->make();

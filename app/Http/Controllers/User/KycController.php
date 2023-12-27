@@ -70,6 +70,10 @@ class KycController extends Controller
 
     public function show(Request $request, Kyc $kyc)
     {
+        $user = $request->user();
+        if ($user->name === null || $user->phone === null || $user->email === null || $user->profile->address === null || $user->profile->gender === null || $user->profile->dob === null) {
+            return redirect()->route('profile.show')->with('warning', 'Please complete your profile before continuing with KYC verification!');
+        }
         return view('backend.user.kyc.show', compact('kyc'));
     }
 
