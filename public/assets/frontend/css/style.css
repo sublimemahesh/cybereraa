@@ -3324,9 +3324,19 @@ div#particles .slider-thumb {
     content: "TyCoon1m";
     font-size: 22px;
     font-weight: 600;
-    left: 135px;
+    left: 160px;
     position: absolute;
     top: 16px;
     font-family: 'Roboto';
 
+}
+
+.mobil-logo{
+  background: url(../images/mob-logo.png);
+  left: 0px;
+  position: absolute;
+  top: 18px;
+  background-repeat: no-repeat;
+  width: 130px;
+  height: 36px;
 }

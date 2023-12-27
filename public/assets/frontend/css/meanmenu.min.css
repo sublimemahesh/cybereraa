@@ -131,7 +131,7 @@ a.meanmenu-reveal{display:none}
 .mean-container a.meanmenu-reveal:hover span {
   background: #fff;
 }
-.mean-container .mean-bar::before {
+/* .mean-container .mean-bar::before {
 	color: #fff;
 	content: "TyCoon1m";
 	font-size: 22px;
@@ -140,4 +140,4 @@ a.meanmenu-reveal{display:none}
 	position: absolute;
 	top: 18px;
   font-family: 'Roboto';
-}
+} */
