@@ -25,9 +25,20 @@
                             <li><a href="{{ route('faq') }}">FAQ</a></li>
                             <li><a href="{{ route('contact') }}">Contact </a></li>
                         </ul>
+                        @auth()
+
                         <div class="menu-button"> 
-                            <a href="{{ route('login') }}">Join us</a>
+                            <a href="{{ route(authUserFolder() .'.dashboard') }}">Dashboard</a>
                         </div>
+
+                          @endauth
+                            @guest()
+
+                            <div class="menu-button"> 
+                                <a href="{{ route('login') }}">Join us</a>
+                            </div>
+                            @endguest
+
                     </div>
                 </div> 
             </div>
