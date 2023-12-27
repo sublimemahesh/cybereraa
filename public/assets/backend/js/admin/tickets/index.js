@@ -11,28 +11,29 @@
             },
         });
         let ticket_table = $("#tickets").DataTable({
-            language: {
-                paginate: {
-                    next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
-                    previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
-                }
-            },
-            lengthMenu: [10, 25, 50, 100, 250, 500, "All"],
             scrollX: true,
             destroy: true,
             processing: true,
             serverSide: true,
-            stateSave: true,
+            // stateSave: true,
             ajax: location.href,
+            order: [[7, 'asc']],
             columns: [
-                {data: "actions", name: "actions", searchable: false},
-                {data: "user.username", name: "user.username"},
-                {data: "id", name: "id", searchable: false},
-                {data: "subject", name: "subject", searchable: false},
-                {data: "category", name: "ticket_category_id", searchable: false},
-                {data: "priority", name: "ticket_priority_id", searchable: false},
-                {data: "status", name: "ticket_status_id", searchable: false},
-                {data: "created_at", name: "created_at", searchable: false},
+                {data: "actions", name: "actions", searchable: false, orderable: false},
+                {data: "user.username", name: "user.username", orderable: false},
+                {data: "id", name: "id", searchable: false, orderable: false},
+                {data: "subject", name: "subject", searchable: false, orderable: false},
+                {data: "category", name: "ticket_category_id", searchable: false, orderable: false},
+                {data: "priority", name: "ticket_priority_id", searchable: false, orderable: false},
+                {data: "status", name: "ticket_status_id", searchable: false, orderable: false},
+                {data: "created_at_formatted", name: "created_at", searchable: false, orderable: true},
+            ],
+            columnDefs: [
+                {
+                    render: function (date, type, full, meta) {
+                        return `<div style="font-size: 0.76rem !important;"> ${date} </div>`;
+                    }, targets: [0, 1, 2, 3, 5, 6, 7],
+                },
             ],
         });
 

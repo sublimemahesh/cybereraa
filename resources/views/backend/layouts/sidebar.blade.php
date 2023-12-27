@@ -4,54 +4,158 @@
          <span class="nav-text">Purchase Package</span>
      </a>
  </li>--}}
-
-@canany(['users.viewAny','kyc.viewAny'])
-    <li>
-        <a href="{{ route('admin.users.index') }}" class="" aria-expanded="false">
-            <i class="bi bi-people-fill"></i>
-            <span class="nav-text">Manage Users</span>
+@can('transactions.viewAny')
+    {{--<li>
+        <a href="{{ route('admin.transactions.index', ['date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .' to '.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}"
+           class="" aria-expanded="false">
+            <i class="bi fa-chain-broken"></i>
+            <span class="nav-text"> User Payments </span>
         </a>
-    </li>
-    @can('kyc.viewAny')
-        <li>
-            <a href="{{ route('admin.users.pending.kycs') }}" class="" aria-expanded="false">
-                <i class="bi bi-bag-check"></i>
-                <span class="nav-text">Pending KYC</span>
-            </a>
-        </li>
-    @endcan
-@endcan
-
-@canany(['users.manage-permissions','admin.users.viewAny'])
+    </li>--}}
     <li>
-        <a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
-            <i class="material-icons fs-28" style="margin-right: 5px !important;">manage_accounts</i>
-            <span class="nav-text">User Roles</span>
+        <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
+            <i class="bi fa-chain-broken"></i>
+            <span class="nav-text"> User Payments </span>
+            @if($counts['pending_transactions'] > 0)
+                <span class="sidebar-pending-notification">{{ $counts['pending_transactions'] }}</span>
+            @endif
         </a>
         <ul aria-expanded="false">
-            @can('permission.manage')
-                <li>
-                    <a href="{{ route('super_admin.permissions.index') }}">Permissions</a>
-                </li>
-            @endcan
-            @can('role.manage')
-                <li>
-                    <a href="{{ route('super_admin.roles.index') }}">Roles</a>
-                </li>
-            @endcan
             <li>
-                <a href="{{ route('super_admin.users.index') }}">Users</a>
+                <a href="{{ route('admin.transactions.index') }}" class="" aria-expanded="false">
+                    All Payments
+                    @if($counts['pending_transactions'] > 0)
+                        <span class="sidebar-pending-notification">{{ $counts['pending_transactions'] }}</span>
+                    @endif
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.transactions.index', ['status' => 'pending']) }}" class="" aria-expanded="false">
+                    Pending Payments
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.transactions.index', ['status' => 'paid']) }}"
+                   class="" aria-expanded="false">
+                    Approved Payments
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.transactions.index', ['status' => 'rejected']) }}"
+                   class="" aria-expanded="false">
+                    Rejected Payments
+                </a>
             </li>
         </ul>
     </li>
 @endcan
 
-@can('company_users.viewAny')
+@can('kyc.viewAny')
     <li>
-        <a href="{{ route('admin.reports.company-users') }}" class="" aria-expanded="false">
-            <i class="bi bi-person-lines-fill"></i>
-            <span class="nav-text">Company Users</span>
+        <a href="{{ route('admin.users.pending.kycs') }}" class="" aria-expanded="false">
+            <i class="bi bi-bag-check"></i>
+            <span class="nav-text">Pending KYC</span>
+            @if($counts['pending_kycs'] > 0)
+                <span class="sidebar-pending-notification">{{ $counts['pending_kycs'] }}</span>
+            @endif
         </a>
+    </li>
+@endcan
+
+@can('withdrawals.viewAny')
+    <li>
+        <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
+            <i class="bi fa-arrow-turn-up"></i>
+            <span class="nav-text"> Withdrawals </span>
+            @if($counts['pending_withdrawals'] > 0)
+                <span class="sidebar-pending-notification">{{ $counts['pending_withdrawals'] }}</span>
+            @endif
+        </a>
+        <ul aria-expanded="false">
+            <li>
+                <a href="{{ route('admin.transfers.withdrawals') }}"
+                   class="" aria-expanded="false">
+                    All Withdrawals
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.transfers.withdrawals', ['status' => 'pending']) }}"
+                   class="" aria-expanded="false">
+                    Pending
+                    @if($counts['pending_withdrawals'] > 0)
+                        <span class="sidebar-pending-notification">{{ $counts['pending_withdrawals'] }}</span>
+                    @endif
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.transfers.withdrawals', ['status' => 'processing']) }}"
+                   class="" aria-expanded="false">
+                    Processing
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.transfers.withdrawals', ['status' => 'success']) }}"
+                   class="" aria-expanded="false">
+                    Approved
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.transfers.withdrawals', ['status' => 'reject']) }}"
+                   class="" aria-expanded="false">
+                    Rejected
+                </a>
+            </li>
+        </ul>
+    </li>
+@endcan
+
+@can('users.genealogy')
+    <li>
+        <a href="{{ route('admin.team.users-list') }}" class="" aria-expanded="false">
+            <i class="bi bi-diagram-3-fill"></i>
+            <span class="nav-text">User Levels</span>
+        </a>
+    </li>
+@endcan
+
+@canany(['support_ticket.viewAny','support_ticket.category.viewAny','support_ticket.priority.viewAny','support_ticket.status.viewAny'])
+    <li>
+        <a class="has-arrow" href="javascript:void(0)">
+            <i class="bi bi-question-diamond"></i>
+            <span class="nav-text"> Support Ticket </span>
+            @if($counts['open_support_tickets'] > 0)
+                <span class="sidebar-pending-notification">{{ $counts['open_support_tickets'] }}</span>
+            @endif
+        </a>
+        <ul>
+            @can('support_ticket.viewAny')
+                <li>
+                    <a href="{{ route('admin.support.tickets.index') }}"> User Tickets
+                        @if($counts['open_support_tickets'] > 0)
+                            <span class="sidebar-pending-notification">{{ $counts['open_support_tickets'] }}</span>
+                        @endif
+                    </a>
+                </li>
+            @endcan
+            @can('support_ticket.category.viewAny')
+                <li>
+                    <a href="{{ route('admin.support.tickets.category.create') }}">Ticket Categories
+                    </a>
+                </li>
+            @endcan
+            @can('support_ticket.priority.viewAny')
+                <li>
+                    <a href="{{ route('admin.support.tickets.priority.create') }}">Ticket Priorities
+                    </a>
+                </li>
+            @endcan
+            @can('support_ticket.status.viewAny')
+                <li>
+                    <a href="{{ route('admin.support.tickets.status.create') }}">Ticket Statuses
+                    </a>
+                </li>
+            @endcan
+        </ul>
     </li>
 @endcan
 
@@ -90,123 +194,21 @@
     </li>
 @endcan
 
-{{--@canany(['transactions.viewAny','purchase_staking_plans.viewAny','withdrawals.viewAny','staking_package.viewAny','earnings.viewAny'])
+@can('users.viewAny')
     <li>
-        <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
-            <i class="bi bi-coin"></i>
-            <span class="nav-text"> Coin Staking</span>
-        </a>
-        <ul aria-expanded="false">
-            <li>
-                <a href="{{ route('admin.staking.dashboard') }}" class="" aria-expanded="false">
-                    Dashboard
-                </a>
-            </li>
-            @can('transactions.viewAny')
-                <li>
-                    <a href="{{ route('admin.staking.transactions.index') }}" class="" aria-expanded="false">
-                        Manage Payments
-                    </a>
-                </li>
-            @endcan
-            @can('purchase_staking_plans.viewAny')
-                <li>
-                    <a href="{{ route('admin.staking-purchased-packages') }}" class="" aria-expanded="false">
-                        Sales
-                    </a>
-                </li>
-            @endcan
-            @can('earnings.viewAny')
-                <li>
-                    <a href="{{ route('admin.staking.earnings.index') }}" class="" aria-expanded="false">
-                        Earnings
-                    </a>
-                </li>
-            @endcan
-            @can('withdrawals.viewAny')
-                <li>
-                    <a href="{{ route('admin.staking.transfers.withdrawals', ['status' => 'pending']) }}" class="" aria-expanded="false">
-                        Withdrawals
-                    </a>
-                </li>
-            @endcan
-            @can('staking_package.viewAny')
-                <li>
-                    <a href="{{ route('admin.staking-packages.index') }}" class="" aria-expanded="false">
-                        Package/Plans
-                    </a>
-                </li>
-            @endcan
-        </ul>
-    </li>
-@endcan--}}
-
-@can('wallet.topup')
-    {{--<li>
-        <a href="{{ route('admin.wallet.topup') }}" class="" aria-expanded="false">
-            <i class="bi bi-send-plus"></i>
-            <span class="nav-text">Topup Wallet</span>
-        </a>
-    </li>--}}
-@endcan
-
-@can('wallet.topup-history.viewAny')
-    {{--<li>
-        <a href="{{ route('admin.wallet.topup.history') }}" class="" aria-expanded="false">
-            <i class="bi bi-receipt-cutoff"></i>
-            <span class="nav-text">Topup History</span>
-        </a>
-    </li>--}}
-@endcan
-
-@can('users.genealogy')
-    <li>
-        <a href="{{ route('admin.team.users-list') }}" class="" aria-expanded="false">
-            <i class="bi bi-diagram-3-fill"></i>
-            <span class="nav-text">User Levels</span>
+        <a href="{{ route('admin.users.index') }}" class="" aria-expanded="false">
+            <i class="bi bi-people-fill"></i>
+            <span class="nav-text">Manage Users</span>
         </a>
     </li>
 @endcan
 
-@can('transactions.viewAny')
-    {{--<li>
-        <a href="{{ route('admin.transactions.index', ['date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .' to '.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}"
-           class="" aria-expanded="false">
-            <i class="bi fa-chain-broken"></i>
-            <span class="nav-text"> User Payments </span>
-        </a>
-    </li>--}}
+@can('company_users.viewAny')
     <li>
-        <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
-            <i class="bi fa-chain-broken"></i>
-            <span class="nav-text"> User Payments </span>
+        <a href="{{ route('admin.reports.company-users') }}" class="" aria-expanded="false">
+            <i class="bi bi-person-lines-fill"></i>
+            <span class="nav-text">Company Users</span>
         </a>
-        <ul aria-expanded="false">
-            <li>
-                <a href="{{ route('admin.transactions.index') }}"
-                   class="" aria-expanded="false">
-                    All Payments
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('admin.transactions.index', ['status' => 'pending']) }}"
-                   class="" aria-expanded="false">
-                    Pending Payments
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('admin.transactions.index', ['status' => 'paid']) }}"
-                   class="" aria-expanded="false">
-                    Approved Payments
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('admin.transactions.index', ['status' => 'rejected']) }}"
-                   class="" aria-expanded="false">
-                    Rejected Payments
-                </a>
-            </li>
-        </ul>
     </li>
 @endcan
 
@@ -230,72 +232,6 @@
     </li>
 @endcan
 
-@can('withdraw.p2p.viewAny')
-    {{--<li>
-        <a href="{{ route('admin.transfers.p2p', ['status' => 'success','date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .' to '.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}"
-           class="" aria-expanded="false">
-            <i class="bi fa-arrow-turn-down"></i>
-            <span class="nav-text"> P2P Transactions </span>
-        </a>
-    </li>--}}
-@endcan
-
-@can('wallet.transfers-history.viewAny')
-    {{--<li>
-        <a href="{{ route('admin.transfers.wallets') }}" class="" aria-expanded="false">
-            <i class="bi bi-arrow-clockwise"></i>
-            <span class="nav-text"> Wallet Transactions </span>
-        </a>
-    </li>--}}
-@endcan
-
-@can('withdrawals.viewAny')
-    {{--<li>
-        <a href="{{ route('admin.transfers.withdrawals', ['status' => 'pending']) }}" class="" aria-expanded="false">
-            <i class="bi fa-arrow-turn-up"></i>
-            <span class="nav-text"> Withdrawals </span>
-        </a>
-    </li>--}}
-    <li>
-        <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
-            <i class="bi fa-arrow-turn-up"></i>
-            <span class="nav-text"> Withdrawals </span>
-        </a>
-        <ul aria-expanded="false">
-            <li>
-                <a href="{{ route('admin.transfers.withdrawals') }}"
-                   class="" aria-expanded="false">
-                    All Withdrawals
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('admin.transfers.withdrawals', ['status' => 'pending']) }}"
-                   class="" aria-expanded="false">
-                    Pending
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('admin.transfers.withdrawals', ['status' => 'processing']) }}"
-                   class="" aria-expanded="false">
-                    Processing
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('admin.transfers.withdrawals', ['status' => 'success']) }}"
-                   class="" aria-expanded="false">
-                    Approved
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('admin.transfers.withdrawals', ['status' => 'reject']) }}"
-                   class="" aria-expanded="false">
-                    Rejected
-                </a>
-            </li>
-        </ul>
-    </li>
-@endcan
-
 @canany(['commissions.viewAny', 'rank_bonus.viewAny'])
     <li>
         <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
@@ -311,14 +247,14 @@
                     </a>
                 </li>
             @endcan
-            @can('rank_bonus.viewAny')
-                {{--<li>
+            {{--@can('rank_bonus.viewAny')
+                <li>
                     <a href="{{ route('admin.incomes.rewards', ['status' => 'qualified','date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .' to '.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}"
                        class="" aria-expanded="false">
                         Rewards
                     </a>
-                </li>--}}
-            @endcan
+                </li>
+            @endcan--}}
         </ul>
     </li>
 @endcan
@@ -332,43 +268,28 @@
     </li>
 @endcan
 
-@can('rank.viewAny')
-    {{--<li>
-        <a href="{{ route('admin.ranks') }}" class="" aria-expanded="false">
-            <i class="bi bi-star-fill"></i>
-            <span class="nav-text"> Ranks </span>
-        </a>
-    </li>--}}
-@endcan
-
-@can('rank_bonus.viewAny')
-    {{--<li>
-        <a href="javascript:void(0);" class="has-arrow" aria-expanded="false">
-            <i class="bi bi-trophy-fill"></i>
-            <span class="nav-text"> Rank Bonus </span>
+@canany(['users.manage-permissions','admin.users.viewAny'])
+    <li>
+        <a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
+            <i class="material-icons fs-28" style="margin-right: 5px !important;">manage_accounts</i>
+            <span class="nav-text">User Roles</span>
         </a>
         <ul aria-expanded="false">
+            @can('permission.manage')
+                <li>
+                    <a href="{{ route('super_admin.permissions.index') }}">Permissions</a>
+                </li>
+            @endcan
+            @can('role.manage')
+                <li>
+                    <a href="{{ route('super_admin.roles.index') }}">Roles</a>
+                </li>
+            @endcan
             <li>
-                <a href="{{ route('admin.ranks.benefits.summery') }}" class="" aria-expanded="false">
-                    <span class="nav-text">Summery</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('admin.ranks.benefits.requirements') }}" class="" aria-expanded="false">
-                    <span class="nav-text">Requirement</span>
-                </a>
+                <a href="{{ route('super_admin.users.index') }}">Users</a>
             </li>
         </ul>
-    </li>--}}
-@endcan
-
-@can('rank_gift.viewAny')
-    {{--<li>
-        <a href="{{ route('admin.ranks.gifts') }}" class="" aria-expanded="false">
-            <i class="bi bi-gift"></i>
-            <span class="nav-text"> Rank Gifts </span>
-        </a>
-    </li>--}}
+    </li>
 @endcan
 
 @can('package.viewAny')
@@ -454,36 +375,130 @@
     </li>
 @endcan
 
-@canany(['support_ticket.viewAny','support_ticket.category.viewAny','support_ticket.priority.viewAny','support_ticket.status.viewAny'])
+
+{{--@canany(['transactions.viewAny','purchase_staking_plans.viewAny','withdrawals.viewAny','staking_package.viewAny','earnings.viewAny'])
     <li>
-        <a class="has-arrow" href="javascript:void(0)">
-            <i class="bi bi-question-diamond"></i>
-            <span class="nav-text"> Support Ticket </span>
+        <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
+            <i class="bi bi-coin"></i>
+            <span class="nav-text"> Coin Staking</span>
         </a>
-        <ul>
-            @can('support_ticket.viewAny')
+        <ul aria-expanded="false">
+            <li>
+                <a href="{{ route('admin.staking.dashboard') }}" class="" aria-expanded="false">
+                    Dashboard
+                </a>
+            </li>
+            @can('transactions.viewAny')
                 <li>
-                    <a href="{{ route('admin.support.tickets.index') }}"> User Tickets</a>
-                </li>
-            @endcan
-            @can('support_ticket.category.viewAny')
-                <li>
-                    <a href="{{ route('admin.support.tickets.category.create') }}">Ticket Categories
+                    <a href="{{ route('admin.staking.transactions.index') }}" class="" aria-expanded="false">
+                        Manage Payments
                     </a>
                 </li>
             @endcan
-            @can('support_ticket.priority.viewAny')
+            @can('purchase_staking_plans.viewAny')
                 <li>
-                    <a href="{{ route('admin.support.tickets.priority.create') }}">Ticket Priorities
+                    <a href="{{ route('admin.staking-purchased-packages') }}" class="" aria-expanded="false">
+                        Sales
                     </a>
                 </li>
             @endcan
-            @can('support_ticket.status.viewAny')
+            @can('earnings.viewAny')
                 <li>
-                    <a href="{{ route('admin.support.tickets.status.create') }}">Ticket Statuses
+                    <a href="{{ route('admin.staking.earnings.index') }}" class="" aria-expanded="false">
+                        Earnings
+                    </a>
+                </li>
+            @endcan
+            @can('withdrawals.viewAny')
+                <li>
+                    <a href="{{ route('admin.staking.transfers.withdrawals', ['status' => 'pending']) }}" class="" aria-expanded="false">
+                        Withdrawals
+                    </a>
+                </li>
+            @endcan
+            @can('staking_package.viewAny')
+                <li>
+                    <a href="{{ route('admin.staking-packages.index') }}" class="" aria-expanded="false">
+                        Package/Plans
                     </a>
                 </li>
             @endcan
         </ul>
     </li>
-@endcan
+@endcan--}}
+
+{{--@can('wallet.topup')
+    <li>
+        <a href="{{ route('admin.wallet.topup') }}" class="" aria-expanded="false">
+            <i class="bi bi-send-plus"></i>
+            <span class="nav-text">Topup Wallet</span>
+        </a>
+    </li>
+@endcan--}}
+
+{{--@can('wallet.topup-history.viewAny')
+    <li>
+        <a href="{{ route('admin.wallet.topup.history') }}" class="" aria-expanded="false">
+            <i class="bi bi-receipt-cutoff"></i>
+            <span class="nav-text">Topup History</span>
+        </a>
+    </li>
+@endcan--}}
+
+{{--@can('withdraw.p2p.viewAny')
+    <li>
+        <a href="{{ route('admin.transfers.p2p', ['status' => 'success','date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .' to '.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}"
+           class="" aria-expanded="false">
+            <i class="bi fa-arrow-turn-down"></i>
+            <span class="nav-text"> P2P Transactions </span>
+        </a>
+    </li>
+@endcan--}}
+
+{{--@can('wallet.transfers-history.viewAny')
+    <li>
+        <a href="{{ route('admin.transfers.wallets') }}" class="" aria-expanded="false">
+            <i class="bi bi-arrow-clockwise"></i>
+            <span class="nav-text"> Wallet Transactions </span>
+        </a>
+    </li>
+@endcan--}}
+
+{{--@can('rank.viewAny')
+    <li>
+        <a href="{{ route('admin.ranks') }}" class="" aria-expanded="false">
+            <i class="bi bi-star-fill"></i>
+            <span class="nav-text"> Ranks </span>
+        </a>
+    </li>
+@endcan--}}
+
+{{--@can('rank_bonus.viewAny')
+    <li>
+        <a href="javascript:void(0);" class="has-arrow" aria-expanded="false">
+            <i class="bi bi-trophy-fill"></i>
+            <span class="nav-text"> Rank Bonus </span>
+        </a>
+        <ul aria-expanded="false">
+            <li>
+                <a href="{{ route('admin.ranks.benefits.summery') }}" class="" aria-expanded="false">
+                    <span class="nav-text">Summery</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.ranks.benefits.requirements') }}" class="" aria-expanded="false">
+                    <span class="nav-text">Requirement</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+@endcan--}}
+
+{{--@can('rank_gift.viewAny')
+    <li>
+        <a href="{{ route('admin.ranks.gifts') }}" class="" aria-expanded="false">
+            <i class="bi bi-gift"></i>
+            <span class="nav-text"> Rank Gifts </span>
+        </a>
+    </li>
+@endcan--}}
