@@ -28,16 +28,18 @@
                         @auth()
 
                         <div class="menu-button"> 
-                            <a href="{{ route(authUserFolder() .'.dashboard') }}">Dashboard</a>
+                            <a id='get-rout' href="{{ route(authUserFolder() .'.dashboard') }}">Dashboard</a>
                         </div>
 
                           @endauth
                             @guest()
 
                             <div class="menu-button"> 
-                                <a href="{{ route('login') }}">Join us</a>
+                                <a id='get-rout'  href="{{ route('login') }}">Join us</a>
                             </div>
                             @endguest
+
+                           
 
                     </div>
                 </div> 
@@ -50,6 +52,7 @@
 <!-- ============================================================= -->
 <div class="mobile-menu-area d-sm-block d-md-block d-lg-none ">
 <div class="mobile-menu">
+    
     <nav class="itsoft_menu">
         <ul class="nav_scroll">
 

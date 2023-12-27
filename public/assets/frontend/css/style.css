@@ -3317,3 +3317,16 @@ div#particles .slider-thumb {
   /* margin: 0px; */
   margin-left: -40px;
 }
+
+.mobile-menu-btn{
+
+    color: #fff;
+    content: "TyCoon1m";
+    font-size: 22px;
+    font-weight: 600;
+    left: 135px;
+    position: absolute;
+    top: 16px;
+    font-family: 'Roboto';
+
+}
