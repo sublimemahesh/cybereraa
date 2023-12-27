@@ -1,6 +1,6 @@
 <x-backend.layouts.app>
     @section('title', 'Purchase '. $package->name. ' | Buy Package')
-    @section('header-title', 'Purchase '. $package->name )
+    @section('header-title', 'Purchase '. $package->name. ' Package' )
     @section('plugin-styles')
         <link rel="stylesheet" href="{{ asset('assets/backend/vendor/select2/css/select2.min.css') }}">
         <!-- Datatable -->
@@ -56,11 +56,16 @@
                                     </div>
                                     <div id="payout_info" disabled rows="3" placeholder="Remark" class="form-control h-auto my-2 copyButton mouse-pointer" title="Copy Text">
                                         {{ strip_tags($wallet_page->content) }}
-                                        
+
                                         <i class="fa fa-clone copy-binance" id="copyButton" data-devil="fs:17 "></i>
                                     </div>
                                     <code id='copy-result'></code>
 
+                                </div>
+                                <hr>
+                                <div>
+                                    <div class="fs-30 text-center font-w600">Total Amount: {{ $package->amount + $package->gas_fee }} USDT</div>
+                                    <div class="text-center">Without network fee</div>
                                 </div>
                                 <hr>
                                 <div class="mb-3 mt-2">
@@ -85,7 +90,10 @@
                         <hr>
                         <input type="hidden" name="package" value="{{ $package->slug }}" id="package_slug">
                         <input type="hidden" name="amount" value="{{ $package->amount }}" id="custom-deposit-amount">
-                        <button type="submit" class="btn btn-primary" id="requestManualPurchase">REQUEST</button>
+                        <div class="d-flex justify-content-evenly">
+                            <button type="submit" class="btn btn-success" id="requestManualPurchase">REQUEST</button>
+                            <a href="{{ route('user.packages.custom') }}" class="btn btn-primary">GO BACK</a>
+                        </div>
                     </form>
                 </div>
             </div>
