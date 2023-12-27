@@ -194,6 +194,15 @@ class EarningController extends Controller
             //->latest();
 
             return DataTables::eloquent($earnings)
+                ->addColumn('type', function ($commission) {
+                    $level = \App\Enums\ReferralLevelEnum::level()[$commission->commission_level] ?? null;
+
+                    $html = "{$commission->type}";
+                    if ($level !== null) {
+                        $html .= " COMMISSION <br><i class='fa fa-level-down'></i> {$level} ";
+                    }
+                    return $html;
+                })
                 ->addColumn('referer', function ($commission) {
                     return str_pad($commission->purchasedPackage->user_id, '4', '0', STR_PAD_LEFT) .
                         " - <code class='text-uppercase'>{$commission->purchasedPackage->user->username}</code>";
@@ -202,7 +211,7 @@ class EarningController extends Controller
                 ->addColumn('amount', fn($commission) => number_format($commission->amount, 2))
                 ->addColumn('paid', fn($commission) => number_format($commission->paid, 2))
                 ->addColumn('created_date', fn($commission) => $commission->created_at->format('Y-m-d H:i:s'))
-                ->rawColumns(['referer'])
+                ->rawColumns(['referer', 'type'])
                 ->make();
         }
 
@@ -242,12 +251,12 @@ class EarningController extends Controller
                 ->addColumn('sponsor', static function ($commission) {
                     return $commission->user->sponsor->username;
                 })
-               /* ->addColumn('rank', static function ($commission) {
-                    if ($commission->user?->currentRank?->rank !== null) {
-                        return "Rank 0" . $commission->user->currentRank->rank;
-                    }
-                    return "-";
-                })*/
+                /* ->addColumn('rank', static function ($commission) {
+                     if ($commission->user?->currentRank?->rank !== null) {
+                         return "Rank 0" . $commission->user->currentRank->rank;
+                     }
+                     return "-";
+                 })*/
                 ->addColumn('total_amount_format', fn($commission) => number_format($commission->total_amount, 2))
                 ->addColumn('total_paid_format', fn($commission) => number_format($commission->total_paid, 2))
                 ->make();

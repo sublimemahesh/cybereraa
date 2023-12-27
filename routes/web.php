@@ -23,8 +23,6 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-
-
 Route::get('/', 'FrontendController@index')->name('/');
 Route::get('about-us', 'FrontendController@about')->name('about');
 Route::get('existing-projects', 'FrontendController@project')->name('project');
@@ -375,9 +373,6 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
 //        Route::get('team/users-list/{user:username?}', 'User\GenealogyController@teamList')->name('team.users-list');
         Route::get('team/users-level/{depth?}', 'User\GenealogyController@userLevels')->name('team.users-levels');
 //        Route::get('team/income-levels', 'User\GenealogyController@IncomeLevels')->name('team.income-levels');
-        Route::get('team/incomes/commission', 'User\EarningController@teamCommissionsIncome')->name('team.incomes.commission');
-        Route::get('team/incomes/earnings', 'User\EarningController@teamHighestEarnings')->name('earnings.team-income');
-        Route::match(['get', 'post'], 'earnings/summarize-yearly-income', 'User\EarningController@incomeChart')->name('earnings.yearly-income-chart');
 
         Route::get('transactions', 'User\TransactionController@index')->name('transactions.index');
         Route::get('transactions/purchased/history', 'User\TransactionController@purchaseHistory')->name('transactions.purchased.history');
@@ -389,6 +384,11 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
 //        Route::get('incomes/rewards', 'User\EarningController@rewards')->name('incomes.rewards');
         Route::get('earnings', 'User\EarningController@index')->name('earnings.index');
         Route::get('earnings/summary-report', 'User\EarningController@earningSummary')->name('earnings.summary-report');
+
+        Route::get('team/incomes/commission', 'User\EarningController@teamCommissionsIncome')->name('team.incomes.commission');
+        Route::get('team/incomes/earnings', 'User\EarningController@teamHighestEarnings')->name('earnings.team-income');
+        Route::match(['get', 'post'], 'earnings/summarize-yearly-income', 'User\EarningController@incomeChart')->name('earnings.yearly-income-chart');
+
 
         Route::post('wallet/transfer/filter/users/{user:username}', 'User\WithdrawController@findUser');
         Route::post('filter/users/{search_text}', 'User\WithdrawController@findUsers');

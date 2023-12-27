@@ -102,21 +102,27 @@
                     <div class="table-responsive d-block">
                         <table id="transactions" class="display table-responsive-my" style="table-layout: fixed">
                             <thead>
-                            <tr>
-                                <th>TYPE</th>
-                                <th>STATUS</th>
-                                <th>REMARK</th>
-                                <th>REFERRER</th>
-                                <th>CREATED AT</th>
-                                <th>NEXT PAY DATE</th>
-                                <th class="text-right">AMOUNT</th>
-                                <th class="text-right">PAID</th>
-                            </tr>
+                                <tr>
+                                    <th>TYPE & LEVEL</th>
+                                    <th>STATUS</th>
+                                    <th>REMARK</th>
+                                    <th>REFERRER</th>
+                                    <th>CREATED AT</th>
+                                    {{--<th>NEXT PAY DATE</th>--}}
+                                    <th class="text-right">AMOUNT $</th>
+                                    <th class="text-right">PAID $</th>
+                                </tr>
                             </thead>
                             <tfoot>
-                            <tr>
-                                <th colspan="8" style="text-align:right"></th>
-                            </tr>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th style="text-align:right">Current Page Total: $</th>
+                                    <th style="text-align:right"></th>
+                                    <th style="text-align:right"></th>
+                                </tr>
                             </tfoot>
                         </table>
                     </div>
@@ -137,6 +143,6 @@
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.html5.min.js') }}"></script>
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.print.min.js') }}"></script>
         <script src="{{ asset('assets/backend/js/global-datatable-extension.js') }}"></script>
-        <script src="{{ asset('assets/backend/js/user/income/commission.js?1675313942') }}"></script>
+        <script src="{{ asset('assets/backend/js/user/income/commission.js') }}"></script>
     @endpush
 </x-backend.layouts.app>
