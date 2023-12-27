@@ -53,7 +53,7 @@ $(function () {
             {
                 render: function (date, type, full, meta) {
                     return `<div style="font-size: 0.76rem !important;"> ${date} </div>`;
-                }, targets: [5, 6, 7],
+                }, targets: [1, 2, 3, 4, 5, 6, 7],
             },
             {
                 render: function (amount, type, full, meta) {
