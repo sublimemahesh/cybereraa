@@ -69,7 +69,7 @@
                         <div class="single-brand-box">
                             <div class="brand-thumb">
                                 <img src="{{asset('assets/frontend/images/coin-icon/bitcoin(4).png') }}" alt="" />
-                                <span class="bitcoin text-white"></span> | <span class="bitcoin-change text-white"></span>
+                                <span class="bitcoin text-white"></span> | <span class="bitcoin-change text-white break-coin"></span>
                             </div>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                         <div class="single-brand-box">
                             <div class="brand-thumb">
                                 <img src="{{asset('assets/frontend/images/coin-icon/ethereum(3).png') }}" alt="" />
-                                <span class="ethereum text-white"></span> | <span class="ethereum-change text-white"></span>
+                                <span class="ethereum text-white"></span> | <span class="ethereum-change text-white break-coin"></span>
                             </div>
                         </div>
                     </div>
@@ -85,18 +85,18 @@
                         <div class="single-brand-box">
                             <div class="brand-thumb">
                                 <img src="{{asset('assets/frontend/images/coin-icon/litecoin(7).png') }}" alt="" />
-                                <span class="text-white litecoin"></span> | <span class="litecoin-change text-white"></span>
+                                <span class="text-white litecoin"></span> | <span class="litecoin-change text-white break-coin"></span>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-12">
+                    {{-- <div class="col-lg-12">
                         <div class="single-brand-box">
                             <div class="brand-thumb">
                                 <img src="{{asset('assets/frontend/images/coin-icon/tether.png') }}" alt="" />
-                                <span class="tether text-white"></span> | <span class="text-white tether-change"></span>
+                                <span class="tether text-white"></span> | <span class="text-white tether-change break-coin"></span>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

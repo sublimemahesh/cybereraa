@@ -918,10 +918,16 @@ div#particles .slider-thumb
   margin-left: 82px;
 }
 
+
+.break-coin {
+    display: block;
+    margin-top: 5px; /* Optional: Add some space between the two spans in mobile view */
+  }
+
 }
 
 @media screen and (min-width: 299px) and (max-width: 320px) {
-    
+
     .slider-thumb img {
         width: 110%;
     }
