@@ -35,6 +35,8 @@
 	<!-- theme js -->
 	<script src="{{ asset('assets/frontend/js/theme.js') }}"></script>
 	<script src="{{ asset('assets/frontend/js/jquery.barfiller.js') }}"></script>
-    
+
+     <!-- Loader js -->
+	<script src="{{ asset('assets/frontend/js/loader.js') }}"></script>
      <!-- My js -->
 	<script src="{{ asset('assets/frontend/js/devil.js') }}"></script>
