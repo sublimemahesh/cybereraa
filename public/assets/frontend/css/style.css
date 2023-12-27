@@ -3307,3 +3307,13 @@ div#particles .slider-thumb {
   }
 /* END  Styles for the loader container */
   
+
+.logo-box{
+ box-sizing: border-box;
+  /* width: 270px; */
+  /* height: 100px; */
+  /* padding: 10px; */
+  /* border: 2px solid black; */
+  /* margin: 0px; */
+  margin-left: -40px;
+}

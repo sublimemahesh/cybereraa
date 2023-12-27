@@ -4,7 +4,8 @@
             <div class="col-lg-12">
                 <div id="sticky-header" class="nav-menu">
                     <div class="header-logo">
-                        <a href="{{ route('/') }}"><img src="{{asset('assets/frontend/images/logo.png') }}" alt=""></a>
+                        <a href="{{ route('/') }}">
+                            <img class="logo-box" src="{{asset('assets/frontend/images/logo.png') }}" alt=""></a>
                         <a class="main_sticky" href="{{ route('/') }}"><img src="{{asset('assets/frontend/images/logo.png') }}" alt=""></a>
                     </div>
                     <div class="heder-menu">
