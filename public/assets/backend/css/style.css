@@ -32547,7 +32547,7 @@ input#checkAll.form-check-input:checked {
     background: var(--bg-color-input);
     border-color: #414040;
     height: 50px;
-   
+
 }
 
 .select2-container--default .select2-selection--single:hover, .select2-container--default .select2-selection--single:focus, .select2-container--default .select2-selection--single.active {
@@ -49991,12 +49991,20 @@ border-color: rgb(12, 13, 13) !important;
 }
 
 [data-theme-version="dark"] #select-country  .select2-container--default .select2-selection--single {
-   
+
     height: 50px;
     border-radius: 10px;
 }
 
 #select-country .select2-container--default .select2-selection--single .select2-selection__arrow {
     top: 14px !important;;
-   
+
 }
+
+
+ .rotatable-image {
+                transition: transform 0.5s ease; /* Add smooth transition effect */
+            }
+ .rotate-buttons {
+                margin-top: 10px;
+            }
