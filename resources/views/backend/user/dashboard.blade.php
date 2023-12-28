@@ -10,6 +10,14 @@
             </h2>
         </div> --}}
 
+        <div class="container"  data-devil="dis:none" data-dxs="dis:block">
+            <div class="alert alert-info  text-center">
+                Welcome to  Tycoon1m Family.
+            </div>
+        </div>
+
+
+
         <div class="col-xl-3 col-lg-6 col-sm-6">
 
             <div class="card overflow-hidden br-dashboard-card">
