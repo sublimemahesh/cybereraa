@@ -7,7 +7,7 @@
 			<div class="col-lg-3 col-md-6">
 				<div class="single-footer-box">
 					<div class="footer-logo">
-						<img src="{{asset('assets/frontend/images/logo.png') }}" alt="">
+						<img src="{{asset('assets/frontend/images/footer-logo.png') }}" alt="">
 					</div>
 					<div class="footer-content">
 						<div class="footer-title">
