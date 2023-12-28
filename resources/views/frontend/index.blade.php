@@ -89,14 +89,46 @@
                             </div>
                         </div>
                     </div>
-                    {{-- <div class="col-lg-12">
+                    <div class="col-lg-12">
                         <div class="single-brand-box">
                             <div class="brand-thumb">
-                                <img src="{{asset('assets/frontend/images/coin-icon/tether.png') }}" alt="" />
-                                <span class="tether text-white"></span> | <span class="text-white tether-change break-coin"></span>
+                                <img src="{{asset('assets/frontend/images/coin-icon/tron.png') }}" alt="" />
+                                <span class="tron text-white"></span> | <span class="text-white tron-change break-coin"></span>
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="single-brand-box">
+                            <div class="brand-thumb">
+                                <img src="{{asset('assets/frontend/images/coin-icon/cardano.png') }}" alt="" />
+                                <span class="cardano text-white"></span> | <span class="text-white cardano-change break-coin"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="single-brand-box">
+                            <div class="brand-thumb">
+                                <img src="{{asset('assets/frontend/images/coin-icon/dai.png') }}" alt="" />
+                                <span class="dai text-white"></span> | <span class="text-white dai-change break-coin"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="single-brand-box">
+                            <div class="brand-thumb">
+                                <img src="{{asset('assets/frontend/images/coin-icon/dogecoin.png') }}" alt="" />
+                                <span class="dogecoin text-white"></span> | <span class="text-white dogecoin-change break-coin"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="single-brand-box">
+                            <div class="brand-thumb">
+                                <img src="{{asset('assets/frontend/images/coin-icon/uniswap.png') }}" alt="" />
+                                <span class="uniswap text-white"></span> | <span class="text-white uniswap-change break-coin"></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
