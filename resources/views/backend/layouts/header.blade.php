@@ -7,7 +7,7 @@
             <img src="{{ asset('assets/backend/images/logo/logo-color.png') }}" class="logo-color" alt="">
             <img src="{{ asset('assets/backend/images/logo/logo-text-color.png') }}" class="brand-title color-title" alt="">
         </div>
-        <div> {{ Auth::user()->username }}</div>
+        <div data-devil="t:10 p:relative"> {{ Auth::user()->username }}</div>
     </a>
     <div class="nav-control">
         <div class="hamburger">

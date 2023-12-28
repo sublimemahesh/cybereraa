@@ -1,6 +1,6 @@
 <!--********************************** Sidebar start ***********************************-->
 <div class="deznav pt-md-0">
-    <div class="deznav-scroll">
+    <div class="deznav-scroll" data-devil="mt:30">
         <ul class="metismenu pt-0" id="menu">
             <li>
                 <a href="{{ route('user.dashboard') }}" class="rounded-1" aria-expanded="false">
