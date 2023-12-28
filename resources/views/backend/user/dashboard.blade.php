@@ -232,7 +232,7 @@
                             </div>
                         </li>
 
-                        <li>
+                        {{-- <li>
                             <div class="card overflow-hidden">
                                 <div class="card-body d-flex align-items-center">
                                     <div class="me-4">
@@ -245,7 +245,84 @@
                                          height="42" viewBox="0 0 42 42" fill="none">
                                 </div>
                             </div>
+                        </li> --}}
+
+                        <li>
+                            <div class="card overflow-hidden">
+                                <div class="card-body d-flex align-items-center">
+                                    <div class="me-4">
+                                        <p class="mb-2 fs-13">
+                                            <span class="tron-change"></span>
+                                        </p>
+                                        <h4 class="tron"></h4>
+                                    </div>
+                                    <img src="{{ asset('assets/frontend/images/coin-icon/tron-big.png') }}" width="42"
+                                        height="42" viewBox="0 0 42 42" fill="none">
+                                </div>
+                            </div>
                         </li>
+
+                        <li>
+                            <div class="card overflow-hidden">
+                                <div class="card-body d-flex align-items-center">
+                                    <div class="me-4">
+                                        <p class="mb-2 fs-13">
+                                            <span class="cardano-change"></span>
+                                        </p>
+                                        <h4 class="cardano"></h4>
+                                    </div>
+                                    <img src="{{ asset('assets/frontend/images/coin-icon/cardano-big.png') }}" width="42"
+                                        height="42" viewBox="0 0 42 42" fill="none">
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="card overflow-hidden">
+                                <div class="card-body d-flex align-items-center">
+                                    <div class="me-4">
+                                        <p class="mb-2 fs-13">
+                                            <span class="dai-change"></span>
+                                        </p>
+                                        <h4 class="dai"></h4>
+                                    </div>
+                                    <img src="{{ asset('assets/frontend/images/coin-icon/dai-big.png') }}" width="42"
+                                        height="42" viewBox="0 0 42 42" fill="none">
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="card overflow-hidden">
+                                <div class="card-body d-flex align-items-center">
+                                    <div class="me-4">
+                                        <p class="mb-2 fs-13">
+                                            <span class="dogecoin-change"></span>
+                                        </p>
+                                        <h4 class="dogecoin"></h4>
+                                    </div>
+                                    <img src="{{ asset('assets/frontend/images/coin-icon/dogecoin-big.png') }}" width="42"
+                                        height="42" viewBox="0 0 42 42" fill="none">
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="card overflow-hidden">
+                                <div class="card-body d-flex align-items-center">
+                                    <div class="me-4">
+                                        <p class="mb-2 fs-13">
+                                            <span class="uniswap-change"></span>
+                                        </p>
+                                        <h4 class="uniswap"></h4>
+                                    </div>
+                                    <img src="{{ asset('assets/frontend/images/coin-icon/uniswap-big.png') }}" width="42"
+                                        height="42" viewBox="0 0 42 42" fill="none">
+                                </div>
+                            </div>
+                        </li>
+
+
                     </ul>
                 </div>
             </div>
