@@ -28,14 +28,14 @@
 				<div class="single-footer-box">
 					<div class="footer-content">
 						<div class="footer-title">
-							<h2>Catagories</h2>
+							<h2>Useful Links</h2>
 						</div>
 						<div class="footer-ico">
 							<ul>
-								<li><a href="#"><span>What is ICO</span></a></li>
-								<li><a href="#"><span>Tokens</span></a></li>
-								<li><a href="#"><span>Road Map</span></a></li>
-								<li><a href="#"><span>Advisor</span></a></li>
+								<li><a href="{{ route('/') }}"><span>Home</span></a></li>
+								<li><a href="{{ route('about') }}"><span>About</span></a></li>
+								<li><a href="{{ route('contact') }}"><span>Contact</span></a></li>
+								<li><a href="{{ route('pricing') }}"><span>Packages</span></a></li>
 							</ul>
 						</div>
 					</div>
@@ -49,10 +49,10 @@
 						</div>
 						<div class="footer-ico">
 							<ul>
-								<li><a href="#"><span>Payment & TAX</span></a></li>
-								<li><a href="#"><span>Terms of Services</span></a></li>
-								<li><a href="#"><span>My Account</span></a></li>
-								<li><a href="#"><span>Return Policy</span></a></li>
+								<li><a href="{{ route('project') }}"><span>Existing Projects</span></a></li>
+								<li><a href="{{ route('Upcoming-project') }}"><span>Upcoming Projects</span></a></li>
+								<li><a href="{{ route('faq') }}"><span>FAQ</span></a></li>
+								{{-- 	<li><a href="#"><span>Return Policy</span></a></li> --}}
 							</ul>
 						</div>
 					</div>
@@ -62,17 +62,9 @@
 				<div class="single-footer-box">
 					<div class="footer-content">
 						<div class="footer-titles">
-							<h2>Newsletter</h2>
-							<p>Get now free 20% discount for all products on your first order</p>
+							<h2>Contact details</h2>
+							<p>support@tycoon1m.com</p>
 						</div>
-							<div class="row">
-								<div class="col-lg-12 col-md-12">
-									<div class="form_box style-two">
-										<input type="text" name="youe email address" placeholder="Enter E-mail">
-										<button type="submit"><i class="far fa-paper-plane"></i></button>
-									</div>
-								</div>
-							</div>
 					</div>
 				</div>
 			</div>
