@@ -8,7 +8,7 @@
                             <img class="logo-box" src="{{asset('assets/frontend/images/logo.png') }}" alt=""></a>
                         <a class="main_sticky" href="{{ route('/') }}"><img src="{{asset('assets/frontend/images/logo.png') }}" alt=""></a>
                     </div>
-                    <div class="heder-menu">
+                    <div class="heder-menu heade-custom">
                         <ul>
                             <li><a href="{{ route('/') }}">Home</a></li>  
                             <li><a href="{{ route('about') }}">About</a></li>
