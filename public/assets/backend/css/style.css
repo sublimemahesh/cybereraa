@@ -32546,6 +32546,9 @@ input#checkAll.form-check-input:checked {
 [data-theme-version="dark"] .select2-container--default .select2-selection--single {
     background: var(--bg-color-input);
     border-color: #414040;
+    height: 50px;
+    border-radius: var(--border-radius);
+
 
 }
 
@@ -49847,7 +49850,7 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
     .mob-vh-100-login{
         height: 105vh !important;
       }
-  
+
 
 }
 
@@ -49982,3 +49985,9 @@ border-color: rgb(12, 13, 13) !important;
 }
 
 
+#select-country .select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 3.5rem !important;;
+    color: #fff !important;
+    padding-left: 0.9375rem;
+    min-height: 3rem;
+}
