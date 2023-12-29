@@ -1,5 +1,5 @@
 <!--********************************** Sidebar start ***********************************-->
-<div class="deznav pt-md-0">
+<div class="deznav pt-md-0 mbo-100" >
     <div class="deznav-scroll" data-devil="mt:30">
         <ul class="metismenu pt-0" id="menu">
             <li>

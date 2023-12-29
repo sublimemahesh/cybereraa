@@ -49804,10 +49804,12 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
         padding-bottom: 0px !important;
     }
 
-    .mob-vh-100-login {
+     .mob-vh-100-login{
         height: 105vh !important;
+      }
+      .mbo-100{
+        width: 100%;
     }
-
 
 }
 
