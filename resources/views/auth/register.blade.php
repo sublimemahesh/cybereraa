@@ -91,7 +91,7 @@
         </div>
 
 
-        <div class="col-md-8 login-bg-img-col">
+        <div class="col-md-8 ">
             <div class="authincation-content">
                 <div class="row no-gutters">
 
