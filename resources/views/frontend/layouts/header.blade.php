@@ -8,9 +8,9 @@
                             <img class="logo-box" src="{{asset('assets/frontend/images/logo.png') }}" alt=""></a>
                         <a class="main_sticky" href="{{ route('/') }}"><img src="{{asset('assets/frontend/images/logo.png') }}" alt=""></a>
                     </div>
-                    <div class="heder-menu heade-custom">
+                    <div class="heder-menu heade-custom"> 
                         <ul>
-                            <li><a href="{{ route('/') }}">Home</a></li>  
+                            <li><a href="{{ route('/') }}">Home</a></li>
                             <li><a href="{{ route('about') }}">About</a></li>
                             <li><a href="#">Projects +</a>
                                 <div class="sub-menu">
@@ -20,29 +20,29 @@
                                     </ul>
                                 </div>
                             </li>
-                            <li><a href="{{ route('user.packages.custom') }}">Packages</a></li> 
+                            <li><a href="{{ route('user.packages.custom') }}">Packages</a></li>
                             <li><a href="{{ route('how-it-work') }}">How It Work</a></li>
                             <li><a href="{{ route('faq') }}">FAQ</a></li>
                             <li><a href="{{ route('contact') }}">Contact </a></li>
                         </ul>
                         @auth()
 
-                        <div class="menu-button"> 
-                            <a id='get-rout' href="{{ route(authUserFolder() .'.dashboard') }}">Dashboard</a>
+                        <div class="menu-button">
+                            <a id='get-rout' href="{{ route(authUserFolder() .'.dashboard') }}">My Account</a>
                         </div>
 
                           @endauth
                             @guest()
 
-                            <div class="menu-button"> 
+                            <div class="menu-button">
                                 <a id='get-rout'  href="{{ route('login') }}">Join us</a>
                             </div>
                             @endguest
 
-                           
+
 
                     </div>
-                </div> 
+                </div>
             </div>
         </div>
     </div>
@@ -52,7 +52,7 @@
 <!-- ============================================================= -->
 <div class="mobile-menu-area d-sm-block d-md-block d-lg-none ">
 <div class="mobile-menu">
-    
+
     <nav class="itsoft_menu">
         <ul class="nav_scroll">
 
@@ -60,7 +60,7 @@
             <li><a href="{{ route('about') }}">about</a></li>
             <li><a href="#">Projects +</a>
                 <div class="sub-menu">
-                    <ul> 
+                    <ul>
                         <li><a href="{{ route('project') }}">Existing Projects</a></li>
                         <li><a href="{{ route('Upcoming-project') }}">Upcoming Projects</a></li>
                     </ul>
