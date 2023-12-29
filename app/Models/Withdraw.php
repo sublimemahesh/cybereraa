@@ -9,6 +9,7 @@ use Haruncpi\LaravelUserActivity\Traits\Loggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Psr\Container\ContainerExceptionInterface;
@@ -55,6 +56,11 @@ class Withdraw extends Model
     public function receiver(): BelongsTo
     {
         return $this->belongsTo(User::class, 'receiver_id')->withDefault(new User);
+    }
+
+    public function withdrawals(): HasMany
+    {
+        return $this->hasMany(self::class, 'user_id', 'user_id');
     }
 
     public function package()

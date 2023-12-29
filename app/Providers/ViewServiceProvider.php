@@ -76,6 +76,7 @@ class ViewServiceProvider extends ServiceProvider
                 ->count();
             $pending_withdrawals = Withdraw::where('status', 'PENDING')->count();
             $processing_withdrawals = Withdraw::where('status', 'PROCESSING')->count();
+            $pending_n_processing_withdrawals = $pending_withdrawals + $processing_withdrawals;
             $open_support_tickets = SupportTicket::whereRelation('status', 'slug', 'open')->count();
 
             $view->with('counts', compact(
@@ -83,6 +84,7 @@ class ViewServiceProvider extends ServiceProvider
                 'pending_kycs',
                 'pending_withdrawals',
                 'processing_withdrawals',
+                'pending_n_processing_withdrawals',
                 'open_support_tickets'
             ));
         });

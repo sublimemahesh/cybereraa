@@ -14,6 +14,9 @@ class WithdrawService
     public function filter(int|null $user_id = null, int|null $receiver_id = null)
     {
         return Withdraw::with('receiver', 'user')
+            ->withCount(['withdrawals as successful_withdrawals_count' => function ($query) {
+                $query->where('status', 'SUCCESS');
+            }])
             ->when($user_id !== null, static function ($query) use ($user_id) {
                 $query->where('user_id', $user_id);
             })->when($receiver_id !== null, static function ($query) use ($receiver_id) {
