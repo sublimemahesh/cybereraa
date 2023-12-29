@@ -64,7 +64,7 @@
                                 </div>
                                 <hr>
                                 <div>
-                                    <div class="fs-30 text-center font-w600">Total Amount: {{ $package->amount + $package->gas_fee }} USDT</div>
+                                    <div class="fs-30 text-center font-w600" data-devil="c:#fff">Total Amount: {{ $package->amount + $package->gas_fee }} USDT</div>
                                     <div class="text-center">Without network fee</div>
                                 </div>
                                 <hr>
@@ -91,8 +91,9 @@
                         <input type="hidden" name="package" value="{{ $package->slug }}" id="package_slug">
                         <input type="hidden" name="amount" value="{{ $package->amount }}" id="custom-deposit-amount">
                         <div class="d-flex justify-content-evenly">
-                            <button type="submit" class="btn btn-success" id="requestManualPurchase">REQUEST</button>
                             <a href="{{ route('user.packages.custom') }}" class="btn btn-primary">GO BACK</a>
+                            <button type="submit" class="btn btn-success" id="requestManualPurchase">REQUEST</button>
+
                         </div>
                     </form>
                 </div>
