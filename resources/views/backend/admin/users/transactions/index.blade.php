@@ -24,6 +24,21 @@
         </div>
     </div>
 
+    @push('modals')
+        <div class="modal fade" id="approveModal" tabindex="-1" role="dialog" aria-labelledby="approveModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="modalContent">
+                        <!-- Content loaded dynamically here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endpush
+
     @push('scripts')
         <!-- Datatable -->
         <script !src="">
@@ -39,6 +54,22 @@
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.html5.min.js') }}"></script>
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.print.min.js') }}"></script>
         <script src="{{ asset('assets/backend/js/global-datatable-extension.js') }}"></script>
+        <script src="{{ asset('assets/backend/vendor/clipboard/clipboard.min.js') }}"></script>
+
         <script src="{{ asset('assets/backend/js/admin/transactions/main.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/admin/transactions/manual-trx.js') }}"></script>
+
+        <script !src="">
+            let clipboard = new ClipboardJS('.copy-to-clipboard');
+
+            // Handle copy success
+            clipboard.on('success', function (e) {
+                Toast.fire({
+                    icon: 'success', title: 'Transaction ID copied to clipboard!',
+                })
+                e.clearSelection();
+            });
+        </script>
+
     @endpush
 </x-backend.layouts.app>

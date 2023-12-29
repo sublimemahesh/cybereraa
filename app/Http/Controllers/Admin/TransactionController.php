@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
+use URL;
 use Validator;
 
 class TransactionController extends Controller
@@ -40,14 +41,19 @@ class TransactionController extends Controller
                                     <i class="fa fa-eye"></i>
                                 </a>';
                     }
-                    if (Gate::allows('approve', $trx)) {
-                        $actions .= '<a href="' . route('admin.transactions.approve', $trx) . '" class="btn btn-xs btn-success sharp my-1 mr-1 shadow">
-                                    <i class="fa fa-check-double"></i>
-                                </a>';
-                    }
-                    if (Gate::allows('reject', $trx)) {
-                        $actions .= '<a href="' . route('admin.transactions.reject', $trx) . '" class="btn btn-xs btn-danger sharp my-1 mr-1 shadow">
-                                    <i class="fa fa-ban"></i>
+//                    if (Gate::allows('approve', $trx)) {
+//                        $actions .= '<a href="' . route('admin.transactions.approve', $trx) . '" class="btn btn-xs btn-success sharp my-1 mr-1 shadow">
+//                                    <i class="fa fa-check-double"></i>
+//                                </a>';
+//                    }
+//                    if (Gate::allows('reject', $trx)) {
+//                        $actions .= '<a href="' . route('admin.transactions.reject', $trx) . '" class="btn btn-xs btn-danger sharp my-1 mr-1 shadow">
+//                                    <i class="fa fa-ban"></i>
+//                                </a>';
+//                    }
+                    if (Gate::any(['approve', 'reject'], $trx)) {
+                        $actions .= '<a data-url="' . route('admin.transactions.review-actions', $trx) . '" class="btn btn-xs btn-success sharp my-1 mr-1 shadow btn-review-actions">
+                                    <i class="fa fa-cogs"></i>
                                 </a>';
                     }
                     return $actions;
@@ -62,6 +68,21 @@ class TransactionController extends Controller
     {
         abort_if(Gate::denies('transactions.viewAny'), Response::HTTP_FORBIDDEN);
         return view('backend.admin.users.transactions.summery', compact('transaction'));
+    }
+
+    public function loadActionHtml(Request $request, Transaction $transaction)
+    {
+        abort_if(Gate::none(['approve', 'reject'], $transaction), Response::HTTP_FORBIDDEN);
+
+        $approveUrl = URL::signedRoute('admin.transactions.approve', $transaction);
+        $rejectUrl = URL::signedRoute('admin.transactions.reject', $transaction);
+        $json['status'] = true;
+        $json['message'] = 'received';
+        $json['icon'] = 'success'; // warning | info | question | success | error
+        $json['approve_url'] = $approveUrl; // warning | info | question | success | error
+        $json['reject_url'] = $rejectUrl; // warning | info | question | success | error
+        $json['html'] = view('backend.admin.users.transactions.components.review-action', compact('transaction'))->render();
+        return response()->json($json);
     }
 
     /**
@@ -155,7 +176,10 @@ class TransactionController extends Controller
             return response()->json($json);
         }
 
-        return view('backend.admin.users.transactions.approve-manual', compact('transaction'));
+        return response()->json([
+            'status' => false,
+        ], 403);
+//        return view('backend.admin.users.transactions.approve-manual', compact('transaction'));
     }
 
     /**
@@ -164,7 +188,7 @@ class TransactionController extends Controller
      */
     public function reject(Request $request, Transaction $transaction, TwoFactorAuthenticateService $authenticateService)
     {
-        $this->authorize('approve', $transaction);
+        $this->authorize('reject', $transaction);
 
         if ($request->wantsJson() && $request->isMethod('post')) {
 
