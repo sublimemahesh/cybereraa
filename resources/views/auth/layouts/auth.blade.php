@@ -33,7 +33,7 @@
     @livewireScripts
 </head>
 
-<body class="vh-100">
+<body>
     <div id="loader"></div>
 
     <div class=" auth-bgi1" >

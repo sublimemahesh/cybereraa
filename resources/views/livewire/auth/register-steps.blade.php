@@ -1,4 +1,4 @@
-<div class="col-xl-12">
+<div class="col-xl-12 authincation-content">
     <div class="auth-form">
         <div class="text-center mb-3">
             <a href="{{ route('/') }}">

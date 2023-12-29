@@ -49804,9 +49804,9 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
         padding-bottom: 0px !important;
     }
 
-     .mob-vh-100-login{
+    /* .mob-vh-100-login{
         height: 105vh !important;
-      }
+      } */
       .mbo-100{
         width: 100%;
     }
@@ -49955,11 +49955,37 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
     top: 12px !important;;
 
 }
-
-
-.rotatable-image {
-    transition: transform 0.5s ease; /* Add smooth transition effect */
+ .rotatable-image {
+                transition: transform 0.5s ease; /* Add smooth transition effect */
+            }
+ .rotate-buttons {
+                margin-top: 10px;
 }
+
+@media only screen and (max-width: 767px) {
+    .mob-vh-100-login {
+        height: 100vh;
+        position: relative;
+        top: 100px;
+    }
+    .login-bg-img-col {
+        width: 100%;
+        padding: 0;
+    }
+    .authincation-content {
+        padding: 15px;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        height: 100%;
+    }
+
+}
+
+
 
 .rotate-buttons {
     margin-top: 10px;

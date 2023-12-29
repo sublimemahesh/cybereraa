@@ -1,7 +1,9 @@
 @extends('auth.layouts.auth')
 @section('title', 'Login')
+@section('body-class', 'login-page')
 @section('contents')
 
+<div class="login-page">
 <div class="row justify-content-center main-register-form-style">
     <div class="col-md-6  login-bg-img-col" data-dxs="dis:none">
         <div class="authincation-content">
@@ -24,11 +26,13 @@
                 <div class="col-xl-12">
                     <div class="auth-form mob-vh-100-login">
                         <div class="text-center mb-3">
+                            <div class="d-flex justify-content-center">
                             <a href="{{ route('/') }}">
                                 <img class="m-auto" src="{{ asset('assets/backend/images/logo/logo-full.png') }}"
                                     alt="">
                             </a>
                         </div>
+                    </div>
                         <h4 class="text-center mb-4">Login to Your Account</h4>
 
                         @if (session('status'))
@@ -108,4 +112,6 @@
         </div>
     </div>
 </div>
-@endsection
+</div>
+
+@endsection 
