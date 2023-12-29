@@ -414,7 +414,7 @@
                             <div>
                                 <div class="card-body d-flex align-items-center p-none">
                                 <span class="progress-right-card-icon">
-                                    <img src="{{ asset('assets/backend/images/icon/dollar.png') }}" alt=""/>
+                                    <img src="{{ asset('assets/backend/images/icon/totalpayout.png') }}" alt=""/>
                                 </span>
                                     <div data-devil='ml:22'>
                                         <h4 class="heading mb-0">{{ number_format($wallet->withdraw_limit,2)  }} $</h4>
