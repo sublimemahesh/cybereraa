@@ -49984,7 +49984,7 @@ border-color: rgb(12, 13, 13) !important;
 
 
 #select-country .select2-container--default .select2-selection--single .select2-selection__rendered {
-    line-height: 3.5rem !important;;
+    line-height: 3.0rem !important;;
     color: #fff !important;
     padding-left: 0.9375rem;
     min-height: 3rem;
@@ -49997,7 +49997,7 @@ border-color: rgb(12, 13, 13) !important;
 }
 
 #select-country .select2-container--default .select2-selection--single .select2-selection__arrow {
-    top: 14px !important;;
+    top: 12px !important;;
 
 }
 

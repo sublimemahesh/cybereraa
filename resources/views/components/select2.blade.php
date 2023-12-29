@@ -1,4 +1,4 @@
-<div>
+<div class="mt-1">
     <div wire:ignore>
         @if (isset($attributes['multiple']))
             <div id="{{ $attributes['id'] }}-btn-container" class="mb-3">
