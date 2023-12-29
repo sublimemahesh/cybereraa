@@ -40,23 +40,26 @@ $(function () {
                         return intVal(a) + intVal(b);
                     }, 0);
             }
+            let numberFormatOptions = {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            }
+            let amountTotal = new Intl.NumberFormat('en-US', numberFormatOptions).format(sumVal(7));
+            $(api.column(7).footer()).html(`${amountTotal}`);
 
-            let amountTotal = new Intl.NumberFormat().format(sumVal(7));
-            $(api.column(7).footer()).html(`Current Page Amount Total: USDT ${amountTotal}`);
-
-            let paidTotal8 = new Intl.NumberFormat().format(sumVal(8));
-            $(api.column(7).footer()).append(`<br/><br/>Current Paid Total: USDT ${paidTotal8}`);
+            let paidTotal8 = new Intl.NumberFormat('en-US', numberFormatOptions).format(sumVal(8));
+            $(api.column(8).footer()).html(`${paidTotal8}`);
         },
         columnDefs: [
             {
                 render: function (date, type, full, meta) {
-                    return `<div style='font-size: 0.76rem !important;'> ${date} </div>`;
+                    return `<div style="font-size: 0.76rem !important;"> ${date} </div>`;
                 },
                 targets: [2, 3, 4, 5, 6],
             },
             {
                 render: function (amount, type, full, meta) {
-                    return `<div style='min-width:100px' class="text-right"> ${amount} </div>`;
+                    return `<div style="min-width:100px" class="text-right"> ${amount} </div>`;
                 },
                 targets: [7, 8],
             },

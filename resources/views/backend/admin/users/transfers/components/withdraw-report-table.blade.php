@@ -133,7 +133,7 @@
                 <th></th>
                 <th></th>
                 <th></th>
-                <th>Current Page <br>Total:</th>
+                <th style="text-align:right" >Total: $</th>
                 <th style="text-align:right" class="text-wrap pe-1"></th>
                 <th style="text-align:right" class="text-wrap pe-1"></th>
                 <th style="text-align:right" class="text-wrap pe-1"></th>

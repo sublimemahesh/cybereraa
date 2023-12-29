@@ -36,20 +36,23 @@ $(function () {
                         return intVal(a) + intVal(b);
                     }, 0);
             }
-
+            let numberFormatOptions = {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            }
             // Update footer
-            let pageTotal = new Intl.NumberFormat().format(sumVal(5));
-            $(api.column(5).footer()).html(`Page Total: USDT ${pageTotal}`);
+            let pageTotal = new Intl.NumberFormat('en-US', numberFormatOptions).format(sumVal(5));
+            $(api.column(5).footer()).html(`${pageTotal}`);
         },
         columnDefs: [
             {
                 render: function (data, type, full, meta) {
-                    return `<div style='font-size: 0.76rem !important;'> ${data !== null ? data : '-'} </div>`;
+                    return `<div style="font-size: 0.76rem !important;"> ${data !== null ? data : '-'} </div>`;
                 }, targets: [0, 1, 2, 3, 4],
             },
             {
                 render: function (amount, type, full, meta) {
-                    return `<div style='min-width:120px' class="text-right"> ${amount} </div>`;
+                    return `<div style="min-width:120px" class="text-right"> ${amount} </div>`;
                 },
                 targets: [5],
             },

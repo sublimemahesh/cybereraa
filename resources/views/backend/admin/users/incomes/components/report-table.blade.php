@@ -1,6 +1,6 @@
 <div class="w-full my-3 dark:bg-gray-800">
     <div class="rounded-sm">
-       
+
         <div class="border-l border-b border-r border-gray-200 dark:border-gray-600 px-2 py-4 dark:border-0  dark:bg-secondary-dark">
             <div>
                 <div class="md:flex md:flex-wrap">
@@ -106,7 +106,15 @@
         </thead>
         <tfoot>
         <tr>
-            <th colspan="9" style="text-align:right"></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th style="text-align:right">Total: $</th>
+            <th style="text-align:right"></th>
+            <th style="text-align:right"></th>
         </tr>
         </tfoot>
     </table>

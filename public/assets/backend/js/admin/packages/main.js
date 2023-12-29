@@ -50,9 +50,12 @@ $(function () {
                         return intVal(a) + intVal(b);
                     }, 0);
             }
-
-            pageTotal = new Intl.NumberFormat().format(pageTotal);
-            $(api.column(7).footer()).html(`Total: USDT ${pageTotal}`);
+            let numberFormatOptions = {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            }
+            pageTotal = new Intl.NumberFormat('en-US', numberFormatOptions).format(pageTotal);
+            $(api.column(7).footer()).html(`${pageTotal}`);
 
         },
         columnDefs: [

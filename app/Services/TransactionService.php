@@ -37,14 +37,16 @@ class TransactionService
                     "<br> <code class='text-uppercase'>{$trx->purchaser->username}</code>";
             })
             ->addColumn('package', function ($trx) {
-                return "PRODUCT: <code class='text-uppercase'>" . $trx->package_type . '</code><br>' .
-                "NAME: " . $trx->create_order_request_info->goods->goodsName ?? '-';
+                return $trx->create_order_request_info->goods->goodsName;
+//                return "PRODUCT: <code class='text-uppercase'>" . $trx->package_type . '</code><br>' .
+//                "NAME: " . $trx->create_order_request_info->goods->goodsName ?? '-';
             })
             ->addColumn('trx_amount', fn($trx) => number_format($trx->amount, 2))
             ->addColumn('paid_at', fn($trx) => Carbon::parse($trx->created_at)->format('Y-m-d H:i:s'))
             ->addColumn('type', static function ($trx) {
-                return "TYPE: <code class='text-uppercase'>" . $trx->type . '</code><br>' .
-                    "METHOD: <code class='text-uppercase'>" . $trx->pay_method . '</code>';
+                return $trx->pay_method;
+//                return "TYPE: <code class='text-uppercase'>" . $trx->type . '</code><br>' .
+//                    "METHOD: <code class='text-uppercase'>" . $trx->pay_method . '</code>';
             })
             //->addColumn('created_at', fn($trx) => $trx->created_at->format('Y-m-d h:i A'))
             //->addColumn('updated_at', fn($trx) => $trx->updated_at->format('Y-m-d h:i A'))
