@@ -65,6 +65,39 @@ $(function () {
         ],
     });
 
+
+    const approveModal = new bootstrap.Modal('#approveModal', {
+        backdrop: 'static',
+    })
+
+    window.TRANSACTION_TABLE = table;
+    window.TRANSACTION_MODAL = approveModal;
+
+    // Handle click event for the action button
+    $('#transactions').on('click', '.btn-review-actions', function (e) {
+        e.preventDefault();
+        loader();
+        // Get the URL from the data-url attribute
+        let url = $(this).data('url');
+
+        // Load content from the specified route
+        $.get(url, function (data) {
+            // console.log(data)
+            // Create a modal with the loaded content
+            $('#modalContent').html(data.html);
+            window.transaction_approve_url = data.approve_url;
+            window.transaction_reject_url = data.reject_url;
+            approveModal.show();
+            Swal.close()
+        });
+    });
+
+    document.getElementById('approveModal').addEventListener('hidden.bs.modal', event => {
+        $('#modalContent').empty();
+        window.transaction_approve_url = null;
+        window.transaction_reject_url = null;
+    })
+
     flatpickr("#transaction-date-range", {
         mode: "range",
         dateFormat: "Y-m-d H:i",

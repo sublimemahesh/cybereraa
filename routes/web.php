@@ -245,9 +245,10 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
             // STAKING END
 
             Route::get('users/transactions', 'Admin\TransactionController@index')->name('transactions.index');
+            Route::get('users/transactions/{transaction}/review-actions', 'Admin\TransactionController@loadActionHtml')->name('transactions.review-actions');
             Route::get('users/transactions/{transaction}/summery', 'Admin\TransactionController@summery')->name('transactions.summery');
-            Route::match(['get', 'post'], 'users/transactions/{transaction}/approve', 'Admin\TransactionController@approve')->name('transactions.approve');
-            Route::match(['get', 'post'], 'users/transactions/{transaction}/reject', 'Admin\TransactionController@reject')->name('transactions.reject');
+            Route::match(['get', 'post'], 'users/transactions/{transaction}/approve', 'Admin\TransactionController@approve')->name('transactions.approve')->middleware('signed');
+            Route::match(['get', 'post'], 'users/transactions/{transaction}/reject', 'Admin\TransactionController@reject')->name('transactions.reject')->middleware('signed');
 
             // Incomes
             Route::get('users/incomes/commission', 'Admin\IncomeController@commission')->name('incomes.commission');
