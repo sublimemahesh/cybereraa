@@ -21,7 +21,7 @@ $(function () {
         serverSide: true,
         fixedHeader: true,
         responsive: true,
-        order: [[5, 'desc']],
+        // order: [[5, 'desc']],
         //stateSave: true,
         ajax: WITHDRAW_REPORT_URL,
         columns: [
@@ -59,13 +59,13 @@ $(function () {
                 maximumFractionDigits: 2,
             }
             let amount = new Intl.NumberFormat('en-US', numberFormatOptions).format(sumVal(9));
-            $(api.column(9).footer()).html(`USDT ${amount}`);
+            $(api.column(9).footer()).html(`${amount}`);
 
             let transaction_fee = new Intl.NumberFormat('en-US', numberFormatOptions).format(sumVal(10));
-            $(api.column(10).footer()).html(`USDT ${transaction_fee}`);
+            $(api.column(10).footer()).html(`${transaction_fee}`);
 
             let total = new Intl.NumberFormat('en-US', numberFormatOptions).format(sumVal(11));
-            $(api.column(11).footer()).html(`USDT ${total}`);
+            $(api.column(11).footer()).html(`${total}`);
         },
         columnDefs: [
             {

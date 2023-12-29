@@ -16,12 +16,24 @@ $(function () {
             buttons: [
                 {
                     extend: 'pdfHtml5',
-                    //footer: true, // TODO: Remove all the colspan="" in the table footer and add footer columns to the table ex: if colspan=2 add <th></th> <th></th>
-                    split: ['csv', 'excel'],
+                    footer: true, // TODO: Remove all the colspan="" in the table footer and add footer columns to the table ex: if colspan=2 add <th></th> <th></th>
+                    //split: ['csv', 'excel'],
+                    orientation: 'landscape',
+                    pageSize: 'LEGAL',
+                    exportOptions: {
+                        stripNewlines: false,
+                        columns: [":visible"],
+                    },
+                },
+                {
+                    extend: 'excelHtml5',
+                    footer: true,
+                    //split: ['csv', 'excel'],
                     orientation: 'landscape',
                     pageSize: 'LEGAL',
                     exportOptions: {
                         columns: [":visible"],
+                        stripNewlines: false,
                     },
                 },
                 "colvis",

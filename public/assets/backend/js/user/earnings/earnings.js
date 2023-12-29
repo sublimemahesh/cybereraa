@@ -41,19 +41,22 @@ $(function () {
                         return intVal(a) + intVal(b);
                     }, 0);
             }
-
-            let total = new Intl.NumberFormat().format(sumVal(4));
-            $(api.column(4).footer()).html(`<br><br>Current Page Total: USDT ${total}`);
+            let numberFormatOptions = {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            }
+            let total = new Intl.NumberFormat('en-US', numberFormatOptions).format(sumVal(4));
+            $(api.column(4).footer()).html(`${total}`);
         },
         columnDefs: [
             {
                 render: function (date, type, full, meta) {
-                    return `<div style='font-size: 0.76rem !important;'> ${date} </div>`;
+                    return `<div style="font-size: 0.76rem !important;"> ${date} </div>`;
                 }, targets: 3,
             },
             {
                 render: function (amount, type, full, meta) {
-                    return `<div style='min-width:100px' class="text-right"> ${amount} </div>`;
+                    return `<div style="min-width:100px" class="text-right"> ${amount} </div>`;
                 }, targets: [4],
             }
         ]

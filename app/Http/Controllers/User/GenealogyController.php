@@ -282,6 +282,10 @@ class GenealogyController extends Controller
     {
         $descendants = $user?->descendants()
             ->with('sponsor', 'parent')
+            ->withSum(['withdraws' => fn($q) => $q->where('status', 'SUCCESS')->where('type', 'MANUAL')], 'amount')
+            ->withSum(['withdraws' => fn($q) => $q->where('status', 'SUCCESS')->where('type', 'MANUAL')], 'transaction_fee')
+            ->withSum(['earnings' => fn($q) => $q->whereIn('type', ['PACKAGE', 'TRADE_DIRECT', 'TRADE_INDIRECT', 'DIRECT', 'INDIRECT', 'TEAM_BONUS'])], 'amount')
+            ->withSum(['activePackages', 'purchasedPackages'], 'invested_amount')
             ->when(($level === 'all' || $level < 1 || $level > 4), function (Builder $q) {
                 $q->where('depth', "<=", 4);
             })->when($level !== 'all' && ($level >= 1 && $level <= 4), function (Builder $q) use ($level) {
@@ -293,10 +297,11 @@ class GenealogyController extends Controller
             ->when($request->get('status') === 'active', function (Builder $q) {
                 $q->whereNull('suspended_at');
             })
-            ->withSum(['withdraws' => fn($q) => $q->where('status', 'SUCCESS')->where('type', 'MANUAL')], 'amount')
-            ->withSum(['withdraws' => fn($q) => $q->where('status', 'SUCCESS')->where('type', 'MANUAL')], 'transaction_fee')
-            ->withSum(['earnings' => fn($q) => $q->whereIn('type', ['PACKAGE', 'TRADE_DIRECT', 'TRADE_INDIRECT', 'DIRECT', 'INDIRECT', 'TEAM_BONUS'])], 'amount')
-            ->withSum(['activePackages', 'purchasedPackages'], 'invested_amount')
+            ->when($request->get('investment-status') === 'active', function (Builder $q) {
+                $q->whereHas('purchasedPackages');
+            })->when($request->get('investment-status') === 'inactive', function (Builder $q) {
+                $q->whereDoesntHave('purchasedPackages');
+            })
             ->get();
         return DataTables::of($descendants)
             ->addColumn('profile_photo', function ($lvlUser) {
@@ -341,18 +346,20 @@ class GenealogyController extends Controller
                     "Total Withdraw: <code>{$total_withdrawal}</code>";
             })
             ->addColumn('account_investments', function ($lvlUser) {
-                $active_packages_sum_invested_amount = $lvlUser->active_packages_sum_invested_amount;
-                $purchased_packages_sum_invested_amount = $lvlUser->purchased_packages_sum_invested_amount;
-                $account_status = 'INACTIVE';
+                $active_packages_sum_invested_amount = $lvlUser->active_packages_sum_invested_amount ?? 0;
+                $purchased_packages_sum_invested_amount = $lvlUser->purchased_packages_sum_invested_amount ?? 0;
+                $account_status = '<div class="badge py-0 badge-sm badge-outline-warning">INACTIVE</div>';
                 if ($purchased_packages_sum_invested_amount > 0) {
-                    $account_status = 'IDLE';
+                    $account_status = '<div class="badge py-0 badge-sm badge-dark">IDLE</div>';
                     if ($active_packages_sum_invested_amount > 0) {
-                        $account_status = 'ACTIVE';
+                        $account_status = '<div class="badge py-0 badge-sm badge-success">ACTIVE</div>';
                     }
                 }
-                return "Account Status: <code>{$account_status}</code> </br>" .
+                return "<div class='my-1'>
+                                Account Status: {$account_status} </br>" .
                     "Active Packages: <code>{$active_packages_sum_invested_amount}</code> </br>" .
-                    "Total Investment: <code>{$purchased_packages_sum_invested_amount}</code>";
+                    "Total Investment: <code>{$purchased_packages_sum_invested_amount}</code>
+                        </div>";
             })
             ->rawColumns(['profile_photo', 'user_details', 'contact_details', 'profit', 'sponsor', 'account_investments'])
             ->make();

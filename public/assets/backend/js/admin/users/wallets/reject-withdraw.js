@@ -6,29 +6,49 @@ $(function () {
 
     }
 
-    function rejectWithdraw(e) {
+    async function rejectWithdraw(e) {
         e.preventDefault();
-        let repudiate_note = $('#repudiate_note').val();
+        // let repudiate_note = $('#repudiate_note').val();
+        const {value: repudiate_note} = await Swal.fire({
+            title: "Reject Withdrawal Request",
+            html: REJECT_NOTE_HTML,
+            input: "select",
+            inputOptions: REJECT_REASONS,
+            inputPlaceholder: "Select a reject reason",
+            showCancelButton: true,
+            inputValidator: (value) => {
+                return new Promise((resolve) => {
+                    if (value === null || value.length <= 0) {
+                        resolve("Please provide the reject reason!");
+                    }
+                    resolve();
+                });
+            }
+        });
+
         if (repudiate_note === null || repudiate_note.length <= 0) {
             Toast.fire({
                 icon: 'error',
                 title: "Please provide the reject reason!",
-            })
+            });
             return false
         } else {
             Swal.fire({
                 title: "Are You Sure?",
                 text: "Reject The payout?. Please note this process cannot be reversed.",
+                html: `<div class="swal2-html-container mt-0 mb-2">Reject The payout?. Please note this process cannot be reversed.</div> <span class="text-danger">Reason: ${repudiate_note}</span>`,
                 icon: "info",
+                confirmButtonText: 'REJECT',
+                confirmButtonColor: '#ee7070',
                 showCancelButton: true,
             }).then((reject) => {
                 if (reject.isConfirmed) {
                     loader()
-                    const _FORM = $('#reject-withdrawal-form')
-                    _FORM.find(".text-danger").remove();
-                    let formData = new FormData(_FORM[0]);
+                    // const _FORM = $('#reject-withdrawal-form')
+                    // _FORM.find(".text-danger").remove();
+                    // let formData = new FormData(_FORM[0]);
                     // formData.append(proof_document, proof_document)
-                    axios.post(location.href, formData)
+                    axios.post(REJECT_URL, {repudiate_note})
                         .then(response => {
                             Toast.fire({
                                 icon: response.data.icon, title: response.data.message,
@@ -54,17 +74,16 @@ $(function () {
                 }
             });
         }
+    }
 
-        function appendError(id, html) {
-            try {
-                let el = $(document.getElementById(id));
-                $(el).next(".text-danger").remove();
-                $(html).insertAfter(el)
-            } catch (e) {
+    function appendError(id, html) {
+        try {
+            let el = $(document.getElementById(id));
+            $(el).next(".text-danger").remove();
+            $(html).insertAfter(el)
+        } catch (e) {
 
-            }
         }
-
     }
 
 })

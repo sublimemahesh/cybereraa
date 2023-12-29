@@ -38,9 +38,12 @@ $(function () {
         } else {
             Swal.fire({
                 title: "Are You Sure?",
-                text: "Reject Kyc Document??. Please note this process cannot be reversed.",
+                text: "Reject Kyc Document??. Please note this will informed the user via email.",
+                html: `<div class="swal2-html-container mt-0 mb-2">Reject Kyc Document??. Please note, this will inform the user via email.</div> <span class="text-danger">Reason: ${repudiate_note}</span>`,
                 icon: "info",
                 showCancelButton: true,
+                confirmButtonText: 'REJECT',
+                confirmButtonColor: '#ee7070',
             }).then((reject) => {
                 if (reject.isConfirmed) {
                     loader()
@@ -52,12 +55,17 @@ $(function () {
                         status: 'reject',
                         repudiate_note
                     }).then(response => {
+                        $.get(location.href).then(function (page) {
+                            $("#kyc-details-page").html(
+                                $(page).find("#kyc-details-page").html()
+                            );
+                        });
                         Toast.fire({
                             icon: response.data.icon, title: response.data.message,
                         }).then(res => {
                             if (response.data.status) {
                                 // location.href = APP_URL + '/admin/users/kycs/' + kyc;
-                                location.reload();
+                                // location.reload();
                             }
                         })
                     }).catch((error) => {

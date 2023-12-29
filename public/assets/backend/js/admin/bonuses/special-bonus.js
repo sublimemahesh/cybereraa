@@ -40,9 +40,12 @@ $(function () {
                         return intVal(a) + intVal(b);
                     }, 0);
             }
-
-            let total_amount = new Intl.NumberFormat().format(sumVal(8));
-            $(api.column(8).footer()).html(`Current Page Total bonus amount: USDT ${total_amount}`);
+            let numberFormatOptions = {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            }
+            let total_amount = new Intl.NumberFormat('en-US', numberFormatOptions).format(sumVal(8));
+            $(api.column(8).footer()).html(`${total_amount}`);
 
         },
         columnDefs: [

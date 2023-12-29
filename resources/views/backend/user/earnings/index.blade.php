@@ -126,7 +126,7 @@
                                     <th style="text-align:right"></th>
                                     <th style="text-align:right"></th>
                                     <th style="text-align:right"></th>
-                                    <th style="text-align:right"></th>
+                                    <th style="text-align:right">Total: $</th>
                                     <th style="text-align:right"></th>
                                 </tr>
                             </tfoot>

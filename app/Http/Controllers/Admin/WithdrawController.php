@@ -81,6 +81,14 @@ class WithdrawController extends Controller
                     return "Type: <code class='text-uppercase'>{$withdraw->type}</code> <br>
                             Wallet: <code class='text-uppercase'>{$withdraw->wallet_type}</code>";
                 })
+                ->addColumn('status', function ($withdraw) {
+                    $html = "";
+                    if ($withdraw->successful_withdrawals_count > 0) {
+                        $html = "<i class='fa fa-certificate text-success' title='Successful Withdrawer'></i> ";
+                    }
+                    $html .= $withdraw->status;
+                    return $html;
+                })
                 ->addColumn('wallet_address', function ($withdraw) {
                     $skeleton = '{"email":"","id":"","address":"","phone":"", "wallet_address_nickname":""}';
                     $payout_info = json_decode($withdraw?->payout_details ?? $skeleton, false, 512, JSON_THROW_ON_ERROR);
@@ -95,23 +103,23 @@ class WithdrawController extends Controller
                                 </a>';
                     }
                     if (Gate::allows('processWithdraw', $withdraw)) {
-                        $actions .= '<a href="javascript:void(0)" data-id="' . $withdraw->id . '" class="btn btn-xs btn-google sharp process-withdraw my-1 mr-1 shadow">
+                        $actions .= '<a href="javascript:void(0)" data-id="' . $withdraw->id . '" title="Mark as withdrawal process has been started" class="btn btn-xs btn-success sharp process-withdraw my-1 mr-1 shadow">
                                     <i class="fa fa-history"></i>
                                 </a>';
                     }
-                    if (Gate::allows('approveWithdraw', $withdraw)) {
-                        $actions .= '<a href="' . route('admin.transfers.withdrawals.approve', $withdraw) . '" class="btn btn-xs btn-success sharp my-1 mr-1 shadow">
-                                    <i class="fa fa-check-double"></i>
+                    if (Gate::allows('approveWithdraw', $withdraw) || Gate::allows('rejectWithdraw', $withdraw)) {
+                        $actions .= '<a href="' . route('admin.transfers.withdrawals.review-actions', $withdraw) . '" title="Approve or Reject withdrawal request" class="btn btn-xs btn-warning sharp my-1 mr-1 shadow">
+                                    <i class="fa fa-cogs"></i>
                                 </a>';
                     }
-                    if (Gate::allows('rejectWithdraw', $withdraw)) {
-                        $actions .= '<a href="' . route('admin.transfers.withdrawals.reject', $withdraw) . '" class="btn btn-xs btn-danger sharp my-1 mr-1 shadow">
-                                    <i class="fa fa-ban"></i>
-                                </a>';
-                    }
+//                    if (Gate::allows('rejectWithdraw', $withdraw)) {
+//                        $actions .= '<a href="' . route('admin.transfers.withdrawals.reject', $withdraw) . '" class="btn btn-xs btn-danger sharp my-1 mr-1 shadow">
+//                                    <i class="fa fa-ban"></i>
+//                                </a>';
+//                    }
                     return $actions;
                 })
-                ->rawColumns(['user', 'actions', 'type_n_wallet'])
+                ->rawColumns(['user', 'actions', 'type_n_wallet', 'status'])
                 ->make();
         }
 
@@ -168,7 +176,7 @@ class WithdrawController extends Controller
         if ($request->wantsJson() && $request->isMethod('post')) {
 
             $validated = Validator::make($request->all(), [
-                'proof_document' => 'required|file:pdf,jpg,jpeg,png',
+                'proof_document' => 'nullable|file:pdf,jpg,jpeg,png',
                 'password' => 'required',
                 'code' => 'nullable'
             ])->validate();
@@ -200,9 +208,12 @@ class WithdrawController extends Controller
             }
 
             \DB::transaction(function () use ($validated, $withdraw, $payout_info) {
-                $file = $validated['proof_document'];
-                $proof_documentation = Str::limit(Str::slug($file->getClientOriginalName()), 50) . "-" . $file->hashName();
-                $file->storeAs('payouts/manual', $proof_documentation);
+                $proof_documentation = null;
+                if (request()->hasFile('proof_document')) {
+                    $file = $validated['proof_document'];
+                    $proof_documentation = Str::limit(Str::slug($file->getClientOriginalName()), 50) . "-" . $file->hashName();
+                    $file->storeAs('payouts/manual', $proof_documentation);
+                }
 
                 $withdraw->update([
                     'status' => 'SUCCESS',
@@ -243,6 +254,9 @@ class WithdrawController extends Controller
             $json['data'] = $validated;
 
             return response()->json($json);
+        }
+        if ($withdraw->status !== 'PROCESSING') {
+            session()->flash('warning', "This withdrawal request hasn't been marked as 'Processing' yet! Before proceeding, please ensure to mark the withdrawal request as 'Processing' to avoid any inconveniences or potential mismatches in users wallet balances. If you choose to proceed without marking it, please be aware that it's at your own risk!");
         }
 
         return view('backend.admin.users.transfers.withdraw', compact('withdraw', 'payout_info'));

@@ -3,6 +3,10 @@
     @section('header-title', 'Company Users | Reports' )
     @section('plugin-styles')
         <!-- Datatable -->
+        <link href="{{ asset('assets/backend/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/backend/vendor/datatables/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/backend/vendor/datatables/css/buttons.bootstrap5.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/backend/vendor/datatables/css/datatable-extension.css') }}" rel="stylesheet">
         @vite(['resources/css/app-jetstream.css'])
     @endsection
 
@@ -15,7 +19,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table display mb-1 table-responsive-my dt-responsive table-bordered table-striped table-hover">
+                        <table id="company-users-table" class="display mb-1 nowrap table-responsive-my" style="table-layout:fixed">
                             <thead>
                                 <tr>
                                     <th class="fs-14 text-center"><strong>USER</strong></th>
@@ -49,19 +53,19 @@
                                         <td class="text-right">
                                             {{ number_format($user->total_sale_amount,2) }}
                                         </td>
-                                        <td class="text-right">
-                                            Total: {{ number_format($user->total_commissions,2) }} <br>
-                                            Qualified: {{ number_format($user->total_qualified_commissions,2) }} <br>
-                                            Disqualified: {{ number_format($user->lost_commissions,2) }} <br>
-                                            Direct: {{ number_format($user->total_direct_commission_earnings,2) }} <br>
-                                            Indirect: {{ number_format($user->total_indirect_commission_earnings,2) }} <br>
+                                        <td class="text-right" style="font-size: 0.76rem">
+                                            <div>Total: {{ number_format($user->total_commissions,2) }}</div>
+                                            <div>Qualified: {{ number_format($user->total_qualified_commissions,2) }}</div>
+                                            <div>Disqualified: {{ number_format($user->lost_commissions,2) }}</div>
+                                            <div>Direct: {{ number_format($user->total_direct_commission_earnings,2) }}</div>
+                                            <div>Indirect: {{ number_format($user->total_indirect_commission_earnings,2) }}</div>
                                         </td>
                                         {{--<td> {{ number_format($user->total_qualified_commissions,2) }}</td>--}}
                                         {{--<td> {{ number_format($user->lost_commissions,2) }}</td>--}}
-                                        <td class="text-right">
-                                            Package Income: {{ number_format($user->total_package_earnings,2) }} <br>
-                                            Direct Trade: {{ number_format($user->total_trade_earnings,2) }} <br>
-                                            Indirect Trade: {{ number_format($user->total_indirect_earnings,2) }}
+                                        <td class="text-right" style="font-size: 0.76rem">
+                                            <div>Package Income: {{ number_format($user->total_package_earnings,2) }}</div>
+                                            <div>Direct Trade: {{ number_format($user->total_trade_earnings,2) }}</div>
+                                            <div>Indirect Trade: {{ number_format($user->total_indirect_earnings,2) }}</div>
                                         </td>
                                         <td class="text-right">
                                             {{ number_format($user->total_earnings,2) }}
@@ -76,10 +80,11 @@
                                             {{ number_format($user->total_special_bonus_earnings,2) }}
                                         </td>
                                         {{--<td> {{ number_format($user->total_indirect_earnings,2) }}</td>--}}
-                                        <td class="text-right">
-                                            Internal Wallet: {{ number_format($user->total_available_wallet_balance,2) }} <br>
-                                            External Wallet: {{ number_format($user->total_available_wallet_topup_balance,2) }} <br>
-                                            Payout Limit: {{ number_format($user->total_withdraw_limit_wallet_balance,2) }}
+                                        <td class="text-right" style="font-size: 0.76rem">
+                                            <div>Internal Wallet: {{ number_format($user->total_available_wallet_balance,2) }}</div>
+                                            <div>External Wallet: {{ number_format($user->total_available_wallet_topup_balance,2) }}</div>
+                                            <div>Payout Limit: {{ number_format($user->total_withdraw_limit_wallet_balance,2) }}
+                                                <div>
                                         </td>
                                         {{--<td> {{ number_format($user->total_available_wallet_topup_balance,2) }}</td>--}}
                                         {{--<td> {{ number_format($user->total_withdraw_limit_wallet_balance,2) }}</td>--}}
@@ -102,7 +107,7 @@
                                         Qualified: {{ number_format($company_users->sum('total_qualified_commissions'),2) }} <br>
                                         Disqualified: {{ number_format($company_users->sum('lost_commissions'),2) }} <br>
                                         Direct: {{ number_format($company_users->sum('total_direct_commission_earnings'),2) }} <br>
-                                        Indirect: {{ number_format($company_users->sum('total_indirect_commission_earnings'),2) }} <br>
+                                        Indirect: {{ number_format($company_users->sum('total_indirect_commission_earnings'),2) }}
                                     </th>
                                     {{--<td> {{ number_format($company_users->sum('total_qualified_commissions'),2) }}</td>--}}
                                     {{--<td> {{ number_format($company_users->sum('lost_commissions'),2) }}</td>--}}
@@ -143,4 +148,49 @@
         </div>
     </div>
 
+    @push('scripts')
+        <!-- Datatable -->
+        <script src="{{ asset('assets/backend/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('assets/backend/vendor/datatables/extensions/dataTables.buttons.min.js') }}"></script>
+        <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.colVis.min.js') }}"></script>
+        <script src="{{ asset('assets/backend/vendor/datatables/extensions/jszip.min.js') }}"></script>
+        <script src="{{ asset('assets/backend/vendor/datatables/extensions/pdfmake.min.js') }}"></script>
+        <script src="{{ asset('assets/backend/vendor/datatables/extensions/vfs_fonts.js') }}"></script>
+        <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.html5.min.js') }}"></script>
+        <script src="{{ asset('assets/backend/vendor/datatables/extensions/buttons.print.min.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/global-datatable-extension.js') }}"></script>
+
+        <script !src="">
+            $(function () {
+                let table = $('#company-users-table').DataTable({
+                    ordering: false,
+                    searching: false,
+                    paging: false,
+                    lengthChange: false,
+                    buttons: [
+                        {
+                            extend: 'pdfHtml5',
+                            footer: true,
+                            orientation: 'landscape',
+                            pageSize: 'LEGAL',
+                            exportOptions: {
+                                columns: [":visible"],
+                            },
+                        },
+                        // {
+                        //     extend: 'excel',
+                        //     autoFilter: true,
+                        //     footer: true,
+                        //     orientation: 'landscape',
+                        //     pageSize: 'LEGAL',
+                        //     exportOptions: {
+                        //         columns: [":visible"],
+                        //     },
+                        // },
+                        "colvis",
+                    ]
+                })
+            })
+        </script>
+    @endpush
 </x-backend.layouts.app>

@@ -67,8 +67,8 @@
         <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
             <i class="bi fa-arrow-turn-up"></i>
             <span class="nav-text"> Withdrawals </span>
-            @if($counts['pending_withdrawals'] > 0)
-                <span class="sidebar-pending-notification">{{ $counts['pending_withdrawals'] }}</span>
+            @if($counts['pending_n_processing_withdrawals'] > 0)
+                <span class="sidebar-pending-notification">{{ $counts['pending_n_processing_withdrawals'] }}</span>
             @endif
         </a>
         <ul aria-expanded="false">
@@ -88,9 +88,11 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('admin.transfers.withdrawals', ['status' => 'processing']) }}"
-                   class="" aria-expanded="false">
+                <a href="{{ route('admin.transfers.withdrawals', ['status' => 'processing']) }}" class="" aria-expanded="false">
                     Processing
+                    @if($counts['processing_withdrawals'] > 0)
+                        <span class="sidebar-pending-notification">{{ $counts['processing_withdrawals'] }}</span>
+                    @endif
                 </a>
             </li>
             <li>

@@ -38,17 +38,25 @@ $(function () {
                 .reduce(function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0);
-
+            let numberFormatOptions = {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            }
             // Update footer
-            pageTotal = new Intl.NumberFormat().format(pageTotal);
-            $(api.column(6).footer()).html(`Page Total: USDT ${pageTotal}`);
+            pageTotal = new Intl.NumberFormat('en-US', numberFormatOptions).format(pageTotal);
+            $(api.column(6).footer()).html(`${pageTotal}`);
         },
         columnDefs: [
             {
                 render: function (amount, type, full, meta) {
-                    return `<div style="min-width:120px" class="text-right"> ${amount} </div>`;
+                    return `<div style="font-size:0.76rem" > ${amount} </div>`;
                 },
-                targets: 6,
+                targets: [0, 1, 2, 3, 4, 5,],
+            }, {
+                render: function (amount, type, full, meta) {
+                    return `<div style="font-size:0.76rem"  class="text-right"> ${amount} </div>`;
+                },
+                targets: [6],
             },
         ],
     });

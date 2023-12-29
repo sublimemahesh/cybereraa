@@ -11,7 +11,7 @@ $(function () {
         serverSide: true,
         fixedHeader: true,
         responsive: true,
-        order: [[7, 'desc']],
+        // order: [[7, 'desc']],
         //stateSave: true,
         ajax: data_url,
         columns: [
@@ -44,10 +44,10 @@ $(function () {
             }
 
             let pageTotal = new Intl.NumberFormat().format(sumVal(8));
-            $(api.column(9).footer()).html(`Gas Fee Total: USDT ${pageTotal}`);
+            $(api.column(8).footer()).html(`${pageTotal}`);
 
             let paidTotal8 = new Intl.NumberFormat().format(sumVal(9));
-            $(api.column(9).footer()).append(`<br><br>Amount Total: USDT ${paidTotal8}`);
+            $(api.column(9).footer()).html(`${paidTotal8}`);
         },
         columnDefs: [
             {

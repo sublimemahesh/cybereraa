@@ -117,7 +117,7 @@
     </div>
 </div>
 <div class="table-responsive">
-    <table id="earnings" class="display mb-1 table-responsive-my" style="table-layout: fixed">
+    <table id="earnings" class="display mb-1 nowrap table-responsive" style="table-layout: fixed">
         <thead>
             <tr>
                 <th>EARNING TYPE</th>
@@ -131,7 +131,13 @@
         </thead>
         <tfoot>
             <tr>
-                <th colspan="7" style="text-align:right"></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th style="text-align:right">Total: $</th>
+                <th style="text-align:right"></th>
             </tr>
         </tfoot>
     </table>

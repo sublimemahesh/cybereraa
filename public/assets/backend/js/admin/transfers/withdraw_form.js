@@ -1,18 +1,19 @@
 $(function () {
 
     try {
-        document.getElementById('approveWithdraw').addEventListener('click', createWithdraw)
+        document.getElementById('approveWithdraw').addEventListener('click', approveWithdraw)
     } catch (e) {
 
     }
 
-    function createWithdraw(e) {
+    function approveWithdraw(e) {
         e.preventDefault();
-        let proof_document = $('#proof_document').val();
-        if (proof_document === null || proof_document.length <= 0) {
+        // let proof_document = $('#proof_document').val();
+        let password = $('#password').val();
+        if (password === null || password.length <= 0) {
             Toast.fire({
                 icon: 'error',
-                title: "Please provide the proof that was paid for this withdraw request!",
+                title: "Please enter your password!",
             })
             return false
         } else {
@@ -20,6 +21,8 @@ $(function () {
                 title: "Are You Sure?",
                 text: "Confirm The payout?. Please note this process cannot be reversed.",
                 icon: "info",
+                confirmButtonText: 'APPROVE!',
+                confirmButtonColor: '#00A389',
                 showCancelButton: true,
             }).then((issue) => {
                 if (issue.isConfirmed) {
@@ -28,7 +31,7 @@ $(function () {
                     _FORM.find(".text-danger").remove();
                     let formData = new FormData(_FORM[0]);
                     // formData.append(proof_document, proof_document)
-                    axios.post(location.href, formData)
+                    axios.post(APPROVE_URL, formData)
                         .then(response => {
                             Toast.fire({
                                 icon: response.data.icon, title: response.data.message,

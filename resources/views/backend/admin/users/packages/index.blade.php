@@ -155,7 +155,7 @@
                                     <th></th>
                                     <th></th>
                                     <th></th>
-                                    <th></th>
+                                    <th>Total: $</th>
                                     <th style="text-align:right"></th>
                                 </tr>
                             </tfoot>

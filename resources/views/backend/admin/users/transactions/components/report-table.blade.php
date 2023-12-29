@@ -164,13 +164,13 @@
     </div>
 </div>
 <div class="table-responsive">
-    <table id="transactions" class="display mb-1 table-responsive-my" style="table-layout: fixed">
+    <table data-order="[[ 7, &quot;{{ request()->input('status') === 'pending' ? 'asc' : 'desc' }}&quot; ]]" id="transactions" class="display mb-1 table-responsive-my" style="table-layout: fixed">
         <thead>
             <tr>
                 <th>ACTIONS</th>
                 <th>TRX ID</th>
                 <th>USER</th>
-                <th>PURCHASE</th>
+                <th>PURCHASED</th>
                 <th>PACKAGE</th>
                 <th class="text-center">TYPE</th>
                 <th>STATUS</th>
@@ -181,7 +181,10 @@
         </thead>
         <tfoot>
             <tr>
-                <th colspan="10" style="text-align:right"></th>
+                <th colspan="7"></th>
+                <th style="text-align:right">Total: $</th>
+                <th style="text-align:right"></th>
+                <th style="text-align:right"></th>
             </tr>
         </tfoot>
     </table>

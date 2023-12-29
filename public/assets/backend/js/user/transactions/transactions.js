@@ -46,8 +46,12 @@ $(function () {
                         return intVal(a) + intVal(b);
                     }, 0);
             }
-            let total = new Intl.NumberFormat().format(sumVal(8));
-            $(api.column(8).footer()).html(`<br><br>Current Page Total: USDT ${total}`);
+            let numberFormatOptions = {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            }
+            let total = new Intl.NumberFormat('en-US', numberFormatOptions).format(sumVal(8));
+            $(api.column(8).footer()).html(`${total}`);
         },
         columnDefs: [
             {

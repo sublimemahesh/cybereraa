@@ -10,7 +10,7 @@ $(function () {
         serverSide: true,
         fixedHeader: true,
         responsive: true,
-        order: [[4, 'desc']],
+        //order: [[4, 'asc']],
         //stateSave: true,
         ajax: location.href,
         columns: [
@@ -19,7 +19,7 @@ $(function () {
             {data: "contact_details", name: 'email', searchable: true, orderable: false},
             {data: "kyc_status", name: 'id', searchable: true, orderable: false},
             {data: "investment", searchable: false, orderable: false},
-            {data: "joined", name: 'created_at', searchable: false},
+            {data: "joined", name: 'created_at', orderable: true, searchable: false},
             {data: "actions", searchable: false, orderable: false},
         ],
         columnDefs: [
@@ -50,6 +50,7 @@ $(function () {
         urlParams.set("date-range", $("#date-range").val());
         urlParams.set("kyc-status", $("#kyc-status").val());
         urlParams.set("status", $("#status").val());
+        urlParams.set("investment-status", $("#investment-status").val());
         let url = location.href.split(/\?|\#/)[0] + "?" + urlParams.toString();
         history.replaceState({}, "", url);
         table.ajax.url(url).load();
