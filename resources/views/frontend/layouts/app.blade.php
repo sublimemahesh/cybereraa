@@ -3,9 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <title>@yield('title')</title>
-
     <!-- FAVICONS ICON -->
-
     <link rel="shortcut icon" type="image/png" href="{{asset('assets/backend/images/favicon.png') }}">
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,6 +18,12 @@
 
 <body id="bg">
 
+  <!-- Loader container -->
+  <div class="loader-container" id="loaderContainer">
+    <div class="loader"></div>
+    {{-- <p>Loading...</p> --}}
+  </div>
+ <!--END Loader container -->
 <div class="page-wraper">
 
     @yield('header')

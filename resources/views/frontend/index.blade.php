@@ -35,7 +35,7 @@
                                 </div>
                                 <div class="slider-button">
                                     <a href="{{ route('register')}}">Get Started Now</a>
-                                    <a href="{{ route('login') }}" data-devil="ml:10 pl:35 pr:35" data-dxs="mt:10">Login Now</a>
+                                    {{-- <a href="{{ route('login') }}" data-devil="ml:10 pl:35 pr:35" data-dxs="mt:10">Login Now</a> --}}
                                 </div>
 
                             </div>
@@ -69,7 +69,7 @@
                         <div class="single-brand-box">
                             <div class="brand-thumb">
                                 <img src="{{asset('assets/frontend/images/coin-icon/bitcoin(4).png') }}" alt="" />
-                                <span class="bitcoin text-white"></span> | <span class="bitcoin-change text-white"></span>
+                                <span class="bitcoin text-white"></span> | <span class="bitcoin-change text-white break-coin"></span>
                             </div>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                         <div class="single-brand-box">
                             <div class="brand-thumb">
                                 <img src="{{asset('assets/frontend/images/coin-icon/ethereum(3).png') }}" alt="" />
-                                <span class="ethereum text-white"></span> | <span class="ethereum-change text-white"></span>
+                                <span class="ethereum text-white"></span> | <span class="ethereum-change text-white break-coin"></span>
                             </div>
                         </div>
                     </div>
@@ -85,15 +85,47 @@
                         <div class="single-brand-box">
                             <div class="brand-thumb">
                                 <img src="{{asset('assets/frontend/images/coin-icon/litecoin(7).png') }}" alt="" />
-                                <span class="text-white litecoin"></span> | <span class="litecoin-change text-white"></span>
+                                <span class="text-white litecoin"></span> | <span class="litecoin-change text-white break-coin"></span>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-12">
                         <div class="single-brand-box">
                             <div class="brand-thumb">
-                                <img src="{{asset('assets/frontend/images/coin-icon/tether.png') }}" alt="" />
-                                <span class="tether text-white"></span> | <span class="text-white tether-change"></span>
+                                <img src="{{asset('assets/frontend/images/coin-icon/tron.png') }}" alt="" />
+                                <span class="tron text-white"></span> | <span class="text-white tron-change break-coin"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="single-brand-box">
+                            <div class="brand-thumb">
+                                <img src="{{asset('assets/frontend/images/coin-icon/cardano.png') }}" alt="" />
+                                <span class="cardano text-white"></span> | <span class="text-white cardano-change break-coin"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="single-brand-box">
+                            <div class="brand-thumb">
+                                <img src="{{asset('assets/frontend/images/coin-icon/dai.png') }}" alt="" />
+                                <span class="dai text-white"></span> | <span class="text-white dai-change break-coin"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="single-brand-box">
+                            <div class="brand-thumb">
+                                <img src="{{asset('assets/frontend/images/coin-icon/dogecoin.png') }}" alt="" />
+                                <span class="dogecoin text-white"></span> | <span class="text-white dogecoin-change break-coin"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="single-brand-box">
+                            <div class="brand-thumb">
+                                <img src="{{asset('assets/frontend/images/coin-icon/uniswap.png') }}" alt="" />
+                                <span class="uniswap text-white"></span> | <span class="text-white uniswap-change break-coin"></span>
                             </div>
                         </div>
                     </div>
@@ -105,12 +137,12 @@
     <!--==================================================-->
     <!-- Start about-area -->
     <!--==================================================-->
-    <div class="about-area">
+    <div class="about-area" data-dxs='mt:-50'>
         <div class="container">
-            <div class="row">
+            <div class="row" data-dxs='mb:-30'>
                 <div class="col-lg-6 col-md-6">
                     <div class="single-about-box">
-                        <div class="about-thumb bounce-animate" data-devil='pt:70'>
+                        <div class="about-thumb bounce-animate" data-devil='pt:70' data-dxs='pt:0 mt:0'>
                             <img src="{{asset('assets/frontend/images/crypto-3.png') }}" alt="" />
                         </div>
                     </div>
@@ -311,7 +343,7 @@
     <!--How it work -->
     <!--==================================================-->
 
-    <div class="feature-area style-one upper">
+    <div class="feature-area style-one upper" data-dxs="pt:60">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">

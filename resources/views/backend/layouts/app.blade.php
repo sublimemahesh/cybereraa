@@ -145,7 +145,7 @@
 
 
             <!--********************************** Content body start ***********************************-->
-            <div class="content-body" data-dxs="mt:80">
+            <div class="content-body" data-dxs="mt:6" data-devil="mt:10">
                 <!-- row -->
                 <div class="container-fluid cf-mt">
 

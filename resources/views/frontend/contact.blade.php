@@ -30,7 +30,7 @@
     <!--==================================================-->
     <!-- Start info-area -->
     <!--==================================================-->
-    <div class="info-area">
+    {{-- <div class="info-area">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-6">
@@ -68,7 +68,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!--==================================================-->
     <!-- Start footer-area -->

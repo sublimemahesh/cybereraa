@@ -4,10 +4,11 @@
             <div class="col-lg-12">
                 <div id="sticky-header" class="nav-menu">
                     <div class="header-logo">
-                        <a href="{{ route('/') }}"><img src="{{asset('assets/frontend/images/logo.png') }}" alt=""></a>
+                        <a href="{{ route('/') }}">
+                            <img class="logo-box" src="{{asset('assets/frontend/images/logo.png') }}" alt=""></a>
                         <a class="main_sticky" href="{{ route('/') }}"><img src="{{asset('assets/frontend/images/logo.png') }}" alt=""></a>
                     </div>
-                    <div class="heder-menu">
+                    <div class="heder-menu heade-custom">
                         <ul>
                             <li><a href="{{ route('/') }}">Home</a></li>  
                             <li><a href="{{ route('about') }}">About</a></li>
@@ -24,9 +25,22 @@
                             <li><a href="{{ route('faq') }}">FAQ</a></li>
                             <li><a href="{{ route('contact') }}">Contact </a></li>
                         </ul>
+                        @auth()
+
                         <div class="menu-button"> 
-                            <a href="{{ route('login') }}">Join us</a>
+                            <a id='get-rout' href="{{ route(authUserFolder() .'.dashboard') }}">Dashboard</a>
                         </div>
+
+                          @endauth
+                            @guest()
+
+                            <div class="menu-button"> 
+                                <a id='get-rout'  href="{{ route('login') }}">Join us</a>
+                            </div>
+                            @endguest
+
+                           
+
                     </div>
                 </div> 
             </div>
@@ -38,6 +52,7 @@
 <!-- ============================================================= -->
 <div class="mobile-menu-area d-sm-block d-md-block d-lg-none ">
 <div class="mobile-menu">
+    
     <nav class="itsoft_menu">
         <ul class="nav_scroll">
 

@@ -224,7 +224,7 @@ div#sticky-header:hover .sub-menu {
 <!-- ============================================================== -->*/
 .contact-area {
     background: #020415;
-    padding: 50px 0 80px;
+    padding: 90px 0 80px;
 }
 .contact-area .sections-title {
     text-align: center;
@@ -615,7 +615,7 @@ h1.bottoms {
 <!-- ============================================================== -->*/
 .about-area {
     background: #020415;
-    padding: 205px 0 115px;
+    padding: 205px 0 75px;
     margin-top: -197px;
 }
 .single-about-box {
@@ -3255,4 +3255,100 @@ div#particles .slider-thumb {
     width: 100%;
     background: url(../images/about-1.png);
     background-repeat: no-repeat;
+}
+
+/* Styles for the loader container */
+.loader-container {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Dark background */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  /* Styles for the loader container */
+.loader-container {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Dark background */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  /* Styles for the loader animation */
+  .loader {
+    border: 4px solid #fff; /* White border with thinner width */
+    border-top: 4px solid #3498db; /* Blue border on top */
+    border-radius: 50%;
+    width: 100px;  /* Increase the size to make the circle bigger */
+    height: 100px; /* Increase the size to make the circle bigger */
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Styles for the main content */
+  .main-content {
+    display: none; /* Initially hide the main content */
+    color: #fff; /* Set text color to white or a suitable contrast */
+  }
+/* END  Styles for the loader container */
+  
+
+.logo-box{
+ box-sizing: border-box;
+  /* width: 270px; */
+  /* height: 100px; */
+  /* padding: 10px; */
+  /* border: 2px solid black; */
+  /* margin: 0px; */
+  margin-left: -40px;
+}
+
+.mobile-menu-btn{
+
+    color: #fff;
+    content: "TyCoon1m";
+    font-size: 22px;
+    font-weight: 600;
+    left: 168px;
+    position: absolute;
+    top: 16px;
+    font-family: 'Roboto';
+
+}
+
+.mobil-logo{
+  background: url(../images/mob-logo.png);
+  left: 10px;
+  position: absolute;
+  top: 18px;
+  background-repeat: no-repeat;
+  width: 150px;
+  height: 36px;
+}
+
+
+.heade-custom{
+    left: 60px;
+    position: relative;
+}
+
+#mob-header .mobile-menu-btn a{
+
+    font-size: 12px !important;
+    padding: 12px 15px !important;
 }

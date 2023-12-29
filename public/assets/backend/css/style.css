@@ -32546,6 +32546,7 @@ input#checkAll.form-check-input:checked {
 [data-theme-version="dark"] .select2-container--default .select2-selection--single {
     background: var(--bg-color-input);
     border-color: #414040;
+    height: 50px;
 
 }
 
@@ -49546,7 +49547,7 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 533px;
+    height: 565px;
     position: relative;
 }
 
@@ -49589,7 +49590,7 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 778px;
+    height: 820px;
     position: relative;
 }
 
@@ -49838,6 +49839,15 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
           background-image: none;
     }
 
+    .main-register-form-style
+    {
+      padding-top: 0px !important;
+      padding-bottom: 0px!important;
+    }
+
+    .mob-vh-100-login{
+        height: 105vh !important;
+      }
 
 
 }
@@ -49973,3 +49983,28 @@ border-color: rgb(12, 13, 13) !important;
 }
 
 
+#select-country .select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 3.5rem !important;;
+    color: #fff !important;
+    padding-left: 0.9375rem;
+    min-height: 3rem;
+}
+
+[data-theme-version="dark"] #select-country  .select2-container--default .select2-selection--single {
+
+    height: 50px;
+    border-radius: 10px;
+}
+
+#select-country .select2-container--default .select2-selection--single .select2-selection__arrow {
+    top: 14px !important;;
+
+}
+
+
+ .rotatable-image {
+                transition: transform 0.5s ease; /* Add smooth transition effect */
+            }
+ .rotate-buttons {
+                margin-top: 10px;
+            }

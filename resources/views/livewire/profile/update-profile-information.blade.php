@@ -101,7 +101,7 @@
                                 @endif
                             @endif
                         </div>
-                        <div class="col-sm-6 mt-2 mb-3">
+                        <div class="col-sm-6 mt-2 mb-3" id='select-country'>
                             <div wire:ignore>
                                 <label class="form-label" for="country"> Country <sup class="text-danger">*</sup></label>
                                 <x-select2 id="country" name="country_id" wire:model="state.profile_info.country_id" class="block mt-1 w-full form-control border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" :options="$countries"/>

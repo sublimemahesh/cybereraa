@@ -44,7 +44,7 @@
 
                 <div class="logo-header mostion mob-width  other-header-logo">
                     <a href="{{ route('/') }}">
-                        <img src="{{asset('assets/frontend/images/logo-light.png') }}" width="230" height="67" alt=""/>
+                        {{-- <img src="{{asset('assets/frontend/images/logo-light.png') }}" width="230" height="67" alt=""/> --}}
                     </a>
                 </div>
 

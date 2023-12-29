@@ -3,6 +3,7 @@
     @section('header-title', 'User KYC' )
     @section('styles')
         <link rel="stylesheet" href="{{ asset('assets/backend/css/user/kyc.css') }}">
+
     @endsection
     @section('breadcrumb-items')
         <li class="breadcrumb-item">
@@ -123,7 +124,7 @@
             @can('view', $kyc)
                 <div class="col-lg-12">
                     <div class="row">
-                        @foreach ($kyc->documents as $document)
+                        @foreach ($kyc->documents as $key=>$document)
                             <div class="col-sm-12">
                                 <div class="card">
                                     <div class="card-body">
@@ -141,10 +142,13 @@
                                         @endif
                                         <hr>
                                         <div class="row">
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-6"> <div class="image-container">
                                                 <a src="{{ storage('user/kyc/' . $kyc->type . '/' . $document->document_name) }}" href="javascript:void(0)" class="imgDiv">
-                                                    <img src="{{ storage('user/kyc/' . $kyc->type . '/' . $document->document_name) }}" class="img-thumbnail" style="max-height: 600px" alt="">
+
+                                                        <img src="{{ storage('user/kyc/' . $kyc->type . '/' . $document->document_name) }}" class="img-thumbnail rotatable-image" style="max-height: 600px" alt="">
+
                                                 </a>
+                                            </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="profile-personal-info">
@@ -238,6 +242,19 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
+
+                                                <div class="rotate-buttons">
+                                                    <button class="btn btn-primary  btn-xxs mb-2" onclick="rotateImage('clockwise',  {{ $key }})">
+                                                        <i class="fas fa-redo"></i> Rotate Image
+                                                    </button>
+                                                    <button class="btn btn-primary  btn-xxs mb-2" onclick="rotateImage('counterclockwise',  {{ $key }})">
+                                                        <i class="fas fa-undo"></i> Rotate Image
+                                                    </button>
+                                                </div>
+
+
+
                                             </div>
                                         </div>
                                         <hr>
@@ -265,12 +282,19 @@
         @endforeach
     </div>
 
-    @push('scripts')
-        <script>
-            const REJECT_REASONS = {!! json_encode(App\Enums\KycRejectReasonsEnum::reasons(),JSON_THROW_ON_ERROR|JSON_PRETTY_PRINT) !!}
-        </script>
-        <script src="{{ asset('assets/backend/js/admin/users/ezoom.js') }}"></script>
-        <script src="{{ asset('assets/backend/js/admin/users/kyc-approve.js') }}"></script>
-        <script src="{{ asset('assets/backend/js/admin/users/kyc/reject-kyc.js') }}"></script>
-    @endpush
+  <!-- ... Your previous HTML code ... -->
+
+@push('scripts')
+<script>
+    const REJECT_REASONS = {!! json_encode(App\Enums\KycRejectReasonsEnum::reasons(),JSON_THROW_ON_ERROR|JSON_PRETTY_PRINT) !!}
+
+</script>
+<script src="{{ asset('assets/backend/js/admin/users/ezoom.js') }}"></script>
+    <script src="{{ asset('assets/backend/js/admin/users/kyc-approve.js') }}"></script>
+    <script src="{{ asset('assets/backend/js/admin/users/kyc/reject-kyc.js') }}"></script>
+    <script src="{{ asset('assets/backend/js/admin/users/kyc/rotate-img.js') }}"></script>
+@endpush
+
+<!-- ... Rest of your Blade code ... -->
+
 </x-backend.layouts.app>

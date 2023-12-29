@@ -52,13 +52,15 @@
 
                     </div>
 
-
-                    <button type="button" class="btn btn-primary bp-price-btn no-hover-style" data-devil='mt:2'>
-                        TOTAL AMOUNT: <span id="total-amount">USDT {{ $package->amount + ($package->amount *
-                            $package->gas_fee) /100 }}</span>
-                    </button>
-<br>
-                      <button type="button" class="btn  mb-2" id="{{ $package->slug }}-choose"  data-devil="ml:20 mt:30 bgc:#18998f c:#fff">Deposit</button>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary bp-price-btn no-hover-style" data-devil='mt:2'>
+                            TOTAL AMOUNT: <span id="total-amount">USDT {{ $package->amount + ($package->amount *
+                                $package->gas_fee) /100 }}</span>
+                        </button>
+                        <br>
+                        <button type="button" class="btn   mb-2" id="{{ $package->slug }}-choose"
+                            data-devil="ml:20 mt:30 bgc:#18998f c:#fff w:150">Deposit</button>
+                    </div>
 
 
                     <div class="basic-list-group" data-devil="mt:60">
@@ -326,7 +328,6 @@
     @endpush
     @push('scripts')
     <script !src="">
-
         $('#custom-deposit-amount').change(function (e) {
                 let amount = parseFloat($(this).val())
                 let gas_fee = (amount * parseFloat({{ $package->gas_fee }})) / 100
@@ -335,7 +336,7 @@
                 $('#pkg-price').html('USDT ' + amount)
                 $('#pkg-gas-fee').html('USDT ' + gas_fee)
 
-               
+
 
 
             })

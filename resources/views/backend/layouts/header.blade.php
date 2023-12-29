@@ -7,9 +7,9 @@
             <img src="{{ asset('assets/backend/images/logo/logo-color.png') }}" class="logo-color" alt="">
             <img src="{{ asset('assets/backend/images/logo/logo-text-color.png') }}" class="brand-title color-title" alt="">
         </div>
-        <div> {{ Auth::user()->username }}</div>
+        <div data-devil="t:10 p:relative"  data-dxs="t:2"> {{ Auth::user()->username }}</div>
     </a>
-    <div class="nav-control">
+    <div class="nav-control" data-devil="t:40">
         <div class="hamburger">
             <span class="line"></span><span class="line"></span><span class="line"></span>
             <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
