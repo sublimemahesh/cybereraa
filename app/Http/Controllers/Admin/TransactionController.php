@@ -239,7 +239,10 @@ class TransactionController extends Controller
             return response()->json($json);
         }
 
-        return view('backend.admin.users.transactions.reject-manual-transaction', compact('transaction',));
+        return response()->json([
+            'status' => false,
+        ], 403);
+//        return view('backend.admin.users.transactions.reject-manual-transaction', compact('transaction',));
     }
 
 }

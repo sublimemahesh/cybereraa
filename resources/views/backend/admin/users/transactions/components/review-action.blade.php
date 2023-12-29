@@ -53,8 +53,10 @@
                             <div class="mb-3 mt-1">
                                 <div class="text-info">
                                     <label for="proof_document">Transaction ID:</label>
-                                    <a href="javascript:void(0)" title="Copy to Clipboard" class="copy-to-clipboard d-flex form-control justify-content-between" data-clipboard-text="{{ $transaction->transaction_id }}">{{
-                                                    $transaction->transaction_id }} <i class="fa fa-clone my-auto" style="font-size: 17px;" data-devil="ml:5"></i></a>
+                                    <a href="javascript:void(0)" data-clipboard-text="{{ $transaction->transaction_id }}" id="copy-to-clipboard" class="copy-to-clipboard d-flex form-control justify-content-between" title="Copy to Clipboard">
+                                        {{$transaction->transaction_id }}
+                                        <i class="fa fa-clone my-auto" style="font-size: 17px;" data-devil="ml:5"></i>
+                                    </a>
                                 </div>
                             </div>
                             <hr>
@@ -81,7 +83,10 @@
                             @endif
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-success" id="approveTrx">APPROVE</button>
+                    <div class="d-flex justify-content-evenly mt-2">
+                        <button class="btn btn-success" id="approveTrx">APPROVE</button>
+                        <button id="reject-trx" class="btn btn-danger">REJECT</button>
+                    </div>
                 </div>
                 <div class="col-sm-5 m-auto text-center">
                     <img src="{{ storage('user/manual-purchase/' . $transaction->proof_document) }}" alt=""

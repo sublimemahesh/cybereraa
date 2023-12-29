@@ -30,21 +30,37 @@ $(function () {
                         Toast.fire({
                             icon: response.data.icon, title: response.data.message,
                         }).then(res => {
-                            if (response.data.status) {
-                                TRANSACTION_TABLE.load()
-                                TRANSACTION_MODAL.hide()
-                                // response.data.redirectUrl ? location.href = response.data.redirectUrl : location.reload();
-                            }
                         })
+                        if (response.data.status) {
+                            TRANSACTION_TABLE.ajax.reload();
+                            TRANSACTION_MODAL.hide()
+                            // response.data.redirectUrl ? location.href = response.data.redirectUrl : location.reload();
+                        }
                     })
                     .catch((error) => {
                         Toast.fire({
                             icon: 'error', title: error.response.data.message || "Something went wrong!",
                         })
-
+                        console.error(error.response.data)
+                        let errorMap = [];
+                        document.querySelectorAll('input[data-input=payout]').forEach(input => {
+                            errorMap.push(input.id)
+                        })
+                        errorMap.map(id => {
+                            error.response.data.errors[id] && appendError(id, `<span class="text-danger">${error.response.data.errors[id]}</span>`)
+                        })
                     })
             }
         });
     }
 
+    function appendError(id, html) {
+        try {
+            let el = $(document.getElementById(id));
+            $(el).next(".text-danger").remove();
+            $(html).insertAfter(el)
+        } catch (e) {
+
+        }
+    }
 })

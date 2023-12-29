@@ -8,6 +8,12 @@
         <link href="{{ asset('assets/backend/vendor/datatables/css/buttons.bootstrap5.min.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/backend/vendor/datatables/css/datatable-extension.css') }}" rel="stylesheet">
         @vite(['resources/css/app-jetstream.css'])
+        <style>
+            .swal2-select {
+                border-width: 1px;
+                border-style: solid;
+            }
+        </style>
     @endsection
 
     @section('breadcrumb-items')
@@ -44,6 +50,8 @@
         <script !src="">
             const TRANSACTION_URL = location.href;
             const HISTORY_STATE = true;
+
+            const REJECT_REASONS = {!! json_encode(App\Enums\TransactionRejectReasonsEnum::reasons(),JSON_THROW_ON_ERROR|JSON_PRETTY_PRINT) !!};
         </script>
         <script src="{{ asset('assets/backend/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('assets/backend/vendor/datatables/extensions/dataTables.buttons.min.js') }}"></script>
@@ -58,17 +66,28 @@
 
         <script src="{{ asset('assets/backend/js/admin/transactions/main.js') }}"></script>
         <script src="{{ asset('assets/backend/js/admin/transactions/manual-trx.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/admin/transactions/reject-manual-trx.js') }}"></script>
 
         <script !src="">
-            let clipboard = new ClipboardJS('.copy-to-clipboard');
-
+            // document.getElementById('approveModal').addEventListener('shown.bs.modal', event => {
+            let clipboard = new ClipboardJS('#copy-to-clipboard');
             // Handle copy success
             clipboard.on('success', function (e) {
+                console.log(e)
                 Toast.fire({
                     icon: 'success', title: 'Transaction ID copied to clipboard!',
                 })
                 e.clearSelection();
+
+                let textarea = document.createElement('textarea');
+                textarea.value = e.text;
+                document.body.appendChild(textarea);
+                textarea.select();
+                textarea.focus()
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
             });
+            // })
         </script>
 
     @endpush

@@ -26,7 +26,7 @@ $(function () {
             }
         });
 
-        if (repudiate_note === null || repudiate_note.length <= 0) {
+        if (repudiate_note === null) {
             Toast.fire({
                 icon: 'error',
                 title: "Please provide the reject reason!",
