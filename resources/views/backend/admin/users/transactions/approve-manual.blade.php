@@ -2,11 +2,11 @@
     @section('title', 'Approve Manual Transaction | Payments')
     @section('header-title', 'Approve Manual Transaction')
     @section('plugin-styles')
-    <!-- Datatable -->
+        <!-- Datatable -->
     @endsection
 
     @section('breadcrumb-items')
-    <li class="breadcrumb-item">Approve Transaction</li>
+        <li class="breadcrumb-item">Approve Transaction</li>
     @endsection
 
     <div class="row">
@@ -19,7 +19,7 @@
                             <hr>
                         </div>
                         <div class="row">
-                            <div class="col-sm-8">
+                            <div class="col-sm-7">
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="mb-2">
@@ -39,7 +39,7 @@
                                             <p data-devil="fs:15"><b>Gas Fee: </b> {{ $transaction->gas_fee }}USDT</p>
                                             <p data-devil="fs:15"><b>Pay Method:</b> {{ $transaction->type }}/{{ $transaction->pay_method }}</p>
                                             @if($transaction->status === 'REJECTED')
-                                            <p data-devil="fs:15"><b>Repudiate note:</b> {{ $transaction->repudiate_note }}</p>
+                                                <p data-devil="fs:15"><b>Repudiate note:</b> {{ $transaction->repudiate_note }}</p>
                                             @endif
                                             <p data-devil="fs:15"><b>Status:</b> {{ $transaction->status }}</p>
                                         </div>
@@ -47,27 +47,27 @@
                                 </div>
 
                                 <div>
-                                    <div class="fs-30 text-center font-w600" data-devil="c:#fff mb:15">Total Amount: {{
-                                        $transaction->amount + $transaction->gas_fee }}USDT</div>
+                                    <div class="fs-30 text-center font-w600" data-devil="c:#fff mb:15">
+                                        Total Amount: {{ $transaction->amount + $transaction->gas_fee }} <small> USDT</small>
+                                    </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-10">
                                         <hr>
                                         <div class="mb-2 mt-2">
                                             <div class="text-info">
                                                 <label for="proof_document">Proof:</label>
                                                 <a href="{{ asset('storage/user/manual-purchase/' . $transaction->proof_document) }}"
-                                                    target="_blank">View Proof</a>
+                                                   target="_blank">View Proof
+                                                </a>
                                             </div>
                                         </div>
                                         <div class="mb-3 mt-1">
                                             <div class="text-info">
                                                 <label for="proof_document">Transaction ID:</label>
-                                                <a href="javascript:void(0)" class="copy-to-clipboard"
-                                                    data-clipboard-text="{{ $transaction->transaction_id }}">{{
-                                                    $transaction->transaction_id }} <i class="fa fa-clone"
-                                                        style="font-size: 17px;" data-devil="ml:5"></i></a>
+                                                <a href="javascript:void(0)" title="Copy to Clipboard" class="copy-to-clipboard d-flex form-control justify-content-between" data-clipboard-text="{{ $transaction->transaction_id }}">{{
+                                                    $transaction->transaction_id }} <i class="fa fa-clone my-auto" style="font-size: 17px;" data-devil="ml:5"></i></a>
                                             </div>
                                         </div>
                                         <hr>
@@ -80,27 +80,25 @@
                                         <div class="mb-3 mt-2">
                                             <label for="password">Password</label>
                                             <input id="password" type="password" name="password" data-input='payout'
-                                                class="form-control" autocomplete="new-password">
+                                                   class="form-control" autocomplete="new-password">
                                         </div>
                                         @if(Auth::user()?->two_factor_secret && in_array(
                                         \Laravel\Fortify\TwoFactorAuthenticatable::class,
                                         class_uses_recursive(Auth::user()),true))
-                                        <div class="mb-3 mt-2">
-                                            <label for="code">Two Factor code / Recovery Code</label>
-                                            <input id="code" name="code" type="password" data-input='payout'
-                                                class="form-control" autocomplete="one-time-password"
-                                                placeholder="2FA code OR Recovery Code">
-                                        </div>
+                                            <div class="mb-3 mt-2">
+                                                <label for="code">Two Factor code / Recovery Code</label>
+                                                <input id="code" name="code" type="password" data-input='payout'
+                                                       class="form-control" autocomplete="one-time-password"
+                                                       placeholder="2FA code OR Recovery Code">
+                                            </div>
                                         @endif
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-success" id="approveTrx">APPROVE</button>
                             </div>
-
-
-                            <div class="col-sm-4 m-auto text-center">
+                            <div class="col-sm-5 m-auto text-center">
                                 <img src="{{ storage('user/manual-purchase/' . $transaction->proof_document) }}" alt=""
-                                    class="img-thumbnail mw-100" data-devil="mt:-92" data-dxs="mt:15">
+                                     class="img-thumbnail mw-100" data-devil="mt:-92" data-dxs="mt:15">
                             </div>
                         </div>
                     </form>
@@ -110,20 +108,20 @@
     </div>
 
     @push('scripts')
-    <script src="{{ asset('assets/backend/js/admin/transactions/manual-trx.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/admin/transactions/manual-trx.js') }}"></script>
 
-    <script src="{{ asset('assets/backend/vendor/clipboard/clipboard.min.js') }}"></script>
-    <script !src="">
-        let clipboard = new ClipboardJS('.copy-to-clipboard');
+        <script src="{{ asset('assets/backend/vendor/clipboard/clipboard.min.js') }}"></script>
+        <script !src="">
+            let clipboard = new ClipboardJS('.copy-to-clipboard');
 
             // Handle copy success
             clipboard.on('success', function (e) {
                 Toast.fire({
-                    icon: 'success', title: 'Address copied to clipboard!',
+                    icon: 'success', title: 'Transaction ID copied to clipboard!',
                 })
                 e.clearSelection();
             });
-    </script>
+        </script>
 
     @endpush
 </x-backend.layouts.app>
