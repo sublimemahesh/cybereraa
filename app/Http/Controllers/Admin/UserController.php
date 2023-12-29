@@ -44,6 +44,9 @@ class UserController extends Controller
                 ->when($request->get('status') === 'active', function (Builder $q) {
                     $q->whereNull('suspended_at');
                 })
+                ->when($request->get('investment-status') === 'active', function (Builder $q) {
+                    $q->whereHas('purchasedPackages');
+                })
                 ->when($request->get('date-range'), function (Builder $q) {
                     $period = explode(' to ', request()->input('date-range'));
                     try {
@@ -89,16 +92,22 @@ class UserController extends Controller
                     return $user->created_at->format('Y-m-d h:i A');
                 })
                 ->addColumn('kyc_status', function (User $user) {
+                    $html = "";
+                    if ($user->purchased_packages_sum_invested_amount > 0) {
+                        $html = "<i class='fa fa-certificate text-success' title='Funded Account'></i> ";
+                    }
+                    $status = "<span class='text-warning'>PENDING</span>";
                     if ($user->profile->is_kyc_verified) {
-                        return "<span class='text-success'>VERIFIED</span>";
+                        $status = "<span class='text-success'>VERIFIED</span>";
                     }
                     if ($user->profile->kycs->count() > 0 && $user->profile->kycs->where('status', 'rejected')->count() > 0) {
-                        return "<span class='text-danger'>REJECTED</span>";
+                        $status = "<span class='text-danger'>REJECTED</span>";
                     }
                     if ($user->profile->kycs->count() <= 0 || $user->profile->kycs->where('status', 'required')->count() > 0) {
-                        return "<span class='text-white'>NOT SUBMITTED</span>";
+                        $status = "<span class='text-white'>NOT SUBMITTED</span>";
                     }
-                    return "<span class='text-warning'>PENDING</span>";
+                    $html .= $status;
+                    return $html;
                 })
                 ->addColumn('actions', function ($user) {
                     return view('backend.admin.users.includes.users-actions', compact('user'))->render();
