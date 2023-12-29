@@ -6,7 +6,7 @@
     @endcan
 
     @can('users.genealogy')
-        <a class='btn btn-xs btn-google sharp my-1 mr-1 shadow' title="Team List" href='{{ route('admin.team.users-levels', ['user' => $user, 'depth' => 1]) }}'>
+        <a class='btn btn-xs btn-google sharp my-1 mr-1 shadow' title="Team List" href='{{ route('admin.team.users-levels', ['user' => $user]) }}'>
             {{--        <a class='btn btn-xs btn-google sharp my-1 mr-1 shadow' title="Team List" href='{{ route('admin.team.users-list', ['user' => $user, 'filter-user' => $user->username]) }}'>--}}
             <i class='bi bi-diagram-3-fill'></i>
         </a>

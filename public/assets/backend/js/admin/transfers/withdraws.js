@@ -21,7 +21,7 @@ $(function () {
         serverSide: true,
         fixedHeader: true,
         responsive: true,
-        order: [[5, 'desc']],
+        // order: [[5, 'desc']],
         //stateSave: true,
         ajax: WITHDRAW_REPORT_URL,
         columns: [

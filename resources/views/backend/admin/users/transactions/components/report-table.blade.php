@@ -164,7 +164,7 @@
     </div>
 </div>
 <div class="table-responsive">
-    <table id="transactions" class="display mb-1 table-responsive-my" style="table-layout: fixed">
+    <table data-order="[[ 7, &quot;{{ request()->input('status') === 'pending' ? 'asc' : 'desc' }}&quot; ]]" id="transactions" class="display mb-1 table-responsive-my" style="table-layout: fixed">
         <thead>
             <tr>
                 <th>ACTIONS</th>

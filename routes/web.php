@@ -254,8 +254,9 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
             Route::get('users/incomes/rewards', 'Admin\IncomeController@rewards')->name('incomes.rewards');
 
             // withdraws
-            Route::get('users/transfers/p2p', 'Admin\WithdrawController@p2p')->name('transfers.p2p');
             Route::get('users/transfers/withdrawals', 'Admin\WithdrawController@withdrawals')->name('transfers.withdrawals');
+
+            Route::get('users/transfers/p2p', 'Admin\WithdrawController@p2p')->name('transfers.p2p');
             Route::get('users/transfers/wallets', 'Admin\WalletTransferController@index')->name('transfers.wallets');
 
             Route::get('users/transfers/withdrawals/{withdraw}/summery', 'Admin\WithdrawController@show')->name('transfers.withdrawals.view');

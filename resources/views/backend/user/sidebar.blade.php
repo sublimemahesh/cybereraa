@@ -170,7 +170,7 @@
                         <a href="{{ route('user.team.users-list') }}">Team List</a>
                     </li>--}}
                     <li>
-                        <a href="{{ route('user.team.users-levels',['depth' =>  1]) }}">Referral Level</a>
+                        <a href="{{ route('user.team.users-levels') }}">Referral Level</a>
                     </li>
                 </ul>
             </li>

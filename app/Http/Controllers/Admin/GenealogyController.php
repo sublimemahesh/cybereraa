@@ -104,7 +104,7 @@ class GenealogyController extends Controller
                         /*return '<a class="btn btn-secondary btn-success btn-xxs p-1 view-downline-user" data-username="' . $userD->username . '">
                         <i class="fa fa-users"></i>
                     </a>';*/
-                        return '<a class="btn btn-secondary btn-success btn-xxs p-1 " href="' . route('admin.team.users-levels', ['user' => $userD, 'depth' => 1]) . '">
+                        return '<a class="btn btn-secondary btn-success btn-xxs p-1 " href="' . route('admin.team.users-levels', ['user' => $userD]) . '">
                         <i class="fa fa-users"></i>
                     </a>';
                     }

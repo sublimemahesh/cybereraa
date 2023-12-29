@@ -106,7 +106,7 @@
     </div>
 </div>
 <div class="table-responsive">
-    <table id="binance-trx" class="mb-1 nowrap table-responsive-my display" style="table-layout: fixed">
+    <table data-order="[[ 5, &quot;{{ in_array(request()->input('status'), ['pending', 'processing'])? 'asc' : 'desc' }}&quot; ]]" id="binance-trx" class="mb-1 nowrap table-responsive-my display" style="table-layout: fixed">
         <thead>
             <tr>
                 <th>ACTIONS</th>
@@ -133,7 +133,7 @@
                 <th></th>
                 <th></th>
                 <th></th>
-                <th>Current Page <br>Total: </th>
+                <th>Current Page <br>Total:</th>
                 <th style="text-align:right" class="text-wrap pe-1"></th>
                 <th style="text-align:right" class="text-wrap pe-1"></th>
                 <th style="text-align:right" class="text-wrap pe-1"></th>

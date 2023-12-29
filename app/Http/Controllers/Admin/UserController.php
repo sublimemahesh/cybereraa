@@ -47,6 +47,9 @@ class UserController extends Controller
                 ->when($request->get('investment-status') === 'active', function (Builder $q) {
                     $q->whereHas('purchasedPackages');
                 })
+                ->when($request->get('investment-status') === 'inactive', function (Builder $q) {
+                    $q->whereDoesntHave('purchasedPackages');
+                })
                 ->when($request->get('date-range'), function (Builder $q) {
                     $period = explode(' to ', request()->input('date-range'));
                     try {
