@@ -24,14 +24,14 @@
             <li>
                 <a href="{{ route('admin.transactions.index') }}" class="" aria-expanded="false">
                     All Payments
-                    @if($counts['pending_transactions'] > 0)
-                        <span class="sidebar-pending-notification">{{ $counts['pending_transactions'] }}</span>
-                    @endif
                 </a>
             </li>
             <li>
                 <a href="{{ route('admin.transactions.index', ['status' => 'pending']) }}" class="" aria-expanded="false">
                     Pending Payments
+                    @if($counts['pending_transactions'] > 0)
+                        <span class="sidebar-pending-notification">{{ $counts['pending_transactions'] }}</span>
+                    @endif
                 </a>
             </li>
             <li>
