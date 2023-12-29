@@ -9,18 +9,25 @@ $(function () {
                 text: status.charAt(0).toUpperCase() + status.slice(1) + " Kyc Document?",
                 icon: "info",
                 showCancelButton: true,
+                confirmButtonText: 'APPROVE!',
+                confirmButtonColor: '#00A389',
             }).then((create) => {
                 if (create.isConfirmed) {
                     loader()
                     axios.post(`${APP_URL}/admin/users/kyc-documents/${document}/status`, {
                         status
                     }).then(response => {
+                        $.get(location.href).then(function (page) {
+                            $("#kyc-details-page").html(
+                                $(page).find("#kyc-details-page").html()
+                            );
+                        });
                         Toast.fire({
                             icon: response.data.icon, title: response.data.message,
                         }).then(res => {
-                            if (response.data.status) {
-                                location.reload();
-                            }
+                            // if (response.data.status) {
+                            //     location.reload();
+                            // }
                         })
                     }).catch(error => {
                         console.log(error)

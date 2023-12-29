@@ -131,8 +131,8 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::post('users/{user}/activate', 'Admin\UserController@activateUser')->name('users.activate');
 
         Route::get('users/{user:username}/kycs', 'Admin\KycController@index')->name('users.kycs.index');
-        Route::get('users/kycs/{kyc}', 'Admin\KycController@show')->name('users.kycs.show');
-        Route::get('users/kycs/{kyc}/document/{document}/reject', 'Admin\KycController@reject')->name('users.kycs.document.reject');
+//        Route::get('users/kycs/{kyc}', 'Admin\KycController@show')->name('users.kycs.show');
+//        Route::get('users/kycs/{kyc}/document/{document}/reject', 'Admin\KycController@reject')->name('users.kycs.document.reject');
         Route::post('users/kyc-documents/{document}/status', 'Admin\KycController@status');
 
         // Profile
