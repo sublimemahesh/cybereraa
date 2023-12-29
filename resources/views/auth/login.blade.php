@@ -2,6 +2,7 @@
 @section('title', 'Login')
 @section('body-class', 'login-page')
 @section('contents')
+<link href="{{ asset('assets/backend/css/login.css') }}" rel="stylesheet">
 
 <div class="login-page">
 <div class="row justify-content-center main-register-form-style">

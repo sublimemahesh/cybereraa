@@ -49511,10 +49511,10 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
     position: relative;
 }
 
- .login-bg-img-col{
+.login-bg-img-col{
     padding-right:0px !important;
     padding-left: 0px !important;
-} 
+}
 
 
 .login-bg-txt {
