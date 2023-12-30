@@ -116,7 +116,7 @@
 
   }
 
-  @media screen and (max-width:412px) {
+  @media screen and (max-width:599xpx) {
     .rs-range{
         width: 300PX;
     }
