@@ -49964,7 +49964,12 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
 
 
 
-
+.focus\:bg-white:focus
+{
+  --tw-bg-opacity: 1;
+  background-color: #6b7280 !important;;
+  /* background-color: red !important;; */
+}
 
 .rotate-buttons {
     margin-top: 10px;
