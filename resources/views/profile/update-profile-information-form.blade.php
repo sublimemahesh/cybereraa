@@ -151,6 +151,22 @@
                         <x-jet-input id="wallet_address" wire:model.defer="state.profile_info.wallet_address" class="block mt-1 w-full form-control" type="text" name="wallet_address"/>
                         <x-jet-input-error for="profile_info.wallet_address" class="mt-2"/>
                     </div>
+
+{{-- i cannot test this wallet address
+                    <div class="col-sm-6  m-b30">
+                        <label class="form-label" for="wallet_address">{{ __('Wallet Address (TRC20 USDT)') }}</label>
+                        <div class="input-group">
+                            <x-jet-input id="wallet_address" wire:model.defer="state.profile_info.wallet_address" class="form-control copy-to-clipboard" type="text" name="wallet_address" />
+                            <span class="input-group-text copy-to-clipboard"   data-clipboard-text="{{ $state['profile_info']['wallet_address'] }}">
+                                <i class="fa fa-clone" style="font-size: 17px;"></i>
+                            </span>
+                        </div>
+                        <x-jet-input-error for="profile_info.wallet_address" class="mt-2"/>
+                    </div> --}}
+
+
+
+
                 </div>
             </div>
 
@@ -180,5 +196,21 @@
                 });
             });
         </script>
+
+    <script src="{{ asset('assets/backend/vendor/clipboard/clipboard.min.js') }}"></script>
+    <script !src="">
+        let clipboard = new ClipboardJS('.copy-to-clipboard');
+
+            // Handle copy success
+            clipboard.on('success', function (e) {
+                Toast.fire({
+                    icon: 'success', title: 'Address copied to clipboard!',
+                })
+                e.clearSelection();
+            });
+    </script>
+
+
+
     @endpush
 </div>
