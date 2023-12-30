@@ -7,7 +7,7 @@
             <div class="card-body" id="nav-txt-color">
                 <div class="tab-content">
                     <div class="row" name="form">
-                        <div class="col-sm-12">
+                        <div class="col-sm-12" data-devil="mt:-20 mb:20">
                             <!-- Profile Photo -->
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                 <div x-data="{ photoName: null, photoPreview: null }"
