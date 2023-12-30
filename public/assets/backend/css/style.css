@@ -49971,6 +49971,16 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
   /* background-color: red !important;; */
 }
 
-.rotate-buttons {
-    margin-top: 10px;
+
+
+@media only screen and (max-width: 369px) {
+
+    .dataTables_wrapper .dataTables_filter input[type="search"] {
+        width: 200px !important;
+      }
+
+
 }
+
+
+
