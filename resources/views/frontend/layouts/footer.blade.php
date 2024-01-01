@@ -63,7 +63,8 @@
 					<div class="footer-content">
 						<div class="footer-titles">
 							<h2>Contact details</h2>
-							<p>support@tycoon1m.com</p>
+							{{-- <p>support@tycoon1m.com</p>  --}}
+							<a data-devil='c:#fff' href="mailto:support@tycoon1m.com">support@tycoon1m.com</a>
 						</div>
 					</div>
 				</div>
