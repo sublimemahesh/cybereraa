@@ -10,7 +10,7 @@
             </h2>
         </div> --}}
 
-        <div class="container"  data-devil="dis:none" data-dxs="dis:block mt:30">
+        <div class="container"  data-devil="dis:none" data-dxs="dis:block mt:-20">
             <div class="alert alert-info  text-center">
                 Welcome to  Tycoon1m Family.
             </div>
