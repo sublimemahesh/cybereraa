@@ -34,8 +34,20 @@
                                     </div>
                                 </div>
                                 <div class="slider-button">
-                                    <a href="{{ route('register')}}">Get Started Now</a>
-                                    {{-- <a href="{{ route('login') }}" data-devil="ml:10 pl:35 pr:35" data-dxs="mt:10">Login Now</a> --}}
+
+                                    @auth()
+
+                                      @endauth
+                                        @guest()
+
+                                        <a href="{{ route('register')}}">Get Started Now</a>
+                                        @endguest
+
+
+
+
+
+
                                 </div>
 
                             </div>

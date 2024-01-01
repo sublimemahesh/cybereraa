@@ -47,7 +47,8 @@
                                         <p class="mb-0"><b>Phone:</b> {{ $payout_info->phone }}</p>
                                     </div>--}}
                                     <div id="payout_info" disabled rows="3" placeholder="Remark" class="form-control h-auto">
-                                        <p class="mb-0"><b>Wallet Address:</b> {{ $payout_info->address }}</p>
+                                        <p class="mb-0  copy-to-clipboard"  data-clipboard-text="{{$payout_info->address}}"><b>Wallet Address:</b> {{ $payout_info->address }} <i class="fa fa-clone"
+                                            style="font-size: 17px;" data-devil="ml:5"></i> </p>
                                         <p class="mb-0"><b>Wallet Nickname:</b> {{ $payout_info->wallet_address_nickname }}</p>
                                     </div>
                                 </div>
@@ -76,5 +77,18 @@
     @push('scripts')
 
         <script src="{{ asset('assets/backend/js/user/wallet/cancel-withdraw.js') }}"></script>
+
+        <script src="{{ asset('assets/backend/vendor/clipboard/clipboard.min.js') }}"></script>
+        <script !src="">
+            let clipboard = new ClipboardJS('.copy-to-clipboard');
+
+                // Handle copy success
+                clipboard.on('success', function (e) {
+                    Toast.fire({
+                        icon: 'success', title: 'Address copied to clipboard!',
+                    })
+                    e.clearSelection();
+                });
+        </script>
     @endpush
 </x-backend.layouts.app>

@@ -31,9 +31,6 @@
         <link href="{{ asset('assets/backend/vendor/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/backend/css/style.css') }}" rel="stylesheet">
 
-
-        <link href="{{ asset('assets/backend/css/style-snow.css') }}" rel="stylesheet">
-
         @yield('plugin-styles')
         <!-- Style css -->
         <link href="{{ asset('assets/backend/css/style.css?7654444567') }}" rel="stylesheet">
@@ -106,46 +103,10 @@
             @include('backend.' . $folder .'.sidebar')
 
 
-            <!-- partial:index.partial.html -->
-            <div class="snowflakes" aria-hidden="true">
-                <div class="intro"> Find 250+ Ready to use demo at
-                    <a href="https://codeconvey.com">Codeconvey.com</a>
-                </div>
-                <div class="snowflake">
-                    ❅
-                </div>
-                <div class="snowflake">
-                    ❅
-                </div>
-                <div class="snowflake">
-                    ❆
-                </div>
-                <div class="snowflake">
-                    ❄
-                </div>
-                <div class="snowflake">
-                    ❅
-                </div>
-                <div class="snowflake">
-                    ❆
-                </div>
-                <div class="snowflake">
-                    ❄
-                </div>
-                <div class="snowflake">
-                    ❅
-                </div>
-                <div class="snowflake">
-                    ❆
-                </div>
-                <div class="snowflake">
-                    ❄
-                </div>
-            </div>
 
 
             <!--********************************** Content body start ***********************************-->
-            <div class="content-body" data-dxs="mt:6" data-devil="mt:10">
+            <div class="content-body"  data-devil="mt:28" data-dxs="mt:80">
                 <!-- row -->
                 <div class="container-fluid cf-mt">
 
@@ -232,7 +193,7 @@
 
         <script src="{{ asset('assets/frontend/js/owl.carousel.min.js') }}"></script><!-- OWL  SLIDER  -->
         <script src="{{ asset('assets/frontend/js/devil.js') }}"></script>
-        <script src="{{ asset('assets/frontend/js/script-snow.js') }}"></script>
+
 
         <!-- OWL  SLIDER  -->
 

@@ -1,0 +1,22 @@
+@media only screen and (max-width: 767px) {
+    .mob-vh-100-login {
+        height: 100vh;
+        position: relative;
+        top: 100px;
+    }
+    .login-bg-img-col {
+        width: 100%;
+        padding: 0;
+    }
+    .authincation-content {
+        padding: 15px;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        height: 100%;
+    }
+
+}

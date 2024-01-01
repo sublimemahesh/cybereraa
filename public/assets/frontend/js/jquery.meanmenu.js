@@ -139,7 +139,7 @@
 						// navigation reveal
 						var showMeanMenu = function() {
                            var loginRoute = "{{ route('login') }}";
-                           var hrefValue = $('#get-rout').attr('href');  
+                           var hrefValue = $('#get-rout').attr('href');
                            var textContent = $('#get-rout').text();
 								var meanStyles = "background:"+meanRevealColour+";color:"+meanRevealColour+";"+meanRevealPos;
 								if (currentWidth <= meanScreenWidth) {
@@ -147,8 +147,8 @@
 									meanMenuExist = true;
 									// add class to body so we don't need to worry about media queries here, all CSS is wrapped in '.mean-container'
 									jQuery(meanContainer).addClass("mean-container");
-									jQuery('.mean-container').prepend('<div class="mean-bar" id="mob-header"><div class="mobil-logo"></div><div class="menu-button mobile-menu-btn"> <a href="' + hrefValue + '">' + textContent + '</a>  </div> <a href="#nav" class="meanmenu-reveal" style="'+meanStyles+'">Show Navigation</a><nav class="mean-nav"></nav></div>');
-                                    
+									jQuery('.mean-container').prepend('<div class="mean-bar" id="mob-header"><div class="mobil-logo"></div><div class="menu-button mobile-menu-btn"> <a class="mob-btn-a" href="' + hrefValue + '">' + textContent + '</a>  </div> <a href="#nav" class="meanmenu-reveal" style="'+meanStyles+'">Show Navigation</a><nav class="mean-nav" data-dxs="mt:15"></nav></div>');
+
 
 									//push meanMenu navigation into .mean-nav
 									var meanMenuContents = jQuery(meanMenu).html();
@@ -286,8 +286,8 @@
 					showMeanMenu();
 				});
 		};
-		
 
-		
-		
+
+
+
 })(jQuery);

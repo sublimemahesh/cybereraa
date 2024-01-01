@@ -89,7 +89,8 @@
                                     <div id="payout_info" disabled rows="3" placeholder="Remark" class="form-control h-auto">
                                         {{--<p class="mb-0"><b>Email:</b> {{ $profile->binance_email }}</p>--}}
                                         {{--<p class="mb-0"><b>Id:</b> {{ $profile->binance_id }}</p>--}}
-                                        <p class="mb-0"><b>Wallet Address:</b> {{ $profile->wallet_address }}</p>
+                                        <p class="mb-0 copy-to-clipboard" data-clipboard-text="{{ $profile->wallet_address }}"><b>Wallet Address:</b> {{ $profile->wallet_address }} <i class="fa fa-clone"
+                                            style="font-size: 17px;" data-devil="ml:5"></i></p>
                                         <p class="mb-0"><b>Wallet Nickname:</b> {{ $profile->wallet_address_nickname }}</p>
                                         {{--<p class="mb-0"><b>Phone:</b> {{ $profile->binance_phone }}</p>--}}
                                     </div>
@@ -204,5 +205,19 @@
             const MAX_WITHDRAW_LIMIT = parseFloat("{{ $max_withdraw_limit }}");
         </script>
         <script src="{{ asset('assets/backend/js/user/wallet/binance-payout.js') }}"></script>
+
+        <script src="{{ asset('assets/backend/vendor/clipboard/clipboard.min.js') }}"></script>
+        <script !src="">
+            let clipboard = new ClipboardJS('.copy-to-clipboard');
+
+                // Handle copy success
+                clipboard.on('success', function (e) {
+                    Toast.fire({
+                        icon: 'success', title: 'Address copied to clipboard!',
+                    })
+                    e.clearSelection();
+                });
+        </script>
+
     @endpush
 </x-backend.layouts.app>

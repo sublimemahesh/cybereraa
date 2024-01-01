@@ -31,7 +31,7 @@
 <!--********************************** Header start ***********************************-->
 
 
-<div class="header">
+<div class="header"  data-dxs="bgc:#0c0d21">
     <div class="header-content">
         <nav class="navbar navbar-expand">
             <div class="collapse navbar-collapse justify-content-between">

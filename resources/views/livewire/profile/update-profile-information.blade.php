@@ -7,7 +7,7 @@
             <div class="card-body" id="nav-txt-color">
                 <div class="tab-content">
                     <div class="row" name="form">
-                        <div class="col-sm-12">
+                        <div class="col-sm-12" data-devil="mt:-20 mb:20">
                             <!-- Profile Photo -->
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                 <div x-data="{ photoName: null, photoPreview: null }"
@@ -196,12 +196,26 @@
                                 class="block mt-1 w-full form-control" type="text" name="binance_phone" />
                             <x-jet-input-error for="profile_info.binance_phone" class="mt-2" />
                         </div> --}}
-                        <div class="col-sm-6 mt-2 mb-3">
+                        {{-- <div class="col-sm-6 mt-2 mb-3">
                             <label class="form-label" for="wallet_address"> {{ __('TRC20 Wallet Address') }}
                             </label>
                             <x-jet-input id="wallet_address" wire:model.defer="state.profile_info.wallet_address" class="block mt-1 w-full form-control" type="text" name="wallet_address"/>
                             <x-jet-input-error for="profile_info.wallet_address" class="mt-2"/>
+                        </div> --}}
+
+
+                        <div class="col-sm-6 mt-2 mb-3">
+                            <label class="form-label" for="wallet_address">{{ __('TRC20 Wallet Address') }}</label>
+                            <div class="input-group">
+                                <x-jet-input id="wallet_address" wire:model.defer="state.profile_info.wallet_address" class="form-control copy-to-clipboard" type="text" name="wallet_address" />
+                                <span class="input-group-text copy-to-clipboard"   data-clipboard-text="{{ $state['profile_info']['wallet_address'] }}">
+                                    <i class="fa fa-clone" style="font-size: 17px;"></i>
+                                </span>
+                            </div>
+                            <x-jet-input-error for="profile_info.wallet_address" class="mt-2"/>
                         </div>
+
+
                         <div class="col-sm-6 mt-2 mb-3">
                             <label class="form-label" for="wallet_address_nickname"> {{ __('Wallet Address Nickname') }}
                             </label>
@@ -323,5 +337,19 @@
             });
 
         </script>
+
+        <script src="{{ asset('assets/backend/vendor/clipboard/clipboard.min.js') }}"></script>
+            <script !src="">
+                let clipboard = new ClipboardJS('.copy-to-clipboard');
+
+                    // Handle copy success
+                    clipboard.on('success', function (e) {
+                        Toast.fire({
+                            icon: 'success', title: 'Address copied to clipboard!',
+                        })
+                        e.clearSelection();
+                    });
+            </script>
+
     @endpush
 </div>

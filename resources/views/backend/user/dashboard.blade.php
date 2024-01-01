@@ -10,7 +10,7 @@
             </h2>
         </div> --}}
 
-        <div class="container"  data-devil="dis:none" data-dxs="dis:block">
+        <div class="container"  data-devil="dis:none" data-dxs="dis:block mt:-20">
             <div class="alert alert-info  text-center">
                 Welcome to  Tycoon1m Family.
             </div>
@@ -383,8 +383,8 @@
                         <div class="col-xl-12" data-devil="mt:20">
                             <div>
                                 <div class="card-body d-flex align-items-center p-none">
-                                <span class="progress-right-card-icon">
-                                    <img src="{{ asset('assets/backend/images/icon/investment-dash.png') }}" alt=""/>
+                                <span class="progress-right-card-icon" data-devil="bgc:#119bd2">
+                                    <img src="{{ asset('assets/backend/images/icon/investment-dash.png') }}" alt="">
                                 </span>
                                     <div data-devil='ml:22'>
                                         <h4 class="heading mb-0">
@@ -399,7 +399,7 @@
                         <div class="col-xl-12" data-devil="mt:40">
                             <div>
                                 <div class="card-body d-flex align-items-center p-none">
-                                <span class="progress-right-card-icon">
+                                <span class="progress-right-card-icon"  data-devil="bgc:#6d6dee">
                                     <img src="{{ asset('assets/backend/images/icon/dollar.png') }}" alt=""/>
                                 </span>
                                     <div data-devil='ml:22'>
@@ -413,8 +413,8 @@
                         <div class="col-xl-12" data-devil="mt:40">
                             <div>
                                 <div class="card-body d-flex align-items-center p-none">
-                                <span class="progress-right-card-icon">
-                                    <img src="{{ asset('assets/backend/images/icon/dollar.png') }}" alt=""/>
+                                <span class="progress-right-card-icon" data-devil="bgc:#2929f2">
+                                    <img src="{{ asset('assets/backend/images/icon/totalpayout.png') }}" alt=""/>
                                 </span>
                                     <div data-devil='ml:22'>
                                         <h4 class="heading mb-0">{{ number_format($wallet->withdraw_limit,2)  }} $</h4>

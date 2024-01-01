@@ -49511,8 +49511,8 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
     position: relative;
 }
 
-.login-bg-img-col {
-    padding-right: 0px !important;
+.login-bg-img-col{
+    padding-right:0px !important;
     padding-left: 0px !important;
 }
 
@@ -49804,10 +49804,12 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
         padding-bottom: 0px !important;
     }
 
-    .mob-vh-100-login {
+    /* .mob-vh-100-login{
         height: 105vh !important;
+      } */
+      .mbo-100{
+        width: 100%;
     }
-
 
 }
 
@@ -49953,12 +49955,32 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
     top: 12px !important;;
 
 }
-
-
-.rotatable-image {
-    transition: transform 0.5s ease; /* Add smooth transition effect */
+ .rotatable-image {
+                transition: transform 0.5s ease; /* Add smooth transition effect */
+            }
+ .rotate-buttons {
+                margin-top: 10px;
 }
 
-.rotate-buttons {
-    margin-top: 10px;
+
+
+.focus\:bg-white:focus
+{
+  --tw-bg-opacity: 1;
+  background-color: #6b7280 !important;;
+  /* background-color: red !important;; */
 }
+
+
+
+@media only screen and (max-width: 369px) {
+
+    .dataTables_wrapper .dataTables_filter input[type="search"] {
+        width: 200px !important;
+      }
+
+
+}
+
+
+

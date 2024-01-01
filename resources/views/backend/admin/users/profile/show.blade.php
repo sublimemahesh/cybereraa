@@ -406,7 +406,8 @@
                                             <h5 class="f-w-500">Wallet Address (TRC20 USDT) <span class="pull-end">:</span></h5>
                                         </div>
                                         <div class="col-sm-9 col-7">
-                                            <h5>{{$user->profile->wallet_address}}</h5>
+                                            <h5 class="copy-to-clipboard"  data-clipboard-text="{{$user->profile->wallet_address}}">{{$user->profile->wallet_address}} <i class="fa fa-clone"
+                                                style="font-size: 17px;"></i></h5>
                                         </div>
                                     </div>
 
@@ -615,5 +616,19 @@
         <script src="{{ asset('assets/backend/js/admin/transfers/withdraws.js') }}"></script>
         <script src="{{ asset('assets/backend/js/admin/incomes/commissions.js') }}"></script>
         <script src="{{ asset('assets/backend/js/admin/earnings/earnings.js') }}"></script>
+
+        <script src="{{ asset('assets/backend/vendor/clipboard/clipboard.min.js') }}"></script>
+         <script !src="">
+                let clipboard = new ClipboardJS('.copy-to-clipboard');
+
+            // Handle copy success
+            clipboard.on('success', function (e) {
+                Toast.fire({
+                    icon: 'success', title: 'Address copied to clipboard!',
+                })
+                e.clearSelection();
+            });
+    </script>
+
     @endpush
 </x-backend.layouts.app>
