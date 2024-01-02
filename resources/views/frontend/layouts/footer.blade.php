@@ -82,7 +82,7 @@
 				<div class="copy-right-box">
 					<div class="copy-right-title">
 						<ul>
-							<li><a href=""><span>Privacy Policy</span></a></li>
+							<li><a href="{{route('privacy-and-policy')}}"><span>Privacy Policy</span></a></li>
 							<li><a href="{{route('terms&Conditions')}}"><span>Terms & Condition</span></a></li>
 						</ul>
 					</div>
