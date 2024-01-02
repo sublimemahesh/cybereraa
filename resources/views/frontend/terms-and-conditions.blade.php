@@ -1,84 +1,125 @@
 <x-frontend.layouts.app>
     @section('title', 'Terms and Conditions | Tycoon1m ')
     @section('header-title', 'Welcome ')
+
     @section('header')
-    @include('frontend.layouts.header-other')
-    @endsection
+    @include('frontend.layouts.header')
+
+
     <!-- CONTENT START -->
-    <div class="page-content">
-
-        <!-- INNER PAGE BANNER -->
-        <div class="wt-bnr-inr overlay-wraper" style="background-image:url({{ asset('assets/frontend/images/banner/banner.png') }});">
-            <div class="overlay-main themecolor-1 opacity-07"></div>
-            <div class="container">
-                <div class="wt-bnr-inr-entry">
-                    <h1 class="text-white  banner-txt">Terms and Conditions</h1>
-                </div>
-            </div>
-        </div>
-        <!-- INNER PAGE BANNER END -->
-
-        <!-- BREADCRUMB ROW -->
-        <div class="themecolor-1 p-tb20">
-            <div class="container">
-                <ul class="wt-breadcrumb breadcrumb-style-2">
-                    <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home</a></li>
-                    <li>Terms and Conditions</li>
-                </ul>
-            </div>
-        </div>
-        <!-- BREADCRUMB  ROW END -->
-
-        <!-- ABOUT COMPANY SECTION START -->
 
 
-        <div class="section-full p-tb100 themecolor-2">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 col-sm-12">
-                        <div class="section-head text-left">
-                            <span class="wt-title-subline text-gray-dark font-16 m-b15"> </span>
-                            <h2 class="text-uppercase">{{ $terms_and_conditions->title }}</h2>
-                            <div class="wt-separator-outer">
-                                <div class="wt-separator bg-primary"></div>
-                            </div>
-                            {!! $terms_and_conditions->content !!}
+    <!--==================================================-->
+    <!-- Start breadcumb-area -->
+    <!--==================================================-->
+
+    <div class="breadcumb-area style-nine d-flex align-items-center" style="background: url('{{ asset('assets/frontend/images/inner-bg.jpg') }}');background-size: cover;background-position: center;background-repeat: no-repeat;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breacumb-content">
+                        <div class="breadcumb-title">
+                            <h1>Terms and Conditions</h1>
+                        </div>
+                        <div class="breadcumb-content-text">
+                            <a href="index.php"> <span>home</span>Terms and Conditions</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
-
-        <!-- ABOUT COMPANY SECTION END -->
-
-        <!-- WHY CHOOSE US SECTION START  -->
-        <div class="section-full  p-t80 p-b80 themecolor-1">
-            <div class="container">
-
-                <div class="row">
-                    <div class="col-md-12 col-sm-12">
-                        @foreach ($terms_and_conditions->children as $section)
-                        <h3 class="text-uppercase">{{ $section->title }}</h3>
-                        <div class="wt-separator-outer">
-                            <div class="wt-separator bg-primary"></div>
-                        </div>
-                        {!! $section->content !!}
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- WHY CHOOSE US SECTION END -->
-
     </div>
+
+    <!--==================================================-->
+    <!-- End breadcumb-area -->
+    <!--==================================================-->
+
+
+    <!--==================================================-->
+    <!-- Start Terms and Conditions  area -->
+    <!--==================================================-->
+
+    <div class="blog-areas">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="blogs-singles-boxs">
+                                <div class="blog-thumb">
+                                    <img src="assets/images/Blog_8.png" alt="">
+                                </div>
+
+                                <div class="blogs-content">
+                                    <h2><a href="blog-details.html"> Acceptance of Terms</a></h2>
+                                    <p>By accessing and using the Tycoon1M Crypto Investment Platform ("Platform"), you agree to comply with and be bound by these Terms and Conditions. If you do not agree with any part of these terms, please refrain from using the Platform.</p>
+                                </div>
+
+                                <div class="blogs-content">
+                                    <h2><a href="blog-details.html">User Eligibility</a></h2>
+                                    <p>To use the Tycoon1M Platform, you must be of legal age in your jurisdiction and comply with all applicable laws. By using the Platform, you represent and warrant that you meet these eligibility requirements.</p>
+                                </div>
+
+                                <div class="blogs-content">
+                                    <h2><a href="blog-details.html">Investment Products and Services</a></h2>
+                                    <p>Tycoon1M offers various crypto-related investment products and services. Users should carefully review the details of each investment opportunity, including risks, rewards, and terms, before participating.</p>
+                                </div>
+
+                                <div class="blogs-content">
+                                    <h2><a href="blog-details.html">Compliance with Laws and Regulations</a></h2>
+                                    <p>Users must comply with all applicable laws and regulations in their jurisdiction. Tycoon1M reserves the right to implement KYC (Know Your Customer) and AML (Anti-Money Laundering) procedures and suspend accounts in the event of non-compliance.</p>
+                                </div>
+
+                                <div class="blogs-content">
+                                    <h2><a href="blog-details.html">Privacy Policy</a></h2>
+                                    <p>By using the Tycoon1M Platform, you agree to the terms of our Privacy Policy, which outlines how we collect, use, and disclose your personal information. The Privacy Policy is an integral part of these Terms and Conditions.</p>
+                                </div>
+
+                                <div class="blogs-content">
+                                    <h2><a href="blog-details.html">Prohibited Activities</a></h2>
+                                    <p>Users are prohibited from engaging in any illegal or unauthorized activities on the Tycoon1M Platform, including but not limited to fraud, market manipulation, and unauthorized access to the investment features. Tycoon1M reserves the right to take legal action against violators.</p>
+                                </div>
+
+                                <div class="blogs-content">
+                                    <h2><a href="blog-details.html">Security Measures</a></h2>
+                                    <p>Users are responsible for maintaining the security of their Tycoon1M accounts, passwords, and private keys. Tycoon1M is not liable for any unauthorized access to user accounts or loss of assets resulting from the user's failure to adhere to security best practices.</p>
+                                </div>
+
+                                <div class="blogs-content">
+                                    <h2><a href="blog-details.html"> Modifications to Terms</a></h2>
+                                    <p>Tycoon1M reserves the right to modify, suspend, or terminate these Terms and Conditions at any time. Users will be notified of any changes, and continued use of the Platform after modifications constitutes acceptance of the updated terms.</p>
+                                </div>
+
+                                <div class="blogs-content">
+                                    <h2><a href="blog-details.html">Disclaimer of Warranties</a></h2>
+                                    <p>The Tycoon1M Platform is provided "as is" without any warranties, express or implied. Tycoon1M does not guarantee the accuracy, completeness, or reliability of any information on the Platform.</p>
+                                </div>
+
+                                <div class="blogs-content">
+                                    <h2><a href="blog-details.html"> Limitation of Liability</a></h2>
+                                    <p>Tycoon1M and its affiliates shall not be liable for any direct, indirect, incidental, consequential, or punitive damages arising from the use of the Platform or participation in investment activities.</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+      <!--==================================================-->
+    <!-- End Terms and Conditions  area -->
+    <!--==================================================-->
+
+
+
+
     <!-- CONTENT END -->
 
 
-
-
-    @push('scripts')
-    <script src="{{ asset('assets/frontend/js/net.js') }}"></script>
-    @endpush
 </x-frontend.layouts.app>
