@@ -95,9 +95,9 @@
                                     <p>The Tycoon1M Platform is provided "as is" without any warranties, express or implied. Tycoon1M does not guarantee the accuracy, completeness, or reliability of any information on the Platform.</p>
                                 </div>
 
-                                <div class="blogs-content">
+                                <div class="blogs-content" >
                                     <h2><a href="blog-details.html"> Limitation of Liability</a></h2>
-                                    <p>Tycoon1M and its affiliates shall not be liable for any direct, indirect, incidental, consequential, or punitive damages arising from the use of the Platform or participation in investment activities.</p>
+                                    <p data-devil='pb:30'>Tycoon1M and its affiliates shall not be liable for any direct, indirect, incidental, consequential, or punitive damages arising from the use of the Platform or participation in investment activities.</p>
                                 </div>
 
                             </div>
