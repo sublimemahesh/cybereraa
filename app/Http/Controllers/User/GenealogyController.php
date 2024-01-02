@@ -280,7 +280,10 @@ class GenealogyController extends Controller
      */
     public function userLevelDatatable(User $user, int|string $level, Request $request): \Illuminate\Http\JsonResponse
     {
-        $descendants = $user?->descendants()
+        $start = request()->input('start', 0);
+        $length = request()->input('length', 10);
+
+        $query = $user?->descendants()
             ->with('sponsor', 'parent')
             ->withSum(['withdraws' => fn($q) => $q->where('status', 'SUCCESS')->where('type', 'MANUAL')], 'amount')
             ->withSum(['withdraws' => fn($q) => $q->where('status', 'SUCCESS')->where('type', 'MANUAL')], 'transaction_fee')
@@ -301,9 +304,19 @@ class GenealogyController extends Controller
                 $q->whereHas('purchasedPackages');
             })->when($request->get('investment-status') === 'inactive', function (Builder $q) {
                 $q->whereDoesntHave('purchasedPackages');
-            })
+            });
+
+        $totalRecords = $query->count();
+
+        $descendants = $query->skip($start)
+            ->take($length)
             ->get();
-        return DataTables::of($descendants)
+ 
+        return DataTables::of($descendants)->skipPaging()
+            ->with([
+                'recordsTotal' => $totalRecords,      // Total records without filtering
+                'recordsFiltered' => $totalRecords,  // Total records after filtering (if any)
+            ])
             ->addColumn('profile_photo', function ($lvlUser) {
                 return "<img class='rounded-circle' width='35' src='" . $lvlUser->profile_photo_url . "' alt='' />";
             })
