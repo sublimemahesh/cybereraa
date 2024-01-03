@@ -35,7 +35,7 @@
                         <div class="col-2"></div>
                     </div>
 
-                    <div>
+                    <div data-devil="dis:none">
 
                         <div class="range-slider">
                             <span id="rs-bullet" class="rs-label">10</span>
@@ -51,7 +51,7 @@
                         </div>
 
                     </div>
-
+                    <br>
                     <div class="text-center">
                         <button type="button" class="btn btn-primary bp-price-btn no-hover-style" data-devil='mt:2'>
                             TOTAL AMOUNT: <span id="total-amount">USDT {{ $package->amount + ($package->amount *

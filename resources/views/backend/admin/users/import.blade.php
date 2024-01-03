@@ -96,10 +96,10 @@
                                 location.reload()
                             })
                             .catch(function (error) {
-                                Swal.close()
-                                // Toast.fire({
-                                //     icon: "error", title: error.response.data.message || "Something went wrong!",
-                                // });
+                                // Swal.close()
+                                Toast.fire({
+                                    icon: "error", title: error.response.data.message || "Something went wrong!",
+                                });
                                 if (error.response && error.response.data && (error.response.data.errors || error.response.data.failures)) {
                                     const failures = error.response.data.failures || error.response.data.errors;
 
