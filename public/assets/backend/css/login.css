@@ -24,10 +24,6 @@
 
 }
 
-@media only screen and (max-width: 321px) {
-    .auth-form img
-    {
-      width: 250px;
-    }
-  }
+
+  
 
