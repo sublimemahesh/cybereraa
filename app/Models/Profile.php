@@ -29,6 +29,8 @@ class Profile extends Model
         'recover_email',
         'gender',
         'dob',
+        'nic',
+        'address',
         'wallet_address',
         'binance_email',
         'binance_id',

@@ -16,7 +16,6 @@ use Exception;
 use Haruncpi\LaravelUserActivity\Traits\Log;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
@@ -108,15 +107,22 @@ class UserController extends Controller
     public function findUsers($search_text): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
         $users = User::where('username', 'LIKE', "%{$search_text}%")
-            ->where('id', '<>', 3)
-            ->where(function (Builder $query) {
-                $query->where(function (Builder $query) {
-                    $query->where('id', '<>', config('fortify.super_parent_id'))
-                        ->whereNotNull('position')->whereNotNull('parent_id');
+            //->where('id', '<>', 3)
+//            ->where(function (Builder $query) {
+//                $query->where(function (Builder $query) {
+//                    $query->where('id', '<>', config('fortify.super_parent_id'))
+//                        ->whereNotNull('position')->whereNotNull('parent_id');
+//                })->orWhere('id', config('fortify.super_parent_id'));
+//            })
+            ->where(function ($q) {
+                $q->where(function ($q) {
+                    $q->where('id', '<>', config('fortify.super_parent_id'))
+                        ->whereNotNull('super_parent_id');
                 })->orWhere('id', config('fortify.super_parent_id'));
             })
             ->whereRelation('roles', 'name', 'user')
             ->get();
+
         return Select2UserResource::collection($users);
     }
 
