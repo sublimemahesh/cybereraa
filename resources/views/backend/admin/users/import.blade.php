@@ -96,19 +96,22 @@
                                 location.reload()
                             })
                             .catch(function (error) {
-                                Toast.fire({
-                                    icon: "error", title: error.response.data.message || "Something went wrong!",
-                                });
+                                Swal.close()
+                                // Toast.fire({
+                                //     icon: "error", title: error.response.data.message || "Something went wrong!",
+                                // });
                                 if (error.response && error.response.data && (error.response.data.errors || error.response.data.failures)) {
                                     const failures = error.response.data.failures || error.response.data.errors;
-                                    const limit = 20;
-                                    // Display up to 5 errors
-                                    const displayedFailures = failures.slice(0, limit);
 
                                     // Display errors in the errorContainer
 
                                     errorContainer.innerHTML = `<h3>Import Result:</h3>`;
                                     errorContainer.innerHTML += `<p class="fs-16 text-warning">${error.response.data.message}</p>`;
+
+                                    const limit = 20;
+                                    // Display up to limit errors
+                                    const displayedFailures = failures.slice(0, limit);
+
                                     // displayedFailures.forEach(failure => {
                                     //     const errorMessage = Array.isArray(failure) ? failure.join('. ') : failure;
                                     //     errorContainer.innerHTML += `<p>${errorMessage}</p>`;
@@ -117,7 +120,7 @@
                                     displayedFailures.forEach(failure => {
                                         errorContainer.innerHTML += `<p>Row ${failure.row} (${failure.values.user_id}): ${failure.errors.join(', ')}</p>`;
                                     });
-                                    // If there are more than 5 errors, mention the count
+                                    // If there are more than limit errors, mention the count
                                     if (failures.length > limit) {
                                         errorContainer.innerHTML += `<p>And ${failures.length - limit} more errors...</p>`;
                                     }
