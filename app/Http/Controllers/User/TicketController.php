@@ -83,8 +83,13 @@ class TicketController extends Controller
         $this->authorize('create', SupportTicket::class);
 
         $category = $request->get('category');
-        if ($category === 'reschedule-plan' && !$request->hasValidSignature()) {
-            return redirect()->signedRoute('user.support.tickets.create', ['category' => 'reschedule-plan']);
+        if ($category === 'reschedule-plan') {
+            if (SupportTicket::whereRelation('category', 'slug', $category)->where('user_id', Auth::user()->id)->exists()) {
+                return redirect()->route('user.support.tickets.index');
+            }
+            if (!$request->hasValidSignature()) {
+                return redirect()->signedRoute('user.support.tickets.create', ['category' => 'reschedule-plan']);
+            }
         }
         return view('backend.user.tickets.create', compact('category'));
     }

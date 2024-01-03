@@ -73,7 +73,9 @@ class Create extends Component
     {
         $edit ??= false;
         $this->edit = $edit;
-        $this->categories = SupportTicketCategory::all();
+        $this->categories = SupportTicketCategory::whereDoesntHave('supportTickets', function ($q) {
+            $q->whereRelation('category', 'slug', 'reschedule-plan')->where('user_id', Auth::user()->id);
+        })->get();
         $category = request()->input('category');
         if (!$edit) {
             $this->ticket = new SupportTicket;
