@@ -12,6 +12,7 @@ use Carbon;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -25,16 +26,15 @@ class TicketController extends Controller
         $user = Auth::user();
 
         $tickets = SupportTicket::with(['category', 'priority', 'status'])
-        ->where('user_id', $user->id)
-        ->filterTickets()
-        ->get();
+            ->where('user_id', $user->id)
+            ->filterTickets()
+            ->get();
 
         if ($request->wantsJson()) {
 
             $tickets = SupportTicket::with(['category', 'priority', 'status'])
                 ->where('user_id', $user->id)
                 ->filterTickets();
-
 
 
             return DataTables::of($tickets)
@@ -72,16 +72,21 @@ class TicketController extends Controller
         $filter_category = SupportTicketCategory::all();
         $filter_priority = SupportTicketPriority::all();
         $filter_status = SupportTicketStatus::all();
-        return view('backend.user.tickets.index', compact('filter_category', 'filter_priority', 'filter_status','tickets'));
+        return view('backend.user.tickets.index', compact('filter_category', 'filter_priority', 'filter_status', 'tickets'));
     }
 
     /**
      * @throws AuthorizationException
      */
-    public function create()
+    public function create(Request $request)
     {
         $this->authorize('create', SupportTicket::class);
-        return view('backend.user.tickets.create');
+
+        $category = $request->get('category');
+        if ($category === 'reschedule-plan' && !$request->hasValidSignature()) {
+            return redirect()->signedRoute('user.support.tickets.create', ['category' => 'reschedule-plan']);
+        }
+        return view('backend.user.tickets.create', compact('category'));
     }
 
     /**

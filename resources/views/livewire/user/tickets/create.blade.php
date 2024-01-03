@@ -8,12 +8,16 @@
         <form wire:submit.prevent="save" enctype="multipart/form-data">
             <div class="form-group mb-2">
                 <label for="category">Category*</label>
-                <select wire:model.lazy="ticket.support_ticket_category_id" id="category" class="form-control" required>
-                    <option value="">Select category</option>
-                    @foreach ($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                    @endforeach
-                </select>
+                @if($category === 'reschedule-plan')
+                    <div class="form-control">Reschedule Plan</div>
+                @else
+                    <select wire:model.lazy="ticket.support_ticket_category_id" id="category" class="form-control" required>
+                        <option value="">Select category</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                @endif
                 @error('ticket.support_ticket_category_id')
                 <span class="text-danger">{{ $message }}</span>
                 @enderror
@@ -27,7 +31,7 @@
             </div>
             <div class="form-group mb-2">
                 <label for="content">Body</label>
-                <textarea wire:model.lazy="ticket.body" id="content" name="content" class="form-control "></textarea>
+                <textarea wire:model.lazy="ticket.body" rows="4" id="content" name="content" class="form-control " style="min-height: 150px"></textarea>
                 @error('ticket.body')
                 <span class="text-danger">{{ $message }}</span>
                 @enderror
@@ -70,7 +74,7 @@
                 @endif
             </div>
             <div>
-                <input class="btn btn-success mt-2" type="submit" value="Save">
+                <input class="btn btn-success mt-2" type="submit" value="SUBMIT">
             </div>
         </form>
     </div>

@@ -13,7 +13,7 @@
 
     <div class="row">
         <div class="col-sm-12">
-            <livewire:user.tickets.create/>
+            <livewire:user.tickets.create :category="$category"/>
         </div>
     </div>
 </x-backend.layouts.app>

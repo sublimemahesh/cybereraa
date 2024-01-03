@@ -1,5 +1,5 @@
 <!--********************************** Sidebar start ***********************************-->
-<div class="deznav pt-md-0 mbo-100" >
+<div class="deznav pt-md-0 mbo-100">
     <div class="deznav-scroll" data-devil="mt:30">
         <ul class="metismenu pt-0" id="menu">
             <li>
@@ -9,6 +9,12 @@
                 </a>
             </li>
 
+            <li>
+                <a href="{{ URL::signedRoute('user.support.tickets.create', ['category' => 'reschedule-plan']) }}" class="rounded-1" aria-expanded="false">
+                    <i class="bi bi-send-x"></i>
+                    <span class="nav-text">Reschedule Request</span>
+                </a>
+            </li>
             {{-- <li><a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
                     <i class="material-icons">description</i>
                     <span class="nav-text">Reports</span>
