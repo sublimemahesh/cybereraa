@@ -1,8 +1,11 @@
 @media only screen and (max-width: 767px) {
     .mob-vh-100-login {
-        height: 100vh;
-        position: relative;
-        top: 100px;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
     }
     .login-bg-img-col {
         width: 100%;
@@ -20,3 +23,7 @@
     }
 
 }
+
+
+  
+

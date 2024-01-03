@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    <div class="col-md-6 login-bg-img-col">
+    <div class="col-md-6 login-bg-img-col"  data-dxs="mt:-15">
         <div class="authincation-content">
             <div class="row no-gutters">
                 <div class="col-xl-12">
@@ -115,4 +115,4 @@
 </div>
 </div>
 
-@endsection 
+@endsection

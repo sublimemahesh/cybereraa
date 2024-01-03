@@ -1,5 +1,5 @@
 <div class="col-xl-12 authincation-content">
-    <div class="auth-form">
+    <div class="auth-form" data-dxs="mt:20">
         <div class="text-center mb-3">
             <div class="d-flex justify-content-center">
             <a href="{{ route('/') }}">
