@@ -30,7 +30,7 @@ class UsersImport implements ToModel, WithEvents, WithValidation, WithHeadingRow
 
     public function batchSize(): int
     {
-        return 1000;
+        return 300;
     }
 
     public function uniqueBy()
@@ -40,7 +40,7 @@ class UsersImport implements ToModel, WithEvents, WithValidation, WithHeadingRow
 
     public function chunkSize(): int
     {
-        return 1000;
+        return 300;
     }
 
     public function model(array $row)
