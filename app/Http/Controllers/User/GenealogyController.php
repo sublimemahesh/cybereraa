@@ -311,7 +311,7 @@ class GenealogyController extends Controller
         $descendants = $query->skip($start)
             ->take($length)
             ->get();
- 
+
         return DataTables::of($descendants)->skipPaging()
             ->with([
                 'recordsTotal' => $totalRecords,      // Total records without filtering

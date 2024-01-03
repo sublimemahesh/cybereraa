@@ -124,6 +124,8 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
     Route::group(["prefix" => "admin", 'middleware' => ['has_any_admin_role'], "as" => 'admin.'], function () {
         Route::get('dashboard', 'Admin\DashboardController@index')->name('dashboard');
 
+        Route::match(['get', 'post'], 'users/import', 'Admin\UserImportController@import')->name('users.import');
+
         Route::get('users', 'Admin\UserController@index')->name('users.index');
         Route::get('users/pending/kycs', 'Admin\UserController@index')->name('users.pending.kycs');
 

@@ -205,6 +205,15 @@
     </li>
 @endcan
 
+@can('users.import-bulk')
+    <li>
+        <a href="{{ route('admin.users.import') }}" class="" aria-expanded="false">
+            <i class="bi bi-person-up"></i>
+            <span class="nav-text">Import Users</span>
+        </a>
+    </li>
+@endcan
+
 @can('company_users.viewAny')
     <li>
         <a href="{{ route('admin.reports.company-users') }}" class="" aria-expanded="false">

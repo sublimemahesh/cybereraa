@@ -122,6 +122,8 @@ class PermissionSeeder extends Seeder
             ['name' => 'place_pending_members_in_genealogy', 'guard_name' => 'web'],
             ['name' => 'users.genealogy', 'guard_name' => 'web'],
 
+            ['name' => 'users.import-bulk', 'guard_name' => 'web'],
+
             ['name' => 'users.add-new', 'guard_name' => 'web'],
             ['name' => 'users.viewAny', 'guard_name' => 'web'],
             ['name' => 'users.view.profile', 'guard_name' => 'web'],
