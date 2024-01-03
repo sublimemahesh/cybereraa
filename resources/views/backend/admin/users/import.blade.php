@@ -101,24 +101,25 @@
                                 });
                                 if (error.response && error.response.data && (error.response.data.errors || error.response.data.failures)) {
                                     const failures = error.response.data.failures || error.response.data.errors;
-
+                                    const limit = 20;
                                     // Display up to 5 errors
-                                    const displayedFailures = failures.slice(0, 5);
+                                    const displayedFailures = failures.slice(0, limit);
 
                                     // Display errors in the errorContainer
 
-                                    errorContainer.innerHTML = `<h3>Errors:</h3>`;
+                                    errorContainer.innerHTML = `<h3>Import Result:</h3>`;
+                                    errorContainer.innerHTML += `<p class="fs-16 text-warning">${error.response.data.message}</p>`;
+                                    // displayedFailures.forEach(failure => {
+                                    //     const errorMessage = Array.isArray(failure) ? failure.join('. ') : failure;
+                                    //     errorContainer.innerHTML += `<p>${errorMessage}</p>`;
+                                    // });
 
                                     displayedFailures.forEach(failure => {
-                                        // errorContainer.innerHTML += `<p>Row ${failure.row}: ${failure.errors.join(', ')}</p>`;
-                                        const errorMessage = Array.isArray(failure) ? failure.join('. ') : failure;
-                                        errorContainer.innerHTML += `<p>${errorMessage}</p>`;
+                                        errorContainer.innerHTML += `<p>Row ${failure.row} (${failure.values.user_id}): ${failure.errors.join(', ')}</p>`;
                                     });
-
-
                                     // If there are more than 5 errors, mention the count
-                                    if (failures.length > 5) {
-                                        errorContainer.innerHTML += `<p>And ${failures.length - 5} more errors...</p>`;
+                                    if (failures.length > limit) {
+                                        errorContainer.innerHTML += `<p>And ${failures.length - limit} more errors...</p>`;
                                     }
                                 } else {
                                     // Handle other errors

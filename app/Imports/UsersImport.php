@@ -7,21 +7,46 @@ use DB;
 use Hash;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\RegistersEventListeners;
+use Maatwebsite\Excel\Concerns\RemembersRowNumber;
+use Maatwebsite\Excel\Concerns\SkipsErrors;
+use Maatwebsite\Excel\Concerns\SkipsFailures;
+use Maatwebsite\Excel\Concerns\SkipsOnError;
+use Maatwebsite\Excel\Concerns\SkipsOnFailure;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithBatchInserts;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithUpserts;
 use Maatwebsite\Excel\Concerns\WithValidation;
 
-class UsersImport implements ToModel, WithEvents, WithValidation, WithHeadingRow
+class UsersImport implements ToModel, WithEvents, WithValidation, WithHeadingRow, SkipsOnError, SkipsOnFailure, WithBatchInserts, WithUpserts, WithChunkReading
 {
-    use Importable, RegistersEventListeners;
+    use RemembersRowNumber, Importable, RegistersEventListeners, SkipsErrors, SkipsFailures;
 
     public function __construct(private User $parent)
     {
     }
 
+    public function batchSize(): int
+    {
+        return 1000;
+    }
+
+    public function uniqueBy()
+    {
+        return 'username';
+    }
+
+    public function chunkSize(): int
+    {
+        return 1000;
+    }
+
     public function model(array $row)
     {
+        $currentRowNumber = $this->getRowNumber();
+
 //        try {
         return DB::transaction(function () use ($row) {
             return tap(User::updateOrCreate(
@@ -63,14 +88,20 @@ class UsersImport implements ToModel, WithEvents, WithValidation, WithHeadingRow
     {
         return [
 //            'email' => Rule::in(['patrick@maatwebsite.nl']),
+//            'user_id' => ['required', 'unique:users,username'],
+//            'first_name' => ['required'],
+//            'last_name' => ['required'], // required
+//            'email_address' => ['required', 'email'],
+//            'nic' => ['nullable'],
+//            'address' => ['nullable'],
 
             // Above is alias for as it always validates in batches
-            'user_id' => ['required', 'unique:users,username'],
-            'first_name' => ['required'],
-            'last_name' => ['required'], // required
-            'email_address' => ['required', 'email'],
-            'nic' => ['nullable'],
-            'address' => ['nullable'],
+            '*.user_id' => ['required', 'unique:users,username'],
+            '*.first_name' => ['required'],
+            '*.last_name' => ['required'], // required
+            '*.email_address' => ['required', 'email'],
+            '*.nic' => ['nullable'],
+            '*.address' => ['nullable'],
         ];
     }
 }

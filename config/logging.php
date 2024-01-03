@@ -77,6 +77,13 @@ return [
             'days' => 7,
         ],
 
+        'import_errors' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/import_errors.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'days' => 7,
+        ],
+
         'slack' => [
             'driver' => 'slack',
             'url' => env('LOG_SLACK_WEBHOOK_URL'),

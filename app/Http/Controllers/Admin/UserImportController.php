@@ -6,11 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Imports\UsersImport;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserImportController extends Controller
 {
+    /**
+     * @throws \JsonException
+     */
     public function import(Request $request)
     {
         abort_if(\Gate::denies('users.import-bulk'), Response::HTTP_FORBIDDEN);
@@ -29,21 +31,24 @@ class UserImportController extends Controller
 
             $parent = User::find($request->get('parent-user'));
 
-//            $import = new UsersImport($parent);
-//            $import->import($request->file('users-list'));
-//            $errors = $import->errors();
-//            $failures = $import->failures();
+            $import = new UsersImport($parent);
+            $import->import($request->file('users-list'));
+            $errors = $import->errors();
+            $failures = $import->failures();
 
-            Excel::import(new UsersImport($parent), $request->file('users-list'));
+//            Excel::import(new UsersImport($parent), $request->file('users-list'));
 
-//            if (count($errors) > 0 || count($failures) > 0) {
-//                $json['status'] = false;
-//                $json['message'] = $errors[0] ?? $failures[0];
-//                $json['errors'] = $errors;
-//                $json['failures'] = $failures;
-//                $json['icon'] = 'error';
-//                return response()->json($json, 422);
-//            }
+            if (count($errors) > 0 || count($failures) > 0) {
+                $log_data = json_encode(compact('errors', 'failures'), JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT);
+                \Log::channel('import_errors')->warning('Users Import Errors: | ' . $log_data);
+
+                $json['status'] = false;
+                $json['message'] = "There were errors found while importing. However, some users may have been imported successfully. Please check the logs for more details.";
+                $json['errors'] = $errors;
+                $json['failures'] = $failures;
+                $json['icon'] = 'error';
+                return response()->json($json, 422);
+            }
             $json['status'] = true;
             $json['message'] = 'Import Successful';
             $json['icon'] = 'success';
