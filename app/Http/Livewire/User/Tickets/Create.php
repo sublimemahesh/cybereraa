@@ -20,6 +20,8 @@ class Create extends Component
 
     public $attachment;
 
+    public string|null $category;
+
     public SupportTicket $ticket;
 
     public Collection $categories;
@@ -71,10 +73,17 @@ class Create extends Component
     {
         $edit ??= false;
         $this->edit = $edit;
+        $this->categories = SupportTicketCategory::all();
+        $category = request()->input('category');
         if (!$edit) {
             $this->ticket = new SupportTicket;
+            if ($category !== null) {
+                $this->category = $category;
+                $this->ticket->support_ticket_category_id = $this->categories->where('slug', $category)->first()->id;
+                $this->ticket->subject = "Reschedule Plan Request - " . Auth::user()->username;
+                $this->ticket->body = "I am writing to request a rescheduling of my investment plan for OnmaxDT";
+            }
         }
-        $this->categories = SupportTicketCategory::all();
     }
 
     public function render()

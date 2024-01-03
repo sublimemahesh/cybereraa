@@ -16,13 +16,13 @@ class TicketCategoriesTableSeeder extends Seeder
     public function run()
     {
         $faker = Factory::create();
-        $categories = ["Uncategorized", "Billing/Payments", "Technical question", 'Commissions', 'Refund/Return'];
+        $categories = ["Uncategorized", "Billing/Payments", "Technical question", 'Commissions', 'Refund/Return', 'Reschedule Plan'];
 
         foreach ($categories as $role => $category) {
-            SupportTicketCategory::create([
-                'name' => $category,
-                'color' => $faker->hexcolor
-            ]);
+            SupportTicketCategory::updateOrCreate(
+                ['name' => $category,],
+                ['color' => $faker->hexcolor]
+            );
         }
     }
 }

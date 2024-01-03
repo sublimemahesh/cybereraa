@@ -8,7 +8,12 @@
         <div class="form-group row mb-2">
             <label class="col-sm-3 col-form-label" for="name">Ticket category</label>
             <div class="col-sm-9">
-                <input wire:model.lazy="category.name" id="name" class="form-control" placeholder="Enter name" type="text" required>
+                @if($category->slug === 'reschedule-plan')
+                    <div class="form-control">{{ $category->name }}</div>
+                @else
+                    <input wire:model.lazy="category.name" id="name" class="form-control" placeholder="Enter name" type="text" required>
+                @endif
+
                 @error('category.name')
                 <span class="text-danger mt-2">{{ $message }}</span>
                 @enderror
