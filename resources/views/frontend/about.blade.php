@@ -37,7 +37,7 @@
 			<div class="col-lg-6 col-md-6">
 				<div class="single-about-box">
 					<div class="about-thumb bounce-animate">
-						<img src="{{asset('assets/frontend/images/crypto-3.png') }}" alt="">
+						<img src="{{ storage('pages/' . $abouts->image) }}" alt="">
 					</div>
 				</div>
 			</div>
@@ -48,28 +48,10 @@
 							<h3>about</h3>
 						</div> --}}
 						<div class="main-title">
-							<h1>We built Crypto platform to buy & sell shares.</h1>
+							<h1>{{ $abouts->title }}</h1>
 						</div>
 						<div class="section-text">
-							<p>Progressively predominate performance based internal or "orga sources before high standards in architectures. Interactively ini transparent functionalities via efficient ROI.</p>
-						</div>
-					</div>
-					<div class="about-tmb">
-						<i class="fas fa-check"></i>
-						<div class="about-titles">
-							<h4>Prioritize the features your customers need</h4>
-						</div>
-					</div>
-					<div class="about-tmb">
-						<i class="fas fa-check"></i>
-						<div class="about-titles">
-							<h4>Align Everyone around the Roadmap</h4>
-						</div>
-					</div>
-					<div class="about-tmb">
-						<i class="fas fa-check"></i>
-						<div class="about-titles">
-							<h4>Uniquely Empower Parallel Total Talents</h4>
+							{!! $abouts->content !!}
 						</div>
 					</div>
 				</div>

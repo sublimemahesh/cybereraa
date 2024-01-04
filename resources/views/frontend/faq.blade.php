@@ -48,148 +48,42 @@
 		<div class='container'>
 			<div class="row">
 				<div class="col-sm-12 col-md-8">
-					<div id='1'>
-						<h3 class='faq-section-head-txt'>FAQ SING UP AND SIGN IN</h3>
-						<div class="accordion">
+                    @foreach ($faqs as $key => $faq)
+
+                    <div id='{{ $key }}'>
+
+						<h3 class='faq-section-head-txt'>{{ $faq->title }}</h3>
+                        @foreach ($faq->children as $key1 => $child)
+                        <div class="accordion">
 							<div class="accordion-item">
 								<div class="accordion-item-header">
-                                    <h4 class='faq-list-head-txt'>FAQ SING UP AND SIGN IN ?</h4>
+                                    <h4 class='faq-list-head-txt'> {{ $child->title }}</h4>
 								</div>
 								<div class="accordion-item-body">
 									<div class="accordion-item-body-content">
-										Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-										Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-										unknown printer took a galley of type and scrambled it to make a type specimen
-										book. It has survived not only five centuries, but also the leap into electronic
-										typesetting, remaining essentially unchanged. It was popularised in the 1960s
-										with the release of Letraset sheets containing Lorem Ipsum passages, and more
-										recently with desktop publishing software like Aldus PageMaker including
-										versions of Lorem Ipsum.
+										{!! html_entity_decode($child->content) !!}
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="accordion">
-							<div class="accordion-item">
-								<div class="accordion-item-header">
-                                    <h4 class='faq-list-head-txt'>FAQ SING UP AND SIGN IN ?</h4>
-								</div>
-								<div class="accordion-item-body">
-									<div class="accordion-item-body-content">
-										Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-										Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-										unknown printer took a galley of type and scrambled it to make a type specimen
-										book. It has survived not only five centuries, but also the leap into electronic
-										typesetting, remaining essentially unchanged. It was popularised in the 1960s
-										with the release of Letraset sheets containing Lorem Ipsum passages, and more
-										recently with desktop publishing software like Aldus PageMaker including
-										versions of Lorem Ipsum.
-									</div>
-								</div>
-							</div>
-						</div>
+
+                        @endforeach
+
 					</div>
 
-					<div id='2'>
-						<h3 class='faq-section-head-txt'>FAQ BUY PACKAGES</h3>
-
-						<div class="accordion">
-							<div class="accordion-item">
-								<div class="accordion-item-header">
-									<h4 class='faq-list-head-txt'>FAQ BUY PACKAGES ?</h4>
-								</div>
-								<div class="accordion-item-body">
-									<div class="accordion-item-body-content">
-										Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-										Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-										unknown printer took a galley of type and scrambled it to make a type specimen
-										book. It has survived not only five centuries, but also the leap into electronic
-										typesetting, remaining essentially unchanged. It was popularised in the 1960s
-										with the release of Letraset sheets containing Lorem Ipsum passages, and more
-										recently with desktop publishing software like Aldus PageMaker including
-										versions of Lorem Ipsum.
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="accordion">
-							<div class="accordion-item">
-								<div class="accordion-item-header">
-                                    <h4 class='faq-list-head-txt'>FAQ BUY PACKAGES ?</h4>
-								</div>
-								<div class="accordion-item-body">
-									<div class="accordion-item-body-content">
-										Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-										Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-										unknown printer took a galley of type and scrambled it to make a type specimen
-										book. It has survived not only five centuries, but also the leap into electronic
-										typesetting, remaining essentially unchanged. It was popularised in the 1960s
-										with the release of Letraset sheets containing Lorem Ipsum passages, and more
-										recently with desktop publishing software like Aldus PageMaker including
-										versions of Lorem Ipsum.
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div id='3'>
-						<h3 class='faq-section-head-txt'>FAQ INVITE MEMBERS</h3>
-
-						<div class="accordion">
-							<div class="accordion-item">
-								<div class="accordion-item-header">
-                                    <h4 class='faq-list-head-txt'>FAQ INVITE MEMBERS ?</h4>
-								</div>
-								<div class="accordion-item-body">
-									<div class="accordion-item-body-content">
-										Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-										Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-										unknown printer took a galley of type and scrambled it to make a type specimen
-										book. It has survived not only five centuries, but also the leap into electronic
-										typesetting, remaining essentially unchanged. It was popularised in the 1960s
-										with the release of Letraset sheets containing Lorem Ipsum passages, and more
-										recently with desktop publishing software like Aldus PageMaker including
-										versions of Lorem Ipsum.
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="accordion">
-							<div class="accordion-item">
-								<div class="accordion-item-header">
-                                    <h4 class='faq-list-head-txt'>FAQ INVITE MEMBERS ?</h4>
-								</div>
-								<div class="accordion-item-body">
-									<div class="accordion-item-body-content">
-										Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-										Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-										unknown printer took a galley of type and scrambled it to make a type specimen
-										book. It has survived not only five centuries, but also the leap into electronic
-										typesetting, remaining essentially unchanged. It was popularised in the 1960s
-										with the release of Letraset sheets containing Lorem Ipsum passages, and more
-										recently with desktop publishing software like Aldus PageMaker including
-										versions of Lorem Ipsum.
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+                    @endforeach
 
 				</div>
 
 				<div class="col-md-4" data-dxs="dis:none">
 
 					<ul class="list-group" id='faq-cat-holder'>
-						<li class="list-group-item">
-							<a href="#1">FAQ SING UP AND SIGN IN</a>
+
+                        @foreach ($faqs as $key => $faq)
+                        <li class="list-group-item">
+							<a href="#{{ $key }}">{{ $faq->title }}</a>
 						</li>
-						<li class="list-group-item">
-							<a href="#2">FAQ BUY PACKAGES</a>
-						</li>
-						<li class="list-group-item">
-							<a href="#3">FAQ INVITE MEMBERS</a>
-						</li>
+                        @endforeach
 					</ul>
 
 				</div>
