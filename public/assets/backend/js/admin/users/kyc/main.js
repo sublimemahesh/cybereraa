@@ -51,6 +51,7 @@ $(function () {
         urlParams.set("kyc-status", $("#kyc-status").val());
         urlParams.set("status", $("#status").val());
         urlParams.set("investment-status", $("#investment-status").val());
+        urlParams.set("imported", $("#imported").val());
         let url = location.href.split(/\?|\#/)[0] + "?" + urlParams.toString();
         history.replaceState({}, "", url);
         table.ajax.url(url).load();

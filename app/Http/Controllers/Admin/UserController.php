@@ -41,6 +41,9 @@ class UserController extends Controller
                 ->when($request->get('status') === 'suspend', function (Builder $q) {
                     $q->whereNotNull('suspended_at');
                 })
+                ->when($request->filled('imported'), function (Builder $q) {
+                    $q->where('is_onmax_user', request('imported'));
+                })
                 ->when($request->get('status') === 'active', function (Builder $q) {
                     $q->whereNull('suspended_at');
                 })
