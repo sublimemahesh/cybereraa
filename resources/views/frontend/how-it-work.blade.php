@@ -45,49 +45,28 @@
                             <h1>Three steps Tycoon1m</h1>
                         </div>
                         <div class="section-text">
-                            <p>Cryptocurrencies are used primarily outside existing banking and coin
-                                governmental institutions and are exchanged</p>
+                            {{-- <p></p> --}}
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row bottom">
+
+                @foreach ($how_it_work as $key => $section)
                 <div class="col-lg-4 col-md-6">
                     <div class="single-feature-box">
                         <div class="feature-thumb">
-                            <img src="{{asset('assets/frontend/images/lock.png') }}" alt>
+                           <span class='how-it-no'>{{ $key + 1 }}</span>
                         </div>
                         <div class="feature-title">
-                            <h3>SING UP AND SIGN IN</h3>
-                            <p>Professionally engineer customized sce vis innovative interfaces.
-                                Synergisticall sustainable infomediaries via </p>
+                            <h3>{{ $section->title }}</h3>
+                            <p>{!! html_entity_decode($section->content) !!}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-feature-box">
-                        <div class="feature-thumb">
-                            <img src="{{asset('assets/frontend/images/tags.png') }}" alt>
-                        </div>
-                        <div class="feature-title">
-                            <h3>BUY INVESTMENT PACKAGES</h3>
-                            <p>Professionally engineer customized sce vis innovative interfaces.
-                                Synergisticall sustainable infomediaries via </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-feature-box">
-                        <div class="feature-thumb">
-                            <img src="{{asset('assets/frontend/images/money.png') }}" alt>
-                        </div>
-                        <div class="feature-title">
-                            <h3>WITHDRAW MONEY</h3>
-                            <p>Professionally engineer customized sce vis innovative interfaces.
-                                Synergisticall sustainable infomediaries via </p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
+
             </div>
         </div>
     </div>
