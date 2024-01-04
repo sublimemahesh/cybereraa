@@ -38,6 +38,7 @@ class RemoveInactiveUsers extends Command
         // Use chunking to process a large number of records in smaller batches
         User::whereRelation('roles', 'name', 'user')
             ->whereDoesntHave('purchasedPackages')
+            ->whereDoesntHave('transactions', fn($q) => $q->where('status', 'PENDING'))
             ->where('created_at', '<', $cutoffDate)
             ->chunk(200, function ($users) {
                 $this->info('Inactive users remove starts.');

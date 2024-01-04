@@ -14,12 +14,12 @@
     <div class="row">
 
 
-        <div class="col-xl-9 col-lg-8"> 
+        <div class="col-xl-9 col-lg-8">
 
             @if (Laravel\Fortify\Features::canUpdateProfileInformation())
-            <div class="mt-10 sm:mt-0">
-                @livewire('profile.update-profile-information')
-            </div>
+                <div class="mt-10 sm:mt-0">
+                    @livewire('profile.update-profile-information')
+                </div>
             @endif
 
             @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
@@ -38,7 +38,11 @@
                 @livewire('profile.logout-other-browser-sessions-form')
             </div>
 
-            @if (Laravel\Jetstream\Jetstream::hasAccountDeletionFeatures())
+            @if (Laravel\Jetstream\Jetstream::hasAccountDeletionFeatures() &&
+            \App\Models\User::whereRelation('roles', 'name', 'user')->where('id', Auth::user()->id)
+            ->whereDoesntHave('transactions', fn($q) => $q->where('status', 'PENDING'))
+            ->whereDoesntHave('purchasedPackages')->exists())
+
                 <div class="mt-10 sm:mt-0">
                     @livewire('profile.delete-user-form')
                 </div>
