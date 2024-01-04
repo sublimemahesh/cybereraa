@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Mail\InactiveUserDeleted;
 use App\Models\User;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Schema;
 use Log;
 use Mail;
 use Symfony\Component\Console\Command\Command as CommandAlias;
@@ -38,7 +39,8 @@ class RemoveInactiveUsers extends Command
         // Use chunking to process a large number of records in smaller batches
         User::whereRelation('roles', 'name', 'user')
             ->whereDoesntHave('purchasedPackages')
-            ->whereDoesntHave('transactions', fn($q) => $q->where('status', 'PENDING'))
+            ->whereDoesntHave('directSales')
+            ->whereDoesntHave('transactions', fn($q) => $q->whereIn('status', ['PENDING', 'PAID']))
             ->where('created_at', '<', $cutoffDate)
             ->chunk(200, function ($users) {
                 $this->info('Inactive users remove starts.');
@@ -49,11 +51,14 @@ class RemoveInactiveUsers extends Command
                     // Send an email notification
                     Mail::to($user->email)->send(new InactiveUserDeleted($user->toArray()));
 
+                    Schema::disableForeignKeyConstraints();
                     $user->teams()->detach();
                     $user->deleteProfilePhoto();
                     $user->tokens->each->delete();
+                    $user->transactions()->delete();
                     $user->profile()->forceDelete();
                     $user->forceDelete();
+                    Schema::enableForeignKeyConstraints();
 
                     $this->info("User #{$user->id} removed due to inactivity.");
                 }
