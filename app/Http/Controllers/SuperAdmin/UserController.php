@@ -79,13 +79,16 @@ class UserController extends Controller
                 'new_sponsor_user' => [
                     'required',
                     'not_in:' . $user->id,
-                    Rule::exists('users', 'id')
-                        ->where(function ($query) {
-                            $query->where(function ($query) {
-                                $query->where('id', '<>', config('fortify.super_parent_id'))
-                                    ->whereNotNull('position')->whereNotNull('parent_id');
-                            })->orWhere('id', config('fortify.super_parent_id'));
-                        })
+                    Rule::exists('users', 'id'),
+                    //->where(function ($query) {
+                    //  $query->where('id', '<>', config('fortify.super_parent_id'))
+                    // ->whereNotNull('position')->whereNotNull('parent_id');
+                    // })->orWhere('id', config('fortify.super_parent_id'));,
+                    function ($attribute, $value, $fail) {
+                        if (User::where('id', request('new_sponsor_user'))->whereHas('purchasedPackages')->doesntExist()) {
+                            $fail("The selected New Sponsor does not have access to this feature. Please ensure the user has purchased a package.");
+                        }
+                    },
                 ],
             ], [], ['new_sponsor_user' => 'New Sponsor'])->validate();
 
@@ -104,7 +107,8 @@ class UserController extends Controller
         return view('backend.super_admin.users.change-sponsor', compact('user'));
     }
 
-    public function findUsers($search_text): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+    public
+    function findUsers($search_text): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
         $users = User::where('username', 'LIKE', "%{$search_text}%")
             //->where('id', '<>', 3)
@@ -129,7 +133,8 @@ class UserController extends Controller
     /**
      * @throws Throwable
      */
-    public function store(Request $request)
+    public
+    function store(Request $request)
     {
         abort_if(Gate::denies('users.add-new'), Response::HTTP_FORBIDDEN);
         $input = $this->validate($request, [
@@ -171,7 +176,8 @@ class UserController extends Controller
 
     }
 
-    public function edit(User $user)
+    public
+    function edit(User $user)
     {
         abort_if(Gate::denies('users.update'), Response::HTTP_FORBIDDEN);
 
@@ -180,7 +186,8 @@ class UserController extends Controller
         return view('backend.super_admin.users.edit', compact('user', 'countries'));
     }
 
-    public function update(Request $request, User $user)
+    public
+    function update(Request $request, User $user)
     {
         abort_if(Gate::denies('users.update'), Response::HTTP_FORBIDDEN);
         $input = $this->validate($request, [
@@ -222,7 +229,8 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'User updated successfully');
     }
 
-    public function destroy(User $user)
+    public
+    function destroy(User $user)
     {
         abort_if(Gate::denies('users.delete'), Response::HTTP_FORBIDDEN);
         if ($user->purchasedPackages()->count() > 0) {
@@ -232,13 +240,15 @@ class UserController extends Controller
         return redirect()->route('super_admin.users.index')->with('success', 'Role deleted successfully');
     }
 
-    public function changePassword(User $user)
+    public
+    function changePassword(User $user)
     {
         abort_if(Gate::denies('users.update'), Response::HTTP_FORBIDDEN);
         return view('backend.super_admin.users.change-password', compact('user'));
     }
 
-    public function savePassword(User $user, Request $request)
+    public
+    function savePassword(User $user, Request $request)
     {
         abort_if(Gate::denies('users.update'), Response::HTTP_FORBIDDEN);
 
@@ -253,7 +263,8 @@ class UserController extends Controller
         return redirect()->route('super_admin.users.index')->with('success', 'Password changed successfully');
     }
 
-    public function removeTwoFactor(User $user, Request $request)
+    public
+    function removeTwoFactor(User $user, Request $request)
     {
         abort_if(Gate::denies('users.update'), Response::HTTP_FORBIDDEN);
 
@@ -280,7 +291,8 @@ class UserController extends Controller
     }
 
 
-    public function showPermissions(User $user)
+    public
+    function showPermissions(User $user)
     {
         abort_if(Gate::denies('users.manage-permission'), Response::HTTP_FORBIDDEN);
 
@@ -291,7 +303,8 @@ class UserController extends Controller
     }
 
 
-    public function managePermissions(User $user)
+    public
+    function managePermissions(User $user)
     {
         abort_if(Gate::denies('users.manage-permission'), Response::HTTP_FORBIDDEN);
         $user->load('permissions', 'roles');
@@ -303,7 +316,8 @@ class UserController extends Controller
     /**
      * @throws JsonException
      */
-    public function savePermissions(Request $request, User $user, ActivityLogAction $activityLog)
+    public
+    function savePermissions(Request $request, User $user, ActivityLogAction $activityLog)
     {
         abort_if(Gate::denies('users.manage-permission'), Response::HTTP_FORBIDDEN);
         $input = $this->validate($request, [
