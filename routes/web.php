@@ -62,6 +62,10 @@ Route::group(['middleware' => 'guest:' . config('fortify.guard')], function () {
 });
 
 Route::get('test', function () {
+//    $users = \App\Models\User::whereRelation('roles', 'name', 'user')
+//        ->whereDoesntHave('purchasedPackages')
+//        ->whereDoesntHave('directSales')
+//        ->whereDoesntHave('transactions', fn($q) => $q->whereIn('status', ['PENDING', 'PAID']))->limit(10)->get();
 //    $user = \App\Models\User::find(5);
 //    $qualified_commissions = Commission::where('user_id', 7)->where('status', 'QUALIFIED')->sum('paid');
 //    $dis_commissions = Commission::where('user_id', 7)->whereStatus('DISQUALIFIED')->sum('amount');
@@ -69,6 +73,7 @@ Route::get('test', function () {
 //    dd($qualified_commissions, $dis_commissions, $lost_commissions );
 //    dd($user->total_direct_team_investment);
     //dd($user->descendants()->get());
+//    dd($users);
 });
 
 Route::get('payments/binancepay/response', 'Payment\BinancePayController@response');

@@ -14,7 +14,7 @@
                 </div>
 
                 @error('account')
-                <div class="alert alert-danger">
+                <div class="alert alert-danger mt-2">
                     {{ $message  }}
                 </div>
                 @enderror
