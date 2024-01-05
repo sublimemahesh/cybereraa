@@ -123,6 +123,7 @@ class PermissionSeeder extends Seeder
             ['name' => 'users.genealogy', 'guard_name' => 'web'],
 
             ['name' => 'users.import-bulk', 'guard_name' => 'web'],
+            ['name' => 'users.remove.bulk-import', 'guard_name' => 'web'],
 
             ['name' => 'users.add-new', 'guard_name' => 'web'],
             ['name' => 'users.viewAny', 'guard_name' => 'web'],

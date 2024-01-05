@@ -15,6 +15,13 @@
     @endsection
 
     <div class="row">
+        <div class="col-sm-12">
+            @can('users.remove.bulk-import')
+                <a href="{{ route('admin.users.remove.import-users') }}" class="btn btn-danger btn-md mb-2">
+                    Remove Import Users
+                </a>
+            @endcan
+        </div>
         <div class="col-sm-8">
             <div class="card">
                 <div class="card-body">
