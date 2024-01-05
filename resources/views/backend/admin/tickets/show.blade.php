@@ -37,7 +37,7 @@
                                 </tr>
                                 <tr>
                                     <th>Subject</th>
-                                    <td>{{ $ticket->subject }}</td>
+                                    <td><p class="pre-txt">{{ $ticket->subject }}</p></td>
                                 </tr>
                                 <tr>
                                     <th>Body</th>

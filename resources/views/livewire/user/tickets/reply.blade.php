@@ -22,7 +22,7 @@
                     @endif
                     ({{ $reply->created_at }})
                 </p>
-                <p>{{ $reply->reply }}</p>
+                <p class="pre-txt">{{ $reply->reply }}</p>
                 @if (!empty($reply->attachment))
                     <p>
                         <img src="https://img.icons8.com/fluency/48/000000/pdf-mail.png" alt=""/>
