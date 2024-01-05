@@ -41,7 +41,7 @@
                                 </tr>
                                 <tr>
                                     <th>Body</th>
-                                    <td>{!! $ticket->body !!}</td>
+                                    <td><p class="pre-txt">{!! $ticket->body !!}</p></td>
                                 </tr>
                                 <tr>
                                     <th>Attachments</th>
