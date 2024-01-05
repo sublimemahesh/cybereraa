@@ -19,11 +19,11 @@
 <body id="bg">
 
   <!-- Loader container -->
-  <div class="loader-container" id="loaderContainer">
-    <div class="loader"></div>
-    {{-- <p>Loading...</p> --}}
+   <div class="loader-container" id="loaderContainer">
+    <img src="{{asset('assets/frontend/images/logo.png') }}" alt="Your Logo" class="logo">
   </div>
  <!--END Loader container -->
+
 <div class="page-wraper">
 
     @yield('header')

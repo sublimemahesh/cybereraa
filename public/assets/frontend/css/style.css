@@ -3257,55 +3257,14 @@ div#particles .slider-thumb {
     background-repeat: no-repeat;
 }
 
-/* Styles for the loader container */
-.loader-container {
-    display: flex;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8); /* Dark background */
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-  }
 
-  /* Styles for the loader container */
-.loader-container {
-    display: flex;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8); /* Dark background */
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-  }
-
-  /* Styles for the loader animation */
-  .loader {
-    border: 4px solid #fff; /* White border with thinner width */
-    border-top: 4px solid #3498db; /* Blue border on top */
-    border-radius: 50%;
-    width: 100px;  /* Increase the size to make the circle bigger */
-    height: 100px; /* Increase the size to make the circle bigger */
-    animation: spin 1s linear infinite;
-  }
-
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
 
   /* Styles for the main content */
   .main-content {
     display: none; /* Initially hide the main content */
     color: #fff; /* Set text color to white or a suitable contrast */
   }
-/* END  Styles for the loader container */
+
 
 
 .logo-box{
@@ -3370,4 +3329,39 @@ div#particles .slider-thumb {
   color: #e2e2e2;
   margin-bottom: 112px;
   font-family: 'Poppins', sans-serif;
+}
+
+
+
+
+
+
+/* Styles for the loader container */
+.loader-container {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0); /* Dark background */
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Styles for the logo */
+.logo {
+  /* width: 100px; Adjust the width as needed */
+  /* height: auto; Maintain aspect ratio */
+  animation: bounce 1s ease-in-out infinite; /* Bouncing animation */
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0); /* Move up and down slightly */
+  }
+  50% {
+    transform: translateY(-40px); /* Move up */
+  }
 }
