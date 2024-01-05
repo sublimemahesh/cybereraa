@@ -62,6 +62,17 @@ Route::group(['middleware' => 'guest:' . config('fortify.guard')], function () {
 });
 
 Route::get('test', function () {
+//    $parent = \App\Models\User::find(6);
+//    $descendants = $parent
+//        //->descendants()
+//        ->directSales()
+////        ->whereHas('directSales')
+//        ->whereDoesntHave('directSales')
+//        ->whereDoesntHave('purchasedPackages')
+////        ->whereHas('purchasedPackages')
+//        ->where('is_onmax_user', true)
+//        ->get();
+//    dd($descendants);
 //    $users = \App\Models\User::whereRelation('roles', 'name', 'user')
 //        ->whereDoesntHave('purchasedPackages')
 //        ->whereDoesntHave('directSales')
@@ -128,6 +139,9 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
 
     Route::group(["prefix" => "admin", 'middleware' => ['has_any_admin_role'], "as" => 'admin.'], function () {
         Route::get('dashboard', 'Admin\DashboardController@index')->name('dashboard');
+
+        Route::post('filter/removable/users/{search_text}', 'Admin\UserImportController@findUsers');
+        Route::match(['get', 'post'], 'users/remove/import-users', 'Admin\UserImportController@removeUsers')->name('users.remove.import-users');
 
         Route::match(['get', 'post'], 'users/import', 'Admin\UserImportController@import')->name('users.import');
 
