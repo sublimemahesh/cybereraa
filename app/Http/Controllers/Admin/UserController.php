@@ -34,7 +34,7 @@ class UserController extends Controller
         }
 
         if ($request->wantsJson()) {
-            $users = User::with('sponsor', 'profile.kycs')
+            $users = User::with('sponsor', 'profile.kycs.documents')
                 ->withSum('purchasedPackages', 'invested_amount')
                 ->withSum(['earnings' => fn($q) => $q->whereIn('type', ['PACKAGE', 'TRADE_DIRECT', 'TRADE_INDIRECT', 'DIRECT', 'INDIRECT'])], 'amount') // ,'TEAM_BONUS','SPECIAL_BONUS','RANK_BONUS','RANK_GIFT','P2P','STAKING'
                 ->whereRelation('roles', 'name', 'user')
@@ -109,7 +109,7 @@ class UserController extends Controller
                     if ($user->profile->kycs->count() > 0 && $user->profile->kycs->where('status', 'rejected')->count() > 0) {
                         $status = "<span class='text-danger'>REJECTED</span>";
                     }
-                    if ($user->profile->kycs->count() <= 0 || $user->profile->kycs->where('status', 'required')->count() > 0) {
+                    if ($user->profile->kycs->count() <= 0 || $user->profile->kycs->count() > 0 || $user->profile->kycs->documents->where('status', 'required')->count() > 0) {
                         $status = "<span class='text-white'>NOT SUBMITTED</span>";
                     }
                     $html .= $status;
