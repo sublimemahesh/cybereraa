@@ -109,7 +109,11 @@ class UserController extends Controller
                     if ($user->profile->kycs->count() > 0 && $user->profile->kycs->where('status', 'rejected')->count() > 0) {
                         $status = "<span class='text-danger'>REJECTED</span>";
                     }
-                    if ($user->profile->kycs->count() <= 0 || $user->profile->kycs->documents->where('status', 'required')->count() > 0) {
+                    try {
+                        if ($user->profile->kycs->count() <= 0 || $user->profile->kycs->documents->where('status', 'required')->count() > 0) {
+                            $status = "<span class='text-white'>NOT SUBMITTED</span>";
+                        }
+                    } catch (\Exception $e) {
                         $status = "<span class='text-white'>NOT SUBMITTED</span>";
                     }
                     $html .= $status;
