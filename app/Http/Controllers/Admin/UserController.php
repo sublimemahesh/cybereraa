@@ -106,14 +106,17 @@ class UserController extends Controller
                     if ($user->profile->is_kyc_verified) {
                         $status = "<span class='text-success'>VERIFIED</span>";
                     }
-                    if ($user->profile->kycs->count() > 0 && $user->profile->kycs->where('status', 'rejected')->count() > 0) {
-                        $status = "<span class='text-danger'>REJECTED</span>";
-                    }
-                    try {
-                        if ($user->profile->kycs->count() <= 0 || $user->profile->kycs->documents->where('status', 'required')->count() > 0) {
-                            $status = "<span class='text-white'>NOT SUBMITTED</span>";
+                    $hasRequiredDocument = false;
+                    if ($user->profile->kycs->count() > 0) {
+                        if ($user->profile->kycs->where('status', 'rejected')->count() > 0) {
+                            $status = "<span class='text-danger'>REJECTED</span>";
                         }
-                    } catch (\Exception $e) {
+
+                        $hasRequiredDocument = $user->profile->kycs->flatMap(function ($kyc) {
+                            return $kyc->documents->pluck('status');
+                        })->contains('required');
+                    }
+                    if ($hasRequiredDocument || $user->profile->kycs->count() <= 0) {
                         $status = "<span class='text-white'>NOT SUBMITTED</span>";
                     }
                     $html .= $status;
