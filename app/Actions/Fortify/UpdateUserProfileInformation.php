@@ -45,13 +45,15 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'profile_info.home_phone' => ['nullable', 'string', 'max:255'],
             'profile_info.recover_email' => ['nullable', 'email', 'max:255'],
             'profile_info.gender' => ['required', 'in:male,female', 'string', 'max:255'],
-            'profile_info.dob' => ['required', 'date', 'max:255', 'after_or_equal:1940-01-01', 'before_or_equal:' . Carbon::now()->subYears(16)->format('Y-m-d')],
+            'profile_info.dob' => ['required', 'date', 'max:255', 'after_or_equal:1904-01-01', 'before_or_equal:' . Carbon::now()->subYears(16)->format('Y-m-d')],
             'profile_info.country_id' => ['nullable', 'exists:countries,id'],
             'profile_info.wallet_address' => ['nullable', 'string', 'max:255'],
             'profile_info.wallet_address_nickname' => ['nullable', 'required_with:profile_info.wallet_address', 'string', 'max:255'],
             'profile_info.binance_email' => ['nullable', 'email', 'max:255'],
             'profile_info.binance_id' => ['nullable', 'string', 'max:255'],
             'profile_info.binance_phone' => ['nullable', 'string', 'max:255'],
+        ], messages: [
+            'profile_info.dob' => 'User Age must be between 16 - 120'
         ], customAttributes: [
             'name' => "Name (Personal Details)",
             'email' => "Email (Personal Details)",
