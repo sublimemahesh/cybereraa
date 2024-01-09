@@ -107,6 +107,7 @@ class UserController extends Controller
                         $status = "<span class='text-success'>VERIFIED</span>";
                     }
                     $hasRequiredDocument = false;
+                    $hasPendingDocument = false;
                     if ($user->profile->kycs->count() > 0) {
                         if ($user->profile->kycs->where('status', 'rejected')->count() > 0) {
                             $status = "<span class='text-danger'>REJECTED</span>";
@@ -115,9 +116,17 @@ class UserController extends Controller
                         $hasRequiredDocument = $user->profile->kycs->flatMap(function ($kyc) {
                             return $kyc->documents->pluck('status');
                         })->contains('required');
+
+                        $hasPendingDocument = $user->profile->kycs->flatMap(function ($kyc) {
+                            return $kyc->documents->pluck('status');
+                        })->contains('pending');
                     }
                     if ($hasRequiredDocument || $user->profile->kycs->count() <= 0) {
                         $status = "<span class='text-white'>NOT SUBMITTED</span>";
+                    }
+
+                    if ($hasRequiredDocument && $hasPendingDocument) {
+                        $status = "<span class='text-warning' title='User may have open a two type of kyc'>PENDING</span>";
                     }
                     $html .= $status;
                     return $html;
