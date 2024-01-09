@@ -8,9 +8,9 @@
         <li class="breadcrumb-item">My Wallet</li>
     @endsection
 
-    <div class="alert alert-info alert-border-color" data-devil="c:black">
+    {{-- <div class="alert alert-info alert-border-color" data-devil="c:black">
         All package earnings will be generated after 3 working days from the date of purchase.
-    </div>
+    </div> --}}
     <div class="row">
         {{-- @include('backend.user.wallet.top-nav') --}}
         <div class="col-xl-4 col-lg-4">
