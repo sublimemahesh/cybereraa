@@ -19,7 +19,10 @@ class KycController extends Controller
     public function index(Request $request, User $user)
     {
         abort_if(Gate::denies('kyc.viewAny'), Response::HTTP_FORBIDDEN);
-        $kycs = $user->profile->kycs()->withCount(['documents' => fn($q) => $q->whereNotNull('document_name')])->get();
+        $kycs = $user->profile->kycs()->withCount(['documents' => fn($q) => $q->whereNotNull('document_name')])
+            ->whereHas('documents', function ($q) {
+                $q->whereNotNull('document_name');
+            })->get();
         return view('backend.admin.users.kyc.index', compact('user', 'kycs'));
     }
 
