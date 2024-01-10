@@ -115,25 +115,37 @@
                         <div class="col-sm-6 mt-2 mb-3">
                             <div>
                                 <label class="form-label" for="dob">{{ __('Birth Day') }}<sup class="text-danger">*</sup></label>
-                                <x-jet-input wire:ignore id="dob" wire:model.defer="state.profile_info.dob" class="bday-mask block mt-1 w-full form-control" type="text" name="dob" autofocus autocomplete="dob"/>
+                                @if (auth()->user()->profile->is_kyc_verified)
+                                    <div class="form-control" id="dob">{{ $state['profile_info']['dob'] }}</div>
+                                @else
+                                    <x-jet-input wire:ignore id="dob" wire:model.defer="state.profile_info.dob" class="bday-mask block mt-1 w-full form-control" type="text" name="dob" autofocus autocomplete="dob"/>
+                                @endif
                                 <x-jet-input-error for="profile_info.dob" class="mt-2"/>
                             </div>
                         </div>
 
                         <div class="col-sm-6 mt-2 mb-3">
                             <label class="form-label" for="gender">{{ __('Gender') }}<sup class="text-danger">*</sup></label>
-                            <select id="gender" wire:model.defer="state.profile_info.gender"
-                                    class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm  form-control">
-                                <option value="">Select Gender</option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                            </select>
+                            @if (auth()->user()->profile->is_kyc_verified)
+                                <div class="form-control">{{ $state['profile_info']['gender'] }}</div>
+                            @else
+                                <select id="gender" wire:model.defer="state.profile_info.gender"
+                                        class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm  form-control">
+                                    <option value="">Select Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            @endif
                             <x-jet-input-error for="profile_info.gender" class="mt-2"/>
                         </div>
 
                         <div class="col-sm-6 mt-2 mb-3">
                             <label class="form-label" for="nic">{{ __('NIC') }}<sup class="text-danger">*</sup></label>
-                            <x-jet-input id="nic" wire:model.defer="state.profile_info.nic" class="block mt-1 w-full form-control" type="text" name="nic" autofocus autocomplete="nic"/>
+                            @if (auth()->user()->profile->is_kyc_verified)
+                                <div class="form-control">{{ $state['profile_info']['nic'] }}</div>
+                            @else
+                                <x-jet-input id="nic" wire:model.defer="state.profile_info.nic" class="block mt-1 w-full form-control" type="text" name="nic" autofocus autocomplete="nic"/>
+                            @endif
                             <x-jet-input-error for="profile_info.nic" class="mt-2"/>
                         </div>
                     </div>
@@ -150,7 +162,11 @@
                         </div>
                         <div class="col-sm-6 mt-2 mb-3">
                             <label class="form-label" for="address">{{ __('Address') }} <sup class="text-danger">*</sup></label>
-                            <x-jet-input id="address" wire:model.defer="state.profile_info.address" class="block mt-1 w-full form-control" type="text" name="address" autofocus autocomplete="address"/>
+                            @if (auth()->user()->profile->is_kyc_verified)
+                                <div class="form-control">{{ $state['profile_info']['address'] }}</div>
+                            @else
+                                <x-jet-input id="address" wire:model.defer="state.profile_info.address" class="block mt-1 w-full form-control" type="text" name="address" autofocus autocomplete="address"/>
+                            @endif
                             <x-jet-input-error for="profile_info.address" class="mt-2"/>
                         </div>
                         <div class="col-sm-6 mt-2 mb-3">
@@ -207,8 +223,8 @@
                         <div class="col-sm-6 mt-2 mb-3">
                             <label class="form-label" for="wallet_address">{{ __('TRC20 Wallet Address') }}</label>
                             <div class="input-group">
-                                <x-jet-input id="wallet_address" wire:model.defer="state.profile_info.wallet_address" class="form-control copy-to-clipboard" type="text" name="wallet_address" />
-                                <span class="input-group-text copy-to-clipboard"   data-clipboard-text="{{ $state['profile_info']['wallet_address'] }}">
+                                <x-jet-input id="wallet_address" wire:model.defer="state.profile_info.wallet_address" class="form-control copy-to-clipboard" type="text" name="wallet_address"/>
+                                <span class="input-group-text copy-to-clipboard" data-clipboard-text="{{ $state['profile_info']['wallet_address'] }}">
                                     <i class="fa fa-clone" style="font-size: 17px;"></i>
                                 </span>
                             </div>
@@ -339,17 +355,17 @@
         </script>
 
         <script src="{{ asset('assets/backend/vendor/clipboard/clipboard.min.js') }}"></script>
-            <script !src="">
-                let clipboard = new ClipboardJS('.copy-to-clipboard');
+        <script !src="">
+            let clipboard = new ClipboardJS('.copy-to-clipboard');
 
-                    // Handle copy success
-                    clipboard.on('success', function (e) {
-                        Toast.fire({
-                            icon: 'success', title: 'Address copied to clipboard!',
-                        })
-                        e.clearSelection();
-                    });
-            </script>
+            // Handle copy success
+            clipboard.on('success', function (e) {
+                Toast.fire({
+                    icon: 'success', title: 'Address copied to clipboard!',
+                })
+                e.clearSelection();
+            });
+        </script>
 
     @endpush
 </div>
