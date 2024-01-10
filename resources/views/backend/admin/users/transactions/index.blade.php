@@ -35,6 +35,7 @@
             <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down modal-xl" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
+                        <h4 class="modal-title">Approve/Reject Transaction</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body" id="modalContent">

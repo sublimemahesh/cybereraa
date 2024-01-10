@@ -1,10 +1,10 @@
 <div class="card mb-0">
     <div class="card-body">
         <form class="theme-form" enctype="multipart/form-data" id="approval-form">
-            <div class="mb-2">
-                <h4 class="card-title">Approve/Reject Transaction</h4>
-                <hr>
-            </div>
+            {{-- <div class="mb-2">
+                 <h4 class="card-title">Approve/Reject Transaction</h4>
+                 <hr>
+             </div>--}}
             <div class="row">
                 <div class="col-sm-7">
                     <div class="row">
@@ -34,8 +34,12 @@
                     </div>
 
                     <div>
-                        <div class="fs-30 text-center font-w600" data-devil="c:#fff mb:15">
-                            Total Amount: {{ $transaction->amount + $transaction->gas_fee }} <small> USDT</small>
+                        <div class="fs-30 text-center font-w600" data-devil="c:#fff mb:15" id="transaction-total-amount" data-edit-url="{{ URL::signedRoute('admin.transactions.edit-amount', $transaction) }}" data-transaction-amount="{{ $transaction->amount }}">
+                            Total Amount: {{ $transaction->amount + $transaction->gas_fee }}
+                            <small> USDT</small>
+                            <span class="cursor-pointer" id="edit-transaction-amount" data-transaction-id="{{ $transaction->id }}">
+                                <i class="fa fa-pencil fs-26"></i>
+                            </span>
                         </div>
                     </div>
 
@@ -83,7 +87,7 @@
                             @endif
                         </div>
                     </div>
-                    <div class="d-flex justify-content-evenly mt-2">
+                    <div class="d-flex justify-content-evenly mt-2" id="actions-container">
                         <button class="btn btn-success" id="approveTrx">APPROVE</button>
                         <button id="reject-trx" class="btn btn-danger">REJECT</button>
                     </div>

@@ -73,7 +73,8 @@ $(function () {
     window.TRANSACTION_TABLE = table;
     window.TRANSACTION_MODAL = approveModal;
 
-    // Handle click event for the action button
+
+// Handle click event for the action button
     $('#transactions').on('click', '.btn-review-actions', function (e) {
         e.preventDefault();
         loader();
@@ -85,6 +86,7 @@ $(function () {
             // console.log(data)
             // Create a modal with the loaded content
             $('#modalContent').html(data.html);
+            window.transaction_review_actions_url = url;
             window.transaction_approve_url = data.approve_url;
             window.transaction_reject_url = data.reject_url;
             approveModal.show();
@@ -92,8 +94,74 @@ $(function () {
         });
     });
 
+    $(document).on('click', '#edit-transaction-amount', function (e) {
+        e.preventDefault();
+        $('#actions-container').empty()
+        const total_amount_el = $('#transaction-total-amount');
+        const transaction_amount = total_amount_el.data('transaction-amount');
+
+        total_amount_el.empty()
+        total_amount_el.html(`
+                    <div class="alert alert-info">Please note: Gas Fee will not be changed when the transaction amount is edit.</div>
+                    <label for="transaction-amount">Amount</label>
+                    <input id="transaction-amount" value="${transaction_amount}" type="number" name="amount" data-input="payout" class="form-control" autocomplete="transaction-amount">
+                    <div class="d-flex justify-content-evenly mt-2" id="edit-transaction-amount-actions-container">
+                        <button type="button" id="change-transaction-amount" class="btn btn-sm btn-success">Confirm</button>
+                        <button type="button" id="cancel-edit-transaction" class="btn btn-sm btn-danger">Cancel</button>
+                    </div>`)
+    });
+
+    $(document).on("click", "#change-transaction-amount", function (e) {
+        e.preventDefault()
+        const total_amount_el = $('#transaction-total-amount');
+        const transaction_edit_url = total_amount_el.data('edit-url');
+        let new_transaction_amount = $('#transaction-amount').val()
+        Swal.fire({
+            title: "Are You Sure?",
+            text: "Edit The transaction?. Gas Will not be change according to the entered amount",
+            footer: 'New Amount: <small style="color:green"> USDT ' + new_transaction_amount + '</small>',
+            icon: "info",
+            showCancelButton: true,
+        }).then((approve) => {
+            if (approve.isConfirmed) {
+                loader()
+                axios.post(transaction_edit_url, {amount: new_transaction_amount})
+                    .then(response => {
+                        if (response.data.status) {
+                            TRANSACTION_TABLE.ajax.reload();
+                            loadReviewAction(transaction_review_actions_url);
+                        }
+                        Toast.fire({
+                            icon: response.data.icon, title: response.data.message,
+                        }).then(res => {
+                        })
+                    })
+                    .catch((error) => {
+                        Toast.fire({
+                            icon: 'error', title: error.response.data.message || "Something went wrong!",
+                        })
+                        console.error(error.response.data)
+                        let errorMap = [];
+                        document.querySelectorAll('input[data-input=payout]').forEach(input => {
+                            errorMap.push(input.id)
+                        })
+                        errorMap.map(id => {
+                            error.response.data.errors[id] && appendError(id, `<span class="text-danger">${error.response.data.errors[id]}</span>`)
+                        })
+                    })
+            }
+        });
+    });
+
+    $(document).on("click", "#cancel-edit-transaction", function (e) {
+        e.preventDefault()
+        loader()
+        loadReviewAction(transaction_review_actions_url);
+    });
+
     document.getElementById('approveModal').addEventListener('hidden.bs.modal', event => {
         $('#modalContent').empty();
+        window.transaction_review_actions_url = null;
         window.transaction_approve_url = null;
         window.transaction_reject_url = null;
     })
@@ -122,4 +190,27 @@ $(function () {
         table.ajax.url(url).load();
     });
 
+    function loadReviewAction(url) {
+        $.get(url, function (data) {
+            // console.log(data)
+            // Create a modal with the loaded content
+            $('#modalContent').html(data.html);
+            window.transaction_review_actions_url = url;
+            window.transaction_approve_url = data.approve_url;
+            window.transaction_reject_url = data.reject_url;
+            Swal.close()
+        });
+    }
+
+    function appendError(id, html) {
+        try {
+            let el = $(document.getElementById(id));
+            $(el).next(".text-danger").remove();
+            $(html).insertAfter(el)
+        } catch (e) {
+
+        }
+    }
+
 })
+

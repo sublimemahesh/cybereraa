@@ -17,6 +17,17 @@ class TransactionPolicy
         }
     }
 
+    public function editAmount(User $user, Transaction $transaction)
+    {
+        if ($transaction->status !== 'PENDING' || $transaction->pay_method !== 'MANUAL') {
+            return false;
+        }
+
+        if ($user->hasPermissionTo('transactions.edit-amount')) {
+            return true;
+        }
+    }
+
     public function approve(User $user, Transaction $transaction)
     {
         if ($transaction->status !== 'PENDING' || $transaction->pay_method !== 'MANUAL') {
