@@ -52,7 +52,7 @@ class TransactionController extends Controller
 //                                </a>';
 //                    }
                     if (Gate::any(['approve', 'reject'], $trx)) {
-                        $actions .= '<a data-url="' . route('admin.transactions.review-actions', $trx) . '" class="btn btn-xs btn-success sharp my-1 mr-1 shadow btn-review-actions">
+                        $actions .= '<a data-url="' . URL::signedRoute('admin.transactions.review-actions', $trx) . '" class="btn btn-xs btn-success sharp my-1 mr-1 shadow btn-review-actions">
                                     <i class="fa fa-cogs"></i>
                                 </a>';
                     }
@@ -82,6 +82,30 @@ class TransactionController extends Controller
         $json['approve_url'] = $approveUrl; // warning | info | question | success | error
         $json['reject_url'] = $rejectUrl; // warning | info | question | success | error
         $json['html'] = view('backend.admin.users.transactions.components.review-action', compact('transaction'))->render();
+        return response()->json($json);
+    }
+
+    public function editTransactionAmount(Request $request, Transaction $transaction)
+    {
+        $this->authorize('editAmount', $transaction);
+
+        $validated = Validator::make($request->all(), [
+            'amount' => 'required|numeric',
+        ])->validate();
+
+        if ($transaction->amount !== $validated['amount']) {
+            \DB::transaction(function () use ($transaction, $validated) {
+                $transaction->update([
+                    'amount' => $validated['amount'],
+//                'status_response' => json_encode($res_data, JSON_THROW_ON_ERROR),
+                ]);
+            });
+        }
+
+        $json['status'] = true;
+        $json['message'] = 'Transaction Amount updated successfully! Please note that the gas fee will not be changed!';
+        $json['icon'] = 'success'; // warning | info | question | success | error
+//        $json['redirectUrl'] = null;
         return response()->json($json);
     }
 
