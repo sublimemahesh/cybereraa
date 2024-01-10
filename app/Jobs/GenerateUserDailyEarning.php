@@ -81,12 +81,12 @@ class GenerateUserDailyEarning implements ShouldQueue
                             "User: {$purchase->user->username} - {$purchase->user_id}");
                     }
 
-                    if ($purchase->investment_profit <= $purchase->earned_profit) {
+                    if ($purchase->investment_profit <= $purchase->package_earned_profit) {
                         $earned_amount = 0;
                         $purchase->update(['status' => 'EXPIRED']);
                         Log::channel('daily')->warning(
                             "Package {$purchase->id} | " .
-                            "PACKAGE FILLED | investment_profit <= earned_profit | {$purchase->investment_profit} <= {$purchase->earned_profit} | " .
+                            "PACKAGE FILLED | investment_profit <= earned_profit | {$purchase->investment_profit} <= {$purchase->package_earned_profit} | " .
                             "COMPLETED {$total_already_earned_income}. | " .
                             "Purchased Date: {$purchase->created_at} | " .
                             "User: {$purchase->user->username} - {$purchase->user_id}");
