@@ -66,7 +66,7 @@
                                 <div class="form-group mt-3">
                                     <label for="custom-deposit-amount"> Enter the amount</label>
                                     <input type="number" name="amount" step="0.1"
-                                           value="{{ $min_custom_investment->value }}"
+                                           value="{{ $transaction->amount }}"
                                            min="{{ $min_custom_investment->value }}" max="{{ $max_custom_investment->value }}"
                                            id="custom-deposit-amount" class="form-control " data-devil='fs:16'>
                                 </div>
