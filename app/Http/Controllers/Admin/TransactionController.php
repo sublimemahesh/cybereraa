@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Actions\ActivateTransaction;
 use App\Http\Controllers\Controller;
 use App\Models\AdminWallet;
+use App\Models\Package;
 use App\Models\PurchasedStakingPlan;
+use App\Models\Strategy;
 use App\Models\Transaction;
 use App\Services\TransactionService;
 use App\Services\TwoFactorAuthenticateService;
@@ -94,10 +96,28 @@ class TransactionController extends Controller
         ])->validate();
 
         if ($transaction->amount !== $validated['amount']) {
-            \DB::transaction(function () use ($transaction, $validated) {
+            $strategies = Strategy::whereIn('name', ['min_custom_investment', 'max_custom_investment', 'custom_investment_gas_fee'])->get();
+            $min_custom_investment = $strategies->where('name', 'min_custom_investment')->first(null, fn() => new Strategy(['value' => 10]));
+            $max_custom_investment = $strategies->where('name', 'max_custom_investment')->first(null, fn() => new Strategy(['value' => 5000]));
+            $custom_investment_gas_fee = $strategies->where('name', 'custom_investment_gas_fee')->first(null, fn() => new Strategy(['value' => 1]));
+
+            if ($validated['amount'] < $min_custom_investment?->value || $validated['amount'] > $max_custom_investment?->value) {
+                $json['status'] = false;
+                $json['message'] = "Please select a package amount between USDT: {$min_custom_investment?->value} - {$max_custom_investment?->value}";
+                $json['icon'] = 'error'; // warning | info | question | success | error
+                return response()->json($json, Response::HTTP_UNPROCESSABLE_ENTITY);
+            }
+
+            \DB::transaction(function () use ($transaction, $validated, $custom_investment_gas_fee) {
+                $package = Package::make(json_decode($transaction->package_info ?? '[]', true, 512, JSON_THROW_ON_ERROR));
+
+                $package->amount = $validated['amount'];
+                $package->gas_fee = ($validated['amount'] * $custom_investment_gas_fee?->value) / 100;
+
                 $transaction->update([
-                    'amount' => $validated['amount'],
-//                'status_response' => json_encode($res_data, JSON_THROW_ON_ERROR),
+                    'package_info' => $package->toJson(),
+                    'amount' => $package->amount,
+                    'gas_fee' => $package->gas_fee,
                 ]);
             });
         }

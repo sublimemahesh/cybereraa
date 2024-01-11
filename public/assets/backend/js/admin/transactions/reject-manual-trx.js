@@ -30,6 +30,10 @@ $(function () {
             }
         });
 
+        if (typeof repudiate_note == 'undefined') {
+            return false
+        }
+
         if (repudiate_note === null) {
             Toast.fire({
                 icon: 'error',

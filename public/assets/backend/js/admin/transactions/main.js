@@ -102,7 +102,7 @@ $(function () {
 
         total_amount_el.empty()
         total_amount_el.html(`
-                    <div class="alert alert-info">Please note: Gas Fee will not be changed when the transaction amount is edit.</div>
+                    <div class="alert alert-info">Please note: Gas Fee will be also changed according to current percentage.</div>
                     <label for="transaction-amount">Amount</label>
                     <input id="transaction-amount" value="${transaction_amount}" type="number" name="amount" data-input="payout" class="form-control" autocomplete="transaction-amount">
                     <div class="d-flex justify-content-evenly mt-2" id="edit-transaction-amount-actions-container">
