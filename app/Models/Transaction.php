@@ -51,6 +51,8 @@ class Transaction extends Model
         'pay_method',
         'proof_document',
         'repudiate_note',
+        'transaction_id',
+        'status_response',
         'status',
     ];
 
