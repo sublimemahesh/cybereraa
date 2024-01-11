@@ -19,6 +19,11 @@
                                     {{ session('status') }}
                                 </div>
                             @endif
+                            @if (session('info'))
+                                <div class="font-medium mb-4 text-green-600 text-sm text-info">
+                                    {!! session('info') !!}
+                                </div>
+                            @endif
                             @if (session()->has('error') )
                                 <div class="font-medium mb-4 text-danger-600 text-sm text-danger">
                                     {{ session('error') }}
@@ -41,6 +46,13 @@
 
                                 <div class="col-lg-12  mt-4">
                                     <button type="submit" class="btn btn-primary btn-block">{{ __('Email Password Reset Link') }}</button>
+                                </div>
+                                <div class="col-lg-12  mt-4">
+                                    <div class="d-flex justify-content-end mt-4">
+                                        <a class="underline text-sm text-blue-600 hover:text-blue-900 text-uppercase" style="color:#29c0fb !important" href="{{ route('contact') }}">
+                                            {{ __('Contact Us') }}
+                                        </a>
+                                    </div>
                                 </div>
                             </form>
                             <div class="new-account mt-3"></div>

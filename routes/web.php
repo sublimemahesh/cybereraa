@@ -403,6 +403,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
 
         Route::get('transactions', 'User\TransactionController@index')->name('transactions.index');
         Route::get('transactions/purchased/history', 'User\TransactionController@purchaseHistory')->name('transactions.purchased.history');
+        Route::match(['get', 'post'], 'transactions/{transaction}/edit-payment', 'User\TransactionController@editPayment')->name('transactions.edit-payment');
         Route::get('transactions/{transaction}/retry-payment', 'Payment\BinancePayController@retryPayment')->name('transactions.retry-payment');
         Route::get('transactions/invoice/{transaction}', 'Payment\InvoiceController@showPurchaseInvoice')->name('transactions.invoice')->middleware('signed');
         Route::get('transactions/invoice/steam/{transaction}', 'Payment\InvoiceController@streamPurchaseInvoice')->name('transactions.invoice.stream')->middleware('signed');

@@ -58,7 +58,7 @@
                         </div>
                     @endif
                     <hr>
-                    @can('approve', $transaction)
+                    {{--@can('approve', $transaction)
                         <a href="{{ route('admin.transactions.approve', $transaction) }}" class="btn btn-success my-1 mr-1 shadow">
                             <i class="fa fa-check-double"></i> Approve Transaction
                         </a>
@@ -67,7 +67,7 @@
                         <a href="{{ route('admin.transactions.reject', $transaction) }}" class="btn btn-danger my-1 mr-1 shadow">
                             <i class="fa fa-ban"></i> Reject Transaction
                         </a>
-                    @endcan
+                    @endcan--}}
 
                 </div>
             </div>

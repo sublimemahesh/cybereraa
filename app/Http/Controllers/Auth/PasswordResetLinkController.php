@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\User;
 use App\Notifications\ResetPassword as ResetPasswordNotification;
 use Illuminate\Contracts\Auth\PasswordBroker;
 use Illuminate\Contracts\Support\Responsable;
@@ -51,6 +52,9 @@ class PasswordResetLinkController extends Controller
         );
 
         if ($status === Password::RESET_LINK_SENT) {
+            $user = User::where(Fortify::username(), $request->get(Fortify::username()))->first();
+            session()->flash('info', "We have sent the password reset link to <b>{$user->email}</b>. If this is not your email address, please inform us via a contact form!");
+
             session(["password_reset_link_last_otp_requested_at" => now()]);
             return app(SuccessfulPasswordResetLinkRequestResponse::class, compact('status'));
         }
