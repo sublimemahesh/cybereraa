@@ -2,7 +2,20 @@
 @section('title', 'Login')
 @section('body-class', 'login-page')
 @section('contents')
+
+
+@section('styles')
+<style>
+    body {
+        overflow: hidden;
+    }
+</style>
+
 <link href="{{ asset('assets/backend/css/login.css') }}" rel="stylesheet">
+
+@endsection
+
+
 
 <div class="login-page">
 <div class="row justify-content-center main-register-form-style">

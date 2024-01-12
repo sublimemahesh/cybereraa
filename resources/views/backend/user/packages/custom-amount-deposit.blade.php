@@ -209,19 +209,22 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="mb-4">
-                            <p>
+                        <div class="mb-4 text-center">
+                            {{-- <p>
                                 Please <code>search username in the below box</code> and <code>select the username</code>
                                 you want to purchase the package If you want to purchase a package for
                                 <code>someone else</code>.
+                            </p> --}}
+                              <p>
+                                Please select the payment method to continue the process.
                             </p>
                             <div>
                                 Please Note:
                                 <ul class="list-disc">
-                                    <li class="mt-2">
+                                    {{-- <li class="mt-2">
                                         If you want to purchase a package for <code>Yourself</code>. Please
                                         <code>keep the select box empty</code>
-                                    </li>
+                                    </li> --}}
                                     <li class="mt-2">
                                         <code>GAS FEE</code> will be added to every order.
                                     </li>
@@ -272,8 +275,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
-                                <div class="card bg-secondary pay-method-manual-pay cursor-pointer" id="manual-pay">
+                        <div class="d-flex justify-content-center">
+                            <div class="col-sm-6 text-center">
+                                <div class="card bg-secondary pay-method-manual-pay cursor-pointer" id="manual-pay"  data-devil="mt:12">
                                     <div class="card-body card-link">
                                         <div class="text-center">
                                             <img src="{{ asset('assets/images/manual.png') }}" alt="logo"/>
@@ -283,6 +287,8 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+
                         </div>
                     </div>
                 </div>
