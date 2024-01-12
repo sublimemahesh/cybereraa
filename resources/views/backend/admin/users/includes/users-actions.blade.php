@@ -43,5 +43,10 @@
             <i class='fa fa-exchange' aria-hidden='true'></i>
         </a>
     @endcan
+    @can('delete', [$user, $user->direct_sales_count, $user->purchased_packages_count, $user->transactions_count])
+        <a class='btn btn-xs btn-danger sharp my-1 mr-1 shadow delete-user' title="Delete the user" data-user='{{  $user->id  }}' href='javascript:void(0)'>
+            <i class='fa fa-trash-alt' aria-hidden='true'></i>
+        </a>
+    @endcan
 </div>
 
