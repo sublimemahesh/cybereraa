@@ -49994,3 +49994,8 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
 {
     white-space: pre-wrap;
 }
+
+.txt-white
+{
+  color:#fff;
+}

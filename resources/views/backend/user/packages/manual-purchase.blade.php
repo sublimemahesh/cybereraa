@@ -68,7 +68,7 @@
                                     <div class="text-center">Without network fee</div>
                                 </div>
                                 <hr>
-                                <div class="mb-3 mt-2">
+                                <div class="mb-3 mt-2" data-devil="dis:none">
                                     <label for="purchase_for">Purchase For</label>
                                     <select data-input='payout' class="single-select-placeholder js-states select2-hidden-accessible" id="purchase_for">
                                         <option disabled>Start typing username</option>

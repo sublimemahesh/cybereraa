@@ -34,7 +34,7 @@
                     </div>
 
                     <div>
-                        <div class="fs-30 text-center font-w600" data-devil="c:#fff mb:15" id="transaction-total-amount" data-edit-url="{{ URL::signedRoute('admin.transactions.edit-amount', $transaction) }}" data-transaction-amount="{{ $transaction->amount }}">
+                        <div class="fs-30 text-center font-w600 txt-white" data-devil="c:#fff mb:15" id="transaction-total-amount" data-edit-url="{{ URL::signedRoute('admin.transactions.edit-amount', $transaction) }}" data-transaction-amount="{{ $transaction->amount }}">
                             Total Amount: {{ $transaction->amount + $transaction->gas_fee }}
                             <small> USDT</small>
                             <span class="cursor-pointer" id="edit-transaction-amount" data-transaction-id="{{ $transaction->id }}">
