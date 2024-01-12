@@ -16,6 +16,8 @@ use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Log;
+use Schema;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -34,7 +36,8 @@ class UserController extends Controller
         }
 
         if ($request->wantsJson()) {
-            $users = User::with('sponsor', 'profile.kycs.documents')
+            $users = User::with('sponsor', 'profile.kycs.documents',)
+                ->withCount(['directSales', 'purchasedPackages', 'transactions' => fn($q) => $q->whereIn('status', ['PENDING', 'PAID'])])
                 ->withSum('purchasedPackages', 'invested_amount')
                 ->withSum(['earnings' => fn($q) => $q->whereIn('type', ['PACKAGE', 'TRADE_DIRECT', 'TRADE_INDIRECT', 'DIRECT', 'INDIRECT'])], 'amount') // ,'TEAM_BONUS','SPECIAL_BONUS','RANK_BONUS','RANK_GIFT','P2P','STAKING'
                 ->whereRelation('roles', 'name', 'user')
@@ -239,5 +242,55 @@ class UserController extends Controller
         $json['icon'] = 'success'; // warning | info | question | success | error
         $json['redirectUrl'] = null;
         return response()->json($json, Response::HTTP_OK);
+    }
+
+
+    public function removeUser(Request $request, User $user)
+    {
+        $user->loadCount(['directSales', 'purchasedPackages', 'transactions' => fn($q) => $q->whereIn('status', ['PENDING', 'PAID'])]);
+
+        abort_if(\Gate::denies('delete', [$user, $user->direct_sales_count, $user->purchased_packages_count, $user->transactions_count]), Response::HTTP_FORBIDDEN);
+
+        Log::channel('daily')->info("{$user->username} have been Removed by admin: " . \Auth::user()->username, $user->toArray());
+//
+//        $direct_sales = $user->directSales()->exists();
+//        $purchased_packages = $user->purchasedPackages()->exists();
+//        $transactions = $user->transactions()->whereIn('status', ['PENDING', 'PAID'])->exists();
+//
+//        if ($direct_sales) {
+//            $json['status'] = true;
+//            $json['message'] = 'This User not allowed to delete! Because user have referral users under this account.';
+//            $json['icon'] = 'success';
+//            return response()->json($json);
+//        }
+//
+//        if ($purchased_packages || $transactions) {
+//            $json['status'] = true;
+//            $json['message'] = 'This User not allowed to delete! Because user have pending transactions or active packages.';
+//            $json['icon'] = 'success';
+//            return response()->json($json);
+//        }
+
+        if ($user->hasRole('user')) {
+            \DB::transaction(function () use ($user) {
+                Schema::disableForeignKeyConstraints();
+                $user->teams()->detach();
+                $user->deleteProfilePhoto();
+                $user->tokens->each->delete();
+                $user->wallet()->delete();
+                $user->transactions()->delete();
+                $user->profile()->forceDelete();
+                $user->forceDelete();
+                Schema::enableForeignKeyConstraints();
+            });
+        }
+
+        //        session()->flash('success', "User Removed Successfully.");
+
+        $json['status'] = true;
+        $json['message'] = 'User Removed Successfully';
+        $json['icon'] = 'success';
+        return response()->json($json);
+
     }
 }

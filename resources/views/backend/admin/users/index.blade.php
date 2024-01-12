@@ -197,7 +197,37 @@
         <script src="{{ asset('assets/backend/js/admin/users/suspend-users.js') }}"></script>
         {{--<script src="{{ asset('assets/backend/js/admin/users/suspend.js') }}"></script>--}}
         <script !src="">
+            $(document).on("click", ".delete-user", async function (e) {
+                e.preventDefault();
+                let user = $(this).data('user')
+                let url = APP_URL + "/admin/users/" + user + "/delete"
 
+                Swal.fire({
+                    title: "Are You Sure?",
+                    text: "You want to Delete this user? This cannot be undone",
+                    icon: "info",
+                    confirmButtonText: `<i class="fa fa-thumbs-up text-danger"></i> Delete!`,
+                    showCancelButton: true,
+                }).then((deleteUser) => {
+                    if (deleteUser.isConfirmed) {
+                        loader()
+                        axios.delete(url)
+                            .then(response => {
+                                Toast.fire({
+                                    icon: response.data.icon, title: response.data.message,
+                                })
+                                admin_users_table.draw();
+                            })
+                            .catch(error => {
+                                console.log(error)
+                                Toast.fire({
+                                    icon: 'error', title: error.response.data.message || "Something went wrong!",
+                                })
+                            })
+                    }
+                });
+                //userStatusChanged(url, "You want to Suspend selected user?")
+            });
         </script>
     @endpush
 </x-backend.layouts.app>

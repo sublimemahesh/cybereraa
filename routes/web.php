@@ -141,13 +141,14 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::get('dashboard', 'Admin\DashboardController@index')->name('dashboard');
 
         Route::post('filter/removable/users/{search_text}', 'Admin\UserImportController@findUsers');
-        Route::match(['get', 'post'], 'users/remove/import-users', 'Admin\UserImportController@removeUsers')->name('users.remove.import-users');
 
         Route::match(['get', 'post'], 'users/import', 'Admin\UserImportController@import')->name('users.import');
+        Route::match(['get', 'post'], 'users/remove/import-users', 'Admin\UserImportController@removeUsers')->name('users.remove.import-users');
 
         Route::get('users', 'Admin\UserController@index')->name('users.index');
         Route::get('users/pending/kycs', 'Admin\UserController@index')->name('users.pending.kycs');
 
+        Route::delete('users/{user}/delete', 'Admin\UserController@removeUser')->name('users.delete');
         Route::post('users/{user}/suspend', 'Admin\UserController@suspendUser')->name('users.suspend');
         Route::post('users/{user}/activate', 'Admin\UserController@activateUser')->name('users.activate');
 

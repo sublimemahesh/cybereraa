@@ -35,4 +35,15 @@ class UserPolicy
         }
         return false;
     }
+
+    public function delete(User $loggedUser, User $user, $direct_sales_count, $purchased_packages_count, $transactions_count)
+    {
+        if ($direct_sales_count > 0 || $purchased_packages_count > 0 || $transactions_count > 0 || !$user->hasRole('user')) {
+            return false;
+        }
+
+        if ($loggedUser->hasPermissionTo('users.delete', 'web')) {
+            return true;
+        }
+    }
 }
