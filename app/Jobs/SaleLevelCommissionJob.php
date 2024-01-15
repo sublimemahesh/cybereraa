@@ -75,6 +75,11 @@ class SaleLevelCommissionJob implements ShouldQueue
                 return true;
             }
 
+            if ($package->is_free_package) {
+                $package->update(['commission_issued_at' => now()]);
+                return true;
+            }
+
             $level_commission_requirement = $strategies->where('name', 'level_commission_requirement')->first(null, fn() => new Strategy(['value' => 5]));
 
             $commissions = $strategies->where('name', 'commissions')->first(null, fn() => new Strategy(['value' => '{"1":"5","2":"2.5","3":"1.5","4":"1"}']));
