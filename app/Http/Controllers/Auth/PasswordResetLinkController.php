@@ -24,6 +24,9 @@ class PasswordResetLinkController extends Controller
      */
     public function store(Request $request): Responsable
     {
+        // TODO: Remove this
+        return app(SuccessfulPasswordResetLinkRequestResponse::class, ['status' => Password::RESET_LINK_SENT]);
+
         $request->validate([Fortify::username() => 'required|exists:users,username']);
 
         // We will send the password reset link to this user. Once we have attempted
