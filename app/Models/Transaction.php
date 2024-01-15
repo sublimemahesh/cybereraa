@@ -183,7 +183,8 @@ class Transaction extends Model
             })
             ->when(!empty(request()->input('status')) && in_array(request()->input('status'),
                     ['initial', 'pending', 'paid', 'canceled', 'expired', 'rejected']), function ($query) {
-                $query->where('status', request()->input('status'));
+                $query->where('status', request()->input('status'))
+                    ->when(request()->input('status') === 'pending', fn($q) => $q->where('pay_method', 'manual'));
             })
             ->when(request()->filled('amount-start') && !request()->filled('amount-end'), function ($query) {
                 $amountStart = (float)request('amount-start');

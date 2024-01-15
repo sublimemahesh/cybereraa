@@ -68,7 +68,7 @@ class ViewServiceProvider extends ServiceProvider
         });
 
         View::composer('backend.layouts.sidebar', function ($view) {
-            $pending_transactions = Transaction::where('status', 'PENDING')->count();
+            $pending_transactions = Transaction::where('status', 'PENDING')->where('pay_method', 'MANUAL')->count();
             $pending_kycs = User::whereHas('purchasedPackages')
                 ->whereHas('profile.kycs.documents', function ($q) {
                     $q->where('status', 'pending');

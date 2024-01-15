@@ -1,5 +1,15 @@
 <div class="card mb-0">
     <div class="card-body">
+        <div class="alert alert-warning">
+            Free Pending Packages does not show here. Please visit
+            <a href="http://coin1m/admin/reports/users/transactions?status=pending">Coin1m.com</a>
+            for Free Package Approval. <br>
+            Please Note:
+            <b>
+                Make sure you do not approve any misleading packages requested by users, that look like a FREE package.
+                This page does not allow any FREE Packages to be approved or rejected.
+            </b>
+        </div>
         <form class="theme-form" enctype="multipart/form-data" id="approval-form">
             {{-- <div class="mb-2">
                  <h4 class="card-title">Approve/Reject Transaction</h4>

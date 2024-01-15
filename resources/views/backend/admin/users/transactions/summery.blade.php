@@ -48,37 +48,36 @@
                             </div>
 
 
-
-
-
-
-
-                            @if ($transaction->pay_method === 'MANUAL')
-                                <div class="row">
-                                    <div>
+                            <div class="row">
+                                <div>
+                                    @if ($transaction->pay_method === 'MANUAL')
                                         <hr>
                                         <div class="mt-2">
                                             <div class="text-info">
                                                 <label for="proof_document">Proof:</label>
                                                 <a href="{{ asset('storage/user/manual-purchase/' . $transaction->proof_document) }}"
-                                                    target="_blank">View Proof</a>
+                                                   target="_blank">View Proof
+                                                </a>
                                             </div>
                                         </div>
+                                    @endif
+                                    @if ($transaction->transaction_id !== null)
                                         <div class=" mt-1">
                                             <div class="text-info">
                                                 <label for="proof_document">Transaction ID:</label>
                                                 <a href="javascript:void(0)" data-clipboard-text="{{ $transaction->transaction_id }}" id="copy-to-clipboard" class="copy-to-clipboard">{{ $transaction->transaction_id }} <i class="fa fa-clone my-auto" style="font-size: 17px;" data-devil="ml:5"></i></a>
                                             </div>
                                         </div>
-                                    </div>
+                                    @endif
                                 </div>
-                            @endif
+                            </div>
+
                             <hr>
 
                         </div>
                         <div class="col-sm-5 m-auto text-center">
                             <img src="{{ storage('user/manual-purchase/' . $transaction->proof_document) }}"
-                                alt="" class="img-thumbnail mw-100">
+                                 alt="" class="img-thumbnail mw-100">
                         </div>
                     </div>
 
@@ -100,31 +99,29 @@
 
     @push('scripts')
 
-    <script src="{{ asset('assets/backend/vendor/clipboard/clipboard.min.js') }}"></script>
+        <script src="{{ asset('assets/backend/vendor/clipboard/clipboard.min.js') }}"></script>
 
-    <script !src="">
-        // document.getElementById('approveModal').addEventListener('shown.bs.modal', event => {
-        let clipboard = new ClipboardJS('#copy-to-clipboard');
-        // Handle copy success
-        clipboard.on('success', function (e) {
-            console.log(e)
-            Toast.fire({
-                icon: 'success', title: 'Transaction ID copied to clipboard!',
-            })
-            e.clearSelection();
+        <script !src="">
+            // document.getElementById('approveModal').addEventListener('shown.bs.modal', event => {
+            let clipboard = new ClipboardJS('#copy-to-clipboard');
+            // Handle copy success
+            clipboard.on('success', function (e) {
+                console.log(e)
+                Toast.fire({
+                    icon: 'success', title: 'Transaction ID copied to clipboard!',
+                })
+                e.clearSelection();
 
-            let textarea = document.createElement('textarea');
-            textarea.value = e.text;
-            document.body.appendChild(textarea);
-            textarea.select();
-            textarea.focus()
-            document.execCommand('copy');
-            document.body.removeChild(textarea);
-        });
-        // })
-    </script>
-
-
+                let textarea = document.createElement('textarea');
+                textarea.value = e.text;
+                document.body.appendChild(textarea);
+                textarea.select();
+                textarea.focus()
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+            });
+            // })
+        </script>
 
     @endpush
 </x-backend.layouts.app>

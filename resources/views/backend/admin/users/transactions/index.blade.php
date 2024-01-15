@@ -22,6 +22,16 @@
 
     <div class="row dark"> {{--! Tailwind css used. if using tailwind plz run npm run dev and add tailwind classes--}}
         <div class="col-12">
+            <div class="alert alert-warning">
+                Free Pending Packages do not show here. Please visit
+                <a href="http://coin1m/admin/reports/users/transactions?status=pending">Coin1m.com</a>
+                for Free Package Approval. <br>
+                Please Note:
+                <b>
+                    Make sure you do not approve any misleading packages requested by users, that look like a FREE package.
+                    This page does not allow any FREE Packages to be approved or rejected.
+                </b>
+            </div>
             <div class="card">
                 <div class="card-body">
                     @include('backend.admin.users.transactions.components.report-table')
@@ -38,7 +48,7 @@
                         <h4 class="modal-title">Approve/Reject Transaction</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body" id="modalContent">
+                    <div class="modal-body p-0" id="modalContent">
                         <!-- Content loaded dynamically here -->
                     </div>
                 </div>
