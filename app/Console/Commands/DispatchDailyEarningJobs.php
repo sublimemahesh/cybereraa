@@ -41,6 +41,7 @@ class DispatchDailyEarningJobs extends Command
 //            Log::channel('daily')->notice("calculate:profit package earning starts at: `created_at` + INTERVAL {$investment_start_at->value} DAY <= NOW()");
             $activePackages = PurchasedPackage::with('user')
                 ->where('status', 'ACTIVE')
+                ->where('is_free_package', 0)
                 ->whereRaw("`created_at` + INTERVAL {$investment_start_at->value} DAY <= NOW()") // after 5 days from package purchase
 //                ->where(function (Builder $query) {
 //                    $query->whereRaw(
