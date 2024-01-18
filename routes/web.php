@@ -23,43 +23,45 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::get('/', 'FrontendController@index')->name('/');
-Route::get('about-us', 'FrontendController@about')->name('about');
-Route::get('existing-projects', 'FrontendController@project')->name('project');
-Route::get('upcoming-projects', 'FrontendController@upcomingProject')->name('Upcoming-project');
+Route::group(['middleware' => 'maintenance_mode'], function () {
+    Route::get('/', 'FrontendController@index')->name('/');
+    Route::get('about-us', 'FrontendController@about')->name('about');
+    Route::get('existing-projects', 'FrontendController@project')->name('project');
+    Route::get('upcoming-projects', 'FrontendController@upcomingProject')->name('Upcoming-project');
 
-Route::get('packages', 'FrontendController@pricing')->name('pricing');
-Route::get('staking-packages', 'FrontendController@staking')->name('staking-pricing');
+    Route::get('packages', 'FrontendController@pricing')->name('pricing');
+    Route::get('staking-packages', 'FrontendController@staking')->name('staking-pricing');
 
-Route::get('faq', 'FrontendController@faq')->name('faq');
+    Route::get('faq', 'FrontendController@faq')->name('faq');
 // Route::get('contact', 'FrontendController@contact')->name('contact');
-Route::get('news', 'FrontendController@news')->name('news');
-Route::get('news/{news:slug}', 'FrontendController@showNews')->name('news.show');
+    Route::get('news', 'FrontendController@news')->name('news');
+    Route::get('news/{news:slug}', 'FrontendController@showNews')->name('news.show');
 
-Route::get('terms-and-conditions', 'FrontendController@termsConditions')->name('terms&Conditions');
-Route::get('disclaimer', 'FrontendController@disclaimer')->name('disclaimer');
-Route::get('privacy-and-policy', 'FrontendController@privacyAndPolicy')->name('privacy-and-policy');
+    Route::get('terms-and-conditions', 'FrontendController@termsConditions')->name('terms&Conditions');
+    Route::get('disclaimer', 'FrontendController@disclaimer')->name('disclaimer');
+    Route::get('privacy-and-policy', 'FrontendController@privacyAndPolicy')->name('privacy-and-policy');
 
-Route::get('how-it-work', 'FrontendController@howItWorkPage')->name('how-it-work');
+    Route::get('how-it-work', 'FrontendController@howItWorkPage')->name('how-it-work');
 
-Route::post('filter/sponsors/{search_text}', 'RegisteredUserController@findUsers');
+    Route::post('filter/sponsors/{search_text}', 'RegisteredUserController@findUsers');
 
-Route::get('contact', 'ContactController@index')->name('contact');
-Route::post('contact-us/send-mail', 'ContactController@sendMail')->name('send.mail');
+    Route::get('contact', 'ContactController@index')->name('contact');
+    Route::post('contact-us/send-mail', 'ContactController@sendMail')->name('send.mail');
 
+    // Register custom routes
+    Route::group(['prefix' => 'register', 'middleware' => 'guest:' . config('fortify.guard')], function () {
+        Route::get('/', 'RegisteredUserController@create')->name('register');
+    });
 
-// Register custom routes
-Route::group(['prefix' => 'register', 'middleware' => 'guest:' . config('fortify.guard')], function () {
-    Route::get('/', 'RegisteredUserController@create')->name('register');
+    Route::group(['middleware' => 'guest:' . config('fortify.guard')], function () {
+        Route::post('/forgot-password', 'Auth\PasswordResetLinkController@store')->name('password.email');
+        Route::get('/reset-password/{token}', [\Laravel\Fortify\Http\Controllers\NewPasswordController::class, 'create'])
+            ->name('password.reset')
+            ->middleware('signed');
+        Route::post('/reset-password', 'Auth\NewPasswordController@store')->name('password.update')->middleware('signed');
+    });
 });
 
-Route::group(['middleware' => 'guest:' . config('fortify.guard')], function () {
-    Route::post('/forgot-password', 'Auth\PasswordResetLinkController@store')->name('password.email');
-    Route::get('/reset-password/{token}', [\Laravel\Fortify\Http\Controllers\NewPasswordController::class, 'create'])
-        ->name('password.reset')
-        ->middleware('signed');
-    Route::post('/reset-password', 'Auth\NewPasswordController@store')->name('password.update')->middleware('signed');
-});
 
 Route::get('test', function () {
 //    $parent = \App\Models\User::find(6);
