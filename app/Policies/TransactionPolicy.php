@@ -19,7 +19,7 @@ class TransactionPolicy
 
     public function editTransaction(User $user, Transaction $transaction)
     {
-        return !($transaction->status !== 'REJECTED' || $transaction->pay_method !== 'MANUAL' || !$user->hasRole('user'));
+        return $user->id === $transaction->user_id && $transaction->status === 'REJECTED' && $transaction->pay_method === 'MANUAL' && $user->hasRole('user');
     }
 
     public function editAmount(User $user, Transaction $transaction)

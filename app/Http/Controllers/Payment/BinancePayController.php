@@ -36,7 +36,7 @@ class BinancePayController extends Controller
                 $request->get('package') !== 'custom' ? 'exists:packages,slug' : 'in:custom',
             ],
             'amount' => ['nullable', 'required_if:package,custom'],
-            'method' => ['required', 'in:binance,main,topup,manual'],/**/
+            'method' => ['required', 'in:manual'],/*binance,main,topup,*/
             'proof_document' => ['required_if:method,manual', 'nullable', 'image' /*'file:pdf,jpg,jpeg,png'*/],
             'transaction_id' => ['required_if:method,manual', 'nullable', 'string', 'max:255'],
             'purchase_for' => [
