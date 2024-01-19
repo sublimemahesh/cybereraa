@@ -112,7 +112,7 @@ class SaleLevelCommissionJob implements ShouldQueue
                     $direct_sale_count = $commission_level_user->children()->count();
                     $is_level_commission_requirement_satisfied = $direct_sale_count >= ($level_commission_requirement->value ?? 5);
 
-                    $isQualified = $commission_level_user->is_active && $is_level_commission_requirement_satisfied;
+                    $isQualified = $commission_level_user->is_active_without_free_package && $is_level_commission_requirement_satisfied;
                     $commission_amount_left = $isQualified ? 0 : $commission_amount;
 
                     Log::channel('daily')->{$isQualified ? 'info' : 'warning'}("COMMISSION ELIGIBILITY | PURCHASE PACKAGE: {$package->id} | COMMISSION AMOUNT: {$commission_amount} ", [
@@ -120,7 +120,7 @@ class SaleLevelCommissionJob implements ShouldQueue
                         'direct_sale_count' => $direct_sale_count,
                         'level_commission_requirement' => $level_commission_requirement->value ?? 5,
                         'is_level_commission_requirement_satisfied' => $is_level_commission_requirement_satisfied,
-                        'commission_level_user is_active' => $commission_level_user->is_active,
+                        'commission_level_user is_active' => $commission_level_user->is_active_without_free_package,
                         'isQualified' => $isQualified,
                     ]);
 
@@ -139,7 +139,7 @@ class SaleLevelCommissionJob implements ShouldQueue
 
 
                     if ($isQualified) {
-                        $commissionLevelUserActivePackages = $commission_level_user->activePackages;
+                        $commissionLevelUserActivePackages = $commission_level_user->activePackagesWithoutFree;
 
                         foreach ($commissionLevelUserActivePackages as $activePackage) {
                             $already_earned_percentage = $activePackage->earned_profit;

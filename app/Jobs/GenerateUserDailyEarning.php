@@ -137,8 +137,8 @@ class GenerateUserDailyEarning implements ShouldQueue
                                 $trade_income_amount = ($earned_amount * $trade_income_level_percentages[$i]) / 100;
                                 $trade_income_amount_left = 0;
 
-                                if ($trade_income_level_user->is_active) {
-                                    $tradeIncomeLevelUserActivePackages = $trade_income_level_user->activePackages;
+                                if ($trade_income_level_user->is_active_without_free_package) {
+                                    $tradeIncomeLevelUserActivePackages = $trade_income_level_user->activePackagesWithoutFree;
 
                                     foreach ($tradeIncomeLevelUserActivePackages as $activePackage) {
 

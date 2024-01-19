@@ -22,6 +22,7 @@ use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\Relations\HasManyOfDescendants;
 use Storage;
 use Throwable;
 
@@ -219,12 +220,17 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->purchasedPackages()->activePackages()->count() >= 1;
     }
 
+    public function getIsActiveWithoutFreePackageAttribute(): bool
+    {
+        return $this->purchasedPackages()->where('is_free_package', 0)->activePackages()->count() >= 1;
+    }
+
     public function sponsor(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(self::class, 'super_parent_id', 'id')->withDefault();
     }
 
-    public function directSales(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function directSales(): HasMany
     {
         return $this->hasMany(self::class, 'super_parent_id', 'id');
     }
@@ -239,33 +245,39 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Profile::class, 'user_id', 'id')->withDefault(new Profile);
     }
 
-    public function purchasedPackages(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function purchasedPackages(): HasMany
     {
         return $this->hasMany(PurchasedPackage::class, 'user_id', 'id');
     }
 
-    public function activePackages(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function activePackages(): HasMany
     {
         return $this->purchasedPackages()->activePackages();
 
     }
 
-    public function descendantPackages(): \Staudenmeir\LaravelAdjacencyList\Eloquent\Relations\HasManyOfDescendants
+    public function activePackagesWithoutFree(): HasMany
+    {
+        return $this->purchasedPackages()->where('is_free_package', 0)->activePackages();
+
+    }
+
+    public function descendantPackages(): HasManyOfDescendants
     {
         return $this->hasManyOfDescendants(PurchasedPackage::class, 'user_id', 'id');
     }
 
-    public function descendantActivePackages(): \Staudenmeir\LaravelAdjacencyList\Eloquent\Relations\HasManyOfDescendants
+    public function descendantActivePackages(): HasManyOfDescendants
     {
         return $this->descendantPackages()->activePackages();
     }
 
-    public function earnings(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function earnings(): HasMany
     {
         return $this->hasMany(Earning::class, 'user_id');
     }
 
-    public function transactions(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function transactions(): HasMany
     {
         return $this->hasMany(Transaction::class, 'user_id', 'id');
     }
