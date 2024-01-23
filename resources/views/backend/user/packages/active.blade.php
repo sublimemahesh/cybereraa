@@ -26,7 +26,11 @@
 
 
                             <h5 class="card-title text-white">
-                                {{ $subscription->transaction->create_order_request_info->goods->goodsName }} |
+                                @if($subscription->transaction->pay_method === 'FREE')
+                                    Reschedule |
+                                @else
+                                    {{ $subscription->transaction->create_order_request_info->goods->goodsName }} |
+                                @endif
                                 <span class='card-currency'>
                                     {{ $subscription->transaction->currency }} {{ $subscription->transaction->amount}}
                                 </span>
@@ -34,7 +38,7 @@
                         </div>
 
                         <div class="card-body mb-0 package-body">
-                            <p class="card-text">Buy Date : <b> {{ $subscription->created_at->format('Y-m-d h:i A') }}</b></p>
+                            <p class="card-text">{{$subscription->transaction->pay_method === 'FREE' ? "Rescheduled Date" : "Buy Date"}} : <b> {{ $subscription->created_at->format('Y-m-d h:i A') }}</b></p>
                             <p class="card-text">Active Date : <b> {{ $subscription->created_at->addDays($investment_start_at->value)->format('Y-m-d') }} 12:00 AM</b></p>
                             <p class="card-text">Next Payment Date :<b> {{ $subscription->getNextPaymentDateAttribute($investment_start_at->value) }} </b></p>
                             <p class="card-text">Plan Expire Return ({{ $subscription->investment_profit }}%) :<b> {{ $subscription->transaction->currency }}  {{ $subscription->invested_amount * ($subscription->investment_profit) /100 }} </b></p>
@@ -44,9 +48,11 @@
                         </div>
                         <div class="card-footer">
                             <div class="card-footer-link">
-                                <a href="{{ URL::signedRoute('user.transactions.invoice', $subscription->transaction_id) }}"
-                                   class="btn bg-white text-primary btn-card">Invoice
-                                </a>
+                                @if($subscription->transaction->pay_method !== 'FREE')
+                                    <a href="{{ URL::signedRoute('user.transactions.invoice', $subscription->transaction_id) }}"
+                                       class="btn bg-white text-primary btn-card">Invoice
+                                    </a>
+                                @endif
                             </div>
                         </div>
                     </div>

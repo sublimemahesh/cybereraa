@@ -19,9 +19,9 @@ class UserSeeder extends Seeder
                 //Super Admin
                 [
                     'super_parent_id' => null,
-                    'name' => 'Navod Hansajith',
+                    'name' => 'Super Admin',
                     'username' => 'super_admin',
-                    'email' => 'hansajith.synotec@gmail.com',
+                    'email' => 'noreply@tycoon1m.com',
                     'email_verified_at' => now(),
                     'created_at' => now(),
                     'updated_at' => now(),
@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
                     'super_parent_id' => null,
                     'name' => 'James caron',
                     'username' => 'admin',
-                    'email' => 'hansajithsynotec@gmail.com',
+                    'email' => 'noreply@tycoon1m.com',
                     'email_verified_at' => null,
                     'created_at' => now(),
                     'updated_at' => now(),
