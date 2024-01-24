@@ -11,6 +11,7 @@ class MaintenanceMode
 
     public function handle(Request $request, Closure $next)
     {
+        return $next($request);
         abort(
             Response::HTTP_SERVICE_UNAVAILABLE,
             "We're currently performing scheduled maintenance on our website to enhance your experience.
