@@ -12786,6 +12786,7 @@ label {
 .nav-header .logo-abbr {
     width: 45px;
     /* width: 60px; */
+    margin-top: 15px;
 }
 
 .nav-header .brand-title {
@@ -12812,9 +12813,9 @@ label {
 }
 
 .nav-header .brand-title {
-    margin-left: 0.6375rem;
+    margin-left:-0.001rem;
     max-width: 10.15rem;
-    margin-top: 0.2rem;
+    margin-top: 1.2rem;
     font-size: 2.375rem;
     color: #111111;
 }
@@ -49507,7 +49508,7 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 565px;
+    height: 570px;
     position: relative;
 }
 

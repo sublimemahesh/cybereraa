@@ -5,24 +5,24 @@
     that radical change in your life that would result from doing so.If you have been too busy to invest up until now, we are happy to inform
     you that you can sign up with a single click on the below link.
 </p>
-<a href="https://www.tycoon1m.com">www.tycoon1m.com</a>
+<a href="https://www.cybereraa.com">www.cybereraa.com</a>
 
 <p style="margin-top:5px">
     <b>Are you aware that we host a Telegram group?</b>
 </p>
 <p>
-    Spot, futures, option, and many more trading with tycoon1m & Earn, Gifts, NFTs, platform announcements, and more are just some of the
+    Spot, futures, option, and many more trading with cybereraa & Earn, Gifts, NFTs, platform announcements, and more are just some of the
     things you can discuss in our telegram group.
 </p>
 <p>
     It would be a chance to miss out on upcoming meetups, webinars, Ask us Anything, or any sessions in your area.
 </p>
 <p>
-    Meet with tycoon1m staff members, Angel investors, industry experts, and special guests to gain a deeper understanding of Forex, stocks,
+    Meet with cybereraa staff members, Angel investors, industry experts, and special guests to gain a deeper understanding of Forex, stocks,
     indices, and cryptocurrencies and to debate the latest trends.
 </p>
 <p>
-    Compete for the chance to win unique tycoon1m swag, including hats, t-shirts, laptops, iPhones, and the infamous hoodies.
+    Compete for the chance to win unique cybereraa swag, including hats, t-shirts, laptops, iPhones, and the infamous hoodies.
 </p>
 <p>
     Your presence would be greatly valued for you, so please think about allying us.
@@ -34,4 +34,4 @@
 
 <p style="margin-top:5px">Feel free to contact us anytime if you have any further inquiries.</p>
 
-<a href="mailto:info@tycoon1m">info@tycoon1m.com</a>
+<a href="mailto:info@cybereraa">info@cybereraa.com</a>

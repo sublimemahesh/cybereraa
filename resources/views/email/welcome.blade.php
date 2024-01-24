@@ -6,11 +6,11 @@
     </p>
 
     <p>
-        We're thrilled to welcome you to tycoon1m.com! Thank you for registering with us.
+        We're thrilled to welcome you to cybereraa.com! Thank you for registering with us.
     </p>
 
     <p>
-        At tycoon1m.com, we're committed to providing you with the best possible experience.
+        At cybereraa.com, we're committed to providing you with the best possible experience.
         Whether you're here to invest, staking, or deposit with us, we're here to help.
     </p>
 
@@ -24,6 +24,6 @@
 
     <p>
         Best regards, <br>
-        tycoon1m.com
+        cybereraa.com
     </p>
 @endsection

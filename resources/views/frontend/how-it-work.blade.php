@@ -1,5 +1,5 @@
 <x-frontend.layouts.app>
-    @section('title', 'How it work | Tycoon1m ')
+    @section('title', 'How it work | Cybereraa ')
     @section('header-title', 'Welcome ')
 
     @section('header')
@@ -42,7 +42,7 @@
                             <h3>Steps</h3>
                         </div>
                         <div class="main-title">
-                            <h1>Three steps Tycoon1m</h1>
+                            <h1>Three steps Cybereraa</h1>
                         </div>
                         <div class="section-text">
                             {{-- <p></p> --}}
