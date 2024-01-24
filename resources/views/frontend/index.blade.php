@@ -1,5 +1,5 @@
 <x-frontend.layouts.app>
-    @section('title', 'Home Page | Tycoon1m')
+    @section('title', 'Home Page | Cybereraa')
     @section('header-title', 'Welcome')
     @section('header')
     @include('frontend.layouts.header')
@@ -170,11 +170,11 @@
                             </div>
                             <div class="section-text">
                                 <p>
-                                    Welcome to Tycoon1m – Your Portal to Crypto Prosperity! Dive into the world of digital
+                                    Welcome to Cybereraa – Your Portal to Crypto Prosperity! Dive into the world of digital
                                     assets with confidence. Whether you're a seasoned investor or just starting, our
                                     platform offers expert insights,
                                     tools, and a community to help you navigate and thrive in the exciting realm of
-                                    crypto investments. Explore the future of finance with Tycoon1m – where possibilities
+                                    crypto investments. Explore the future of finance with Cybereraa – where possibilities
                                     are limitless, and your financial
                                     success is our priority.
                                 </p>

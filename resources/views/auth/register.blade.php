@@ -85,8 +85,8 @@
 
         <div class="col-md-4 reg-bg-image" data-dxs="dis:none">
             <div class="reg-bg-txt">
-                <h2>Create Your Account at Tycoon1m Trading Hub</h2>
-                <p> Start your cryptocurrency trading journey by registering at Tycoon1m – your gateway to a world of financial possibilities. Sign up for a free account and gain access to a secure and user-friendly platform. Join a community of savvy investors and begin your exploration of the exciting realm of digital assets. Don't miss out on the future of finance – register now at Tycoon1m Trading Hub.</p>
+                <h2>Create Your Account at Cybereraa Trading Hub</h2>
+                <p> Start your cryptocurrency trading journey by registering at Cybereraa – your gateway to a world of financial possibilities. Sign up for a free account and gain access to a secure and user-friendly platform. Join a community of savvy investors and begin your exploration of the exciting realm of digital assets. Don't miss out on the future of finance – register now at Cybereraa Trading Hub.</p>
             </div>
         </div>
 

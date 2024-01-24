@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <title>@yield('title') | {{ config('app.name','Tycoon1m') }}</title>
+    <title>@yield('title') | {{ config('app.name','Cybereraa') }}</title>
     <style type="text/css">
         body {
             width: 650px;
@@ -55,10 +55,10 @@
                                 <tbody>
                                 <tr>
                                     <td>
-                                        <img src="https://www.tycoon1m.com/assets/frontend/images/logo-light.png" alt="{{ config('app.name','Tycoon1m') }}" style="height: 50px;margin-bottom: 30px;">
+                                        <img src="https://www.cybereraa.com/assets/frontend/images/logo-light.png" alt="{{ config('app.name','Cybereraa') }}" style="height: 50px;margin-bottom: 30px;">
                                     </td>
                                     <td style="text-align: right; color:#999">
-                                        {{-- <span>{{ config('app.name','Tycoon1m') }}</span> --}}
+                                        {{-- <span>{{ config('app.name','Cybereraa') }}</span> --}}
                                     </td>
                                 </tr>
                                 </tbody>
@@ -78,7 +78,7 @@
                                 <tr>
                                     <td>
                                         <p style="font-size:13px; margin:0;">
-                                            ©Copyright {{ date('Y') }} {{ config('app.name','Tycoon1m') }} All Rights Reserved
+                                            ©Copyright {{ date('Y') }} {{ config('app.name','Cybereraa') }} All Rights Reserved
                                         </p>
                                     </td>
                                 </tr>
