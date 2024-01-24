@@ -10,9 +10,9 @@
 						<img src="{{asset('assets/frontend/images/footer-logo.png') }}" alt="">
 					</div>
 					<div class="footer-content">
-						<div class="footer-title">
-							<p>Cryptocurrencies are used prim outside existing banking govern institutions hanged</p>
-						</div>
+						{{-- <div class="footer-title">
+							<p>11Cryptocurrencies are used prim outside existing banking govern institutions hanged</p>
+						</div> --}}
 						<div class="footer-icon">
 							<ul>
 								<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
