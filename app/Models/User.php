@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Notifications\VerifyEmail;
 use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Haruncpi\LaravelUserActivity\Traits\Loggable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -79,7 +80,7 @@ class User extends Authenticatable implements MustVerifyEmail
                 "Please refrain from resending verification emails until the specified time has passed.");
             return;
         }
-//        $this->notify(new VerifyEmail);  // TODO: Remove this
+        $this->notify(new VerifyEmail);
         session()->flash('message', __('A new verification link has been sent to the email address you provided in your profile settings.'));
         session(["{$this->id}_send_email_verification_notification_last_otp_requested_at" => now()]);
     }
