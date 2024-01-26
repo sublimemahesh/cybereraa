@@ -614,7 +614,7 @@ h1.bottoms {
 <!-- Start  about-area   Css -->
 <!-- ============================================================== -->*/
 .about-area {
-    background: #020415;
+    background: #360011;
     padding: 205px 0 75px;
     margin-top: -197px;
 }
@@ -3113,7 +3113,7 @@ span.more {
     animation: 500ms running fadeInUp;
     -webkit-box-shadow: 0 10px 15px rgba(25, 25, 25, 0.1);
     transition: 0.5s !important;
-    background: #000616!important;
+    background: #360011!important;
     z-index: 9999 !important;
     animation-name: slideInDown;
     padding: 0 50px 5px;
@@ -3232,7 +3232,7 @@ div#particles .single-slider-box {
 }
 
 .upper.main-header {
-    background: #7c1249;
+    background: #360011;
 }
 div#particles .slider-area {
     background: inherit;
