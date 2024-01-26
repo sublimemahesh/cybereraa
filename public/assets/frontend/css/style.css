@@ -66,7 +66,7 @@
     opacity: 0;
     height: auto;
     width: 230px;
-    background: #262644;
+    background: #52001e;
     transition: .5s;
     visibility: hidden;
     display: block;
@@ -99,6 +99,7 @@ div#sticky-header:hover .sub-menu {
     height: 375px;
     position: relative;
     margin-top: -94px;
+    filter: sepia(100%) hue-rotate(-50deg) saturate(300%) brightness(80%);
 }
 .breacumb-content {
     text-align: center;
@@ -550,7 +551,7 @@ h1.bottoms {
     text-transform: capitalize;
     color: #fff;
     font-family: "Montserrat";
-    background: #745CEC;
+    background: #b62d82;
     padding: 17px 35px;
     border-radius: 30px;
     position: relative;
@@ -594,6 +595,7 @@ h1.bottoms {
     position: absolute;
     top: 90px;
     left: -66px;
+    filter: sepia(100%) hue-rotate(-50deg) saturate(300%) brightness(80%);
 }
 /*<!-- ============================================================== -->
 <!-- Start  brand-area   Css -->
@@ -2137,6 +2139,7 @@ span.more {
     width: 100%;
     /* background: url(assets/images/feature-shap.png); */
     background: url('../images/feature-shap.png');
+    filter: sepia(100%) hue-rotate(-50deg) saturate(300%) brightness(80%);
 
     background-repeat: no-repeat;
 }
@@ -2161,7 +2164,7 @@ span.more {
     transition: .5s;
 }
 .single-testimonial-box:hover::before{
-    opacity: 1;
+    /* opacity: 1; */
 }
 .testimonial-thumb img {
     margin-right: 20px;
@@ -2273,6 +2276,7 @@ span.more {
     position: relative;
     z-index: 1;
     text-align: right;
+    filter: sepia(100%) hue-rotate(-50deg) saturate(300%) brightness(80%);
 }
 .call-shap {
     position: absolute;
@@ -2716,6 +2720,7 @@ span.more {
           animation-iteration-count: infinite;
   -webkit-animation-timing-function: linear;
           animation-timing-function: linear;
+          filter: sepia(100%) hue-rotate(-50deg) saturate(300%) brightness(80%);
 }
 
 @keyframes rotateme {
@@ -3348,7 +3353,7 @@ div#particles .slider-thumb {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0); /* Dark background */
+  background: #52001e; /* Dark background */
   justify-content: center;
   align-items: center;
   z-index: 9999;
@@ -3378,4 +3383,8 @@ div#particles .slider-thumb {
 .feature-area.style-one .single-feature-box .feature-thumb
  img{
     filter: brightness(0)invert(1);
+ }
+
+ .about-area .about-tmb img{
+    filter: sepia(100%) hue-rotate(-50deg) saturate(300%) brightness(80%);
  }
