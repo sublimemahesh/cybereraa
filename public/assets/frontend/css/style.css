@@ -57,7 +57,7 @@
     transition: .5s;
 }
 .menu-button a:hover {
-    background: #745CEC;
+    background: #b62d82;
 }
 /* sub-menu */
 .heder-menu ul li .sub-menu {
@@ -223,7 +223,7 @@ div#sticky-header:hover .sub-menu {
 <!-- Start  contact-area    Css -->
 <!-- ============================================================== -->*/
 .contact-area {
-    background: #020415;
+    background: #360011;
     padding: 90px 0 80px;
 }
 .contact-area .sections-title {
@@ -250,6 +250,7 @@ div#sticky-header:hover .sub-menu {
     /* background: url(assets/images/feature-shap.png); */
     background: url('../images/feature-shap.png');
     background-repeat: no-repeat;
+    filter: sepia(100%) hue-rotate(-50deg) saturate(300%) brightness(80%);
 }
 .contact-area .contact-thumb img {
     width: 100%;
@@ -258,7 +259,7 @@ div#sticky-header:hover .sub-menu {
     margin: 50px 0 30px;
 }
 .contact-area .singles-contacts-box {
-    background: #131227;
+    background: #b62d82;
     padding: 30px 35px;
     border-radius: 10px;
     margin: 50px 0 30px;
@@ -278,7 +279,7 @@ div#sticky-header:hover .sub-menu {
     width: 100%;
     height: 54px;
     padding-left: 20px;
-    background: #131227;
+    background: #360011;
     transition: .5s;
     border: 1px solid #202644;
     border-radius: 50px;
@@ -292,7 +293,7 @@ div#sticky-header:hover .sub-menu {
     height: 120px;
     outline: 0;
     transition: .5s;
-    background: #131227;
+    background: #360011;
     border-radius: 20px;
     color: #fff;
 }
@@ -320,7 +321,7 @@ div#sticky-header:hover .sub-menu {
     text-transform: capitalize;
     display: inline-block;
     padding: 15px 38px;
-    background: #745CEC;
+    background: #52001e;
     border-radius: 30px;
     position: relative;
     z-index: 1;
@@ -657,7 +658,7 @@ h1.bottoms {
     text-transform: capitalize;
     display: inline-block;
     padding: 15px 38px;
-    background: #745CEC;
+    background: #b62d82;
     border-radius: 30px;
     position: relative;
     z-index: 1;
@@ -681,7 +682,7 @@ h1.bottoms {
     left: 0px;
 }
 .skills-area {
-    background: #020415;
+    background: #52001e;
     padding: 90px 0 80px;
 }
 /*<!-- ============================================================== -->
@@ -738,7 +739,7 @@ h1.bottoms {
     margin-bottom: 30px;
 }
 .feature-area.style-one {
-    background: #020415;
+    background: #360011;
     padding: 100px 0 0px;
 }
 .feature-area.style-one .row.bottom {
@@ -766,7 +767,7 @@ h1.bottoms {
     transition: .5s;
 }
 .feature-area.style-one .single-feature-box:hover .feature-title h3{
-    color: #735CEA;
+    color: #b62d82;
 }
 .feature-area.style-one .section-text p {
     margin: 0 auto 0;
@@ -1252,7 +1253,7 @@ li.price-icon-text {
 <!-- ============================================================== -->*/
 .skills-area {
     padding: 100px 0 60px;
-    background: #020415;
+    background: #52001e;
 }
 .row.skills {
     border-bottom: 1px solid #171443;
@@ -1305,7 +1306,7 @@ li.price-icon-text {
   -webkit-animation-delay: 0.25s;
 }
 span.fill {
-    background: #735CEA!important;
+    background: #b62d82 !important;
     border-radius: 5px;
 }
 .skills-area.style-one {
@@ -1321,6 +1322,7 @@ span.fill {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    filter: sepia(100%) hue-rotate(-50deg) saturate(300%) brightness(80%);
 }
 .counter-area .single-counter-box {
     padding: 30px 0 30px;
@@ -1865,7 +1867,7 @@ span.fill {
     font-size: 18px;
     text-transform: uppercase;
     font-weight: 500;
-    color: #6c5ce7;
+    color: #fff;
     font-family: 'Montserrat';
     margin: 0;
     position: relative;
@@ -1879,6 +1881,7 @@ span.fill {
     height: 100%;
     width: 100%;
     background: url(../images/about-1.png);
+     filter: sepia(100%) hue-rotate(-50deg) saturate(300%) brightness(80%);
 
     background-repeat: no-repeat;
 }
@@ -1910,7 +1913,7 @@ h1.bottom {
 }
 .section-text p {
     font-size: 16px;
-    color: #919da4;
+    color: #f1f1f1;
     font-weight: 400;
     line-height: 1.6;
     margin: 0;
@@ -2037,6 +2040,7 @@ span.more {
     background: url('../images/feature-shap.png');
     /* background: url(assets/images/feature-shap.png); */
     background-repeat: no-repeat;
+    filter: sepia(100%) hue-rotate(-50deg) saturate(300%) brightness(80%);
 }
 .single-feature-box {
     text-align: center;
@@ -2072,11 +2076,11 @@ span.more {
     right: 0;
     margin: auto;
     line-height: 80px;
-    background: #1B1F39;
+    background: #7c1249;
     border-radius: 50%;
 }
 .single-feature-box:hover .feature-thumb{
-      background: #745CEC;
+      background: #b62d82;;
 }
 .single-feature-box:hover .feature-thumb img{
       filter: brightness(0)invert(1);
@@ -2236,7 +2240,7 @@ span.more {
     text-transform: capitalize;
     color: #fff;
     font-family: "Montserrat";
-    background: #745CEC;
+    background: #b62d82;;
     padding: 13px 35px;
     border-radius: 30px;
     position: relative;
@@ -2498,7 +2502,7 @@ span.more {
 <!-- Start  footer-area   Css -->
 <!-- ============================================================== -->*/
 .footer-area {
-    background: #020415;
+    background: #52001e;
     padding: 0px 0 30px;
     margin: -1px 0 0;
 }
@@ -2565,10 +2569,10 @@ span.more {
     width: 40px;
     line-height: 42px;
     border-radius: 50px;
-    background: #292C3B;
+    background: #b62d82;
 }
 .footer-icon ul li a:hover{
-  background: #735CEC;
+  background: #951661;
 }
 .footer-ico ul li a {
     display: inline-block;
@@ -2587,7 +2591,7 @@ span.more {
     left: -27px;
     height: 1px;
     width: 15px;
-    background: #725AED;
+    background: #b62d82;
     z-index: -1;
 }
 .footer-ico ul li a:hover{
@@ -2697,7 +2701,7 @@ span.more {
     left: -19px;
     height: 10px;
     width: 10px;
-    background: #725BEC;
+    background: #b62d82;
     border-radius: 50px;
 }
 
@@ -3056,7 +3060,7 @@ span.more {
     top: 3px;
     z-index: 1;
     background-image: -moz-linear-gradient(0deg, #d1651a 0%, #c1282a 100%);
-    background: #745CEC;
+    background: #b62d82;
     background-image: -ms-linear-gradient(0deg, #d1651a 0%, #c1282a 100%);
 }
 .top-wrap .go-top-button i {
@@ -3211,8 +3215,8 @@ a.main_sticky {
 /*particales js*/
 canvas{
     height:580px;
-    /* background: url(assets/images/tranding.jpg); */
-    background: url('../images/tranding.jpg');
+    background: #52001e;
+    /* background: url('../images/tranding.jpg'); */
 
   }
 
@@ -3371,3 +3375,7 @@ div#particles .slider-thumb {
 {
     width: 54px;
 }
+.feature-area.style-one .single-feature-box .feature-thumb
+ img{
+    filter: brightness(0)invert(1);
+ }
