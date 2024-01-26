@@ -433,20 +433,21 @@
             </div>
             <div class="row">
                 <div class="owl-carousel testi_list">
+
+                    @foreach ($testimonials as $key => $testimonial)
                     <div class="col-lg-12">
                         <div class="single-testimonial-box">
                             <div class="testimonial-thumb">
-                                <img src="{{asset('assets/frontend/images/crypto-8.png') }}" alt="" />
+                                <img class="testimonia-img" src="{{ storage('testimonials/' . $testimonial->image) }}" alt="author"/>
                                 <div class="testi-title">
-                                    <h2>alex john</h2>
-                                    <h4>founder</h4>
+                                    <h2>{{ $testimonial->name }}</h2>
+                                    <h4>{{ $testimonial->title }}</h4>
                                 </div>
                             </div>
                             <div class="testimonial-text">
-                                <p>Holisticly recaptiualiz collaborative deliverables rather than interactive
-                                    opportunities. Continually myoca web-enabled done.</p>
+                                {!! html_entity_decode($testimonial->comment) !!}
                             </div>
-                            <div class="testimonial-icon">
+                            {{-- <div class="testimonial-icon">
                                 <ul>
                                     <li><i class="fas fa-star"></i></li>
                                     <li><i class="fas fa-star"></i></li>
@@ -454,9 +455,11 @@
                                     <li><i class="fas fa-star"></i></li>
                                     <li><i class="fas fa-star"></i> <span>(4.5)</span></li>
                                 </ul>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
+                    @endforeach
+
                     <div class="col-lg-12">
                         <div class="single-testimonial-box">
                             <div class="testimonial-thumb">
@@ -553,6 +556,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

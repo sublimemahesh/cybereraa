@@ -49508,7 +49508,7 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 570px;
+    height: 575px;
     position: relative;
 }
 
@@ -50000,3 +50000,13 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
 {
   color:#fff;
 }
+
+
+@media screen and (min-width: 1900px) {
+  /* Styles to apply when the viewport is 1920 pixels wide or larger */
+.deznav
+{
+  width: 21.75rem !important;
+  }
+}
+

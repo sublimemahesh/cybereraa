@@ -9,14 +9,14 @@
                 </a>
             </li>
 
-            @if(!App\Models\SupportTicket::whereRelation('category', 'slug', 'reschedule-plan')->where('user_id', Auth::user()->id)->exists())
+            {{-- @if(!App\Models\SupportTicket::whereRelation('category', 'slug', 'reschedule-plan')->where('user_id', Auth::user()->id)->exists())
                 <li>
                     <a href="{{ URL::signedRoute('user.support.tickets.create', ['category' => 'reschedule-plan']) }}" class="rounded-1" aria-expanded="false">
                         <i class="bi bi-send-x"></i>
                         <span class="nav-text">Reschedule Request</span>
                     </a>
                 </li>
-            @endif
+            @endif --}}
             {{-- <li><a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
                     <i class="material-icons">description</i>
                     <span class="nav-text">Reports</span>
