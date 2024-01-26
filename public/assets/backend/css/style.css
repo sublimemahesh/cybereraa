@@ -47823,7 +47823,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 }
 
 [data-theme-version="dark"] .modal-content {
-    background: #1c1c1c;
+    background: #360011;
 }
 
 [data-theme-version="dark"] .modal-footer,
@@ -50010,3 +50010,29 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
   }
 }
 
+
+#custom-deposit-amount{
+
+    font-weight: bold;
+}
+.bg-progress{
+    background:#b62d82;
+}
+
+.out-footer{
+
+    margin-left: 20.75rem !important;
+}
+
+@media screen and (min-width: 1400px) and (max-width: 1920px){
+    .deznav
+    {
+      width: 20.75rem;
+    }
+
+    .out-footer{
+
+    margin-left: 25.75rem !important;
+}
+
+  }

@@ -11,7 +11,7 @@
         </div> --}}
 
         <div class="container"  data-devil="dis:none" data-dxs="dis:block mt:-20">
-            <div class="alert alert-info  text-center">
+            <div class="alert alert-info  text-center" data-dxs="c:#fff">
                 Welcome to  Cybereraa Family.
             </div>
         </div>
@@ -366,11 +366,13 @@
                         </h6>
 
                         <div class="progress ">
-                            <div class="progress-bar bg-success progress-animated" style="width: {{ $filled_percent }}%; height:10px;" role="progressbar">
+                            <div class="progress-bar bg-progress progress-animated" style="width: 11%; height:10px;" role="progressbar">
                                 <span class="sr-only">{{ round($filled_percent,2) }}% Complete</span>
                             </div>
                         </div>
                     @endfor
+
+
                 </div>
             </div>
         </div>
