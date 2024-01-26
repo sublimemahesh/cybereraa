@@ -43,11 +43,6 @@
                                         <a href="{{ route('register')}}">Get Started Now</a>
                                         @endguest
 
-
-
-
-
-
                                 </div>
 
                             </div>
