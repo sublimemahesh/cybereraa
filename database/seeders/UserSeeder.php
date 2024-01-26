@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -25,7 +26,7 @@ class UserSeeder extends Seeder
                     'email_verified_at' => now(),
                     'created_at' => now(),
                     'updated_at' => now(),
-                    'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+                    'password' => Hash::make('Xl&6!O#8@m%$9M'), // password
                 ],
                 //Admin
                 [
@@ -36,7 +37,7 @@ class UserSeeder extends Seeder
                     'email_verified_at' => null,
                     'created_at' => now(),
                     'updated_at' => now(),
-                    'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+                    'password' => Hash::make('Xl&6!O#8@m%$9M'), // password
                 ],
                 //User
                 [
@@ -47,7 +48,7 @@ class UserSeeder extends Seeder
                     'email_verified_at' => now(),
                     'created_at' => now(),
                     'updated_at' => now(),
-                    'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+                    'password' => Hash::make('Xl&6!O#8@m%$9M'), // password
                 ],
                 //User
                 [
@@ -58,7 +59,7 @@ class UserSeeder extends Seeder
                     'email_verified_at' => now(),
                     'created_at' => now(),
                     'updated_at' => now(),
-                    'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+                    'password' => Hash::make('Xl&6!O#8@m%$9M'), // password
                 ],
                 //User
                 [
@@ -69,18 +70,18 @@ class UserSeeder extends Seeder
                     'email_verified_at' => now(),
                     'created_at' => now(),
                     'updated_at' => now(),
-                    'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+                    'password' => Hash::make('Xl&6!O#8@m%$9M'), // password
                 ],
                 //User
                 [
                     'super_parent_id' => 5,
-                    'name' => 'Tycoon 1M',
-                    'username' => 'Cybereraa',
+                    'name' => 'Cyber Eraa',
+                    'username' => 'CyberEraa',
                     'email' => 'noreply@cybereraa.com',
                     'email_verified_at' => now(),
                     'created_at' => now(),
                     'updated_at' => now(),
-                    'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+                    'password' => Hash::make('Xl&6!O#8@m%$9M'), // password
                 ],
             ]
         );
