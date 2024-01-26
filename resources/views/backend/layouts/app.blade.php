@@ -160,7 +160,7 @@
             <!--**********************************  Footer start   ***********************************-->
             <div class="footer out-footer rounded-3">
                 <div class="copyright">
-                    <p>© {{ date('Y') }} tycoon1m . All Rights Reserved.</p>
+                    <p>© {{ date('Y') }} cybereraa . All Rights Reserved.</p>
                 </div>
             </div>
             <!--********************************** Footer end  ***********************************-->

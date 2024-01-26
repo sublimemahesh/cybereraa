@@ -65,8 +65,8 @@ class VerifyEmail extends Notification
         return (new MailMessage)
             ->greeting("Welcome!")
             ->subject(Lang::get('Verify Email Address'))
-            ->line("We're thrilled to welcome you to tycoon1m.com! Thank you for registering with us.")
-            ->line("At tycoon1m.com, we're committed to providing you with the best possible experience. " .
+            ->line("We're thrilled to welcome you to cybereraa.com! Thank you for registering with us.")
+            ->line("At cybereraa.com, we're committed to providing you with the best possible experience. " .
                 "Whether you're here to invest, staking, or deposit with us, we're here to help.")
             ->line(Lang::get('Please click the button below to verify your email address.'))
             ->action(Lang::get('Verify Email Address'), $url)

@@ -10,9 +10,9 @@
 						<img src="{{asset('assets/frontend/images/footer-logo.png') }}" alt="">
 					</div>
 					<div class="footer-content">
-						<div class="footer-title">
-							<p>Cryptocurrencies are used prim outside existing banking govern institutions hanged</p>
-						</div>
+						{{-- <div class="footer-title">
+							<p>11Cryptocurrencies are used prim outside existing banking govern institutions hanged</p>
+						</div> --}}
 						<div class="footer-icon">
 							<ul>
 								<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
@@ -63,8 +63,8 @@
 					<div class="footer-content">
 						<div class="footer-titles">
 							<h2>Contact details</h2>
-							{{-- <p>support@tycoon1m.com</p>  --}}
-							<a data-devil='c:#fff' href="mailto:support@tycoon1m.com">support@tycoon1m.com</a>
+							{{-- <p>support@cybereraa.com</p>  --}}
+							<a data-devil='c:#fff' href="mailto:support@cybereraa.com">support@cybereraa.com</a>
 						</div>
 					</div>
 				</div>
@@ -74,7 +74,7 @@
 			<div class="col-lg-6 col-md-6">
 				<div class="copy-left-box">
 					<div class="copy-left-title">
-						<h3>Copyright © 2023 Tycoon1m. All Rights Reserved . </h3>
+						<h3>Copyright © 2023 Cybereraa. All Rights Reserved . </h3>
 					</div>
 				</div>
 			</div>

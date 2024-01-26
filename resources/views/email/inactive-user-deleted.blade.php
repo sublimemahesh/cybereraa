@@ -16,7 +16,7 @@
     <p>
         Thank you,<br>
         Best regards, <br>
-        tycoon1m.com Team
+        cybereraa.com Team
     </p>
 
 @endsection

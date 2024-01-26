@@ -1,5 +1,5 @@
 <x-frontend.layouts.app>
-    @section('title', 'Privacy Policy | Tycoon1m ')
+    @section('title', 'Privacy Policy | Cybereraa ')
     @section('header-title', 'Welcome ')
 
     @section('header')
@@ -47,7 +47,7 @@
                         <div class="col-lg-12">
                             <div class="blogs-singles-boxs">
                                <div class="blogs-content"   >
-                                <p data-devil="pt:30">Welcome to Tycoon1M.com. This Privacy Policy is designed to help you understand how we collect, use, disclose, and safeguard your personal information. By accessing or using our Website, you agree to the terms outlined in this Privacy Policy.</p>
+                                <p data-devil="pt:30">Welcome to Cybereraa.com. This Privacy Policy is designed to help you understand how we collect, use, disclose, and safeguard your personal information. By accessing or using our Website, you agree to the terms outlined in this Privacy Policy.</p>
                                </div>
                                 <div class="blogs-content">
                                     <h2><a href="blog-details.html">Information We Collect:</a></h2>
@@ -88,9 +88,9 @@
 
                                 <div class="blogs-content">
                                     <h2><a href="blog-details.html">Contact Information:</a></h2>
-                                    <p>- If you have any questions or concerns about this Privacy Policy, please contact us at [contact@tycoon1m.com].</p>
+                                    <p>- If you have any questions or concerns about this Privacy Policy, please contact us at [contact@cybereraa.com].</p>
                                     <p>By using our Website, you consent to the terms of this Privacy Policy. It is recommended to review this Privacy Policy periodically for any changes.</p>
-                                    <p data-devil='pb:30'>Thank you for choosing Tycoon1M.com. Your privacy and trust are important to us.</p>
+                                    <p data-devil='pb:30'>Thank you for choosing Cybereraa.com. Your privacy and trust are important to us.</p>
                                 </div>
 
                                 

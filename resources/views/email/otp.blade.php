@@ -20,7 +20,7 @@
     </p>
     <p>
         For security reasons, don't share this OTP with anyone.
-        tycoon1m.com shall not be responsible for any misuse.
+        cybereraa.com shall not be responsible for any misuse.
         In case you have not initiated this transaction be sure to get
         in touch with us immediately.
     </p>
@@ -29,6 +29,6 @@
     </p>
     <p>
         Regards, <br>
-        tycoon1m.com
+        cybereraa.com
     </p>
 @endsection
