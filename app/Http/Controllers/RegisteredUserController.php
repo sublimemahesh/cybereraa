@@ -15,7 +15,7 @@ class RegisteredUserController extends Controller
 {
     public function create(Request $request)
     {
-        return redirect()->route('login')->with('info', 'We apologize for any inconvenience. We have temporarily halted new registrations due to system upgrades. We will notify you once the upgrades are complete. Please stay tuned for further updates.');
+//        return redirect()->route('login')->with('info', 'We apologize for any inconvenience. We have temporarily halted new registrations due to system upgrades. We will notify you once the upgrades are complete. Please stay tuned for further updates.');
         $sponsor = new User;
         if ($request->get('ref', false)) {
             // abort_if(!$request->hasValidSignature(), Response::HTTP_UNAUTHORIZED, 'Invalid referral link!');
