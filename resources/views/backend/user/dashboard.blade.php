@@ -55,7 +55,7 @@
             <div class="card overflow-hidden br-dashboard-card">
                 <div class="card-body d-flex align-items-center justify-content-between">
                     <div class="me-4 card-mt-10">
-                        <h4 class="heading mb-0">{{ $wallet->balance }} $</h4>
+                        <h4 class="heading mb-0">{{ number_format($wallet->balance, 2) }} $</h4>
                         <p class="mb-2 fs-13">Wallet Balance</p>
 
                     </div>
