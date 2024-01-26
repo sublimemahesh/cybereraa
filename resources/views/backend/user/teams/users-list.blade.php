@@ -127,8 +127,10 @@
                                     <th>USER DETAILS</th>
                                     <th>CONTACT DETAILS</th>
                                     {{--<th>SPONSOR/PARENT</th>--}}
-                                    <th>ACCOUNT STATUS</th>
-                                    <th>PROFIT</th>
+                                    {{--<th>ACCOUNT STATUS</th>--}}
+                                    {{-- <th>PROFIT</th>--}}
+                                    <th class="text-right">TOTAL EARNED</th>
+                                    <th class="text-right">TOTAL WITHDRAW</th>
                                     <th>INVESTMENT</th>
                                 </tr>
                             </thead>
