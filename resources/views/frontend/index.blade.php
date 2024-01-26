@@ -460,7 +460,7 @@
                     </div>
                     @endforeach
 
-                    <div class="col-lg-12">
+                    {{-- <div class="col-lg-12">
                         <div class="single-testimonial-box">
                             <div class="testimonial-thumb">
                                 <img src="{{asset('assets/frontend/images/crypto-9.png') }}" alt="" />
@@ -555,7 +555,7 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                 </div>
             </div>
