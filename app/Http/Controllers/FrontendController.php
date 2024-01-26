@@ -7,6 +7,8 @@ use App\Models\Package;
 use App\Models\Page;
 use App\Models\StakingPackage;
 use Illuminate\Http\Request;
+use App\Models\Testimonial;
+
 
 class FrontendController extends Controller
 {
@@ -24,12 +26,13 @@ class FrontendController extends Controller
 
         $any_query = Page::where(['slug' => 'any-query'])->firstOrNew();
         $contact_us = Page::where(['slug' => 'contact-us-in-home-page'])->firstOrNew();
+        $testimonials = Testimonial::all();
 
 
 
 
 
-        return view('frontend.index', compact('benefits', 'welcome', 'how_it_work','awesome_facts','any_query','contact_us'));
+        return view('frontend.index', compact('benefits', 'welcome', 'how_it_work','awesome_facts','any_query','contact_us','testimonials'));
 
     }
 
