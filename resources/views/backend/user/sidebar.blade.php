@@ -65,7 +65,7 @@
             <li>
                 <a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
                     <i class="bi bi-piggy-bank"></i>
-                    <span class="nav-text">Deposit Asset</span>
+                    <span class="nav-text">Investment Asset</span>
                 </a>
                 <ul aria-expanded="false">
                     <li>
@@ -145,6 +145,14 @@
 
 
             <li>
+                <a href="{{ route('user.wallet.index') }}" class="rounded-1" aria-expanded="false">
+                    <i class="bi bi-wallet"></i>
+                    <span class="nav-text">My Wallet </span>
+                </a>
+            </li>
+
+
+            {{-- <li>
                 <a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
                     <i class="bi bi-wallet"></i>
                     <span class="nav-text">My Wallet </span>
@@ -153,11 +161,11 @@
                     <li>
                         <a href="{{ route('user.wallet.index') }}">Wallet Summery</a>
                     </li>
-                    {{--<li>
+                    <li>
                         <a href="{{ route('user.wallet.transfer.to-wallet') }}">W2W Transfer</a>
-                    </li>--}}
+                    </li>
                 </ul>
-            </li>
+            </li> --}}
 
 
             {{-- <li>
@@ -169,19 +177,28 @@
 
 
             <li>
+                <a href="{{ route('user.team.users-levels') }}" class="rounded-1" aria-expanded="false">
+                    <i class="bi bi-people"></i>
+                    <span class="nav-text">Referral System</span>
+                </a>
+            </li>
+
+
+
+            {{-- <li>
                 <a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
                     <i class="bi bi-people"></i>
                     <span class="nav-text">Referral System</span>
                 </a>
                 <ul aria-expanded="false">
-                    {{--<li>
+                    <li>
                         <a href="{{ route('user.team.users-list') }}">Team List</a>
-                    </li>--}}
+                    </li>
                     <li>
                         <a href="{{ route('user.team.users-levels') }}">Referral Level</a>
                     </li>
                 </ul>
-            </li>
+            </li> --}}
 
 
             <li>

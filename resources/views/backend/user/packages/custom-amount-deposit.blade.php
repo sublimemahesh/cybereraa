@@ -1,13 +1,13 @@
 <x-backend.layouts.app>
-    @section('title', 'Buy Package')
-    @section('header-title', 'Packages' )
+    @section('title', 'Investment Package')
+    @section('header-title', 'Investment Packages' )
     @section('plugin-styles')
         <link rel="stylesheet" href="{{ asset('assets/backend/vendor/select2/css/select2.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/backend/css/custom-range.css') }}">
 
     @endsection
     @section('breadcrumb-items')
-        <li class="breadcrumb-item">Buy Package</li>
+        <li class="breadcrumb-item">Investment Package</li>
     @endsection
 
 
@@ -29,7 +29,7 @@
                                 <input type="number" name="amount" step="0.1"
                                        value="{{ $min_custom_investment->value }}"
                                        min="{{ $min_custom_investment->value }}" max="{{ $max_custom_investment->value }}"
-                                       id="custom-deposit-amount" class="form-control " data-devil='fs:16'>
+                                       id="custom-deposit-amount" class="form-control " data-devil='fs:50  h:70'>
                             </div>
                         </div>
                         <div class="col-2"></div>
@@ -59,7 +59,7 @@
                         </button>
                         <br>
                         <button type="button" class="btn   mb-2" id="{{ $package->slug }}-choose"
-                                data-devil="ml:20 mt:30 bgc:#18998f c:#fff w:150">Deposit
+                                data-devil="ml:20 mt:30 bgc:#b62d82 c:#fff w:150">Deposit
                         </button>
                     </div>
 
