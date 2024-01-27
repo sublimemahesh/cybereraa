@@ -1,5 +1,5 @@
 <x-frontend.layouts.app>
-    @section('title', 'Privacy Policy | Cybereraa ')
+    @section('title', 'Privacy Policy | Cyber eraa ')
     @section('header-title', 'Welcome ')
 
     @section('header')

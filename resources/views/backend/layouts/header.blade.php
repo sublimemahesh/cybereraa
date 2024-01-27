@@ -64,20 +64,20 @@
                             @yield('header-title2',Auth::user()->username)
                         </span> --}}
 
-                        <div class='logout-btn'>
+                        {{-- <div class='logout-btn'>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();" class="rounded-1" aria-expanded="false">
-                                    {{-- <i class="bi bi-box-arrow-left"></span></i>
-                                    <span class="nav-text">{{ __('Logout') }} </span> --}}
+                                    <i class="bi bi-box-arrow-left"></span></i>
+                                    <span class="nav-text">{{ __('Logout') }} </span>
                                     <img src="{{ asset('assets/backend/images/icon/logout.png') }}"/>
                                     <br>
                                     <div data-devil='ml:10'>
-                                        {{-- <span class="nav-text">{{ __('Logout') }} </span>  --}}
+                                         <span class="nav-text">{{ __('Logout') }} </span>
                                     </div>
                                 </a>
                             </form>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
