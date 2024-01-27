@@ -284,7 +284,8 @@ class GenealogyController extends Controller
         $length = request()->input('length', 10);
 
         $query = $user?->descendants()
-            ->with('sponsor', 'parent')
+            ->with('sponsor', 'parent', 'profile')
+            ->withCount('directSales')
             ->withSum(['withdraws' => fn($q) => $q->where('status', 'SUCCESS')->where('type', 'MANUAL')], 'amount')
             ->withSum(['withdraws' => fn($q) => $q->where('status', 'SUCCESS')->where('type', 'MANUAL')], 'transaction_fee')
             ->withSum(['earnings' => fn($q) => $q->whereIn('type', ['PACKAGE', 'TRADE_DIRECT', 'TRADE_INDIRECT', 'DIRECT', 'INDIRECT', 'TEAM_BONUS'])], 'amount')
@@ -323,9 +324,14 @@ class GenealogyController extends Controller
             ->addColumn('user_details', function ($lvlUser) {
 
                 $level = \App\Enums\ReferralLevelEnum::level()[$lvlUser->depth];
-
+                $status = '';
+                if ($lvlUser->is_suspended) {
+                    $status = "ACCOUNT SUSPENDED";
+                }
+                $status .= "Joined: " . $lvlUser->created_at->format('Y-m-d h:i A');
                 return "<i class='fa fa-user-circle'></i> <code>{$lvlUser->username}</code> <br>
-                            <i class='fa fa-level-down'></i> {$level} ";
+                            <i class='fa fa-level-down'></i> {$level} <br>
+                           {$status} ";
             })
             ->addColumn('contact_details', function ($lvlUser) {
                 return "Referal User: <code>{$lvlUser->sponsor?->username}</code> <br>
@@ -357,6 +363,21 @@ class GenealogyController extends Controller
                 return
                     "Total Earned: <code>{$earnings_sum_amount}</code></br>" .
                     "Total Withdraw: <code>{$total_withdrawal}</code>";
+            })
+            ->addColumn('total_earned', function ($lvlUser) {
+//                $earnings_sum_amount = $lvlUser->earnings_sum_amount;
+                $withdraws_sum_amount = $lvlUser->withdraws_sum_amount;
+                $withdraws_sum_transaction_fee = $lvlUser->withdraws_sum_transaction_fee;
+                return number_format($withdraws_sum_amount + $withdraws_sum_transaction_fee, 2);
+            })
+            ->addColumn('total_withdraw', function ($lvlUser) {
+                //                $withdraws_sum_amount = $lvlUser->withdraws_sum_amount;
+//                $withdraws_sum_transaction_fee = $lvlUser->withdraws_sum_transaction_fee;
+//                $total_withdrawal = $withdraws_sum_amount + $withdraws_sum_transaction_fee;
+                return number_format($lvlUser->earnings_sum_amount ?? 0, 2);
+            })
+            ->addColumn('direct_sales_count', function ($lvlUser) {
+                return $lvlUser->direct_sales_count;
             })
             ->addColumn('account_investments', function ($lvlUser) {
                 $active_packages_sum_invested_amount = $lvlUser->active_packages_sum_invested_amount ?? 0;
