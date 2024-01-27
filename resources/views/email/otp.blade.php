@@ -20,7 +20,7 @@
     </p>
     <p>
         For security reasons, don't share this OTP with anyone.
-        cybereraa.com shall not be responsible for any misuse.
+        cyber eraa.com shall not be responsible for any misuse.
         In case you have not initiated this transaction be sure to get
         in touch with us immediately.
     </p>

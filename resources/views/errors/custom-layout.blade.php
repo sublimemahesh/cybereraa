@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>@yield('title') | {{ config('app.name', 'Cybereraa') }}</title>
+    <title>@yield('title') | {{ config('app.name', 'Cyber eraa') }}</title>
     <!-- FAVICONS ICON -->
     <link rel="shortcut icon" type="image/png" href="{{ asset('assets/backend/images/favicon.png') }}">
     <!-- Favicon -->

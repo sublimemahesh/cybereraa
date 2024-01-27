@@ -1,5 +1,5 @@
 <x-frontend.layouts.app>
-    @section('title', 'Packages | Cybereraa')
+    @section('title', 'Packages | Cyber eraa')
     @section('header-title', 'Welcome ')
 
     @section('header')
@@ -41,7 +41,7 @@
                             <h3>Packages</h3>
                         </div> --}}
                         <div class="main-title">
-                            <h1>Cybereraa Packages Plan</h1>
+                            <h1>Cyber eraa Packages Plan</h1>
                         </div>
                         <div class="section-text">
                             <p>Cryptocurrencies are used primarily outside existing banking and coin governmental
@@ -64,7 +64,7 @@
                         </div>
                         <div class="pricing-items">
                             <div class="pricing-items-title">
-                                <h3>cybereraa</h3>
+                                <h3>cyber eraa</h3>
                                 <p>[ BASIC 01 ]</p>
                             </div>
                             <div class="pricing-items-center">
@@ -104,7 +104,7 @@
                         </div>
                         <div class="pricing-items">
                             <div class="pricing-items-title">
-                                <h3>cybereraa</h3>
+                                <h3>cyber eraa</h3>
                                 <p>[ BASIC 02 ]</p>
                             </div>
                             <div class="pricing-items-center">
@@ -144,7 +144,7 @@
                         </div>
                         <div class="pricing-items">
                             <div class="pricing-items-title">
-                                <h3>cybereraa</h3>
+                                <h3>cyber eraa</h3>
                                 <p>[ BASIC 03 ]</p>
                             </div>
                             <div class="pricing-items-center">
@@ -186,7 +186,7 @@
                         </div>
                         <div class="pricing-items">
                             <div class="pricing-items-title">
-                                <h3>cybereraa</h3>
+                                <h3>cyber eraa</h3>
                                 <p>[ STANDARD 01 ]</p>
                             </div>
                             <div class="pricing-items-center">
@@ -226,7 +226,7 @@
                         </div>
                         <div class="pricing-items">
                             <div class="pricing-items-title">
-                                <h3>cybereraa</h3>
+                                <h3>cyber eraa</h3>
                                 <p>[ STANDARD 02 ]</p>
                             </div>
                             <div class="pricing-items-center">
@@ -266,7 +266,7 @@
                         </div>
                         <div class="pricing-items">
                             <div class="pricing-items-title">
-                                <h3>cybereraa</h3>
+                                <h3>cyber eraa</h3>
                                 <p>[ STANDARD 03 ]</p>
                             </div>
                             <div class="pricing-items-center">

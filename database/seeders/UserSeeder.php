@@ -76,7 +76,7 @@ class UserSeeder extends Seeder
                 [
                     'super_parent_id' => 5,
                     'name' => 'Cyber Eraa',
-                    'username' => 'CyberEraa',
+                    'username' => 'Cyber Eraa',
                     'email' => 'noreply@cybereraa.com',
                     'email_verified_at' => now(),
                     'created_at' => now(),
