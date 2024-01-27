@@ -1,5 +1,5 @@
 .main-header {
-    border-bottom: 1px solid #373745;
+    border-bottom: 1px solid #b62d82;
     position: relative;
     z-index: 22;
 }
@@ -3305,7 +3305,7 @@ div#particles .slider-thumb {
   position: absolute;
   top: 15px;
   background-repeat: no-repeat;
-  width: 153px;
+  width: 155px;
   height: 36px;
 }
 

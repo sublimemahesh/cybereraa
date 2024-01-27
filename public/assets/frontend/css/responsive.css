@@ -896,7 +896,14 @@ header.main-header {
 }
 
 #particles{
-    margin-top: 60px;
+    margin-top: 0px;
+}
+
+
+div#particles .single-slider-box
+{
+  margin-top: 60px;
+  text-align: left;
 }
 
 }
@@ -942,7 +949,7 @@ div#particles .slider-thumb
       margin-left: 82px;
     }
 
-    
+
 
   }
 
