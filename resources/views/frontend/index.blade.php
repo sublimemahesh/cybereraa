@@ -43,11 +43,6 @@
                                         <a href="{{ route('register')}}">Get Started Now</a>
                                         @endguest
 
-
-
-
-
-
                                 </div>
 
                             </div>
@@ -75,7 +70,7 @@
     <!--==================================================-->
     <div class="coin-slider brand-area">
         <div class="container">
-            <div class="row top" style="background: url('{{ asset('assets/frontend/images/tranding-5.png') }}');  background-repeat: no-repeat;">
+            <div class="row top" style="background:#7c1249">
                 <div class="owl-carousel brand_list">
                     <div class="col-lg-12">
                         <div class="single-brand-box">
@@ -417,7 +412,7 @@
     <!--==================================================-->
     <!-- Start testimonial-area -->
     <!--==================================================-->
-    <div class="testimonial-area" style="background: url('{{ asset('assets/frontend/images/tranding.jpg') }}');">
+    <div class="testimonial-area" style="background:#52001e ">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -564,7 +559,7 @@
     <!--==================================================-->
     <!-- Start call-do-action-area -->
     <!--==================================================-->
-    <div class="call-do-action-area" style="background: url('{{ asset('assets/frontend/images/call-do.png') }}');">
+    <div class="call-do-action-area" style="background:#360011;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6">

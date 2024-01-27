@@ -1,6 +1,6 @@
 .coin-slider{
 
-
+    background: #640a39;
         top: -50px ;
 
     .row.top{
@@ -49,7 +49,7 @@
 
 
 .stf-bc{
-    background: url(../images/sf/bg.jpg);
+    background: url(../images/sf/bg-sf.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

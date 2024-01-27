@@ -36,7 +36,7 @@
 <body>
     <div id="loader"></div>
 
-    <div class="" >
+    <div class="auth-bgi1" >
         <div class=" auth-bgi2">
             <div class="container h-100">
             @yield('contents')

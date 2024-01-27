@@ -11,7 +11,7 @@
         </div> --}}
 
         <div class="container"  data-devil="dis:none" data-dxs="dis:block mt:-20">
-            <div class="alert alert-info  text-center">
+            <div class="alert alert-info  text-center" data-dxs="c:#fff">
                 Welcome to  Cybereraa Family.
             </div>
         </div>
@@ -366,11 +366,13 @@
                         </h6>
 
                         <div class="progress ">
-                            <div class="progress-bar bg-success progress-animated" style="width: {{ $filled_percent }}%; height:10px;" role="progressbar">
+                            <div class="progress-bar bg-progress progress-animated" style="width: 11%; height:10px;" role="progressbar">
                                 <span class="sr-only">{{ round($filled_percent,2) }}% Complete</span>
                             </div>
                         </div>
                     @endfor
+
+
                 </div>
             </div>
         </div>
@@ -383,7 +385,7 @@
                         <div class="col-xl-12" data-devil="mt:20">
                             <div>
                                 <div class="card-body d-flex align-items-center p-none">
-                                <span class="progress-right-card-icon" data-devil="bgc:#119bd2">
+                                <span class="progress-right-card-icon" data-devil="bgc:#b62d82">
                                     <img src="{{ asset('assets/backend/images/icon/investment-dash.png') }}" alt="">
                                 </span>
                                     <div data-devil='ml:22'>
@@ -399,7 +401,7 @@
                         <div class="col-xl-12" data-devil="mt:40">
                             <div>
                                 <div class="card-body d-flex align-items-center p-none">
-                                <span class="progress-right-card-icon"  data-devil="bgc:#6d6dee">
+                                <span class="progress-right-card-icon"  data-devil="bgc:#b62d82">
                                     <img src="{{ asset('assets/backend/images/icon/dollar.png') }}" alt=""/>
                                 </span>
                                     <div data-devil='ml:22'>
@@ -413,7 +415,7 @@
                         <div class="col-xl-12" data-devil="mt:40">
                             <div>
                                 <div class="card-body d-flex align-items-center p-none">
-                                <span class="progress-right-card-icon" data-devil="bgc:#2929f2">
+                                <span class="progress-right-card-icon" data-devil="bgc:#b62d82">
                                     <img src="{{ asset('assets/backend/images/icon/totalpayout.png') }}" alt=""/>
                                 </span>
                                     <div data-devil='ml:22'>
@@ -791,14 +793,14 @@
                                     <div class="col-mb-12 ">
                                         <div class="media justify-content-center dash-p-10">
                                             <span class="me-3">
-                                                <i class="la la-money-check-alt"></i>
+                                                <i class="la la-landmark"></i>
                                             </span>
                                         </div>
                                     </div>
                                     <div class="col-mb-12 ">
                                         <div class="media-body text-white dash-p">
                                             <p class="mb-1">
-                                                Indirect Sales Commission <br> <b>${{ number_format($indirect_comm_income,2) }}</b>
+                                                Indirect Sales <br> <b>${{ number_format($indirect_comm_income,2) }}</b>
                                             </p>
                                         </div>
                                     </div>
@@ -818,7 +820,7 @@
                                     </div>
                                     <div class="col-mb-12 ">
                                         <div class="media-body text-white dash-p">
-                                            <p class="mb-1">Direct Trade My Income <br> <b>${{ number_format($trade_income,2) }}</b></p>
+                                            <p class="mb-1">Direct Trade  Income <br> <b>${{ number_format($trade_income,2) }}</b></p>
                                         </div>
                                     </div>
 
@@ -833,14 +835,14 @@
                                     <div class="col-mb-12 ">
                                         <div class="media justify-content-center dash-p-10">
                                             <span class="me-3">
-                                                <i class="la la-users"></i>
+                                                <i class="la la-donate"></i>
                                             </span>
                                         </div>
                                     </div>
 
                                     <div class="col-mb-12 ">
                                         <div class="media-body text-white dash-p">
-                                            <p class="mb-1">Indirect Trade My Income <br> <b>${{ number_format($trade_team_income,2) }}</b></p>
+                                            <p class="mb-1">Indirect Trade  Income <br> <b>${{ number_format($trade_team_income,2) }}</b></p>
                                         </div>
                                     </div>
                                 </div>

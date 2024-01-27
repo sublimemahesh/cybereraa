@@ -62,8 +62,7 @@
 <!--==================================================-->
 <!-- Start brand-area -->
 <!--==================================================-->
- <div class="brand-area upper" style="background: url('{{ asset('assets/frontend/images/tranding-5.png') }}'); background-size: cover;
- background-position: center;background-repeat: no-repeat;">
+ <div class="brand-area upper" style="background:#52001e">
 	<div class="container">
 		<div class="row">
 			<div class="owl-carousel brand_list">

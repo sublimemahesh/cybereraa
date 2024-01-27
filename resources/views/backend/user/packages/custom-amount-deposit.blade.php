@@ -1,13 +1,13 @@
 <x-backend.layouts.app>
-    @section('title', 'Buy Package')
-    @section('header-title', 'Packages' )
+    @section('title', 'Investment Package')
+    @section('header-title', 'Investment Packages' )
     @section('plugin-styles')
         <link rel="stylesheet" href="{{ asset('assets/backend/vendor/select2/css/select2.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/backend/css/custom-range.css') }}">
 
     @endsection
     @section('breadcrumb-items')
-        <li class="breadcrumb-item">Buy Package</li>
+        <li class="breadcrumb-item">Investment Package</li>
     @endsection
 
 
@@ -29,7 +29,7 @@
                                 <input type="number" name="amount" step="0.1"
                                        value="{{ $min_custom_investment->value }}"
                                        min="{{ $min_custom_investment->value }}" max="{{ $max_custom_investment->value }}"
-                                       id="custom-deposit-amount" class="form-control " data-devil='fs:16'>
+                                       id="custom-deposit-amount" class="form-control " data-devil='fs:50  h:70'>
                             </div>
                         </div>
                         <div class="col-2"></div>
@@ -59,7 +59,7 @@
                         </button>
                         <br>
                         <button type="button" class="btn   mb-2" id="{{ $package->slug }}-choose"
-                                data-devil="ml:20 mt:30 bgc:#18998f c:#fff w:150">Deposit
+                                data-devil="ml:20 mt:30 bgc:#b62d82 c:#fff w:150">Deposit
                         </button>
                     </div>
 
@@ -69,7 +69,7 @@
 
 
                             <div class="col-xl-4 col-lg-3 col-sm-2">
-                                <div class="widget-stat card rounded-3" data-devil='bgc:#22223c'>
+                                <div class="widget-stat card rounded-3" data-devil='bgc:#7c1249'>
                                     <div class="card-body  p-4">
                                         <div class="col-mb-12 ">
                                             <div class="media justify-content-center dash-p-10">
@@ -94,7 +94,7 @@
 
 
                             <div class="col-xl-4 col-lg-3 col-sm-2">
-                                <div class="widget-stat card rounded-3" data-devil='bgc:#22223c'>
+                                <div class="widget-stat card rounded-3" data-devil='bgc:#7c1249'>
                                     <div class="card-body  p-4">
                                         <div class="col-mb-12 ">
                                             <div class="media justify-content-center dash-p-10">
@@ -163,7 +163,7 @@
                             </div> --}}
 
                             <div class="col-xl-4 col-lg-3 col-sm-2">
-                                <div class="widget-stat card rounded-3 " data-devil='bgc:#22223c'>
+                                <div class="widget-stat card rounded-3 " data-devil='bgc:#7c1249'>
                                     <div class="card-body  p-4">
                                         <div class="col-mb-12 ">
                                             <div class="media justify-content-center dash-p-10">
@@ -277,7 +277,7 @@
                             </div>
                         <div class="d-flex justify-content-center">
                             <div class="col-sm-6 text-center">
-                                <div class="card bg-secondary pay-method-manual-pay cursor-pointer" id="manual-pay"  data-devil="mt:12">
+                                <div class="card  pay-method-manual-pay cursor-pointer" id="manual-pay"  data-devil="mt:12 bgc:#7c1249">
                                     <div class="card-body card-link">
                                         <div class="text-center">
                                             <img src="{{ asset('assets/images/manual.png') }}" alt="logo"/>
