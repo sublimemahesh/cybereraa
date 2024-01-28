@@ -52,7 +52,7 @@ return [
 
     'super_parent_id' => 6,
 
-    'super_parent_username' => 'Cybereraa',
+    'super_parent_username' => 'CyberEraa',
 
     /*
     |--------------------------------------------------------------------------
