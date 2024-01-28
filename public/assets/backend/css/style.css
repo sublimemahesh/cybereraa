@@ -12803,14 +12803,25 @@ label {
 @media only screen and (max-width: 47.9375rem) {
     .nav-header .logo-color {
         display: block;
-        height: 35px;
+        height: 45px;
         width: 45px;
+        margin-right: 150px;
+        margin-top: 22px;
     }
 
     #nav-username-id {
         text-align: center;
         margin-top: -14px !important;
     }
+
+    .user-header{
+        top: -32px !important;
+  width: 80px;
+  right: -111px;
+    }
+
+
+
 }
 
 .nav-header .brand-title {
