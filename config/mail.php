@@ -93,7 +93,7 @@ return [
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'noreply@cybereraa.com'),
-        'name' => env('MAIL_FROM_NAME', 'cyber eraa'),
+        'name' => env('MAIL_FROM_NAME', 'cyber Eraa'),
     ],
 
     /*

@@ -1,6 +1,6 @@
 <x-backend.layouts.app>
     @section('title', 'User Dashboard')
-    @section('header-title', 'Welcome to  Cyber eraa Family')
+    @section('header-title', 'Welcome to  Cyber Eraa Family')
     @section('header-title2',Auth::user()->username)
 
     <div class="row">
@@ -12,7 +12,7 @@
 
         <div class="container"  data-devil="dis:none" data-dxs="dis:block mt:-20">
             <div class="alert alert-info  text-center" data-dxs="c:#fff">
-               <h5  data-dxs="pt:6"> Welcome to  Cyber eraa Family.</h5>
+               <h5  data-dxs="pt:6"> Welcome to  Cyber Eraa Family.</h5>
             </div>
         </div>
 

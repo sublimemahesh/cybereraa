@@ -35,7 +35,7 @@
                                 <circle cx="28" cy="28" r="28" fill="#FF5B5B"/>
                                 <circle cx="60" cy="28" r="28" fill="#F79F19"/>
                             </svg>--}}
-                            <span class="text-white d-block mt-1">cyber eraa</span>
+                            <span class="text-white d-block mt-1">cyber Eraa</span>
                         </div>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                         </div>
                         <div class="master-card">
                             <img src="{{ asset('assets/backend/images/logo/logo.png') }}" alt="logo" width="50"/>
-                            <span class="text-white d-block mt-1">cyber eraa </span>
+                            <span class="text-white d-block mt-1">cyber Eraa </span>
                         </div>
                     </div>
                 </div>

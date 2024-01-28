@@ -74,7 +74,7 @@
 			<div class="col-lg-6 col-md-6">
 				<div class="copy-left-box">
 					<div class="copy-left-title">
-						<h3>Copyright © 2023 Cyber eraa. All Rights Reserved . </h3>
+						<h3>Copyright © 2023 Cyber Eraa. All Rights Reserved . </h3>
 					</div>
 				</div>
 			</div>

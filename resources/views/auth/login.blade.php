@@ -24,8 +24,8 @@
                         <div class="col-xl-12">
                             <div class="auth-form login-bg-image ">
                                 <div class="login-bg-txt">
-                                    <h2>Cyber eraa Trading Hub <br> Secure Login</h2>
-                                    <p>Welcome to Cyber eraa , your premier destination for seamless and secure cryptocurrency trading. Unlock the door to a world of financial opportunities with our trusted login page. Safeguarding your assets while providing a user-friendly experience is our priority. Join us on the journey to financial success – log in with confidence at Cyber eraa Trading Hub.</p>
+                                    <h2>Cyber Eraa Trading Hub <br> Secure Login</h2>
+                                    <p>Welcome to Cyber Eraa , your premier destination for seamless and secure cryptocurrency trading. Unlock the door to a world of financial opportunities with our trusted login page. Safeguarding your assets while providing a user-friendly experience is our priority. Join us on the journey to financial success – log in with confidence at Cyber eraa Trading Hub.</p>
                                 </div>
                             </div>
                         </div>
