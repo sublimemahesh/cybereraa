@@ -12681,6 +12681,7 @@ label {
 @media only screen and (max-width: 63.938rem) {
     .out-footer {
         width: calc(100% - 15.725rem);
+        margin-right: 7.375rem !important;;
     }
 }
 
@@ -20762,6 +20763,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
     [data-sidebar-style="overlay"] .out-footer {
         width: calc(100% - 2.125rem);
         margin-right: 0.975rem;
+        margin-left: 0.75rem !important;
     }
 }
 
