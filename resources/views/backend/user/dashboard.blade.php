@@ -366,7 +366,7 @@
                         </h6>
 
                         <div class="progress ">
-                            <div class="progress-bar bg-progress progress-animated" style="width: 11%; height:10px;" role="progressbar">
+                            <div class="progress-bar bg-progress progress-animated" style="width:  {{ $filled_percent }}%; height:10px;" role="progressbar">
                                 <span class="sr-only">{{ round($filled_percent,2) }}% Complete</span>
                             </div>
                         </div>
