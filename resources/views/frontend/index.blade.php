@@ -1,5 +1,5 @@
 <x-frontend.layouts.app>
-    @section('title', 'Home Page | Cyber eraa')
+    @section('title', 'Home Page | Cyber Eraa')
     @section('header-title', 'Welcome')
     @section('header')
     @include('frontend.layouts.header')
@@ -165,11 +165,11 @@
                             </div>
                             <div class="section-text">
                                 <p>
-                                    Welcome to Cyber eraa – Your Portal to Crypto Prosperity! Dive into the world of digital
+                                    Welcome to Cyber Eraa – Your Portal to Crypto Prosperity! Dive into the world of digital
                                     assets with confidence. Whether you're a seasoned investor or just starting, our
                                     platform offers expert insights,
                                     tools, and a community to help you navigate and thrive in the exciting realm of
-                                    crypto investments. Explore the future of finance with Cyber eraa – where possibilities
+                                    crypto investments. Explore the future of finance with Cyber Eraa – where possibilities
                                     are limitless, and your financial
                                     success is our priority.
                                 </p>

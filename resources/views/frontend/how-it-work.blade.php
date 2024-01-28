@@ -1,5 +1,5 @@
 <x-frontend.layouts.app>
-    @section('title', 'How it work | Cyber eraa ')
+    @section('title', 'How it work | Cyber Eraa ')
     @section('header-title', 'Welcome ')
 
     @section('header')
@@ -42,7 +42,7 @@
                             <h3>Steps</h3>
                         </div>
                         <div class="main-title">
-                            <h1>Three steps Cyber eraa</h1>
+                            <h1>Three steps Cyber Eraa</h1>
                         </div>
                         <div class="section-text">
                             {{-- <p></p> --}}

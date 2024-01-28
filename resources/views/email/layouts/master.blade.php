@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <title>@yield('title') | {{ config('app.name','Cyber eraa') }}</title>
+    <title>@yield('title') | {{ config('app.name','Cyber Eraa') }}</title>
     <style type="text/css">
         body {
             width: 650px;
@@ -55,7 +55,7 @@
                                 <tbody>
                                 <tr>
                                     <td>
-                                        <img src="https://www.cybereraa.com/assets/frontend/images/logo-light.png" alt="{{ config('app.name','Cyber eraa') }}" style="height: 50px;margin-bottom: 30px;">
+                                        <img src="https://www.cybereraa.com/assets/frontend/images/logo-light.png" alt="{{ config('app.name','Cyber Eraa') }}" style="height: 50px;margin-bottom: 30px;">
                                     </td>
                                     <td style="text-align: right; color:#999">
                                         {{-- <span>{{ config('app.name','Cybereraa') }}</span> --}}
@@ -78,7 +78,7 @@
                                 <tr>
                                     <td>
                                         <p style="font-size:13px; margin:0;">
-                                            ©Copyright {{ date('Y') }} {{ config('app.name','Cyber eraa') }} All Rights Reserved
+                                            ©Copyright {{ date('Y') }} {{ config('app.name','Cyber Eraa') }} All Rights Reserved
                                         </p>
                                     </td>
                                 </tr>
