@@ -12,7 +12,7 @@
 
         <div class="container"  data-devil="dis:none" data-dxs="dis:block mt:-20">
             <div class="alert alert-info  text-center" data-dxs="c:#fff">
-                Welcome to  Cyber eraa Family.
+               <h5  data-dxs="pt:6"> Welcome to  Cyber eraa Family.</h5>
             </div>
         </div>
 
