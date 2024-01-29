@@ -12681,6 +12681,7 @@ label {
 @media only screen and (max-width: 63.938rem) {
     .out-footer {
         width: calc(100% - 15.725rem);
+        margin-right: 7.375rem !important;;
     }
 }
 
@@ -12802,14 +12803,25 @@ label {
 @media only screen and (max-width: 47.9375rem) {
     .nav-header .logo-color {
         display: block;
-        height: 35px;
+        height: 45px;
         width: 45px;
+        margin-right: 150px;
+        margin-top: 22px;
     }
 
     #nav-username-id {
         text-align: center;
         margin-top: -14px !important;
     }
+
+    .user-header{
+        top: -32px !important;
+  width: 80px;
+  right: -90px;
+    }
+
+
+
 }
 
 .nav-header .brand-title {
@@ -20762,6 +20774,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
     [data-sidebar-style="overlay"] .out-footer {
         width: calc(100% - 2.125rem);
         margin-right: 0.975rem;
+        margin-left: 0.75rem !important;
     }
 }
 
@@ -49550,7 +49563,7 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 820px;
+    height: 830px;
     position: relative;
 }
 
@@ -50036,3 +50049,11 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
 }
 
   }
+
+.coin-sider-dashboard{
+
+    background-color: transparent !important;;
+    box-shadow: var(--box-shadow-card) !important;;
+    border: 1px solid #7c1249 !important;;
+
+}

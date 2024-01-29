@@ -55,6 +55,7 @@
     color: #ffff;
     border-radius: 50px;
     transition: .5s;
+    background: #b62d82ed;
 }
 .menu-button a:hover {
     background: #b62d82;
@@ -3250,7 +3251,7 @@ div#particles .slider-area {
 }
 div#particles .slider-thumb {
     position: relative;
-    top: -16px;
+    top: -70px;
     margin-left:80px;
 }
 
@@ -3289,10 +3290,10 @@ div#particles .slider-thumb {
 .mobile-menu-btn{
 
     color: #fff;
-    content: "Cyber eraa";
+    content: "Cyber Eraa";
     font-size: 22px;
     font-weight: 600;
-    left: 168px;
+    left: 200px;
     position: absolute;
     top: 16px;
     font-family: 'Roboto';

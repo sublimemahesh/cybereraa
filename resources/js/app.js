@@ -17,7 +17,7 @@ window.Toast = Swal.mixin({
     toast: true,
     position: "top-end",
     showConfirmButton: false,
-    background: '#25164F',
+    background: '#52001e',
     timer: 3000,
     timerProgressBar: true,
     didOpen: (toast) => {
@@ -33,7 +33,7 @@ window.loader = function (text = "It may take some time...!") {
         imageUrl: APP_URL + "/assets/images/loader.svg",
         showConfirmButton: false,
         allowOutsideClick: false,
-        background: '#252a3d',
+        background: '#52001e',
     });
 }
 

@@ -1,6 +1,6 @@
 <x-backend.layouts.app>
     @section('title', 'User Dashboard')
-    @section('header-title', 'Welcome to  Cyber eraa Family')
+    @section('header-title', 'Welcome to  Cyber Eraa Family')
     @section('header-title2',Auth::user()->username)
 
     <div class="row">
@@ -12,7 +12,7 @@
 
         <div class="container"  data-devil="dis:none" data-dxs="dis:block mt:-20">
             <div class="alert alert-info  text-center" data-dxs="c:#fff">
-                Welcome to  Cyber eraa Family.
+               <h5  data-dxs="pt:6"> Welcome to  Cyber Eraa Family.</h5>
             </div>
         </div>
 
@@ -196,7 +196,7 @@
 
 
                         <li>
-                            <div class="card overflow-hidden">
+                            <div class="card overflow-hidden  coin-sider-dashboard">
                                 <div class="card-body d-flex align-items-center">
                                     <div class="me-4">
                                         <p class="mb-2 fs-13">
@@ -211,7 +211,7 @@
                         </li>
 
                         <li>
-                            <div class="card overflow-hidden">
+                            <div class="card overflow-hidden coin-sider-dashboard">
                                 <div class="card-body d-flex align-items-center">
                                     <div class="me-4">
                                         <p class="mb-2 fs-13">
@@ -226,7 +226,7 @@
                         </li>
 
                         <li>
-                            <div class="card overflow-hidden">
+                            <div class="card overflow-hidden coin-sider-dashboard">
                                 <div class="card-body d-flex align-items-center">
                                     <div class="me-4">
                                         <p class="mb-2 fs-13">
@@ -256,7 +256,7 @@
                         </li> --}}
 
                         <li>
-                            <div class="card overflow-hidden">
+                            <div class="card overflow-hidden  coin-sider-dashboard">
                                 <div class="card-body d-flex align-items-center">
                                     <div class="me-4">
                                         <p class="mb-2 fs-13">
@@ -271,7 +271,7 @@
                         </li>
 
                         <li>
-                            <div class="card overflow-hidden">
+                            <div class="card overflow-hidden coin-sider-dashboard">
                                 <div class="card-body d-flex align-items-center">
                                     <div class="me-4">
                                         <p class="mb-2 fs-13">
@@ -286,7 +286,7 @@
                         </li>
 
                         <li>
-                            <div class="card overflow-hidden">
+                            <div class="card overflow-hidden  coin-sider-dashboard">
                                 <div class="card-body d-flex align-items-center">
                                     <div class="me-4">
                                         <p class="mb-2 fs-13">
@@ -301,7 +301,7 @@
                         </li>
 
                         <li>
-                            <div class="card overflow-hidden">
+                            <div class="card overflow-hidden  coin-sider-dashboard">
                                 <div class="card-body d-flex align-items-center">
                                     <div class="me-4">
                                         <p class="mb-2 fs-13">
@@ -316,7 +316,7 @@
                         </li>
 
                         <li>
-                            <div class="card overflow-hidden">
+                            <div class="card overflow-hidden  coin-sider-dashboard">
                                 <div class="card-body d-flex align-items-center">
                                     <div class="me-4">
                                         <p class="mb-2 fs-13">
@@ -366,7 +366,7 @@
                         </h6>
 
                         <div class="progress ">
-                            <div class="progress-bar bg-progress progress-animated" style="width: 11%; height:10px;" role="progressbar">
+                            <div class="progress-bar bg-progress progress-animated" style="width:  {{ $filled_percent }}%; height:10px;" role="progressbar">
                                 <span class="sr-only">{{ round($filled_percent,2) }}% Complete</span>
                             </div>
                         </div>

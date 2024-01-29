@@ -137,8 +137,8 @@ $(function () {
 
             // Display the copied text in the span
             document.getElementById('copy-result').innerText = 'Text copied to clipboard!';
-            
-        
+
+
         });
     });
 
