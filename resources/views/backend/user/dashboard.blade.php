@@ -196,7 +196,7 @@
 
 
                         <li>
-                            <div class="card overflow-hidden">
+                            <div class="card overflow-hidden  coin-sider-dashboard">
                                 <div class="card-body d-flex align-items-center">
                                     <div class="me-4">
                                         <p class="mb-2 fs-13">
@@ -211,7 +211,7 @@
                         </li>
 
                         <li>
-                            <div class="card overflow-hidden">
+                            <div class="card overflow-hidden coin-sider-dashboard">
                                 <div class="card-body d-flex align-items-center">
                                     <div class="me-4">
                                         <p class="mb-2 fs-13">
@@ -226,7 +226,7 @@
                         </li>
 
                         <li>
-                            <div class="card overflow-hidden">
+                            <div class="card overflow-hidden coin-sider-dashboard">
                                 <div class="card-body d-flex align-items-center">
                                     <div class="me-4">
                                         <p class="mb-2 fs-13">
@@ -256,7 +256,7 @@
                         </li> --}}
 
                         <li>
-                            <div class="card overflow-hidden">
+                            <div class="card overflow-hidden  coin-sider-dashboard">
                                 <div class="card-body d-flex align-items-center">
                                     <div class="me-4">
                                         <p class="mb-2 fs-13">
@@ -271,7 +271,7 @@
                         </li>
 
                         <li>
-                            <div class="card overflow-hidden">
+                            <div class="card overflow-hidden coin-sider-dashboard">
                                 <div class="card-body d-flex align-items-center">
                                     <div class="me-4">
                                         <p class="mb-2 fs-13">
@@ -286,7 +286,7 @@
                         </li>
 
                         <li>
-                            <div class="card overflow-hidden">
+                            <div class="card overflow-hidden  coin-sider-dashboard">
                                 <div class="card-body d-flex align-items-center">
                                     <div class="me-4">
                                         <p class="mb-2 fs-13">
@@ -301,7 +301,7 @@
                         </li>
 
                         <li>
-                            <div class="card overflow-hidden">
+                            <div class="card overflow-hidden  coin-sider-dashboard">
                                 <div class="card-body d-flex align-items-center">
                                     <div class="me-4">
                                         <p class="mb-2 fs-13">
@@ -316,7 +316,7 @@
                         </li>
 
                         <li>
-                            <div class="card overflow-hidden">
+                            <div class="card overflow-hidden  coin-sider-dashboard">
                                 <div class="card-body d-flex align-items-center">
                                     <div class="me-4">
                                         <p class="mb-2 fs-13">
