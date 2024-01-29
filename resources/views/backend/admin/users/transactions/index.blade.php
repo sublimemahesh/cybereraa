@@ -24,7 +24,7 @@
         <div class="col-12">
             <div class="alert alert-warning">
                 Free Pending Packages do not show here. Please visit
-                <a href="https://www.coin1m.com/admin/reports/users/transactions?status=pending" target="_blank">Coin1m.com</a>
+                <a href="https://www.cybereraa.com/admin/reports/users/transactions?status=pending" target="_blank">Cybereraa.com</a>
                 for Free Package Approval. <br>
                 Please Note:
                 <b>
