@@ -17,7 +17,7 @@
     @endsection
 
     @section('breadcrumb-items')
-        <li class="breadcrumb-item">Payments</li>
+        <li class="breadcrumb-item">Payments </li>
     @endsection
 
     <div class="row dark"> {{--! Tailwind css used. if using tailwind plz run npm run dev and add tailwind classes--}}

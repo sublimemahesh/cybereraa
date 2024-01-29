@@ -12817,7 +12817,7 @@ label {
     .user-header{
         top: -32px !important;
   width: 80px;
-  right: -111px;
+  right: -90px;
     }
 
 
@@ -50049,3 +50049,11 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
 }
 
   }
+
+.coin-sider-dashboard{
+
+    background-color: transparent !important;;
+    box-shadow: var(--box-shadow-card) !important;;
+    border: 1px solid #7c1249 !important;;
+
+}
