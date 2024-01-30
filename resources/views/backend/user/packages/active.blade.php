@@ -13,7 +13,7 @@
     @endsection
 
     <div class="alert alert-info">
-        All package earnings will be generated after 3 working days from the date of purchase.
+        All package earnings will be generated after 5 working days from the date of purchase.
     </div>
 
     <div class="row">
