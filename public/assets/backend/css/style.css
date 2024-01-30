@@ -34494,7 +34494,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 }
 
 [data-theme-version="dark"] .alert-info {
-    background: rgba(88, 186, 215, 0.1);
+    background: #b62d82;
     border-color: #050505;
 }
 
@@ -49384,20 +49384,20 @@ div.dt-buttons .dt-button.buttons-collection {
 }
 
 .active-card-bp {
-    background-color: #1fa7ff !important;
+    background-color: #7c1249 !important;
     border-color: #1fa7ff !important;
 }
 
 .active-card-bp .card-header {
-    border-color: #1fa7ff !important;
+    border-color: #52001e !important;
 }
 
 .active-card-bp .card-footer {
-    border-color: #1fa7ff !important;
+    border-color: #7c1249 !important;
 }
 
 .active-card-bp .card-header h5 {
-    background: #707173;
+    background: #b62d82;
     color: #fff;
     padding: 5px 10px 5px 10px;
 }
