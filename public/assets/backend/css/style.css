@@ -12805,7 +12805,7 @@ label {
         display: block;
         height: 45px;
         width: 45px;
-        margin-right: 150px;
+        margin-right: 0px;
         margin-top: 22px;
     }
 
@@ -12816,8 +12816,8 @@ label {
 
     .user-header{
         top: -32px !important;
-  width: 80px;
-  right: -90px;
+        width: 80px;
+        right: -75px;
     }
 
 
@@ -20688,8 +20688,10 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
 @media only screen and (max-width: 47.9375rem) {
     [data-sidebar-style="overlay"] .deznav .metismenu > li > a {
-        font-size: 0.875rem;
+        /* font-size: 0.875rem; */
+        font-size: 1.500rem;
         padding: 0.75rem 0.875rem;
+        font-weight: bold;
     }
 
     [data-sidebar-style="overlay"] .deznav .metismenu > li > a i {
@@ -23084,7 +23086,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
 [data-sidebarbg="color_4"][data-theme-version="dark"] .menu-toggle .deznav .metismenu li > ul,
 [data-sidebarbg="color_4"] .menu-toggle .deznav .metismenu li > ul {
-    background: #111111 !important;
+    background: #951661a3 !important;
 }
 
 [data-sidebarbg="color_4"][data-theme-version="dark"] .deznav .metismenu ul a:before,
