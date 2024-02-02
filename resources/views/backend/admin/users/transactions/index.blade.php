@@ -22,7 +22,7 @@
 
     <div class="row dark"> {{--! Tailwind css used. if using tailwind plz run npm run dev and add tailwind classes--}}
         <div class="col-12">
-            <div class="alert alert-warning">
+            {{-- <div class="alert alert-warning">
                 Free Pending Packages do not show here. Please visit
                 <a href="https://www.cybereraa.com/admin/reports/users/transactions?status=pending" target="_blank">Cybereraa.com</a>
                 for Free Package Approval. <br>
@@ -31,7 +31,7 @@
                     Make sure you do not approve any misleading packages requested by users, that look like a FREE package.
                     This page does not allow any FREE Packages to be approved or rejected.
                 </b>
-            </div>
+            </div> --}}
             <div class="card">
                 <div class="card-body">
                     @include('backend.admin.users.transactions.components.report-table')
