@@ -49747,7 +49747,8 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
 }
 
 .logout-btn img {
-    width: 44px;
+    /* width: 44px; */
+    margin-top: 5px;
 }
 
 
