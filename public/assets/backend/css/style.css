@@ -50076,3 +50076,10 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
     background: #360011;
 
 }
+
+
+.btn-bdc
+{
+    background: #b62d82 !important;
+
+}

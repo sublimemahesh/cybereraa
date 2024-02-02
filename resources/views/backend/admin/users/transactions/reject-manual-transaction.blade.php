@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="{{ asset('assets/backend/css/user/choose-wallet.css') }}">
     @endsection
     @section('breadcrumb-items')
-        <li class="breadcrumb-item active">Reject withdrawal request</li>
+        <li class="breadcrumb-item active">Reject withdrawal request </li>
     @endsection
     <div class="row">
         <div class="col-xl-8 col-sm-6">
