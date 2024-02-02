@@ -1,6 +1,7 @@
 .card1 {
 
-    background-image: linear-gradient(163deg, #fe8e05 0%, #fe8e05 100%);
+    /* background-image: linear-gradient(163deg, #fe8e05 0%, #fe8e05 100%); */
+    background-image: linear-gradient(163deg, #951661 0%, #b62d82 100%);
     border-radius: 20px;
     transition: all .3s;
 }

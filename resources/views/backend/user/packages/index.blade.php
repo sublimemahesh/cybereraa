@@ -50,7 +50,7 @@
 
                     </div>
                     <div class="card-footer">
-                        <button type="button" class="btn btn-primary mb-2" id="{{ $package->slug }}-choose">Choose</button>
+                        <button type="button" class="btn btn-primary Choose-btn mb-2" id="{{ $package->slug }}-choose">Choose</button>
                     </div>
                 </div>
             </div>

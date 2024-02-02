@@ -48,7 +48,9 @@
                             Total Amount: {{ $transaction->amount + $transaction->gas_fee }}
                             <small> USDT</small>
                             <span class="cursor-pointer" id="edit-transaction-amount" data-transaction-id="{{ $transaction->id }}">
-                                <i class="fa fa-pencil fs-26"></i>
+                                <button    class="ml-2 mt-2 inline-flex items-center px-4 py-2  border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition btn-bdc">
+                                    <i class="fa fa-pencil fs-26"></i>
+                                </button>
                             </span>
                         </div>
                     </div>

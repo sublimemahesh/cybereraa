@@ -161,7 +161,7 @@
             <!--**********************************  Footer start   ***********************************-->
             <div class="footer out-footer rounded-3">
                 <div class="copyright">
-                    <p>© {{ date('Y') }} cybereraa . All Rights Reserved.</p>
+                    <p>© {{ date('Y') }} cyber eraa . All Rights Reserved.</p>
                 </div>
             </div>
             <!--********************************** Footer end  ***********************************-->
