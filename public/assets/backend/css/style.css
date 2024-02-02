@@ -18006,6 +18006,9 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 
 .deznav .metismenu li {
     position: relative;
+    padding-top: 2px;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 
 .deznav .metismenu ul {
@@ -23087,6 +23090,8 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 [data-sidebarbg="color_4"][data-theme-version="dark"] .menu-toggle .deznav .metismenu li > ul,
 [data-sidebarbg="color_4"] .menu-toggle .deznav .metismenu li > ul {
     background: #951661a3 !important;
+    margin-top: -2px;
+  border-radius: 10px;
 }
 
 [data-sidebarbg="color_4"][data-theme-version="dark"] .deznav .metismenu ul a:before,
