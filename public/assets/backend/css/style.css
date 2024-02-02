@@ -108,25 +108,25 @@
     --border-radius: 6px;
     --br-nav-tab: 6px;
     --br-input: 10px;
-    /* --bg-color: #171b26; */
-    --bg-color: #360011;
+    /* --bg-color: #360011; */
+    --bg-color: #52001e;
 
     /* --bg-color-card: #252a3d; */
-    --bg-color-card: #52001e;
+    --bg-color-card: #360011;
     --box-shadow-card: 6px 6px 6px #06080d;
     --border-radius-card: 15px;
 
-    /* --bg-color-deznav: #252a3d; */
-    --bg-color-deznav: #52001e;
+    /* --bg-color-deznav:#52001e; */
+    --bg-color-deznav:#360011;
 
     /* --bg-color-nav-header: #252a3d; */
-    --bg-color-nav-header: #52001e;
+    --bg-color-nav-header: #360011;
     --border-top-left-radius-nav-header: 6px;
     --border-top-right-radius-nav-header: 6px;
 
-    --bg-color-header: #5b0625;
+    --bg-color-header: #360011;
     /* --bg-color-header: #3a3f50; */
-    --bg-color-footer: #52001e;
+    --bg-color-footer: #360011;
 
     --bg-color-dz-side-menu: #3a3f50;
 
@@ -40974,7 +40974,7 @@ table.dataTable thead .sorting_asc {
     font-weight: 600;
     text-transform: uppercase;
     color: var(--secondary);
-    background: #828282;
+    background: #7c1249;
     border: 0;
     width: calc(100% / 3);
     position: relative;
@@ -41017,7 +41017,7 @@ table.dataTable thead .sorting_asc {
 }
 
 [data-theme-version="dark"] .buy-sell.style-1 .nav-tabs .nav-link {
-    color: #0f0e13;
+    color: #f0acd7;
 }
 
 .buy-sell.style-1 .nav-tabs .nav-link.active {
@@ -41604,7 +41604,7 @@ table.dataTable thead .sorting_asc {
 .order.nav-tabs .nav-link {
     /* border: 3px solid #020202;; */
     padding: 0.5rem 0.9rem;
-    background-color: #52001e;
+    background-color: #360011;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
     margin-right: 5px;
@@ -41625,7 +41625,7 @@ table.dataTable thead .sorting_asc {
 }
 
 .order.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-    background: #52001e;
+    background: #360011;
     color: #b62d82 !important;
     border-top-color: #b62d82;
     border-top-width: 4px;
@@ -47775,7 +47775,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 }
 
 [data-theme-version="dark"] .border {
-    border: 0.0625rem solid #707070 !important;
+    border: 0.0625rem solid #f0acd7 !important;
     border-radius: 10px;
 
 }
@@ -49352,8 +49352,14 @@ div.dt-buttons .dt-button.buttons-collection {
 .bp-price-btn {
     margin-top: 15%;
     border-radius: 20px;
-    background-color: #171b26;
+    background-color: #b62d82;
     font-size: 15px;
+
+}
+
+
+.Choose-btn{
+    background-color: #b62d82;
 
 }
 
