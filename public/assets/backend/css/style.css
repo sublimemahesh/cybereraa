@@ -49291,7 +49291,7 @@ input {
 
 
 .nav-tabs .nav-link:hover {
-    color: #7c1249 !important;
+    color: #30010f !important;
 }
 
 
@@ -49672,8 +49672,8 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
 #referral .copy-text {
     position: relative;
     padding: 05px;
-    background: #828282;;
-    border: 1px solid #828282;;
+    background: #951661;
+    border: 1px solid #951661;
     border-radius: 10px;
     display: flex;
 }
@@ -49684,7 +49684,7 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
     color: #060610;
     border: none;
     outline: none;
-    background: #828282;
+    background: #b62d82;
 }
 
 #referral .copy-text button {
