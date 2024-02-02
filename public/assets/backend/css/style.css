@@ -50064,3 +50064,8 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
     border: 1px solid #7c1249 !important;;
 
 }
+
+.welome-calert-info{
+    background: #360011;
+
+}
