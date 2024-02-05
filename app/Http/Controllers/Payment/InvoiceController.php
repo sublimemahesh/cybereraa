@@ -9,6 +9,7 @@ use App\Models\Withdraw;
 use App\Traits\HasInvoice;
 use Auth;
 use Illuminate\Http\Response;
+use Jenssegers\Agent\Agent;
 
 class InvoiceController extends Controller
 {
@@ -18,6 +19,10 @@ class InvoiceController extends Controller
     {
         $loggedUser = Auth::user();
         abort_if($loggedUser->id !== $transaction->user_id && $loggedUser->id !== $transaction->purchaser_id, 404);
+        $agent = new Agent();
+        if ($agent->isMobile()) {
+            return $this->streamPurchaseInvoice($transaction);
+        }
         return view('backend.user.transactions.invoice', compact('transaction'));
     }
 
@@ -26,7 +31,12 @@ class InvoiceController extends Controller
         $invoice = $this->getPurchaseInvoice($transaction);
         $filename = 'invoice-' . $transaction->type . '-' . $transaction->id . '.pdf';
         $output = $this->render($invoice);
+        $agent = new Agent();
+        if ($agent->isMobile()) {
+            return $this->downloadPdf($output, $filename);
+        }
         return $this->stream($output, $filename);
+
     }
 
     public function showPayoutInvoice(Withdraw $withdraw)
