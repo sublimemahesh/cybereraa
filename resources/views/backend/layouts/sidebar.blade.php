@@ -239,6 +239,9 @@
            class="" aria-expanded="false">
             <i class="bi bi-cash-stack"></i>
             <span class="nav-text"> User Earnings </span>
+            @if($counts['earningPendingActivePackages'] > 0)
+                <span class="sidebar-pending-notification">{{ $counts['earningPendingActivePackages'] }}</span>
+            @endif
         </a>
     </li>
 @endcan

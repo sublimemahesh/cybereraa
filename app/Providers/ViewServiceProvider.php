@@ -78,6 +78,8 @@ class ViewServiceProvider extends ServiceProvider
             $processing_withdrawals = Withdraw::where('status', 'PROCESSING')->count();
             $pending_n_processing_withdrawals = $pending_withdrawals + $processing_withdrawals;
             $open_support_tickets = SupportTicket::whereRelation('status', 'slug', 'open')->count();
+            $earningPendingActivePackagesDate = date('Y-m-d');
+            $earningPendingActivePackages = getPendingEarningsCount($earningPendingActivePackagesDate);
 
             $view->with('counts', compact(
                 'pending_transactions',
@@ -85,7 +87,8 @@ class ViewServiceProvider extends ServiceProvider
                 'pending_withdrawals',
                 'processing_withdrawals',
                 'pending_n_processing_withdrawals',
-                'open_support_tickets'
+                'earningPendingActivePackages',
+                'open_support_tickets',
             ));
         });
     }
