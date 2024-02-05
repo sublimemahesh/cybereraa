@@ -19,6 +19,18 @@ trait HasInvoice
         ]);
     }
 
+    public function downloadPdf($pdfContent, $filename = 'invoice.pdf'): Response
+    {
+        // Set the HTTP headers for PDF download
+        $headers = [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'attachment; filename="' . $filename . '"',
+        ];
+
+        // Return a Laravel Response with PDF content and headers
+        return response($pdfContent, 200, $headers)->header('Refresh', '5;url=' . url()->previous());
+    }
+
     private function render(StdClass $invoice): string
     {
         $view = view('invoices.template', compact('invoice'));
