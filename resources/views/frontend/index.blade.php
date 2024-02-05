@@ -55,7 +55,7 @@
                                         <img src="assets/images/crypto.png" alt="">
                                     </div> -->
                                     <div class="seps_img bounce-animate">
-                                        <img src="{{asset('assets/frontend/images/crypto-1.png') }}" alt="" />
+                                        {{-- <img src="{{asset('assets/frontend/images/crypto-1.png') }}" alt="" /> --}}
                                     </div>
                                 </div>
                             </div>

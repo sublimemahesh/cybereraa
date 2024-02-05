@@ -12816,8 +12816,8 @@ label {
 
     .user-header{
         top: -32px !important;
-        width: 80px;
-        right: -75px;
+        width: 90px;
+         right: -78px;
     }
 
 
@@ -49291,7 +49291,7 @@ input {
 
 
 .nav-tabs .nav-link:hover {
-    color: #30010f !important;
+    color: #ed14a3 !important;
 }
 
 

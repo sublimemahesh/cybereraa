@@ -100,7 +100,7 @@
         -webkit-box-align: start;
         -ms-flex-align: start;
         align-items: flex-start;
-        padding: 40px;
+        padding: 10px;
     }
 
     .plans .plan {
@@ -134,7 +134,7 @@
 @media screen and (max-width: 540px) {
     .plans .plan .plan-content img {
         margin-bottom: 20px;
-        height: 56px;
+        /* height: 56px; */
         -webkit-transition: height 0.4s;
         -o-transition: height 0.4s;
         transition: height 0.4s;
