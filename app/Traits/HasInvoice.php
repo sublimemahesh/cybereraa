@@ -27,8 +27,10 @@ trait HasInvoice
             'Content-Disposition' => 'attachment; filename="' . $filename . '"',
         ];
 
+        $redirect = route('user.packages.active');
+
         // Return a Laravel Response with PDF content and headers
-        return response($pdfContent, 200, $headers)->header('Refresh', '5;url=' . url()->previous());
+        return response($pdfContent, 200, $headers)->header('Refresh', '5;url=' . $redirect);
     }
 
     private function render(StdClass $invoice): string
