@@ -70,6 +70,17 @@
                             @endif
                             <x-jet-input-error for="name" class="mt-2"/>
                         </div>
+                        <div class="col-sm-6 mt-2 mb-3" id='select-country'>
+                            <div wire:ignore>
+                                <label class="form-label" for="country"> Country <sup class="text-danger">*</sup></label>
+                                <x-select2 id="country" name="country_id" wire:model="state.profile_info.country_id" :options="$countries" class="block mt-1 w-full form-control border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"/>
+                            </div>
+                            @error('state.country_id')
+                            <div class="main-register-from-error-alert">
+                                <strong>Required! </strong> {{ $message }}.
+                            </div>
+                            @enderror
+                        </div>
                         <div class="col-sm-6 mt-2 mb-3">
                             <div wire:ignore>
                                 <label class="form-label" for="phone">{{ __('Phone') }}<sup class="text-danger">*</sup></label>
@@ -100,17 +111,6 @@
                                     </div>
                                 @endif
                             @endif
-                        </div>
-                        <div class="col-sm-6 mt-2 mb-3" id='select-country'>
-                            <div wire:ignore>
-                                <label class="form-label" for="country"> Country <sup class="text-danger">*</sup></label>
-                                <x-select2 id="country" name="country_id" wire:model="state.profile_info.country_id" class="block mt-1 w-full form-control border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" :options="$countries"/>
-                            </div>
-                            @error('state.country_id')
-                            <div class="main-register-from-error-alert">
-                                <strong>Required! </strong> {{ $message }}.
-                            </div>
-                            @enderror
                         </div>
                         <div class="col-sm-6 mt-2 mb-3">
                             <div>
@@ -338,10 +338,21 @@
                 document.getElementById("phone").addEventListener("close:countrydropdown", function () {
                     let countryData = itl_phone.getSelectedCountryData();
                     let phone = itl_phone.getNumber(intlTelInputUtils.numberFormat.E164);
-                    __REG_STEP.set('state.phone', null);
+                    __REG_STEP.set('state.phone', phone);
                     console.log('countryChange: phone_iso: ', countryData)
                 });
 
+                document.getElementById('country').onchange = function (e) {
+                    let selectedISO = e.target.options[e.target.selectedIndex].getAttribute('data-value');
+                    let currentPhoneISO = itl_phone.getSelectedCountryData().iso2
+
+                    let currentPhoneVal = itl_phone.getNumber(intlTelInputUtils.numberFormat.E164)
+
+                    let phone_iso = currentPhoneVal.length ? currentPhoneISO : selectedISO
+
+                    itl_phone.setCountry(phone_iso)
+
+                }
                 Livewire.hook('element.updated', (message, component) => {
                     //console.log(component.serverMemo.data)
                     try {

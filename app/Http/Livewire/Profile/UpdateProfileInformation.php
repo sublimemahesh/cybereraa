@@ -29,6 +29,8 @@ class UpdateProfileInformation extends Component
     public $otp = null;
     public $otpSent = false;
 
+    public string $phone_iso = 'us';
+
 
     public function mount()
     {
