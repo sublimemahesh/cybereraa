@@ -235,7 +235,7 @@
 
 @can('earnings.viewAny')
     <li>
-        <a href="{{ route('admin.earnings.index', ['status' => 'received','date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .' to '.Carbon::now()->endOfMonth()->format('Y-m-d')]) }}"
+        <a href="{{ route('admin.earnings.index', ['status' => 'received',/*'date-range' => Carbon::now()->firstOfMonth()->format('Y-m-d') .' to '.Carbon::now()->endOfMonth()->format('Y-m-d')*/]) }}"
            class="" aria-expanded="false">
             <i class="bi bi-cash-stack"></i>
             <span class="nav-text"> User Earnings </span>

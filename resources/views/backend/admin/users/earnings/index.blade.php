@@ -19,7 +19,7 @@
             @if(request()->routeIs('admin.earnings.index'))
                 @can('generate_daily_package_earnings')
                     <button id="calculate-profit" class="mb-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
-                        Calculate Profit ({{ date('Y-m-d') }})
+                        Calculate Profit
                     </button>
                 @endcan
                 {{--@can('generate_daily_commission')
@@ -28,13 +28,21 @@
                     </button>
                 @endcan--}}
             @endif
-            @if(request()->routeIs('admin.staking.earnings.index'))
+            @if($earningPendingActivePackages > 0)
+                <div class="alert alert-outline-warning">
+                    Please Run the CALCULATE PROFIT for <strong class="text-info">{{ date('F j, Y', strtotime($earningPendingActivePackagesDate)) }}.</strong>
+                    The system automatically releases earnings through a scheduled job (12:01 AM - Time zone in Sri Lanka (GMT+5:30)). <br>
+                    But there are some remaining earnings that need attention,
+                    there are currently <strong class="text-info">{{ $earningPendingActivePackages }}</strong> earnings left for manual release.
+                </div>
+            @endif
+            {{--@if(request()->routeIs('admin.staking.earnings.index'))
                 @can('release_staking_interest')
                     <button id="release-staking-interest" class="mb-3 ml-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
                         Release Staking Interest ({{ date('Y-m-d') }})
                     </button>
                 @endcan
-            @endif
+            @endif--}}
         </div>
         <div class="col-12">
             <div class="card">

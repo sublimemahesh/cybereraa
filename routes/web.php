@@ -65,6 +65,13 @@ Route::group(['middleware' => 'maintenance_mode'], function () {
     });
 });
 
+Route::get('server-datetime', function () {
+    return response()->json([
+        "date: date('Y-m-d H:i:s')" => date('Y-m-d H:i:s'),
+        "sql: SELECT NOW()" => DB::selectOne('SELECT NOW() as sql_datetime')->sql_datetime,
+        "carbon: Carbon::now()->format('Y-m-d H:i:s')" => Carbon::now()->format('Y-m-d H:i:s')
+    ]);
+});
 
 Route::get('test', function () {
 //    $parent = \App\Models\User::find(6);
@@ -252,6 +259,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
             // Earnings
             Route::get('users/earnings', 'Admin\EarningController@index')->name('earnings.index');
             Route::post('users/earnings/calculate-profit', 'Admin\EarningController@calculateProfit');
+            Route::post('users/earnings/get-pending-earnings', 'Admin\EarningController@getPendingEarnings');
             Route::post('users/rewards/calculate-bonus', 'Admin\EarningController@issueMonthlyRankBonuses');
             Route::post('users/earnings/calculate-commission', 'Admin\EarningController@calculateCommission');
             Route::post('users/earnings/release-staking-interest', 'Admin\EarningController@releaseStakingInterest');
