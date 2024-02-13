@@ -129,6 +129,17 @@
                                 </div>
                             </div>
                             <div class="col-sm-6">
+                                <div class="card bg-secondary pay-method-coinpayment cursor-pointer" id="coinpayment">
+                                    <div class="card-body card-link">
+                                        <div class="text-center">
+                                            <img src="{{ asset('assets/images/coinpayments.png') }}" alt="logo" width="64" height="64"/>
+                                            <div class="mb-3"></div>
+                                            <h6>CoinPayments</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
                                 <div class="card bg-secondary pay-method-manual-pay cursor-pointer" id="manual-pay">
                                     <div class="card-body card-link">
                                         <div class="text-center">

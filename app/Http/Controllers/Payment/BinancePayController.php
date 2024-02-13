@@ -14,6 +14,7 @@ use CryptoPay\Binancepay\BinancePay;
 use DB;
 use Exception;
 use Gate;
+use Hexters\CoinPayment\CoinPayment;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -36,7 +37,7 @@ class BinancePayController extends Controller
                 $request->get('package') !== 'custom' ? 'exists:packages,slug' : 'in:custom',
             ],
             'amount' => ['nullable', 'required_if:package,custom'],
-            'method' => ['required', 'in:manual'],/*binance,main,topup,*/
+            'method' => ['required', 'in:manual,coin_payment'],/*binance,main,topup,*/
             'proof_document' => ['required_if:method,manual', 'nullable', 'image' /*'file:pdf,jpg,jpeg,png'*/],
             'transaction_id' => ['required_if:method,manual', 'nullable', 'string', 'max:255'],
             'purchase_for' => [
@@ -134,45 +135,104 @@ class BinancePayController extends Controller
                         "lastName" => Arr::last(explode(" ", $user->name))
                     ]
                 ];
+                $data['trx_id'] = $transaction->id;
+                $data['merchant_trade_no'] = $this->generateUniqueCode();
+
+                $transaction->merchant_trade_no = $data['merchant_trade_no'];
+
+                if (strtolower($transaction->pay_method) === 'binance') { // crypto
+                    // dd(env("BINANCE_SERVICE_WEBHOOK_URL"));
+                    $binancePay = new BinancePay("binancepay/openapi/v2/order");
+
+                    $result = $binancePay->createOrder($data);
+
+                    $transaction->create_order_request = json_encode($binancePay->getRequest(), JSON_THROW_ON_ERROR);
+
+                    if ($result['status'] === 'SUCCESS') {
+                        $transaction->create_order_response = json_encode($result['data'], JSON_THROW_ON_ERROR);
+                        $transaction->save();
+
+                        $json['status'] = true;
+                        $json['message'] = 'Request successful';
+                        $json['icon'] = 'success'; // warning | info | question | success | error
+                        $json['data'] = $result['data'];
+                        return response()->json($json);
+                    }
+
+                    $transaction->save();
+                    throw new \RuntimeException($result['errorMessage'], $result['code']);
+                }
+
+                $req_data = [
+                    "orderAmount" => $data['order_amount'],
+                    "currency" => 'USDT',
+                    "goods" => [
+                        "referenceGoodsId" => $data['package_id'],
+                        "goodsName" => $data['goods_name'],
+                        "goodsDetail" => $data['goods_detail'] ?? null
+                    ],
+                    "buyer" => $data['buyer']
+                ];
+
+                $res_data = [
+                    'bizType' => 'PAY',
+                    'data' => '{"productName":"' . $package->name . '","transactTime":' . (time() * 1000) . ',"totalFee":' . $transaction_amount . ',"currency":"' . $transaction->currency . '"}',
+                ];
+
+                $transaction->create_order_request = json_encode($req_data, JSON_THROW_ON_ERROR);
+
+                if (strtolower($transaction->pay_method) === 'manual') {
+                    $validated_file = Validator::make(
+                        [
+                            'proof_document' => request()->file('proof_document'),
+                            'transaction_id' => request()->input('transaction_id')
+                        ],
+                        [
+                            'proof_document' => 'required|file:pdf,jpg,jpeg,png',
+                            'transaction_id' => 'required|unique:transactions,transaction_id',
+                        ]
+                    )->validate();
+                    $file = $validated_file['proof_document'];
+                    $proof_documentation = Str::limit(Str::slug($file->getClientOriginalName()), 50) . "-" . $file->hashName();
+                    $file->storeAs('user/manual-purchase', $proof_documentation);
+
+                    $res_data['bizStatus'] = 'PAY_PENDING';
+
+                    $transaction->status = 'PENDING';
+                    $transaction->transaction_id = $validated_file['transaction_id'];
+                    $transaction->proof_document = $proof_documentation;
+                    $transaction->status_response = json_encode($res_data, JSON_THROW_ON_ERROR);
+                    $transaction->save();
+
+                    $json['status'] = true;
+                    $json['message'] = 'Request successful';
+                    $json['icon'] = 'success'; // warning | info | question | success | error
+                    $json['data'] = ['checkoutUrl' => URL::signedRoute('user.transactions.invoice', $transaction)];
+                    return response()->json($json);
+                }
 
                 if ($transaction->type === 'wallet') { // 'main', 'topup', 'manual'
 
-                    $req_data = [
-                        "orderAmount" => $data['order_amount'],
-                        "currency" => 'USDT',
-                        "goods" => [
-                            "referenceGoodsId" => $data['package_id'],
-                            "goodsName" => $data['goods_name'],
-                            "goodsDetail" => $data['goods_detail'] ?? null
-                        ],
-                        "buyer" => $data['buyer']
-                    ];
+                    $wallet_balance_check = $purchased_by->wallet->balance < $transaction_amount;
+                    $withdraw_limit_check = $purchased_by->wallet->withdraw_limit < $transaction_amount;
 
-                    $res_data = [
-                        'bizType' => 'PAY',
-                        'data' => '{"productName":"' . $package->name . '","transactTime":' . (time() * 1000) . ',"totalFee":' . $transaction_amount . ',"currency":"' . $transaction->currency . '"}',
-                    ];
+                    if (($wallet_balance_check || $withdraw_limit_check) && strtolower($transaction->pay_method) === 'main') {
+//                        if ($wallet_balance_check || $withdraw_limit_check) {
+                        $res_data['bizStatus'] = 'PAY_CLOSED';
 
-                    $transaction->create_order_request = json_encode($req_data, JSON_THROW_ON_ERROR);
+                        $transaction->status = 'CANCELED';
+                        $transaction->status_response = json_encode($res_data, JSON_THROW_ON_ERROR);
+                        $transaction->save();
 
-                    if (strtolower($transaction->pay_method) === 'main') {
-                        $wallet_balance_check = $purchased_by->wallet->balance < $transaction_amount;
-                        $withdraw_limit_check = $purchased_by->wallet->withdraw_limit < $transaction_amount;
-                        if ($wallet_balance_check || $withdraw_limit_check) {
-                            $res_data['bizStatus'] = 'PAY_CLOSED';
-
-                            $transaction->status = 'CANCELED';
-                            $transaction->status_response = json_encode($res_data, JSON_THROW_ON_ERROR);
-                            $transaction->save();
-
-                            $json['status'] = false;
-                            $json['message'] = $wallet_balance_check ? "Not enough funds in wallet to proceed!" : "Withdraw Limit exceeded!";
-                            $json['icon'] = 'error'; // warning | info | question | success | error
-                            return response()->json($json, Response::HTTP_UNPROCESSABLE_ENTITY);
-                        }
+                        $json['status'] = false;
+                        $json['message'] = $wallet_balance_check ? "Not enough funds in wallet to proceed!" : "Withdraw Limit exceeded!";
+                        $json['icon'] = 'error'; // warning | info | question | success | error
+                        return response()->json($json, Response::HTTP_UNPROCESSABLE_ENTITY);
+//                        }
                     }
 
                     if ($purchased_by->wallet->topup_balance < $transaction_amount && (strtolower($transaction->pay_method) === 'topup')) {
+
                         $res_data['bizStatus'] = 'PAY_CLOSED';
 
                         $transaction->status = 'CANCELED';
@@ -185,35 +245,6 @@ class BinancePayController extends Controller
                         return response()->json($json, Response::HTTP_UNPROCESSABLE_ENTITY);
                     }
 
-                    if (strtolower($transaction->pay_method) === 'manual') {
-                        $validated_file = Validator::make(
-                            [
-                                'proof_document' => request()->file('proof_document'),
-                                'transaction_id' => request()->input('transaction_id')
-                            ],
-                            [
-                                'proof_document' => 'required|file:pdf,jpg,jpeg,png',
-                                'transaction_id' => 'required|unique:transactions,transaction_id',
-                            ]
-                        )->validate();
-                        $file = $validated_file['proof_document'];
-                        $proof_documentation = Str::limit(Str::slug($file->getClientOriginalName()), 50) . "-" . $file->hashName();
-                        $file->storeAs('user/manual-purchase', $proof_documentation);
-
-                        $res_data['bizStatus'] = 'PAY_PENDING';
-
-                        $transaction->status = 'PENDING';
-                        $transaction->transaction_id = $validated_file['transaction_id'];
-                        $transaction->proof_document = $proof_documentation;
-                        $transaction->status_response = json_encode($res_data, JSON_THROW_ON_ERROR);
-                        $transaction->save();
-
-                        $json['status'] = true;
-                        $json['message'] = 'Request successful';
-                        $json['icon'] = 'success'; // warning | info | question | success | error
-                        $json['data'] = ['checkoutUrl' => URL::signedRoute('user.transactions.invoice', $transaction)];
-                        return response()->json($json);
-                    }
 
                     DB::transaction(function () use ($activateTransaction, $transaction, $purchased_by, $transaction_amount) {
 
@@ -245,37 +276,53 @@ class BinancePayController extends Controller
                     return response()->json($json);
                 }
 
-                if (strtolower($transaction->pay_method) === 'binance') { // crypto
-                    // dd(env("BINANCE_SERVICE_WEBHOOK_URL"));
-                    $binancePay = new BinancePay("binancepay/openapi/v2/order");
+                if (strtolower($transaction->pay_method) === 'coin_payment') {
 
-                    $data['trx_id'] = $transaction->id;
-                    $data['merchant_trade_no'] = $this->generateUniqueCode();
+                    $res_data['bizStatus'] = 'PAY_PENDING';
 
-                    $result = $binancePay->createOrder($data);
-
-                    $transaction->merchant_trade_no = $data['merchant_trade_no'];
-                    $transaction->create_order_request = json_encode($binancePay->getRequest(), JSON_THROW_ON_ERROR);
-
-                    if ($result['status'] === 'SUCCESS') {
-                        $transaction->create_order_response = json_encode($result['data'], JSON_THROW_ON_ERROR);
-                        $transaction->save();
-
-                        $json['status'] = true;
-                        $json['message'] = 'Request successful';
-                        $json['icon'] = 'success'; // warning | info | question | success | error
-                        $json['data'] = $result['data'];
-                        return response()->json($json);
-                    }
-
+                    $transaction->status = 'PENDING';
+//                    $transaction->transaction_id = coinpayment_transactions->txn_id;
+                    $transaction->status_response = json_encode($res_data, JSON_THROW_ON_ERROR);
                     $transaction->save();
-                    throw new \RuntimeException($result['errorMessage'], $result['code']);
+
+                    $coinPayment['order_id'] = $transaction->id; // invoice number
+                    $coinPayment['amountTotal'] = (float)$transaction_amount;
+                    $coinPayment['note'] = $package->name;
+                    $coinPayment['buyer_name'] = $user->name;
+                    $coinPayment['buyer_email'] = $user->email;
+                    $coinPayment['redirect_url'] = URL::signedRoute('user.transactions.invoice', $transaction); // When the Transaction was completed
+                    $coinPayment['cancel_url'] = URL::signedRoute('user.transactions.invoice', $transaction); // When a user clicks cancel a link
+
+                    $coinPayment['items'][] = [
+                        'itemDescription' => "$package->name Amount",
+                        'itemPrice' => (float)$transaction->amount, // USD
+                        'itemQty' => 1,
+                        'itemSubtotalAmount' => (float)$transaction->amount // USD
+                    ];
+                    $coinPayment['items'][] = [
+                        'itemDescription' => "{$package->name} Gas Fee",
+                        'itemPrice' => (float)$transaction->gas_fee, // USD
+                        'itemQty' => 1,
+                        'itemSubtotalAmount' => (float)$transaction->gas_fee // USD
+                    ];
+
+                    $coinPayment['payload'] = [
+                        'transaction' => $transaction->toArray()
+                    ];
+
+                    $url = CoinPayment::generatelink($coinPayment);
+
+                    $json['status'] = true;
+                    $json['message'] = 'Request successful';
+                    $json['icon'] = 'success'; // warning | info | question | success | error
+                    $json['data'] = ['checkoutUrl' => $url];
+                    return response()->json($json);
                 }
 
                 throw new \RuntimeException("Something wrong with your payment method!");
             });
         } catch (Throwable $e) {
-            throw $e;
+            //throw $e;
             $json['status'] = false;
             $json['message'] = $e->getMessage();
             $json['code'] = $e->getCode();

@@ -32,6 +32,10 @@ class Kernel extends ConsoleKernel
 
         // $schedule->command('remind:payment')->fridays()->at('01:00')->withoutOverlapping();
 
+        $schedule->command('coinpayment:ipn')->everyFiveMinutes()->withoutOverlapping();
+
+        $schedule->command('coinpayment:remove')->everyFiveMinutes()->withoutOverlapping();
+
         $schedule->command('queue:work', ['--stop-when-empty'])->everyMinute()->withoutOverlapping();
 
     }

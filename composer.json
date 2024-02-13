@@ -19,6 +19,7 @@
     "dyrynda/laravel-cascade-soft-deletes": "^4.2",
     "genealabs/laravel-caffeine": "^9.0",
     "guzzlehttp/guzzle": "^7.2",
+    "hexters/coinpayment": "^3.0",
     "intervention/image": "^3.2",
     "jenssegers/agent": "^2.6",
     "laravel/framework": "^9.19",

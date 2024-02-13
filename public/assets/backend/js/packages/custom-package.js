@@ -30,6 +30,7 @@ $(function () {
     const wallet_method_element = `#wallet-custom`;
     const topup_wallet_method_element = `#topup-wallet-custom`;
     const binancepay_method_element = `#binance-pay-custom`;
+    const coinpayment_method_element = `#coinpayment-custom`;
     const manual_method_element = `#manual-pay-custom`;
 
     $(document).on("click", element, function (e) {
@@ -38,6 +39,7 @@ $(function () {
         $(".pay-method-topup-wallet").attr('id', `topup-wallet-custom`)
         $(".pay-method-manual-pay").attr('id', `manual-pay-custom`)
         $(".pay-method-binance-pay").attr('id', `binance-pay-custom`)
+        $(".pay-method-coinpayment").attr('id', `coinpayment-custom`)
         payMethodChooseModal.show();
     });
 
@@ -53,6 +55,11 @@ $(function () {
         payMethodChooseModal.hide()
         tempBinancePay.show()
         //generateInvoice("binance", 'custom')
+    });
+
+    $(document).on('click', coinpayment_method_element, function () {
+        payMethodChooseModal.hide()
+        generateInvoice("coin_payment", 'custom')
     });
 
     $(document).on('click', manual_method_element, function () {
