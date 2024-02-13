@@ -215,7 +215,7 @@
                                 you want to purchase the package If you want to purchase a package for
                                 <code>someone else</code>.
                             </p> --}}
-                              <p>
+                            <p>
                                 Please select the payment method to continue the process.
                             </p>
                             <div>
@@ -275,19 +275,32 @@
                                     </div>
                                 </div>
                             </div>
-                        <div class="d-flex justify-content-center">
-                            <div class="col-sm-6 col-12 text-center">
-                                <div class="card  pay-method-manual-pay cursor-pointer" id="manual-pay"  data-devil="mt:12 bgc:#7c1249">
-                                    <div class="card-body card-link">
-                                        <div class="text-center">
-                                            <img src="{{ asset('assets/images/manual.png') }}" alt="logo"/>
-                                            <div class="mb-3"></div>
-                                            <h6>MANUAL PAY</h6>
+                            <div class="d-flex justify-content-center">
+                                <div class="col-sm-6 text-center">
+                                    <div class="card bg-secondary pay-method-coinpayment cursor-pointer" id="coinpayment" data-devil="mt:12">
+                                        <div class="card-body card-link">
+                                            <div class="text-center">
+                                                <img src="{{ url('assets/images/coinpayments.png') }}" alt="logo" width="64" height="64"/>
+                                                <div class="mb-3"></div>
+                                                <h6>CoinPayments</h6>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                            <div class="d-flex justify-content-center">
+                                <div class="col-sm-6 col-12 text-center">
+                                    <div class="card  pay-method-manual-pay cursor-pointer" id="manual-pay" data-devil="mt:12 bgc:#7c1249">
+                                        <div class="card-body card-link">
+                                            <div class="text-center">
+                                                <img src="{{ asset('assets/images/manual.png') }}" alt="logo"/>
+                                                <div class="mb-3"></div>
+                                                <h6>MANUAL PAY</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
