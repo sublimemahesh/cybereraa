@@ -12,6 +12,7 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
     protected $except = [
-        '/coinpayment/ipn'
+        '/coinpayment/ipn',
+        '/sumsub/kyc/webhook',
     ];
 }
