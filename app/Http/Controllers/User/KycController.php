@@ -21,8 +21,12 @@ class KycController extends Controller
 {
     public function index(Request $request)
     {
-        $kycs = Auth::user()->profile->kycs;
-        return view('backend.user.kyc.index', compact('kycs'));
+        if (Auth::user()->active_date === null) {
+            return redirect()->route('user.packages.index')->with('warning', 'Please Purchase Package before requesting KYC verification!');
+        }
+//        $kycs = Auth::user()->profile->kycs;
+//        return view('backend.user.kyc.index', compact('kycs'));
+        return view('backend.user.kyc.sumsub-kyc');
     }
 
     /**

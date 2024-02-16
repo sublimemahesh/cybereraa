@@ -74,6 +74,7 @@ Route::get('server-datetime', function () {
 });
 
 Route::get('test', function () {
+    return view('test');
 //    $parent = \App\Models\User::find(6);
 //    $descendants = $parent
 //        //->descendants()
@@ -101,6 +102,7 @@ Route::get('test', function () {
 
 Route::get('payments/binancepay/response', 'Payment\BinancePayController@response');
 Route::get('payments/binancepay/fallback', 'Payment\BinancePayController@fallback');
+Route::post('sumsub/kyc/webhook', 'SumsubClientController@webhook');
 
 Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream.auth_session'), 'verified', 'active_user', 'has_any_role']], function () {
 
@@ -359,6 +361,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::get('dashboard', 'User\DashboardController@index')->name('dashboard');
 
         // KYC
+        Route::post('sumsub/accessTokens', 'SumsubClientController@getAccessToken')->name('sumsub.accessTokens');
         Route::get('kyc', 'User\KycController@index')->name('kyc.index');
         Route::get('kyc/entry/{kyc}', 'User\KycController@show')->name('kyc.show');
         Route::post('kyc/new-entry', 'User\KycController@storeNewEntry');

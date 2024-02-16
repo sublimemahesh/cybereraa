@@ -203,8 +203,8 @@ return [
         CryptoPay\Binancepay\BinancepayServiceProvider::class,
         Haruncpi\LaravelUserActivity\ServiceProvider::class,
 
-        App\Providers\ViewServiceProvider::class
-
+        App\Providers\ViewServiceProvider::class,
+        App\Providers\SumsubServiceProvider::class,
     ],
 
     /*
