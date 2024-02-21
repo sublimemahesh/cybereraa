@@ -8,6 +8,12 @@
                     <span class="nav-text">Dashboard</span>
                 </a>
             </li>
+            <li>
+                <a href="{{ route('user.calendar.events') }}" class="rounded-1" aria-expanded="false">
+                    <i class="bi bi-calendar-event"></i>
+                    <span class="nav-text">Calendar</span>
+                </a>
+            </li>
 
             {{-- @if(!App\Models\SupportTicket::whereRelation('category', 'slug', 'reschedule-plan')->where('user_id', Auth::user()->id)->exists())
                 <li>

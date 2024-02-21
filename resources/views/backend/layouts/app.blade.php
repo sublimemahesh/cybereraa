@@ -29,12 +29,10 @@
 
         <link href="{{ asset('assets/backend/vendor/swiper/css/swiper-bundle.min.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/backend/vendor/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet">
-        
+
         <link href="{{ asset('assets/backend/css/style.css') }}" rel="stylesheet">
 
         @yield('plugin-styles')
-        <!-- Style css -->
-        <link href="{{ asset('assets/backend/css/style.css?7654444567') }}" rel="stylesheet">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" rel="stylesheet">

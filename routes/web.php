@@ -360,6 +360,11 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
     Route::group(["prefix" => "user", 'middleware' => ['role:user'/*, 'mobile_verified'*/], "as" => 'user.'], function () {
         Route::get('dashboard', 'User\DashboardController@index')->name('dashboard');
 
+        // Calendar Events
+        Route::get('calendar/events', 'User\CalendarController@index')->name('calendar.events');
+        Route::post('calendar/{date}/events/new', 'User\CalendarController@addNewEvents')->name('calendar.add-new-events');
+        Route::post('calendar/{date}/events', 'User\CalendarController@getEvents')->name('calendar.get-events');
+
         // KYC
         Route::post('sumsub/accessTokens', 'SumsubClientController@getAccessToken')->name('sumsub.accessTokens');
         Route::get('kyc', 'User\KycController@index')->name('kyc.index');
