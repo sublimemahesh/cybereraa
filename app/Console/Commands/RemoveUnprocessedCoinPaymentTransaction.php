@@ -36,7 +36,7 @@ class RemoveUnprocessedCoinPaymentTransaction extends Command
 
         $timestampThreshold = Carbon::now()->subHours(2)->subMinutes(30);
 
-        Log::channel('daily')->notice("coinpayment:remove started | timestampThreshold: {$timestampThreshold}");
+        Log::channel('coinpayment')->notice("coinpayment:remove started | timestampThreshold: {$timestampThreshold}");
 
         Transaction::where('pay_method', 'COIN_PAYMENT')
             ->where('status', 'PENDING')
@@ -49,14 +49,14 @@ class RemoveUnprocessedCoinPaymentTransaction extends Command
             ->chunkById(100, function ($transactions) {
                 foreach ($transactions as $transaction) {
 
-                    Log::channel('daily')->notice("Deleting transactions: {$transaction->id}");
+                    Log::channel('coinpayment')->notice("Deleting transactions: {$transaction->id}");
                     $this->info("Deleting transactions: {$transaction->id}");
 
                     $transaction->delete();
                 }
             });
 
-        Log::channel('daily')->notice('Finished coinpayment transaction remove check');
+        Log::channel('coinpayment')->notice('Finished coinpayment transaction remove check');
 
         $this->info('Finished coinpayment transaction remove check');
         return CommandAlias::SUCCESS;

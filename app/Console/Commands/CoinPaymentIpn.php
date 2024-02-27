@@ -30,21 +30,21 @@ class CoinPaymentIpn extends Command
      */
     public function handle()
     {
-        Log::channel('daily')->notice('coinpayment:ipn Starting coinpayment check');
+        Log::channel('coinpayment')->notice('coinpayment:ipn Starting coinpayment check');
         $this->info('Starting coinpayment check');
 
         CoinPayment::gettransactions()->whereIn('status', [0, 1])
             ->chunkById(100, function ($transactions) {
                 foreach ($transactions as $transaction) {
 
-                    Log::channel('daily')->notice("coinpayment check: {$transaction->txn_id}");
+                    Log::channel('coinpayment')->notice("coinpayment check: {$transaction->txn_id}");
                     $this->info("coinpayment check: {$transaction->txn_id}");
 
                     CoinPayment::getstatusbytxnid($transaction->txn_id);
                 }
             });
 
-        Log::channel('daily')->notice('Finished coinpayment check');
+        Log::channel('coinpayment')->notice('Finished coinpayment check');
         $this->info('Finished coinpayment check');
         return CommandAlias::SUCCESS;
     }
