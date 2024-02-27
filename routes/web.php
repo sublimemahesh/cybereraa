@@ -325,6 +325,9 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
             Route::get('commissions', 'commissions')->name('commissions.index');
             Route::patch('commissions', 'saveCommissions');
 
+            Route::get('site-settings', 'siteSettings')->name('site-settings');
+            Route::patch('site-settings', 'siteSettings');
+
             Route::get('daily-leverages', 'payablePercentage')->name('daily-leverages');
             Route::patch('daily-leverages', 'saveLeverages');
         });

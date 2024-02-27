@@ -637,4 +637,43 @@ class StrategyController extends Controller
         session()->flash('info', $json['message']);
         return response()->json($json);
     }
+
+    /**
+     * @throws AuthorizationException
+     * @throws Throwable
+     */
+    public function siteSettings(Request $request)
+    {
+        $this->authorize('update', Strategy::class);
+
+        if ($request->wantsJson()) {
+
+            $validated = Validator::make($request->all(), [
+                'automate_kyc' => ['boolean'],
+            ])->validate();
+
+            DB::transaction(function () use ($validated) {
+
+                Strategy::updateOrCreate(
+                    ['name' => 'automate_kyc'],
+                    [
+                        'value' => $validated['automate_kyc'] ?? false,
+                        'comment' => 'Use Automated KYC verification'
+                    ]
+                );
+
+            });
+
+            $json['status'] = true;
+            $json['message'] = 'Site Settings strategy saved!';
+            $json['icon'] = 'success'; // warning | info | question | success | error
+            $json['data'] = $validated;
+
+            session()->flash('info', $json['message']);
+            return response()->json($json);
+        }
+
+        $automateKyc = (bool)Strategy::where('name', 'automate_kyc')->firstOr(fn() => new Strategy(['value' => 0]))->value;
+        return view('backend.admin.strategies.site-settings.index', compact('automateKyc'));
+    }
 }

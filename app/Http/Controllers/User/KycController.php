@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Kyc;
 use App\Models\KycDocument;
 use App\Models\Profile;
+use App\Models\Strategy;
 use Auth;
 use Carbon;
 use DB;
@@ -21,12 +22,18 @@ class KycController extends Controller
 {
     public function index(Request $request)
     {
-        if (Auth::user()->active_date === null) {
-            return redirect()->route('user.packages.index')->with('warning', 'Please Purchase Package before requesting KYC verification!');
+        $automateKyc = (bool)Strategy::where('name', 'automate_kyc')->firstOr(fn() => new Strategy(['value' => 0]))->value;
+
+        if ($automateKyc) {
+            if (Auth::user()->active_date === null) {
+                return redirect()->route('user.packages.index')->with('warning', 'Please Purchase Package before requesting KYC verification!');
+            }
+            return view('backend.user.kyc.sumsub-kyc');
         }
-//        $kycs = Auth::user()->profile->kycs;
-//        return view('backend.user.kyc.index', compact('kycs'));
-        return view('backend.user.kyc.sumsub-kyc');
+
+        $kycs = Auth::user()->profile->kycs;
+        return view('backend.user.kyc.index', compact('kycs'));
+
     }
 
     /**

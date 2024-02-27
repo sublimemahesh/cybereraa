@@ -16,6 +16,14 @@ class StrategySeeder extends Seeder
     {
         DB::table('strategies')->upsert([
             [
+                'name' => 'automate_kyc',
+                'data_type' => 'int',
+                'value' => 0,
+                'comment' => 'Use Automated KYC verification',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
                 'name' => 'payout_transfer_fee',
                 'data_type' => 'double',
                 'value' => 5,

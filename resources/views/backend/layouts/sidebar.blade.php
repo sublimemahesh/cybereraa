@@ -364,6 +364,9 @@
         </a>
         <ul aria-expanded="false">
             <li>
+                <a href="{{ route('admin.strategies.site-settings') }}">Site Settings</a>
+            </li>
+            <li>
                 <a href="{{ route('admin.strategies.withdrawal.index') }}">Withdrawal</a>
             </li>
             <li>
