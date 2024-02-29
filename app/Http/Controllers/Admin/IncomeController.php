@@ -83,7 +83,7 @@ class IncomeController extends Controller
 
         $types = [
             'rank_bonus' => 'BONUS',
-            'rank_gift' => 'GIFT',
+//            'rank_gift' => 'GIFT',
         ];
 
         return view('backend.admin.users.incomes.rewards', compact('types'));

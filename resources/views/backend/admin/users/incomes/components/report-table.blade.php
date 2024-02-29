@@ -96,7 +96,7 @@
             <th>REC ID</th>
             <th>USER</th>
             <th>TYPE</th>
-            <th>NEXT PAY</th>
+            {{--<th>NEXT PAY</th>--}}
             <th>STATUS</th>
             <th>CREATED AT</th>
             <th>REMARK</th>
@@ -108,7 +108,7 @@
         <tr>
             <th></th>
             <th></th>
-            <th></th>
+            {{--<th></th>--}}
             <th></th>
             <th></th>
             <th></th>

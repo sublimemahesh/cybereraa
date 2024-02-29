@@ -24,12 +24,12 @@ class CalendarController extends Controller
             'date' => 'required|date|date_format:Y-m-d',
             'title' => 'required|string|max:255',
             'start_time' => 'required|date_format:H:i',
-            'end_time' => 'required|date_format:H:i|after_or_equal:start_time',
+            'end_time' => 'nullable|date_format:H:i|after_or_equal:start_time',
             'description' => 'required|string',
         ])->validate();
 
         $validated['start_time'] = $date . " " . $validated['start_time'];
-        $validated['end_time'] = $date . " " . $validated['end_time'];
+        $validated['end_time'] = $date . " " . ($validated['end_time'] ?? '23:59');
         unset($validated['date']);
 
         $event = \DB::transaction(function () use ($validated) {

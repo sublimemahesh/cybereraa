@@ -2,9 +2,9 @@
 
 namespace App\Actions\Fortify;
 
+use App\Events\RankEligibilityCheck;
 use App\Models\Profile;
 use App\Models\Team;
-use App\Models\TeamBonus;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -20,7 +20,7 @@ class CreateNewUser implements CreatesNewUsers
      * Create a newly registered user.
      *
      * @param array $input
-     * @return \App\Models\User
+     * @return User
      */
     public function create(array $input)
     {
@@ -48,7 +48,7 @@ class CreateNewUser implements CreatesNewUsers
                 $user->profile()->save(Profile::forceCreate([
                     "country_id" => $input['country_id'] ?? null,
                 ]));
-                $this->createSpecialBonus($user);
+                event(new RankEligibilityCheck($user));
                 $user->assignRole('user');
                 $this->createTeam($user);
             });
@@ -58,7 +58,7 @@ class CreateNewUser implements CreatesNewUsers
     /**
      * Create a personal team for the user.
      *
-     * @param \App\Models\User $user
+     * @param User $user
      * @return void
      */
     protected function createTeam(User $user)
@@ -70,35 +70,5 @@ class CreateNewUser implements CreatesNewUsers
         ]));
     }
 
-    private function createSpecialBonus(User $user): void
-    {
-        if ($user->sponsor->specialBonuses->count() === 3) {
-            return;
-        }
 
-        if ($user->sponsor->children()->count() >= 10) {
-            TeamBonus::updateOrCreate([
-                'user_id' => $user->super_parent_id,
-                'bonus' => '10_DIRECT_SALE',
-                'status' => 'DISQUALIFIED',
-                'type' => 'SPECIAL_BONUS'
-            ]);
-        }
-        if ($user->sponsor->children()->count() >= 20) {
-            TeamBonus::updateOrCreate([
-                'user_id' => $user->super_parent_id,
-                'bonus' => '20_DIRECT_SALE',
-                'status' => 'DISQUALIFIED',
-                'type' => 'SPECIAL_BONUS'
-            ]);
-        }
-        if ($user->sponsor->children()->count() >= 30) {
-            TeamBonus::updateOrCreate([
-                'user_id' => $user->super_parent_id,
-                'bonus' => '30_DIRECT_SALE',
-                'status' => 'DISQUALIFIED',
-                'type' => 'SPECIAL_BONUS'
-            ]);
-        }
-    }
 }

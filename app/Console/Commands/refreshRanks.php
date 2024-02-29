@@ -13,7 +13,7 @@ class refreshRanks extends Command
      *
      * @var string
      */
-    protected $signature = 'refresh:rank';
+    protected $signature = 'refresh:rank-deprecated';
 
     /**
      * The console command description.
