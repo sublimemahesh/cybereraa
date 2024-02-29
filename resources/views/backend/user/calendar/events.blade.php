@@ -69,7 +69,7 @@
                                                         <label class="text-white" for="start_time">Start Time</label>
                                                         <input id="start_time" name="start_time" type="time" placeholder="Title" class="form-control"/>
                                                     </div>
-                                                    <div class="mb-3 mt-2">
+                                                    <div class="mb-3 mt-2 d-none">
                                                         <label class="text-white" for="end_time">End Time</label>
                                                         <input id="end_time" name="end_time" type="time" placeholder="Title" class="form-control"/>
                                                     </div>

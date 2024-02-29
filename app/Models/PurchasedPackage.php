@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\RankEligibilityCheck;
 use App\Traits\NextPaymentDate;
 use Carbon\Carbon;
 use Exception;
@@ -46,20 +47,22 @@ class PurchasedPackage extends Pivot
 
     protected static function booted()
     {
-        //        static::created(queueable(function (self $package) {
-        //            // TODO: optimize with filtering only the rank does not issue the gifts
-        //            $package->user->ancestorsAndSelf()
-        //                ->withWhereHas('rankGifts', function ($q) {
-        //                    return $q->where('status', 'PENDING');
-        //                })
-        //                ->chunk(100, function ($ancestors) {
-        //                    foreach ($ancestors as $ancestor) {
-        //                        foreach ($ancestor->rankGifts as $gift) {
-        //                            $gift->renewStatus();
-        //                        }
-        //                    }
-        //                });
-        //        }));
+        static::created(function (self $package) {
+            event(new RankEligibilityCheck($package->user));
+            event(new RankEligibilityCheck($package->user->sponsor));
+            //            // TODO: optimize with filtering only the rank does not issue the gifts
+            //            $package->user->ancestorsAndSelf()
+            //                ->withWhereHas('rankGifts', function ($q) {
+            //                    return $q->where('status', 'PENDING');
+            //                })
+            //                ->chunk(100, function ($ancestors) {
+            //                    foreach ($ancestors as $ancestor) {
+            //                        foreach ($ancestor->rankGifts as $gift) {
+            //                            $gift->renewStatus();
+            //                        }
+            //                    }
+            //                });
+        });
 
         static::updated(function (self $package) {
             if ($package->status === 'EXPIRED') {

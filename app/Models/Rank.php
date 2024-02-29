@@ -24,6 +24,7 @@ class Rank extends Model
         'eligibility',
         'activated_at',
         'eligibility_positions',
+        'completed_requirements',
         'total_rankers'
     ];
 

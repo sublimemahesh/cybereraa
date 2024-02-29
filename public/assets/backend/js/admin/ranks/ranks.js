@@ -10,36 +10,28 @@ $(function () {
         serverSide: true,
         fixedHeader: true,
         responsive: true,
-        order: [[6, 'desc']],
+        order: [[7, 'desc']],
         //stateSave: true,
         ajax: location.href,
         columns: [
+            {data: "actions", searchable: false, orderable: false},
             {data: "user", name: 'user.username', searchable: true, orderable: false},
             {data: "rank", searchable: false, orderable: false},
+            {data: "requirement", searchable: false, orderable: false},
             {data: "eligibility", searchable: false, orderable: false},
             {data: "status", searchable: false, orderable: false},
-            {data: "total_rankers", searchable: false, orderable: false},
+            // {data: "total_rankers", searchable: false, orderable: false},
             {data: "activated", searchable: false, name: 'activated_at'},
             {data: "created", searchable: false, name: 'created_at'},
         ],
         columnDefs: [
             {
                 render: function (date, type, full, meta) {
-                    return `<div style='font-size: 0.76rem !important;' class='text-center'> ${date} </div>`;
+                    return `<div style="font-size: 0.76rem !important;" > ${date} </div>`;
                 },
-                targets: [5, 6],
+                targets: [1, 2, 3, 4, 5, 6, 7],
             },
-            {
-                render: function (data, type, full, meta) {
-                    return `<div style='min-width:100px;' class="text-center"> ${data} </div>`;
-                },
-                targets: [1],
-            }, {
-                render: function (data, type, full, meta) {
-                    return `<div style='font-size:12px'> ${data} </div>`;
-                },
-                targets: [0],
-            },
+
         ],
     });
 
@@ -58,4 +50,32 @@ $(function () {
         table.ajax.url(url).load();
     });
 
+    $(document).on("click", ".issue-bonus", function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: "Are You Sure?",
+            text: "Issue $250 Bonus for this user?. Please note this process cannot be reversed.",
+            icon: "info",
+            showCancelButton: true,
+        }).then((process) => {
+            if (process.isConfirmed) {
+                loader()
+                let rank = $(this).data('id')
+                // formData.append(proof_document, proof_document)
+                axios.post(`${APP_URL}/admin/reports/ranks/${rank}/issue-bonus`)
+                    .then(response => {
+                        Toast.fire({
+                            icon: response.data.icon, title: response.data.message,
+                        }).then(res => {
+                            table.draw();
+                        })
+                    })
+                    .catch((error) => {
+                        Toast.fire({
+                            icon: 'error', title: error.response.data.message || "Something went wrong!",
+                        })
+                    })
+            }
+        });
+    });
 })

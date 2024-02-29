@@ -490,26 +490,36 @@
     </li>
 @endcan--}}
 
-{{--@can('rank_bonus.viewAny')
+@can('rank_bonus.viewAny')
     <li>
         <a href="javascript:void(0);" class="has-arrow" aria-expanded="false">
             <i class="bi bi-trophy-fill"></i>
-            <span class="nav-text"> Rank Bonus </span>
+            <span class="nav-text"> Ranks System </span>
         </a>
         <ul aria-expanded="false">
             <li>
-                <a href="{{ route('admin.ranks.benefits.summery') }}" class="" aria-expanded="false">
-                    <span class="nav-text">Summery</span>
+                <a href="{{ route('admin.ranks') }}" class="" aria-expanded="false">
+                    <span class="nav-text">Ranks</span>
                 </a>
             </li>
             <li>
+                <a href="{{ route('admin.incomes.rewards') }}" class="" aria-expanded="false">
+                    <span class="nav-text">Rewards</span>
+                </a>
+            </li>
+           {{-- <li>
+                <a href="{{ route('admin.ranks.benefits.summery') }}" class="" aria-expanded="false">
+                    <span class="nav-text">Summery</span>
+                </a>
+            </li>--}}
+            {{--<li>
                 <a href="{{ route('admin.ranks.benefits.requirements') }}" class="" aria-expanded="false">
                     <span class="nav-text">Requirement</span>
                 </a>
-            </li>
+            </li>--}}
         </ul>
     </li>
-@endcan--}}
+@endcan
 
 {{--@can('rank_gift.viewAny')
     <li>
