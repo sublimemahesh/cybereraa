@@ -277,7 +277,7 @@
                             </div>
                             <div class="d-flex justify-content-center">
                                 <div class="col-sm-6 text-center">
-                                    <div class="card bg-secondary pay-method-coinpayment cursor-pointer" id="coinpayment" data-devil="mt:12">
+                                    <div class="card  pay-method-coinpayment cursor-pointer" id="coinpayment"  data-devil="mt:12 bgc:#7c1249">
                                         <div class="card-body card-link">
                                             <div class="text-center">
                                                 <img src="{{ url('assets/images/coinpayments.png') }}" alt="logo" width="64" height="64"/>

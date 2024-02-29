@@ -39586,8 +39586,9 @@ td.text-ov {
     font-size: 1.125rem;
     border-radius: var(--border-radius);
     border: 0 !important;
-    color: var(--primary) !important;
+    color: #fff !important;
     background: var(--rgba-primary-1) !important;
+    font-weight: bold;
 }
 
 @media only screen and (max-width: 74.9375rem) {
@@ -49427,7 +49428,7 @@ div.dt-buttons .dt-button.buttons-collection {
 }
 
 .active-card-bp .card-text {
-    color: #000;
+    color: #fff;
 }
 
 .active-card-bp b {
@@ -50082,4 +50083,8 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
 {
     background: #b62d82 !important;
 
+}
+
+:is(.dark .dark\:bg-secondary-dark) {
+  background-color: #51001d !important;
 }
