@@ -276,7 +276,7 @@
                                 </div>
                             </div>
                             <div class="d-flex justify-content-center">
-                                <div class="col-sm-6 text-center">
+                                <div class="col-sm-6 col-12 text-center">
                                     <div class="card  pay-method-coinpayment cursor-pointer" id="coinpayment"  data-devil="mt:12 bgc:#7c1249">
                                         <div class="card-body card-link">
                                             <div class="text-center">
