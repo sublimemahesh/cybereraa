@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Events\RankEligibilityCheck;
+use App\Jobs\UserRankOneListener;
 use App\Models\User;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Command\Command as CommandAlias;

@@ -27,6 +27,9 @@ class Rank extends Model
         'completed_requirements',
         'total_rankers'
     ];
+    protected $casts = [
+        'completed_requirements' => 'json',
+    ];
 
     /*protected $appends = [
         'is_active'

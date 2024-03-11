@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Rank;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -74,6 +75,17 @@ Route::get('server-datetime', function () {
 });
 
 Route::get('test', function () {
+    $rank_unlocked_investments_of_first_rankers = Rank::whereIn('user_id', [15])->get()
+        ->mapWithKeys(function ($rank) {
+            return [$rank->user_id => $rank->completed_requirements['rank_unlocked']['cumulative_investment_of_direct_sales']];
+        });
+    $trade_income_starts_at = 1;
+    for ($i = $trade_income_starts_at; $i <= 4; $i++) {
+        if($i ===  2){
+            break;
+        }
+    }
+    dd($rank_unlocked_investments_of_first_rankers,$i);
     return view('test');
 //    $parent = \App\Models\User::find(6);
 //    $descendants = $parent
