@@ -29,7 +29,7 @@ function getPendingEarningsCount(mixed $earningPendingActivePackagesDate): int
             ->where('status', 'ACTIVE')
             ->where('is_free_package', 0)
             ->whereRaw("DATE(`created_at`) + INTERVAL {$investment_start_at->value} DAY <= '{$earningPendingActivePackagesDate}'")
-            ->whereDoesntHave('earnings', fn($query) => $query->whereDate('created_at', $earningPendingActivePackagesDate))
+            ->whereDoesntHave('earnings', fn($query) => $query->whereDate('created_at', $earningPendingActivePackagesDate)->where('type', 'PACKAGE'))
             //        ->toSql();
             ->count();
     }

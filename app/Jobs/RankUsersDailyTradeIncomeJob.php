@@ -76,15 +76,24 @@ class RankUsersDailyTradeIncomeJob implements ShouldQueue
                 foreach ($tradeIncomeLevelUserActivePackages as $activePackage) {
 
                     if ($activePackage->total_profit_percentage <= $activePackage->earned_profit) {
+                        Log::channel('daily')->warning(
+                            "TRADE_INDIRECT INCOME EARNING ACTIVE PACKAGE FILLED |  " .
+                            "Purchased Date: (" . $date . "). | " .
+                            "total_profit_percentage <= earned_profit | " .
+                            "Purchase Package: {$this->package->id} | " .
+                            "Trade Income Active Package: {$activePackage->id} | " .
+                            "Trade Income User: {$rank_user->username}- {$rank_user->id}");
+
                         continue;
                     }
 
-                    $activePackage->loadSum('earnings', 'amount');
+//                    $activePackage->loadSum('earnings', 'amount');
+//                    $total_already_earned_trade_income = $activePackage->earnings_sum_amount;
+//                    $total_allowed_trade_income = ($activePackage->invested_amount / 100) * $activePackage->investment_profit;
 
-//                                        $trade_income_already_earned_percentage = $activePackage->earned_profit;
-//                                        $total_already_earned_trade_income = ($activePackage->invested_amount / 100) * $trade_income_already_earned_percentage;
-                    $total_already_earned_trade_income = $activePackage->earnings_sum_amount;
-                    $total_allowed_trade_income = ($activePackage->invested_amount / 100) * $activePackage->investment_profit;
+                    $trade_income_already_earned_percentage = $activePackage->earned_profit;
+                    $total_already_earned_trade_income = ($activePackage->invested_amount / 100) * $trade_income_already_earned_percentage;
+                    $total_allowed_trade_income = ($activePackage->invested_amount / 100) * $activePackage->total_profit_percentage;
 
                     $remaining_income = $total_allowed_trade_income - $total_already_earned_trade_income;
 
@@ -120,16 +129,16 @@ class RankUsersDailyTradeIncomeJob implements ShouldQueue
                         'updated_at' => $this->execution_time
                     ]));
 
-                    $package_earned_trade_income = $total_already_earned_trade_income + $rank_trade_income_amount;
-                    $package_earned_trade_income_percentage = ($package_earned_trade_income / $activePackage->total_package_profit) * 100;
-                    $package_earned_trade_income_percentage_from_profit_percentage = ($package_earned_trade_income_percentage / 100) * $activePackage->investment_profit;
+//                    $package_earned_trade_income = $total_already_earned_trade_income + $rank_trade_income_amount;
+//                    $package_earned_trade_income_percentage = ($package_earned_trade_income / $activePackage->total_package_profit) * 100;
+//                    $package_earned_trade_income_percentage_from_profit_percentage = ($package_earned_trade_income_percentage / 100) * $activePackage->investment_profit;
 
                     $total_already_earned_trade_income = $activePackage->total_earned_profit + $rank_trade_income_amount;
                     $total_already_earned_trade_income_percentage = ($total_already_earned_trade_income / $activePackage->total_profit) * 100;
                     $total_already_earned_trade_income_percentage_from_profit_percentage = ($total_already_earned_trade_income_percentage / 100) * $activePackage->total_profit_percentage;
 
                     $activePackage->update([
-                        'package_earned_profit' => $package_earned_trade_income_percentage_from_profit_percentage,
+//                        'package_earned_profit' => $package_earned_trade_income_percentage_from_profit_percentage,
                         'earned_profit' => $total_already_earned_trade_income_percentage_from_profit_percentage,
                         'last_earned_at' => $this->execution_time
                     ]);
