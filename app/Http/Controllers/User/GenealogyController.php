@@ -52,7 +52,7 @@ class GenealogyController extends Controller
     public function userLevels(Request $request, int|string $depth = 'all')
     {
         $level = $depth;
-        if ($depth !== 'all' && $depth > 4) {
+        if ($depth !== 'all' && $depth > 4) { 
             $level = 4;
         }
         $authUser = Auth::user();
