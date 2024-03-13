@@ -75,18 +75,23 @@ Route::get('server-datetime', function () {
 });
 
 Route::get('test', function () {
-    $rank_unlocked_investments_of_first_rankers = Rank::whereIn('user_id', [15])->get()
-        ->mapWithKeys(function ($rank) {
-            return [$rank->user_id => $rank->completed_requirements['rank_unlocked']['cumulative_investment_of_direct_sales']];
-        });
-    $trade_income_starts_at = 1;
-    for ($i = $trade_income_starts_at; $i <= 4; $i++) {
-        if($i ===  2){
-            break;
-        }
-    }
-    dd($rank_unlocked_investments_of_first_rankers,$i);
-    return view('test');
+//    $purchase = \App\Models\PurchasedPackage::find(2);
+//    $purchase->loadSum(['earnings' => fn($q) => $q->where('type', 'PACKAGE')], 'amount');
+//    $total_already_earned_income = $purchase->earnings_sum_amount;
+//    dd($total_already_earned_income);
+//
+//    $rank_unlocked_investments_of_first_rankers = Rank::whereIn('user_id', [15])->get()
+//        ->mapWithKeys(function ($rank) {
+//            return [$rank->user_id => $rank->completed_requirements['rank_unlocked']['cumulative_investment_of_direct_sales']];
+//        });
+//    $trade_income_starts_at = 1;
+//    for ($i = $trade_income_starts_at; $i <= 4; $i++) {
+//        if ($i === 2) {
+//            break;
+//        }
+//    }
+//    dd($rank_unlocked_investments_of_first_rankers, $i);
+//    return view('test');
 //    $parent = \App\Models\User::find(6);
 //    $descendants = $parent
 //        //->descendants()
@@ -446,7 +451,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
         Route::get('transactions/invoice/steam/{transaction}', 'Payment\InvoiceController@streamPurchaseInvoice')->name('transactions.invoice.stream')->middleware('signed');
 
         Route::get('incomes/commission', 'User\EarningController@commission')->name('incomes.commission');
-//        Route::get('incomes/rewards', 'User\EarningController@rewards')->name('incomes.rewards');
+        Route::get('incomes/rewards', 'User\EarningController@rewards')->name('incomes.rewards');
         Route::get('earnings', 'User\EarningController@index')->name('earnings.index');
         Route::get('earnings/summary-report', 'User\EarningController@earningSummary')->name('earnings.summary-report');
 

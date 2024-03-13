@@ -29,9 +29,11 @@ class EarningController extends Controller
 
             return DataTables::of($earnings)
                 ->addColumn('earnable_type', function ($earn) {
+                    $level = \App\Enums\ReferralLevelEnum::level()[$earn->income_level];
                     return
                         "<code class='text-uppercase'>{$earn->type}</code> - #" .
-                        str_pad($earn->earnable_id, '4', '0', STR_PAD_LEFT);
+                        str_pad($earn->earnable_id, '4', '0', STR_PAD_LEFT) . "<br>" .
+                        " <i class='fa fa-level-down'></i> {$level} ";
                 })
                 ->addColumn('amount', fn($commission) => number_format($commission->amount, 2))
                 ->addColumn('package', fn($earn) => $earn->earnable->package_info_json->name)
@@ -278,22 +280,29 @@ class EarningController extends Controller
     {
         if ($request->wantsJson()) {
             $earnings = RankBenefit::filter()
+                ->with('rank')
                 ->where('user_id', Auth::user()->id);
             //->where('created_at', '<=', date('Y-m-d H:i:s'))
             //->latest();
 
             return DataTables::eloquent($earnings)
+                ->addColumn('type', function ($reward) {
+                    return
+                        "<code class='text-uppercase'>{$reward->type}</code> <br>" .
+                        " <i class='fa fa-star'></i> RANK {$reward->rank->rank} ";
+                })
                 ->addColumn('package', fn($reward) => $reward->package_info_json->name)
                 ->addColumn('referer', '-')
                 ->addColumn('amount', fn($reward) => number_format($reward->amount, 2))
                 ->addColumn('paid', fn($reward) => number_format($reward->paid, 2))
                 ->addColumn('created_date', fn($reward) => $reward->created_at->format('Y-m-d H:i:s'))
+                ->rawColumns(['type'])
                 ->make();
         }
 
         $types = [
             'rank_bonus' => 'BONUS',
-            'rank_gift' => 'GIFT',
+//            'rank_gift' => 'GIFT',
         ];
 
         return view('backend.user.incomes.commissions', compact('types'));

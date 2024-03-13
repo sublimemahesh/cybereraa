@@ -51,16 +51,24 @@ class GenealogyController extends Controller
      */
     public function userLevels(Request $request, int|string $depth = 'all')
     {
-        $level = $depth;
-        if ($depth !== 'all' && $depth > 4) { 
-            $level = 4;
-        }
         $authUser = Auth::user();
+        $max_depth = 4;
+        $highest_rank = $authUser->highest_rank ?? 0;
+        if ($highest_rank === 3) {
+            $max_depth = 5;
+        }
+        if ($highest_rank === 4) {
+            $max_depth = 7;
+        }
+        $level = $depth;
+        if ($depth !== 'all' && $depth > $max_depth) {
+            $level = $max_depth;
+        }
         //dd($authUser->id, $descendants);
         if ($request->wantsJson()) {
             return $this->userLevelDatatable($authUser, $level, $request);
         }
-        return view('backend.user.teams.users-list', compact('depth'));
+        return view('backend.user.teams.users-list', compact('depth', 'highest_rank'));
     }
 
     /**
