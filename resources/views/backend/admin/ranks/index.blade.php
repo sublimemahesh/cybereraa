@@ -118,7 +118,7 @@
                                     <th>USER</th>
                                     <th>RANK</th>
                                     <th>REQUIREMENT</th>
-                                    <th>ELIGIBILITY</th>
+                                    <th>ACHIEVEMENT</th>
                                     <th>STATUS</th>
                                     {{--<th>TOTAL RANKERS</th>--}}
                                     <th>ACTIVATED</th>

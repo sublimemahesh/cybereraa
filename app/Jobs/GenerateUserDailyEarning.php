@@ -53,11 +53,11 @@ class GenerateUserDailyEarning implements ShouldQueue
         try {
             DB::transaction(function () use ($purchase) {
                 $date = $this->date;
-                $earned = $purchase->earnings()->whereDate('created_at', $date)->doesntExist();
+                $earned = $purchase->earnings()->whereDate('created_at', $date)->where('type', 'PACKAGE')->doesntExist();
                 // $earned = Earning::where('purchased_package_id', $purchase->id)->whereDate('created_at', $date)->doesntExist();
                 if ($earned) {
 
-                    $purchase->loadSum('earnings', 'amount');
+                    $purchase->loadSum(['earnings' => fn($q) => $q->where('type', 'PACKAGE')], 'amount');
 
                     $payable_percentages = Strategy::where('name', 'payable_percentages')->firstOr(fn() => new Strategy(['value' => '{"direct":0.332,"indirect":0.332,"package":1}']));
                     $payable_percentages = json_decode($payable_percentages->value, false, 512, JSON_THROW_ON_ERROR);
@@ -145,16 +145,25 @@ class GenerateUserDailyEarning implements ShouldQueue
 
                                     foreach ($tradeIncomeLevelUserActivePackages as $activePackage) {
 
-                                        if ($activePackage->investment_profit <= $activePackage->earned_profit) {
+                                        if ($activePackage->total_profit_percentage <= $activePackage->earned_profit) {
+                                            Log::channel('daily')->warning(
+                                                ($i === 1 ? 'TRADE_DIRECT' : 'TRADE_INDIRECT') . " INCOME EARNING ACTIVE PACKAGE FILLED |  " .
+                                                "Purchased Date: (" . $date . "). | " .
+                                                "total_profit_percentage <= earned_profit | " .
+                                                "Purchase Package: {$purchase->id} | " .
+                                                "Trade Income Active Package: {$activePackage->id} | " .
+                                                "Trade Income User: {$trade_income_level_user->username}- {$trade_income_level_user->id}");
+
                                             continue;
                                         }
 
-                                        $activePackage->loadSum('earnings', 'amount');
+//                                        $activePackage->loadSum('earnings', 'amount');
+//                                        $total_already_earned_trade_income = $activePackage->earnings_sum_amount;
+//                                        $total_allowed_trade_income = ($activePackage->invested_amount / 100) * $activePackage->investment_profit;
 
-//                                        $trade_income_already_earned_percentage = $activePackage->earned_profit;
-//                                        $total_already_earned_trade_income = ($activePackage->invested_amount / 100) * $trade_income_already_earned_percentage;
-                                        $total_already_earned_trade_income = $activePackage->earnings_sum_amount;
-                                        $total_allowed_trade_income = ($activePackage->invested_amount / 100) * $activePackage->investment_profit;
+                                        $trade_income_already_earned_percentage = $activePackage->earned_profit;
+                                        $total_already_earned_trade_income = ($activePackage->invested_amount / 100) * $trade_income_already_earned_percentage;
+                                        $total_allowed_trade_income = ($activePackage->invested_amount / 100) * $activePackage->total_profit_percentage;
 
                                         $remaining_income = $total_allowed_trade_income - $total_already_earned_trade_income;
 
@@ -190,16 +199,16 @@ class GenerateUserDailyEarning implements ShouldQueue
                                             'updated_at' => $this->execution_time
                                         ]));
 
-                                        $package_earned_trade_income = $total_already_earned_trade_income + $trade_income_amount;
-                                        $package_earned_trade_income_percentage = ($package_earned_trade_income / $activePackage->total_package_profit) * 100;
-                                        $package_earned_trade_income_percentage_from_profit_percentage = ($package_earned_trade_income_percentage / 100) * $activePackage->investment_profit;
+//                                        $package_earned_trade_income = $total_already_earned_trade_income + $trade_income_amount;
+//                                        $package_earned_trade_income_percentage = ($package_earned_trade_income / $activePackage->total_package_profit) * 100;
+//                                        $package_earned_trade_income_percentage_from_profit_percentage = ($package_earned_trade_income_percentage / 100) * $activePackage->investment_profit;
 
                                         $total_already_earned_trade_income = $activePackage->total_earned_profit + $trade_income_amount;
                                         $total_already_earned_trade_income_percentage = ($total_already_earned_trade_income / $activePackage->total_profit) * 100;
                                         $total_already_earned_trade_income_percentage_from_profit_percentage = ($total_already_earned_trade_income_percentage / 100) * $activePackage->total_profit_percentage;
 
                                         $activePackage->update([
-                                            'package_earned_profit' => $package_earned_trade_income_percentage_from_profit_percentage,
+//                                            'package_earned_profit' => $package_earned_trade_income_percentage_from_profit_percentage,
                                             'earned_profit' => $total_already_earned_trade_income_percentage_from_profit_percentage,
                                             'last_earned_at' => $this->execution_time
                                         ]);

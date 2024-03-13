@@ -12,6 +12,9 @@ trait ReferralLevelEnum
             2 => 'LEVEL 1',
             3 => 'LEVEL 2',
             4 => 'LEVEL 3',
+            5 => 'LEVEL 4',
+            6 => 'LEVEL 5',
+            7 => 'LEVEL 6',
         ];
     }
 }

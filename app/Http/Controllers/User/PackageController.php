@@ -50,7 +50,7 @@ class PackageController extends Controller
     {
         $activePackages = Auth::user()->activePackages;
         $activePackages->load('transaction');
-        $activePackages->loadSum('earnings', 'amount');
+        $activePackages->loadSum(['earnings' => fn($q) => $q->where('type', 'PACKAGE')], 'amount');
 // dd($activePackages);
         $withdrawal_limits = Strategy::where('name', 'withdrawal_limits')->first();
         $investment_start_at = Strategy::where('name', 'investment_start_at')->first();

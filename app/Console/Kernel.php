@@ -17,6 +17,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('calculate:profit')->weekdays()->everyMinute()->withoutOverlapping();
         $schedule->command('calculate:profit')->weekdays()->dailyAt('00:01')->withoutOverlapping();
+        $schedule->command('calculate:rank-daily-trade-income')->weekdays()->dailyAt('02:01')->withoutOverlapping();
 
 //        $schedule->command('remove:inactive-users')->dailyAt('00:01')->withoutOverlapping();
 

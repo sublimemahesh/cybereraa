@@ -224,9 +224,9 @@
                     <li>
                         <a href="{{ route('user.earnings.summary-report') }}">Income Summery</a>
                     </li>
-                    {{--<li>
+                    <li>
                         <a href="{{ route('user.incomes.rewards') }}">My Rewards</a>
-                    </li>--}}
+                    </li>
                     <li>
                         <a href="{{ route('user.team.incomes.commission') }}">Referral Income</a>
                     </li>

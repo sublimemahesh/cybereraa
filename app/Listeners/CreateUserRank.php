@@ -3,7 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\RankEligibilityCheck;
-use App\Jobs\UserRankListener;
+use App\Jobs\UserRankOneListener;
 use App\Models\User;
 
 class CreateUserRank
@@ -13,8 +13,8 @@ class CreateUserRank
         'r1' => [
             'investment' => 1000,
             'team' => [
-                '5000' => 10,
-                '10000' => 5,
+                5 => 10000,
+                10 => 5000,
             ]
         ],
     ];
@@ -39,7 +39,7 @@ class CreateUserRank
     {
         if ($event->user instanceof User) {
             \Log::channel('daily')->info("CreateUserRank Dispatching UserRankListener JOB: {$event->user->username}");
-            dispatch(new UserRankListener($event->user, $this->requirements));
+            dispatch(new UserRankOneListener($event->user, $this->requirements))->onConnection('sync');
         }
     }
 }

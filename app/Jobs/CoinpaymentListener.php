@@ -74,22 +74,22 @@ class CoinpaymentListener implements ShouldQueue
          *  $this->transaction['transaction_type']
          *  // out: new / old
          */
-        Log::channel('daily')->info('CoinpaymentListener: ', $this->transaction);
+        Log::channel('coinpayment')->info('CoinpaymentListener: ', $this->transaction);
 
         \DB::transaction(function () use ($activateTransaction) {
             $transaction = Transaction::withTrashed()->find($this->transaction['order_id']);
 
             if ($transaction->trashed()) {
-                Log::channel('daily')->info("Transaction is trashed: {$transaction->id}");
+                Log::channel('coinpayment')->info("Transaction is trashed: {$transaction->id}");
                 // Restore the soft deleted transaction
                 $transaction->restore();
-                Log::channel('daily')->info("Transaction {$transaction->id} has been restored.");
+                Log::channel('coinpayment')->info("Transaction {$transaction->id} has been restored.");
             }
 
             $res_data = json_decode($transaction->status_response ?? [], true, 512, JSON_THROW_ON_ERROR);
 
             if ((int)$this->transaction['status'] === 100 && $transaction->status === 'PENDING' && $transaction->pay_method === 'COIN_PAYMENT') {
-                Log::channel('daily')->info("Transaction {$transaction->id} has been Approved.");
+                Log::channel('coinpayment')->info("Transaction {$transaction->id} has been Approved.");
 
                 $activateTransaction->execute($transaction);
 
@@ -102,7 +102,7 @@ class CoinpaymentListener implements ShouldQueue
             }
 
             if ((int)$this->transaction['status'] === -1 && $transaction->status === 'PENDING' && $transaction->pay_method === 'COIN_PAYMENT') {
-                Log::channel('daily')->warning("Transaction {$transaction->id} has been Declined.");
+                Log::channel('coinpayment')->warning("Transaction {$transaction->id} has been Declined.");
 
                 $res_data['bizStatus'] = 'PAY_CLOSED';
 

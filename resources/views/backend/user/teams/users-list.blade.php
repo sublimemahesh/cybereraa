@@ -72,6 +72,13 @@
                                                             <option value="2" {{ $depth === '2' ? 'selected' : '' }}>LEVEL 1</option>
                                                             <option value="3" {{ $depth === '3' ? 'selected' : '' }}>LEVEL 2</option>
                                                             <option value="4" {{ $depth === '4' ? 'selected' : '' }}>LEVEL 3</option>
+                                                            @if($highest_rank === 3)
+                                                                <option value="5" {{ $depth === '5' ? 'selected' : '' }}>LEVEL 4</option>
+                                                            @endif
+                                                            @if($highest_rank === 4)
+                                                                <option value="6" {{ $depth === '6' ? 'selected' : '' }}>LEVEL 5</option>
+                                                                <option value="7" {{ $depth === '7' ? 'selected' : '' }}>LEVEL 6</option>
+                                                            @endif
                                                         </select>
                                                         <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">
                                                             <svg class="pointer-events-none w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
