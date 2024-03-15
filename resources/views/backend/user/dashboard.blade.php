@@ -3,6 +3,10 @@
     @section('header-title', 'Welcome to  Cyber Eraa Family')
     @section('header-title2',Auth::user()->username)
 
+    @section('styles')
+        <link rel="stylesheet" href="{{ asset('assets/backend/css/user/rank-timeline.css') }}">
+    @endsection
+
     <div class="row">
         {{-- <div class="dashboard-title">
             <h2 class="text-center mx-auto">
@@ -10,12 +14,11 @@
             </h2>
         </div> --}}
 
-        <div class="container"  data-devil="dis:none" data-dxs="dis:block mt:-20">
+        <div class="container" data-devil="dis:none" data-dxs="dis:block mt:-20">
             <div class="alert welome-calert-info  text-center" data-dxs="c:#fff">
-               <h5  data-dxs="pt:6"> Welcome to  Cyber Eraa Family.</h5>
+                <h5 data-dxs="pt:6"> Welcome to Cyber Eraa Family.</h5>
             </div>
         </div>
-
 
 
         <div class="col-xl-3 col-lg-6 col-sm-6">
@@ -265,7 +268,7 @@
                                         <h4 class="tron"></h4>
                                     </div>
                                     <img src="{{ asset('assets/frontend/images/coin-icon/tron-big.png') }}" width="42"
-                                        height="42" viewBox="0 0 42 42" fill="none">
+                                         height="42" viewBox="0 0 42 42" fill="none">
                                 </div>
                             </div>
                         </li>
@@ -280,7 +283,7 @@
                                         <h4 class="cardano"></h4>
                                     </div>
                                     <img src="{{ asset('assets/frontend/images/coin-icon/cardano-big.png') }}" width="42"
-                                        height="42" viewBox="0 0 42 42" fill="none">
+                                         height="42" viewBox="0 0 42 42" fill="none">
                                 </div>
                             </div>
                         </li>
@@ -295,7 +298,7 @@
                                         <h4 class="dai"></h4>
                                     </div>
                                     <img src="{{ asset('assets/frontend/images/coin-icon/dai-big.png') }}" width="42"
-                                        height="42" viewBox="0 0 42 42" fill="none">
+                                         height="42" viewBox="0 0 42 42" fill="none">
                                 </div>
                             </div>
                         </li>
@@ -310,7 +313,7 @@
                                         <h4 class="dogecoin"></h4>
                                     </div>
                                     <img src="{{ asset('assets/frontend/images/coin-icon/dogecoin-big.png') }}" width="42"
-                                        height="42" viewBox="0 0 42 42" fill="none">
+                                         height="42" viewBox="0 0 42 42" fill="none">
                                 </div>
                             </div>
                         </li>
@@ -325,7 +328,7 @@
                                         <h4 class="uniswap"></h4>
                                     </div>
                                     <img src="{{ asset('assets/frontend/images/coin-icon/uniswap-big.png') }}" width="42"
-                                        height="42" viewBox="0 0 42 42" fill="none">
+                                         height="42" viewBox="0 0 42 42" fill="none">
                                 </div>
                             </div>
                         </li>
@@ -401,7 +404,7 @@
                         <div class="col-xl-12" data-devil="mt:40">
                             <div>
                                 <div class="card-body d-flex align-items-center p-none">
-                                <span class="progress-right-card-icon"  data-devil="bgc:#b62d82">
+                                <span class="progress-right-card-icon" data-devil="bgc:#b62d82">
                                     <img src="{{ asset('assets/backend/images/icon/dollar.png') }}" alt=""/>
                                 </span>
                                     <div data-devil='ml:22'>
@@ -551,6 +554,33 @@
     </div>
 
     <div class="row">
+
+        <div class="col-sm-12">
+            <div class="card rounded-3">
+                <div class="card-body">
+                    <div class="timeline">
+                        <div class="rank {{ $highestRank >= 1 ? 'unlocked' : 'locked'  }}">
+                            <div class="rank-name">Rank 1</div>
+                            <div class="status">{{ $highestRank >= 1 ? 'Unlocked' : 'Locked'  }}</div>
+                        </div>
+                        <div class="rank {{ $highestRank >= 2 ? 'unlocked' : 'locked'  }}">
+                            <div class="rank-name">Rank 2</div>
+                            <div class="status">{{ $highestRank >= 2 ? 'Unlocked' : 'Locked'  }}</div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="rank {{ $highestRank >= 3 ? 'unlocked' : 'locked'  }}">
+                            <div class="rank-name">Rank 3</div>
+                            <div class="status">{{ $highestRank >= 3 ? 'Unlocked' : 'Locked'  }}</div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="rank {{ $highestRank >= 4 ? 'unlocked' : 'locked'  }}">
+                            <div class="rank-name">Rank 4</div>
+                            <div class="status">{{ $highestRank >= 4 ? 'Unlocked' : 'Locked'  }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="col-xl-12 col-sm-6">
             <div class="card rounded-3">
@@ -820,7 +850,7 @@
                                     </div>
                                     <div class="col-mb-12 ">
                                         <div class="media-body text-white dash-p">
-                                            <p class="mb-1">Direct Trade  Income <br> <b>${{ number_format($trade_income,2) }}</b></p>
+                                            <p class="mb-1">Direct Trade Income <br> <b>${{ number_format($trade_income,2) }}</b></p>
                                         </div>
                                     </div>
 
@@ -842,7 +872,7 @@
 
                                     <div class="col-mb-12 ">
                                         <div class="media-body text-white dash-p">
-                                            <p class="mb-1">Indirect Trade  Income <br> <b>${{ number_format($trade_team_income,2) }}</b></p>
+                                            <p class="mb-1">Indirect Trade Income <br> <b>${{ number_format($trade_team_income,2) }}</b></p>
                                         </div>
                                     </div>
                                 </div>

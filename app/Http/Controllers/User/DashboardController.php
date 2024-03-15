@@ -175,6 +175,9 @@ class DashboardController extends Controller
                         FROM `purchased_package` WHERE `purchased_package`.`user_id` = :user_id
                     ) package_tbl;", ['user_id' => Auth::user()->id])->total_pending_return;
 
+        $highestRank = Auth::user()->highest_rank;
+
+
         return view('backend.user.dashboard',
             compact(
                 'banners',
@@ -211,6 +214,8 @@ class DashboardController extends Controller
                 'descendants_count',
                 'yearlyIncomeChartData',
                 'popup',
+
+                'highestRank',
             )
         );
 
