@@ -207,7 +207,7 @@ class BinancePayController extends Controller
                     $json['status'] = true;
                     $json['message'] = 'Request successful';
                     $json['icon'] = 'success'; // warning | info | question | success | error
-                    $json['data'] = ['checkoutUrl' => URL::signedRoute('user.transactions.invoice', $transaction)];
+                    $json['data'] = ['checkoutUrl' => URL::signedRoute('user.transactions.purchased.history')];
                     return response()->json($json);
                 }
 
@@ -272,7 +272,7 @@ class BinancePayController extends Controller
                     $json['status'] = true;
                     $json['message'] = 'Request successful';
                     $json['icon'] = 'success'; // warning | info | question | success | error
-                    $json['data'] = ['checkoutUrl' => URL::signedRoute('user.transactions.invoice', $transaction)];
+                    $json['data'] = ['checkoutUrl' => URL::signedRoute('user.transactions.purchased.history')];
                     return response()->json($json);
                 }
 
@@ -290,8 +290,8 @@ class BinancePayController extends Controller
                     $coinPayment['note'] = $package->name;
                     $coinPayment['buyer_name'] = $user->name;
                     $coinPayment['buyer_email'] = $user->email;
-                    $coinPayment['redirect_url'] = URL::signedRoute('user.transactions.invoice', $transaction); // When the Transaction was completed
-                    $coinPayment['cancel_url'] = URL::signedRoute('user.transactions.invoice', $transaction); // When a user clicks cancel a link
+                    $coinPayment['redirect_url'] = URL::signedRoute('user.transactions.purchased.history'); // When the Transaction was completed
+                    $coinPayment['cancel_url'] = URL::signedRoute('user.transactions.purchased.history'); // When a user clicks cancel a link
 
                     $coinPayment['items'][] = [
                         'itemDescription' => "$package->name Amount",
@@ -342,7 +342,7 @@ class BinancePayController extends Controller
             if ($transaction->status === 'INITIAL') {
                 return redirect()->to($transaction->create_order_response_info->checkoutUrl);
             }
-            return redirect()->signedRoute('user.transactions.invoice', $transaction);
+            return redirect()->signedRoute('user.transactions.purchased.history');
         }
 
         return redirect()->route('user.packages.active')->with('warning', 'Wallet transaction cannot be retry when canceled. Please select a package and purchase!'); // show success invoice
@@ -460,6 +460,6 @@ class BinancePayController extends Controller
             return redirect()->route('user.transactions.index', ['status' => 'initial']);
         }
 
-        return redirect()->signedRoute('user.transactions.invoice', $transaction);
+        return redirect()->signedRoute('user.transactions.purchased.history');
     }
 }

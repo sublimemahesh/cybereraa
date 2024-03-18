@@ -288,7 +288,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-center">
+                            <div class="d-flex justify-content-center d-none">
                                 <div class="col-sm-6 col-12 text-center">
                                     <div class="card  pay-method-manual-pay cursor-pointer" id="manual-pay" data-devil="mt:12 bgc:#7c1249">
                                         <div class="card-body card-link">
