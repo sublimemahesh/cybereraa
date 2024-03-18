@@ -253,9 +253,9 @@
                     <span class="nav-text">Summery</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li>
+                    {{--<li>
                         <a href="{{ route('user.special-bonus') }}">Bonus Requirements</a>
-                    </li>
+                    </li>--}}
                     <li>
                         <a href="{{ route('user.earnings.yearly-income-chart') }}">Income Chart</a>
                     </li>

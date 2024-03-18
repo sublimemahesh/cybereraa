@@ -273,14 +273,14 @@
     </li>
 @endcan
 
-@can('special_bonus.viewAny')
+{{--@can('special_bonus.viewAny')
     <li>
         <a href="{{ route('admin.special-bonus') }}" class="" aria-expanded="false">
             <i class="bi bi-diagram-3-fill"></i>
             <span class="nav-text"> Special Bonus </span>
         </a>
     </li>
-@endcan
+@endcan--}}
 
 @canany(['users.manage-permissions','admin.users.viewAny'])
     <li>

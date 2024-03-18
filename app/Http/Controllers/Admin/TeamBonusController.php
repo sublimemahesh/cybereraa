@@ -24,6 +24,7 @@ class TeamBonusController extends Controller
      */
     public function index(Request $request)
     {
+        abort(Response::HTTP_FORBIDDEN);
         abort_if(Gate::denies('special_bonus.viewAny'), Response::HTTP_FORBIDDEN);
 
         if ($request->wantsJson()) {
@@ -103,6 +104,7 @@ class TeamBonusController extends Controller
     public function issueTeamBonus(Request $request, TeamBonus $bonus)
     {
 
+        abort(Response::HTTP_FORBIDDEN);
         $bonus->load(['user' => fn($q) => $q->withCount('directSales'), 'user.specialBonuses', 'user.directSales']);
         $special_bonus_requirement = Strategy::where('name', 'special_bonus_requirement')->firstOr(fn() => new Strategy(['value' => '{"1":{"direct_sales":"10","total_investment":"50000"},"2":{"direct_sales":"20","total_investment":"10000"},"3":{"direct_sales":"30","total_investment":"15000"}}']));
         $special_bonus_requirement = json_decode($special_bonus_requirement->value, true, 512, JSON_THROW_ON_ERROR);
