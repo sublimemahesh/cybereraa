@@ -682,7 +682,7 @@
 
     </div>
 
-    <div class="row">
+    <div class="row d-none">
 
         <div class="col-sm-12">
             <div class="card rounded-3">
