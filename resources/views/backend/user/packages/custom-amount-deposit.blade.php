@@ -232,7 +232,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-12 mb-4" data-devil="dis:none">
+                            <div class="col-sm-12 mb-4">
                                 <div class="mb-3 mt-2">
                                     <label for="purchase_for">Purchase For</label>
                                     <select class="single-select-placeholder js-states select2-hidden-accessible"
