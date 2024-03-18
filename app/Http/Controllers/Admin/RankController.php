@@ -18,7 +18,7 @@ class RankController extends Controller
     {
         abort_if(Gate::denies('rank.viewAny'), Response::HTTP_FORBIDDEN);
         if ($request->wantsJson()) {
-            $ranks = Rank::with('user')
+            $ranks = Rank::with('user', 'benefits')
                 ->when(!empty($request->get('user_id')),
                     static function ($query) use ($request) {
                         $query->where('user_id', $request->get('user_id'));
@@ -34,10 +34,8 @@ class RankController extends Controller
                 ->addColumn('requirement', function ($rank) {
                     if ($rank->rank === 1) {
                         return "Investment: 1000 <br>
-                            Direct Team 10 &  <br>
-                            Team Total 5000 Investment <br>
-                            <center>OR</center>
-                            Direct Team 5&  <br> Team Total 10000 Investment";
+                            Direct Team count 10 &  <br>
+                            Team Total 5000 Investment";
                     }
                     if ($rank->rank >= 2) {
                         return "R" . ($rank->rank - 1) . " x 5";
@@ -81,6 +79,15 @@ class RankController extends Controller
                         $actions = '<a href="javascript:void(0)" data-id="' . $rank->id . '" title="Issue Bonus" class="btn btn-xs btn-success sharp issue-bonus my-1 mr-1 shadow">
                                     <i class="fa fa-check-circle"></i>
                                 </a>';
+                    } elseif ($rank->rank === 3) {
+                        return "<span style='font-size: 0.7rem'>LEVEL 5 OPENED</span>";
+                    } elseif ($rank->rank === 4) {
+                        return "<span style='font-size: 0.7rem'>LEVEL 6 & 7 OPENED</span>";
+                    } elseif (count($rank->benefits)) {
+                        $bonus = $rank->benefits->first();
+                        $actions = '<span style="font-size: 0.7rem">ISSUED: ' . $bonus->bonus_date . " <br> PAID: $" .
+                            number_format($bonus->paid, 2) .
+                            " </span>";
                     }
                     return $actions;
                 })

@@ -21,15 +21,18 @@ class UserRankTwoListener implements ShouldQueue
 
     private array $requirements;
 
+    public bool $ignoreActivatedStates;
+
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(User $user, array $requirements)
+    public function __construct(User $user, array $requirements, bool $ignoreActivatedStates = true)
     {
         $this->user = $user;
         $this->requirements = $requirements;
+        $this->ignoreActivatedStates = $ignoreActivatedStates;
     }
 
     /**
@@ -79,6 +82,10 @@ class UserRankTwoListener implements ShouldQueue
             'rank' => 2
         ]);
 
+        if ($this->ignoreActivatedStates && $rank->is_active) {
+            return;
+        }
+
         $qualified = false;
         if ($rank_one_rankers >= 5) {
             $rank->update(['activated_at' => Carbon::now()]);
@@ -98,7 +105,7 @@ class UserRankTwoListener implements ShouldQueue
                 if ($parent_user->id === null) {
                     break;
                 }
-                UserRankThreeListener::dispatch($parent_user, $this->requirements)->onConnection('sync');
+                UserRankThreeListener::dispatch($parent_user, $this->requirements, $this->ignoreActivatedStates)->onConnection('sync');
                 $rank_two_user = $parent_user;
             }
         }

@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use App\Events\RankEligibilityCheck;
-use App\Jobs\UserRankOneListener;
 use App\Models\User;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Command\Command as CommandAlias;
@@ -40,7 +39,7 @@ class UserRankRefresh extends Command
                 ->orderBy('created_at', 'ASC')
                 ->chunk(100, function ($users) use ($progressBar) {
                     foreach ($users as $user) {
-                        event(new RankEligibilityCheck($user));
+                        event(new RankEligibilityCheck($user, false));
                         $progressBar->advance();
                     }
                 });

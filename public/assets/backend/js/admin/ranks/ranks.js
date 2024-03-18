@@ -54,7 +54,7 @@ $(function () {
         e.preventDefault();
         Swal.fire({
             title: "Are You Sure?",
-            text: "Issue $250 Bonus for this user?. Please note this process cannot be reversed.",
+            text: "Issue 5% Bonus for this user?. Please note this process cannot be reversed.",
             icon: "info",
             showCancelButton: true,
         }).then((process) => {
@@ -66,9 +66,8 @@ $(function () {
                     .then(response => {
                         Toast.fire({
                             icon: response.data.icon, title: response.data.message,
-                        }).then(res => {
-                            table.draw();
                         })
+                        table.draw();
                     })
                     .catch((error) => {
                         Toast.fire({
