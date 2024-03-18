@@ -342,46 +342,175 @@
 
     <div class='row'>
         <!-- Column -->
-        <div class="col-xl-9">
-            <div class="card">
-                <div class="card-body justify-content-center d-flex flex-column">
-                    <h6>Total Investment: {{ number_format($total_investment,2) }}
-                        <span class="float-end">Total Profit: {{ $total_avg_investment_profit }}%</span>
-                    </h6>
-                    @php
-                        //                        $total_investment_avg_earned_profit = 0.01;
-                                                 $total_investment_avg_earned_profit /= 100;
-                                                $no_of_bars = $total_avg_investment_profit/100;
-                    @endphp
-                    @for($i = 1; $i <= $no_of_bars; $i++)
-                        @php
-                            $filled_percent = 0;
-                            if(($i - 1) <= $total_investment_avg_earned_profit && $i >= $total_investment_avg_earned_profit){
-                                $filled_percent = ($total_investment_avg_earned_profit - floor($total_investment_avg_earned_profit)) * 100 ;
-                            }
-                            if($i <= $total_investment_avg_earned_profit){
-                                $filled_percent = 100;
-                            }
-                        @endphp
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="widget-stat card rounded-3">
+                        <div class="card-body  p-4">
 
-                        <h6 class="mt-4">{{ round($filled_percent,2) }}%
-                            <span class="float-end">{{ ($i)*100 }}%</span>
-                        </h6>
+                            <div class="col-mb-12 ">
+                                <div class="media justify-content-center dash-p-10">
+                                            <span class="me-3">
+                                                <i class="la la-money-bill-wave"></i>
+                                            </span>
+                                </div>
+                            </div>
 
-                        <div class="progress ">
-                            <div class="progress-bar bg-progress progress-animated" style="width:  {{ $filled_percent }}%; height:10px;" role="progressbar">
-                                <span class="sr-only">{{ round($filled_percent,2) }}% Complete</span>
+                            <div class="col-mb-12 ">
+                                <div class="media-body text-white dash-p">
+                                    <p class="mb-1">My Package Income <br> <b>${{ number_format($invest_income,2) }}</b></p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="widget-stat card rounded-3">
+                        <div class="card-body  p-4">
+
+                            <div class="col-mb-12 ">
+                                <div class="media justify-content-center dash-p-10">
+                                            <span class="me-3">
+                                                <i class="la bi-hourglass-split"></i>
+                                            </span>
+                                </div>
+                            </div>
+
+                            <div class="col-mb-12 ">
+                                <div class="media-body text-white dash-p">
+                                    <p class="mb-1">Direct Sales Commission <br> <b>${{ number_format($direct_comm_income,2) }}</b></p>
+                                </div>
                             </div>
                         </div>
-                    @endfor
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="widget-stat card rounded-3">
+                        <div class="card-body  p-4">
 
+                            <div class="col-mb-12 ">
+                                <div class="media justify-content-center dash-p-10">
+                                            <span class="me-3">
+                                                <i class="la la-landmark"></i>
+                                            </span>
+                                </div>
+                            </div>
+                            <div class="col-mb-12 ">
+                                <div class="media-body text-white dash-p">
+                                    <p class="mb-1">
+                                        Indirect Sales <br> <b>${{ number_format($indirect_comm_income,2) }}</b>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="widget-stat card rounded-3">
+                        <div class="card-body  p-4">
 
+                            <div class="col-mb-12 ">
+                                <div class="media justify-content-center dash-p-10">
+                                            <span class="me-3">
+                                                <i class="la la-money-check-alt"></i>
+                                            </span>
+                                </div>
+                            </div>
+                            <div class="col-mb-12 ">
+                                <div class="media-body text-white dash-p">
+                                    <p class="mb-1">Direct Trade Income <br> <b>${{ number_format($trade_income,2) }}</b></p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="widget-stat card rounded-3">
+                        <div class="card-body p-4">
+
+                            <div class="col-mb-12 ">
+                                <div class="media justify-content-center dash-p-10">
+                                            <span class="me-3">
+                                                <i class="la la-donate"></i>
+                                            </span>
+                                </div>
+                            </div>
+
+                            <div class="col-mb-12 ">
+                                <div class="media-body text-white dash-p">
+                                    <p class="mb-1">Indirect Trade Income <br> <b>${{ number_format($trade_team_income,2) }}</b></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="widget-stat card rounded-3">
+                        <div class="card-body p-4">
+
+                            <div class="col-mb-12 ">
+                                <div class="media justify-content-center dash-p-10">
+                                            <span class="me-3">
+                                                <i class="fa-solid fa-coins"></i>
+                                            </span>
+                                </div>
+                            </div>
+
+                            <div class="col-mb-12 ">
+                                <div class="media-body text-white dash-p">
+                                    <p class="mb-1">Reward Commissions <br> <b> $0</b></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        {{-- <div class="col-xl-9">
+             <div class="card">
+                 <div class="card-body justify-content-center d-flex flex-column">
+                     <h6>Total Investment: {{ number_format($total_investment,2) }}
+                         <span class="float-end">Total Profit: {{ $total_avg_investment_profit }}%</span>
+                     </h6>
+                     @php
+                         //                        $total_investment_avg_earned_profit = 0.01;
+                                                  $total_investment_avg_earned_profit /= 100;
+                                                 $no_of_bars = $total_avg_investment_profit/100;
+                     @endphp
+                     @for($i = 1; $i <= $no_of_bars; $i++)
+                         @php
+                             $filled_percent = 0;
+                             if(($i - 1) <= $total_investment_avg_earned_profit && $i >= $total_investment_avg_earned_profit){
+                                 $filled_percent = ($total_investment_avg_earned_profit - floor($total_investment_avg_earned_profit)) * 100 ;
+                             }
+                             if($i <= $total_investment_avg_earned_profit){
+                                 $filled_percent = 100;
+                             }
+                         @endphp
+
+                         <h6 class="mt-4">{{ round($filled_percent,2) }}%
+                             <span class="float-end">{{ ($i)*100 }}%</span>
+                         </h6>
+
+                         <div class="progress ">
+                             <div class="progress-bar bg-progress progress-animated" style="width:  {{ $filled_percent }}%; height:10px;" role="progressbar">
+                                 <span class="sr-only">{{ round($filled_percent,2) }}% Complete</span>
+                             </div>
+                         </div>
+                     @endfor
+
+
+                 </div>
+             </div>
+         </div>--}}
         <!-- Column -->
         <!-- Column -->
-        <div class="col-xl-3">
+        <div class="col-xl-4">
             <div class="card">
                 <div class="card-body">
                     <div class="row" id="grey-color-override">
@@ -769,7 +898,7 @@
 
     <div class="row">
         <div class="col-xl-12">
-            <div class="row">
+            {{--<div class="row">
                 <div class="col-xl-12">
                     <div class="row">
 
@@ -903,7 +1032,7 @@
 
                     </div>
                 </div>
-            </div>
+            </div>--}}
             <div class="row">
 
                 <div class="col-lg-12">
