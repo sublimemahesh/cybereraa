@@ -139,7 +139,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-6 d-none">
                                 <div class="card bg-secondary pay-method-manual-pay cursor-pointer" id="manual-pay">
                                     <div class="card-body card-link">
                                         <div class="text-center">
