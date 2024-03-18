@@ -459,7 +459,7 @@ class PayoutController extends Controller
         $json['status'] = true;
         $json['message'] = "Withdrawal request send! You will receive request amount within 3 business days";
         $json['icon'] = 'success'; // warning | info | question | success | error
-        $json['redirectUrl'] = URL::signedRoute('user.wallet.transfer.invoice', $withdraw); // warning | info | question | success | error
+        $json['redirectUrl'] = URL::signedRoute('user.transfers.withdrawals'); // warning | info | question | success | error
         return response()->json($json, Response::HTTP_OK);
     }
 
