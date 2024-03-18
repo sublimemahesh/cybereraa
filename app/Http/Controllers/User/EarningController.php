@@ -29,11 +29,11 @@ class EarningController extends Controller
 
             return DataTables::of($earnings)
                 ->addColumn('earnable_type', function ($earn) {
-                    $level = \App\Enums\ReferralLevelEnum::level()[$earn->income_level];
+                    $level = \App\Enums\ReferralLevelEnum::level()[$earn->income_level] ?? null;
                     return
                         "<code class='text-uppercase'>{$earn->type}</code> - #" .
                         str_pad($earn->earnable_id, '4', '0', STR_PAD_LEFT) . "<br>" .
-                        " <i class='fa fa-level-down'></i> {$level} ";
+                        ($level ? " <i class='fa fa-level-down'></i> {$level} " : '');
                 })
                 ->addColumn('amount', fn($commission) => number_format($commission->amount, 2))
                 ->addColumn('package', fn($earn) => $earn->earnable->package_info_json->name)
