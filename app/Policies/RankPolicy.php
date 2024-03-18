@@ -12,7 +12,7 @@ class RankPolicy
 
     public function issueBonus(User $user, Rank $rank)
     {
-        return $rank->is_active && $rank->rank <= 2;
+        return $rank->is_active && $rank->rank <= 2 && $rank->benefits()->doesntExist();
     }
 
     public function viewAny(User $user)

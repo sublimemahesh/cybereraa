@@ -20,15 +20,18 @@ class RankEligibilityCheck
      */
     public Authenticatable $user;
 
+    public bool $ignoreActivatedStates;
+
     /**
      * Create a new event instance.
      *
      * @param Authenticatable $user
      * @return void
      */
-    public function __construct(Authenticatable $user)
+    public function __construct(Authenticatable $user, bool $ignoreActivatedStates = true)
     {
         $this->user = $user;
+        $this->ignoreActivatedStates = $ignoreActivatedStates;
     }
 
     /**

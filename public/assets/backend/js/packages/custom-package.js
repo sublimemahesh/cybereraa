@@ -52,13 +52,13 @@ $(function () {
     });
 
     $(document).on('click', binancepay_method_element, function () {
-        payMethodChooseModal.hide()
+        // payMethodChooseModal.hide()
         tempBinancePay.show()
         //generateInvoice("binance", 'custom')
     });
 
     $(document).on('click', coinpayment_method_element, function () {
-        payMethodChooseModal.hide()
+        // payMethodChooseModal.hide()
         generateInvoice("coin_payment", 'custom')
     });
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Strategy;
 use App\Models\TeamBonus;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class TeamBonusController extends Controller
 {
@@ -14,6 +15,7 @@ class TeamBonusController extends Controller
      */
     public function requirements(Request $request)
     {
+        abort(Response::HTTP_FORBIDDEN);
         $user = \Auth::user();
         $user?->load('specialBonuses');
         $user?->loadCount('directSales');

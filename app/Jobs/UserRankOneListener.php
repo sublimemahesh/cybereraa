@@ -20,15 +20,18 @@ class UserRankOneListener implements ShouldQueue
 
     private array $requirements;
 
+    public bool $ignoreActivatedStates;
+
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(User $user, array $requirements)
+    public function __construct(User $user, array $requirements, bool $ignoreActivatedStates = true)
     {
         $this->user = $user;
         $this->requirements = $requirements;
+        $this->ignoreActivatedStates = $ignoreActivatedStates;
     }
 
     /**
@@ -48,9 +51,9 @@ class UserRankOneListener implements ShouldQueue
             'rank' => 1
         ]);
 
-//        if ($rank->is_active) {
-//            return;
-//        }
+        if ($this->ignoreActivatedStates && $rank->is_active) {
+            return;
+        }
 
         $investment = $user->purchasedPackages()->sum('invested_amount');
 
@@ -98,14 +101,15 @@ class UserRankOneListener implements ShouldQueue
                 $qualified = true;
             }
 
-            if ($cumulative_investment_of_direct_sales >= $this->requirements['r1']['team'][5] && $direct_sales_count >= 5) {
-                $completed_requirements['rank_unlocked'] = [
-                    'direct_sales_count' => 5,
-                    'cumulative_investment_of_direct_sales' => $this->requirements['r1']['team'][5]
-                ];
-                $rank->update(['activated_at' => Carbon::now()]);
-                $qualified = true;
-            }
+            // ABANDON REQUIREMENT
+//            if ($cumulative_investment_of_direct_sales >= $this->requirements['r1']['team'][5] && $direct_sales_count >= 5) {
+//                $completed_requirements['rank_unlocked'] = [
+//                    'direct_sales_count' => 5,
+//                    'cumulative_investment_of_direct_sales' => $this->requirements['r1']['team'][5]
+//                ];
+//                $rank->update(['activated_at' => Carbon::now()]);
+//                $qualified = true;
+//            }
 
 //            if ($countUsersInRange1 >= $this->requirements['r1']['team']['5000'] || $countUsersInRange2 >= $this->requirements['r1']['team']['5000']) {
 //                $rank->update(['activated_at' => Carbon::now()]);
@@ -126,7 +130,7 @@ class UserRankOneListener implements ShouldQueue
                 if ($parent_user->id === null) {
                     break;
                 }
-                UserRankTwoListener::dispatch($parent_user, $this->requirements)->onConnection('sync');
+                UserRankTwoListener::dispatch($parent_user, $this->requirements, $this->ignoreActivatedStates)->onConnection('sync');
                 $rank_one_user = $parent_user;
             }
         }

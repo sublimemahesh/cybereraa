@@ -20,15 +20,18 @@ class UserRankFourListener implements ShouldQueue
 
     private array $requirements;
 
+    public bool $ignoreActivatedStates;
+
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(User $user, array $requirements)
+    public function __construct(User $user, array $requirements, bool $ignoreActivatedStates = true)
     {
         $this->user = $user;
         $this->requirements = $requirements;
+        $this->ignoreActivatedStates = $ignoreActivatedStates;
     }
 
     /**
@@ -77,6 +80,11 @@ class UserRankFourListener implements ShouldQueue
             'rank' => 4
         ]);
 
+
+        if ($this->ignoreActivatedStates && $rank->is_active) {
+            return;
+        }
+
         $qualified = false;
 
         if ($rank_three_rankers >= 5) {
@@ -89,6 +97,6 @@ class UserRankFourListener implements ShouldQueue
         }
 
         $rank->update(compact('completed_requirements'));
- 
+
     }
 }
