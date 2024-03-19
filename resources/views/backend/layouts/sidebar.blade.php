@@ -205,11 +205,20 @@
     </li>
 @endcan
 
-@can('users.import-bulk')
+{{--@can('users.import-bulk')
     <li>
         <a href="{{ route('admin.users.import') }}" class="" aria-expanded="false">
             <i class="bi bi-person-up"></i>
             <span class="nav-text">Import Users</span>
+        </a>
+    </li>
+@endcan--}}
+
+@can('users.custom-free-package.purchase')
+    <li>
+        <a href="{{ route('admin.users.custom-investment') }}" class="" aria-expanded="false">
+            <i class="bi bi-person-up"></i>
+            <span class="nav-text">Custom Investment</span>
         </a>
     </li>
 @endcan
@@ -507,11 +516,11 @@
                     <span class="nav-text">Rewards</span>
                 </a>
             </li>
-           {{-- <li>
-                <a href="{{ route('admin.ranks.benefits.summery') }}" class="" aria-expanded="false">
-                    <span class="nav-text">Summery</span>
-                </a>
-            </li>--}}
+            {{-- <li>
+                 <a href="{{ route('admin.ranks.benefits.summery') }}" class="" aria-expanded="false">
+                     <span class="nav-text">Summery</span>
+                 </a>
+             </li>--}}
             {{--<li>
                 <a href="{{ route('admin.ranks.benefits.requirements') }}" class="" aria-expanded="false">
                     <span class="nav-text">Requirement</span>

@@ -682,9 +682,8 @@
 
     </div>
 
-    <div class="row d-none">
-
-        <div class="col-sm-12">
+    <div class="row">
+        <div class="col-sm-12 d-none">
             <div class="card rounded-3">
                 <div class="card-body">
                     <div class="timeline">
@@ -710,7 +709,6 @@
                 </div>
             </div>
         </div>
-
         <div class="col-xl-12 col-sm-6">
             <div class="card rounded-3">
                 <div class="border-0 card-header pb-2 pt-3">
@@ -810,8 +808,6 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 
 
@@ -1047,7 +1043,7 @@
                     <br>
                 </div>
 
-                <div class="col-lg-12">
+                <div class="col-lg-12 d-none">
                     <div class="card rounded-3">
                         <div class="card-header">
                             <h4 class="card-title">Recent Bonus Reward List</h4>

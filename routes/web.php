@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Rank;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -175,6 +174,7 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
 
         Route::match(['get', 'post'], 'users/import', 'Admin\UserImportController@import')->name('users.import');
         Route::match(['get', 'post'], 'users/remove/import-users', 'Admin\UserImportController@removeUsers')->name('users.remove.import-users');
+        Route::match(['get', 'post'], 'users/custom-investment', 'Admin\InvestmentPurchaseController@customInvestments')->name('users.custom-investment');
 
         Route::get('users', 'Admin\UserController@index')->name('users.index');
         Route::get('users/pending/kycs', 'Admin\UserController@index')->name('users.pending.kycs');
