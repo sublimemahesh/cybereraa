@@ -74,6 +74,12 @@ class WithdrawController extends Controller
 
             return $withdrawService->datatable($withdrawals)
                 ->addColumn('user', static function ($withdraw) {
+                    return /*str_pad($withdraw->user_id, '4', '0', STR_PAD_LEFT) .*/
+                        "<code class='text-uppercase' style='font-size:0.7rem'>
+                            {$withdraw->user->username}</code> <br> Sponsor: <code>{$withdraw->user?->sponsor?->username}
+                        </code> ";
+                })
+                ->addColumn('user', static function ($withdraw) {
                     return str_pad($withdraw->user_id, '4', '0', STR_PAD_LEFT) .
                         "<br><code class='text-uppercase' style='font-size:0.7rem'>{$withdraw->user->username}</code>";
                 })
@@ -81,7 +87,7 @@ class WithdrawController extends Controller
                     return "Type: <code class='text-uppercase'>{$withdraw->type}</code> <br>
                             Wallet: <code class='text-uppercase'>{$withdraw->wallet_type}</code>";
                 })
-                ->addColumn('status', function ($withdraw) {
+                ->addColumn('status_formatted', function ($withdraw) {
                     $html = "";
                     if ($withdraw->successful_withdrawals_count > 0) {
                         $html = "<i class='fa fa-certificate text-success' title='Successful Withdrawer'></i> ";
@@ -119,7 +125,7 @@ class WithdrawController extends Controller
 //                    }
                     return $actions;
                 })
-                ->rawColumns(['user', 'actions', 'type_n_wallet', 'status'])
+                ->rawColumns(['user', 'actions', 'type_n_wallet', 'status_formatted'])
                 ->make();
         }
 
@@ -136,6 +142,104 @@ class WithdrawController extends Controller
         $skel = '{"email":"","id":"","address":"","phone":""}';
         $payout_info = json_decode($withdraw?->payout_details ?? $skel, false, 512, JSON_THROW_ON_ERROR);
         return view('backend.admin.users.transfers.withdraw-summery', compact('withdraw', 'payout_info'));
+    }
+
+    public function bulkProcessWithdraw(Request $request)
+    {
+        abort_if(Gate::denies('withdraw.bulk.process'), 403);
+        $validated = Validator::make($request->all(), [
+            'ids' => 'required|array'
+        ])->validate();
+
+        $errors = [];
+        foreach ($validated['ids'] as $id) {
+            $withdraw = Withdraw::where('status', 'PENDING')->find($id);
+            if ($withdraw->id === null) {
+                $errors[] = "{$id} Invalid withdrawal Id!";
+                continue;
+            }
+
+            try {
+                $this->process($request, $withdraw);
+            } catch (Throwable $e) {
+                $errors[] = $e->getMessage();
+            }
+        }
+
+        $json['status'] = true;
+        $json['message'] = 'Payout Processed';
+        $json['icon'] = 'success'; // warning | info | question | success | error
+        $json['errors'] = $errors;
+
+        return response()->json($json);
+    }
+
+    public function bulkApproveWithdraw(Request $request)
+    {
+        abort_if(Gate::denies('withdraw.bulk.approve'), 403);
+
+        $validated = Validator::make($request->all(), [
+            'ids' => 'required|array'
+        ])->validate();
+
+        $errors = [];
+        foreach ($validated['ids'] as $id) {
+            $withdraw = Withdraw::where('status', 'PROCESSING')->find($id);
+            if ($withdraw->id === null) {
+                $errors[] = "{$id} Invalid withdrawal Id!";
+                continue;
+            }
+
+            try {
+
+                $skel = '{"email":"","id":"","address":"","phone":""}';
+                $payout_info = json_decode($withdraw->payout_details ?? $skel, false, 512, JSON_THROW_ON_ERROR);
+
+                $this->approveWithdrawalRequest(['proof_document' => null], $withdraw, $payout_info);
+
+            } catch (Throwable $e) {
+                $errors[] = $e->getMessage();
+            }
+        }
+
+        $json['status'] = true;
+        $json['message'] = 'Payout Approved';
+        $json['icon'] = 'success'; // warning | info | question | success | error
+        $json['errors'] = $errors;
+
+        return response()->json($json);
+    }
+
+    public function bulkRejectWithdraw(Request $request)
+    {
+        abort_if(Gate::denies('withdraw.bulk.reject'), 403);
+
+        $validated = Validator::make($request->all(), [
+            'ids' => 'required|array',
+            'repudiate_note' => 'required|string'
+        ])->validate();
+
+        $errors = [];
+        foreach ($validated['ids'] as $id) {
+            $withdraw = Withdraw::whereIn('status', ['PENDING', 'PROCESSING'])->find($id);
+            if ($withdraw->id === null) {
+                $errors[] = "{$id} Invalid withdrawal Id!";
+                continue;
+            }
+
+            try {
+                $this->rejectWithdraw($request, $withdraw);
+            } catch (Throwable $e) {
+                $errors[] = $e->getMessage();
+            }
+        }
+
+        $json['status'] = true;
+        $json['message'] = 'Payouts Rejected';
+        $json['icon'] = 'success'; // warning | info | question | success | error
+        $json['errors'] = $errors;
+
+        return response()->json($json);
     }
 
     /**
@@ -207,53 +311,7 @@ class WithdrawController extends Controller
                 }
             }
 
-            \DB::transaction(function () use ($validated, $withdraw, $payout_info) {
-                $proof_documentation = null;
-                if (request()->hasFile('proof_document')) {
-                    $file = $validated['proof_document'];
-                    $proof_documentation = Str::limit(Str::slug($file->getClientOriginalName()), 50) . "-" . $file->hashName();
-                    $file->storeAs('payouts/manual', $proof_documentation);
-                }
-
-                $withdraw->update([
-                    'status' => 'SUCCESS',
-                    'proof_document' => $proof_documentation,
-                    'approved_at' => \Carbon::now(),
-                ]);
-
-                if ($withdraw->processed_at === null) {
-                    $withdraw->update([
-                        'processed_at' => \Carbon::now(),
-                    ]);
-                }
-
-                $admin_wallet_type = $withdraw->wallet_type === 'STAKING' ? 'STAKING_WITHDRAWAL_FEE' : 'WITHDRAWAL_FEE';
-
-                $withdraw->adminEarnings()->create([
-                    'user_id' => $withdraw->user_id,
-                    'type' => $admin_wallet_type,
-                    'amount' => $withdraw->transaction_fee,
-                ]);
-
-                $admin_wallet = AdminWallet::firstOrCreate(
-                    ['wallet_type' => $admin_wallet_type],
-                    ['balance' => 0]
-                );
-
-                $admin_wallet->increment('balance', $withdraw->transaction_fee);
-
-                Mail::to($withdraw->user->email)
-                    ->cc($payout_info?->email)
-                    ->send(new SendPayoutConfirmationMail($withdraw));
-            });
-
-            $json['status'] = true;
-            $json['message'] = 'Payout successful';
-            $json['icon'] = 'success'; // warning | info | question | success | error
-            $json['redirectUrl'] = route('admin.transfers.withdrawals.view', $withdraw);
-            $json['data'] = $validated;
-
-            return response()->json($json);
+            return $this->approveWithdrawalRequest($validated, $withdraw, $payout_info);
         }
         if ($withdraw->status !== 'PROCESSING') {
             session()->flash('warning', "This withdrawal request hasn't been marked as 'Processing' yet! Before proceeding, please ensure to mark the withdrawal request as 'Processing' to avoid any inconveniences or potential mismatches in users wallet balances. If you choose to proceed without marking it, please be aware that it's at your own risk!");
@@ -332,5 +390,63 @@ class WithdrawController extends Controller
         }
 
         return view('backend.admin.users.transfers.reject-payouts', compact('withdraw', 'payout_info', 'profile'));
+    }
+
+
+    /**
+     * @param array $validated
+     * @param Withdraw $withdraw
+     * @param mixed $payout_info
+     * @return \Illuminate\Http\JsonResponse
+     */
+    private function approveWithdrawalRequest(array $validated, Withdraw $withdraw, mixed $payout_info): \Illuminate\Http\JsonResponse
+    {
+        \DB::transaction(function () use ($validated, $withdraw, $payout_info) {
+            $proof_documentation = null;
+            if (request()->hasFile('proof_document')) {
+                $file = $validated['proof_document'];
+                $proof_documentation = Str::limit(Str::slug($file->getClientOriginalName()), 50) . "-" . $file->hashName();
+                $file->storeAs('payouts/manual', $proof_documentation);
+            }
+
+            $withdraw->update([
+                'status' => 'SUCCESS',
+                'proof_document' => $proof_documentation,
+                'approved_at' => \Carbon::now(),
+            ]);
+
+            if ($withdraw->processed_at === null) {
+                $withdraw->update([
+                    'processed_at' => \Carbon::now(),
+                ]);
+            }
+
+            $admin_wallet_type = $withdraw->wallet_type === 'STAKING' ? 'STAKING_WITHDRAWAL_FEE' : 'WITHDRAWAL_FEE';
+
+            $withdraw->adminEarnings()->create([
+                'user_id' => $withdraw->user_id,
+                'type' => $admin_wallet_type,
+                'amount' => $withdraw->transaction_fee,
+            ]);
+
+            $admin_wallet = AdminWallet::firstOrCreate(
+                ['wallet_type' => $admin_wallet_type],
+                ['balance' => 0]
+            );
+
+            $admin_wallet->increment('balance', $withdraw->transaction_fee);
+
+            Mail::to($withdraw->user->email)
+                ->cc($payout_info?->email)
+                ->send(new SendPayoutConfirmationMail($withdraw));
+        });
+
+        $json['status'] = true;
+        $json['message'] = 'Payout successful';
+        $json['icon'] = 'success'; // warning | info | question | success | error
+        $json['redirectUrl'] = route('admin.transfers.withdrawals.view', $withdraw);
+        $json['data'] = $validated;
+
+        return response()->json($json);
     }
 }

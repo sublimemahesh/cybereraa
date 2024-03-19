@@ -151,6 +151,9 @@ class PermissionSeeder extends Seeder
             ['name' => 'withdrawals.viewAny', 'guard_name' => 'web'],
             ['name' => 'withdraw.approve', 'guard_name' => 'web'],
             ['name' => 'withdraw.reject', 'guard_name' => 'web'],
+            ['name' => 'withdraw.bulk.process', 'guard_name' => 'web'],
+            ['name' => 'withdraw.bulk.approve', 'guard_name' => 'web'],
+            ['name' => 'withdraw.bulk.reject', 'guard_name' => 'web'],
 
             ['name' => 'staking_package.viewAny', 'guard_name' => 'web'],
             ['name' => 'staking_package.create', 'guard_name' => 'web'],
