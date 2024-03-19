@@ -85,10 +85,13 @@ class RankController extends Controller
                         return "<span style='font-size: 0.7rem'>LEVEL 6 & 7 OPENED</span>";
                     } elseif (count($rank->benefits)) {
                         $bonus = $rank->benefits->first();
-                        $actions = '<span style="font-size: 0.7rem">ISSUED: ' . $bonus->bonus_date . " <br> PAID: $" .
+                        return '<span style="font-size: 0.7rem">ISSUED: ' . $bonus->bonus_date . " <br> PAID: $" .
                             number_format($bonus->paid, 2) .
                             " </span>";
+                    } elseif (strtolower($rank->user->username) === 'jeewaka1002' || strtolower($rank->user->username) === 'indika01') {
+                        return "<span style='font-size: 0.7rem'>ISSUED AS SPECIAL BONUS </span>";
                     }
+
                     return $actions;
                 })
                 ->rawColumns(['user', 'eligibility', 'requirement', 'actions'])
@@ -128,7 +131,7 @@ class RankController extends Controller
                 'paid' => 0,
                 'type' => 'RANK_BONUS',
                 'status' => 'QUALIFIED',
-                'bonus_date' => Carbon::now()->subMonth()->format('Y-m-d')
+                'bonus_date' => Carbon::now()->format('Y-m-d')
             ]);
 
             $wallet = Wallet::firstOrCreate(

@@ -12,6 +12,10 @@ class RankPolicy
 
     public function issueBonus(User $user, Rank $rank)
     {
+        if (strtolower($rank->user->username) === 'jeewaka1002' || strtolower($rank->user->username) === 'indika01') {
+            return false;
+        }
+
         return $rank->is_active && $rank->rank <= 2 && $rank->benefits()->doesntExist();
     }
 
