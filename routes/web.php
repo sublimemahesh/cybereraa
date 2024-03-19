@@ -320,7 +320,13 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
             Route::post('users/transfers/withdrawals/{withdraw}/process', 'Admin\WithdrawController@process');
             Route::post('users/transfers/withdrawals/{withdraw}/approve', 'Admin\WithdrawController@approve')->name('transfers.withdrawals.approve');
             Route::post('users/transfers/withdrawals/{withdraw}/reject', 'Admin\WithdrawController@rejectWithdraw')->name('transfers.withdrawals.reject');
-//            Route::match(['get', 'post'], 'users/transfers/withdrawals/{withdraw}/reject', 'Admin\WithdrawController@rejectWithdraw')->name('transfers.withdrawals.reject');
+
+            Route::post('users/transfers/bulk/withdrawals/process', 'Admin\WithdrawController@bulkProcessWithdraw');
+            Route::post('users/transfers/bulk/withdrawals/approve', 'Admin\WithdrawController@bulkApproveWithdraw');
+            Route::post('users/transfers/bulk/withdrawals/reject', 'Admin\WithdrawController@bulkRejectWithdraw');
+
+
+            //            Route::match(['get', 'post'], 'users/transfers/withdrawals/{withdraw}/reject', 'Admin\WithdrawController@rejectWithdraw')->name('transfers.withdrawals.reject');
         });
 
         // Strategies

@@ -1141,6 +1141,9 @@ table.dataTable tbody th.select-checkbox:before {
     border-radius: 3px;
 }
 
+table.dataTable > tbody > tr.selected > td.select-checkbox:before{
+    content: none;
+}
 table.dataTable tr.selected td.select-checkbox:after,
 table.dataTable tr.selected th.select-checkbox:after {
     content: '\2714';

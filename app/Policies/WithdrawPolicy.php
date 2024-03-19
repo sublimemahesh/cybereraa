@@ -29,7 +29,7 @@ class WithdrawPolicy
         if ($withdraw->status !== 'PENDING') {
             return false;
         }
-        if ($user->hasPermissionTo('withdraw.approve')) {
+        if ($user->hasAnyPermission(['withdraw.approve', 'withdraw.bulk.process'])) {
             return true;
         }
     }
@@ -39,7 +39,7 @@ class WithdrawPolicy
         if (!in_array($withdraw->status, ['PENDING', 'PROCESSING'])) {
             return false;
         }
-        if ($user->hasPermissionTo('withdraw.approve')) {
+        if ($user->hasAnyPermission(['withdraw.approve', 'withdraw.bulk.approve'])) {
             return true;
         }
     }
@@ -54,7 +54,7 @@ class WithdrawPolicy
         if (!in_array($withdraw->status, ['PENDING', 'PROCESSING'])) {
             return false;
         }
-        if ($user->hasPermissionTo('withdraw.reject')) {
+        if ($user->hasAnyPermission(['withdraw.reject', 'withdraw.bulk.reject'])) {
             return true;
         }
     }
