@@ -40,7 +40,7 @@ class UserController extends Controller
                 ->withCount(['directSales', 'purchasedPackages', 'transactions' => fn($q) => $q->whereIn('status', ['PENDING', 'PAID'])])
                 ->withSum('purchasedPackages', 'invested_amount')
                 ->withSum('activePackages', 'invested_amount')
-                ->withSum(['earnings' /*=> fn($q) => $q->whereIn('type', ['PACKAGE', 'TRADE_DIRECT', 'TRADE_INDIRECT', 'DIRECT', 'INDIRECT'])*/], 'amount') // ,'TEAM_BONUS','SPECIAL_BONUS','RANK_BONUS','RANK_GIFT','P2P','STAKING'
+                ->withSum(['earnings' => fn($q) => $q->whereIn('type', ['PACKAGE', 'TRADE_DIRECT', 'TRADE_INDIRECT', 'DIRECT', 'INDIRECT'])], 'amount') // ,'TEAM_BONUS','SPECIAL_BONUS','RANK_BONUS','RANK_GIFT','P2P','STAKING'
                 ->withSum(['withdraws' => fn($q) => $q->where('status', 'SUCCESS')->where('type', 'MANUAL')], 'amount')
                 ->withSum(['withdraws' => fn($q) => $q->where('status', 'SUCCESS')->where('type', 'MANUAL')], 'transaction_fee')
                 ->whereRelation('roles', 'name', 'user')
