@@ -428,6 +428,8 @@ Route::group(["prefix" => "", 'middleware' => ['auth:sanctum', config('jetstream
 
         // RANK GIFtS
 
+        Route::get('my-ranks', 'User\RankController@myRanks')->name('my-ranks');
+
         // Route::get('ranks/gifts', 'User\RankGiftController@index')->name('ranks.gifts');
         // Route::match(['get', 'post'], 'ranks/gifts/{gift}/shipping-info', 'User\RankGiftController@shippingInfo')->name('ranks.gifts.shipping-info');
 

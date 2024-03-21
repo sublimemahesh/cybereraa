@@ -683,32 +683,6 @@
     </div>
 
     <div class="row">
-        <div class="col-sm-12 d-none">
-            <div class="card rounded-3">
-                <div class="card-body">
-                    <div class="timeline">
-                        <div class="rank {{ $highestRank >= 1 ? 'unlocked' : 'locked'  }}">
-                            <div class="rank-name">Rank 1</div>
-                            <div class="status">{{ $highestRank >= 1 ? 'Unlocked' : 'Locked'  }}</div>
-                        </div>
-                        <div class="rank {{ $highestRank >= 2 ? 'unlocked' : 'locked'  }}">
-                            <div class="rank-name">Rank 2</div>
-                            <div class="status">{{ $highestRank >= 2 ? 'Unlocked' : 'Locked'  }}</div>
-                        </div>
-                        <div class="line"></div>
-                        <div class="rank {{ $highestRank >= 3 ? 'unlocked' : 'locked'  }}">
-                            <div class="rank-name">Rank 3</div>
-                            <div class="status">{{ $highestRank >= 3 ? 'Unlocked' : 'Locked'  }}</div>
-                        </div>
-                        <div class="line"></div>
-                        <div class="rank {{ $highestRank >= 4 ? 'unlocked' : 'locked'  }}">
-                            <div class="rank-name">Rank 4</div>
-                            <div class="status">{{ $highestRank >= 4 ? 'Unlocked' : 'Locked'  }}</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="col-xl-12 col-sm-6">
             <div class="card rounded-3">
                 <div class="border-0 card-header pb-2 pt-3">

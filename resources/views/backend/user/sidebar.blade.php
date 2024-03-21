@@ -190,7 +190,6 @@
             </li>
 
 
-
             {{-- <li>
                 <a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
                     <i class="bi bi-people"></i>
@@ -256,6 +255,9 @@
                     {{--<li>
                         <a href="{{ route('user.special-bonus') }}">Bonus Requirements</a>
                     </li>--}}
+                    <li>
+                        <a href="{{ route('user.my-ranks') }}">My Rank</a>
+                    </li>
                     <li>
                         <a href="{{ route('user.earnings.yearly-income-chart') }}">Income Chart</a>
                     </li>

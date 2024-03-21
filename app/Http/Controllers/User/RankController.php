@@ -12,6 +12,14 @@ use Yajra\DataTables\Facades\DataTables;
 
 class RankController extends Controller
 {
+
+    public function myRanks(Request $request)
+    {
+        $ranks = Rank::where('user_id', Auth::user()->id)->orderBy('rank')->get();
+        $highestRank = Auth::user()->highest_rank;
+        return view('backend.user.ranks.rank-summary', compact('ranks', 'highestRank'));
+    }
+
     public function RankSummary(Request $request)
     {
         $ranks = Rank::where('user_id', \Auth::user()->id)->get();
