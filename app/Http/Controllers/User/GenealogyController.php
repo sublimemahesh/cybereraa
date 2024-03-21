@@ -296,7 +296,7 @@ class GenealogyController extends Controller
             ->withCount('directSales')
             ->withSum(['withdraws' => fn($q) => $q->where('status', 'SUCCESS')->where('type', 'MANUAL')], 'amount')
             ->withSum(['withdraws' => fn($q) => $q->where('status', 'SUCCESS')->where('type', 'MANUAL')], 'transaction_fee')
-            ->withSum(['earnings' => fn($q) => $q->whereIn('type', ['PACKAGE', 'TRADE_DIRECT', 'TRADE_INDIRECT', 'DIRECT', 'INDIRECT', 'TEAM_BONUS'])], 'amount')
+            ->withSum(['earnings'/* => fn($q) => $q->whereIn('type', ['PACKAGE', 'TRADE_DIRECT', 'TRADE_INDIRECT', 'DIRECT', 'INDIRECT', 'TEAM_BONUS'])*/], 'amount')
             ->withSum(['activePackages', 'purchasedPackages'], 'invested_amount')
             ->when(($level === 'all' || $level < 1 || $level > 4), function (Builder $q) {
                 $q->where('depth', "<=", 4);
@@ -372,13 +372,13 @@ class GenealogyController extends Controller
                     "Total Earned: <code>{$earnings_sum_amount}</code></br>" .
                     "Total Withdraw: <code>{$total_withdrawal}</code>";
             })
-            ->addColumn('total_earned', function ($lvlUser) {
+            ->addColumn('total_withdraw', function ($lvlUser) {
 //                $earnings_sum_amount = $lvlUser->earnings_sum_amount;
                 $withdraws_sum_amount = $lvlUser->withdraws_sum_amount;
                 $withdraws_sum_transaction_fee = $lvlUser->withdraws_sum_transaction_fee;
                 return number_format($withdraws_sum_amount + $withdraws_sum_transaction_fee, 2);
             })
-            ->addColumn('total_withdraw', function ($lvlUser) {
+            ->addColumn('total_earned', function ($lvlUser) {
                 //                $withdraws_sum_amount = $lvlUser->withdraws_sum_amount;
 //                $withdraws_sum_transaction_fee = $lvlUser->withdraws_sum_transaction_fee;
 //                $total_withdrawal = $withdraws_sum_amount + $withdraws_sum_transaction_fee;

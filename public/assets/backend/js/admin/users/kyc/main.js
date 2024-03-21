@@ -19,6 +19,7 @@ $(function () {
             {data: "contact_details", name: 'email', searchable: true, orderable: false},
             {data: "kyc_status", name: 'id', searchable: true, orderable: false},
             {data: "investment", searchable: false, orderable: false},
+            {data: "profit", searchable: false, orderable: false},
             {data: "joined", name: 'created_at', orderable: true, searchable: false},
             {data: "actions", searchable: false, orderable: false},
         ],
@@ -35,7 +36,7 @@ $(function () {
                     return `<div style="font-size: 0.76rem !important"> ${data} </div>`;
                 },
                 // width: "150px",
-                targets: [0, 1, 2, 3, 4],
+                targets: [0, 1, 2, 3, 4, 5],
             },
         ],
     });

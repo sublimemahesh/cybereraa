@@ -39,7 +39,10 @@ class UserController extends Controller
             $users = User::with('sponsor', 'profile.kycs.documents',)
                 ->withCount(['directSales', 'purchasedPackages', 'transactions' => fn($q) => $q->whereIn('status', ['PENDING', 'PAID'])])
                 ->withSum('purchasedPackages', 'invested_amount')
-                ->withSum(['earnings' => fn($q) => $q->whereIn('type', ['PACKAGE', 'TRADE_DIRECT', 'TRADE_INDIRECT', 'DIRECT', 'INDIRECT'])], 'amount') // ,'TEAM_BONUS','SPECIAL_BONUS','RANK_BONUS','RANK_GIFT','P2P','STAKING'
+                ->withSum('activePackages', 'invested_amount')
+                ->withSum(['earnings' /*=> fn($q) => $q->whereIn('type', ['PACKAGE', 'TRADE_DIRECT', 'TRADE_INDIRECT', 'DIRECT', 'INDIRECT'])*/], 'amount') // ,'TEAM_BONUS','SPECIAL_BONUS','RANK_BONUS','RANK_GIFT','P2P','STAKING'
+                ->withSum(['withdraws' => fn($q) => $q->where('status', 'SUCCESS')->where('type', 'MANUAL')], 'amount')
+                ->withSum(['withdraws' => fn($q) => $q->where('status', 'SUCCESS')->where('type', 'MANUAL')], 'transaction_fee')
                 ->whereRelation('roles', 'name', 'user')
                 ->when($request->get('status') === 'suspend', function (Builder $q) {
                     $q->whereNotNull('suspended_at');
@@ -95,7 +98,15 @@ class UserController extends Controller
                 })
                 ->addColumn('investment', function ($user) {
                     return "Total Investment: <code>{$user?->purchased_packages_sum_invested_amount} </code> <br>
-                            Total Earned: <code>{$user?->earnings_sum_amount} </code> ";
+                            Active Investment: <code>{$user?->active_packages_sum_invested_amount} </code>  ";
+                })
+                ->addColumn('profit', function ($user) {
+                    $withdraws_sum_amount = $user->withdraws_sum_amount;
+                    $withdraws_sum_transaction_fee = $user->withdraws_sum_transaction_fee;
+                    $total_withdrawal = $withdraws_sum_amount + $withdraws_sum_transaction_fee;
+
+                    return "Total Earned: <code>{$user?->earnings_sum_amount} </code><br>
+                            Total Withdrawals: <code>{$total_withdrawal} </code> ";
                 })
                 ->addColumn('joined', function ($user) {
                     return $user->created_at->format('Y-m-d h:i A');
@@ -137,7 +148,7 @@ class UserController extends Controller
                 ->addColumn('actions', function ($user) {
                     return view('backend.admin.users.includes.users-actions', compact('user'))->render();
                 })
-                ->rawColumns(['actions', 'profile_photo', 'user_details', 'contact_details', 'investment', 'kyc_status'])
+                ->rawColumns(['actions', 'profile_photo', 'user_details', 'contact_details', 'investment', 'profit', 'kyc_status'])
                 ->make();
         }
         return view('backend.admin.users.index');
