@@ -162,7 +162,7 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table id="users" class="table-responsive display table-responsive-my" data-order="[[ 4, &quot;{{ request()->routeIs('admin.users.pending.kycs') ? 'asc' : 'desc' }}&quot; ]]" style="table-layout: fixed">
+                        <table id="users" class="table-responsive display table-responsive-my" data-order="[[ 5, &quot;{{ request()->routeIs('admin.users.pending.kycs') ? 'asc' : 'desc' }}&quot; ]]" style="table-layout: fixed">
                             <thead>
                                 <tr>
                                     {{--<th style="width:50px">PIC</th>--}}
@@ -170,6 +170,7 @@
                                     <th>CONTACT DETAILS</th>
                                     <th>KYC STATUS</th>
                                     <th>INVESTMENT</th>
+                                    <th>PROFIT</th>
                                     <th style="width:150px">JOINED DATE</th>
                                     <th>ACTION</th>
                                 </tr>

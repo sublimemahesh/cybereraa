@@ -54,6 +54,7 @@ class Transaction extends Model
         'transaction_id',
         'status_response',
         'status',
+        'create_order_request'
     ];
 
     protected $appends = [

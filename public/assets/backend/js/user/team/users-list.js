@@ -24,8 +24,8 @@ $(function () {
             // {data: "suspended", name: 'suspended_at', searchable: false},
             // {data: "profit", searchable: false, orderable: false},
 
-            {data: "total_withdraw", searchable: false, orderable: false},
             {data: "total_earned", name: 'username', searchable: false, orderable: false},
+            {data: "total_withdraw", searchable: false, orderable: false},
             {data: "account_investments", searchable: false, orderable: false},
         ],
         columnDefs: [
