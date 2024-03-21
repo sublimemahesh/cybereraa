@@ -52,17 +52,19 @@ $(function () {
 
     $(document).on("click", ".issue-bonus", function (e) {
         e.preventDefault();
+        let rank = parseInt($(this).data('rank'))
+        let amount = rank === 1 ? 250 : 1250;
         Swal.fire({
             title: "Are You Sure?",
-            text: "Issue 5% Bonus for this user?. Please note this process cannot be reversed.",
+            text: "Issue $" + amount + " Bonus for this user?. Please note this process cannot be reversed.",
             icon: "info",
             showCancelButton: true,
         }).then((process) => {
             if (process.isConfirmed) {
                 loader()
-                let rank = $(this).data('id')
+                let rankId = $(this).data('id')
                 // formData.append(proof_document, proof_document)
-                axios.post(`${APP_URL}/admin/reports/ranks/${rank}/issue-bonus`)
+                axios.post(`${APP_URL}/admin/reports/ranks/${rankId}/issue-bonus`)
                     .then(response => {
                         Toast.fire({
                             icon: response.data.icon, title: response.data.message,

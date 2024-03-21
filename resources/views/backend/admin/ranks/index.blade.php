@@ -43,7 +43,7 @@
                                                             <option value="">ALL</option>
                                                             {{--@for($i = 1; $i <= config('rank-system.rank_level_count'); $i++)--}}
                                                             @for($i = 1; $i <= 4; $i++)
-                                                                <option value="{{ $i }}" {{ request()->input('rank') === $i ? 'selected' : '' }}>RANK {{ $i }}</option>
+                                                                <option value="{{ $i }}" {{ (int)request()->input('rank') === $i ? 'selected' : '' }}> 0{{ $i }}. {{ \App\Enums\RankEnum::ranks()[$i] }}</option>
                                                             @endfor
                                                         </select>
                                                         <div class="pointer-events-none rounded absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 dark:border-gray-500">

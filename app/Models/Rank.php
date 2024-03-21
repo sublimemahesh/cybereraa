@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\RankEnum;
 use Carbon;
 use DB;
 use Haruncpi\LaravelUserActivity\Traits\Loggable;
@@ -71,6 +72,11 @@ class Rank extends Model
             return round(($this->eligibility * 100 / config('rank-system.rank_eligibility_activate_at', 3)));
         }
         return 100;
+    }
+
+    public function getNameAttribute(): string
+    {
+        return RankEnum::ranks()[$this->rank];
     }
 
     public function getIsActiveAttribute(): bool

@@ -4,6 +4,16 @@ namespace App\Enums;
 
 trait RankEnum
 {
+    public static function ranks()
+    {
+        return [
+            1 => 'CYBER LINK',
+            2 => 'CYBER PRO',
+            3 => 'CYBER FUSION',
+            4 => 'CYBER PRIME',
+        ];
+    }
+
     public static function info(): array
     {
         return [

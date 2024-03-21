@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\RankEnum;
 use App\Http\Controllers\Controller;
 use App\Models\Rank;
-use App\Models\RankBenefit;
-use App\Models\Wallet;
 use Carbon\Carbon;
 use Gate;
 use Illuminate\Http\Request;
@@ -38,7 +37,7 @@ class RankController extends Controller
                             Team Total 5000 Investment";
                     }
                     if ($rank->rank >= 2) {
-                        return "R" . ($rank->rank - 1) . " x 5";
+                        return RankEnum::ranks()[$rank->rank - 1] . " x 5";
                     }
                     return '-';
                 })
@@ -55,20 +54,20 @@ class RankController extends Controller
                             Direct Team Investment " . $completed_requirements['cumulative_investment_of_direct_sales'];
                     }
                     if ($rank->rank === 2) {
-                        return "R1 x " . $completed_requirements['rank_one_rankers_count'];
+                        return RankEnum::ranks()[1] . " x " . $completed_requirements['rank_one_rankers_count'];
                     }
 
                     if ($rank->rank === 3) {
-                        return "R2 x " . $completed_requirements['rank_two_rankers_count'];
+                        return RankEnum::ranks()[2] . " x " . $completed_requirements['rank_two_rankers_count'];
                     }
 
                     if ($rank->rank === 4) {
-                        return "R3 x " . $completed_requirements['rank_three_rankers_count'];
+                        return RankEnum::ranks()[3] . " x " . $completed_requirements['rank_three_rankers_count'];
                     }
                     return '-';
 //                    return $rank->eligibility_percentage . '%';
                 })
-                ->addColumn('rank', fn($rank) => "R{$rank->rank}")
+                ->addColumn('rank', fn($rank) => $rank->name)
                 ->addColumn('status', fn($rank) => $rank->is_active ? "ACTIVE" : "INACTIVE")
                 ->addColumn('activated', fn($rank) => $rank->activated_at ? Carbon::parse($rank->activated_at)->format('Y-m-d H:i:s') : '-')
                 ->addColumn('created', fn($rank) => $rank->created_at->format('Y-m-d H:i:s'))
@@ -76,7 +75,7 @@ class RankController extends Controller
                     $actions = 'Not Eligible';
                     if (Gate::allows('issueBonus', $rank)) {
 //                    if ($rank->is_active) {
-                        $actions = '<a href="javascript:void(0)" data-id="' . $rank->id . '" title="Issue Bonus" class="btn btn-xs btn-success sharp issue-bonus my-1 mr-1 shadow">
+                        $actions = '<a href="javascript:void(0)" data-id="' . $rank->id . '"  data-rank="' . $rank->rank . '" title="Issue Bonus" class="btn btn-xs btn-success sharp issue-bonus my-1 mr-1 shadow">
                                     <i class="fa fa-check-circle"></i>
                                 </a>';
                     } elseif ($rank->rank === 3) {
@@ -115,13 +114,15 @@ class RankController extends Controller
             $completed_requirements = $rank->completed_requirements;
             $bonus_amount = 0;
             if ($rank->rank === 1) {
-                $rank_unlocked_cumulative_investment_of_direct_sales = $completed_requirements['rank_unlocked']['cumulative_investment_of_direct_sales'];
-                $bonus_amount = ($rank_unlocked_cumulative_investment_of_direct_sales * 5) / 100;
+//                $rank_unlocked_cumulative_investment_of_direct_sales = $completed_requirements['rank_unlocked']['cumulative_investment_of_direct_sales'];
+//                $bonus_amount = ($rank_unlocked_cumulative_investment_of_direct_sales * 5) / 100;
+                $bonus_amount = 250;
             }
 
             if ($rank->rank === 2) {
-                $cumulative_investments_of_rank_one_descendants = array_sum($completed_requirements['rank_unlocked']['cumulative_investments_of_rank_one_descendants']);
-                $bonus_amount = ($cumulative_investments_of_rank_one_descendants * 5) / 100;
+//                $cumulative_investments_of_rank_one_descendants = array_sum($completed_requirements['rank_unlocked']['cumulative_investments_of_rank_one_descendants']);
+//                $bonus_amount = ($cumulative_investments_of_rank_one_descendants * 5) / 100;
+                $bonus_amount = 1250;
             }
 
             $benefit = RankBenefit::forceCreate([
