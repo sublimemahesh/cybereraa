@@ -6,6 +6,7 @@ use App\Models\Country;
 use App\Models\Currency;
 use App\Models\Page;
 use App\Models\PurchasedPackage;
+use App\Models\Rank;
 use App\Models\SupportTicket;
 use App\Models\Transaction;
 use App\Models\User;
@@ -74,6 +75,12 @@ class ViewServiceProvider extends ServiceProvider
                     $q->where('status', 'pending');
                 })
                 ->count();
+            $pending_rank_activations = Rank::whereNotNull('activated_at')
+                ->whereRelation('user', 'username', '<>', 'jeewaka1002')
+                ->whereRelation('user', 'username', '<>', 'indika01')
+                ->whereIn('rank', [1, 2])
+                ->whereDoesntHave('benefits')
+                ->count();
             $pending_withdrawals = Withdraw::where('status', 'PENDING')->count();
             $processing_withdrawals = Withdraw::where('status', 'PROCESSING')->count();
             $pending_n_processing_withdrawals = $pending_withdrawals + $processing_withdrawals;
@@ -89,6 +96,7 @@ class ViewServiceProvider extends ServiceProvider
                 'pending_n_processing_withdrawals',
                 'earningPendingActivePackages',
                 'open_support_tickets',
+                'pending_rank_activations',
             ));
         });
     }
