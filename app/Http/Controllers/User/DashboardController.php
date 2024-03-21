@@ -10,6 +10,7 @@ use App\Models\Earning;
 use App\Models\Page;
 use App\Models\PopupNotice;
 use App\Models\PurchasedPackage;
+use App\Models\RankBenefit;
 use App\Models\Withdraw;
 use Auth;
 use DB;
@@ -71,6 +72,10 @@ class DashboardController extends Controller
         $indirect_comm_income = Earning::where('user_id', Auth::user()->id)
             ->where('status', 'RECEIVED')
             ->where('type', 'INDIRECT')->sum('amount');
+
+        $rank_bonus_income = RankBenefit::where('user_id', Auth::user()->id)
+            ->where('status', 'QUALIFIED')
+            ->where('type', 'RANK_BONUS')->sum('paid');
 //        $rank_bonus_income = Earning::where('user_id', Auth::user()->id)
 //            ->where('status', 'RECEIVED')
 //            ->where('type', 'RANK_BONUS')->sum('amount');
@@ -103,14 +108,14 @@ class DashboardController extends Controller
         // records
         $direct_indirect = Commission::with('purchasedPackage.user')
             ->where('user_id', Auth::user()->id)
-            ->limit(20)
+            ->limit(10)
             ->latest()
             ->get();
 
         $trade_incomes = Earning::with('tradeIncomePackage.user')
             ->where('user_id', Auth::user()->id)
             ->whereIn('type', ['TRADE_DIRECT', 'TRADE_INDIRECT'])
-            ->limit(20)
+            ->limit(10)
             ->latest()
             ->get();
 
@@ -118,7 +123,7 @@ class DashboardController extends Controller
             ->where('user_id', Auth::user()->id)
             ->where('status', 'RECEIVED')
             ->where('type', 'PACKAGE')
-            ->limit(20)
+            ->limit(10)
             ->latest()
             ->get();
 
@@ -199,6 +204,7 @@ class DashboardController extends Controller
                 'today_income',
                 'direct_comm_income',
                 'indirect_comm_income',
+                'rank_bonus_income',
 //                'rank_bonus_income',
                 'invest_income',
                 'total_withdraws',

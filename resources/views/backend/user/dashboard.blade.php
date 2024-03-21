@@ -342,129 +342,100 @@
 
     <div class='row'>
         <!-- Column -->
-        <div class="col-sm-8">
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="widget-stat card rounded-3">
-                        <div class="card-body  p-4">
 
-                            <div class="col-mb-12 ">
-                                <div class="media justify-content-center dash-p-10">
-                                            <span class="me-3">
-                                                <i class="la la-money-bill-wave"></i>
-                                            </span>
-                                </div>
-                            </div>
-
-                            <div class="col-mb-12 ">
-                                <div class="media-body text-white dash-p">
-                                    <p class="mb-1">My Package Income <br> <b>${{ number_format($invest_income,2) }}</b></p>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
+        <div class="col-xl-8">
+            <div class="card rounded-3">
+                <div class="border-0 card-header pb-2 pt-3">
+                    <h2 class="heading mb-0">Latest Incomes <span>(USDT)</span></h2>
                 </div>
-                <div class="col-sm-4">
-                    <div class="widget-stat card rounded-3">
-                        <div class="card-body  p-4">
-
-                            <div class="col-mb-12 ">
-                                <div class="media justify-content-center dash-p-10">
-                                            <span class="me-3">
-                                                <i class="la bi-hourglass-split"></i>
-                                            </span>
-                                </div>
-                            </div>
-
-                            <div class="col-mb-12 ">
-                                <div class="media-body text-white dash-p">
-                                    <p class="mb-1">Direct Sales Commission <br> <b>${{ number_format($direct_comm_income,2) }}</b></p>
-                                </div>
-                            </div>
+                <div class="card-body pt-0 pb-3 mt-2">
+                    <nav class="buy-sell style-1 ">
+                        <div class="nav nav-tabs" id="nav-tab1" role="tablist">
+                            <button class="last-income-round nav-link border border-right  active"
+                                    id="nav-package-earning-tab last-income-round" data-bs-toggle="tab"
+                                    data-bs-target="#nav-package-earning" type="button" role="tab"
+                                    aria-controls="nav-package-earning" aria-selected="true">Latest Package Earnings
+                            </button>
+                            <button class="nav-link border border-left" id="nav-direct-sale-tab"
+                                    data-bs-toggle="tab" data-bs-target="#nav-direct-sale" type="button"
+                                    role="tab" aria-controls="nav-direct-sale" aria-selected="false">Direct/indirect Sales
+                            </button>
+                            <button class="nav-link border border-left " id="nav-indirect-sale-tab"
+                                    data-bs-toggle="tab" data-bs-target="#nav-indirect-sale" type="button"
+                                    role="tab" aria-controls="nav-indirect-sale"
+                                    aria-selected="false">Trade Income
+                            </button>
                         </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="widget-stat card rounded-3">
-                        <div class="card-body  p-4">
-
-                            <div class="col-mb-12 ">
-                                <div class="media justify-content-center dash-p-10">
-                                            <span class="me-3">
-                                                <i class="la la-landmark"></i>
-                                            </span>
-                                </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent3">
+                        <div class="tab-pane fade show active" id="nav-package-earning" role="tabpanel"
+                             aria-labelledby="package-earning-tab">
+                            <div class="list-row-head text-nowrap text-left px-3">
+                                <span class="px-0">Received</span>
+                                <span class="px-0">Package</span>
+                                <span class="px-0">Paid Percentage</span>
+                                <span class="px-0">Date</span>
                             </div>
-                            <div class="col-mb-12 ">
-                                <div class="media-body text-white dash-p">
-                                    <p class="mb-1">
-                                        Indirect Sales <br> <b>${{ number_format($indirect_comm_income,2) }}</b>
-                                    </p>
-                                </div>
+                            <div class="list-table success">
+                                @foreach ($package_latest as $day_earn)
+                                    <div class="list-row px-3">
+                                        <span class="p-0">$ {{ number_format($day_earn->amount,2) }}</span>
+                                        <span class="p-0">{{ $day_earn->earnable->package_info_json->name
+                                        }}</span>
+                                        <span class="p-0">
+                                            {{ $day_earn->payed_percentage ??  $day_earn->earnable->payable_percentage }}%
+                                        </span>
+                                        <span class="p-0">{{ $day_earn->created_at->format('Y-m-d') }}</span>
+                                        <div class="bg-layer"></div>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="widget-stat card rounded-3">
-                        <div class="card-body  p-4">
-
-                            <div class="col-mb-12 ">
-                                <div class="media justify-content-center dash-p-10">
-                                            <span class="me-3">
-                                                <i class="la la-money-check-alt"></i>
-                                            </span>
-                                </div>
+                        <div class="tab-pane fade" id="nav-direct-sale" role="tabpanel"
+                             aria-labelledby="nav-direct-sale-tab">
+                            <div class="list-row-head text-nowrap text-left px-3">
+                                <span class="px-0">Received</span>
+                                <span class="px-0">Already Paid</span>
+                                <span class="px-0">User</span>
+                                <span class="px-0">Income Level</span>
+                                {{--<span class="px-0">Paid Percentage</span>--}}
+                                {{--<span class="px-0">Next Pay</span>--}}
                             </div>
-                            <div class="col-mb-12 ">
-                                <div class="media-body text-white dash-p">
-                                    <p class="mb-1">Direct Trade Income <br> <b>${{ number_format($trade_income,2) }}</b></p>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="widget-stat card rounded-3">
-                        <div class="card-body p-4">
-
-                            <div class="col-mb-12 ">
-                                <div class="media justify-content-center dash-p-10">
-                                            <span class="me-3">
-                                                <i class="la la-donate"></i>
-                                            </span>
-                                </div>
-                            </div>
-
-                            <div class="col-mb-12 ">
-                                <div class="media-body text-white dash-p">
-                                    <p class="mb-1">Indirect Trade Income <br> <b>${{ number_format($trade_team_income,2) }}</b></p>
-                                </div>
+                            <div class="list-table success">
+                                @foreach ($direct_indirect as $sale)
+                                    <div class="list-row px-3">
+                                        <span class="p-0">$ {{ number_format($sale->amount,2) }}</span>
+                                        <span class="p-0">$ {{ number_format($sale->paid,2) }}</span>
+                                        <span class="p-0">{{ $sale->purchasedPackage->user->username }}</span>
+                                        <span class="p-0">{{ \App\Enums\ReferralLevelEnum::level()[$sale->commission_level] ?? '-' }}</span>
+                                        {{--<span class="p-0">{{ $sale->payed_percentage }}%</span>--}}
+                                        {{--<span class="p-0">{{ Carbon::parse($sale->next_payment_date)->format('Y-m-d') }}</span>--}}
+                                        <div class="bg-layer"></div>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="widget-stat card rounded-3">
-                        <div class="card-body p-4">
-
-                            <div class="col-mb-12 ">
-                                <div class="media justify-content-center dash-p-10">
-                                            <span class="me-3">
-                                                <i class="fa-solid fa-coins"></i>
-                                            </span>
-                                </div>
+                        <div class="tab-pane fade" id="nav-indirect-sale" role="tabpanel"
+                             aria-labelledby="nav-indirect-sale-tab">
+                            <div class="list-row-head text-nowrap text-left px-3">
+                                <span class="px-0">Received</span>
+                                <span class="px-0">Type</span>
+                                <span class="px-0">User</span>
+                                <span class="px-0">Income Level</span>
+                                <span class="px-0">Paid Percentage</span>
+                                {{--<span class="px-0">Next Pay</span>--}}
                             </div>
-
-                            <div class="col-mb-12 ">
-                                <div class="media-body text-white dash-p">
-                                    <p class="mb-1">Reward Commissions <br> <b> $0</b></p>
-                                </div>
+                            <div class="list-table success">
+                                @foreach ($trade_incomes as $sale)
+                                    <div class="list-row px-3">
+                                        <span class="p-0">$ {{ number_format($sale->amount,2) }}</span>
+                                        <span class="p-0"> {{ $sale->type }}</span>
+                                        <span class="p-0">{{ $sale->tradeIncomePackage->user->username }}</span>
+                                        <span class="p-0">{{ \App\Enums\ReferralLevelEnum::level()[$sale->income_level] ?? '-' }}</span>
+                                        <span class="p-0">{{ $sale->payed_percentage }}%</span>
+                                        <div class="bg-layer"></div>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -682,108 +653,6 @@
 
     </div>
 
-    <div class="row">
-        <div class="col-xl-12 col-sm-6">
-            <div class="card rounded-3">
-                <div class="border-0 card-header pb-2 pt-3">
-                    <h2 class="heading mb-0">Latest Incomes <span>(USDT)</span></h2>
-                </div>
-                <div class="card-body pt-0 pb-3 mt-2">
-                    <nav class="buy-sell style-1 ">
-                        <div class="nav nav-tabs" id="nav-tab1" role="tablist">
-                            <button class="last-income-round nav-link border border-right  active"
-                                    id="nav-package-earning-tab last-income-round" data-bs-toggle="tab"
-                                    data-bs-target="#nav-package-earning" type="button" role="tab"
-                                    aria-controls="nav-package-earning" aria-selected="true">Latest Package Earnings
-                            </button>
-                            <button class="nav-link border border-left" id="nav-direct-sale-tab"
-                                    data-bs-toggle="tab" data-bs-target="#nav-direct-sale" type="button"
-                                    role="tab" aria-controls="nav-direct-sale" aria-selected="false">Direct/indirect Sales
-                            </button>
-                            <button class="nav-link border border-left " id="nav-indirect-sale-tab"
-                                    data-bs-toggle="tab" data-bs-target="#nav-indirect-sale" type="button"
-                                    role="tab" aria-controls="nav-indirect-sale"
-                                    aria-selected="false">Trade Income
-                            </button>
-                        </div>
-                    </nav>
-                    <div class="tab-content" id="nav-tabContent3">
-                        <div class="tab-pane fade show active" id="nav-package-earning" role="tabpanel"
-                             aria-labelledby="package-earning-tab">
-                            <div class="list-row-head text-nowrap text-left px-3">
-                                <span class="px-0">Received</span>
-                                <span class="px-0">Package</span>
-                                <span class="px-0">Paid Percentage</span>
-                                <span class="px-0">Date</span>
-                            </div>
-                            <div class="list-table success">
-                                @foreach ($package_latest as $day_earn)
-                                    <div class="list-row px-3">
-                                        <span class="p-0">$ {{ number_format($day_earn->amount,2) }}</span>
-                                        <span class="p-0">{{ $day_earn->earnable->package_info_json->name
-                                        }}</span>
-                                        <span class="p-0">
-                                            {{ $day_earn->payed_percentage ??  $day_earn->earnable->payable_percentage }}%
-                                        </span>
-                                        <span class="p-0">{{ $day_earn->created_at->format('Y-m-d') }}</span>
-                                        <div class="bg-layer"></div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="nav-direct-sale" role="tabpanel"
-                             aria-labelledby="nav-direct-sale-tab">
-                            <div class="list-row-head text-nowrap text-left px-3">
-                                <span class="px-0">Received</span>
-                                <span class="px-0">Already Paid</span>
-                                <span class="px-0">User</span>
-                                <span class="px-0">Income Level</span>
-                                {{--<span class="px-0">Paid Percentage</span>--}}
-                                {{--<span class="px-0">Next Pay</span>--}}
-                            </div>
-                            <div class="list-table success">
-                                @foreach ($direct_indirect as $sale)
-                                    <div class="list-row px-3">
-                                        <span class="p-0">$ {{ number_format($sale->amount,2) }}</span>
-                                        <span class="p-0">$ {{ number_format($sale->paid,2) }}</span>
-                                        <span class="p-0">{{ $sale->purchasedPackage->user->username }}</span>
-                                        <span class="p-0">{{ \App\Enums\ReferralLevelEnum::level()[$sale->commission_level] ?? '-' }}</span>
-                                        {{--<span class="p-0">{{ $sale->payed_percentage }}%</span>--}}
-                                        {{--<span class="p-0">{{ Carbon::parse($sale->next_payment_date)->format('Y-m-d') }}</span>--}}
-                                        <div class="bg-layer"></div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="nav-indirect-sale" role="tabpanel"
-                             aria-labelledby="nav-indirect-sale-tab">
-                            <div class="list-row-head text-nowrap text-left px-3">
-                                <span class="px-0">Received</span>
-                                <span class="px-0">Type</span>
-                                <span class="px-0">User</span>
-                                <span class="px-0">Income Level</span>
-                                <span class="px-0">Paid Percentage</span>
-                                {{--<span class="px-0">Next Pay</span>--}}
-                            </div>
-                            <div class="list-table success">
-                                @foreach ($trade_incomes as $sale)
-                                    <div class="list-row px-3">
-                                        <span class="p-0">$ {{ number_format($sale->amount,2) }}</span>
-                                        <span class="p-0"> {{ $sale->type }}</span>
-                                        <span class="p-0">{{ $sale->tradeIncomePackage->user->username }}</span>
-                                        <span class="p-0">{{ \App\Enums\ReferralLevelEnum::level()[$sale->income_level] ?? '-' }}</span>
-                                        <span class="p-0">{{ $sale->payed_percentage }}%</span>
-                                        <div class="bg-layer"></div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <div class="row">
         <div class="col-xl-4  col-sm-12">
@@ -847,6 +716,16 @@
                                             Indirect Referral Commission
                                         </span>
                                         <h5>${{ number_format($indirect_comm_income,2) }}</h5>
+                                    </div>
+                                    <div class="color-picker">
+                                        <span class="mb-0 col-9 fs-14">
+                                            <svg class="me-2" width="16" height="16" viewBox="0 0 14 14" fill="none"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <rect width="14" height="14" rx="4" fill="#00D312FF"/>
+                                            </svg>
+                                            Rank Bonus
+                                        </span>
+                                        <h5>${{ number_format($rank_bonus_income,2) }}</h5>
                                     </div>
                                 </div>
                             </div>
@@ -1219,29 +1098,33 @@
                 data: [
                     {
                         label: "\xa0 \xa0 Trade Income \xa0 \xa0",
-                        value: {{ $invest_income }},
+                        value: {{ number_format($invest_income, 2, '.', '') }},
 
                     },
                     {
                         label: "\xa0 \xa0 Trade Direct Income \xa0 \xa0",
-                        value: {{ $trade_income }}
+                        value: {{ number_format($trade_income, 2, '.', '') }}
                     },
                     {
                         label: "\xa0 \xa0 Trade Team Income \xa0 \xa0",
-                        value: {{ $trade_team_income }}
+                        value: {{ number_format($trade_team_income, 2, '.', '') }}
                     },
                     {
                         label: "\xa0 \xa0 Direct Commission \xa0 \xa0",
-                        value: {{ $direct_comm_income }}
+                        value: {{ number_format($direct_comm_income, 2, '.', '') }}
                     },
                     {
                         label: "\xa0 \xa0 Team Commission \xa0 \xa0",
-                        value: {{ $indirect_comm_income }}
+                        value: {{ number_format($indirect_comm_income, 2, '.', '') }}
+                    },
+                    {
+                        label: "\xa0 \xa0 Rank Bonus \xa0 \xa0",
+                        value: {{ number_format($rank_bonus_income, 2, '.', '') }}
                     }
                 ],
                 resize: true,
                 redraw: true,
-                colors: ['#027f7f', '#fbd5cb', '#4a4a65', '#937f25', '#983042'],
+                colors: ['#027f7f', '#fbd5cb', '#4a4a65', '#937f25', '#983042', '#00d312'],
                 //responsive:true,
 
             });

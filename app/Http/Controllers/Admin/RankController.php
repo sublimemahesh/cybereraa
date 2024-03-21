@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enums\RankEnum;
 use App\Http\Controllers\Controller;
+use App\Models\Earning;
 use App\Models\Rank;
+use App\Models\RankBenefit;
+use App\Models\Wallet;
 use Carbon\Carbon;
 use Gate;
 use Illuminate\Http\Request;
@@ -134,6 +137,14 @@ class RankController extends Controller
                 'status' => 'QUALIFIED',
                 'bonus_date' => Carbon::now()->format('Y-m-d')
             ]);
+
+            $benefit->earnings()->save(Earning::forceCreate([
+                'user_id' => $benefit->user_id,
+                'amount' => $bonus_amount,
+                'payed_percentage' => 5,
+                'type' => 'RANK_BONUS',
+                'status' => 'RECEIVED',
+            ]));
 
             $wallet = Wallet::firstOrCreate(
                 ['user_id' => $benefit->user_id],

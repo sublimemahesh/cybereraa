@@ -296,7 +296,7 @@ class GenealogyController extends Controller
             ->withCount('directSales')
             ->withSum(['withdraws' => fn($q) => $q->where('status', 'SUCCESS')->where('type', 'MANUAL')], 'amount')
             ->withSum(['withdraws' => fn($q) => $q->where('status', 'SUCCESS')->where('type', 'MANUAL')], 'transaction_fee')
-            ->withSum(['earnings'/* => fn($q) => $q->whereIn('type', ['PACKAGE', 'TRADE_DIRECT', 'TRADE_INDIRECT', 'DIRECT', 'INDIRECT', 'TEAM_BONUS'])*/], 'amount')
+            ->withSum(['earnings' => fn($q) => $q->whereIn('type', ['PACKAGE', 'TRADE_DIRECT', 'TRADE_INDIRECT', 'DIRECT', 'INDIRECT'])], 'amount')
             ->withSum(['activePackages', 'purchasedPackages'], 'invested_amount')
             ->when(($level === 'all' || $level < 1 || $level > 4), function (Builder $q) {
                 $q->where('depth', "<=", 4);
