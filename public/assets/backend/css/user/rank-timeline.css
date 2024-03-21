@@ -15,15 +15,15 @@
     margin: 0 auto;
 }
 
-.rank {
+.timeline .rank {
     width: 200px;
     text-align: center;
     position: relative;
     /*margin-bottom: 30px;*/
 }
 
-.locked,
-.unlocked {
+.timeline .locked,
+.timeline .unlocked {
     border: 2px solid #e60a92;
     border-radius: 10%;
     padding: 30px;
@@ -31,20 +31,20 @@
     position: relative;
 }
 
-.locked .rank-name,
-.unlocked .rank-name {
+.timeline .locked .rank-name,
+.timeline .unlocked .rank-name {
     font-weight: bold;
     margin-bottom: 5px;
     font-size: 18px;
 }
 
-.locked .status,
-.unlocked .status {
+.timeline .locked .status,
+.timeline .unlocked .status {
     font-size: 0.8em;
     color: #777;
 }
 
-.line {
+.timeline .line {
     position: absolute;
     height: 5px;
     background-color: #4caf50;
@@ -54,7 +54,7 @@
     transform: translate(-50%, -50%);
 }
 
-.line::before {
+.timeline .line::before {
     content: "";
     position: absolute;
     height: 2px;
@@ -66,11 +66,11 @@
     z-index: -1;
 }
 
-.line:first-child::before {
+.timeline .line:first-child::before {
     width: 50%;
 }
 
-.line:last-child::before {
+.timeline .line:last-child::before {
     width: 50%;
 }
 
@@ -101,26 +101,235 @@
 }
 
 /* Additional Styling for Attractiveness */
-.rank {
+.timeline .rank {
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
     z-index: 3;
 }
 
-.rank:hover {
+.timeline .rank:hover {
     transform: translateY(-5px);
 }
 
-.rank.locked {
+.timeline .rank.locked {
     /*opacity: 0.7;*/
 }
 
-.rank.unlocked {
+.timeline .rank.unlocked {
     background-color: #7c1249;
     color: #fff;
 }
 
-.rank.unlocked:hover {
+.timeline .rank.unlocked:hover {
     background-color: #45a049;
+}
+
+/** |||||||||||||||||||||||   INFO CONTAINER START  |||||||||||||||||||||||   */
+
+/* Common styles */
+.rank-container {
+    position: relative;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 5px 1.875rem;
+}
+
+.rank-container.locked {
+    border: 3px solid #7c1249;
+}
+
+.rank-container.unlocked {
+    border: 3px solid #39683b
+}
+
+.rank-container .rank-logo {
+    width: 250px;
+    height: 250px;
+}
+
+.rank-container .rank-logo:hover {
+    animation: shake 0.8s cubic-bezier(.36, .07, .19, .97) both;
+    transform: translate3d(0, 0, 0);
+    perspective: 1000px;
+}
+
+.rank-container .content-area > h2:hover {
+    background-clip: text;
+    -webkit-background-clip: text; /* Safari compatibility */
+    -webkit-text-fill-color: transparent; /* Safari compatibility */
+    background-image: linear-gradient(to right, #00f260 0%, #2575fc 100%); /* Contrasting gradient colors */
+    animation: shakeColor 0.5s ease-in-out forwards;
+}
+
+.ribbon {
+    position: absolute;
+    top: 10px;
+    left: -13px;
+    padding: 5px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    z-index: 1;
+}
+
+.rank-container .unlocked,
+.rank-container .locked {
+    /*border-radius: 10%;*/
+    box-sizing: border-box;
+}
+
+.rank-container .unlocked {
+    background-color: #4caf50 !important; /* Green color */
+}
+
+.rank-container .locked {
+    background-color: #f44336 !important; /* Red color */
+}
+
+/* Triangle Ribbon Shape */
+.ribbon:before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    border-width: 0 10px 10px 0;
+    border-style: solid;
+}
+
+.unlocked:before {
+    border-color: transparent #458c48 transparent transparent;
+}
+
+.locked:before {
+    border-color: transparent #a9382f transparent transparent;
+}
+
+.content-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 50px;
+}
+
+.benefit-highlights div {
+    transition: ease-in-out;
+}
+
+.benefit-highlights div:hover span { /* Target only the benefit text within the div */
+    text-decoration: none; /* Remove underline from the span element (optional) */
+}
+
+.benefit-highlights div:hover {
+    position: relative;
+    cursor: pointer;
+}
+
+.benefit-highlights div:hover::after { /* Target pseudo-element for underline */
+    content: "";
+    position: absolute;
+    width: 100%; /* Match width of the text */
+    height: 2px; /* Underline thickness */
+    background-color: #fff; /* Underline color */
+    left: 0; /* Position underline at the left edge */
+    bottom: 0; /* Position underline at the bottom */
+    transform: scaleX(0); /* Initial state: underline hidden */
+    animation: underline-animation 0.5s ease-in-out forwards;
+}
+
+@keyframes underline-animation {
+    from {
+        transform: scaleX(0); /* Start hidden */
+    }
+    to {
+        transform: scaleX(1); /* Animate to full width */
+    }
+}
+
+.investment-details,
+.benefit-highlights {
+    border-radius: 5px;
+    font-size: 16px;
+    transition: ease-in-out;
+}
+
+.content-area .investment-details p::before {
+    content: '';
+    background-color: #e4a832;
+    /* padding: 5px; */
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50px;
+    margin-right: 5px;
+}
+
+.benefit-highlights {
+    border: 3px solid #d89b2a;
+    padding: 10px;
+}
+
+.rank-container h2,
+.benefit-highlights h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    /*color: #000 !important;*/
+    font-weight: 700;
+}
+
+@keyframes shakeColor {
+    from {
+        background-image: linear-gradient(to right, #fff 0%, #fff 100%);
+    }
+    to {
+        background-image: linear-gradient(to right, #d99720 0%, #fff 100%);
+    }
+}
+
+@keyframes shake {
+    10%, 90% {
+        transform: translate3d(-5px, 0, 0) rotateZ(-3deg); /* Left shake with slight rotation */
+    }
+
+    30%, 70% {
+        transform: translate3d(5px, 0, 0) rotateZ(3deg); /* Right shake with slight rotation */
+    }
+    /* Resting position at 0% and 100% */
+    0%, 100% {
+        transform: translate3d(0, 0, 0) rotateZ(0deg);
+    }
+
+    30%, 40%, 60% {
+        transform: translate3d(0, 0, 0) rotateZ(0deg) skewX(-2deg); /* Slight left skew */
+    }
+}
+
+/* Media queries for responsiveness */
+
+@media (max-width: 768px) {
+    .rank-container {
+        flex-direction: column;
+        margin: 5px 0.5rem; /* Adjust margin for smaller screens */
+    }
+}
+
+@media (max-width: 576px) {
+    .rank-container {
+        padding: 10px; /* Adjust padding for smaller screens */
+    }
+
+    .rank-container .rank-logo {
+        width: 150px; /* Adjust logo size for smaller screens */
+        height: 150px;
+    }
+
+    .content-area {
+        margin-left: 20px; /* Adjust margin for smaller screens */
+    }
+
+    .rank-container h2,
+    .benefit-highlights h2 {
+        font-size: 1.5em; /* Adjust font size for smaller screens */
+    }
 }

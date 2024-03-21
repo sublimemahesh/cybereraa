@@ -289,7 +289,7 @@ class EarningController extends Controller
                 ->addColumn('type', function ($reward) {
                     return
                         "<code class='text-uppercase'>{$reward->type}</code> <br>" .
-                        " <i class='fa fa-star'></i> RANK {$reward->rank->rank} ";
+                        " <i class='fa fa-star'></i> {$reward->rank->name} ";
                 })
                 ->addColumn('package', fn($reward) => $reward->package_info_json->name)
                 ->addColumn('referer', '-')
