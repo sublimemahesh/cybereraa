@@ -86,6 +86,10 @@ class CoinpaymentListener implements ShouldQueue
                 Log::channel('coinpayment')->info("Transaction {$transaction->id} has been restored.");
             }
 
+            if ($transaction->transaction_id !== $this->transaction['txn_id']) {
+                $transaction->update(['transaction_id' => $this->transaction['txn_id']]);
+            }
+
             $res_data = json_decode($transaction->status_response ?? [], true, 512, JSON_THROW_ON_ERROR);
 
             if ((int)$this->transaction['status'] === 100 && $transaction->status === 'PENDING' && $transaction->pay_method === 'COIN_PAYMENT') {

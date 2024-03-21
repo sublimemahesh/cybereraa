@@ -44,7 +44,7 @@ class TransactionService
                 return "Admin";
             })
             ->addColumn('package', function ($trx) {
-                return $trx->create_order_request_info->goods->goodsName;
+                return $trx->create_order_request_info?->goods->goodsName ?? '-';
 //                return "PRODUCT: <code class='text-uppercase'>" . $trx->package_type . '</code><br>' .
 //                "NAME: " . $trx->create_order_request_info->goods->goodsName ?? '-';
             })
