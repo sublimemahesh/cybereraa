@@ -50093,3 +50093,9 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:fo
 
         color: #efe6e6 !important;
 }
+
+@media only screen and (max-width: 768px) {
+    .hidden-on-mobile {
+        display: none !important;
+    }
+}
