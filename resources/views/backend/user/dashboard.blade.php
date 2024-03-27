@@ -407,7 +407,7 @@
                                         <span class="p-0">$ {{ number_format($sale->amount,2) }}</span>
                                         <span class="p-0 hidden-on-mobile">$ {{ number_format($sale->paid,2) }}</span>
                                         {{-- <span class="p-0">{{ $sale->purchasedPackage->user->username }}</span> --}}
-                                        <span class="p-0">{{ \App\Enums\ReferralLevelEnum::level()[$sale->commission_level] ?? '-' }}/<br>{{ $sale->purchasedPackage->user->username }}</span>
+                                        <span class="p-0">{{ \App\Enums\ReferralLevelEnum::level()[$sale->commission_level] ?? '-' }}/{{ $sale->purchasedPackage->user->username }}</span>
                                         {{--<span class="p-0">{{ $sale->payed_percentage }}%</span>--}}
                                         {{--<span class="p-0">{{ Carbon::parse($sale->next_payment_date)->format('Y-m-d') }}</span>--}}
                                         <div class="bg-layer"></div>
@@ -432,7 +432,7 @@
                                         <span class="p-0 hidden-on-mobile"> {{ $sale->type }}</span>
                                         {{-- <span class="p-0">{{ $sale->tradeIncomePackage->user->username }}</span> --}}
                                         {{-- <span class="p-0">{{ \App\Enums\ReferralLevelEnum::level()[$sale->income_level] ?? '-' }}</span> --}}
-                                        <span class="p-0">{{ $sale->payed_percentage }}%  <br> / {{ \App\Enums\ReferralLevelEnum::level()[$sale->income_level] ?? '-' }}</span>
+                                        <span class="p-0">{{ $sale->payed_percentage }}%  / {{ \App\Enums\ReferralLevelEnum::level()[$sale->income_level] ?? '-' }}</span>
                                         <div class="bg-layer"></div>
                                     </div>
                                 @endforeach
