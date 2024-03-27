@@ -371,7 +371,7 @@
                         <div class="tab-pane fade show active" id="nav-package-earning" role="tabpanel"
                              aria-labelledby="package-earning-tab">
                             <div class="list-row-head text-nowrap text-left px-3">
-                                <span class="px-0">Received</span>
+                                <span class="px-0">Amount</span>
                                 <span class="px-0 hidden-on-mobile">Package</span>
                                 <span class="px-0 hidden-on-mobile">Paid Percentage</span>
                                 <span class="px-0">Date</span>
@@ -394,7 +394,7 @@
                         <div class="tab-pane fade" id="nav-direct-sale" role="tabpanel"
                              aria-labelledby="nav-direct-sale-tab">
                             <div class="list-row-head text-nowrap text-left px-3">
-                                <span class="px-0">Received</span>
+                                <span class="px-0">Amount</span>
                                 <span class="px-0 hidden-on-mobile">Already Paid</span>
                                 {{-- <span class="px-0">User</span> --}}
                                 <span class="px-0">Income Level <br>/ User</span>
@@ -418,7 +418,7 @@
                         <div class="tab-pane fade" id="nav-indirect-sale" role="tabpanel"
                              aria-labelledby="nav-indirect-sale-tab">
                             <div class="list-row-head text-nowrap text-left px-3">
-                                <span class="px-0">Received <br>/ User</span>
+                                <span class="px-0">Amount<br>/ User</span>
                                 <span class="px-0 hidden-on-mobile">Type</span>
                                 {{-- <span class="px-0">User</span> --}}
                                 {{-- <span class="px-0">Income Level</span> --}}
