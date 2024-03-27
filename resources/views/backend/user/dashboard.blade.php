@@ -371,18 +371,18 @@
                         <div class="tab-pane fade show active" id="nav-package-earning" role="tabpanel"
                              aria-labelledby="package-earning-tab">
                             <div class="list-row-head text-nowrap text-left px-3">
-                                <span class="px-0">Received</span>
-                                <span class="px-0">Package</span>
-                                <span class="px-0">Paid Percentage</span>
+                                <span class="px-0">Amount</span>
+                                <span class="px-0 hidden-on-mobile">Package</span>
+                                <span class="px-0 hidden-on-mobile">Paid Percentage</span>
                                 <span class="px-0">Date</span>
                             </div>
                             <div class="list-table success">
                                 @foreach ($package_latest as $day_earn)
                                     <div class="list-row px-3">
                                         <span class="p-0">$ {{ number_format($day_earn->amount,2) }}</span>
-                                        <span class="p-0">{{ $day_earn->earnable->package_info_json->name
+                                        <span class="p-0 hidden-on-mobile">{{ $day_earn->earnable->package_info_json->name
                                         }}</span>
-                                        <span class="p-0">
+                                        <span class="p-0 hidden-on-mobile">
                                             {{ $day_earn->payed_percentage ??  $day_earn->earnable->payable_percentage }}%
                                         </span>
                                         <span class="p-0">{{ $day_earn->created_at->format('Y-m-d') }}</span>
@@ -394,10 +394,10 @@
                         <div class="tab-pane fade" id="nav-direct-sale" role="tabpanel"
                              aria-labelledby="nav-direct-sale-tab">
                             <div class="list-row-head text-nowrap text-left px-3">
-                                <span class="px-0">Received</span>
-                                <span class="px-0">Already Paid</span>
-                                <span class="px-0">User</span>
-                                <span class="px-0">Income Level</span>
+                                <span class="px-0">Amount</span>
+                                <span class="px-0 hidden-on-mobile">Already Paid</span>
+                                {{-- <span class="px-0">User</span> --}}
+                                <span class="px-0">Income Level <br>/ User</span>
                                 {{--<span class="px-0">Paid Percentage</span>--}}
                                 {{--<span class="px-0">Next Pay</span>--}}
                             </div>
@@ -405,9 +405,9 @@
                                 @foreach ($direct_indirect as $sale)
                                     <div class="list-row px-3">
                                         <span class="p-0">$ {{ number_format($sale->amount,2) }}</span>
-                                        <span class="p-0">$ {{ number_format($sale->paid,2) }}</span>
-                                        <span class="p-0">{{ $sale->purchasedPackage->user->username }}</span>
-                                        <span class="p-0">{{ \App\Enums\ReferralLevelEnum::level()[$sale->commission_level] ?? '-' }}</span>
+                                        <span class="p-0 hidden-on-mobile">$ {{ number_format($sale->paid,2) }}</span>
+                                        {{-- <span class="p-0">{{ $sale->purchasedPackage->user->username }}</span> --}}
+                                        <span class="p-0">{{ \App\Enums\ReferralLevelEnum::level()[$sale->commission_level] ?? '-' }}/{{ $sale->purchasedPackage->user->username }}</span>
                                         {{--<span class="p-0">{{ $sale->payed_percentage }}%</span>--}}
                                         {{--<span class="p-0">{{ Carbon::parse($sale->next_payment_date)->format('Y-m-d') }}</span>--}}
                                         <div class="bg-layer"></div>
@@ -418,21 +418,21 @@
                         <div class="tab-pane fade" id="nav-indirect-sale" role="tabpanel"
                              aria-labelledby="nav-indirect-sale-tab">
                             <div class="list-row-head text-nowrap text-left px-3">
-                                <span class="px-0">Received</span>
-                                <span class="px-0">Type</span>
-                                <span class="px-0">User</span>
-                                <span class="px-0">Income Level</span>
-                                <span class="px-0">Paid Percentage</span>
+                                <span class="px-0">Amount<br>/ User</span>
+                                <span class="px-0 hidden-on-mobile">Type</span>
+                                {{-- <span class="px-0">User</span> --}}
+                                {{-- <span class="px-0">Income Level</span> --}}
+                                <span class="px-0">Paid Percentage <br>/ Level</span>
                                 {{--<span class="px-0">Next Pay</span>--}}
                             </div>
                             <div class="list-table success">
                                 @foreach ($trade_incomes as $sale)
                                     <div class="list-row px-3">
-                                        <span class="p-0">$ {{ number_format($sale->amount,2) }}</span>
-                                        <span class="p-0"> {{ $sale->type }}</span>
-                                        <span class="p-0">{{ $sale->tradeIncomePackage->user->username }}</span>
-                                        <span class="p-0">{{ \App\Enums\ReferralLevelEnum::level()[$sale->income_level] ?? '-' }}</span>
-                                        <span class="p-0">{{ $sale->payed_percentage }}%</span>
+                                        <span class="p-0">$ {{ number_format($sale->amount,2) }} <br>/  {{ $sale->tradeIncomePackage->user->username }}</span>
+                                        <span class="p-0 hidden-on-mobile"> {{ $sale->type }}</span>
+                                        {{-- <span class="p-0">{{ $sale->tradeIncomePackage->user->username }}</span> --}}
+                                        {{-- <span class="p-0">{{ \App\Enums\ReferralLevelEnum::level()[$sale->income_level] ?? '-' }}</span> --}}
+                                        <span class="p-0">{{ $sale->payed_percentage }}%  / {{ \App\Enums\ReferralLevelEnum::level()[$sale->income_level] ?? '-' }}</span>
                                         <div class="bg-layer"></div>
                                     </div>
                                 @endforeach
